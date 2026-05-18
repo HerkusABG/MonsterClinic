@@ -7,6 +7,9 @@
 [ext_resource type="Script" uid="uid://bw3btaxjpl16i" path="res://Dealer_PH.cs" id="5_tjl6a"]
 [ext_resource type="Script" uid="uid://d2pfb3obh0l26" path="res://Malady_PH.cs" id="6_3f6el"]
 [ext_resource type="Script" uid="uid://cps7wyoavl5wx" path="res://Close.cs" id="6_hqpia"]
+[ext_resource type="Script" uid="uid://ds684ws41jfwk" path="res://MoneyDisplay.cs" id="8_3f6el"]
+[ext_resource type="Script" uid="uid://gywgy4lb3aaa" path="res://MoneyAdder.cs" id="8_dekc5"]
+[ext_resource type="Script" uid="uid://b0jnjo6h04xgr" path="res://MoneySubtractor.cs" id="10_vjhme"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqyqf"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -54,7 +57,7 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qsxs0"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Contents_C" type="Node" unique_id=1381005169]
+[node name="Contents_C" type="Node2D" unique_id=1932071110]
 script = ExtResource("1_tjl6a")
 
 [node name="Player_Interactables_C" type="Control" parent="." unique_id=1665384528]
@@ -206,6 +209,48 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Log out"
+
+[node name="Money_Adder" type="Button" parent="Player_Interactables_C" unique_id=306485701]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 0
+offset_left = 1052.0
+offset_top = 929.0
+offset_right = 1352.0
+offset_bottom = 1046.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+text = "Infinite wealth 
+be upon ye"
+script = ExtResource("8_dekc5")
+
+[node name="Money_Display" type="Label" parent="Player_Interactables_C" unique_id=1983009738]
+z_index = 1
+layout_mode = 0
+offset_left = 649.0
+offset_top = 743.0
+offset_right = 1352.0
+offset_bottom = 908.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_3f6el")
+
+[node name="Money_Subtractor" type="Button" parent="Player_Interactables_C" unique_id=294244695]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 0
+offset_left = 657.0
+offset_top = 923.0
+offset_right = 957.0
+offset_bottom = 1040.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+text = "BOUNDLESS DEBT"
+script = ExtResource("10_vjhme")
 
 [connection signal="pressed" from="Player_Interactables_C/Dealer" to="Player_Interactables_C/Dealer_PH" method="_on_dealer_pressed"]
 [connection signal="pressed" from="Player_Interactables_C/Map" to="Player_Interactables_C/Map_PH" method="_on_map_pressed"]

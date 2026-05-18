@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://tko5xpbwbya8" path="res://Deadline_Countdown.cs" id="4_r1f8t"]
 [ext_resource type="Script" uid="uid://damlipp41xqb1" path="res://Mirror.cs" id="7_4fm71"]
 [ext_resource type="Script" uid="uid://4pv2su1jjxij" path="res://Mirror_Close_Up.cs" id="7_ei0gw"]
-[ext_resource type="Script" uid="uid://b8t0rredi262l" path="res://Destination_Ph.cs" id="8_n8ipj"]
+[ext_resource type="Script" uid="uid://b8t0rredi262l" path="res://Destination_PH.cs" id="8_n8ipj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fedq"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -36,7 +36,7 @@ border_width_right = 7
 border_width_bottom = 7
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Contents_O" type="Node" unique_id=1688152975]
+[node name="Contents_O" type="Node2D" unique_id=586678661]
 script = ExtResource("1_35wc1")
 
 [node name="Player_Interactables_O" type="Control" parent="." unique_id=1346865405]

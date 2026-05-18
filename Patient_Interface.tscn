@@ -75,7 +75,7 @@ bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqp7s"]
 bg_color = Color(0.9661711, 0.66405463, 0.6947776, 1)
 
-[node name="Contents_P_I" type="Node" unique_id=1348472510]
+[node name="Contents_P_I" type="Node2D" unique_id=315031335]
 script = ExtResource("1_ljdgf")
 
 [node name="Sprites_PH" type="Node2D" parent="." unique_id=2126787329]

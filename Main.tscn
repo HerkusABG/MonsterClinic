@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://w3h4yybr04yy"]
+
+[ext_resource type="PackedScene" uid="uid://chmg4tjmycsse" path="res://Office.tscn" id="1_r0du0"]
+[ext_resource type="PackedScene" uid="uid://cd5mco04n5aoh" path="res://Computer.tscn" id="2_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://dkuuhw6j251v" path="res://Patient_Interface.tscn" id="3_fos0i"]
+
+[node name="Node" type="Node" unique_id=1988220635]
+
+[node name="Computer" parent="." unique_id=1932071110 instance=ExtResource("2_cm0pq")]
+
+[node name="Office" parent="." unique_id=586678661 instance=ExtResource("1_r0du0")]
+
+[node name="Patient_Interface" parent="." unique_id=315031335 instance=ExtResource("3_fos0i")]

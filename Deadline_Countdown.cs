@@ -1,10 +1,10 @@
 using Godot;
 using System;
+using global;
 
 public partial class Deadline_Countdown : Label
 {
 
-    int Countdown = 4;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -14,11 +14,11 @@ public partial class Deadline_Countdown : Label
     private void _on_treatment_d_pressed()
     {
         Show();
-        if (Countdown > 1)
+        if (Variables.Countdown > 1)
         {
-            Text = String.Format("If you don't get treatment in {0} days, \n you'll be in real trouble", Countdown);
+            Text = String.Format("If you don't get treatment in {0} days, \n you'll be in real trouble", Variables.Countdown);
         }
-        else if (Countdown == 1)
+        else if (Variables.Countdown == 1)
         {
             Text = "If you don't get treatment within the next day, \n you'll be in real trouble";
         }
@@ -35,9 +35,9 @@ public partial class Deadline_Countdown : Label
 
     private void _on_time_passed()
     {
-        if (Countdown > 0)
+        if (Variables.Countdown > 0)
         {
-            Countdown--;
+            Variables.Countdown--;
         }
     }
 

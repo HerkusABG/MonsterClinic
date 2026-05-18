@@ -1,146 +1,90 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\",
+  "WorkspaceRootPath": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\dealer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:dealer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\deadline_countdown.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:deadline_countdown.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\treatmentcountdown.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:treatmentcountdown.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\treatment_deadline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:treatment_deadline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\tabletcontentb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:tabletcontentb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\tabletcontenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:tabletcontenta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\tabletaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:tabletaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\tablet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:tablet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\reject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:reject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\previousscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:previousscene.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\mirror_close_up.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:mirror_close_up.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\mirror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:mirror.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\map_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:map_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\map.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:map.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\malady_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:malady_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\malady_catalogue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:malady_catalogue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\log_out.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:log_out.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\inventoryaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:inventoryaccess.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\inventory_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:inventory_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\inventory_access_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:inventory_access_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\dialogue_trigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:dialogue_trigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\diagnosis_box.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:diagnosis_box.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\destination_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:destination_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\deceased_sprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:deceased_sprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\dealer_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:dealer_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\contents_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:contents_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\contents_o.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\contents_o.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:contents_o.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\contents_c.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\contents_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:contents_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\contents_c.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:contents_c.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\computer_access.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:computer_access.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\inventory_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:inventory_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\close.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:close.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\deceased_sprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:deceased_sprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\checkbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:checkbox.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\dialogue_trigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:dialogue_trigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\character_speech.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\character_speech.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:character_speech.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\bed_time.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\diagnosis_box.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:diagnosis_box.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\inventory_access_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:inventory_access_p_i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\close.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:close.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\mirror_close_up.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:mirror_close_up.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\destination_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:destination_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\bed_time.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:bed_time.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\admit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:admit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\treatment_deadline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:treatment_deadline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\astra\\documents\\mosnster_clinic\\monsterclinic\\monsterclinic.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:monsterclinic.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\malady_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:malady_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\dealer_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:dealer_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\map_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:map_ph.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\map.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:map.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\dealer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:dealer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -150,429 +94,265 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TreatmentCountdown.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\TreatmentCountdown.cs",
-              "RelativeDocumentMoniker": "TreatmentCountdown.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\TreatmentCountdown.cs",
-              "RelativeToolTip": "TreatmentCountdown.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Title": "Global.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Global.cs",
+              "RelativeDocumentMoniker": "Global.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Global.cs",
+              "RelativeToolTip": "Global.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:39:07.808Z",
+              "WhenOpened": "2026-05-18T13:31:10.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Character_Speech.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Character_Speech.cs",
+              "RelativeDocumentMoniker": "Character_Speech.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Character_Speech.cs",
+              "RelativeToolTip": "Character_Speech.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T19:19:49.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Dialogue_Trigger.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Dialogue_Trigger.cs",
+              "RelativeDocumentMoniker": "Dialogue_Trigger.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Dialogue_Trigger.cs",
+              "RelativeToolTip": "Dialogue_Trigger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T19:19:10.913Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Deceased_Sprite.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Deceased_Sprite.cs",
+              "RelativeDocumentMoniker": "Deceased_Sprite.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Deceased_Sprite.cs",
+              "RelativeToolTip": "Deceased_Sprite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T19:18:41.055Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Contents_O.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Contents_O.cs",
+              "RelativeDocumentMoniker": "Contents_O.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Contents_O.cs",
+              "RelativeToolTip": "Contents_O.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T19:03:07.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Deadline_Countdown.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Deadline_Countdown.cs",
+              "RelativeDocumentMoniker": "Deadline_Countdown.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Deadline_Countdown.cs",
+              "RelativeToolTip": "Deadline_Countdown.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T19:11:36.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Contents_C.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Contents_C.cs",
+              "RelativeDocumentMoniker": "Contents_C.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Contents_C.cs",
+              "RelativeToolTip": "Contents_C.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T19:01:46.292Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "TabletContentB.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\TabletContentB.cs",
-              "RelativeDocumentMoniker": "TabletContentB.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\TabletContentB.cs",
-              "RelativeToolTip": "TabletContentB.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Contents_P_I.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Contents_P_I.cs",
+              "RelativeDocumentMoniker": "Contents_P_I.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Contents_P_I.cs",
+              "RelativeToolTip": "Contents_P_I.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:39:01.786Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TabletContentA.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\TabletContentA.cs",
-              "RelativeDocumentMoniker": "TabletContentA.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\TabletContentA.cs",
-              "RelativeToolTip": "TabletContentA.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:57.139Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TabletAccess.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\TabletAccess.cs",
-              "RelativeDocumentMoniker": "TabletAccess.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\TabletAccess.cs",
-              "RelativeToolTip": "TabletAccess.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:53.201Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Tablet.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Tablet.cs",
-              "RelativeDocumentMoniker": "Tablet.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Tablet.cs",
-              "RelativeToolTip": "Tablet.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:51.186Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Reject.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Reject.cs",
-              "RelativeDocumentMoniker": "Reject.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Reject.cs",
-              "RelativeToolTip": "Reject.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:47.302Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Mirror_Close_Up.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Mirror_Close_Up.cs",
-              "RelativeDocumentMoniker": "Mirror_Close_Up.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Mirror_Close_Up.cs",
-              "RelativeToolTip": "Mirror_Close_Up.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:40.075Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Mirror.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Mirror.cs",
-              "RelativeDocumentMoniker": "Mirror.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Mirror.cs",
-              "RelativeToolTip": "Mirror.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:36.46Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Map_PH.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Map_PH.cs",
-              "RelativeDocumentMoniker": "Map_PH.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Map_PH.cs",
-              "RelativeToolTip": "Map_PH.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:31.917Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Dealer.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Dealer.cs",
-              "RelativeDocumentMoniker": "Dealer.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Dealer.cs",
-              "RelativeToolTip": "Dealer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:36:45.853Z",
+              "WhenOpened": "2026-05-13T19:05:42.391Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Treatment_Deadline.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Treatment_Deadline.cs",
-              "RelativeDocumentMoniker": "Treatment_Deadline.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Treatment_Deadline.cs",
-              "RelativeToolTip": "Treatment_Deadline.cs",
+              "DocumentIndex": 9,
+              "Title": "Diagnosis_Box.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Diagnosis_Box.cs",
+              "RelativeDocumentMoniker": "Diagnosis_Box.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Diagnosis_Box.cs",
+              "RelativeToolTip": "Diagnosis_Box.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T19:20:35.745Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Inventory_Access_P_I.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Inventory_Access_P_I.cs",
+              "RelativeDocumentMoniker": "Inventory_Access_P_I.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Inventory_Access_P_I.cs",
+              "RelativeToolTip": "Inventory_Access_P_I.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-13T19:21:11.583Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Inventory_P_I.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Inventory_P_I.cs",
+              "RelativeDocumentMoniker": "Inventory_P_I.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Inventory_P_I.cs",
+              "RelativeToolTip": "Inventory_P_I.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:39:04.817Z"
+              "WhenOpened": "2026-05-13T19:23:18.613Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "Map.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Map.cs",
-              "RelativeDocumentMoniker": "Map.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Map.cs",
-              "RelativeToolTip": "Map.cs",
+              "Title": "Mirror_Close_Up.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Mirror_Close_Up.cs",
+              "RelativeDocumentMoniker": "Mirror_Close_Up.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Mirror_Close_Up.cs",
+              "RelativeToolTip": "Mirror_Close_Up.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:28.706Z"
+              "WhenOpened": "2026-05-13T19:14:14.792Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "Malady_PH.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Malady_PH.cs",
-              "RelativeDocumentMoniker": "Malady_PH.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Malady_PH.cs",
-              "RelativeToolTip": "Malady_PH.cs",
+              "Title": "Destination_PH.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Destination_PH.cs",
+              "RelativeDocumentMoniker": "Destination_PH.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Destination_PH.cs",
+              "RelativeToolTip": "Destination_PH.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:24.291Z"
+              "WhenOpened": "2026-05-13T19:13:54.043Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "Malady_Catalogue.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Malady_Catalogue.cs",
-              "RelativeDocumentMoniker": "Malady_Catalogue.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Malady_Catalogue.cs",
-              "RelativeToolTip": "Malady_Catalogue.cs",
+              "Title": "Bed_Time.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Bed_Time.cs",
+              "RelativeDocumentMoniker": "Bed_Time.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Bed_Time.cs",
+              "RelativeToolTip": "Bed_Time.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:20.723Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "InventoryAccess.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\InventoryAccess.cs",
-              "RelativeDocumentMoniker": "InventoryAccess.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\InventoryAccess.cs",
-              "RelativeToolTip": "InventoryAccess.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:05.964Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Inventory_P_I.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Inventory_P_I.cs",
-              "RelativeDocumentMoniker": "Inventory_P_I.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Inventory_P_I.cs",
-              "RelativeToolTip": "Inventory_P_I.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:38:00.625Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Inventory_Access_P_I.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Inventory_Access_P_I.cs",
-              "RelativeDocumentMoniker": "Inventory_Access_P_I.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Inventory_Access_P_I.cs",
-              "RelativeToolTip": "Inventory_Access_P_I.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:37:20.781Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "PreviousScene.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\PreviousScene.cs",
-              "RelativeDocumentMoniker": "PreviousScene.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\PreviousScene.cs",
-              "RelativeToolTip": "PreviousScene.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:26:52.69Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Inventory.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Inventory.cs",
-              "RelativeDocumentMoniker": "Inventory.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Inventory.cs",
-              "RelativeToolTip": "Inventory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:37:17.569Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Dialogue_Trigger.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Dialogue_Trigger.cs",
-              "RelativeDocumentMoniker": "Dialogue_Trigger.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Dialogue_Trigger.cs",
-              "RelativeToolTip": "Dialogue_Trigger.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:37:12.435Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "Diagnosis_Box.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Diagnosis_Box.cs",
-              "RelativeDocumentMoniker": "Diagnosis_Box.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Diagnosis_Box.cs",
-              "RelativeToolTip": "Diagnosis_Box.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:37:02.304Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "Destination_PH.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Destination_PH.cs",
-              "RelativeDocumentMoniker": "Destination_PH.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Destination_PH.cs",
-              "RelativeToolTip": "Destination_PH.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:36:56.451Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Dealer_PH.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Dealer_PH.cs",
-              "RelativeDocumentMoniker": "Dealer_PH.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Dealer_PH.cs",
-              "RelativeToolTip": "Dealer_PH.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:36:48.386Z"
+              "WhenOpened": "2026-05-13T19:13:37.832Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
-              "Title": "Log_Out.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Log_Out.cs",
-              "RelativeDocumentMoniker": "Log_Out.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Log_Out.cs",
-              "RelativeToolTip": "Log_Out.cs",
+              "Title": "Treatment_Deadline.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Treatment_Deadline.cs",
+              "RelativeDocumentMoniker": "Treatment_Deadline.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Treatment_Deadline.cs",
+              "RelativeToolTip": "Treatment_Deadline.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:27:00.905Z"
+              "WhenOpened": "2026-05-13T19:11:15.536Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "Contents_O.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Contents_O.cs",
-              "RelativeDocumentMoniker": "Contents_O.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Contents_O.cs",
-              "RelativeToolTip": "Contents_O.cs",
+              "DocumentIndex": 16,
+              "Title": "Malady_PH.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Malady_PH.cs",
+              "RelativeDocumentMoniker": "Malady_PH.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Malady_PH.cs",
+              "RelativeToolTip": "Malady_PH.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:36:33.032Z"
+              "WhenOpened": "2026-05-13T19:00:50.862Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Contents_C.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Contents_C.cs",
-              "RelativeDocumentMoniker": "Contents_C.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Contents_C.cs",
-              "RelativeToolTip": "Contents_C.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:36:25.289Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "Computer_Access.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Computer_Access.cs",
-              "RelativeDocumentMoniker": "Computer_Access.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Computer_Access.cs",
-              "RelativeToolTip": "Computer_Access.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:36:22.178Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 11,
               "Title": "Close.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Close.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Close.cs",
               "RelativeDocumentMoniker": "Close.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Close.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Close.cs",
               "RelativeToolTip": "Close.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:36:18.19Z"
+              "WhenOpened": "2026-05-13T18:55:50.212Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "Checkbox.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Checkbox.cs",
-              "RelativeDocumentMoniker": "Checkbox.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Checkbox.cs",
-              "RelativeToolTip": "Checkbox.cs",
+              "DocumentIndex": 17,
+              "Title": "Dealer_PH.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Dealer_PH.cs",
+              "RelativeDocumentMoniker": "Dealer_PH.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Dealer_PH.cs",
+              "RelativeToolTip": "Dealer_PH.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:36:11.633Z"
+              "WhenOpened": "2026-05-13T19:00:33.95Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "Character_Speech.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Character_Speech.cs",
-              "RelativeDocumentMoniker": "Character_Speech.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Character_Speech.cs",
-              "RelativeToolTip": "Character_Speech.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:34:46.454Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "Bed_Time.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Bed_Time.cs",
-              "RelativeDocumentMoniker": "Bed_Time.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Bed_Time.cs",
-              "RelativeToolTip": "Bed_Time.cs",
+              "DocumentIndex": 18,
+              "Title": "Map_PH.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Map_PH.cs",
+              "RelativeDocumentMoniker": "Map_PH.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Map_PH.cs",
+              "RelativeToolTip": "Map_PH.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:34:41.272Z"
+              "WhenOpened": "2026-05-13T19:00:14.706Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Deceased_Sprite.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Deceased_Sprite.cs",
-              "RelativeDocumentMoniker": "Deceased_Sprite.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Deceased_Sprite.cs",
-              "RelativeToolTip": "Deceased_Sprite.cs",
+              "DocumentIndex": 19,
+              "Title": "Map.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Map.cs",
+              "RelativeDocumentMoniker": "Map.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Map.cs",
+              "RelativeToolTip": "Map.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:28:47.52Z"
+              "WhenOpened": "2026-05-13T18:55:41.74Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "Contents_P_I.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Contents_P_I.cs",
-              "RelativeDocumentMoniker": "Contents_P_I.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Contents_P_I.cs",
-              "RelativeToolTip": "Contents_P_I.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:22:15.643Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "Admit.cs",
-              "DocumentMoniker": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Admit.cs",
-              "RelativeDocumentMoniker": "Admit.cs",
-              "ToolTip": "C:\\Users\\Astra\\Documents\\Mosnster_Clinic\\MonsterClinic\\Admit.cs",
-              "RelativeToolTip": "Admit.cs",
+              "DocumentIndex": 20,
+              "Title": "Dealer.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Dealer.cs",
+              "RelativeDocumentMoniker": "Dealer.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Dealer.cs",
+              "RelativeToolTip": "Dealer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-05-13T18:23:35.807Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "MonsterClinic.csproj",
-              "DocumentMoniker": "C:\\USERS\\ASTRA\\DOCUMENTS\\MOSNSTER_CLINIC\\MONSTERCLINIC\\MonsterClinic.csproj",
-              "RelativeDocumentMoniker": "MonsterClinic.csproj",
-              "ToolTip": "C:\\USERS\\ASTRA\\DOCUMENTS\\MOSNSTER_CLINIC\\MONSTERCLINIC\\MonsterClinic.csproj",
-              "RelativeToolTip": "MonsterClinic.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-05-13T14:10:25.418Z"
+              "WhenOpened": "2026-05-13T18:55:24.275Z"
             }
           ]
         }
