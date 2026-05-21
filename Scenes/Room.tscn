@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c36i0asmfb8o"]
+
+[ext_resource type="Script" uid="uid://bw0pahok3mlpx" path="res://Scripts/Room.cs" id="1_5hpqs"]
+
+[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("PatientDisplay")]
+script = ExtResource("1_5hpqs")
+PatientDisplay = NodePath("PatientDisplay")
+
+[node name="RoomFloor" type="ColorRect" parent="." unique_id=928542603]
+offset_right = 1914.0
+offset_bottom = 1089.0
+color = Color(0.47592735, 0.47592735, 0.4759273, 1)
+
+[node name="PatientDisplay" type="Sprite2D" parent="." unique_id=180831602]
+
+[node name="BedPosition" type="Marker2D" parent="." unique_id=902232887]

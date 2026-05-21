@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bxxm2s11khoax" path="res://Character_Speech.cs" id="11_ecejo"]
 [ext_resource type="Script" uid="uid://tkupfc1dnrga" path="res://Checkbox.cs" id="12_oaj4u"]
 [ext_resource type="Script" uid="uid://drow72lvn73wp" path="res://Diagnosis_Box.cs" id="13_3xib3"]
+[ext_resource type="Script" uid="uid://um68vmhviamh" path="res://AdmissionManager.cs" id="15_uph1y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0r6l1"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -349,10 +350,15 @@ theme_override_font_sizes/font_size = 20
 text = "What do the symptoms tell us?"
 script = ExtResource("13_3xib3")
 
+[node name="AdmissionManager" type="Node" parent="." unique_id=1218543265 node_paths=PackedStringArray("PatientSpriteDisplay")]
+script = ExtResource("15_uph1y")
+PatientSpriteDisplay = NodePath("../Sprites_PH/Patient")
+
 [connection signal="pressed" from="Player_Interactables_P_I/Previous_Scene" to="." method="_on_previous_s_pressed"]
 [connection signal="pressed" from="Player_Interactables_P_I/Dialogue_Trigger" to="Player_Interactables_P_I/Character_Speech" method="_on_dialogue_t_pressed"]
 [connection signal="pressed" from="Player_Interactables_P_I/Patient_Zoom" to="Player_Interactables_P_I/Character_Speech" method="_on_patient_z_pressed"]
 [connection signal="pressed" from="Player_Interactables_P_I/Pulse_Measurement" to="Player_Interactables_P_I/Character_Speech" method="_on_pulse_m_pressed"]
+[connection signal="pressed" from="Player_Interactables_P_I/Admit" to="AdmissionManager" method="_on_admit_pressed"]
 [connection signal="pressed" from="Player_Interactables_P_I/Inventory_P_I" to="Player_Interactables_P_I/InventoryAccess_P_I" method="_on_inventory_p_i_pressed"]
 [connection signal="pressed" from="Player_Interactables_P_I/InventoryAccess_P_I/Diagnosis_Tools" to="Player_Interactables_P_I/Character_Speech" method="_on_diagnosis_t_pressed"]
 [connection signal="pressed" from="Player_Interactables_P_I/InventoryAccess_P_I/Shotgun" to="Sprites_PH/Deceased_Sprite" method="_on_shotgun_pressed"]

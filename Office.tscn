@@ -7,7 +7,8 @@
 [ext_resource type="Script" uid="uid://tko5xpbwbya8" path="res://Deadline_Countdown.cs" id="4_r1f8t"]
 [ext_resource type="Script" uid="uid://damlipp41xqb1" path="res://Mirror.cs" id="7_4fm71"]
 [ext_resource type="Script" uid="uid://4pv2su1jjxij" path="res://Mirror_Close_Up.cs" id="7_ei0gw"]
-[ext_resource type="Script" uid="uid://b8t0rredi262l" path="res://Destination_PH.cs" id="8_n8ipj"]
+[ext_resource type="Script" uid="uid://ybgrq4acnibr" path="res://Elevator.cs" id="8_ei0gw"]
+[ext_resource type="Script" uid="uid://ck2kk0118cjs8" path="res://ToPatientRoom.cs" id="8_hq38p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fedq"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -191,6 +192,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_bw284")
 theme_override_styles/hover = SubResource("StyleBoxFlat_l87an")
 text = "Elevator
 "
+script = ExtResource("8_ei0gw")
 
 [node name="Destination_PH" type="Label" parent="Player_Interactables_O/Elevator" unique_id=1756916659]
 visible = false
@@ -207,7 +209,7 @@ text = "Sorry, nowhere to go,
 come back later"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("8_n8ipj")
+script = ExtResource("8_hq38p")
 
 [node name="Close" type="Button" parent="Player_Interactables_O/Elevator/Destination_PH" unique_id=709969312]
 layout_mode = 0
