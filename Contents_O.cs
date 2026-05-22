@@ -22,6 +22,13 @@ public partial class Contents_O : Node2D
         var PatientScene = (Node2D)GetParent().GetNode("Patient_Interface");
         PatientScene.Show();
     }
+
+	private void _on_elevator_pressed()
+	{
+		Hide();
+        var RoomScene = (Node2D)GetParent().GetNode("Room");
+        RoomScene.Show();
+    }
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
 	{

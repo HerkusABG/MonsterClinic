@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://damlipp41xqb1" path="res://Mirror.cs" id="7_4fm71"]
 [ext_resource type="Script" uid="uid://4pv2su1jjxij" path="res://Mirror_Close_Up.cs" id="7_ei0gw"]
 [ext_resource type="Script" uid="uid://ybgrq4acnibr" path="res://Elevator.cs" id="8_ei0gw"]
-[ext_resource type="Script" uid="uid://ck2kk0118cjs8" path="res://ToPatientRoom.cs" id="8_hq38p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fedq"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -194,35 +193,6 @@ text = "Elevator
 "
 script = ExtResource("8_ei0gw")
 
-[node name="Destination_PH" type="Label" parent="Player_Interactables_O/Elevator" unique_id=1756916659]
-visible = false
-z_index = 1
-layout_mode = 0
-offset_left = -76.0
-offset_top = -55.0
-offset_right = 383.0
-offset_bottom = 942.0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_ye4h6")
-text = "Sorry, nowhere to go,
- this prototype floats in a void,
-come back later"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("8_hq38p")
-
-[node name="Close" type="Button" parent="Player_Interactables_O/Elevator/Destination_PH" unique_id=709969312]
-layout_mode = 0
-offset_left = 409.0
-offset_right = 459.0
-offset_bottom = 50.0
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_2fedq")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_bw284")
-theme_override_styles/hover = SubResource("StyleBoxFlat_l87an")
-text = "X"
-script = ExtResource("3_ttk34")
-
 [node name="Patient_Interface_Access" type="Button" parent="Player_Interactables_O" unique_id=1350439951]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
@@ -245,6 +215,5 @@ text = "Patient admition
 [connection signal="pressed" from="Player_Interactables_O/Treatment_Deadline/Deadline_Countdown/Close" to="Player_Interactables_O/Treatment_Deadline/Deadline_Countdown" method="_on_close_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Mirror" to="Player_Interactables_O/Mirror/Mirror_Close_Up" method="_on_mirror_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Mirror/Mirror_Close_Up/Close" to="Player_Interactables_O/Mirror/Mirror_Close_Up" method="_on_close_pressed"]
-[connection signal="pressed" from="Player_Interactables_O/Elevator" to="Player_Interactables_O/Elevator/Destination_PH" method="_on_elevator_pressed"]
-[connection signal="pressed" from="Player_Interactables_O/Elevator/Destination_PH/Close" to="Player_Interactables_O/Elevator/Destination_PH" method="_on_close_pressed"]
+[connection signal="pressed" from="Player_Interactables_O/Elevator" to="." method="_on_elevator_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Patient_Interface_Access" to="." method="_on_patient_i_a_pressed"]

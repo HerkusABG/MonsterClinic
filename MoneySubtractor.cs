@@ -1,4 +1,4 @@
-using global;
+//using global;
 using Godot;
 using System;
 public partial class MoneySubtractor : Button
@@ -11,7 +11,7 @@ public partial class MoneySubtractor : Button
 
     private void ButtonPressed()
     {
-        Variables.Money = Variables.Money - 1;
+        GlobalData.Money = GlobalData.Money - 1;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

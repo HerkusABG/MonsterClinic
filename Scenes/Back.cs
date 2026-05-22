@@ -1,17 +1,11 @@
-//using global;
 using Godot;
 using System;
-public partial class MoneyAdder : Button
+
+public partial class Back : Button
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Pressed += ButtonPressed;
-	}
-
-	private void ButtonPressed()
-	{
-        GlobalData.Money = GlobalData.Money + 1;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -9,7 +9,7 @@ public partial class AdmissionManager : Node
         // saves patient sprite
         if (PatientSpriteDisplay != null)
         {
-            global.Variables.AdmittedPatientTexture = PatientSpriteDisplay.Texture;
+            GlobalData.AdmittedPatientTexture = PatientSpriteDisplay.Texture;
         }
 
        

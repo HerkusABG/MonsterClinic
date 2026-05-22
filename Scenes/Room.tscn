@@ -1,6 +1,26 @@
 [gd_scene format=3 uid="uid://c36i0asmfb8o"]
 
 [ext_resource type="Script" uid="uid://bw0pahok3mlpx" path="res://Scripts/Room.cs" id="1_5hpqs"]
+[ext_resource type="Script" uid="uid://d2lt2c7skf3g4" path="res://Scenes/Back.cs" id="2_nn86p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hpqs"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn86p"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj218"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("PatientDisplay")]
 position = Vector2(1302.9375, 342.1875)
@@ -9,12 +29,28 @@ script = ExtResource("1_5hpqs")
 PatientDisplay = NodePath("PatientDisplay")
 
 [node name="RoomFloor" type="ColorRect" parent="." unique_id=928542603]
-offset_left = -3079.5737
-offset_top = -763.19415
-offset_right = 1437.1934
-offset_bottom = 1693.8201
+offset_left = -3070.1194
+offset_top = -797.8652
+offset_right = 1446.6477
+offset_bottom = 1659.1489
 color = Color(0.47592735, 0.47592735, 0.4759273, 1)
+
+[node name="Back" type="Button" parent="." unique_id=1531308757]
+custom_minimum_size = Vector2(200, 10)
+offset_left = 1009.3887
+offset_top = -684.6068
+offset_right = 1315.4167
+offset_bottom = -494.26984
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_5hpqs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_nn86p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uj218")
+text = "Back to 
+the office"
+script = ExtResource("2_nn86p")
 
 [node name="PatientDisplay" type="Sprite2D" parent="." unique_id=180831602]
 
 [node name="BedPosition" type="Marker2D" parent="." unique_id=902232887]
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

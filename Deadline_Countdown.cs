@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using global;
+//using global;
 
 public partial class Deadline_Countdown : Label
 {
@@ -14,11 +14,11 @@ public partial class Deadline_Countdown : Label
     private void _on_treatment_d_pressed()
     {
         Show();
-        if (Variables.Countdown > 1)
+        if (GlobalData.Countdown > 1)
         {
-            Text = String.Format("If you don't get treatment in {0} days, \n you'll be in real trouble", Variables.Countdown);
+            Text = String.Format("If you don't get treatment in {0} days, \n you'll be in real trouble", GlobalData.Countdown);
         }
-        else if (Variables.Countdown == 1)
+        else if (GlobalData.Countdown == 1)
         {
             Text = "If you don't get treatment within the next day, \n you'll be in real trouble";
         }
@@ -35,9 +35,9 @@ public partial class Deadline_Countdown : Label
 
     private void _on_time_passed()
     {
-        if (Variables.Countdown > 0)
+        if (GlobalData.Countdown > 0)
         {
-            Variables.Countdown--;
+            GlobalData.Countdown--;
         }
     }
 
