@@ -8,4 +8,10 @@ public static class GlobalData
     public static int Countdown { get; set; } = 4;
 
     public static int Money { get; set; } = 100;
+
+    public static int Medicine1Count { get; set; } = 0;
+
+    public static int Medicine2Count { get; set; } = 0;
+
+    public static int Medicine3Count { get; set; } = 0;
 }

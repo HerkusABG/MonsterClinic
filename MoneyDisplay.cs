@@ -1,6 +1,5 @@
 using Godot;
 using System;
-//using global;
 
 public partial class MoneyDisplay : Label 
 {

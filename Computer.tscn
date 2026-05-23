@@ -9,7 +9,11 @@
 [ext_resource type="Script" uid="uid://cps7wyoavl5wx" path="res://Close.cs" id="6_hqpia"]
 [ext_resource type="Script" uid="uid://ds684ws41jfwk" path="res://MoneyDisplay.cs" id="8_3f6el"]
 [ext_resource type="Script" uid="uid://gywgy4lb3aaa" path="res://MoneyAdder.cs" id="8_dekc5"]
+[ext_resource type="Script" uid="uid://dfk0b036cq5bt" path="res://Medicine1.cs" id="9_vjhme"]
+[ext_resource type="Script" uid="uid://2w5dmb65tqxw" path="res://Medicine2.cs" id="10_arhto"]
 [ext_resource type="Script" uid="uid://b0jnjo6h04xgr" path="res://MoneySubtractor.cs" id="10_vjhme"]
+[ext_resource type="Script" uid="uid://4phbi63r8tpl" path="res://Medicine3.cs" id="11_hqpia"]
+[ext_resource type="Script" uid="uid://bhwalee26aynr" path="res://InsufficientFunds.cs" id="12_hqpia"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqyqf"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -163,7 +167,6 @@ text = "BOUNDLESS DEBT"
 script = ExtResource("10_vjhme")
 
 [node name="Dealer_PH" type="Label" parent="Player_Interactables_C" unique_id=1842103304]
-visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 40.0
@@ -173,9 +176,6 @@ offset_bottom = 1021.0
 mouse_filter = 0
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
-text = "'Ullo Stranger!
-Got nothing to show in this prototype, 
-but I'll have some good wares for ya, real soon..."
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_tjl6a")
@@ -185,6 +185,81 @@ layout_mode = 0
 offset_left = 1594.0
 offset_right = 1644.0
 offset_bottom = 50.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
+text = "X"
+script = ExtResource("6_hqpia")
+
+[node name="Money_Display" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=368042294]
+layout_mode = 0
+offset_left = 1371.0
+offset_top = 24.0
+offset_right = 1569.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_3f6el")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Player_Interactables_C/Dealer_PH" unique_id=1736552472]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 0
+offset_left = 375.0
+offset_top = 452.0
+offset_right = 1490.0
+offset_bottom = 777.0
+
+[node name="Medicine1" type="Button" parent="Player_Interactables_C/Dealer_PH/HBoxContainer" unique_id=408994854]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+script = ExtResource("9_vjhme")
+
+[node name="Medicine2" type="Button" parent="Player_Interactables_C/Dealer_PH/HBoxContainer" unique_id=1726209352]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+script = ExtResource("10_arhto")
+
+[node name="Medicine3" type="Button" parent="Player_Interactables_C/Dealer_PH/HBoxContainer" unique_id=1721866980]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+script = ExtResource("11_hqpia")
+
+[node name="Insufficient_Funds" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=760048127]
+layout_mode = 0
+offset_left = 354.0
+offset_top = 452.0
+offset_right = 1348.0
+offset_bottom = 777.0
+mouse_filter = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
+text = "Sorry Doctor, I don't give credit!
+Come back when you're a little, mmm, richer!"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("12_hqpia")
+
+[node name="Close" type="Button" parent="Player_Interactables_C/Dealer_PH/Insufficient_Funds" unique_id=481915780]
+layout_mode = 0
+offset_left = 944.0
+offset_top = 2.0
+offset_right = 994.0
+offset_bottom = 52.0
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
@@ -223,6 +298,7 @@ text = "X"
 script = ExtResource("6_hqpia")
 
 [node name="Malady_PH" type="Label" parent="Player_Interactables_C" unique_id=1235186100]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 40.0
@@ -258,5 +334,6 @@ script = ExtResource("6_hqpia")
 [connection signal="pressed" from="Player_Interactables_C/Malady_Catalogue" to="Player_Interactables_C/Malady_PH" method="_on_malady_c_pressed"]
 [connection signal="pressed" from="Player_Interactables_C/Log_out" to="." method="_on_log_o_pressed"]
 [connection signal="pressed" from="Player_Interactables_C/Dealer_PH/Close" to="Player_Interactables_C/Dealer_PH" method="_on_close_pressed"]
+[connection signal="pressed" from="Player_Interactables_C/Dealer_PH/Insufficient_Funds/Close" to="Player_Interactables_C/Dealer_PH/Insufficient_Funds" method="_on_close_pressed"]
 [connection signal="pressed" from="Player_Interactables_C/Map_PH/Close" to="Player_Interactables_C/Map_PH" method="_on_close_pressed"]
 [connection signal="pressed" from="Player_Interactables_C/Malady_PH/Close" to="Player_Interactables_C/Malady_PH" method="_on_close_pressed"]

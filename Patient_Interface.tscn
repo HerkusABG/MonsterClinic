@@ -347,7 +347,8 @@ offset_right = 577.0
 offset_bottom = 867.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
-text = "What do the symptoms tell us?"
+text = "What do the symptoms tell us?
+    "
 script = ExtResource("13_3xib3")
 
 [node name="AdmissionManager" type="Node" parent="." unique_id=1218543265 node_paths=PackedStringArray("PatientSpriteDisplay")]

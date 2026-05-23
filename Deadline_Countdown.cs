@@ -1,6 +1,5 @@
 using Godot;
 using System;
-//using global;
 
 public partial class Deadline_Countdown : Label
 {
