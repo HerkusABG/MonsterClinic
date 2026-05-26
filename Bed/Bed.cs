@@ -6,14 +6,14 @@ public partial class Bed : Node2D
 {
     private RichTextLabel DaysCounter;
     private RichTextLabel MoneyEarned;
-    private Timer sceneTimer;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        Hide();
         // getting the information for the days from the DayManager
         var day_M = GetNode<DayManager>("/root/DayManager");
-        day_M.Player_Ingame_Days++;
+        //day_M.Player_Ingame_Days++;
 
         //setting the RichTextLabel up, heigth the font size 130 and big, therefore BbcodeEnabled needs to be true
         var DaysCounter = GetNode<RichTextLabel>("Day");
@@ -26,20 +26,13 @@ public partial class Bed : Node2D
         GlobalData.Money += GlobalData.DailyEarnings;
         GlobalData.DailyEarnings = 0;
 
-        // Timer from the scene
-        var sceneTimer = GetNode<Timer>("ChangeToOffice_Timer");
-
-        // connect the signals
-        sceneTimer.Timeout += OnSceneTimerTimeout;
-
-        // timer is getting set to 3 seconds and starts
-        sceneTimer.Start(3.0);
+        
 
 
         // the treatment countdown gets his information from the Global autoload. It is different than from the Daymanager, because Global has the namespace global which is gets set in the upper code (almost the first thing) and then you can call the class Variable and the integer
      
 
-        GlobalData.Countdown--;
+       
 
         // setting the RichTextLabel up (needs new name or its getting confusing), to custommize it like up there before BbcodeEnabled needs to be true. The frontSize is 110, the text is big.
         var DaysCounters = GetNode<RichTextLabel>("TreatmentDays");
@@ -60,7 +53,8 @@ public partial class Bed : Node2D
         }
         else
         {
-            GetTree().ChangeSceneToFile("res://DeathScreen/death_screen.tscn");
+            //not implemented yet
+            //GetTree().ChangeSceneToFile("res://DeathScreen/death_screen.tscn");
         }
 
 
@@ -69,11 +63,42 @@ public partial class Bed : Node2D
 
     }
 
-    private void OnSceneTimerTimeout()
+    private void _on_visibility_changed()
     {
-        // switching scenes
-        GetTree().ChangeSceneToFile("res://Office.tscn");
+        var day_M = GetNode<DayManager>("/root/DayManager");
+
+        var DaysCounter = GetNode<RichTextLabel>("Day");
+        DaysCounter.BbcodeEnabled = true;
+        DaysCounter.Text = $"[b][font_size=130] {day_M.Player_Ingame_Days} days in containment [/font_size][/b]";
+
+        var MoneyEarned = GetNode<RichTextLabel>("MoneyEarned");
+        MoneyEarned.BbcodeEnabled = true;
+        MoneyEarned.Text = "Today's earnings: " + GlobalData.DailyEarnings;
+
+        var DaysCounters = GetNode<RichTextLabel>("TreatmentDays");
+        DaysCounters.BbcodeEnabled = true;
+
+        if (GlobalData.Countdown >= 3)
+        {
+            DaysCounters.Text = $"[b][font_size=110]{GlobalData.Countdown} days left without treatment[/font_size][/b]";
+        }
+        else if (GlobalData.Countdown >= 1 && GlobalData.Countdown < 3)
+        {
+            DaysCounters.Text = $"[b][font_size=110][shake rate=50][color=DEEP_PINK]{GlobalData.Countdown} days left without treatment [/color][/shake][/font_size][/b]";
+        }
+        else if (GlobalData.Countdown == 0)
+        {
+            DaysCounters.Text = $"[b][font_size=110][shake rate=200][wave rate=20][color=red]{GlobalData.Countdown} days left without treatment [/color][/wave][/shake][/font_size][/b]";
+        }
+        else
+        {
+            //not implemented yet
+            //GetTree().ChangeSceneToFile("res://DeathScreen/death_screen.tscn");
+        }
     }
+
+    
+    
 
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

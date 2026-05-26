@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://chmg4tjmycsse"]
 
 [ext_resource type="Script" uid="uid://3ailttjlob0g" path="res://Contents_O.cs" id="1_35wc1"]
-[ext_resource type="Script" uid="uid://5na27tfl3yvu" path="res://Bed_Time.cs" id="2_hq38p"]
 [ext_resource type="Script" uid="uid://dm42silqg7ir1" path="res://Treatment_Deadline.cs" id="3_p0jbg"]
 [ext_resource type="Script" uid="uid://cps7wyoavl5wx" path="res://Close.cs" id="3_ttk34"]
 [ext_resource type="Script" uid="uid://tko5xpbwbya8" path="res://Deadline_Countdown.cs" id="4_r1f8t"]
@@ -179,33 +178,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_bw284")
 theme_override_styles/hover = SubResource("StyleBoxFlat_l87an")
 text = "Bed"
 
-[node name="Bed_Time" type="Label" parent="Player_Interactables_O/Bed" unique_id=387284444]
-visible = false
-z_index = 1
-layout_mode = 0
-offset_left = -101.0
-offset_top = -492.0
-offset_right = 1819.0
-offset_bottom = 588.0
-mouse_filter = 0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_ye4h6")
-text = "Eepy time : )"
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("2_hq38p")
-
-[node name="Close" type="Button" parent="Player_Interactables_O/Bed/Bed_Time" unique_id=1686267010]
-layout_mode = 0
-offset_left = 1870.0
-offset_right = 1920.0
-offset_bottom = 50.0
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_2fedq")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_bw284")
-theme_override_styles/hover = SubResource("StyleBoxFlat_l87an")
-text = "X"
-script = ExtResource("3_ttk34")
+[node name="ChangeToBed_Timer" type="Timer" parent="." unique_id=1022067532]
 
 [connection signal="pressed" from="Player_Interactables_O/Computer_Access" to="." method="_on_computer_a_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Treatment_Deadline" to="Player_Interactables_O/Treatment_Deadline/Deadline_Countdown" method="_on_treatment_d_pressed"]
@@ -214,6 +187,4 @@ script = ExtResource("3_ttk34")
 [connection signal="pressed" from="Player_Interactables_O/Mirror/Mirror_Close_Up/Close" to="Player_Interactables_O/Mirror/Mirror_Close_Up" method="_on_close_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Elevator" to="." method="_on_elevator_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Patient_Interface_Access" to="." method="_on_patient_i_a_pressed"]
-[connection signal="pressed" from="Player_Interactables_O/Bed" to="Player_Interactables_O/Bed/Bed_Time" method="_on_bed_pressed"]
-[connection signal="pressed" from="Player_Interactables_O/Bed/Bed_Time/Close" to="Player_Interactables_O/Bed/Bed_Time" method="_on_close_pressed"]
-[connection signal="pressed" from="Player_Interactables_O/Bed/Bed_Time/Close" to="Player_Interactables_O/Treatment_Deadline/Deadline_Countdown" method="_on_time_passed"]
+[connection signal="pressed" from="Player_Interactables_O/Bed" to="." method="_on_bed_pressed"]
