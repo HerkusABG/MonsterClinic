@@ -1,4 +1,5 @@
 using Godot;
+using System.Collections;
 
 public static class GlobalData
 {
@@ -20,7 +21,10 @@ public static class GlobalData
 
     public static string[] Maladies = { "A", "B", "C" };
 
-    public static string CurrentPatientMalady = "none";
+    public static string CurrentPatientMalady { get; set; } = "none";
 
-    public static int CurrentPatientSeverity = 0;
+    public static int CurrentPatientSeverity { get; set; } = 0;
+
+    //stack that holds previous scenes accessed, going back to the office, kinda like the branches of a tree
+    public static Stack PreviousScenes { get; set; } = new Stack();
 }

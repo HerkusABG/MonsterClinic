@@ -58,7 +58,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Computer_Access" type="Button" parent="Player_Interactables_O" unique_id=1784326359]
-z_index = 1
 layout_mode = 0
 offset_left = 82.5
 offset_top = 398.725

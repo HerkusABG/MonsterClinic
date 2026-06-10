@@ -17,6 +17,7 @@ public partial class Bed_Time : Label
     private void _on_close_pressed()
     {
         Hide();
+        GlobalData.PreviousScenes.Pop();
     }
 
 

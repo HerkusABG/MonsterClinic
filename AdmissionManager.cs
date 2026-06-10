@@ -33,5 +33,7 @@ public partial class AdmissionManager : Node
         patientInterface.Hide();
         patient.Show();
         patientInfo.Show();
+        //push the scene we're entering to the previous scenes stack
+        GlobalData.PreviousScenes.Push(roomNode.GetPath());
     }
 }

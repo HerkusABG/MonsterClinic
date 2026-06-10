@@ -7,15 +7,18 @@ public partial class Room : Node2D
     
     public override void _EnterTree()
     {
-        
-        VisibilityChanged += OnVisibilityChanged;
+
+        // VisibilityChanged += OnVisibilityChanged;
+        Hide();
     }
 
     private void _on_leave_room_pressed()
     {
+        //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         Hide();
         var OfficeScene = (Node2D)GetParent().GetNode("Office");
         OfficeScene.Show();
+        GlobalData.PreviousScenes.Pop();
     }
 
     private void OnVisibilityChanged()
