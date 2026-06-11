@@ -8,11 +8,7 @@
 [ext_resource type="Script" uid="uid://dgqxfanx26jy6" path="res://Admit.cs" id="6_7u4js"]
 [ext_resource type="Script" uid="uid://p58vsvndvpy4" path="res://PreviousScene.cs" id="6_bomhp"]
 [ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://SpeechManager.cs" id="7_3xib3"]
-[ext_resource type="Script" uid="uid://4bmxrws85nrk" path="res://Dialogue_Trigger.cs" id="7_bomhp"]
 [ext_resource type="Script" uid="uid://cstuj82v3inub" path="res://Reject.cs" id="8_kytyi"]
-[ext_resource type="Script" uid="uid://crorsi7rixu8n" path="res://Inventory_P_I.cs" id="10_bomhp"]
-[ext_resource type="Script" uid="uid://b4ak7d8245m4x" path="res://Inventory_Access_P_I.cs" id="10_uph1y"]
-[ext_resource type="Script" uid="uid://bxxm2s11khoax" path="res://Character_Speech.cs" id="11_ecejo"]
 [ext_resource type="Script" uid="uid://tkupfc1dnrga" path="res://Checkbox.cs" id="12_oaj4u"]
 [ext_resource type="Script" uid="uid://drow72lvn73wp" path="res://Diagnosis_Box.cs" id="13_3xib3"]
 [ext_resource type="Script" uid="uid://um68vmhviamh" path="res://AdmissionManager.cs" id="15_uph1y"]
@@ -164,7 +160,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
 text = "Press for 
 Dialogue"
-script = ExtResource("7_bomhp")
 
 [node name="Patient_Zoom" type="Button" parent="Player_Interactables_P_I" unique_id=764683982]
 custom_minimum_size = Vector2(140, 100)
@@ -233,7 +228,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
 text = "Inventory"
-script = ExtResource("10_bomhp")
 
 [node name="InventoryAccess_P_I" type="VBoxContainer" parent="Player_Interactables_P_I" unique_id=1299831844]
 layout_mode = 0
@@ -241,7 +235,6 @@ offset_left = 1702.0
 offset_top = 338.0
 offset_right = 1866.0
 offset_bottom = 543.0
-script = ExtResource("10_uph1y")
 
 [node name="Diagnosis_Tools" type="Button" parent="Player_Interactables_P_I/InventoryAccess_P_I" unique_id=323827721]
 custom_minimum_size = Vector2(120, 100)
@@ -262,110 +255,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_073d2")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xl1ua")
 text = "Shotgun"
 
-[node name="Character_Speech" type="Label" parent="Player_Interactables_P_I" unique_id=861240804]
-visible = false
-layout_mode = 0
-offset_left = 1368.0
-offset_top = 93.0
-offset_right = 1590.0
-offset_bottom = 152.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_kqp7s")
-script = ExtResource("11_ecejo")
-
-[node name="Checkbox_1" type="Button" parent="Player_Interactables_P_I" unique_id=468010843]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 0
-offset_left = 184.0
-offset_top = 254.0
-offset_right = 284.0
-offset_bottom = 358.0
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
-script = ExtResource("12_oaj4u")
-
-[node name="Cough" type="Label" parent="Player_Interactables_P_I/Checkbox_1" unique_id=904256855]
-layout_mode = 0
-offset_left = 144.0
-offset_top = 38.0
-offset_right = 211.0
-offset_bottom = 66.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "Cough "
-
-[node name="Checkbox_2" type="Button" parent="Player_Interactables_P_I" unique_id=410492612]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 0
-offset_left = 184.3125
-offset_top = 381.6875
-offset_right = 284.3125
-offset_bottom = 485.6875
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
-script = ExtResource("12_oaj4u")
-
-[node name="Headache" type="Label" parent="Player_Interactables_P_I/Checkbox_2" unique_id=62163935]
-layout_mode = 0
-offset_left = 146.0
-offset_top = 39.0
-offset_right = 243.0
-offset_bottom = 67.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "Headache"
-
-[node name="Checkbox_3" type="Button" parent="Player_Interactables_P_I" unique_id=1252863871]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 0
-offset_left = 183.3125
-offset_top = 523.6875
-offset_right = 283.3125
-offset_bottom = 627.6875
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
-script = ExtResource("12_oaj4u")
-
-[node name="Sneezing" type="Label" parent="Player_Interactables_P_I/Checkbox_3" unique_id=495774476]
-layout_mode = 0
-offset_left = 147.0
-offset_top = 38.0
-offset_right = 216.0
-offset_bottom = 61.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "Sneezing"
-
-[node name="Checkbox_4" type="Button" parent="Player_Interactables_P_I" unique_id=669634636]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 0
-offset_left = 184.3125
-offset_top = 653.6875
-offset_right = 284.3125
-offset_bottom = 757.6875
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
-script = ExtResource("12_oaj4u")
-
-[node name="Fever" type="Label" parent="Player_Interactables_P_I/Checkbox_4" unique_id=1467022489]
-layout_mode = 0
-offset_left = 146.0
-offset_top = 31.0
-offset_right = 200.0
-offset_bottom = 59.0
-theme_override_colors/font_color = Color(0, 0, 0, 0.9882353)
-theme_override_font_sizes/font_size = 20
-text = "Fever"
-
 [node name="Diagnosis_Box" type="Label" parent="Player_Interactables_P_I" unique_id=603001178]
 layout_mode = 0
 offset_left = 280.0
@@ -378,20 +267,101 @@ text = "What do the symptoms tell us?
     "
 script = ExtResource("13_3xib3")
 
+[node name="Checkbox_1" type="Button" parent="Player_Interactables_P_I/Diagnosis_Box" unique_id=468010843]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = -96.0
+offset_top = -585.0
+offset_right = 4.0
+offset_bottom = -481.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="Cough" type="Label" parent="Player_Interactables_P_I/Diagnosis_Box/Checkbox_1" unique_id=904256855]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Cough "
+
+[node name="Checkbox_2" type="Button" parent="Player_Interactables_P_I/Diagnosis_Box" unique_id=410492612]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = -95.6875
+offset_top = -457.3125
+offset_right = 4.3125
+offset_bottom = -353.3125
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="Headache" type="Label" parent="Player_Interactables_P_I/Diagnosis_Box/Checkbox_2" unique_id=62163935]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 39.0
+offset_right = 243.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Headache"
+
+[node name="Checkbox_3" type="Button" parent="Player_Interactables_P_I/Diagnosis_Box" unique_id=1252863871]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = -96.6875
+offset_top = -315.3125
+offset_right = 3.3125
+offset_bottom = -211.3125
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="Sneezing" type="Label" parent="Player_Interactables_P_I/Diagnosis_Box/Checkbox_3" unique_id=495774476]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 38.0
+offset_right = 216.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Sneezing"
+
+[node name="Checkbox_4" type="Button" parent="Player_Interactables_P_I/Diagnosis_Box" unique_id=669634636]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = -95.6875
+offset_top = -185.3125
+offset_right = 4.3125
+offset_bottom = -81.3125
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="Fever" type="Label" parent="Player_Interactables_P_I/Diagnosis_Box/Checkbox_4" unique_id=1467022489]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 31.0
+offset_right = 200.0
+offset_bottom = 59.0
+theme_override_colors/font_color = Color(0, 0, 0, 0.9882353)
+theme_override_font_sizes/font_size = 20
+text = "Fever"
+
 [node name="AdmissionManager" type="Node" parent="." unique_id=1218543265 node_paths=PackedStringArray("PatientSpriteDisplay")]
 script = ExtResource("15_uph1y")
 PatientSpriteDisplay = NodePath("../Sprites_PH/Patient")
 
 [connection signal="pressed" from="Player_Interactables_P_I/Previous_Scene" to="." method="_on_previous_s_pressed"]
-[connection signal="pressed" from="Player_Interactables_P_I/Dialogue_Trigger" to="Player_Interactables_P_I/Character_Speech" method="_on_dialogue_t_pressed"]
-[connection signal="pressed" from="Player_Interactables_P_I/Patient_Zoom" to="Player_Interactables_P_I/Character_Speech" method="_on_patient_z_pressed"]
-[connection signal="pressed" from="Player_Interactables_P_I/Pulse_Measurement" to="Player_Interactables_P_I/Character_Speech" method="_on_pulse_m_pressed"]
 [connection signal="pressed" from="Player_Interactables_P_I/Admit" to="AdmissionManager" method="_on_admit_pressed"]
-[connection signal="pressed" from="Player_Interactables_P_I/Inventory_P_I" to="Player_Interactables_P_I/InventoryAccess_P_I" method="_on_inventory_p_i_pressed"]
-[connection signal="pressed" from="Player_Interactables_P_I/InventoryAccess_P_I/Diagnosis_Tools" to="Player_Interactables_P_I/Character_Speech" method="_on_diagnosis_t_pressed"]
-[connection signal="pressed" from="Player_Interactables_P_I/InventoryAccess_P_I/Shotgun" to="Sprites_PH/Deceased_Sprite" method="_on_shotgun_pressed"]
-[connection signal="pressed" from="Player_Interactables_P_I/InventoryAccess_P_I/Shotgun" to="Sprites_PH/Deceased_Sprite_2" method="_on_shotgun_pressed"]
-[connection signal="pressed" from="Player_Interactables_P_I/Checkbox_1" to="Player_Interactables_P_I/Diagnosis_Box" method="_on_checkbox_1_pressed"]
-[connection signal="pressed" from="Player_Interactables_P_I/Checkbox_2" to="Player_Interactables_P_I/Diagnosis_Box" method="_on_checkbox_2_pressed"]
-[connection signal="pressed" from="Player_Interactables_P_I/Checkbox_3" to="Player_Interactables_P_I/Diagnosis_Box" method="_on_checkbox_3_pressed"]
-[connection signal="pressed" from="Player_Interactables_P_I/Checkbox_4" to="Player_Interactables_P_I/Diagnosis_Box" method="_on_checkbox_4_pressed"]

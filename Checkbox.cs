@@ -3,18 +3,28 @@ using System;
 
 public partial class Checkbox : Button
 {
-	// Called when the node enters the scene tree for the first time.
+    private bool isChecked;
 	public override void _Ready()
 	{
+        isChecked = false;
         Pressed += ButtonPressed;
     }
     private void ButtonPressed()
     {
-        Text = "x";
+        if(!isChecked)
+        {
+            Text = "x";
+            isChecked = true;
+        }
+        else
+        {
+            Text = " ";
+            isChecked = false;
+        }
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-	{
-	}
+    public bool GetCheckValue()
+    {
+        return isChecked;
+    }
 }
