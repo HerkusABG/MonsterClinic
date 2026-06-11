@@ -15,6 +15,8 @@ public static class GlobalData
     public static Boolean Dialog_Dealer { get; set; } = false;
     public static Boolean Dialog_Dealer_Control { get; set; } = true;
 
+    public static string Reasion { get; set; } = "none";
+
     public static int Money { get; set; } = 150;
 
     public static int DailyEarnings { get; set; } = 0;
