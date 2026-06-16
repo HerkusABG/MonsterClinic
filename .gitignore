@@ -1,3 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
+.vs/
+.import/
+.export/
+.mono/
+bin/
+obj/
 /android/
