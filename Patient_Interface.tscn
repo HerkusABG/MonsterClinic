@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://d2ik2xsn376ov" path="res://PatientStats.cs" id="2_ecejo"]
 [ext_resource type="Texture2D" uid="uid://pko0y5y0chtt" path="res://place holders/679961220_1321777009872154_7719911029311369346_n.png" id="3_uph1y"]
 [ext_resource type="Texture2D" uid="uid://c5b2sbksxoyvm" path="res://place holders/684146226_2513326992456987_2687682788803640839_n.jpg" id="4_ecejo"]
+[ext_resource type="FontFile" uid="uid://d076lt4s4m3cn" path="res://Font/uglyhandwriting.ttf" id="5_vwqed"]
 [ext_resource type="Script" uid="uid://dgqxfanx26jy6" path="res://Admit.cs" id="6_7u4js"]
 [ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://SpeechManager.cs" id="7_3xib3"]
 [ext_resource type="Script" uid="uid://o0fif4q0pb77" path="res://Reject.cs" id="7_27yax"]
@@ -89,6 +90,43 @@ texture = ExtResource("2_bomhp")
 position = Vector2(486, 533)
 scale = Vector2(0.49348956, 0.50813687)
 texture = ExtResource("3_uph1y")
+
+[node name="Patient" type="ColorRect" parent="Sprites_PH/Clipboard" unique_id=1692235302]
+offset_left = -14.184701
+offset_top = -946.59534
+offset_right = 464.04236
+offset_bottom = -812.7731
+
+[node name="Label" type="Label" parent="Sprites_PH/Clipboard/Patient" unique_id=92196170]
+layout_mode = 0
+offset_left = 58.76518
+offset_top = -3.9359512
+offset_right = 504.56995
+offset_bottom = 143.66223
+theme_override_colors/font_color = Color(0.8745098, 0.0627451, 0.44313726, 1)
+theme_override_fonts/font = ExtResource("5_vwqed")
+theme_override_font_sizes/font_size = 50
+text = "000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Age" type="ColorRect" parent="Sprites_PH/Clipboard" unique_id=660847697]
+offset_left = 6.07915
+offset_top = -816.7091
+offset_right = 482.27972
+offset_bottom = -686.8229
+
+[node name="Label" type="Label" parent="Sprites_PH/Clipboard/Age" unique_id=1101784673]
+layout_mode = 0
+offset_left = -2.0263855
+offset_top = 19.679739
+offset_right = 372.8549
+offset_bottom = 127.9183
+theme_override_colors/font_color = Color(0.8745098, 0.0627451, 0.44313726, 1)
+theme_override_fonts/font = ExtResource("5_vwqed")
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Deceased_Sprite" type="Sprite2D" parent="Sprites_PH" unique_id=1313979685]
 position = Vector2(1327, 366.00003)
@@ -176,7 +214,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
 text = "Measure Pulse "
 
-[node name="Reject" type="Button" parent="ControlPatientInterface" unique_id=1995509717 node_paths=PackedStringArray("PortraitSprite")]
+[node name="Reject" type="Button" parent="ControlPatientInterface" unique_id=1995509717 node_paths=PackedStringArray("PortraitSprite", "PatientLabel", "AgeLabel")]
 custom_minimum_size = Vector2(210, 100)
 layout_mode = 0
 offset_left = 1366.0
@@ -190,6 +228,8 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
 text = "Reject"
 script = ExtResource("7_27yax")
 PortraitSprite = NodePath("../../Sprites_PH/Patient")
+PatientLabel = NodePath("../../Sprites_PH/Clipboard/Patient/Label")
+AgeLabel = NodePath("../../Sprites_PH/Clipboard/Age/Label")
 
 [node name="Admit" type="Button" parent="ControlPatientInterface" unique_id=1942473230]
 custom_minimum_size = Vector2(210, 100)
