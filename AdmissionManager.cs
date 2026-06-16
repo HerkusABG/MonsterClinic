@@ -25,9 +25,10 @@ public partial class AdmissionManager : Node
 
         //give the newly admitted patient a random malady at a random severity
         Random rnd = new Random();
-        GlobalData.CurrentPatientMalady = GlobalData.Maladies[rnd.Next(0, 3)];
-        GlobalData.CurrentPatientSeverity = rnd.Next(2,5);
-
+        // Astra : we are having problems linking classes --> MaladyListc.cs;Malady.cs;GlobalData.cs; PatientInfo.cs; blah blah talk refer to herkus about how to work classess
+        GlobalData.CurrentPatientMalady = new MaladyList.Headache();
+        // GlobalData.CurrentPatientSeverity = rnd.Next(2,5);
+        GlobalData.CurrentPatientMalady.severity = rnd.Next(2, 5);
         //hide the patient admission screen, show the patient room, with the patient sprite and info now visible
         roomNode.Show();
         patientInterface.Hide();
