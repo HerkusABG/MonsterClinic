@@ -151,13 +151,13 @@ public partial class Contents_C : Node2D
         MoneyDisplay.Text = DoctorInventory.Money.ToString();
         DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
 
-        //MoneyDisplay.Text = GlobalData.Money.ToString();
-        //DealerWindowMoneyDisplay.Text = GlobalData.Money.ToString();
+        BuyMedicine1Button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
+        BuyMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
+        BuyMedicine3Button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
 
-
-        BuyMedicine1Button.Text = "Medicine 1 \n (Price: 10) \n \n Owned: " + GlobalData.Medicine1Count.ToString();
-        BuyMedicine2Button.Text = "Medicine 2 \n (Price: 20) \n \n Owned: " + GlobalData.Medicine2Count.ToString();
-        BuyMedicine3Button.Text = "Medicine 3 \n (Price: 30) \n \n Owned: " + GlobalData.Medicine3Count.ToString();
+        //BuyMedicine1Button.Text = "gagagugi \n (Price: 10) \n \n Owned: " + GlobalData.Medicine1Count.ToString();
+        //BuyMedicine2Button.Text = "Medicine 2 \n (Price: 20) \n \n Owned: " + GlobalData.Medicine2Count.ToString();
+        //BuyMedicine3Button.Text = "Medicine 3 \n (Price: 30) \n \n Owned: " + GlobalData.Medicine3Count.ToString();
         SelfTreatmentButton.Text = "Self Treatment \n (Price:" + GlobalData.MedicineCost + ")\n \n Owned: " + GlobalData.MedicinePlayer.ToString() + " \n availability in: " + GlobalData.Medicincavailability.ToString();
     }
     //semi-modular method for buying every type of medicine
@@ -166,12 +166,16 @@ public partial class Contents_C : Node2D
         if (button == BuyMedicine1Button)
         {
             //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
-            if (DoctorInventory.Money >= 10)
+            if (DoctorInventory.Money >= MedicineManager.Database["Morphine"].cost)
             {
-                DoctorInventory.Money -= 10;
-                GlobalData.Medicine1Count += 1;
-                button.Text = "Medicine 1 \n (Price: 10) \n \n Owned: " + GlobalData.Medicine1Count.ToString();
+                DoctorInventory.Money -= MedicineManager.Database["Morphine"].cost;
+                MedicineManager.Database["Morphine"].amount++;
+                button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
                 DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
+
+
+
+
                 //if you can't afford it, give em the poor idiot popup
             }
             else
@@ -182,11 +186,12 @@ public partial class Contents_C : Node2D
         else if (button == BuyMedicine2Button)
         {
             //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
-            if (DoctorInventory.Money >= 20)
+            if (DoctorInventory.Money >= MedicineManager.Database["Aspirin"].cost)
             {
-                DoctorInventory.Money -= 20;
-                GlobalData.Medicine2Count += 1;
-                button.Text = "Medicine 2 \n (Price: 20) \n \n Owned: " + GlobalData.Medicine2Count.ToString();
+                DoctorInventory.Money -= MedicineManager.Database["Aspirin"].cost;
+                MedicineManager.Database["Aspirin"].amount++;
+                //GlobalData.Medicine2Count += 1;
+                button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
                 DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
             }
             //if you can't afford it, give em the poor idiot popup
@@ -198,11 +203,12 @@ public partial class Contents_C : Node2D
         else if (button == BuyMedicine3Button)
         {
             //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
-            if (DoctorInventory.Money >= 30)
+            if (DoctorInventory.Money >= MedicineManager.Database["Ozempic"].cost)
             {
-                DoctorInventory.Money -= 30;
-                GlobalData.Medicine3Count += 1;
-                button.Text = "Medicine 3 \n (Price: 30) \n \n Owned: " + GlobalData.Medicine3Count.ToString();
+                DoctorInventory.Money -= MedicineManager.Database["Ozempic"].cost;
+                MedicineManager.Database["Ozempic"].amount++;
+                //GlobalData.Medicine3Count += 1;
+                button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
                 DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
             }
             //if you can't afford it, give em the poor idiot popup
@@ -210,7 +216,9 @@ public partial class Contents_C : Node2D
             {
                 InsufficientFunds.Show();
             }
-        } else if (button == SelfTreatmentButton) {
+        } 
+        else if (button == SelfTreatmentButton) 
+        {
             // Check if the player has the money and if the medicine is available before allowing him to purchase item
             if (DoctorInventory.Money >= GlobalData.MedicineCost && GlobalData.Medicincavailability <= 0)
             {
