@@ -1,22 +1,6 @@
 [gd_scene format=3 uid="uid://cd5mco04n5aoh"]
 
 [ext_resource type="Script" uid="uid://dgsevwbdax2t4" path="res://Contents_C.cs" id="1_tjl6a"]
-[ext_resource type="Script" uid="uid://dpu6ts1ku7efn" path="res://Dealer.cs" id="2_dekc5"]
-[ext_resource type="Script" uid="uid://dys5fom6leyqt" path="res://Map_PH.cs" id="3_dueua"]
-[ext_resource type="Script" uid="uid://duc2vvncat8w8" path="res://Map.cs" id="3_vjhme"]
-[ext_resource type="Script" uid="uid://bw3btaxjpl16i" path="res://Dealer_PH.cs" id="5_tjl6a"]
-[ext_resource type="Script" uid="uid://d2pfb3obh0l26" path="res://Malady_PH.cs" id="6_3f6el"]
-[ext_resource type="Script" uid="uid://cps7wyoavl5wx" path="res://Close.cs" id="6_hqpia"]
-[ext_resource type="Script" uid="uid://ds684ws41jfwk" path="res://MoneyDisplay.cs" id="8_3f6el"]
-[ext_resource type="Script" uid="uid://gywgy4lb3aaa" path="res://MoneyAdder.cs" id="8_dekc5"]
-[ext_resource type="Script" uid="uid://dfk0b036cq5bt" path="res://Medicine1.cs" id="9_vjhme"]
-[ext_resource type="Script" uid="uid://2w5dmb65tqxw" path="res://Medicine2.cs" id="10_arhto"]
-[ext_resource type="Script" uid="uid://b0jnjo6h04xgr" path="res://MoneySubtractor.cs" id="10_vjhme"]
-[ext_resource type="Script" uid="uid://4phbi63r8tpl" path="res://Medicine3.cs" id="11_hqpia"]
-[ext_resource type="Script" uid="uid://bhwalee26aynr" path="res://InsufficientFunds.cs" id="12_hqpia"]
-[ext_resource type="Script" uid="uid://bc8r7lb782r7o" path="res://SelfTreatment.cs" id="12_l232m"]
-[ext_resource type="Script" uid="uid://l0imsja6r7lq" path="res://InsufficientAvailability.cs" id="14_76rvk"]
-[ext_resource type="Script" uid="uid://bfxmeekv63bvb" path="res://CloseIa.cs" id="15_bjo7d"]
 [ext_resource type="Script" uid="uid://08n5ukorqdyk" path="res://ScrollCatalog.cs" id="15_vbt5y"]
 [ext_resource type="Script" uid="uid://bho5a8iwfj3pn" path="res://Scripts/MapUI.cs" id="16_l232m"]
 
@@ -87,7 +71,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Dealer"
-script = ExtResource("2_dekc5")
 
 [node name="Map" type="Button" parent="Player_Interactables_C" unique_id=1453367602]
 custom_minimum_size = Vector2(200, 10)
@@ -102,7 +85,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Map
 "
-script = ExtResource("3_vjhme")
 
 [node name="Malady_Catalogue" type="Button" parent="Player_Interactables_C" unique_id=696477847]
 custom_minimum_size = Vector2(200, 10)
@@ -143,7 +125,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Infinite wealth 
 be upon ye"
-script = ExtResource("8_dekc5")
 
 [node name="Money_Display" type="Label" parent="Player_Interactables_C" unique_id=1983009738]
 layout_mode = 0
@@ -155,7 +136,6 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("8_3f6el")
 
 [node name="Money_Subtractor" type="Button" parent="Player_Interactables_C" unique_id=294244695]
 custom_minimum_size = Vector2(200, 10)
@@ -169,9 +149,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "BOUNDLESS DEBT"
-script = ExtResource("10_vjhme")
 
 [node name="Dealer_PH" type="Label" parent="Player_Interactables_C" unique_id=1842103304]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 40.0
@@ -183,7 +163,6 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("5_tjl6a")
 
 [node name="Close" type="Button" parent="Player_Interactables_C/Dealer_PH" unique_id=434525094]
 layout_mode = 0
@@ -196,7 +175,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
-script = ExtResource("6_hqpia")
 
 [node name="Money_Display" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=368042294]
 layout_mode = 0
@@ -208,7 +186,6 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("8_3f6el")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Player_Interactables_C/Dealer_PH" unique_id=1736552472]
 custom_minimum_size = Vector2(300, 300)
@@ -225,7 +202,6 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-script = ExtResource("9_vjhme")
 
 [node name="Medicine2" type="Button" parent="Player_Interactables_C/Dealer_PH/HBoxContainer" unique_id=1726209352]
 custom_minimum_size = Vector2(300, 300)
@@ -234,7 +210,6 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-script = ExtResource("10_arhto")
 
 [node name="Medicine3" type="Button" parent="Player_Interactables_C/Dealer_PH/HBoxContainer" unique_id=1721866980]
 custom_minimum_size = Vector2(300, 300)
@@ -243,7 +218,6 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-script = ExtResource("11_hqpia")
 
 [node name="SelfTreatment" type="Button" parent="Player_Interactables_C/Dealer_PH/HBoxContainer" unique_id=1553974830]
 custom_minimum_size = Vector2(300, 300)
@@ -252,9 +226,9 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-script = ExtResource("12_l232m")
 
 [node name="Insufficient_Funds" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=760048127]
+visible = false
 layout_mode = 0
 offset_left = 354.0
 offset_top = 452.0
@@ -267,7 +241,6 @@ text = "Sorry Doctor, I don't give credit!
 Come back when you're a little, mmm, richer!"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("12_hqpia")
 
 [node name="Close" type="Button" parent="Player_Interactables_C/Dealer_PH/Insufficient_Funds" unique_id=481915780]
 layout_mode = 0
@@ -280,9 +253,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
-script = ExtResource("6_hqpia")
 
 [node name="Insufficient_Availability" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=1524854237]
+visible = false
 layout_mode = 0
 offset_left = 355.0
 offset_top = 456.0
@@ -294,7 +267,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
 text = "Sorry Doctor, there is nothing available now, look in a few days in ;{"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("14_76rvk")
 
 [node name="Close_IA" type="Button" parent="Player_Interactables_C/Dealer_PH/Insufficient_Availability" unique_id=1815543145]
 layout_mode = 0
@@ -307,9 +279,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
-script = ExtResource("15_bjo7d")
 
 [node name="Map_PH" type="Label" parent="Player_Interactables_C" unique_id=1044538284]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 27.0
@@ -324,7 +296,6 @@ text = "This prototype exists in a void, what do you want a map of nothing for?
 Get outta here, come back in a later version"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("3_dueua")
 
 [node name="Close" type="Button" parent="Player_Interactables_C/Map_PH" unique_id=834944]
 layout_mode = 0
@@ -336,7 +307,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
-script = ExtResource("6_hqpia")
 
 [node name="Malady_PH" type="Label" parent="Player_Interactables_C" unique_id=1235186100]
 visible = false
@@ -356,10 +326,8 @@ text = "LIST OF EVERY MALADY
 2. Uhhhhhhhhhhhh"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("6_3f6el")
 
 [node name="Close" type="Button" parent="Player_Interactables_C/Malady_PH" unique_id=779862827]
-visible = false
 layout_mode = 0
 offset_left = 1821.0
 offset_right = 1871.0
@@ -369,10 +337,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
-script = ExtResource("6_hqpia")
 
 [node name="ScrollCatalog" type="ScrollContainer" parent="Player_Interactables_C/Malady_PH" unique_id=1770234032]
-visible = false
 layout_mode = 0
 offset_left = 50.0
 offset_top = 55.0
@@ -381,7 +347,6 @@ offset_bottom = 966.0
 script = ExtResource("15_vbt5y")
 
 [node name="GridContainer" type="GridContainer" parent="Player_Interactables_C/Malady_PH/ScrollCatalog" unique_id=1273949924]
-visible = false
 layout_mode = 2
 theme_override_constants/h_separation = 274
 theme_override_constants/v_separation = 222
@@ -434,16 +399,9 @@ offset_bottom = 647.0
 theme_override_colors/font_color = Color(1, 0.029999971, 0.029999971, 1)
 text = "Insufficient funds :("
 
-[connection signal="pressed" from="Player_Interactables_C/Dealer" to="Player_Interactables_C/Dealer_PH" method="_on_dealer_pressed"]
-[connection signal="pressed" from="Player_Interactables_C/Map" to="Player_Interactables_C/Map_PH" method="_on_map_pressed"]
-[connection signal="pressed" from="Player_Interactables_C/Malady_Catalogue" to="Player_Interactables_C/Malady_PH" method="_on_malady_c_pressed"]
-[connection signal="pressed" from="Player_Interactables_C/Log_out" to="." method="_on_log_o_pressed"]
+[connection signal="visibility_changed" from="Player_Interactables_C/Money_Display" to="." method="_on_money_display_visibility_changed"]
+[connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH" to="." method="_on_dealer_ph_visibility_changed"]
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH" to="Player_Interactables_C/Dealer_PH/HBoxContainer/Medicine1" method="_on_dealer_ph_visibility_changed"]
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH" to="Player_Interactables_C/Dealer_PH/HBoxContainer/Medicine2" method="_on_dealer_ph_visibility_changed"]
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH" to="Player_Interactables_C/Dealer_PH/HBoxContainer/Medicine3" method="_on_dealer_ph_visibility_changed"]
-[connection signal="pressed" from="Player_Interactables_C/Dealer_PH/Close" to="Player_Interactables_C/Dealer_PH" method="_on_close_pressed"]
-[connection signal="pressed" from="Player_Interactables_C/Dealer_PH/Insufficient_Funds/Close" to="Player_Interactables_C/Dealer_PH/Insufficient_Funds" method="_on_close_pressed"]
-[connection signal="pressed" from="Player_Interactables_C/Dealer_PH/Insufficient_Availability/Close_IA" to="Player_Interactables_C/Dealer_PH/Insufficient_Availability" method="_on_close_ia_pressed"]
-[connection signal="pressed" from="Player_Interactables_C/Map_PH/Close" to="Player_Interactables_C/Map_PH" method="_on_close_pressed"]
-[connection signal="pressed" from="Player_Interactables_C/Malady_PH/Close" to="Player_Interactables_C/Malady_PH" method="_on_close_pressed"]
 [connection signal="pressed" from="MapUI/VBoxContainer/BuyRoomButton" to="MapUI/VBoxContainer" method="OnBuyRoomButtonPressed"]

@@ -13,9 +13,9 @@ public partial class Medicine2 : Button
     private void ButtonPressed()
     {
         //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
-        if (GlobalData.Money >= 20)
+        if (DoctorInventory.Money >= 20)
         {
-            GlobalData.Money -= 20;
+            DoctorInventory.Money -= 20;
             GlobalData.Medicine2Count += 1;
             Text = "Medicine 2 \n (Price: 20) \n \n Owned: " + GlobalData.Medicine2Count.ToString();
         }

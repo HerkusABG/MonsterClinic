@@ -16,16 +16,16 @@ public partial class SelfTreatment : Button
 
     {
         // Check if the player has the money and if the medicine is available before allowing him to purchase item
-        if (GlobalData.Money >= GlobalData.MedicineCost && GlobalData.Medicincavailability <= 0)
+        if (DoctorInventory.Money >= GlobalData.MedicineCost && GlobalData.Medicincavailability <= 0)
         {
             // Money deduction, player gets the medicine and the cost of the medicine gets increased (probally needs balancing)
-            GlobalData.Money -= GlobalData.MedicineCost;
+            DoctorInventory.Money -= GlobalData.MedicineCost;
             GlobalData.MedicinePlayer ++;
             GlobalData.MedicineCost = GlobalData.MedicineCost * 2; // Increase the cost for the next purchase
             Text = "Self Treatment \n (Price: " + GlobalData.MedicineCost + ") \n \n Owned: " + GlobalData.MedicinePlayer.ToString() + " \n availability in: " + GlobalData.Medicincavailability.ToString();
         
         }
-        else if (GlobalData.Money < GlobalData.MedicineCost)
+        else if (DoctorInventory.Money < GlobalData.MedicineCost)
         {
             var Popup = (Label)GetParent().GetParent().GetNode("Insufficient_Funds");
             Popup.Show();
@@ -35,9 +35,6 @@ public partial class SelfTreatment : Button
             var Popup = (Label)GetParent().GetParent().GetNode("Insufficient_Availability");
             Popup.Show();
         }
-
-        
-
     }
 
     private void _on_dealer_ph_visibility_changed()

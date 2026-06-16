@@ -17,7 +17,7 @@ public static class GlobalData
 
     public static string Reasion { get; set; } = "none";
 
-    public static int Money { get; set; } = 150;
+    //public static int Money { get; set; } = 150;
 
     public static int DailyEarnings { get; set; } = 0;
 

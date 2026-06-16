@@ -45,7 +45,7 @@ public partial class Contents_O : Node2D
         Hide();
         var day_M = GetNode<DayManager>("/root/DayManager");
         day_M.Player_Ingame_Days++;
-        GlobalData.Money += GlobalData.DailyEarnings;
+        DoctorInventory.Money += GlobalData.DailyEarnings;
         GlobalData.Countdown--;
         var BedScene = (Node2D)GetParent().GetNode("Bed");
         BedScene.Show();

@@ -14,6 +14,7 @@ script = ExtResource("1_lgr22")
 [node name="Office" parent="." unique_id=586678661 instance=ExtResource("1_r0du0")]
 
 [node name="Computer" parent="." unique_id=1932071110 instance=ExtResource("2_cm0pq")]
+visible = false
 
 [node name="Patient_Interface" parent="." unique_id=315031335 instance=ExtResource("3_fos0i")]
 

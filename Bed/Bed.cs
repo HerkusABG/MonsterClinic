@@ -25,7 +25,7 @@ public partial class Bed : Node2D
         var MoneyEarned = GetNode<RichTextLabel>("MoneyEarned");
         MoneyEarned.BbcodeEnabled = true;
         MoneyEarned.Text = "Today's earnings: " + GlobalData.DailyEarnings;
-        GlobalData.Money += GlobalData.DailyEarnings;
+        DoctorInventory.Money += GlobalData.DailyEarnings;
         GlobalData.DailyEarnings = 0;
 
        

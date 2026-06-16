@@ -6,8 +6,7 @@ public partial class GiveMedicine1 : Button
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-
-        Text = "Medicine 1 \n Owned: " + GlobalData.Medicine1Count.ToString();
+        Text = $"{MedicineManager.Database["Morphine"].name} \n Owned: {MedicineManager.Database["Morphine"].amount}";
         Pressed += ButtonPressed;
     }
 
@@ -15,7 +14,7 @@ public partial class GiveMedicine1 : Button
     {
         //update the text whenever the scene's visibility changes. Is it kinda random? Yes. But I can't exactly send a signal from the dealer all the way here
         //whenever you buy something, and this is better than updating every frame, so this is what we're doing
-        Text = "Medicine 1 \n Owned: " + GlobalData.Medicine1Count.ToString();
+        Text = $"{MedicineManager.Database["Morphine"].name} \n Owned: {MedicineManager.Database["Morphine"].amount}";
     }
 
     private void ButtonPressed()
@@ -30,7 +29,8 @@ public partial class GiveMedicine1 : Button
             No_Patient_Popup.Show();
 
         }
-        else if (GlobalData.Medicine1Count > 0)
+        //else if (GlobalData.Medicine1Count > 0)
+        else if (MedicineManager.Database["Morphine"].amount > 0)
         {
             //if you try to use the medicine on the wrong malady, you get the appropriate popup, and the medicie buttons get disabled until you close it
             if (GlobalData.CurrentPatientMalady != "A")
@@ -41,14 +41,13 @@ public partial class GiveMedicine1 : Button
                 Disabled = true;
                 med2.Disabled = true;
                 med3.Disabled = true;
-
             }
             else
             {
                 //the correct use of the medicine, severity goes down, you consume 1 medicine, the text gets updated
                 GlobalData.CurrentPatientSeverity -= 1;
-                GlobalData.Medicine1Count--;
-                Text = "Medicine 1 \n Owned: " + GlobalData.Medicine1Count.ToString();
+                MedicineManager.Database["Morphine"].amount--;
+                Text = $"{MedicineManager.Database["Morphine"].name} \n Owned: {MedicineManager.Database["Morphine"].amount}";
                 //if you get the severity down to 0, the patient is cured, you get a popup, and you get paid
                 if (GlobalData.CurrentPatientSeverity == 0)
                 {
@@ -63,10 +62,5 @@ public partial class GiveMedicine1 : Button
                 }
             }
         }
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
     }
 }

@@ -8,13 +8,13 @@ public partial class GiveMedicine2 : Button
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        Text = "Medicine 2 \n Owned: " + GlobalData.Medicine2Count.ToString();
+        Text = $"{MedicineManager.Database["Aspirin"].name} \n Owned: {MedicineManager.Database["Aspirin"].amount}";
         Pressed += ButtonPressed;
     }
 
     private void _on_room_visibility_changed()
     {
-        Text = "Medicine 2 \n Owned: " + GlobalData.Medicine2Count.ToString();
+        Text = $"{MedicineManager.Database["Aspirin"].name} \n Owned: {MedicineManager.Database["Aspirin"].amount}";
     }
 
     private void ButtonPressed()
@@ -26,8 +26,8 @@ public partial class GiveMedicine2 : Button
         {
             No_Patient_Popup.Show();
 
-        } 
-        else if (GlobalData.Medicine2Count > 0)
+        }
+        else if (MedicineManager.Database["Aspirin"].amount > 0)    
         {
             if (GlobalData.CurrentPatientMalady != "B")
             {
@@ -42,8 +42,8 @@ public partial class GiveMedicine2 : Button
             else 
             {
                 GlobalData.CurrentPatientSeverity -= 1;
-                GlobalData.Medicine2Count--;
-                Text = "Medicine 2 \n Owned: " + GlobalData.Medicine2Count.ToString();
+                MedicineManager.Database["Aspirin"].amount--;
+                Text = $"{MedicineManager.Database["Aspirin"].name} \n Owned: {MedicineManager.Database["Aspirin"].amount}";
                 if (GlobalData.CurrentPatientSeverity == 0)
                 {
                     var cured = (Label)GetParent().GetNode("Patient_Cured_Popup");
@@ -57,11 +57,6 @@ public partial class GiveMedicine2 : Button
                 }
             }
         }
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
     }
 }
 

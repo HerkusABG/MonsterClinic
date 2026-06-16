@@ -10,7 +10,7 @@ public partial class MoneyAdder : Button
 
 	private void ButtonPressed()
 	{
-        GlobalData.Money = GlobalData.Money + 10;
+        DoctorInventory.Money = DoctorInventory.Money + 10;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
