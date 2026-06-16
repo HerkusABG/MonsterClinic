@@ -121,23 +121,17 @@ public partial class Contents_C : Node2D
     {
         DoctorInventory.Money += 10;
         MoneyDisplay.Text = DoctorInventory.Money.ToString();
-
-        //GlobalData.Money = GlobalData.Money + 10;
-        //MoneyDisplay.Text = GlobalData.Money.ToString();
     }
     //subtract money, update display
     private void SubtractMoney()
     {
         DoctorInventory.Money -= 10;
         MoneyDisplay.Text = DoctorInventory.Money.ToString();
-        //GlobalData.Money = GlobalData.Money - 10;
-        //MoneyDisplay.Text = GlobalData.Money.ToString();
     }
     //update display whenever the display's visibility changes (this is about as infrequently as I can easily make it update while still always being up to date
     private void _on_money_display_visibility_changed()
     {
         MoneyDisplay.Text = DoctorInventory.Money.ToString();
-        //MoneyDisplay.Text = GlobalData.Money.ToString(); 
     }
     //universal method for closing a node's parent, used for all the x's in the top right of popups
     private void CloseParent(Button button)
@@ -155,9 +149,6 @@ public partial class Contents_C : Node2D
         BuyMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
         BuyMedicine3Button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
 
-        //BuyMedicine1Button.Text = "gagagugi \n (Price: 10) \n \n Owned: " + GlobalData.Medicine1Count.ToString();
-        //BuyMedicine2Button.Text = "Medicine 2 \n (Price: 20) \n \n Owned: " + GlobalData.Medicine2Count.ToString();
-        //BuyMedicine3Button.Text = "Medicine 3 \n (Price: 30) \n \n Owned: " + GlobalData.Medicine3Count.ToString();
         SelfTreatmentButton.Text = "Self Treatment \n (Price:" + GlobalData.MedicineCost + ")\n \n Owned: " + GlobalData.MedicinePlayer.ToString() + " \n availability in: " + GlobalData.Medicincavailability.ToString();
     }
     //semi-modular method for buying every type of medicine
@@ -173,9 +164,6 @@ public partial class Contents_C : Node2D
                 button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
                 DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
 
-
-
-
                 //if you can't afford it, give em the poor idiot popup
             }
             else
@@ -190,7 +178,6 @@ public partial class Contents_C : Node2D
             {
                 DoctorInventory.Money -= MedicineManager.Database["Aspirin"].cost;
                 MedicineManager.Database["Aspirin"].amount++;
-                //GlobalData.Medicine2Count += 1;
                 button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
                 DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
             }
@@ -207,8 +194,7 @@ public partial class Contents_C : Node2D
             {
                 DoctorInventory.Money -= MedicineManager.Database["Ozempic"].cost;
                 MedicineManager.Database["Ozempic"].amount++;
-                //GlobalData.Medicine3Count += 1;
-                button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
+                button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
                 DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
             }
             //if you can't afford it, give em the poor idiot popup
@@ -243,10 +229,5 @@ public partial class Contents_C : Node2D
         {
             Console.WriteLine("well this isn't supposed to happen");
         }
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
     }
 }
