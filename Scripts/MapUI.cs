@@ -2,38 +2,44 @@ using Godot;
 using System;
 using System.Threading.Tasks; // i added this for delays, but it may not be necessary 
 
-public partial class MapUI : BoxContainer
+public partial class MapUI : Control
 {
     [Export] public Label RoomCount;
     [Export] public Label Funds;
     [Export] public Label PatientCount;
     [Export] public Button BuyRoomButton;
 	[Export] public Label WarningLabel;
+    [Export] GridContainer RoomContainer;
    
-    private int roomCount = 1;
-    private int currentFunds = 100;
     private int admittedPatients = 0;
+
+    RoomStructureRenderer RoomRenderer;
+
 
     public override void _Ready()
     {
         UpdateUI();
         WarningLabel.Visible = false;
+        BuyRoomButton.Pressed += OnBuyRoomButtonPressed;
+        RoomRenderer = new RoomStructureRenderer();
+        RoomRenderer.GenerateRooms(RoomContainer, Upgrades.roomCount);
     }
 
     private void UpdateUI()
     {
-        RoomCount.Text = $"Rooms: {roomCount}";
-        Funds.Text = $"Funds: {currentFunds} credits";
+        BuyRoomButton.Text = $"Price: {Economy.roomCost}";
+        RoomCount.Text = $"Rooms: {Upgrades.roomCount}";
+        Funds.Text = $"Funds: {DoctorInventory.Money} credits";
         PatientCount.Text = $"Patients: {admittedPatients}";
     }
 
     public async void OnBuyRoomButtonPressed()
     {
-        const int cost = 10;
-        if (currentFunds >= cost)
+        if (DoctorInventory.Money >= Economy.roomCost)
         {
-            currentFunds -= cost;
-            roomCount += 1;
+            DoctorInventory.Money -= Economy.roomCost;
+            Upgrades.AddNewRoom();
+            RoomRenderer.GenerateRoom(RoomContainer);
             UpdateUI();
         }
         else

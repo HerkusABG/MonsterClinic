@@ -280,33 +280,78 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
 
-[node name="Map_PH" type="Label" parent="Player_Interactables_C" unique_id=1044538284]
+[node name="MapControl" type="Control" parent="Player_Interactables_C" unique_id=395133012 node_paths=PackedStringArray("RoomCount", "Funds", "PatientCount", "BuyRoomButton", "WarningLabel", "RoomContainer")]
 visible = false
-z_index = 1
-layout_mode = 0
-offset_left = 27.0
+z_index = 2
+anchors_preset = 0
+offset_left = 40.0
 offset_top = 20.0
-offset_right = 1910.0
-offset_bottom = 1019.0
-mouse_filter = 0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
-text = "This prototype exists in a void, what do you want a map of nothing for? 
+offset_right = 80.0
+offset_bottom = 60.0
+script = ExtResource("16_l232m")
+RoomCount = NodePath("VBoxContainer/RoomCount")
+Funds = NodePath("VBoxContainer/Funds")
+PatientCount = NodePath("VBoxContainer/PatientCount")
+BuyRoomButton = NodePath("VBoxContainer/BuyRoomButton")
+WarningLabel = NodePath("../../MapUI/WarningLabel")
+RoomContainer = NodePath("MapMarginContainer/RoomContainer")
 
-Get outta here, come back in a later version"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Close" type="Button" parent="Player_Interactables_C/Map_PH" unique_id=834944]
+[node name="Close" type="Button" parent="Player_Interactables_C/MapControl" unique_id=834944]
+z_index = 2
 layout_mode = 0
-offset_left = 1834.0
-offset_right = 1884.0
-offset_bottom = 50.0
+offset_left = 1700.0
+offset_right = 1800.0
+offset_bottom = 100.0
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
+
+[node name="MapMarginContainer" type="MarginContainer" parent="Player_Interactables_C/MapControl" unique_id=592572288]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 297.0
+offset_right = 1270.0
+offset_bottom = 797.0
+
+[node name="RoomContainer" type="GridContainer" parent="Player_Interactables_C/MapControl/MapMarginContainer" unique_id=38451968]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+columns = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player_Interactables_C/MapControl" unique_id=1891633938]
+z_index = 1
+layout_mode = 0
+offset_left = 1523.0
+offset_top = 409.0
+offset_right = 1723.0
+offset_bottom = 609.0
+
+[node name="RoomCount" type="Label" parent="Player_Interactables_C/MapControl/VBoxContainer" unique_id=1869807329]
+z_index = 8
+layout_mode = 2
+theme_override_constants/line_spacing = 3
+
+[node name="Funds" type="Label" parent="Player_Interactables_C/MapControl/VBoxContainer" unique_id=1352145390]
+layout_mode = 2
+theme_override_constants/line_spacing = 3
+
+[node name="PatientCount" type="Label" parent="Player_Interactables_C/MapControl/VBoxContainer" unique_id=1699672386]
+layout_mode = 2
+theme_override_constants/line_spacing = 3
+
+[node name="BuyRoomButton" type="Button" parent="Player_Interactables_C/MapControl/VBoxContainer" unique_id=1415746303]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Buy Room (10 Credits)"
+
+[node name="Panel" type="Panel" parent="Player_Interactables_C/MapControl" unique_id=517128099]
+z_index = -1
+layout_mode = 0
+offset_right = 1800.0
+offset_bottom = 1000.0
+mouse_filter = 2
 
 [node name="Malady_PH" type="Label" parent="Player_Interactables_C" unique_id=1235186100]
 visible = false
@@ -354,42 +399,6 @@ columns = 6
 
 [node name="MapUI" type="CanvasLayer" parent="." unique_id=2110428934]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MapUI" unique_id=1891633938 node_paths=PackedStringArray("RoomCount", "Funds", "PatientCount", "BuyRoomButton", "WarningLabel")]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -316.0
-offset_top = -47.0
-offset_right = -43.0
-offset_bottom = 65.0
-grow_horizontal = 0
-grow_vertical = 2
-script = ExtResource("16_l232m")
-RoomCount = NodePath("RoomCount")
-Funds = NodePath("Funds")
-PatientCount = NodePath("PatientCount")
-BuyRoomButton = NodePath("BuyRoomButton")
-WarningLabel = NodePath("../WarningLabel")
-
-[node name="RoomCount" type="Label" parent="MapUI/VBoxContainer" unique_id=1869807329]
-layout_mode = 2
-theme_override_constants/line_spacing = 3
-
-[node name="Funds" type="Label" parent="MapUI/VBoxContainer" unique_id=1352145390]
-layout_mode = 2
-theme_override_constants/line_spacing = 3
-
-[node name="PatientCount" type="Label" parent="MapUI/VBoxContainer" unique_id=1699672386]
-layout_mode = 2
-theme_override_constants/line_spacing = 3
-
-[node name="BuyRoomButton" type="Button" parent="MapUI/VBoxContainer" unique_id=1415746303]
-layout_mode = 2
-size_flags_vertical = 4
-text = "Buy Room (10 Credits)"
-
 [node name="WarningLabel" type="Label" parent="MapUI" unique_id=1397842417]
 visible = false
 offset_left = 1664.0
@@ -404,4 +413,3 @@ text = "Insufficient funds :("
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH" to="Player_Interactables_C/Dealer_PH/HBoxContainer/Medicine1" method="_on_dealer_ph_visibility_changed"]
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH" to="Player_Interactables_C/Dealer_PH/HBoxContainer/Medicine2" method="_on_dealer_ph_visibility_changed"]
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH" to="Player_Interactables_C/Dealer_PH/HBoxContainer/Medicine3" method="_on_dealer_ph_visibility_changed"]
-[connection signal="pressed" from="MapUI/VBoxContainer/BuyRoomButton" to="MapUI/VBoxContainer" method="OnBuyRoomButtonPressed"]

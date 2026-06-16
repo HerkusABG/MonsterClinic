@@ -16,6 +16,7 @@ public partial class Contents_C : Node2D
     Button CloseDealerWindowButton;
     Label DealerWindowMoneyDisplay;
     HBoxContainer MedicineContainer;
+    GridContainer RoomContainer;
     Button BuyMedicine1Button;
     Button BuyMedicine2Button;
     Button BuyMedicine3Button;
@@ -24,10 +25,11 @@ public partial class Contents_C : Node2D
     Button CloseFundsPopup;
     Label InsufficientAvailability;
     Button CloseInsufficientStockPopup;
-    Label MapWindow;
+    Control MapControl;
     Button CloseMapWindow;
     Label CatalogueWindow;
     Button CloseCatalogueWindow;
+
 
 
 
@@ -52,6 +54,7 @@ public partial class Contents_C : Node2D
         CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
         SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
         CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
+        CloseMapWindow.Pressed += DebugBla;
         CloseCatalogueWindow.Pressed += () => CloseParent(CloseCatalogueWindow) ;
 
     }
@@ -84,8 +87,9 @@ public partial class Contents_C : Node2D
         CloseInsufficientStockPopup = InsufficientAvailability.GetNode<Button>("Close_IA");
 
         //seperate section for the map window
-        MapWindow = control.GetNode<Label>("Map_PH");
-        CloseMapWindow = MapWindow.GetNode<Button>("Close");
+        MapControl = control.GetNode<MapUI>("MapControl");
+        CloseMapWindow = MapControl.GetNode<Button>("Close");
+        RoomContainer = MapControl.GetNode<MarginContainer>("MapMarginContainer").GetNode<GridContainer>("RoomContainer");
 
         //separate section for the malady catalogue
         CatalogueWindow = control.GetNode<Label>("Malady_PH");
@@ -93,6 +97,10 @@ public partial class Contents_C : Node2D
 
     }
 
+    private void DebugBla()
+    {
+        GD.Print("bla bla bla");
+    }
     private void ShowDealerWindow()
     {
         DealerWindow.Show();
@@ -100,13 +108,15 @@ public partial class Contents_C : Node2D
 
     private void ShowMapWindow()
     {
-        MapWindow.Show();
+        MapControl.Show();
+        
     }
 
     private void ShowCatalogueWindow()
     {
         CatalogueWindow.Show();
     }
+
     private void LogOut()
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
@@ -136,8 +146,17 @@ public partial class Contents_C : Node2D
     //universal method for closing a node's parent, used for all the x's in the top right of popups
     private void CloseParent(Button button)
     {
-        var Parent = (Label)button.GetParent();
-        Parent.Hide();
+        var Parent = button.GetParent();
+        if(Parent.GetClass() == "Label")
+        {
+            Label ParentLabel = (Label)Parent;
+            ParentLabel.Hide();
+        }
+        if(Parent.GetClass() == "Control")
+        {
+            var ControlParent = (Control)Parent;
+            ControlParent.Hide();
+        }
     }
     //whenever the dealer window's visibility changes, update the text on the money display and the purchase buttons
     private void _on_dealer_ph_visibility_changed()
