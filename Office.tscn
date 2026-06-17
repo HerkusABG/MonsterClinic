@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3ailttjlob0g" path="res://Contents_O.cs" id="1_35wc1"]
 [ext_resource type="Texture2D" uid="uid://c5ncjx7yugc5j" path="res://Assets/2D Art/Office/office-pc.png" id="2_kjhbo"]
 [ext_resource type="Script" uid="uid://dm42silqg7ir1" path="res://Treatment_Deadline.cs" id="3_p0jbg"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="4_n8ipj"]
 [ext_resource type="Texture2D" uid="uid://b4o0ubcg603ro" path="res://Assets/2D Art/Office/office-mirror.png" id="6_4fm71"]
 [ext_resource type="Script" uid="uid://damlipp41xqb1" path="res://Mirror.cs" id="7_4fm71"]
 [ext_resource type="Texture2D" uid="uid://jdngferi6lje" path="res://Assets/2D Art/Office/office-elevator.png" id="9_yauhp"]
@@ -66,12 +67,16 @@ flat = true
 expand_icon = true
 
 [node name="ComputerLabel" type="Label" parent="Player_Interactables_O/Computer" unique_id=764561184]
-visible = false
 layout_mode = 0
-offset_right = 543.0
-offset_bottom = 126.54999
-theme_override_font_sizes/font_size = 60
+offset_left = 1.0
+offset_top = 194.54999
+offset_right = 544.0
+offset_bottom = 321.09998
+theme_override_fonts/font = ExtResource("4_n8ipj")
+theme_override_font_sizes/font_size = 120
 text = "Computer"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Deadline" type="Button" parent="Player_Interactables_O" unique_id=65374973]
 layout_mode = 0
@@ -161,8 +166,11 @@ offset_left = 100.0
 offset_top = 100.0
 offset_right = 255.0
 offset_bottom = 172.22
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("4_n8ipj")
+theme_override_font_sizes/font_size = 70
 text = "Mirror"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Elevator" type="Button" parent="Player_Interactables_O" unique_id=1792734093]
 layout_mode = 0
@@ -203,8 +211,11 @@ offset_left = 46.125
 offset_top = 163.035
 offset_right = 308.125
 offset_bottom = 242.24937
-theme_override_font_sizes/font_size = 40
+theme_override_fonts/font = ExtResource("4_n8ipj")
+theme_override_font_sizes/font_size = 60
 text = "Patient Room"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Patient_Interface_Access" type="Button" parent="Player_Interactables_O" unique_id=1350439951]
 custom_minimum_size = Vector2(503, 475)
@@ -228,8 +239,11 @@ offset_left = 100.0
 offset_top = 400.0
 offset_right = 420.58008
 offset_bottom = 529.44
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("4_n8ipj")
+theme_override_font_sizes/font_size = 90
 text = "Reception"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Bed" type="Button" parent="Player_Interactables_O" unique_id=1565711458]
 layout_mode = 0
@@ -252,8 +266,11 @@ offset_left = 100.0
 offset_top = 100.0
 offset_right = 318.33224
 offset_bottom = 196.2774
-theme_override_font_sizes/font_size = 40
+theme_override_fonts/font = ExtResource("4_n8ipj")
+theme_override_font_sizes/font_size = 80
 text = "Rest"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ChangeToBed_Timer" type="Timer" parent="." unique_id=1022067532]
 

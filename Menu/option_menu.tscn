@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ba7isbgbng5ow" path="res://Menu/control_settings_container.tscn" id="1_4x4gu"]
 [ext_resource type="Script" uid="uid://c6tn88eykl5md" path="res://Menu/OptionMenu.cs" id="1_p4kmv"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_e17qp"]
 
 [sub_resource type="SystemFont" id="SystemFont_dnh53"]
 font_names = PackedStringArray("Impact")
@@ -51,6 +52,8 @@ custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_e17qp")
+theme_override_font_sizes/font_size = 48
 text = "exit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

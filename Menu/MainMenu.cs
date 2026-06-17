@@ -11,7 +11,8 @@ public partial class MainMenu : Control
 		ColorRecthide.Hide();
 		SaveSystem.LoadFile_Settings();
 
-    }
+
+	}
 
 
 	private void _on_new_game_button_pressed()
@@ -52,6 +53,8 @@ public partial class MainMenu : Control
         var ColorRecthide = GetNode<ColorRect>("ColorRect");
         ColorRecthide.Hide();
     }
+
+	
 
 
 }
