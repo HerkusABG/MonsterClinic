@@ -2,10 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://ba7isbgbng5ow" path="res://Menu/control_settings_container.tscn" id="1_4x4gu"]
 [ext_resource type="Script" uid="uid://c6tn88eykl5md" path="res://Menu/OptionMenu.cs" id="1_p4kmv"]
-
-[sub_resource type="SystemFont" id="SystemFont_dnh53"]
-font_names = PackedStringArray("Impact")
-subpixel_positioning = 0
+[ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://CustomText/danielbd_MediumText.ttf" id="2_x2yo5"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_e17qp"]
 
 [node name="Option_Menu" type="Control" unique_id=435368562]
 layout_mode = 3
@@ -36,7 +34,7 @@ theme_override_constants/separation = -48
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
-theme_override_fonts/font = SubResource("SystemFont_dnh53")
+theme_override_fonts/font = ExtResource("2_x2yo5")
 theme_override_font_sizes/font_size = 44
 text = "Options"
 horizontal_alignment = 1
@@ -51,6 +49,8 @@ custom_minimum_size = Vector2(120, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_e17qp")
+theme_override_font_sizes/font_size = 48
 text = "exit"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

@@ -3,39 +3,30 @@ using System;
 
 public partial class PauseMenu : Node2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	[Export] PackedScene option = ResourceLoader.Load<PackedScene>("res://Menu/option_menu.tscn");
+    
+    public override void _Ready()
 	{
 		//hide the scene itself on startup
 		Hide();
-        var settings = (HBoxContainer)GetNode("Player_Interactables_Menu").GetNode("Settings_Box");
-		//furthermore, hide the settings section
-		settings.Hide();
-	}
+		SaveSystem.LoadFile_Settings();
+		// hide the Control on startup
+        var get = GetNode<Control>("Spawn_Options");
+		get.Hide();
+		
+    }
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		//grabbing the reference to the vbox containing the 3 main menu buttons
         var menu = (VBoxContainer)GetNode("Player_Interactables_Menu").GetNode("Menu_Box");
-		//grabbing the reference to the hbox containing the specific settings
-        var settings = (HBoxContainer)GetNode("Player_Interactables_Menu").GetNode("Settings_Box");
-		//whole process for using the esc key for input
 		if (@event is InputEventKey eventKey)
 		{
 			//if a key is pressed and that key is esc
 			if (eventKey.Pressed && eventKey.Keycode == Key.Escape)
 			{
-				//if the settings are visible, "exits" them and goes back to the main section of the pause menu
-				if (settings.Visible == true)
-				{
-					settings.Hide();
-					menu.Show();
-				}
-				//else, exits the pause menu
-				else
-				{
-					Visible = !Visible;
-				}
+				Show();
+				
 			}
 		}
 	}
@@ -46,23 +37,41 @@ public partial class PauseMenu : Node2D
 		Hide();
 	}
 
-	//when settings pressed, hide the main section of the pause menu, and show the settings
+	//when settings pressed, hide the main section of the pause menu, and show the settings from the option menu
 	private void _on_settings_pressed()
 	{
         var menu = (VBoxContainer)GetNode("Player_Interactables_Menu").GetNode("Menu_Box");
-        var settings = (HBoxContainer)GetNode("Player_Interactables_Menu").GetNode("Settings_Box");
-		menu.Hide();
-		settings.Show();
+        
+
+		// Control node gets shown and on this spawns the option menu with the settings
+		var get = GetNode<Control>("Spawn_Options");
+		get.Show();
+
+		// Spawns the option menu on the Control node
+        var optionMenu = option.Instantiate();
+        get.AddChild(optionMenu);
+		
+        // Connects the Signalname from the Option menu to the new callable function OptionMenuClose
+        optionMenu.Connect(OptionMenu.SignalName.OptionMenuClose, new Callable(this, nameof(OptionMenuClose)));
+
     }
 
 	//when exit pressed, quit the game
 	private void _on_exit_pressed()
 	{
-		GetTree().Quit();
+		GetTree().ChangeSceneToFile("res://Menu/main_menu.tscn");
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public void OptionMenuClose(Boolean op_Close)
 	{
-	}
+		// if the op_close is true, then Spawn_options is hide
+		if(op_Close == true)
+		{
+			// The Control gets hidden again
+            var get = GetNode<Control>("Spawn_Options");
+            get.Hide();
+        }
+		
+    }
+
 }

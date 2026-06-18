@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://g1wnwgejg5lk" path="res://Dialog.cs" id="1_5wlj5"]
 [ext_resource type="Texture2D" uid="uid://bjrsu2636kxwf" path="res://icon.svg" id="2_w7j6r"]
+[ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://CustomText/danielbd_MediumText.ttf" id="3_4uc3s"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="4_rxi5t"]
 
 [sub_resource type="Animation" id="Animation_5wlj5"]
 resource_name = "Dialog_text"
@@ -80,6 +82,7 @@ offset_left = 258.0
 offset_top = 723.0
 offset_right = 1860.0
 offset_bottom = 1044.0
+theme_override_fonts/normal_font = ExtResource("3_4uc3s")
 theme_override_font_sizes/normal_font_size = 91
 theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
@@ -98,6 +101,8 @@ offset_left = 1542.0
 offset_top = 643.0
 offset_right = 1863.0
 offset_bottom = 736.0
+theme_override_fonts/font = ExtResource("4_rxi5t")
+theme_override_font_sizes/font_size = 78
 text = "Next"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1357443852]
@@ -112,7 +117,8 @@ color = Color(0.3839012, 0.100541614, 0.10568269, 1)
 layout_mode = 0
 offset_right = 484.0
 offset_bottom = 165.0
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("4_rxi5t")
+theme_override_font_sizes/font_size = 117
 text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1

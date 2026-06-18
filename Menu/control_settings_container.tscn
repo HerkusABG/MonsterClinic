@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ba7isbgbng5ow"]
 
 [ext_resource type="Script" uid="uid://bwg0tlm7ed4qu" path="res://Menu/ControlSettingsContainer.cs" id="1_hbg1o"]
+[ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://CustomText/danielbd_MediumText.ttf" id="2_0i3va"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_px3u5"]
 color = Color(1, 1, 1, 1)
@@ -59,16 +60,19 @@ alignment = 1
 
 [node name="Music_Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer" unique_id=338978363]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0i3va")
 theme_override_font_sizes/font_size = 63
 text = "Music"
 
 [node name="SXF_Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer" unique_id=1573269189]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0i3va")
 theme_override_font_sizes/font_size = 63
 text = "SXF"
 
 [node name="Ambient_Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer" unique_id=1790943760]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0i3va")
 theme_override_font_sizes/font_size = 63
 text = "Ambient"
 
@@ -141,6 +145,7 @@ alignment = 1
 
 [node name="WindowSize_Label" type="Label" parent="TabContainer/Grafic/MarginContainer/VBoxContainer" unique_id=1837050857]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0i3va")
 theme_override_font_sizes/font_size = 63
 text = "Window Size"
 
