@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c5b2sbksxoyvm" path="res://place holders/684146226_2513326992456987_2687682788803640839_n.jpg" id="4_ecejo"]
 [ext_resource type="Script" uid="uid://dgqxfanx26jy6" path="res://Admit.cs" id="6_7u4js"]
 [ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://SpeechManager.cs" id="7_3xib3"]
+[ext_resource type="Script" uid="uid://cadd46rv6itof" path="res://MaladyManager.cs" id="11_27yax"]
 [ext_resource type="Script" uid="uid://tkupfc1dnrga" path="res://Checkbox.cs" id="12_oaj4u"]
 [ext_resource type="Script" uid="uid://drow72lvn73wp" path="res://Diagnosis_Box.cs" id="13_3xib3"]
 [ext_resource type="Script" uid="uid://um68vmhviamh" path="res://AdmissionManager.cs" id="15_uph1y"]
@@ -71,11 +72,8 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xl1ua"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Contents_P_I" type="Node2D" unique_id=315031335 node_paths=PackedStringArray("SpeechManagerAccess", "DeceasedSprite1", "DeceasedSprite2")]
+[node name="Contents_P_I" type="Node2D" unique_id=315031335]
 script = ExtResource("1_ljdgf")
-SpeechManagerAccess = NodePath("ControlPatientInterface/SpeechManager")
-DeceasedSprite1 = NodePath("Sprites_PH/Deceased_Sprite")
-DeceasedSprite2 = NodePath("Sprites_PH/Deceased_Sprite_2")
 
 [node name="PatientStats" type="Node" parent="." unique_id=1129415090]
 script = ExtResource("2_ecejo")
@@ -352,5 +350,8 @@ text = "Fever"
 [node name="AdmissionManager" type="Node" parent="." unique_id=1218543265 node_paths=PackedStringArray("PatientSpriteDisplay")]
 script = ExtResource("15_uph1y")
 PatientSpriteDisplay = NodePath("../Sprites_PH/Patient")
+
+[node name="MaladyManager" type="Node" parent="." unique_id=909434865]
+script = ExtResource("11_27yax")
 
 [connection signal="pressed" from="ControlPatientInterface/Admit" to="AdmissionManager" method="_on_admit_pressed"]

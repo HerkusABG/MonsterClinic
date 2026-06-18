@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\deadline_countdown.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:deadline_countdown.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\MoneyAdder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MoneyAdder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\MoneySubtractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MoneySubtractor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\deadline_countdown.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|solutionrelative:deadline_countdown.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\MoneyDisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MoneyDisplay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7CA31135-A908-4F5A-A247-60F8C4C5F353}|MonsterClinic.csproj|c:\\users\\ojmit\\onedrive\\documents\\apps\\uni\\project\\fork\\monsterclinic\\contents_o.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -94,24 +106,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "MoneySubtractor.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\MoneySubtractor.cs",
+              "RelativeDocumentMoniker": "MoneySubtractor.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\MoneySubtractor.cs",
+              "RelativeToolTip": "MoneySubtractor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-18T14:11:20.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MoneyAdder.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\MoneyAdder.cs",
+              "RelativeDocumentMoniker": "MoneyAdder.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\MoneyAdder.cs",
+              "RelativeToolTip": "MoneyAdder.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-18T14:08:34.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MoneyDisplay.cs",
+              "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\MoneyDisplay.cs",
+              "RelativeDocumentMoniker": "MoneyDisplay.cs",
+              "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\MoneyDisplay.cs",
+              "RelativeToolTip": "MoneyDisplay.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-18T13:51:52.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Global.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Global.cs",
               "RelativeDocumentMoniker": "Global.cs",
               "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Global.cs",
               "RelativeToolTip": "Global.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-18T13:31:10.016Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Character_Speech.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Character_Speech.cs",
               "RelativeDocumentMoniker": "Character_Speech.cs",
@@ -123,7 +174,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "Dialogue_Trigger.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Dialogue_Trigger.cs",
               "RelativeDocumentMoniker": "Dialogue_Trigger.cs",
@@ -135,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "Deceased_Sprite.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Deceased_Sprite.cs",
               "RelativeDocumentMoniker": "Deceased_Sprite.cs",
@@ -147,33 +198,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Contents_O.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Contents_O.cs",
               "RelativeDocumentMoniker": "Contents_O.cs",
               "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Contents_O.cs",
               "RelativeToolTip": "Contents_O.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-13T19:03:07.864Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Deadline_Countdown.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Deadline_Countdown.cs",
               "RelativeDocumentMoniker": "Deadline_Countdown.cs",
               "ToolTip": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Deadline_Countdown.cs",
               "RelativeToolTip": "Deadline_Countdown.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAArwCoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-13T19:11:36.686Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Contents_C.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Contents_C.cs",
               "RelativeDocumentMoniker": "Contents_C.cs",
@@ -186,7 +237,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Contents_P_I.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Contents_P_I.cs",
               "RelativeDocumentMoniker": "Contents_P_I.cs",
@@ -199,7 +250,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Diagnosis_Box.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Diagnosis_Box.cs",
               "RelativeDocumentMoniker": "Diagnosis_Box.cs",
@@ -211,7 +262,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "Inventory_Access_P_I.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Inventory_Access_P_I.cs",
               "RelativeDocumentMoniker": "Inventory_Access_P_I.cs",
@@ -223,7 +274,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Inventory_P_I.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Inventory_P_I.cs",
               "RelativeDocumentMoniker": "Inventory_P_I.cs",
@@ -236,7 +287,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 15,
               "Title": "Mirror_Close_Up.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Mirror_Close_Up.cs",
               "RelativeDocumentMoniker": "Mirror_Close_Up.cs",
@@ -248,7 +299,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "Destination_PH.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Destination_PH.cs",
               "RelativeDocumentMoniker": "Destination_PH.cs",
@@ -260,7 +311,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 17,
               "Title": "Bed_Time.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Bed_Time.cs",
               "RelativeDocumentMoniker": "Bed_Time.cs",
@@ -272,7 +323,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "Treatment_Deadline.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Treatment_Deadline.cs",
               "RelativeDocumentMoniker": "Treatment_Deadline.cs",
@@ -284,7 +335,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 19,
               "Title": "Malady_PH.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Malady_PH.cs",
               "RelativeDocumentMoniker": "Malady_PH.cs",
@@ -296,7 +347,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "Close.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Close.cs",
               "RelativeDocumentMoniker": "Close.cs",
@@ -308,7 +359,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "Dealer_PH.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Dealer_PH.cs",
               "RelativeDocumentMoniker": "Dealer_PH.cs",
@@ -320,7 +371,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "Map_PH.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Map_PH.cs",
               "RelativeDocumentMoniker": "Map_PH.cs",
@@ -332,7 +383,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "Map.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Map.cs",
               "RelativeDocumentMoniker": "Map.cs",
@@ -344,7 +395,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "Dealer.cs",
               "DocumentMoniker": "C:\\Users\\ojmit\\OneDrive\\Documents\\apps\\uni\\project\\fork\\MonsterClinic\\Dealer.cs",
               "RelativeDocumentMoniker": "Dealer.cs",
