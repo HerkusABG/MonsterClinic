@@ -64,6 +64,17 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
 text = "Settings
 "
 
+[node name="Save_Game" type="Button" parent="Player_Interactables_Menu/Menu_Box" unique_id=2106268901]
+custom_minimum_size = Vector2(300, 89)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_eu8ou")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_00s40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
+text = "Save Game
+"
+
 [node name="Exit" type="Button" parent="Player_Interactables_Menu/Menu_Box" unique_id=1371537945]
 custom_minimum_size = Vector2(300, 98)
 layout_mode = 2
@@ -82,4 +93,5 @@ offset_bottom = 1092.0
 
 [connection signal="pressed" from="Player_Interactables_Menu/Menu_Box/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Player_Interactables_Menu/Menu_Box/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Player_Interactables_Menu/Menu_Box/Save_Game" to="." method="_on_save_game_pressed"]
 [connection signal="pressed" from="Player_Interactables_Menu/Menu_Box/Exit" to="." method="_on_exit_pressed"]

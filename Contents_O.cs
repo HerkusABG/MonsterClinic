@@ -9,7 +9,7 @@ public partial class Contents_O : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-        
+       
 
     }
 
@@ -53,14 +53,19 @@ public partial class Contents_O : Node2D
 
         // Timer from the scene
         var sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
-        sceneTimer.OneShot = true;
+        //sceneTimer.OneShot = true;
 
+        if (GlobalData.Player_Ingame_Days != 1)
+        {
+            // resets the timer(disconnect the timer), so timeout isnt callout everytime while it is connected
+            sceneTimer.Timeout -= OnSceneTimerTimeout;
+        }
         // connect the signals
         sceneTimer.Timeout += OnSceneTimerTimeout;
-
         // timer is getting set to 3 seconds and starts
         sceneTimer.Start(3.0);
         GlobalData.Medicincavailability--;
+        DialogDealer();
     }
 
     private void OnSceneTimerTimeout()
@@ -73,9 +78,10 @@ public partial class Contents_O : Node2D
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
     }
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-	{
+
+
+    private void DialogDealer()
+    {
         // Dialog Dealer checks if the dialog should spawn again and the dealer control is so that the code isnt spammened in the process
         if (GlobalData.Dialog_Dealer == true && GlobalData.Dialog_Dealer_Control == true)
         {
@@ -98,6 +104,12 @@ public partial class Contents_O : Node2D
             var GridContainer = GetNode<GridContainer>("Spawn_DialogControl");
             GridContainer.Hide();
         }
+    }
+
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
+	{
+        
 
 
 

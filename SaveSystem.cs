@@ -2,6 +2,9 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Globalization;
+using System.Net.Http.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 
 
 public static class SaveSystem
@@ -97,10 +100,15 @@ public static class SaveSystem
         // sets the varabiles for the player to their standard
         GlobalData.Countdown = 4;
         GlobalData.Player_Ingame_Days = 0;
+       
         // delets the json file "user://Days.Json"
         DirAccess.RemoveAbsolute("user://Days.Json");
-        // saves the files
-        Save_Days();
+        // reloads the editor, so the game is up to date if the file is deleted
+        //string g = ProjectSettings.GlobalizePath("user://Days.Json");
+       
+       //EditorInterface.Singleton.GetResourceFilesystem().UpdateFile("user://Days.Json");
+       // saves the files
+
     }
 
     public static void Load_Days()
