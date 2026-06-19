@@ -206,7 +206,9 @@ offset_right = -380.5332
 offset_bottom = 1181.1233
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_khqja")
-text = "This medicine won't work for this patient"
+text = "This medicine won't work for this patient.
+
+But what's done is done, check in again tomorrow"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -263,6 +265,35 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Close_Patient_Cured_Popup" type="Button" parent="Stylish_Medicine_Background/Patient_Cured_Popup" unique_id=1252280685]
+layout_mode = 0
+offset_left = 945.42487
+offset_top = 7.053822e-05
+offset_right = 1033.2417
+offset_bottom = 87.83308
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_l0f8h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vofke")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f1ah8")
+text = "X"
+
+[node name="Correct_Medicine_Popup" type="Label" parent="Stylish_Medicine_Background" unique_id=2072154064]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = -1415.7734
+offset_top = 753.51514
+offset_right = -380.5332
+offset_bottom = 1181.1233
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_khqja")
+text = "Now let the patient rest, 
+or the side effects might kick in. 
+
+Check back in tomorrow"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close_Correct_medicine_Popup" type="Button" parent="Stylish_Medicine_Background/Correct_Medicine_Popup" unique_id=847122877]
 layout_mode = 0
 offset_left = 945.42487
 offset_top = 7.053822e-05
