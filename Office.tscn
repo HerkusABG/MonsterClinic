@@ -132,17 +132,32 @@ script = ExtResource("7_4fm71")
 [node name="MirrorLabel" type="Label" parent="Player_Interactables_O/Mirror" unique_id=1633342914]
 visible = false
 z_index = 1
-layout_mode = 0
-offset_left = -101.0
-offset_top = -45.0
-offset_right = 358.0
-offset_bottom = 952.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.485
+anchor_top = 0.108
+anchor_right = -0.38300002
+anchor_bottom = 1.3850001
+offset_left = 290.29745
+offset_top = -80.37
+offset_right = 458.92053
+offset_bottom = 498.41248
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_ye4h6")
-text = "Oh wow m8, you look terrible, 
-be thankful you can't see it in this prototype"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MirrorImage" type="TextureRect" parent="Player_Interactables_O/Mirror/MirrorLabel" unique_id=2054144246]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.665009
+offset_top = 178.22
+offset_right = -21.334991
+offset_bottom = -260.78003
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Close" type="Button" parent="Player_Interactables_O/Mirror/MirrorLabel" unique_id=1033698163]
 layout_mode = 0

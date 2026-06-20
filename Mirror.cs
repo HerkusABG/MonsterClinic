@@ -11,22 +11,15 @@ public partial class Mirror : Button
     Button Close;
     Label MirrorLabel;
 
-    Label MirrorMessage;
-    int severity = 0;
-    string[] messages =
+    TextureRect MirrorImage;
+
+    Texture2D[] mirrorImages =
     {
 
-    "Message 0",
-    "Message 1",
-    "Message 2",
-    "Message 3",
-    "Message 4",
-    "Message 5",
-    "Message 6",
-    "Message 7",
-    "Message 8",
-    "Message 9"
-
+        GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman1.png"),
+        GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman2.png"),
+        GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman3.png"),
+        GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman4.png")
     };
     public override void _Ready()
     {
@@ -36,7 +29,8 @@ public partial class Mirror : Button
         MirrorLabel = GetNode<Label>("MirrorLabel");
         Close = MirrorLabel.GetNode<Button>("Close");
 
-        MirrorMessage = GetNode<Label>("MirrorLabel");
+        MirrorImage = MirrorLabel.GetNode<TextureRect>("MirrorImage");
+
 
         //Hiding the mirror since we only want to see it once clicked.
         HideMirrorCloseUp();
@@ -45,7 +39,7 @@ public partial class Mirror : Button
         MirrorButton.Pressed += ShowMirrorCloseUp;
         Close.Pressed += HideMirrorCloseUp;
 
-        MirrorButton.Pressed += ChangeMirrorMessage;
+        MirrorButton.Pressed += ChangeMirrorImage;
     }
 
 
@@ -60,19 +54,12 @@ public partial class Mirror : Button
         MirrorLabel.Hide();
     }
 
-    private void ChangeMirrorMessage()
+    private void ChangeMirrorImage()
     {
+        int randomImage = GD.RandRange(0, mirrorImages.Length - 1);
+        MirrorImage.Texture = mirrorImages[randomImage];
 
-        //Random severity 0-9
-        severity = GD.RandRange(0, 9);
-
-        //Pick random message
-        int randomMessage = GD.RandRange(0, messages.Length - 1);
-
-        //Change mirror text
-        MirrorMessage.Text = messages[randomMessage];
-
-        GD.Print("Severity: " + severity);
     }
 
+ 
 }
