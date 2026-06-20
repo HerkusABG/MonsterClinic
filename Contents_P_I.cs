@@ -25,6 +25,10 @@ public partial class Contents_P_I : Node2D
 
     //References to the "DECEASED" sprites which show up when you kill the patient
     [Export] Sprite2D DeceasedSprite1, DeceasedSprite2;
+    [Export] public PatientStats PatientStatsNode;
+    [Export] public Label PatientLabel;
+    [Export] public Label AgeLabel;
+    [Export] public Sprite2D PortraitSprite;
 
     public override void _Ready()
 	{
@@ -39,14 +43,13 @@ public partial class Contents_P_I : Node2D
         }
 
         // Initializing patient stats, this will use a constructor later. Kinda ugly to do it like this.
-        PatientStats.PatientInitalize();
+        PatientStats.PatientInitialize();
 
         //Assigning functionality to each of the buttons.
         ReturnButton.Pressed += ReturnToOffice;
         DialogueButton.Pressed += ShowSpeechDialogue;
         ZoomButton.Pressed += ShowSpeechZoom;
         PulseButton.Pressed += ShowSpeechHeartrate;
-        RejectButton.Pressed += ShowSpeechReject;
         InventoryButton.Pressed += ToggleInventory;
         DiagnosisButton.Pressed += ShowSpeechDiagnosis;
         ShotgunButton.Pressed += KillPatient;
@@ -83,10 +86,7 @@ public partial class Contents_P_I : Node2D
     {
         SpeechManagerAccess.SpeechText(PatientStats.dialogue);
     }
-    private void ShowSpeechReject()
-    {
-        SpeechManagerAccess.SpeechText("Patient has left");
-    }
+  
 
     private void ShowSpeechZoom()
     {
@@ -124,4 +124,21 @@ public partial class Contents_P_I : Node2D
         OfficeScene.Show();
         GlobalData.PreviousScenes.Pop();
     }
+
+    public void RefreshPatientInterface()
+    {
+        //  generate new data
+       PatientStatsNode.PatientInitialize();
+
+       // random tint to the portrait
+        PortraitSprite.Modulate = PatientStats.PortraitColor;
+        DeceasedSprite1.Hide();
+        DeceasedSprite2.Hide();
+
+        PatientLabel.Text = "Patient: " + PatientStatsNode.PatientID; //convert data to strings to display it on Labels  and '+' operator connects static text "ID: " with the variable value
+        AgeLabel.Text = "Age: " + PatientStatsNode.Age.ToString(); //used stringt o convert the integer age to a string for display purposes
+        
+    }
+
 }
+
