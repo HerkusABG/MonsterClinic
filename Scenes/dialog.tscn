@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://cwrb10gknjt2w"]
+
+[ext_resource type="Script" uid="uid://g1wnwgejg5lk" path="res://Scripts/Dialogue/Dialog.cs" id="1_5wlj5"]
+[ext_resource type="Texture2D" uid="uid://bjrsu2636kxwf" path="res://icon.svg" id="2_w7j6r"]
+[ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://Assets/CustomText/danielbd_MediumText.ttf" id="3_4uc3s"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="4_rxi5t"]
+
+[sub_resource type="Animation" id="Animation_5wlj5"]
+resource_name = "Dialog_text"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DialogText:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_w7j6r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DialogText:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4uc3s"]
+_data = {
+&"Dialog_text": SubResource("Animation_5wlj5"),
+&"RESET": SubResource("Animation_w7j6r")
+}
+
+[node name="Dialog" type="Control" unique_id=1899083185]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -776.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5wlj5")
+
+[node name="MessageContainer" type="NinePatchRect" parent="." unique_id=453607704]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 679.0
+offset_right = 1933.0
+offset_bottom = 1113.0
+texture = ExtResource("2_w7j6r")
+region_rect = Rect2(0, 0.80000305, 127.20001, 127.2)
+
+[node name="ColorRect" type="ColorRect" parent="MessageContainer" unique_id=347001083]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -10.0
+offset_right = 1980.0
+offset_bottom = 469.0
+color = Color(0, 0, 0, 0.84313726)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=193921646]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 679.0
+offset_right = 1927.0
+offset_bottom = 995.0
+
+[node name="DialogText" type="RichTextLabel" parent="." unique_id=213437471]
+layout_mode = 0
+offset_left = 258.0
+offset_top = 723.0
+offset_right = 1860.0
+offset_bottom = 1044.0
+theme_override_fonts/normal_font = ExtResource("3_4uc3s")
+theme_override_font_sizes/normal_font_size = 91
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "This is a message."
+vertical_alignment = 1
+visible_characters = 0
+visible_characters_behavior = 3
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=95928026]
+libraries/ = SubResource("AnimationLibrary_4uc3s")
+
+[node name="Button" type="Button" parent="." unique_id=1084249103]
+layout_mode = 0
+offset_left = 1542.0
+offset_top = 643.0
+offset_right = 1863.0
+offset_bottom = 736.0
+theme_override_fonts/font = ExtResource("4_rxi5t")
+theme_override_font_sizes/font_size = 78
+text = "Next"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1357443852]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 549.0
+offset_right = 482.0
+offset_bottom = 714.0
+color = Color(0.3839012, 0.100541614, 0.10568269, 1)
+
+[node name="Name_Label" type="Label" parent="ColorRect" unique_id=1828779238]
+layout_mode = 0
+offset_right = 484.0
+offset_bottom = 165.0
+theme_override_fonts/font = ExtResource("4_rxi5t")
+theme_override_font_sizes/font_size = 117
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

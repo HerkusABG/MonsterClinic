@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://c36i0asmfb8o"]
 
-[ext_resource type="Script" uid="uid://bw0pahok3mlpx" path="res://Scripts/Room.cs" id="1_5hpqs"]
+[ext_resource type="Script" uid="uid://bw0pahok3mlpx" path="res://Scripts/PatientRoom/Room.cs" id="1_5hpqs"]
 [ext_resource type="Texture2D" uid="uid://bf3om3qmf68vl" path="res://place holders/Patient_Room_Blocking.png" id="2_uj218"]
 [ext_resource type="Texture2D" uid="uid://bcqtc40plwpsl" path="res://place holders/Patient_Sitting_Blocking.png" id="4_aaq88"]
-[ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scenes/TreatmentManager.cs" id="13_vofke"]
+[ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scripts/PatientRoom/TreatmentManager.cs" id="13_vofke"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nn86p"]
 

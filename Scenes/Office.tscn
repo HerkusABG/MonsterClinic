@@ -1,0 +1,299 @@
+[gd_scene format=3 uid="uid://chmg4tjmycsse"]
+
+[ext_resource type="Script" uid="uid://3ailttjlob0g" path="res://Scripts/Office/Contents_O (2).cs" id="1_chwbs"]
+[ext_resource type="Texture2D" uid="uid://duxu8md0l1yr5" path="res://Assets/2D Art/Office/office-background.png" id="2_3g47s"]
+[ext_resource type="Texture2D" uid="uid://c5ncjx7yugc5j" path="res://Assets/2D Art/Office/office-pc.png" id="3_541ak"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="4_i4f5g"]
+[ext_resource type="Script" uid="uid://dm42silqg7ir1" path="res://Scripts/Office/Treatment_Deadline.cs" id="5_gldt3"]
+[ext_resource type="Texture2D" uid="uid://b4o0ubcg603ro" path="res://Assets/2D Art/Office/office-mirror.png" id="6_6b8ke"]
+[ext_resource type="Script" uid="uid://damlipp41xqb1" path="res://Scripts/Office/Mirror.cs" id="7_k0xf6"]
+[ext_resource type="Texture2D" uid="uid://jdngferi6lje" path="res://Assets/2D Art/Office/office-elevator.png" id="8_2uv6j"]
+[ext_resource type="Texture2D" uid="uid://djvdgfra7b3b8" path="res://Assets/2D Art/Office/office-phone.png" id="9_jptpv"]
+[ext_resource type="Texture2D" uid="uid://cvcqxyesknw0" path="res://Assets/2D Art/Office/office-bed.png" id="10_3oxl0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2fedq"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bw284"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l87an"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ye4h6"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[node name="Contents_O" type="Node2D" unique_id=586678661]
+script = ExtResource("1_chwbs")
+
+[node name="Background1" type="Sprite2D" parent="." unique_id=198520339]
+z_index = -4
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.49999997)
+texture = ExtResource("2_3g47s")
+
+[node name="Player_Interactables_O" type="Control" parent="." unique_id=1346865405]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Computer" type="Button" parent="Player_Interactables_O" unique_id=1784326359]
+layout_mode = 0
+offset_left = 82.5
+offset_top = 398.725
+offset_right = 712.5
+offset_bottom = 833.7257
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2fedq")
+icon = ExtResource("3_541ak")
+flat = true
+expand_icon = true
+
+[node name="ComputerLabel" type="Label" parent="Player_Interactables_O/Computer" unique_id=764561184]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 140.54999
+offset_right = 538.0
+offset_bottom = 267.09998
+theme_override_colors/font_color = Color(0.7294118, 0.7176471, 0.60784316, 1)
+theme_override_fonts/font = ExtResource("4_i4f5g")
+theme_override_font_sizes/font_size = 120
+text = "Computer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Deadline" type="Button" parent="Player_Interactables_O" unique_id=65374973]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 204.0
+offset_right = 826.0
+offset_bottom = 329.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2fedq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bw284")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l87an")
+text = "Treatment
+Deadline"
+script = ExtResource("5_gldt3")
+
+[node name="DeadlineLabel" type="Label" parent="Player_Interactables_O/Deadline" unique_id=102657559]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = -152.0
+offset_top = -134.0
+offset_right = 329.0
+offset_bottom = 311.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ye4h6")
+text = "abcdefg"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="Player_Interactables_O/Deadline/DeadlineLabel" unique_id=287276693]
+layout_mode = 0
+offset_left = 431.0
+offset_right = 481.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_2fedq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bw284")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l87an")
+text = "X"
+
+[node name="Mirror" type="Button" parent="Player_Interactables_O" unique_id=1997607079]
+layout_mode = 0
+offset_left = 261.335
+offset_top = 146.78
+offset_right = 524.83496
+offset_bottom = 474.28
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2fedq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bw284")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l87an")
+text = "
+"
+icon = ExtResource("6_6b8ke")
+flat = true
+expand_icon = true
+script = ExtResource("7_k0xf6")
+
+[node name="MirrorLabel" type="Label" parent="Player_Interactables_O/Mirror" unique_id=1633342914]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = -101.0
+offset_top = -45.0
+offset_right = 358.0
+offset_bottom = 952.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ye4h6")
+text = "Oh wow m8, you look terrible, 
+be thankful you can't see it in this prototype"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="Player_Interactables_O/Mirror/MirrorLabel" unique_id=1033698163]
+layout_mode = 0
+offset_left = 409.0
+offset_right = 459.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_2fedq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bw284")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l87an")
+text = "X"
+
+[node name="MirrorLabel3" type="Label" parent="Player_Interactables_O/Mirror" unique_id=942413366]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 255.0
+offset_bottom = 172.22
+theme_override_colors/font_color = Color(0.7294118, 0.7176471, 0.60784316, 1)
+theme_override_fonts/font = ExtResource("4_i4f5g")
+theme_override_font_sizes/font_size = 70
+text = "Mirror"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Elevator" type="Button" parent="Player_Interactables_O" unique_id=1792734093]
+layout_mode = 0
+offset_left = 1169.9999
+offset_top = 30.0
+offset_right = 1558.5713
+offset_bottom = 723.3334
+scale = Vector2(1.05, 1.05)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2fedq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bw284")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l87an")
+text = "
+"
+icon = ExtResource("8_2uv6j")
+flat = true
+expand_icon = true
+
+[node name="Destination_PH" type="Label" parent="Player_Interactables_O/Elevator" unique_id=1756916659]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = -30.0
+offset_top = -46.0
+offset_right = 429.0
+offset_bottom = 951.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_ye4h6")
+text = "Sorry, nowhere to go,
+ this prototype floats in a void,
+come back later"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PatientRoomLabel" type="Label" parent="Player_Interactables_O/Elevator" unique_id=658853895]
+layout_mode = 0
+offset_left = 46.125
+offset_top = 163.035
+offset_right = 308.125
+offset_bottom = 242.24937
+theme_override_colors/font_color = Color(0.7294118, 0.7176471, 0.60784316, 1)
+theme_override_fonts/font = ExtResource("4_i4f5g")
+theme_override_font_sizes/font_size = 60
+text = "Patient Room"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Patient_Interface_Access" type="Button" parent="Player_Interactables_O" unique_id=1350439951]
+custom_minimum_size = Vector2(503, 475)
+layout_mode = 0
+offset_left = 1555.71
+offset_top = 445.28
+offset_right = 2058.711
+offset_bottom = 1356.2804
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2fedq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bw284")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l87an")
+icon = ExtResource("9_jptpv")
+flat = true
+expand_icon = true
+
+[node name="ReceptionLabel" type="Label" parent="Player_Interactables_O/Patient_Interface_Access" unique_id=1431757594]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 400.0
+offset_right = 420.58008
+offset_bottom = 529.44
+theme_override_colors/font_color = Color(0.7294118, 0.7176471, 0.60784316, 1)
+theme_override_fonts/font = ExtResource("4_i4f5g")
+theme_override_font_sizes/font_size = 90
+text = "Reception"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bed" type="Button" parent="Player_Interactables_O" unique_id=1565711458]
+layout_mode = 0
+offset_left = 401.585
+offset_top = 398.77
+offset_right = 896.04626
+offset_bottom = 684.7742
+scale = Vector2(1.55, 1.55)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_2fedq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bw284")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l87an")
+icon = ExtResource("10_3oxl0")
+flat = true
+expand_icon = true
+
+[node name="BedLabel" type="Label" parent="Player_Interactables_O/Bed" unique_id=490842031]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 318.33224
+offset_bottom = 196.2774
+theme_override_colors/font_color = Color(0.7294118, 0.7176471, 0.60784316, 1)
+theme_override_fonts/font = ExtResource("4_i4f5g")
+theme_override_font_sizes/font_size = 80
+text = "Rest"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ChangeToBed_Timer" type="Timer" parent="." unique_id=1022067532]
+
+[node name="Spawn_DialogControl" type="GridContainer" parent="." unique_id=1190428995]
+visible = false
+offset_right = 1933.0
+offset_bottom = 1091.0
+
+[node name="Background2" type="Sprite2D" parent="." unique_id=1708659909]
+visible = false
+z_index = -4
+position = Vector2(962.5, 541)
+scale = Vector2(0.5023438, 0.5009259)
+texture = ExtResource("2_3g47s")
+
+[connection signal="pressed" from="Player_Interactables_O/Computer" to="." method="_on_computer_a_pressed"]
+[connection signal="pressed" from="Player_Interactables_O/Deadline" to="Player_Interactables_O/Deadline/DeadlineLabel" method="_on_treatment_d_pressed"]
+[connection signal="pressed" from="Player_Interactables_O/Mirror" to="Player_Interactables_O/Mirror/MirrorLabel" method="_on_mirror_pressed"]
+[connection signal="pressed" from="Player_Interactables_O/Elevator" to="." method="_on_elevator_pressed"]
+[connection signal="pressed" from="Player_Interactables_O/Patient_Interface_Access" to="." method="_on_patient_i_a_pressed"]
+[connection signal="pressed" from="Player_Interactables_O/Bed" to="." method="_on_bed_pressed"]

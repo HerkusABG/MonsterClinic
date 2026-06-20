@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://w3h4yybr04yy"]
+
+[ext_resource type="Script" uid="uid://d3dvmti0dd4va" path="res://Scripts/Main/Main.cs" id="1_lgr22"]
+[ext_resource type="PackedScene" uid="uid://chmg4tjmycsse" path="res://Scenes/Office.tscn" id="1_r0du0"]
+[ext_resource type="PackedScene" uid="uid://cd5mco04n5aoh" path="res://Scenes/Computer.tscn" id="2_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://dkuuhw6j251v" path="res://Scenes/Patient_Interface.tscn" id="3_fos0i"]
+[ext_resource type="PackedScene" uid="uid://c36i0asmfb8o" path="res://Scenes/Room.tscn" id="4_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://ct6tj36bp5ro0" path="res://Scenes/bed.tscn" id="5_fos0i"]
+[ext_resource type="PackedScene" uid="uid://j7adtnydmxx5" path="res://Scenes/Pause_Menu.tscn" id="6_3dxm6"]
+
+[node name="Main" type="Node" unique_id=1988220635]
+script = ExtResource("1_lgr22")
+
+[node name="Office" parent="." unique_id=586678661 instance=ExtResource("1_r0du0")]
+
+[node name="Computer" parent="." unique_id=1932071110 instance=ExtResource("2_cm0pq")]
+visible = false
+
+[node name="Patient_Interface" parent="." unique_id=315031335 instance=ExtResource("3_fos0i")]
+
+[node name="Room" parent="." unique_id=1403791563 instance=ExtResource("4_cm0pq")]
+visible = false
+
+[node name="Bed" parent="." unique_id=615608472 instance=ExtResource("5_fos0i")]
+
+[node name="Pause" parent="." unique_id=370433973 instance=ExtResource("6_3dxm6")]
+z_index = 100

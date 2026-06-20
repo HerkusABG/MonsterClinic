@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://j7adtnydmxx5"]
+
+[ext_resource type="Script" uid="uid://5r317s7kx2gg" path="res://Scripts/PauseScreen/PauseMenu.cs" id="1_eu8ou"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu8ou"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00s40"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrbao"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[node name="Pause" type="Node2D" unique_id=738940643]
+script = ExtResource("1_eu8ou")
+
+[node name="Stylish_Transaprent_Background" type="ColorRect" parent="." unique_id=1851092982]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.13333334, 0.13333334, 0.13333334, 0.8627451)
+
+[node name="Player_Interactables_Menu" type="Control" parent="." unique_id=1379209115]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Menu_Box" type="VBoxContainer" parent="Player_Interactables_Menu" unique_id=644168724]
+custom_minimum_size = Vector2(300, 98)
+layout_mode = 0
+offset_left = 810.0
+offset_top = 341.0
+offset_right = 1110.0
+offset_bottom = 757.0
+
+[node name="Resume" type="Button" parent="Player_Interactables_Menu/Menu_Box" unique_id=870631301]
+custom_minimum_size = Vector2(300, 98)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_eu8ou")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_00s40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
+text = "Resume"
+
+[node name="Settings" type="Button" parent="Player_Interactables_Menu/Menu_Box" unique_id=71303191]
+custom_minimum_size = Vector2(300, 89)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_eu8ou")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_00s40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
+text = "Settings
+"
+
+[node name="Exit" type="Button" parent="Player_Interactables_Menu/Menu_Box" unique_id=1371537945]
+custom_minimum_size = Vector2(300, 98)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_eu8ou")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_00s40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
+text = "Quit Game"
+
+[node name="Spawn_Options" type="Control" parent="." unique_id=1728791162]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1904.0
+offset_bottom = 1092.0
+
+[connection signal="pressed" from="Player_Interactables_Menu/Menu_Box/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Player_Interactables_Menu/Menu_Box/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Player_Interactables_Menu/Menu_Box/Exit" to="." method="_on_exit_pressed"]

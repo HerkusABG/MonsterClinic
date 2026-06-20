@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dhialjffshqtd"]
+
+[ext_resource type="PackedScene" uid="uid://ba7isbgbng5ow" path="res://Scenes/control_settings_container.tscn" id="1_4x4gu"]
+[ext_resource type="Script" uid="uid://c6tn88eykl5md" path="res://Scripts/OptionMenu.cs" id="1_p4kmv"]
+[ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://Assets/CustomText/danielbd_MediumText.ttf" id="2_x2yo5"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_e17qp"]
+
+[node name="Option_Menu" type="Control" unique_id=435368562]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p4kmv")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=718325653]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=411994541]
+layout_mode = 2
+theme_override_constants/separation = -48
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1010020137]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_x2yo5")
+theme_override_font_sizes/font_size = 44
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ControlSettings_Container" parent="MarginContainer/VBoxContainer" unique_id=1570700948 instance=ExtResource("1_4x4gu")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=487733165]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("3_e17qp")
+theme_override_font_sizes/font_size = 48
+text = "exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
