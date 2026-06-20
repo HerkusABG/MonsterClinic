@@ -15,6 +15,8 @@ public partial class PatientStats : Node
 
     // Also defining a bool that tracks if the patient is alive, in case he gets SHOT
     public bool isAlive;
+
+    public Malady malady;
     public void PatientInitalize()
 	{
         // Initializing the patient's data.
