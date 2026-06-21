@@ -7,6 +7,7 @@ public partial class Room : Node2D
 
     //part of Princess's old stuff, keeping it around just in case
     //[Export] public Sprite2D PatientDisplay;
+    [Export] AdmissionManager AdmissionManager;
     Button LeaveRoomButton;
     Sprite2D PatientDisplay;
     Label PatientInfo;
@@ -26,6 +27,7 @@ public partial class Room : Node2D
     public bool isEmpty = true;
 
     public PatientStats Patient;
+
 
     //part of Princess's old stuff, keeping it around just in case
     /*public override void _EnterTree()

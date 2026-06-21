@@ -29,6 +29,8 @@ public partial class Contents_P_I : Node2D
     [Export] public Label AgeLabel;
     [Export] public Sprite2D PortraitSprite;
 
+    [Export] AdmissionManager AdmissionManagerAccess;
+
     public override void _Ready()
 	{
         Hide();
@@ -51,6 +53,11 @@ public partial class Contents_P_I : Node2D
         DeceasedSprite1.Hide();
         DeceasedSprite2.Hide();
         InventoryContainer.Hide();
+    }
+
+    public void UpdatePatientInterfaceUI()
+    {
+        AdmissionManagerAccess.IsClinicFull();
     }
 
     private void GetAllButtons()

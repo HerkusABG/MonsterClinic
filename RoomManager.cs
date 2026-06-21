@@ -20,4 +20,18 @@ public static class RoomManager
         }
         return null;
     }
+
+    public static int GetEmptyRoomCount()
+    {
+        int count = 0;
+        foreach (Node2D roomListEntry in RoomList)
+        {
+            Room room = roomListEntry as Room;
+            if (room.isEmpty)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
 }

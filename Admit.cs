@@ -16,6 +16,19 @@ public partial class Admit : Button
         //Text = "your patient awaits";
     }
 
+    public void SetButtonStatus(bool status)
+    {
+        Disabled = !status;
+        if (status)
+        {
+            Text = "Admit";
+        }
+        else
+        {
+            Text = "Clinic is full!";
+        }
+    }
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {

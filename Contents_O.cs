@@ -33,7 +33,10 @@ public partial class Contents_O : Node2D
 
         var PatientScene = (Node2D)GetParent().GetNode("Patient_Interface");
         PatientScene.Show();
-       
+
+        Contents_P_I PatientInterface = PatientScene as Contents_P_I;
+        PatientInterface.UpdatePatientInterfaceUI();
+
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(PatientScene.GetPath());
     }

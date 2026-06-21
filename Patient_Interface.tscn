@@ -72,7 +72,7 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xl1ua"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Contents_P_I" type="Node2D" unique_id=315031335 node_paths=PackedStringArray("SpeechManagerAccess", "DeceasedSprite1", "DeceasedSprite2", "PatientLabel", "AgeLabel", "PortraitSprite")]
+[node name="Contents_P_I" type="Node2D" unique_id=315031335 node_paths=PackedStringArray("SpeechManagerAccess", "DeceasedSprite1", "DeceasedSprite2", "PatientLabel", "AgeLabel", "PortraitSprite", "AdmissionManagerAccess")]
 script = ExtResource("1_ljdgf")
 SpeechManagerAccess = NodePath("ControlPatientInterface/SpeechManager")
 DeceasedSprite1 = NodePath("Sprites_PH/Deceased_Sprite")
@@ -80,6 +80,7 @@ DeceasedSprite2 = NodePath("Sprites_PH/Deceased_Sprite_2")
 PatientLabel = NodePath("Sprites_PH/Clipboard/Patient/PatientLabel")
 AgeLabel = NodePath("Sprites_PH/Clipboard/Age/AgeLabel")
 PortraitSprite = NodePath("Sprites_PH/Patient")
+AdmissionManagerAccess = NodePath("AdmissionManager")
 
 [node name="Sprites_PH" type="Node2D" parent="." unique_id=2126787329]
 
@@ -389,9 +390,10 @@ theme_override_colors/font_color = Color(0, 0, 0, 0.9882353)
 theme_override_font_sizes/font_size = 20
 text = "Fever"
 
-[node name="AdmissionManager" type="Node" parent="." unique_id=1218543265 node_paths=PackedStringArray("PatientAdmission", "PatientSpriteDisplay")]
+[node name="AdmissionManager" type="Node" parent="." unique_id=1218543265 node_paths=PackedStringArray("PatientAdmission", "PatientSpriteDisplay", "AdmitButton")]
 script = ExtResource("15_uph1y")
 PatientAdmission = NodePath("..")
 PatientSpriteDisplay = NodePath("../Sprites_PH/Patient")
+AdmitButton = NodePath("../ControlPatientInterface/Admit")
 
 [connection signal="pressed" from="ControlPatientInterface/Admit" to="AdmissionManager" method="_on_admit_pressed"]
