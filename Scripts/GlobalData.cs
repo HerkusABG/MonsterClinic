@@ -19,6 +19,9 @@ public static class GlobalData
 
     //public static int Money { get; set; } = 150;
 
+    //money you always get when you go to sleep, separate from the daily earnings, made it a whole variable here so it's easier to tweak later
+    public static int PassiveIncome { get; set; } = 20;
+
     public static int DailyEarnings { get; set; } = 0;
 
     public static int Medicine1Count { get; set; } = 0;

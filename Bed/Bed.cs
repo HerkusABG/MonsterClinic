@@ -24,9 +24,8 @@ public partial class Bed : Node2D
 
         var MoneyEarned = GetNode<RichTextLabel>("MoneyEarned");
         MoneyEarned.BbcodeEnabled = true;
-        MoneyEarned.Text = "Today's earnings: " + GlobalData.DailyEarnings;
-        DoctorInventory.Money += GlobalData.DailyEarnings;
-        GlobalData.DailyEarnings = 0;
+        MoneyEarned.Text = "Today's earnings: " + GlobalData.DailyEarnings + "\n Passive income: " + GlobalData.PassiveIncome;
+        
 
        
 
@@ -76,7 +75,7 @@ public partial class Bed : Node2D
 
         var MoneyEarned = GetNode<RichTextLabel>("MoneyEarned");
         MoneyEarned.BbcodeEnabled = true;
-        MoneyEarned.Text = "Today's earnings: " + GlobalData.DailyEarnings;
+        MoneyEarned.Text = "Today's earnings: " + GlobalData.DailyEarnings + "\n Passive income: " + GlobalData.PassiveIncome;
 
         var DaysCounters = GetNode<RichTextLabel>("TreatmentDays");
         DaysCounters.BbcodeEnabled = true;

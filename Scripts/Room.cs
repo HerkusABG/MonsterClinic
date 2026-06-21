@@ -20,6 +20,8 @@ public partial class Room : Node2D
     Button CloseNoPatientPopup;
     Label PatientCuredPopup;
     Button ClosePatientCuredPopup;
+    Label CorrectMedicinePopup;
+    Button CloseCorrectMedicinePopup;
 
     public bool isEmpty = true;
 
@@ -47,6 +49,7 @@ public partial class Room : Node2D
         CloseWrongMedicinePopup.Pressed += () => CloseParent(CloseWrongMedicinePopup);
         CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
         ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
+        CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);
 
     }
 
@@ -67,6 +70,8 @@ public partial class Room : Node2D
         CloseNoPatientPopup = NoPatientPopup.GetNode<Button>("Close");
         PatientCuredPopup = MedicineBackground.GetNode<Label>("Patient_Cured_Popup");
         ClosePatientCuredPopup = PatientCuredPopup.GetNode<Button>("Close_Patient_Cured_Popup");
+        CorrectMedicinePopup = MedicineBackground.GetNode<Label>("Correct_Medicine_Popup");
+        CloseCorrectMedicinePopup = CorrectMedicinePopup.GetNode<Button>("Close_Correct_medicine_Popup");
     }
 
     private void HoverOn()
@@ -105,13 +110,6 @@ public partial class Room : Node2D
             ControlParent.Hide();
         }
 
-        //in these two specific cases, closing the parent also unlocks these buttons
-        if (button == CloseWrongMedicinePopup || button == ClosePatientCuredPopup)
-        {
-            GiveMedicine1Button.Disabled = false;
-            GiveMedicine2Button.Disabled = false;
-            GiveMedicine3Button.Disabled = false;
-        }
 
         //in this specific case, we also remove the patient and reset patient malady data
         if (button == ClosePatientCuredPopup)
@@ -139,6 +137,7 @@ public partial class Room : Node2D
 
         WrongMedicinePopup.Hide();
         NoPatientPopup.Hide();
+        CorrectMedicinePopup.Hide();
 
         //part of Princess's old stuff, keeping it around just in case
         /*if (IsVisibleInTree())

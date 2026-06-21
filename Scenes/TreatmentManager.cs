@@ -14,6 +14,7 @@ public partial class TreatmentManager : Node
     Label WrongMedicinePopup;
     Label NoPatientPopup;
     Label PatientCuredPopup;
+    Label CorrectMedicinePopup;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -39,6 +40,7 @@ public partial class TreatmentManager : Node
         WrongMedicinePopup = MedicineBackground.GetNode<Label>("Wrong_Medicine_Popup");
         NoPatientPopup = MedicineBackground.GetNode<Label>("No_Patient_Popup");
         PatientCuredPopup = MedicineBackground.GetNode<Label>("Patient_Cured_Popup");
+        CorrectMedicinePopup = MedicineBackground.GetNode<Label>("Correct_Medicine_Popup");
     }
 
     private void MedicineOperations(Button medicineChoice)
@@ -70,32 +72,37 @@ public partial class TreatmentManager : Node
         //else if (GlobalData.Medicine1Count > 0)
         else if (medicine.amount > 0)
         {
+            //use the medicine
+            medicine.amount--;
+            medicineChoice.Text = $"{medicine.name} \n Owned: {medicine.amount}";
             //if you try to use the medicine on the wrong malady, you get the appropriate popup, and the medicine buttons get disabled until you close it
             if (GlobalData.CurrentPatientMalady != matchingMalady)
             {
                 WrongMedicinePopup.Show();
-                GiveMedicine1Button.Disabled = true;
-                GiveMedicine2Button.Disabled = true;
-                GiveMedicine3Button.Disabled = true;
             }
             else
             {
-                //the correct use of the medicine, severity goes down, you consume 1 medicine, the text gets updated
+                //the correct use of the medicine, severity goes down, the text gets updated
                 GlobalData.CurrentPatientSeverity -= 1;
-                medicine.amount--;
                 PatientInfo.Text = "Patient info: \n Malady: Malady " + GlobalData.CurrentPatientMalady + "\n Severity: " + GlobalData.CurrentPatientSeverity; 
-                medicineChoice.Text = $"{medicine.name} \n Owned: {medicine.amount}";
                 //if you get the severity down to 0, the patient is cured, you get a popup, and you get paid
                 if (GlobalData.CurrentPatientSeverity == 0)
                 {
                     PatientCuredPopup.Show();
-                    GiveMedicine1Button.Disabled = true;
-                    GiveMedicine2Button.Disabled = true;
-                    GiveMedicine3Button.Disabled = true;
                     GlobalData.DailyEarnings += 40;
+                } else
+                {
+                    //give the popup about the patient needing to rest, and asking to check back in tomorrow. It needs to be there to explain to players why they can't use more medicine, 
+                    //and what they need to do to fix that, but it's probably gonna get annoying if it happens every time, in the final game,
+                    //something like this should probably only happen the first time
+                    CorrectMedicinePopup.Show();
                 }
             }
+            GiveMedicine1Button.Disabled = true;
+            GiveMedicine2Button.Disabled = true;
+            GiveMedicine3Button.Disabled = true;
         }
+
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -12,8 +12,6 @@ public partial class Malady_Autoload : Node
     public override void _Ready()
     {
 
-
-
         // to create a new Maladie, The ListMaladies needs to be added and a new MaladyData needs to be created. All the varables should be defined there.
         ListMaladies.Add(new MaladyData
         {
@@ -22,7 +20,6 @@ public partial class Malady_Autoload : Node
             Description = "Description of the Maladie 1"
 
         });
-
         ListMaladies.Add(new MaladyData
         {
             MaladyName = "Maladie 2",
@@ -65,8 +62,7 @@ public partial class Malady_Autoload : Node
             Description = "Description of the Maladie 7"
 
         });
-
-
+        
     }
 
 

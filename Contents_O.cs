@@ -9,7 +9,12 @@ public partial class Contents_O : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-        
+        // Timer from the scene
+        var sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
+        sceneTimer.OneShot = true;
+
+        // connect the signals
+        sceneTimer.Timeout += OnSceneTimerTimeout;
 
     }
 
@@ -51,23 +56,32 @@ public partial class Contents_O : Node2D
         Hide();
         var day_M = GetNode<DayManager>("/root/DayManager");
         day_M.Player_Ingame_Days++;
-        DoctorInventory.Money += GlobalData.DailyEarnings;
+        //make the money from treating patients, and the passive income
+        DoctorInventory.Money += GlobalData.DailyEarnings + GlobalData.PassiveIncome;
         GlobalData.Countdown--;
         var BedScene = (Node2D)GetParent().GetNode("Bed");
         BedScene.Show();
-        //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(BedScene.GetPath());
+        
 
-        // Timer from the scene
-        var sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
-        sceneTimer.OneShot = true;
+        var MedicineAccess = (ColorRect)GetParent().GetNode("Room").GetNode("Stylish_Medicine_Background");
+        var GiveMedicine1 = (Button)MedicineAccess.GetNode("Give_Medicine_1");
+        var GiveMedicine2 = (Button)MedicineAccess.GetNode("Give_Medicine_2");
+        var GiveMedicine3 = (Button)MedicineAccess.GetNode("Give_Medicine_3");
+        GiveMedicine1.Disabled = false;
+        GiveMedicine2.Disabled = false;
+        GiveMedicine3.Disabled = false;
+        if (GlobalData.Countdown >= 0)
+        {
+            //push the scene we're entering to the previous scenes stack
+            GlobalData.PreviousScenes.Push(BedScene.GetPath());
 
-        // connect the signals
-        sceneTimer.Timeout += OnSceneTimerTimeout;
+            // Timer from the scene
+            var sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
 
-        // timer is getting set to 3 seconds and starts
-        sceneTimer.Start(3.0);
-        GlobalData.Medicincavailability--;
+            // timer is getting set to 3 seconds and starts
+            sceneTimer.Start(3.0);
+            GlobalData.Medicincavailability--;
+        }
     }
 
     private void OnSceneTimerTimeout()
