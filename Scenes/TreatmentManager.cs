@@ -16,6 +16,8 @@ public partial class TreatmentManager : Node
     Label PatientCuredPopup;
     Label CorrectMedicinePopup;
 
+    Room Room;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
@@ -30,6 +32,8 @@ public partial class TreatmentManager : Node
     private void GetNodes()
     {
         //Basically just grabbing all the nodes
+        Room = GetParent() as Room;
+
         PatientDisplay = GetParent().GetNode<Sprite2D>("Patient_Display");
         PatientInfo = GetParent().GetNode<Label>("Patient_Info");
 
@@ -48,20 +52,21 @@ public partial class TreatmentManager : Node
         //setting up crucial parameters of a medicine, and changing them depending on which medicine is being usesd
         Medicine medicine = null;
         string matchingMalady = "none";
+        PatientStats patient = Room.Patient;
         if (medicineChoice == GiveMedicine1Button)
         {
             medicine = MedicineManager.Database["Morphine"];
-            matchingMalady = "A";
+            matchingMalady = "Accident";
         }
         else if (medicineChoice == GiveMedicine2Button)
         {
             medicine = MedicineManager.Database["Aspirin"];
-            matchingMalady = "B";
+            matchingMalady = "Accident";
         }
         else if (medicineChoice == GiveMedicine3Button)
         {
             medicine = MedicineManager.Database["Ozempic"];
-            matchingMalady = "C";
+            matchingMalady = "Blue Pox";
         }
 
         if (PatientDisplay.Visible == false)
@@ -76,21 +81,23 @@ public partial class TreatmentManager : Node
             medicine.amount--;
             medicineChoice.Text = $"{medicine.name} \n Owned: {medicine.amount}";
             //if you try to use the medicine on the wrong malady, you get the appropriate popup, and the medicine buttons get disabled until you close it
-            if (GlobalData.CurrentPatientMalady != matchingMalady)
+            if (patient.malady.name != matchingMalady)
             {
                 WrongMedicinePopup.Show();
             }
             else
             {
                 //the correct use of the medicine, severity goes down, the text gets updated
-                GlobalData.CurrentPatientSeverity -= 1;
-                PatientInfo.Text = "Patient info: \n Malady: Malady " + GlobalData.CurrentPatientMalady + "\n Severity: " + GlobalData.CurrentPatientSeverity; 
+                patient.malady.severity--;
+                PatientInfo.Text = "Patient info: \n Malady: " + patient.malady.name + "\n Severity: " + patient.malady.severity; 
                 //if you get the severity down to 0, the patient is cured, you get a popup, and you get paid
-                if (GlobalData.CurrentPatientSeverity == 0)
+                if (patient.malady.severity <= 0)
                 {
                     PatientCuredPopup.Show();
                     GlobalData.DailyEarnings += 40;
-                } else
+                    Room.isEmpty = true;
+                } 
+                else
                 {
                     //give the popup about the patient needing to rest, and asking to check back in tomorrow. It needs to be there to explain to players why they can't use more medicine, 
                     //and what they need to do to fix that, but it's probably gonna get annoying if it happens every time, in the final game,
@@ -103,6 +110,13 @@ public partial class TreatmentManager : Node
             GiveMedicine3Button.Disabled = true;
         }
 
+    }
+
+    public void ReenableMedicine()
+    {
+        GiveMedicine1Button.Disabled = false;
+        GiveMedicine2Button.Disabled = false;
+        GiveMedicine3Button.Disabled = false;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

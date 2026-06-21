@@ -41,6 +41,8 @@ public partial class Hallway : Node2D
         //GD.Print($"Room count: {RoomList.Count}.");
         var RoomScene = RoomManager.RoomList[index];
         RoomScene.Show();
+        Room room = RoomScene as Room;
+        room.UpdatePatientInfoLabel();
 
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(RoomScene.GetPath());
@@ -52,6 +54,20 @@ public partial class Hallway : Node2D
         Hide();
         var OfficeScene = (Node2D)GetParent().GetNode("Office");
         OfficeScene.Show();
-        GlobalData.PreviousScenes.Pop();
+        if(GlobalData.PreviousScenes.Count != 0)
+        {
+            GlobalData.PreviousScenes.Pop();
+        }
+    }
+
+    public void ResetRoomUI()
+    {
+        foreach(Room room in RoomManager.RoomList)
+        {
+           TreatmentManager treatment = room.GetNode<TreatmentManager>("Treatment_Manager");
+           treatment.ReenableMedicine();
+
+            room.UpdatePatientInfoLabel();
+        }
     }
 }

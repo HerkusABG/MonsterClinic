@@ -70,6 +70,9 @@ public partial class Contents_O : Node2D
         GiveMedicine1.Disabled = false;
         GiveMedicine2.Disabled = false;
         GiveMedicine3.Disabled = false;
+
+        Hallway hallway = GetParent().GetNode<Hallway>("Hallway");
+        hallway.ResetRoomUI();
         if (GlobalData.Countdown >= 0)
         {
             //push the scene we're entering to the previous scenes stack

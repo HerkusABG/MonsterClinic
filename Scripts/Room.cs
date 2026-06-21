@@ -92,7 +92,10 @@ public partial class Room : Node2D
         Hide();
         var HallwayScene = (Node2D)GetParent().GetParent().GetNode("Hallway");
         HallwayScene.Show();
-        GlobalData.PreviousScenes.Pop();
+        if(GlobalData.PreviousScenes.Count == 0)
+        {
+            GlobalData.PreviousScenes.Pop();
+        }
     }
 
     //universal method for closing a node's parent, used for all the x's in the top right of popups
@@ -117,8 +120,8 @@ public partial class Room : Node2D
             PatientDisplay.Hide();
             PatientInfo.Hide();
 
-            GlobalData.CurrentPatientMalady = "none";
-            GlobalData.CurrentPatientSeverity = 0;
+            //GlobalData.CurrentPatientMalady = "none";
+            //GlobalData.CurrentPatientSeverity = 0;
         }
     }
 
@@ -126,11 +129,6 @@ public partial class Room : Node2D
     //it could activate whenever the scene's visibility changes,but there's a (probably) harmless error that happens then, so I instead use a node who's visibility always matches the scene
     private void _on_patient_room_background_visibility_changed()
     {
-        PatientInfo.Text = $"Patient info: " +
-            $"\n Malady: Malady {Patient.malady.name}" +
-            $"\n Severity: {Patient.malady.severity}" +
-            $"\n Age: {Patient.age}";
-
         GiveMedicine1Button.Text = $"{MedicineManager.Database["Morphine"].name} \n Owned: {MedicineManager.Database["Morphine"].amount}";
         GiveMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n Owned: {MedicineManager.Database["Aspirin"].amount}";
         GiveMedicine3Button.Text = $"{MedicineManager.Database["Ozempic"].name} \n Owned: {MedicineManager.Database["Ozempic"].amount}";
@@ -152,5 +150,16 @@ public partial class Room : Node2D
                 PatientDisplay.Hide();
             }
         }*/
+    }
+
+    public void UpdatePatientInfoLabel()
+    {
+        if(!isEmpty)
+        {
+            PatientInfo.Text = $"Patient info: " +
+                   $"\n Malady: {Patient.malady.name}" +
+                   $"\n Severity: {Patient.malady.severity}" +
+                   $"\n Age: {Patient.age}";
+        }
     }
 }

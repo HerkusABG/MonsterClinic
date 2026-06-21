@@ -7,7 +7,7 @@ public static class MaladyList
 {
     public static Dictionary<string, Malady> Database = new()
     {
-        ["TestInjury"] = new Malady { name = "TestInjury"},
-        ["TestDisease"] = new Malady { name = "TestDisease"},
+        ["Accident"] = new Malady { name = "Accident" },
+        ["BluePox"] = new Malady { name = "Blue Pox"},
     };
 }

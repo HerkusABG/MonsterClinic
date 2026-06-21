@@ -39,6 +39,11 @@ public partial class AdmissionManager : Node
             room.Patient.malady = MaladyList.Database.ElementAt(rnd.Next(0, 2)).Value;
             room.Patient.malady.severity = rnd.Next(2, 5);
 
+            room.UpdatePatientInfoLabel();
+
+            TreatmentManager treatment = roomNode.GetNode<TreatmentManager>("Treatment_Manager");
+            treatment.ReenableMedicine();
+
             //hide the patient admission screen, show the patient room, with the patient sprite and info now visible
             roomNode.Show();
             patientInterface.Hide();

@@ -25,9 +25,6 @@ public partial class ClosePatientCuredPopup : Button
 
 		patient.Hide();
 		patientInfo.Hide();
-
-		GlobalData.CurrentPatientMalady = "none";
-		GlobalData.CurrentPatientSeverity = 0;
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
