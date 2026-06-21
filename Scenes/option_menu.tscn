@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dhialjffshqtd"]
 
 [ext_resource type="PackedScene" uid="uid://ba7isbgbng5ow" path="res://Scenes/control_settings_container.tscn" id="1_4x4gu"]
-[ext_resource type="Script" uid="uid://c6tn88eykl5md" path="res://Scripts/OptionMenu.cs" id="1_p4kmv"]
+[ext_resource type="Script" uid="uid://c6tn88eykl5md" path="res://Scripts/AlwaysOnScreen/Menu/OptionMenu.cs" id="1_p4kmv"]
 [ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://Assets/CustomText/danielbd_MediumText.ttf" id="2_x2yo5"]
 [ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_e17qp"]
 
