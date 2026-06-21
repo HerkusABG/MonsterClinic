@@ -10,7 +10,6 @@ public partial class Room : Node2D
     Button LeaveRoomButton;
     Sprite2D PatientDisplay;
     Label PatientInfo;
-    ColorRect MedicineBackground;
     Button GiveMedicine1Button;
     Button GiveMedicine2Button;
     Button GiveMedicine3Button;
@@ -47,6 +46,9 @@ public partial class Room : Node2D
         ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
         CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);
 
+
+
+
     }
 
     private void GetNodes()
@@ -56,17 +58,16 @@ public partial class Room : Node2D
         PatientDisplay = GetNode<Sprite2D>("Patient_Display");
         PatientInfo = GetNode<Label>("Patient_Info");
 
-        MedicineBackground = GetNode<ColorRect>("Stylish_Medicine_Background");
-        GiveMedicine1Button = MedicineBackground.GetNode<Button>("Give_Medicine_1");
-        GiveMedicine2Button = MedicineBackground.GetNode<Button>("Give_Medicine_2");
-        GiveMedicine3Button = MedicineBackground.GetNode<Button>("Give_Medicine_3");
-        WrongMedicinePopup = MedicineBackground.GetNode<Label>("Wrong_Medicine_Popup");
+        GiveMedicine1Button = GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<Button>("Give_Medicine_1");
+        GiveMedicine2Button = GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<Button>("Give_Medicine_2");
+        GiveMedicine3Button = GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<Button>("Give_Medicine_3");
+        WrongMedicinePopup = GetNode<Label>("Wrong_Medicine_Popup");
         CloseWrongMedicinePopup = WrongMedicinePopup.GetNode<Button>("Close_Wrong_medicine_Popup");
-        NoPatientPopup = MedicineBackground.GetNode<Label>("No_Patient_Popup");
+        NoPatientPopup = GetNode<Label>("No_Patient_Popup");
         CloseNoPatientPopup = NoPatientPopup.GetNode<Button>("Close");
-        PatientCuredPopup = MedicineBackground.GetNode<Label>("Patient_Cured_Popup");
+        PatientCuredPopup = GetNode<Label>("Patient_Cured_Popup");
         ClosePatientCuredPopup = PatientCuredPopup.GetNode<Button>("Close_Patient_Cured_Popup");
-        CorrectMedicinePopup = MedicineBackground.GetNode<Label>("Correct_Medicine_Popup");
+        CorrectMedicinePopup = GetNode<Label>("Correct_Medicine_Popup");
         CloseCorrectMedicinePopup = CorrectMedicinePopup.GetNode<Button>("Close_Correct_medicine_Popup");
     }
 

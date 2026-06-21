@@ -12,21 +12,25 @@ public partial class Admit : Button
     private void ButtonPressed()
     {
         Text = "your patient awaits";
+        Disabled = true;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
+    private void _on_visibility_changed()
     {
-        //disables the button and prevents the admission of any new patients while one is already admitted
-        if (GlobalData.CurrentPatientMalady != "none")
+        if (Visible == true)
         {
-            Text = "your patient awaits";
-            Disabled = true;
-        }
-        else
-        {
-            Text = "Admit";
-            Disabled = false;
+            //disables the button and prevents the admission of any new patients while one is already admitted
+            if (GlobalData.CurrentPatientMalady != "none")
+            {
+                Text = "your patient awaits";
+                Disabled = true;
+            }
+            else
+            {
+                Text = "Admit";
+                Disabled = false;
+            }
         }
     }
 }

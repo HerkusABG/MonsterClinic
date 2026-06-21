@@ -52,25 +52,6 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkk41"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2s87"]
-bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_073d2"]
-bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xl1ua"]
-bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
 [node name="Contents_P_I" type="Node2D" unique_id=315031335 node_paths=PackedStringArray("SpeechManagerAccess", "DeceasedSprite1", "DeceasedSprite2")]
 script = ExtResource("1_ljdgf")
 SpeechManagerAccess = NodePath("ControlPatientInterface/SpeechManager")
@@ -115,6 +96,7 @@ script = ExtResource("7_3xib3")
 SpeechBubble = NodePath("SpeechBubble")
 
 [node name="SpeechBubble" type="Label" parent="ControlPatientInterface/SpeechManager" unique_id=1448112577]
+visible = false
 z_index = 3
 offset_left = 1379.0
 offset_top = 395.0
@@ -205,21 +187,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
 text = "Admit "
 script = ExtResource("6_7u4js")
 
-[node name="Inventory" type="Button" parent="ControlPatientInterface" unique_id=204242760]
-custom_minimum_size = Vector2(120, 120)
-layout_mode = 0
-offset_left = 1730.0
-offset_top = 853.0
-offset_right = 1850.0
-offset_bottom = 973.0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
-text = "Inventory"
-
 [node name="InventoryContainer" type="VBoxContainer" parent="ControlPatientInterface" unique_id=1299831844]
-visible = false
 layout_mode = 0
 offset_left = 1702.0
 offset_top = 338.0
@@ -235,15 +203,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_1hdwo")
 theme_override_styles/hover = SubResource("StyleBoxFlat_xkk41")
 text = "Diagnosis 
 Tools"
-
-[node name="Shotgun" type="Button" parent="ControlPatientInterface/InventoryContainer" unique_id=178007493]
-custom_minimum_size = Vector2(120, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_l2s87")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_073d2")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xl1ua")
-text = "Shotgun"
 
 [node name="Diagnosis_Box" type="Label" parent="ControlPatientInterface" unique_id=603001178]
 layout_mode = 0
@@ -353,4 +312,8 @@ text = "Fever"
 script = ExtResource("15_uph1y")
 PatientSpriteDisplay = NodePath("../Sprites_PH/Patient")
 
+[node name="Diagnosis_Timer" type="Timer" parent="." unique_id=1696783989]
+
+[connection signal="visibility_changed" from="Sprites_PH/Deceased_Sprite" to="." method="_on_deceased_sprite_visibility_changed"]
 [connection signal="pressed" from="ControlPatientInterface/Admit" to="AdmissionManager" method="_on_admit_pressed"]
+[connection signal="visibility_changed" from="ControlPatientInterface/Admit" to="ControlPatientInterface/Admit" method="_on_visibility_changed"]

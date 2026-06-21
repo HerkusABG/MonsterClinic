@@ -53,13 +53,8 @@ public partial class Contents_O : Node2D
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(BedScene.GetPath());
 
-        var MedicineAccess = (ColorRect)GetParent().GetNode("Room").GetNode("Stylish_Medicine_Background");
-        var GiveMedicine1 = (Button)MedicineAccess.GetNode("Give_Medicine_1");
-        var GiveMedicine2 = (Button)MedicineAccess.GetNode("Give_Medicine_2");
-        var GiveMedicine3 = (Button)MedicineAccess.GetNode("Give_Medicine_3");
-        GiveMedicine1.Disabled = false;
-        GiveMedicine2.Disabled = false;
-        GiveMedicine3.Disabled = false;
+        //unlock the ability to enable the GiveMedicine buttons by entering the patient room
+        GlobalData.DailyLockout = false;
 
         // Timer from the scene
         var sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
@@ -70,7 +65,10 @@ public partial class Contents_O : Node2D
 
         // timer is getting set to 3 seconds and starts
         sceneTimer.Start(3.0);
-        GlobalData.Medicincavailability--;
+        if (GlobalData.Medicincavailability != 0)
+        {
+            GlobalData.Medicincavailability--;
+        }
     }
 
     private void OnSceneTimerTimeout()

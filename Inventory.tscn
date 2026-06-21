@@ -1,0 +1,224 @@
+[gd_scene format=3 uid="uid://c0wl0p1tagma5"]
+
+[ext_resource type="Script" uid="uid://bpbh60enepajt" path="res://Inventory.cs" id="1_3n7vm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ghou"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3n7vm"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ki15f"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwt7c"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqulp"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xuxb"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arhjh"]
+bg_color = Color(0.14509805, 0.14509805, 0.14509805, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2uli"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0261c"]
+bg_color = Color(0.4862745, 0.9411765, 0.5176471, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.6745098, 1, 0.6901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3raj"]
+bg_color = Color(0.42352942, 0.8784314, 0.45490196, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.6745098, 1, 0.6901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y13mq"]
+bg_color = Color(0.6745098, 1, 0.6901961, 1)
+border_color = Color(0.6745098, 1, 0.6901961, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mva8e"]
+bg_color = Color(0.42352942, 0.8784314, 0.45490196, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.6745098, 1, 0.6901961, 1)
+
+[node name="Inventory" type="Node2D" unique_id=126072234]
+script = ExtResource("1_3n7vm")
+
+[node name="Inventory_Button" type="Button" parent="." unique_id=2094661392]
+custom_minimum_size = Vector2(180, 150)
+offset_left = 1683.0
+offset_top = 880.0
+offset_right = 1863.0
+offset_bottom = 1030.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_3ghou")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3n7vm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ki15f")
+text = "Inventory"
+
+[node name="Open_Inventory" type="ColorRect" parent="." unique_id=2123434469]
+visible = false
+custom_minimum_size = Vector2(180, 150)
+offset_left = 1683.0
+offset_top = 239.0
+offset_right = 1863.0
+offset_bottom = 1030.0
+color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+
+[node name="Shotgun" type="Button" parent="Open_Inventory" unique_id=537038637]
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 630.0
+offset_right = 175.0
+offset_bottom = 780.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_nwt7c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jqulp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3xuxb")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_arhjh")
+text = "Shotgun"
+
+[node name="EmptySlot1" type="Label" parent="Open_Inventory" unique_id=781129045]
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 475.0
+offset_right = 175.0
+offset_bottom = 625.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_d2uli")
+
+[node name="Give_Medicine_1" type="Button" parent="Open_Inventory" unique_id=1799313580]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 475.0
+offset_right = 175.0
+offset_bottom = 625.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_0261c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e3raj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y13mq")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mva8e")
+disabled = true
+
+[node name="EmptySlot2" type="Label" parent="Open_Inventory" unique_id=1750493756]
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 320.0
+offset_right = 175.0
+offset_bottom = 470.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_d2uli")
+
+[node name="Give_Medicine_2" type="Button" parent="Open_Inventory" unique_id=129153649]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 320.0
+offset_right = 175.0
+offset_bottom = 470.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_0261c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e3raj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y13mq")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mva8e")
+disabled = true
+
+[node name="EmptySlot3" type="Label" parent="Open_Inventory" unique_id=1114456287]
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 165.0
+offset_right = 175.0
+offset_bottom = 315.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_d2uli")
+
+[node name="Give_Medicine_3" type="Button" parent="Open_Inventory" unique_id=1198835203]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 165.0
+offset_right = 175.0
+offset_bottom = 315.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_0261c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_e3raj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y13mq")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_mva8e")
+disabled = true
+
+[node name="EmptySlot4" type="Label" parent="Open_Inventory" unique_id=372931321]
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 10.0
+offset_right = 175.0
+offset_bottom = 160.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_d2uli")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

@@ -75,6 +75,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
 text = "Quit Game"
 
 [node name="Spawn_Options" type="Control" parent="." unique_id=1728791162]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1904.0

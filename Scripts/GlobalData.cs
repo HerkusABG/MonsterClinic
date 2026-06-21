@@ -14,7 +14,6 @@ public static class GlobalData
     public static int Medicincavailability { get; set; } = 0;
     public static Boolean Dialog_Dealer { get; set; } = false;
     public static Boolean Dialog_Dealer_Control { get; set; } = true;
-
     public static string Reasion { get; set; } = "none";
 
     //public static int Money { get; set; } = 150;
@@ -30,7 +29,9 @@ public static class GlobalData
 
     public static int Medicine3Count { get; set; } = 0;
 
-   
+    //bool that becomes when you treat a patient, to prevent switching scenes from reactivating the GiveMedicine buttons when you've already
+    //treated the patient that day, and becomes false when you go to bed
+    public static bool DailyLockout { get; set; } = false;
 
     public static string[] Maladies = { "A", "B", "C" };
 

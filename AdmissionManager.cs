@@ -29,8 +29,8 @@ public partial class AdmissionManager : Node
         GlobalData.CurrentPatientSeverity = rnd.Next(2,5);
 
         //hide the patient admission screen, show the patient room, with the patient sprite and info now visible
-        roomNode.Show();
         patientInterface.Hide();
+        roomNode.Show();
         patient.Show();
         patientInfo.Show();
         //we don't need to go back to this scene from the patient room after they're admitted, better have the right click go back to the office, so we're removing the patient admission from the stack here

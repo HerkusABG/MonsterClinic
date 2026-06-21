@@ -17,10 +17,11 @@ public partial class Contents_P_I : Node2D
     Button ZoomButton;
     Button PulseButton;
     Button RejectButton;
-    Button InventoryButton;
+    Button AdmitButton;
     Button DiagnosisButton;
-    Button ShotgunButton;
     VBoxContainer InventoryContainer;
+
+    private Timer DiagnosisTimer;
 
 
     //References to the "DECEASED" sprites which show up when you kill the patient
@@ -47,14 +48,12 @@ public partial class Contents_P_I : Node2D
         ZoomButton.Pressed += ShowSpeechZoom;
         PulseButton.Pressed += ShowSpeechHeartrate;
         RejectButton.Pressed += ShowSpeechReject;
-        InventoryButton.Pressed += ToggleInventory;
+        //InventoryButton.Pressed += ToggleInventory;
         DiagnosisButton.Pressed += ShowSpeechDiagnosis;
-        ShotgunButton.Pressed += KillPatient;
 
-        //Hiding the inventory and the "DECEASED" sprites which show up when patient is killed.
+        //Hiding the "DECEASED" sprites which show up when patient is killed.
         DeceasedSprite1.Hide();
         DeceasedSprite2.Hide();
-        InventoryContainer.Hide();
     }
 
     private void GetAllButtons()
@@ -67,12 +66,11 @@ public partial class Contents_P_I : Node2D
         ZoomButton = control.GetNode<Button>("Zoom");
         PulseButton = control.GetNode<Button>("Pulse");
         RejectButton = control.GetNode<Button>("Reject");
-        InventoryButton = control.GetNode<Button>("Inventory");
+        AdmitButton = control.GetNode<Button>("Admit");
 
         //Going one step deeper for the inventory buttons.
         InventoryContainer = control.GetNode<VBoxContainer>("InventoryContainer");
         DiagnosisButton = InventoryContainer.GetNode<Button>("Diagnosis");
-        ShotgunButton = InventoryContainer.GetNode<Button>("Shotgun");
     }
 
     //All the show speech methods are just calling the speech manager and
@@ -101,21 +99,36 @@ public partial class Contents_P_I : Node2D
     private void ShowSpeechDiagnosis()
     {
         SpeechManagerAccess.SpeechText("soooo, you are telling me \n THAT is gonna help you diagnose me??");
-    }
-    //Toggling the inventory, pretty simple.
-    private void ToggleInventory()
-    {
-        InventoryContainer.Visible = !InventoryContainer.Visible;
+
+        // Timer from the scene
+        var sceneTimer = GetNode<Timer>("Diagnosis_Timer");
+        sceneTimer.OneShot = true;
+
+        // connect the signals
+        sceneTimer.Timeout += OnSceneTimerTimeout;
+
+        // timer is getting set to 3 seconds and starts
+        sceneTimer.Start(3.0);
     }
 
-    //For now killing the patient doesn't have any advanced functionality. Just showing the sprites.
-    private void KillPatient()
+    private void OnSceneTimerTimeout()
     {
-        PatientStats.isAlive = false;
-        DeceasedSprite1.Show();
-        DeceasedSprite2.Show();
+        var speech = SpeechManagerAccess.GetNode<Label>("SpeechBubble");
+        speech.Hide();
     }
-    
+
+    private void _on_deceased_sprite_visibility_changed()
+    {
+        //since now the shotgun is in a different scene, we can't easily access the local instance of PatientStats when using it anymore, 
+        //so now we do this operation when the deceased sprite shows up, which is the exact same moment, but allows us to do this in this scene
+        if (DeceasedSprite1.Visible == true)
+        {
+            PatientStats.isAlive = false;
+            //also disable the admit button while we're at it, you're not admitting a dead man
+            AdmitButton.Disabled = true;
+        }
+    }
+
     private void ReturnToOffice()
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality

@@ -7,7 +7,6 @@ public partial class TreatmentManager : Node
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Sprite2D PatientDisplay;
     Label PatientInfo;
-    ColorRect MedicineBackground;
     Button GiveMedicine1Button;
     Button GiveMedicine2Button;
     Button GiveMedicine3Button;
@@ -33,14 +32,13 @@ public partial class TreatmentManager : Node
         PatientDisplay = GetParent().GetNode<Sprite2D>("Patient_Display");
         PatientInfo = GetParent().GetNode<Label>("Patient_Info");
 
-        MedicineBackground = GetParent().GetNode<ColorRect>("Stylish_Medicine_Background");
-        GiveMedicine1Button = MedicineBackground.GetNode<Button>("Give_Medicine_1");
-        GiveMedicine2Button = MedicineBackground.GetNode<Button>("Give_Medicine_2");
-        GiveMedicine3Button = MedicineBackground.GetNode<Button>("Give_Medicine_3");
-        WrongMedicinePopup = MedicineBackground.GetNode<Label>("Wrong_Medicine_Popup");
-        NoPatientPopup = MedicineBackground.GetNode<Label>("No_Patient_Popup");
-        PatientCuredPopup = MedicineBackground.GetNode<Label>("Patient_Cured_Popup");
-        CorrectMedicinePopup = MedicineBackground.GetNode<Label>("Correct_Medicine_Popup");
+        GiveMedicine1Button = GetParent().GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<Button>("Give_Medicine_1");
+        GiveMedicine2Button = GetParent().GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<Button>("Give_Medicine_2");
+        GiveMedicine3Button = GetParent().GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<Button>("Give_Medicine_3");
+        WrongMedicinePopup = GetParent().GetNode<Label>("Wrong_Medicine_Popup");
+        NoPatientPopup = GetParent().GetNode<Label>("No_Patient_Popup");
+        PatientCuredPopup = GetParent().GetNode<Label>("Patient_Cured_Popup");
+        CorrectMedicinePopup = GetParent().GetNode<Label>("Correct_Medicine_Popup");
     }
 
     private void MedicineOperations(Button medicineChoice)
@@ -75,6 +73,11 @@ public partial class TreatmentManager : Node
             //use the medicine
             medicine.amount--;
             medicineChoice.Text = $"{medicine.name} \n Owned: {medicine.amount}";
+            //if we're out of the medicine, remove it from the inventory
+            if (medicine.amount == 0)
+            {
+                medicineChoice.Hide();
+            }
             //if you try to use the medicine on the wrong malady, you get the appropriate popup, and the medicine buttons get disabled until you close it
             if (GlobalData.CurrentPatientMalady != matchingMalady)
             {
@@ -98,9 +101,12 @@ public partial class TreatmentManager : Node
                     CorrectMedicinePopup.Show();
                 }
             }
+
+            //disable the buttons, and prevent them form being reenabled by switching scenes until the lockout is disabled by going to bed
             GiveMedicine1Button.Disabled = true;
             GiveMedicine2Button.Disabled = true;
             GiveMedicine3Button.Disabled = true;
+            GlobalData.DailyLockout = true;
         }
 
     }
