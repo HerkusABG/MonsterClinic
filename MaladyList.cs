@@ -7,7 +7,24 @@ public static class MaladyList
 {
     public static Dictionary<string, Malady> Database = new()
     {
-        ["Accident"] = new Malady { name = "Accident" },
-        ["BluePox"] = new Malady { name = "Blue Pox"},
+        ["Accident"] = new Malady { 
+            name = "Accident",
+            dialogueSymptoms =
+            {
+                SymptomList.Database["BodyPain"],
+                SymptomList.Database["HeartProblems"],
+                SymptomList.Database["Headache"]
+            } 
+        },
+        ["BluePox"] = new Malady 
+        { 
+            name = "Blue Pox",
+            dialogueSymptoms =
+            {
+                SymptomList.Database["Fever"],
+                SymptomList.Database["Sneezing"],
+                SymptomList.Database["Headache"]
+            }
+        },
     };
 }
