@@ -56,8 +56,13 @@ public partial class PauseMenu : Node2D
 
     }
 
-	//when exit pressed, quit the game
-	private void _on_exit_pressed()
+	private void _on_save_game_pressed()
+	{
+        SaveSystem.Save_Days();
+    }
+
+    //when exit pressed, quit the game
+    private void _on_exit_pressed()
 	{
 		GetTree().ChangeSceneToFile("res://Menu/main_menu.tscn");
 	}

@@ -2,6 +2,10 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Globalization;
+using System.Net.Http.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
+
 
 public static class SaveSystem
 {
@@ -77,5 +81,48 @@ public static class SaveSystem
         AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Ambient"), SettingsControls.Ambient_Volume);
     }
 
+    public static void Save_Days()
+    {
 
+        Dictionary<string, string> saveDays = new Dictionary<string, string>();
+
+        saveDays.Add("DaysLeft", GlobalData.Countdown.ToString());
+        saveDays.Add("DaysIngame", GlobalData.Player_Ingame_Days.ToString());
+        string saveJson = Json.Stringify(saveDays);
+
+        using var Daysfile_System = FileAccess.Open("user://Days.Json", FileAccess.ModeFlags.Write);
+        Daysfile_System.StoreString(saveJson);
+        Daysfile_System.Close();
+    }
+
+    public static void Delete_Days()
+    {
+        // sets the varabiles for the player to their standard
+        GlobalData.Countdown = 4;
+        GlobalData.Player_Ingame_Days = 0;
+       
+        // delets the json file "user://Days.Json"
+        DirAccess.RemoveAbsolute("user://Days.Json");
+        // reloads the editor, so the game is up to date if the file is deleted
+        //string g = ProjectSettings.GlobalizePath("user://Days.Json");
+       
+       //EditorInterface.Singleton.GetResourceFilesystem().UpdateFile("user://Days.Json");
+       // saves the files
+
+    }
+
+    public static void Load_Days()
+    {
+        if (!FileAccess.FileExists("user://Days.Json"))
+        {
+            return;
+        }
+
+        using var Daysfile_System = FileAccess.Open("user://Days.Json", FileAccess.ModeFlags.Read);
+        string Content = Daysfile_System.GetAsText();
+        var data = Json.ParseString(Content).AsGodotDictionary();
+        GlobalData.Countdown = int.Parse((string)data["DaysLeft"]);
+        GlobalData.Player_Ingame_Days = int.Parse((string)data["DaysIngame"]);
+
+    }
 }

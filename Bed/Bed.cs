@@ -10,7 +10,7 @@ public partial class Bed : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        
+
 
         Hide();
         // getting the information for the days from the DayManager
@@ -67,11 +67,11 @@ public partial class Bed : Node2D
 
     private void _on_visibility_changed()
     {
-        var day_M = GetNode<DayManager>("/root/DayManager");
+        SaveSystem.Save_Days();
 
         var DaysCounter = GetNode<RichTextLabel>("Day");
         DaysCounter.BbcodeEnabled = true;
-        DaysCounter.Text = $"[b][font_size=130] {day_M.Player_Ingame_Days} days in containment [/font_size][/b]";
+        DaysCounter.Text = $"[b][font_size=130] {GlobalData.Player_Ingame_Days} days in containment [/font_size][/b]";
 
         var MoneyEarned = GetNode<RichTextLabel>("MoneyEarned");
         MoneyEarned.BbcodeEnabled = true;

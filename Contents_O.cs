@@ -97,6 +97,7 @@ public partial class Contents_O : Node2D
             sceneTimer.Start(3.0);
             GlobalData.Medicincavailability--;
         }
+        DialogDealer();
     }
 
     private void OnSceneTimerTimeout()
@@ -109,9 +110,10 @@ public partial class Contents_O : Node2D
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
     }
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-	{
+
+
+    private void DialogDealer()
+    {
         // Dialog Dealer checks if the dialog should spawn again and the dealer control is so that the code isnt spammened in the process
         if (GlobalData.Dialog_Dealer == true && GlobalData.Dialog_Dealer_Control == true)
         {
@@ -134,6 +136,12 @@ public partial class Contents_O : Node2D
             var GridContainer = GetNode<GridContainer>("Spawn_DialogControl");
             GridContainer.Hide();
         }
+    }
+
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
+	{
+        
 
 
 
