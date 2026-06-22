@@ -77,7 +77,6 @@ public partial class Diagnosis_Box : Label
             if(checkbox.GetCheckValue())
             {
                 currentSymptoms.Add(checkbox.GetCondition());
-                //GD.Print($"Condition: {checkbox.GetCondition()}");
             }
         }
         if(currentSymptoms.Count <= 0)
@@ -89,20 +88,12 @@ public partial class Diagnosis_Box : Label
         {
             for (int j = 0; j < MaladyList.Database.Count; j++)
             {
-                //if (MaladyList.Database.ElementAt(j).Value.allSymptoms.Contains(currentSymptoms[i]))
                 if(MaladyMatch(j, currentSymptoms))
                 {
-                    GD.Print($"Match found! {MaladyList.Database.ElementAt(j).Value.name} contains {currentSymptoms[i]}");
-                    GD.Print($"{MaladyList.Database.ElementAt(j).Value} has " +
-                        $"{MaladyList.Database.ElementAt(j).Value.allSymptoms[0]} " +
-                        $"{MaladyList.Database.ElementAt(j).Value.allSymptoms[1]} " +
-                        $"{MaladyList.Database.ElementAt(j).Value.allSymptoms[2]}");
                     if (!finalSymptoms.Contains(MaladyList.Database.ElementAt(j).Value.name))
                     {
                         finalSymptoms.Add(MaladyList.Database.ElementAt(j).Value.name);
                     }
-                    //possibleMaladies += $"{MaladyList.Database.ElementAt(j).Value.name}";
-                    //break;
                 }
             }
         }
