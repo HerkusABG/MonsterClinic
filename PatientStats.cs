@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class PatientStats
 {
@@ -11,7 +12,6 @@ public partial class PatientStats
     // Defining the values which will be used for diagnosis.
     public int heartRate;
     public int skinStatus;
-    public string dialogue = "Hello I am a patient";
 
     //Patients ID
     public string patientID;
@@ -27,12 +27,45 @@ public partial class PatientStats
     {
         PatientInitialize();
     }
+
+    public string GetDialogue()
+    {
+        if(malady.dialogueSymptoms.Count > 0)
+        {
+            string returnDialogue = malady.dialogueSymptoms[0].quotes[0];
+            return returnDialogue;
+        }
+        return "errr... hello?";
+    }
+
+    public string GetPulse()
+    {
+        if (malady.pulseSymptoms.Count > 0)
+        {
+            string returnDialogue = malady.pulseSymptoms[0].quotes[0];
+            return returnDialogue;
+        }
+        return "A nice steady rhythm.";
+    }
+
+    public string GetTemperature()
+    {
+        if (malady.temperatureSymptoms.Count > 0)
+        {
+            string returnDialogue = malady.temperatureSymptoms[0].quotes[0];
+            return returnDialogue;
+        }
+        return "Not too hot, not too cold!";
+    }
     private void PatientInitialize()
 	{
         // refresh the patient's data.
         // For just assigning random numbers, this will be overhauled later.
         isAlive = true;
         Random rnd = new Random();
+        malady = MaladyList.Database.ElementAt(rnd.Next(0, MaladyList.Database.Count)).Value;
+        malady.severity = rnd.Next(2, 5);
+
         heartRate = rnd.Next(50, 151);  
         skinStatus = rnd.Next(1, 6);
         patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 

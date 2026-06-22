@@ -91,17 +91,17 @@ public partial class Contents_P_I : Node2D
 
     private void ShowSpeechDialogue()
     {
-        SpeechManagerAccess.SpeechText(PatientPointer.dialogue);
+        SpeechManagerAccess.SpeechText(PatientPointer.GetDialogue());
     }
   
     private void ShowSpeechZoom()
     {
-        SpeechManagerAccess.SpeechText("Skin status is: " + PatientPointer.skinStatus);
+        SpeechManagerAccess.SpeechText(PatientPointer.GetTemperature());
     }
 
     private void ShowSpeechHeartrate()
     {
-        SpeechManagerAccess.SpeechText("Heart rate is: " + PatientPointer.heartRate);
+        SpeechManagerAccess.SpeechText(PatientPointer.GetPulse());
     }
 
     private void ShowSpeechDiagnosis()
@@ -132,6 +132,9 @@ public partial class Contents_P_I : Node2D
 
     public PatientStats GenerateNewPatient()
     {
+        //This is only here until the milestone, then it should be put somewhere else.
+        SpeechManagerAccess.SetBubbleStatus(false);
+
         //  generate new data
         PatientStats patientStats = new PatientStats();
 
@@ -147,6 +150,9 @@ public partial class Contents_P_I : Node2D
 
     public void GenerateNewPatientVoid()
     {
+        //This is only here until the milestone, then it should be put somewhere else.
+        SpeechManagerAccess.SetBubbleStatus(false);
+
         //  generate new data
         PatientStats patientStats = new PatientStats();
 

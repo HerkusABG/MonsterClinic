@@ -6,5 +6,5 @@ public class Symptom
 {
     public string name;
 
-    public List<string> symptomDialogue = new();
+    public List<string> quotes = new();
 }

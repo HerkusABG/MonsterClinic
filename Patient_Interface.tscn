@@ -260,7 +260,8 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
-text = "Visit 
+text = "Visit
+Last Admitted
 Patient"
 
 [node name="Inventory" type="Button" parent="ControlPatientInterface" unique_id=204242760]

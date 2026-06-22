@@ -12,18 +12,24 @@ public static class MaladyList
             dialogueSymptoms =
             {
                 SymptomList.Database["BodyPain"],
-                SymptomList.Database["HeartProblems"],
                 SymptomList.Database["Headache"]
-            } 
+            },
+            pulseSymptoms =
+            {
+                SymptomList.Database["HeartProblems"]
+            }
         },
         ["BluePox"] = new Malady 
         { 
             name = "Blue Pox",
             dialogueSymptoms =
             {
-                SymptomList.Database["Fever"],
                 SymptomList.Database["Sneezing"],
                 SymptomList.Database["Headache"]
+            },
+            temperatureSymptoms =
+            {
+                SymptomList.Database["Fever"]
             }
         },
     };

@@ -11,7 +11,7 @@ public class Malady
     public int vulnerability { get; set; }
     public string name { get; set; }
 
-    public List<Symptom> dialogueSymptoms = new();
+    public List<Symptom> dialogueSymptoms = new List<Symptom>();
 
     public List<Symptom> pulseSymptoms = new();
 
