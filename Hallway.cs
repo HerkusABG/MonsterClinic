@@ -9,13 +9,16 @@ public partial class Hallway : Node2D
     Button LeaveButton;
     List<Button> Doors =  new List<Button>();
 
+    [Export] Button LeaveRoomButton;
     public void HallwayInitialize()
 	{
         HallwayControl = GetNode<Control>("HallwayControl");
         LeaveButton = HallwayControl.GetNode<Button>("Leave_Room");
         DoorControl = HallwayControl.GetNode<Control>("DoorControl");
 
-        LeaveButton.Pressed += LeaveRoom;
+        LeaveRoomButton.MouseEntered += HoverOn;
+        LeaveRoomButton.MouseExited += HoverOff;
+        LeaveRoomButton.Pressed += LeaveRoom;
 
         //Doors
         int doorIndex = 0;
@@ -29,6 +32,7 @@ public partial class Hallway : Node2D
                 doorButton.doorId = doorIndex;
                 doorIndex++;
                 childButton.Pressed += () => GoToRoom(doorButton.doorId);
+                childButton.Disabled = true;
             }
         }
     }
@@ -69,5 +73,25 @@ public partial class Hallway : Node2D
 
             room.UpdatePatientInfoLabel();
         }
+    }
+
+    public void UpdateHallwayUI()
+    {
+        for(int i = 0; i < Upgrades.roomCount; i++)
+        {
+            Doors[i].Disabled = false;
+        }
+    }
+
+    private void HoverOn()
+    {
+        //makes the text show up when hovering over the button
+        LeaveRoomButton.Text = "Leave";
+    }
+
+    private void HoverOff()
+    {
+        //makes the text disappear when you stop hovering
+        LeaveRoomButton.Text = "";
     }
 }

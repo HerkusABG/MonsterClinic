@@ -79,7 +79,7 @@ public partial class Room : Node2D
     private void HoverOn()
     {
         //makes the text show up when hovering over the button
-        LeaveRoomButton.Text = "Leave room";
+        LeaveRoomButton.Text = "Leave";
     }
 
     private void HoverOff()

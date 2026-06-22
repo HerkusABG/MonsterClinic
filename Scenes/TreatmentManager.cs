@@ -93,6 +93,7 @@ public partial class TreatmentManager : Node
                 //if you get the severity down to 0, the patient is cured, you get a popup, and you get paid
                 if (patient.malady.severity <= 0)
                 {
+                    GlobalData.patientCount--;
                     PatientCuredPopup.Show();
                     GlobalData.DailyEarnings += 40;
                     Room.isEmpty = true;

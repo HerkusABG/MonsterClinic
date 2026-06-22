@@ -9,7 +9,17 @@ public static class RoomManager
 
     public static Node2D FindEmptyRoom()
     {
-        foreach(Node2D roomListEntry in RoomList)
+
+        for (int i = 0; i < Upgrades.roomCount; i++)
+        {
+            Room room = RoomList[i] as Room;
+            if(room.isEmpty)
+            {
+                room.isEmpty = false;
+                return room;
+            }
+        }
+        /*foreach(Node2D roomListEntry in RoomList)
         {
             Room room = roomListEntry as Room;
             if(room.isEmpty)
@@ -17,21 +27,29 @@ public static class RoomManager
                 room.isEmpty = false;
                 return room;
             }
-        }
+        }*/
         return null;
     }
 
     public static int GetEmptyRoomCount()
     {
         int count = 0;
-        foreach (Node2D roomListEntry in RoomList)
+        for(int i = 0; i < Upgrades.roomCount; i++)
+        {
+            Room room = RoomList[i] as Room;
+            if (room.isEmpty)
+            {
+                count++;
+            }
+        }
+        /*foreach (Node2D roomListEntry in RoomList)
         {
             Room room = roomListEntry as Room;
             if (room.isEmpty)
             {
                 count++;
             }
-        }
+        }*/
         return count;
     }
 }

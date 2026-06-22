@@ -9,6 +9,8 @@ public partial class Contents_O : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+       
+
         // Timer from the scene
         var sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
         sceneTimer.OneShot = true;
@@ -37,6 +39,9 @@ public partial class Contents_O : Node2D
         Contents_P_I PatientInterface = PatientScene as Contents_P_I;
         PatientInterface.UpdatePatientInterfaceUI();
 
+        Hallway hallway = GetParent().GetNode<Hallway>("Hallway");
+        hallway.UpdateHallwayUI();
+
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(PatientScene.GetPath());
     }
@@ -51,6 +56,9 @@ public partial class Contents_O : Node2D
         //var RoomScene = (Node2D)GetParent().GetNode("Room");
         //RoomScene.Show();
 
+        Hallway hallway = GetParent().GetNode<Hallway>("Hallway");
+        hallway.UpdateHallwayUI();
+
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(HallwayScene.GetPath());
     }
@@ -60,6 +68,7 @@ public partial class Contents_O : Node2D
         var day_M = GetNode<DayManager>("/root/DayManager");
         day_M.Player_Ingame_Days++;
         //make the money from treating patients, and the passive income
+        GlobalData.PassiveIncome = GlobalData.patientCount * 20;
         DoctorInventory.Money += GlobalData.DailyEarnings + GlobalData.PassiveIncome;
         GlobalData.Countdown--;
         var BedScene = (Node2D)GetParent().GetNode("Bed");

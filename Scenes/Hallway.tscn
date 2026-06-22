@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://dtqygqtybqe4i"]
 
 [ext_resource type="Script" uid="uid://cmanl4uic4t8n" path="res://Hallway.cs" id="1_ak6jr"]
-[ext_resource type="Texture2D" uid="uid://j60ouk71gllp" path="res://Assets/HallwayAssets/Hallway_BG_Layout_Blockout.png" id="2_ak6jr"]
+[ext_resource type="Texture2D" uid="uid://grtpgvlvtxuq" path="res://Assets/HallwayAssets/Hallway_BG_Blockout.png" id="2_ar6hc"]
+[ext_resource type="Texture2D" uid="uid://mjk7xhb5odpo" path="res://Assets/HallwayAssets/Hallway_Door_LeftFront_Empty_Blockout.png" id="3_ar6hc"]
 [ext_resource type="Script" uid="uid://c5kdsosh8iq8u" path="res://Door.cs" id="4_3js8s"]
+[ext_resource type="Texture2D" uid="uid://ctyx0gd344367" path="res://Assets/HallwayAssets/Hallway_Door_LeftMid_Empty_Blockout.png" id="5_fclus"]
+[ext_resource type="Texture2D" uid="uid://cgnqnr643oe2j" path="res://Assets/HallwayAssets/Hallway_Door_LeftBack_Empty_Blockout.png" id="6_l4f6k"]
+[ext_resource type="Texture2D" uid="uid://bb1qvwvl5yl2t" path="res://Assets/HallwayAssets/Hallway_Door_RightBack_Empty_Blockout.png" id="7_44psh"]
+[ext_resource type="Texture2D" uid="uid://dtrgebnvlravt" path="res://Assets/HallwayAssets/Hallway_Door_RightMid_Empty_Blockout.png" id="8_dlwjk"]
+[ext_resource type="Texture2D" uid="uid://dxb7n8mj8m5wn" path="res://Assets/HallwayAssets/Hallway_Door_RightFront_Empty_Blockout.png" id="9_jtvsb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nn86p"]
 
@@ -33,16 +39,17 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3js8s"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Room" type="Node2D" unique_id=1403791563]
+[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("LeaveRoomButton")]
 position = Vector2(1302.9375, 342.1875)
 scale = Vector2(0.42309022, 0.43263888)
 script = ExtResource("1_ak6jr")
+LeaveRoomButton = NodePath("HallwayControl/Leave_Room")
 
 [node name="Patient_Room_Background" type="Sprite2D" parent="." unique_id=1209967813]
 z_index = -1
 position = Vector2(-810.5541, 461.84573)
 scale = Vector2(1.182, 1.16)
-texture = ExtResource("2_ak6jr")
+texture = ExtResource("2_ar6hc")
 
 [node name="HallwayControl" type="Control" parent="." unique_id=141817288]
 layout_mode = 3
@@ -71,83 +78,95 @@ offset_bottom = 40.0
 [node name="Door" type="Button" parent="HallwayControl/DoorControl" unique_id=1622659441]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
-offset_left = -2916.488
-offset_top = 80.0
-offset_right = -2283.0535
-offset_bottom = 671.7174
+offset_left = -2987.3945
+offset_top = -520.49756
+offset_right = -2044.3335
+offset_bottom = 1513.5313
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-text = "Room 1"
+icon = ExtResource("3_ar6hc")
+flat = true
+expand_icon = true
 script = ExtResource("4_3js8s")
 
 [node name="Door2" type="Button" parent="HallwayControl/DoorControl" unique_id=544577023]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
-offset_left = -2122.331
-offset_top = 80.0
-offset_right = -1488.8965
-offset_bottom = 671.7174
+offset_left = -1994.6987
+offset_top = -317.09473
+offset_right = -1628.3466
+offset_bottom = 995.77844
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-text = "Room 2"
+icon = ExtResource("5_fclus")
+flat = true
+expand_icon = true
 script = ExtResource("4_3js8s")
 
 [node name="Door3" type="Button" parent="HallwayControl/DoorControl" unique_id=1819522272]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
-offset_left = -1377.8087
-offset_top = 80.0
-offset_right = -744.37415
-offset_bottom = 671.7174
+offset_left = -1484.1693
+offset_top = -210.77051
+offset_right = -1278.5394
+offset_bottom = 736.9021
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-text = "Room 3"
+icon = ExtResource("6_l4f6k")
+flat = true
+expand_icon = true
 script = ExtResource("4_3js8s")
 
 [node name="Door4" type="Button" parent="HallwayControl/DoorControl" unique_id=36427974]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
-offset_left = -671.104
-offset_top = 80.0
-offset_right = -37.669434
-offset_bottom = 671.7174
+offset_left = -342.56885
+offset_top = -185.3451
+offset_right = 19.056152
+offset_bottom = 729.96783
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-text = "Room 4"
+icon = ExtResource("7_44psh")
+flat = true
+expand_icon = true
 script = ExtResource("4_3js8s")
 
 [node name="Door5" type="Button" parent="HallwayControl/DoorControl" unique_id=1092232062]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
-offset_left = 30.874023
-offset_top = 80.0
-offset_right = 664.3086
-offset_bottom = 671.7174
+offset_left = 21.419678
+offset_top = -282.42377
+offset_right = 383.04468
+offset_bottom = 993.467
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-text = "Room 5"
+icon = ExtResource("8_dlwjk")
+flat = true
+expand_icon = true
 script = ExtResource("4_3js8s")
 
 [node name="Door6" type="Button" parent="HallwayControl/DoorControl" unique_id=1225412882]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
-offset_left = 739.9429
-offset_top = 80.0
-offset_right = 1373.3774
-offset_bottom = 671.7174
+offset_left = 586.31104
+offset_top = -518.18616
+offset_right = 1510.4639
+offset_bottom = 1490.4174
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-text = "Room 6"
+icon = ExtResource("9_jtvsb")
+flat = true
+expand_icon = true
 script = ExtResource("4_3js8s")

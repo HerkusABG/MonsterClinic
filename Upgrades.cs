@@ -6,7 +6,7 @@ static class Upgrades
 	//Upgrades is used for tracking and managing
 	//the upgrades of the game. All values related to
 	//the progression system should be stored here.
-	public static int roomCount { get; private set; }
+	public static int roomCount { get; private set; } = 1;
 
 	public static void AddNewRoom()
 	{

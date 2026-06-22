@@ -30,8 +30,7 @@ public static class GlobalData
 
     public static int Medicine3Count { get; set; } = 0;
 
-    public static string[] Maladies = { "A", "B", "C" };
-
+    public static int patientCount = 0;
     public static string CurrentPatientMalady { get; set; } = "none";
 
     // this is a placeholder for the implementation of the future Malady Class system 
