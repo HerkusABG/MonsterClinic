@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://bbyfolabl5n1k" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Label_Counter_Blockout.png" id="9_d2uli"]
 [ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scenes/TreatmentManager.cs" id="12_ny8ul"]
 [ext_resource type="Texture2D" uid="uid://cbdcpd8q7fwf" path="res://Assets/2D Art/PatientRoom/PatientRoom_Patient_White_Blockout.png" id="13_r8i0v"]
+[ext_resource type="Texture2D" uid="uid://b3u4qcrd3kkl4" path="res://Assets/2D Art/PatientRoom/PatientRoom_Corpse_Blockout.png" id="14_fgswf"]
+[ext_resource type="Texture2D" uid="uid://8aajck4t28sx" path="res://Assets/2D Art/PatientRoom/PatientRoom_Corpse_HL_Blockout.png" id="15_ey27o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwt7c"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -450,5 +452,14 @@ z_index = 2
 position = Vector2(704, 763.25)
 scale = Vector2(0.52554744, 0.5454054)
 texture = ExtResource("13_r8i0v")
+
+[node name="Corpse" type="TextureButton" parent="Treatment_Manager" unique_id=2022239566]
+offset_left = 962.0
+offset_top = 686.0
+offset_right = 1735.0
+offset_bottom = 1427.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("14_fgswf")
+texture_hover = ExtResource("15_ey27o")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

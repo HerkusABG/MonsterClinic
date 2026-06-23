@@ -59,15 +59,32 @@ public partial class Hallway : Node2D
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
         Sprite2D PatientDisplay = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<Sprite2D>("Patient_Display");
+        TextureButton Corpse = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<TextureButton>("Corpse");
         //if room has a patient, show the universal patient and make their color the one corresponding to the room's patient
         if (room.HasPatient() == true)
         {
-            PatientDisplay.Show();
-            PatientDisplay.Modulate = room.Patient.PortraitColor;
+            if (room.Patient.malady.severity < 100)
+            {
+                PatientDisplay.Show();
+                GD.Print(Corpse.Visible.ToString());
+                Corpse.Show();
+                GD.Print(Corpse.Visible.ToString());
+                PatientDisplay.Modulate = room.Patient.PortraitColor;
+            }
+            else
+            {
+                GD.Print(room.Patient.malady.severity);
+                GD.Print("skibidi");
+                room.Patient.isAlive = false;
+                PatientDisplay.Hide();
+                Corpse.Show();
+            }
+        }
         //if no patient, hide the universal patient
-        } else
+        else
         {
             PatientDisplay.Hide();
+            Corpse.Show();
         }
 
         //push the scene we're entering to the previous scenes stack
@@ -88,11 +105,22 @@ public partial class Hallway : Node2D
         treatment.SetTreatmentRoomReference(room);
         //treatment.ShowUI();
         Sprite2D PatientDisplay = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<Sprite2D>("Patient_Display");
+        TextureButton Corpse = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<TextureButton>("Corpse");
         //if room has a patient, show the universal patient and make their color the one corresponding to the room's patient
         if (room.HasPatient() == true)
         {
-            PatientDisplay.Show();
-            PatientDisplay.Modulate = room.Patient.PortraitColor;
+            if (room.Patient.malady.severity < 100)
+            {
+                PatientDisplay.Show();
+                PatientDisplay.Modulate = room.Patient.PortraitColor;
+            } else
+            {
+                GD.Print(room.Patient.malady.severity);
+                GD.Print("skibidi");
+                //room.Patient.isAlive = false;
+                PatientDisplay.Hide();
+                Corpse.Show();
+            }
         }
         //if no patient, hide the universal patient
         else

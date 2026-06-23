@@ -305,5 +305,17 @@ public partial class Contents_P_I : Node2D
             NullPatientInitialize();
         }
     }
+
+    public bool AnyPatientsLeft()
+    {
+        if(patientsLeft >0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
