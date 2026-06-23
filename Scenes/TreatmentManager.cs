@@ -36,19 +36,14 @@ public partial class TreatmentManager : Node
         GiveMedicine2Button.Pressed += () => MedicineOperations(GiveMedicine2Button);
         GiveMedicine3Button.Pressed += () => MedicineOperations(GiveMedicine3Button);
 
-        /* CloseWrongMedicinePopup.Pressed += () => CloseParent(CloseWrongMedicinePopup);
-         CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
-         ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
-         CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);*/
+        
 
-        WrongMedicinePopup = GetNode<Label>("Wrong_Medicine_Popup");
-        CloseWrongMedicinePopup = WrongMedicinePopup.GetNode<Button>("Close_Wrong_medicine_Popup");
-        NoPatientPopup = GetNode<Label>("No_Patient_Popup");
-        CloseNoPatientPopup = NoPatientPopup.GetNode<Button>("Close");
-        PatientCuredPopup = GetNode<Label>("Patient_Cured_Popup");
-        ClosePatientCuredPopup = PatientCuredPopup.GetNode<Button>("Close_Patient_Cured_Popup");
-        CorrectMedicinePopup = GetNode<Label>("Correct_Medicine_Popup");
-        CloseCorrectMedicinePopup = CorrectMedicinePopup.GetNode<Button>("Close_Correct_medicine_Popup");
+        
+
+        CloseWrongMedicinePopup.Pressed += () => CloseParent(CloseWrongMedicinePopup);
+        CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
+        ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
+        CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);
     }
 
     // Called when the node enters the scene tree for the first time.
@@ -81,9 +76,38 @@ public partial class TreatmentManager : Node
         NoPatientPopup = GetNode<Label>("No_Patient_Popup");
         PatientCuredPopup = GetNode<Label>("Patient_Cured_Popup");
         CorrectMedicinePopup = GetNode<Label>("Correct_Medicine_Popup");
+
+        CloseWrongMedicinePopup = WrongMedicinePopup.GetNode<Button>("Close_Wrong_medicine_Popup");
+        CloseNoPatientPopup = NoPatientPopup.GetNode<Button>("Close");
+        ClosePatientCuredPopup = PatientCuredPopup.GetNode<Button>("Close_Patient_Cured_Popup");
+        CloseCorrectMedicinePopup = CorrectMedicinePopup.GetNode<Button>("Close_Correct_medicine_Popup");
     }
 
-   
+    private void CloseParent(Button button)
+    {
+        var Parent = button.GetParent();
+        if (Parent.GetClass() == "Label")
+        {
+            Label ParentLabel = (Label)Parent;
+            ParentLabel.Hide();
+        }
+        if (Parent.GetClass() == "Control")
+        {
+            var ControlParent = (Control)Parent;
+            ControlParent.Hide();
+        }
+
+
+        //in this specific case, we also remove the patient and reset patient malady data
+        if (button == ClosePatientCuredPopup)
+        {
+            PatientDisplay.Hide();
+            PatientInfo.Hide();
+
+            //GlobalData.CurrentPatientMalady = "none";
+            //GlobalData.CurrentPatientSeverity = 0;
+        }
+    }
 
     public void ShowUI()
     {
@@ -93,6 +117,7 @@ public partial class TreatmentManager : Node
     }
     public void UpdateTreatmentText()
     {
+        if (Room.Patient == null) return;
         PatientInfo.Text = $"Patient info: " +
                    $"\n Malady: {Room.Patient.malady.name}" +
                    $"\n Severity: {Room.Patient.malady.severity}" +
@@ -188,13 +213,13 @@ public partial class TreatmentManager : Node
                     CorrectMedicinePopup.Show();
                 }
             }
-
             //disable the buttons, and prevent them form being reenabled by switching scenes until the lockout is disabled by going to bed
             GiveMedicine1Button.Disabled = true;
             GiveMedicine2Button.Disabled = true;
             GiveMedicine3Button.Disabled = true;
             GlobalData.DailyLockout = true;
         }
+        UpdateTreatmentText();
     }
 
     public void ReenableMedicine()

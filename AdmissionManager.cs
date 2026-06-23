@@ -45,8 +45,6 @@ public partial class AdmissionManager : Node
                 //room.Patient.malady = GlobalData.Maladies[rnd.Next(0, 3)];
 
                 treatment.UpdateTreatmentText();
-
-               
                 treatment.ReenableMedicine();
                 
 

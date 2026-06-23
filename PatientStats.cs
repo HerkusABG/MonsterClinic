@@ -25,7 +25,28 @@ public partial class PatientStats
 
     public PatientStats()
     {
-        PatientInitialize();
+        //PatientInitialize();
+        GD.Print("PatientInitialize");
+        // refresh the patient's data.
+        // For just assigning random numbers, this will be overhauled later.
+        isAlive = true;
+        Random rnd = new Random();
+        malady = MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value;
+        if (malady.severity == -1)
+        {
+            malady.severity = rnd.Next(2, 5);
+        }
+        heartRate = rnd.Next(50, 151);
+        skinStatus = rnd.Next(1, 6);
+        patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
+        age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
+
+        // Assigning a random color to the patient's portrait, This will be changed later when we have actual portraits.
+        PortraitColor = new Color(
+            (float)rnd.NextDouble(),
+            (float)rnd.NextDouble(),
+            (float)rnd.NextDouble()
+        );
     }
 
     public string GetDialogue()
@@ -59,25 +80,7 @@ public partial class PatientStats
     }
     private void PatientInitialize()
 	{
-        GD.Print("PatientInitialize");
-        // refresh the patient's data.
-        // For just assigning random numbers, this will be overhauled later.
-        isAlive = true;
-        Random rnd = new Random();
-        malady = MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value;
-        malady.severity = rnd.Next(2, 5);
-
-        heartRate = rnd.Next(50, 151);  
-        skinStatus = rnd.Next(1, 6);
-        patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
-        age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
-
-        // Assigning a random color to the patient's portrait, This will be changed later when we have actual portraits.
-        PortraitColor = new Color(
-            (float)rnd.NextDouble(), 
-            (float)rnd.NextDouble(), 
-            (float)rnd.NextDouble()
-        );
+        
     }
 }
     
