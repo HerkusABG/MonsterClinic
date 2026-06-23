@@ -242,9 +242,11 @@ public partial class Contents_P_I : Node2D
     {
         GlobalData.inPatientRoom = true;
         SpeechManagerAccess.SetBubbleStatus(false);
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         var hallway = LatestRoom.GetParent().GetParent().GetNode<Node2D>("Hallway");
-        var patient = LatestRoom.GetNode<Node2D>("Patient_Display");
-        var patientInfo = LatestRoom.GetNode<CanvasItem>("Patient_Info");
+        var patient = treatment.GetNode<Node2D>("Patient_Display");
+        var patientInfo = treatment.GetNode<CanvasItem>("Patient_Info");
         //hide the patient admission screen, show the patient room, with the patient sprite and info now visible
         Hide();
         Hallway hallwayAccess = hallway as Hallway;

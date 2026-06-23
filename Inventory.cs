@@ -19,10 +19,13 @@ public partial class Inventory : Node2D
     Button Close;
 
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+    public void Initialize()
+    {
         //grabs references to all the necessary nodes
         GetNodes();
+
+        TreatmentManager treatment = GetNode<TreatmentManager>("Treatment_Manager");
+        treatment.Initialize();
 
         //assigning methods to all the buttons
         InventoryButton.Pressed += InventoryToggle;
@@ -31,7 +34,7 @@ public partial class Inventory : Node2D
 
         //disables the shotgun until we're in the patient room
         ShotgunButton.Disabled = true;
-	}
+    }
 
 
 	private void GetNodes()

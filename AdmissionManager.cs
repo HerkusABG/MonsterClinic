@@ -28,12 +28,15 @@ public partial class AdmissionManager : Node
             var roomNode = RoomManager.FindEmptyRoom();
             if (roomNode != null)
             {
+                Inventory inv = GetParent().GetParent().GetNode<Inventory>("Inventory");
+                TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
                 Random random = new Random();
                 var patientInterface = mainNode.GetNode<Node2D>("Patient_Interface");
-                var patient = roomNode.GetNode<Node2D>("Patient_Display");
-                var patientInfo = roomNode.GetNode<CanvasItem>("Patient_Info");
+                Node2D patient = treatment.GetNode<Node2D>("Patient_Display");
+                var patientInfo = treatment.GetNode<CanvasItem>("Patient_Info");
 
                 Room room = roomNode as Room;
+                treatment.Room = room;
                 room.Patient = PatientAdmission.PatientPointer;
                 PatientAdmission.GenerateNewPatientVoid();
                 GlobalData.patientCount++;
@@ -41,11 +44,11 @@ public partial class AdmissionManager : Node
                 //give the newly admitted patient a random malady at a random severity
                 //room.Patient.malady = GlobalData.Maladies[rnd.Next(0, 3)];
 
-                room.UpdatePatientInfoLabel();
+                treatment.UpdateTreatmentText();
 
-                TreatmentManager treatment = roomNode.GetNode<TreatmentManager>("Treatment_Manager");
+               
                 treatment.ReenableMedicine();
-
+                
 
 
                 PatientAdmission.SetLatestPatientRoom(room);

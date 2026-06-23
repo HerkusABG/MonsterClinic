@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="4_jqulp"]
 [ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="7_y13mq"]
 [ext_resource type="Texture2D" uid="uid://bbyfolabl5n1k" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Label_Counter_Blockout.png" id="9_d2uli"]
+[ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scenes/TreatmentManager.cs" id="12_ny8ul"]
+[ext_resource type="Texture2D" uid="uid://bcqtc40plwpsl" path="res://place holders/Patient_Sitting_Blocking.png" id="13_r8i0v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwt7c"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -57,6 +59,41 @@ border_color = Color(1, 0.5176471, 0.49803922, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trmqt"]
 bg_color = Color(1, 0.5176471, 0.49803922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fgswf"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 14
+border_width_top = 14
+border_width_right = 14
+border_width_bottom = 14
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ey27o"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 14
+border_width_top = 14
+border_width_right = 14
+border_width_bottom = 14
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aq2i0"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 14
+border_width_top = 14
+border_width_right = 14
+border_width_bottom = 14
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4tu4"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 14
+border_width_top = 14
+border_width_right = 14
+border_width_bottom = 14
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_388oq"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [node name="Inventory" type="Node2D" unique_id=126072234]
 script = ExtResource("1_3n7vm")
@@ -281,5 +318,137 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ny8ul")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r8i0v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_trmqt")
 text = "X"
+
+[node name="Treatment_Manager" type="Node" parent="." unique_id=1061490128]
+script = ExtResource("12_ny8ul")
+
+[node name="Patient_Info" type="Label" parent="Treatment_Manager" unique_id=285763384]
+visible = false
+z_index = 1
+offset_left = 64.0
+offset_top = 139.0
+offset_right = 1349.7778
+offset_bottom = 712.22626
+scale = Vector2(0.6111895, 0.5621465)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_fgswf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Wrong_Medicine_Popup" type="Label" parent="Treatment_Manager" unique_id=1826661236]
+visible = false
+z_index = 1
+offset_left = 905.0
+offset_top = 462.0
+offset_right = 1940.2402
+offset_bottom = 889.60815
+scale = Vector2(0.49279743, 0.57927465)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ey27o")
+text = "This medicine won't work for this patient.
+
+But what's done is done, check in again tomorrow"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close_Wrong_medicine_Popup" type="Button" parent="Treatment_Manager/Wrong_Medicine_Popup" unique_id=2072617838]
+layout_mode = 0
+offset_left = 945.42487
+offset_top = 7.053822e-05
+offset_right = 1033.2417
+offset_bottom = 87.83308
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_aq2i0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4tu4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_388oq")
+text = "X"
+
+[node name="No_Patient_Popup" type="Label" parent="Treatment_Manager" unique_id=1931442699]
+visible = false
+z_index = 1
+offset_left = 767.0
+offset_top = 423.0
+offset_right = 1802.2402
+offset_bottom = 850.6082
+scale = Vector2(0.5283452, 0.6162923)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ey27o")
+text = "No patient currently admitted"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="Treatment_Manager/No_Patient_Popup" unique_id=1917119921]
+layout_mode = 0
+offset_left = 945.42487
+offset_top = 7.053822e-05
+offset_right = 1033.2417
+offset_bottom = 87.83308
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_aq2i0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4tu4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_388oq")
+text = "X"
+
+[node name="Patient_Cured_Popup" type="Label" parent="Treatment_Manager" unique_id=484769877]
+visible = false
+z_index = 1
+offset_left = 808.0
+offset_top = 362.0
+offset_right = 1843.2402
+offset_bottom = 789.6083
+scale = Vector2(0.587518, 0.676853)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ey27o")
+text = "The patient is cured!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close_Patient_Cured_Popup" type="Button" parent="Treatment_Manager/Patient_Cured_Popup" unique_id=1692808685]
+layout_mode = 0
+offset_left = 945.42487
+offset_top = 7.053822e-05
+offset_right = 1033.2417
+offset_bottom = 87.83308
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_aq2i0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4tu4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_388oq")
+text = "X"
+
+[node name="Correct_Medicine_Popup" type="Label" parent="Treatment_Manager" unique_id=1055475848]
+visible = false
+z_index = 1
+offset_left = 745.0
+offset_top = 368.0
+offset_right = 1780.2402
+offset_bottom = 795.60815
+scale = Vector2(0.55337477, 0.6617511)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ey27o")
+text = "Now let the patient rest, 
+or the side effects might kick in. 
+
+Check back in tomorrow"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close_Correct_medicine_Popup" type="Button" parent="Treatment_Manager/Correct_Medicine_Popup" unique_id=1266110354]
+layout_mode = 0
+offset_left = 945.42487
+offset_top = 7.053822e-05
+offset_right = 1033.2417
+offset_bottom = 87.83308
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_aq2i0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4tu4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_388oq")
+text = "X"
+
+[node name="Patient_Display" type="Sprite2D" parent="Treatment_Manager" unique_id=1679281017]
+visible = false
+z_index = 2
+position = Vector2(704, 763.25)
+scale = Vector2(0.52554744, 0.5454054)
+texture = ExtResource("13_r8i0v")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

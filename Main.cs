@@ -11,6 +11,7 @@ public partial class Main : Node
     Node2D Bed;
     Node2D Pause;
     Node2D Inventory;
+    TreatmentManager Treatment;
 // Called when the node enters the scene tree for the first time.
     [Export] Control RoomControl;
     int finalRoomCount = 6;
@@ -35,6 +36,9 @@ public partial class Main : Node
         Bed = GetNode<Node2D>("Bed");
         Pause = GetNode<Node2D>("Pause");
         Inventory = GetNode<Node2D>("Inventory");
+        Inventory inv = Inventory as Inventory;
+        inv.Initialize();
+        Treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
     }
     private void InitializeAllData()
     {
@@ -57,7 +61,7 @@ public partial class Main : Node
             roomControl.AddChild(newRoom);
             RoomManager.RoomList.Add(newRoom);
             Room room = newRoom as Room;
-            room.Initialize();
+            room.Initialize(Treatment.HideUI);
         }
     }
     public override void _UnhandledInput(InputEvent @event)
@@ -82,7 +86,6 @@ public partial class Main : Node
     //this, and the next 2 methods are for showing the inventory in the scenes it's meant to be accessible, and hiding it otherwise
     private void _on_office_visibility_changed()
     {
-        GD.Print("Line 82 in main.cs");
         if(Office != null)
         {
             if (Office.Visible == true)

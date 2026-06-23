@@ -59,6 +59,7 @@ public partial class PatientStats
     }
     private void PatientInitialize()
 	{
+        GD.Print("PatientInitialize");
         // refresh the patient's data.
         // For just assigning random numbers, this will be overhauled later.
         isAlive = true;
