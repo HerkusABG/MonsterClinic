@@ -130,6 +130,7 @@ expand_icon = true
 script = ExtResource("7_4fm71")
 
 [node name="MirrorLabel" type="Label" parent="Player_Interactables_O/Mirror" unique_id=1633342914]
+visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
