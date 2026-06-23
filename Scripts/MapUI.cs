@@ -5,11 +5,11 @@ using System.Threading.Tasks; // i added this for delays, but it may not be nece
 public partial class MapUI : Control
 {
     [Export] public Label RoomCount;
-    [Export] public Label Funds;
     [Export] public Label PatientCount;
     [Export] public Button BuyRoomButton;
 	[Export] public Label WarningLabel;
     [Export] GridContainer RoomContainer;
+    Label DealerWindowMoneyDisplay;
    
     private int admittedPatients = 0;
 
@@ -23,14 +23,19 @@ public partial class MapUI : Control
         BuyRoomButton.Pressed += OnBuyRoomButtonPressed;
         RoomRenderer = new RoomStructureRenderer();
         RoomRenderer.GenerateRooms(RoomContainer, Upgrades.roomCount);
+        DealerWindowMoneyDisplay = GetParent().GetNode<Label>("Dealer_PH").GetNode<Label>("Money_Display");
     }
 
     private void UpdateUI()
     {
         BuyRoomButton.Text = $"Price: {Economy.roomCost}";
         RoomCount.Text = $"Rooms: {Upgrades.roomCount}";
-        Funds.Text = $"Funds: {DoctorInventory.Money}";
         PatientCount.Text = $"Patients: {admittedPatients}";
+        //disable the button if we're at max rooms
+        if (Upgrades.roomCount == 6)
+        {
+            BuyRoomButton.Disabled = true;
+        }
     }
 
     public async void OnBuyRoomButtonPressed()
@@ -41,6 +46,7 @@ public partial class MapUI : Control
             Upgrades.AddNewRoom();
             RoomRenderer.GenerateRoom(RoomContainer);
             UpdateUI();
+            DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
         }
         else
         {
