@@ -16,8 +16,6 @@ public partial class PauseMenu : Node2D
     
     public override void _Ready()
 	{
-		//hide the scene itself on startup
-		Hide();
 		SaveSystem.LoadFile_Settings();
         //grabs references to all the necessary nodes
         GetNodes();
