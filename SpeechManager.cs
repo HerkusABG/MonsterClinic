@@ -19,4 +19,16 @@ public partial class SpeechManager : Node
         SpeechBubble.Show();
         SpeechBubble.Text = text;
     }
+
+    public void SetBubbleStatus(bool status)
+    {
+        if(status)
+        {
+            SpeechBubble.Show();
+        }
+        else
+        {
+            SpeechBubble.Hide();
+        }
+    }
 }

@@ -8,6 +8,8 @@ static class Upgrades
 	//the progression system should be stored here.
 	public static int roomCount { get; private set; } = 1;
 
+	public static int newPatientSlots { get; private set; } = 3;
+
 	public static void AddNewRoom()
 	{
 		roomCount++;

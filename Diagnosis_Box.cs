@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Linq;
 
 public partial class Diagnosis_Box : Label
 {
@@ -15,6 +16,7 @@ public partial class Diagnosis_Box : Label
     private List<bool> SymptomChecks = new List<bool>();
     public override void _Ready()
 	{
+        int count = 0;
         //Looking through all the children to find all the checkboxes.
         foreach (Node child in GetChildren())
         {
@@ -24,41 +26,85 @@ public partial class Diagnosis_Box : Label
                 Button childButton = (Button)child;
                 CheckboxList.Add((Checkbox)child);
 
+                CheckboxList[count].Initialize(count + 1);
+
                 //Make sure we check all the boxes whenever one of them will be pressed
                 childButton.Pressed += CheckCheckboxes;
 
                 //We add a symptomChecks value to that list accordingly.
                 SymptomChecks.Add(false);
+                count++;
             }
+        }
+    }
+    public void SetAllCheckboxStatus(bool status)
+    {
+        foreach (Checkbox checkbox in CheckboxList)
+        {
+            checkbox.Disabled = !status;
+        }
+    }
+    public void ClearAllBoxes()
+    {
+        foreach(Checkbox checkbox in CheckboxList)
+        {
+            checkbox.SetCheckboxStatus(false);
         }
     }
 
     private void CheckCheckboxes()
     {
-        //Whenever any of the checkboxes are pressed we check whether we should update the text
-        //in the diagnosis box accordingly. For this we also use the SymptomChecks, which tell us
-        //whether each individual checkbox is ticked or not.
-        for(int i = 0; i < CheckboxList.Count; i++)
+        List<string> currentSymptoms = new List<string>();
+        List<string> finalSymptoms = new List<string>();
+        string possibleMaladies = "Could be: ";
+        foreach(Checkbox checkbox in CheckboxList)
         {
-            SymptomChecks[i] = CheckboxList[i].GetCheckValue();
+            if(checkbox.GetCheckValue())
+            {
+                currentSymptoms.Add(checkbox.GetCondition());
+            }
         }
-        //After checking we simply update the text!
+        if(currentSymptoms.Count <= 0)
+        {
+            Text = "What could it be?";
+            return;
+        }
+        for (int i = 0; i < currentSymptoms.Count; i++)
+        {
+            for (int j = 0; j < MaladyList.Database.Count; j++)
+            {
+                if(MaladyMatch(j, currentSymptoms))
+                {
+                    if (!finalSymptoms.Contains(MaladyList.Database.ElementAt(j).Value.name))
+                    {
+                        finalSymptoms.Add(MaladyList.Database.ElementAt(j).Value.name);
+                    }
+                }
+            }
+        }
+        if (finalSymptoms.Count <= 0)
+        {
+            Text = "I'm not sure what this could possibly mean...";
+            return;
+        }
+        possibleMaladies += $"{finalSymptoms[0]}";
+        for (int k = 1; k < finalSymptoms.Count; k++)
+        {
+            possibleMaladies += " or ";
+            possibleMaladies += $"{finalSymptoms[k]}";
+        }
+        Text = possibleMaladies;
+    }
 
-        if (SymptomChecks[0] == true && SymptomChecks[1] == false && SymptomChecks[2] == false && SymptomChecks[3] == false)
+    private bool MaladyMatch(int index, List<string> symptoms)
+    {
+        foreach(string symptom in symptoms)
         {
-            Text = "It could be this, \n mhm but it also could be some other things \n what other symptoms are there?";
+            if (!MaladyList.Database.ElementAt(index).Value.allSymptoms.Contains(symptom))
+            {
+                return false;
+            }
         }
-        else if (SymptomChecks[1] == true && SymptomChecks[0] == true && SymptomChecks[2] == false && SymptomChecks[3] == false)
-        {
-            Text = "this narrows it down to x and y \n is that all?";
-        }
-        else if (SymptomChecks[2] == true && SymptomChecks[1] == true && SymptomChecks[0] == true && SymptomChecks[3] == false)
-        {
-            Text = "this narrows it down to y \n is that all?";
-        }
-        else
-        {
-            Text = "What do these Symptoms tell us??";
-        }
+        return true;
     }
 }

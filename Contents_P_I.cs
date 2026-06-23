@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
 
 public partial class Contents_P_I : Node2D
@@ -17,27 +18,40 @@ public partial class Contents_P_I : Node2D
     Button ZoomButton;
     Button PulseButton;
     Button RejectButton;
+    Button AdmitButton;
+    Button VisitButton;
     Button InventoryButton;
     Button DiagnosisButton;
     Button ShotgunButton;
+    Button VisitPatientButton;
     VBoxContainer InventoryContainer;
+
+    private int patientsLeft;
 
 
     //References to the "DECEASED" sprites which show up when you kill the patient
-    [Export] Sprite2D DeceasedSprite1, DeceasedSprite2;
-    [Export] public Label PatientLabel;
-    [Export] public Label AgeLabel;
+    [Export] Sprite2D DeceasedSprite1;
+    [Export] Label PatientLabel;
+    [Export] Label AgeLabel;
+    [Export] Label PatientsLeftLabel;
     [Export] public Sprite2D PortraitSprite;
 
     [Export] AdmissionManager AdmissionManagerAccess;
+    [Export] Diagnosis_Box Diagnosis;
+
+    Node2D LatestRoom = null;
+
+    PatientStats nullPatient = new PatientStats();
 
     public override void _Ready()
 	{
+        
+
         Hide();
         //Grabbing the references to all the buttons
         GetAllButtons();
         //Grabbing the patient stats.
-
+        NewDay(false);
         PatientPointer = GenerateNewPatient();
 
         //Assigning functionality to each of the buttons.
@@ -49,15 +63,25 @@ public partial class Contents_P_I : Node2D
         DiagnosisButton.Pressed += ShowSpeechDiagnosis;
         ShotgunButton.Pressed += KillPatient;
 
+        VisitButton.Pressed += VisitLatestPatient;
+        VisitButton.Disabled = true;
+
         //Hiding the inventory and the "DECEASED" sprites which show up when patient is killed.
         DeceasedSprite1.Hide();
-        DeceasedSprite2.Hide();
         InventoryContainer.Hide();
     }
 
     public void UpdatePatientInterfaceUI()
     {
-        AdmissionManagerAccess.IsClinicFull();
+        if(patientsLeft > 0)
+        {
+            AdmissionManagerAccess.IsClinicFull();
+            PatientsLeftLabel.Text = $"Patients left: {patientsLeft}";
+        }
+        else
+        {
+            PatientsLeftLabel.Text = $"Patients left: {0}";
+        }
     }
 
     private void GetAllButtons()
@@ -70,6 +94,8 @@ public partial class Contents_P_I : Node2D
         ZoomButton = control.GetNode<Button>("Zoom");
         PulseButton = control.GetNode<Button>("Pulse");
         RejectButton = control.GetNode<Button>("Reject");
+        AdmitButton = control.GetNode<Button>("Admit");
+        VisitButton = control.GetNode<Button>("VisitPatient");
         InventoryButton = control.GetNode<Button>("Inventory");
 
         //Going one step deeper for the inventory buttons.
@@ -84,18 +110,17 @@ public partial class Contents_P_I : Node2D
 
     private void ShowSpeechDialogue()
     {
-        SpeechManagerAccess.SpeechText(PatientPointer.dialogue);
+        SpeechManagerAccess.SpeechText(PatientPointer.GetDialogue());
     }
   
-
     private void ShowSpeechZoom()
     {
-        SpeechManagerAccess.SpeechText("Skin status is: " + PatientPointer.skinStatus);
+        SpeechManagerAccess.SpeechText(PatientPointer.GetTemperature());
     }
 
     private void ShowSpeechHeartrate()
     {
-        SpeechManagerAccess.SpeechText("Heart rate is: " + PatientPointer.heartRate);
+        SpeechManagerAccess.SpeechText(PatientPointer.GetPulse());
     }
 
     private void ShowSpeechDiagnosis()
@@ -106,14 +131,24 @@ public partial class Contents_P_I : Node2D
     private void ToggleInventory()
     {
         InventoryContainer.Visible = !InventoryContainer.Visible;
+        if(!PatientPointer.isAlive)
+        {
+            ShotgunButton.Disabled = true;
+        }
+        else
+        {
+            ShotgunButton.Disabled = false;
+        }
     }
-
+   
     //For now killing the patient doesn't have any advanced functionality. Just showing the sprites.
     private void KillPatient()
     {
-        PatientPointer.isAlive = false;
-        DeceasedSprite1.Show();
-        DeceasedSprite2.Show();
+        if(PatientPointer.isAlive)
+        {
+            PatientPointer.isAlive = false;
+            DeceasedSprite1.Show();
+        }
     }
     
     private void ReturnToOffice()
@@ -127,35 +162,107 @@ public partial class Contents_P_I : Node2D
 
     public PatientStats GenerateNewPatient()
     {
+        //This is only here until the milestone, then it should be put somewhere else.
+        SpeechManagerAccess.SetBubbleStatus(false);
+        Diagnosis.ClearAllBoxes();
         //  generate new data
         PatientStats patientStats = new PatientStats();
 
        // random tint to the portrait
         PortraitSprite.Modulate = patientStats.PortraitColor;
         DeceasedSprite1.Hide();
-        DeceasedSprite2.Hide();
 
         PatientLabel.Text = "Patient: " + patientStats.patientID; //convert data to strings to display it on Labels  and '+' operator connects static text "ID: " with the variable value
         AgeLabel.Text = "Age: " + patientStats.age.ToString(); //used stringt o convert the integer age to a string for display purposes
 
+        PatientQueue();
+        ShotgunButton.Disabled = false;
         return patientStats;
     }
 
     public void GenerateNewPatientVoid()
     {
+        //This is only here until the milestone, then it should be put somewhere else.
+        SpeechManagerAccess.SetBubbleStatus(false);
+        Diagnosis.ClearAllBoxes();
+
         //  generate new data
         PatientStats patientStats = new PatientStats();
 
         // random tint to the portrait
         PortraitSprite.Modulate = patientStats.PortraitColor;
         DeceasedSprite1.Hide();
-        DeceasedSprite2.Hide();
 
         PatientLabel.Text = "Patient: " + patientStats.patientID; //convert data to strings to display it on Labels  and '+' operator connects static text "ID: " with the variable value
         AgeLabel.Text = "Age: " + patientStats.age.ToString(); //used stringt o convert the integer age to a string for display purposes
 
+        PatientQueue();
         PatientPointer = patientStats;
+
+        ShotgunButton.Disabled = false;
     }
 
+    public void SetLatestPatientRoom(Node2D room)
+    {
+        LatestRoom = room;
+        if(VisitButton.Disabled)
+        {
+            VisitButton.Disabled = false;
+        }
+    }
+    private void VisitLatestPatient()
+    {
+        SpeechManagerAccess.SetBubbleStatus(false);
+        var hallway = LatestRoom.GetParent().GetParent().GetNode<Node2D>("Hallway");
+        var patient = LatestRoom.GetNode<Node2D>("Patient_Display");
+        var patientInfo = LatestRoom.GetNode<CanvasItem>("Patient_Info");
+        //hide the patient admission screen, show the patient room, with the patient sprite and info now visible
+        Hide();
+        LatestRoom.Show();
+        patient.Show();
+        patientInfo.Show();
+        //we don't need to go back to this scene from the patient room after they're admitted, better have the right click go back to the office, so we're removing the patient admission from the stack here
+        GlobalData.PreviousScenes.Pop();
+        //push the scene we're entering to the previous scenes stack
+        GlobalData.PreviousScenes.Push(hallway.GetPath());
+        GlobalData.PreviousScenes.Push(LatestRoom.GetPath());
+    }
+
+    private void NullPatientInitialize()
+    {
+        nullPatient.malady = MaladyList.Database.ElementAt(0).Value;
+        nullPatient.age = 0;
+        nullPatient.patientID = "";
+        PatientPointer = nullPatient;
+        PatientLabel.Text = "Patient: " + nullPatient.patientID; //convert data to strings to display it on Labels  and '+' operator connects static text "ID: " with the variable value
+        AgeLabel.Text = "Age: " + nullPatient.age.ToString();
+    }
+
+    public void NewDay(bool generateNewPatient)
+    {
+        patientsLeft = Upgrades.newPatientSlots;
+        PortraitSprite.Show();
+        Diagnosis.SetAllCheckboxStatus(true);
+        RejectButton.Disabled = false;
+        AdmitButton.Disabled = false;
+        if(generateNewPatient)
+        {
+            GenerateNewPatientVoid();
+        }
+    }
+    private void PatientQueue()
+    {
+        patientsLeft--;
+        PatientsLeftLabel.Text = $"Patients left: {patientsLeft}";
+        if(patientsLeft < 0)
+        {
+            PortraitSprite.Hide();
+            PatientsLeftLabel.Text = $"Patients left: {0}";
+            RejectButton.Disabled = true;
+            AdmitButton.Disabled = true;
+            Diagnosis.SetAllCheckboxStatus(false);
+            NullPatientInitialize();
+        }
+    }
 }
 

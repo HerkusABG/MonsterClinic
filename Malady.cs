@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 
 public class Malady
 
@@ -8,5 +10,13 @@ public class Malady
 	public int spreadability { get; set; }
     public int vulnerability { get; set; }
     public string name { get; set; }
+
+    public List<string> allSymptoms = new List<string>();
+
+    public List<Symptom> dialogueSymptoms = new List<Symptom>();
+
+    public List<Symptom> pulseSymptoms = new();
+
+    public List<Symptom> temperatureSymptoms = new();
 }
 
