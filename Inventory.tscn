@@ -454,6 +454,8 @@ scale = Vector2(0.52554744, 0.5454054)
 texture = ExtResource("13_r8i0v")
 
 [node name="Corpse" type="TextureButton" parent="Treatment_Manager" unique_id=2022239566]
+visible = false
+z_index = 2
 offset_left = 962.0
 offset_top = 686.0
 offset_right = 1735.0
