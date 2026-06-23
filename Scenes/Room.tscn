@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" uid="uid://bw0pahok3mlpx" path="res://Scripts/Room.cs" id="1_5hpqs"]
 [ext_resource type="Texture2D" uid="uid://bf3om3qmf68vl" path="res://place holders/Patient_Room_Blocking.png" id="2_uj218"]
-[ext_resource type="Texture2D" uid="uid://cbdcpd8q7fwf" path="res://Assets/2D Art/PatientRoom/PatientRoom_Patient_White_Blockout.png" id="3_a2si3"]
-[ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scenes/TreatmentManager.cs" id="13_vofke"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nn86p"]
 
@@ -14,41 +12,6 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj218"]
 bg_color = Color(1, 0.5176471, 0.49803922, 0.65882355)
 border_color = Color(0.8, 0.8, 0.8, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xebr5"]
-bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-border_width_left = 14
-border_width_top = 14
-border_width_right = 14
-border_width_bottom = 14
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khqja"]
-bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-border_width_left = 14
-border_width_top = 14
-border_width_right = 14
-border_width_bottom = 14
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0f8h"]
-bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-border_width_left = 14
-border_width_top = 14
-border_width_right = 14
-border_width_bottom = 14
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vofke"]
-bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
-border_width_left = 14
-border_width_top = 14
-border_width_right = 14
-border_width_bottom = 14
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f1ah8"]
-bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [node name="Room" type="Node2D" unique_id=1403791563]
 position = Vector2(1302.9375, 342.1875)
@@ -72,131 +35,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_nn86p")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_nn86p")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uj218")
 
-[node name="Patient_Display" type="Sprite2D" parent="." unique_id=180831602]
-visible = false
-position = Vector2(-1131.9985, 854.78326)
-texture = ExtResource("3_a2si3")
-
 [node name="BedPosition" type="Marker2D" parent="." unique_id=902232887]
-
-[node name="Patient_Info" type="Label" parent="." unique_id=1407452061]
-visible = false
-z_index = 1
-offset_left = -2701.4038
-offset_top = -606.0193
-offset_right = -1415.626
-offset_bottom = -32.79303
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_xebr5")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Wrong_Medicine_Popup" type="Label" parent="." unique_id=1279645988]
-visible = false
-z_index = 1
-offset_left = -864.9158
-offset_top = 36.54883
-offset_right = 170.32446
-offset_bottom = 464.15698
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_khqja")
-text = "This medicine won't work for this patient.
-
-But what's done is done, check in again tomorrow"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Close_Wrong_medicine_Popup" type="Button" parent="Wrong_Medicine_Popup" unique_id=1279164653]
-layout_mode = 0
-offset_left = 945.42487
-offset_top = 7.053822e-05
-offset_right = 1033.2417
-offset_bottom = 87.83308
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_l0f8h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vofke")
-theme_override_styles/hover = SubResource("StyleBoxFlat_f1ah8")
-text = "X"
-
-[node name="No_Patient_Popup" type="Label" parent="." unique_id=1929407681]
-visible = false
-z_index = 1
-offset_left = -867.27954
-offset_top = -32.79297
-offset_right = 167.9607
-offset_bottom = 394.81525
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_khqja")
-text = "No patient currently admitted"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Close" type="Button" parent="No_Patient_Popup" unique_id=465048054]
-layout_mode = 0
-offset_left = 945.42487
-offset_top = 7.053822e-05
-offset_right = 1033.2417
-offset_bottom = 87.83308
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_l0f8h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vofke")
-theme_override_styles/hover = SubResource("StyleBoxFlat_f1ah8")
-text = "X"
-
-[node name="Patient_Cured_Popup" type="Label" parent="." unique_id=735954631]
-visible = false
-z_index = 1
-offset_left = -961.822
-offset_top = 59.66278
-offset_right = 73.41821
-offset_bottom = 487.27106
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_khqja")
-text = "The patient is cured!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Close_Patient_Cured_Popup" type="Button" parent="Patient_Cured_Popup" unique_id=1252280685]
-layout_mode = 0
-offset_left = 945.42487
-offset_top = 7.053822e-05
-offset_right = 1033.2417
-offset_bottom = 87.83308
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_l0f8h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vofke")
-theme_override_styles/hover = SubResource("StyleBoxFlat_f1ah8")
-text = "X"
-
-[node name="Correct_Medicine_Popup" type="Label" parent="." unique_id=2072154064]
-visible = false
-z_index = 1
-offset_left = -864.9158
-offset_top = 36.54883
-offset_right = 170.32446
-offset_bottom = 464.15698
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_khqja")
-text = "Now let the patient rest, 
-or the side effects might kick in. 
-
-Check back in tomorrow"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Close_Correct_medicine_Popup" type="Button" parent="Correct_Medicine_Popup" unique_id=847122877]
-layout_mode = 0
-offset_left = 945.42487
-offset_top = 7.053822e-05
-offset_right = 1033.2417
-offset_bottom = 87.83308
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_l0f8h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vofke")
-theme_override_styles/hover = SubResource("StyleBoxFlat_f1ah8")
-text = "X"
-
-[node name="Treatment_Manager" type="Node" parent="." unique_id=574626483]
-script = ExtResource("13_vofke")
 
 [connection signal="visibility_changed" from="Patient_Room_Background" to="." method="_on_patient_room_background_visibility_changed"]

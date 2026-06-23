@@ -24,7 +24,8 @@ public partial class Hallway : Node2D
         GD.Print(GetParent().Name);
         Main main = GetParent() as Main;
 
-
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         //Doors
         int doorIndex = 0;
         foreach (Node child in DoorControl.GetChildren())
@@ -37,6 +38,7 @@ public partial class Hallway : Node2D
                 doorButton.doorId = doorIndex;
                 doorIndex++;
                 childButton.Pressed += () => GoToRoom(doorButton.doorId);
+                childButton.Pressed += treatment.ShowUI;
                 childButton.Pressed += main.InventoryPatientRoom;
                 childButton.Disabled = true;
             }
@@ -58,6 +60,20 @@ public partial class Hallway : Node2D
         GlobalData.PreviousScenes.Push(RoomScene.GetPath());
     }
 
+    public void GoToRoom(Node2D roomInput)
+    {
+        Hide();
+        GlobalData.inPatientRoom = true;
+        //var RoomScene = (Node2D)GetParent().GetNode("Room");
+        //GD.Print($"Room count: {RoomList.Count}.");
+        roomInput.Show();
+        Room room = roomInput as Room;
+        room.UpdatePatientInfoLabel();
+
+        //push the scene we're entering to the previous scenes stack
+        GlobalData.PreviousScenes.Push(roomInput.GetPath());
+    }
+
     private void LeaveRoom()
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
@@ -73,13 +89,16 @@ public partial class Hallway : Node2D
 
     public void ResetRoomUI()
     {
-        foreach(Room room in RoomManager.RoomList)
-        {
-           TreatmentManager treatment = room.GetNode<TreatmentManager>("Treatment_Manager");
-           treatment.ReenableMedicine();
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
+        treatment.ReenableMedicine();
+        /* foreach(Room room in RoomManager.RoomList)
+         {
+            TreatmentManager treatment = room.GetNode<TreatmentManager>("Treatment_Manager");
+            treatment.ReenableMedicine();
 
             room.UpdatePatientInfoLabel();
-        }
+         }*/
     }
 
     public void UpdateHallwayUI()

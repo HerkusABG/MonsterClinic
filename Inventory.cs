@@ -19,10 +19,13 @@ public partial class Inventory : Node2D
     Button Close;
 
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
+    public void Initialize()
+    {
         //grabs references to all the necessary nodes
         GetNodes();
+
+        TreatmentManager treatment = GetNode<TreatmentManager>("Treatment_Manager");
+        treatment.Initialize();
 
         //assigning methods to all the buttons
         InventoryButton.Pressed += InventoryToggle;
@@ -31,7 +34,7 @@ public partial class Inventory : Node2D
 
         //disables the shotgun until we're in the patient room
         ShotgunButton.Disabled = true;
-	}
+    }
 
 
 	private void GetNodes()
@@ -116,7 +119,6 @@ public partial class Inventory : Node2D
             else
             {
                 GiveMedicine1Button.Hide();
-                GD.Print("Line 118 in Inventory.cs");
             }
             if (MedicineManager.Database["Aspirin"].amount > 0)
             {
@@ -125,7 +127,6 @@ public partial class Inventory : Node2D
             else
             {
                 GiveMedicine2Button.Hide();
-                GD.Print("Line 127 in Inventory.cs");
             }
             if (MedicineManager.Database["Ozempic"].amount > 0)
             {
@@ -133,10 +134,8 @@ public partial class Inventory : Node2D
             }
             else
             {
-                GD.Print("Line 135 in Inventory.cs");
                 GiveMedicine3Button.Hide();
             }
-            GD.Print("Line 138-145 in Inventory.cs");
             Med1Name.Text = $"{MedicineManager.Database["Morphine"].name}";
             Med1Count.Text = $"{MedicineManager.Database["Morphine"].amount}";
             Med2Name.Text = $"{MedicineManager.Database["Aspirin"].name} ";

@@ -46,8 +46,6 @@ public partial class Contents_P_I : Node2D
 
     public override void _Ready()
 	{
-        
-
         Hide();
         //Grabbing the references to all the buttons
         GetAllButtons();
@@ -182,6 +180,8 @@ public partial class Contents_P_I : Node2D
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         Hide();
+        SpeechManagerAccess.SetBubbleStatus(false);
+        Diagnosis.ClearAllBoxes();
         var OfficeScene = (Node2D)GetParent().GetNode("Office");
         OfficeScene.Show();
         GlobalData.PreviousScenes.Pop();
@@ -242,14 +242,22 @@ public partial class Contents_P_I : Node2D
     {
         GlobalData.inPatientRoom = true;
         SpeechManagerAccess.SetBubbleStatus(false);
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         var hallway = LatestRoom.GetParent().GetParent().GetNode<Node2D>("Hallway");
-        var patient = LatestRoom.GetNode<Node2D>("Patient_Display");
-        var patientInfo = LatestRoom.GetNode<CanvasItem>("Patient_Info");
+        var patient = treatment.GetNode<Node2D>("Patient_Display");
+        var patientInfo = treatment.GetNode<CanvasItem>("Patient_Info");
         //hide the patient admission screen, show the patient room, with the patient sprite and info now visible
         Hide();
-        LatestRoom.Show();
-        patient.Show();
-        patientInfo.Show();
+        Hallway hallwayAccess = hallway as Hallway;
+        hallwayAccess.GoToRoom(LatestRoom);
+        Room roomRef = LatestRoom as Room;
+        if(roomRef.HasPatient())
+        {
+            LatestRoom.Show();
+            patient.Show();
+            patientInfo.Show();
+        }
         //we don't need to go back to this scene from the patient room after they're admitted, better have the right click go back to the office, so we're removing the patient admission from the stack here
         GlobalData.PreviousScenes.Pop();
         //push the scene we're entering to the previous scenes stack

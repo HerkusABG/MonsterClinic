@@ -20,8 +20,13 @@ public partial class TreatmentManager : Node
     Label NoPatientPopup;
     Label PatientCuredPopup;
     Label CorrectMedicinePopup;
+    Button CloseWrongMedicinePopup;
+    Button CloseNoPatientPopup;
+    Button ClosePatientCuredPopup;
+    Button CloseCorrectMedicinePopup;
 
-    Room Room;
+    public Room Room;
+    
 
     public void Initialize()
     {
@@ -30,6 +35,20 @@ public partial class TreatmentManager : Node
         GiveMedicine1Button.Pressed += () => MedicineOperations(GiveMedicine1Button);
         GiveMedicine2Button.Pressed += () => MedicineOperations(GiveMedicine2Button);
         GiveMedicine3Button.Pressed += () => MedicineOperations(GiveMedicine3Button);
+
+        /* CloseWrongMedicinePopup.Pressed += () => CloseParent(CloseWrongMedicinePopup);
+         CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
+         ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
+         CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);*/
+
+        WrongMedicinePopup = GetNode<Label>("Wrong_Medicine_Popup");
+        CloseWrongMedicinePopup = WrongMedicinePopup.GetNode<Button>("Close_Wrong_medicine_Popup");
+        NoPatientPopup = GetNode<Label>("No_Patient_Popup");
+        CloseNoPatientPopup = NoPatientPopup.GetNode<Button>("Close");
+        PatientCuredPopup = GetNode<Label>("Patient_Cured_Popup");
+        ClosePatientCuredPopup = PatientCuredPopup.GetNode<Button>("Close_Patient_Cured_Popup");
+        CorrectMedicinePopup = GetNode<Label>("Correct_Medicine_Popup");
+        CloseCorrectMedicinePopup = CorrectMedicinePopup.GetNode<Button>("Close_Correct_medicine_Popup");
     }
 
     // Called when the node enters the scene tree for the first time.
@@ -46,23 +65,54 @@ public partial class TreatmentManager : Node
     private void GetNodes()
     {
         //Basically just grabbing all the nodes
-        Room = GetParent() as Room;
-
-        PatientDisplay = GetParent().GetNode<Sprite2D>("Patient_Display");
-        PatientInfo = GetParent().GetNode<Label>("Patient_Info");
-        GiveMedicine1Button = GetParent().GetParent().GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
+        PatientDisplay = GetNode<Sprite2D>("Patient_Display");
+        PatientInfo = GetNode<Label>("Patient_Info");
+        //GiveMedicine1Button = GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
+        GiveMedicine1Button = GetParent().GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
         Med1Name = GiveMedicine1Button.GetNode<Label>("Med1_Name");
         Med1Count = GiveMedicine1Button.GetNode("Stripe").GetNode<Label>("Med1_Count");
-        GiveMedicine2Button = GetParent().GetParent().GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
+        GiveMedicine2Button = GetParent().GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
         Med2Name = GiveMedicine2Button.GetNode<Label>("Med2_Name");
         Med2Count = GiveMedicine2Button.GetNode("Stripe").GetNode<Label>("Med2_Count");
-        GiveMedicine3Button = GetParent().GetParent().GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
+        GiveMedicine3Button = GetParent().GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
         Med3Name = GiveMedicine3Button.GetNode<Label>("Med3_Name");
         Med3Count = GiveMedicine3Button.GetNode("Stripe").GetNode<Label>("Med3_Count");
-        WrongMedicinePopup = GetParent().GetNode<Label>("Wrong_Medicine_Popup");
-        NoPatientPopup = GetParent().GetNode<Label>("No_Patient_Popup");
-        PatientCuredPopup = GetParent().GetNode<Label>("Patient_Cured_Popup");
-        CorrectMedicinePopup = GetParent().GetNode<Label>("Correct_Medicine_Popup");
+        WrongMedicinePopup = GetNode<Label>("Wrong_Medicine_Popup");
+        NoPatientPopup = GetNode<Label>("No_Patient_Popup");
+        PatientCuredPopup = GetNode<Label>("Patient_Cured_Popup");
+        CorrectMedicinePopup = GetNode<Label>("Correct_Medicine_Popup");
+    }
+
+   
+
+    public void ShowUI()
+    {
+        PatientDisplay.Show();
+        PatientInfo.Show();
+        UpdateTreatmentText();
+    }
+    public void UpdateTreatmentText()
+    {
+        PatientInfo.Text = $"Patient info: " +
+                   $"\n Malady: {Room.Patient.malady.name}" +
+                   $"\n Severity: {Room.Patient.malady.severity}" +
+                   $"\n Age: {Room.Patient.age}";
+    }
+    public void HideUI()
+    {
+        foreach(Node child in GetChildren())
+        {
+            Node2D child2d = child as Node2D;
+            if(child2d != null)
+            {
+                child2d.Hide();
+            }
+            Control controlChild = child as Control;
+            if (controlChild != null)
+            {
+                controlChild.Hide();
+            }
+        }
     }
 
     private void MedicineOperations(TextureButton medicineChoice)
@@ -76,14 +126,14 @@ public partial class TreatmentManager : Node
         if (medicineChoice == GiveMedicine1Button)
         {
             medicine = MedicineManager.Database["Morphine"];
-            matchingMalady = "Accident";
+            matchingMalady = "an accident";
             nameBox = Med1Name;
             countBox = Med1Count;
         }
         else if (medicineChoice == GiveMedicine2Button)
         {
             medicine = MedicineManager.Database["Aspirin"];
-            matchingMalady = "Accident";
+            matchingMalady = "an ccident";
             nameBox = Med2Name;
             countBox = Med2Count;
         }
@@ -98,7 +148,6 @@ public partial class TreatmentManager : Node
         if (PatientDisplay.Visible == false)
         {
             NoPatientPopup.Show();
-
         }
         //else if (GlobalData.Medicine1Count > 0)
         else if (medicine.amount > 0)
@@ -121,7 +170,7 @@ public partial class TreatmentManager : Node
             {
                 //the correct use of the medicine, severity goes down, the text gets updated
                 patient.malady.severity--;
-                PatientInfo.Text = "Patient info: \n Malady: " + patient.malady.name + "\n Severity: " + patient.malady.severity; 
+                //PatientInfo.Text = "Patient info: \n Malady: " + patient.malady.name + "\n Severity: " + patient.malady.severity; 
                 //if you get the severity down to 0, the patient is cured, you get a popup, and you get paid
                 if (patient.malady.severity <= 0)
                 {
@@ -129,6 +178,7 @@ public partial class TreatmentManager : Node
                     PatientCuredPopup.Show();
                     GlobalData.DailyEarnings += 40;
                     Room.isEmpty = true;
+                    Room.DeletePatient();
                 } 
                 else
                 {
@@ -145,7 +195,6 @@ public partial class TreatmentManager : Node
             GiveMedicine3Button.Disabled = true;
             GlobalData.DailyLockout = true;
         }
-
     }
 
     public void ReenableMedicine()

@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using static System.Net.Mime.MediaTypeNames;
 
 public partial class Room : Node2D 
@@ -42,7 +43,7 @@ public partial class Room : Node2D
         Hide();
     }*/
 
-    public void Initialize()
+    public void Initialize(Action HideUIAction)
     {
         //grabs references to all the necessary nodes
         GetNodes();
@@ -51,26 +52,21 @@ public partial class Room : Node2D
         LeaveRoomButton.MouseEntered += HoverOn;
         LeaveRoomButton.MouseExited += HoverOff;
         LeaveRoomButton.Pressed += LeaveRoom;
+        LeaveRoomButton.Pressed += HideUIAction;
 
         
 
 
         //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
-        //CloseWrongMedicinePopup.Pressed += () => CloseParent(CloseWrongMedicinePopup);
-        //CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
-        //ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
-        //CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);
+
     }
 
     private void GetNodes()
     {
-        TreatmentManager treatment = GetNode<TreatmentManager>("Treatment_Manager");
-        treatment.Initialize();
-
         //Basically just grabbing all the nodes
         LeaveRoomButton = GetNode<Button>("Leave_Room");
-        PatientDisplay = GetNode<Sprite2D>("Patient_Display");
-        PatientInfo = GetNode<Label>("Patient_Info");
+       // PatientDisplay = GetNode<Sprite2D>("Patient_Display");
+        //PatientInfo = GetNode<Label>("Patient_Info");
 
         /*GiveMedicine1Button = GetParent().GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
         Med1Name = GiveMedicine1Button.GetNode<Label>("Med1_Name");
@@ -80,8 +76,8 @@ public partial class Room : Node2D
         Med2Count = GiveMedicine2Button.GetNode("Stripe").GetNode<Label>("Med2_Count");
         GiveMedicine3Button = GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
         Med3Name = GiveMedicine3Button.GetNode<Label>("Med3_Name");
-        Med3Count = GiveMedicine3Button.GetNode("Stripe").GetNode<Label>("Med3_Count");
-        WrongMedicinePopup = GetNode<Label>("Wrong_Medicine_Popup");
+        Med3Count = GiveMedicine3Button.GetNode("Stripe").GetNode<Label>("Med3_Count");*/
+       /* WrongMedicinePopup = GetNode<Label>("Wrong_Medicine_Popup");
         CloseWrongMedicinePopup = WrongMedicinePopup.GetNode<Button>("Close_Wrong_medicine_Popup");
         NoPatientPopup = GetNode<Label>("No_Patient_Popup");
         CloseNoPatientPopup = NoPatientPopup.GetNode<Button>("Close");
@@ -147,8 +143,8 @@ public partial class Room : Node2D
     //it could activate whenever the scene's visibility changes,but there's a (probably) harmless error that happens then, so I instead use a node who's visibility always matches the scene
     private void _on_patient_room_background_visibility_changed()
     {
-        if (Patient == null) return;
-        PatientInfo.Text = "Patient info: \n Malady: " + Patient.malady.name + "\n Severity: " + Patient.malady.severity;
+        //if (Patient == null) return;
+        //PatientInfo.Text = "Patient info: \n Malady: " + Patient.malady.name + "\n Severity: " + Patient.malady.severity;
 
         /*Med1Name.Text = $"{MedicineManager.Database["Morphine"].name}";
         Med1Count.Text = $"{MedicineManager.Database["Morphine"].amount}";
@@ -180,10 +176,21 @@ public partial class Room : Node2D
     {
         if(!isEmpty)
         {
-            PatientInfo.Text = $"Patient info: " +
+            //PatientInfo.Text = "AAAAAAAAAAAAAAAAAAAAAA";
+            /*PatientInfo.Text = $"Patient info: " +
                    $"\n Malady: {Patient.malady.name}" +
                    $"\n Severity: {Patient.malady.severity}" +
-                   $"\n Age: {Patient.age}";
+                   $"\n Age: {Patient.age}";*/
         }
+    }
+
+    public bool HasPatient()
+    {
+        return Patient != null;
+    }
+
+    public void DeletePatient()
+    {
+        Patient = null;
     }
 }
