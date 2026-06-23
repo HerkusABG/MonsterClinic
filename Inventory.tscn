@@ -1,0 +1,285 @@
+[gd_scene format=3 uid="uid://c0wl0p1tagma5"]
+
+[ext_resource type="Script" uid="uid://bpbh60enepajt" path="res://Inventory.cs" id="1_3n7vm"]
+[ext_resource type="Texture2D" uid="uid://0p8gc3ax8rmb" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Pocket_Blockout.png" id="2_0261c"]
+[ext_resource type="Texture2D" uid="uid://ck5pltj8yh3oh" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_Blockout.png" id="2_ki15f"]
+[ext_resource type="Texture2D" uid="uid://dfwx6gwwanux4" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Closed_Blockout (1).png" id="2_y13mq"]
+[ext_resource type="Texture2D" uid="uid://cfje0d52rdwyx" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Closed_Blockout (2).png" id="3_d2uli"]
+[ext_resource type="Texture2D" uid="uid://bi1hp683e4pjr" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Open_Blockout.png" id="3_mva8e"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_nwt7c"]
+[ext_resource type="Texture2D" uid="uid://b5e6gugoptsp5" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_HL_Blockout.png" id="4_e3raj"]
+[ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="4_jqulp"]
+[ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="7_y13mq"]
+[ext_resource type="Texture2D" uid="uid://bbyfolabl5n1k" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Label_Counter_Blockout.png" id="9_d2uli"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwt7c"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqulp"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3xuxb"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arhjh"]
+bg_color = Color(0.14509805, 0.14509805, 0.14509805, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ny8ul"]
+bg_color = Color(0.8980392, 0.21176471, 0.18431373, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(1, 0.5179158, 0.4977886, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8i0v"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(1, 0.5176471, 0.49803922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trmqt"]
+bg_color = Color(1, 0.5176471, 0.49803922, 1)
+
+[node name="Inventory" type="Node2D" unique_id=126072234]
+script = ExtResource("1_3n7vm")
+
+[node name="Inventory_Button" type="TextureButton" parent="." unique_id=448040149]
+custom_minimum_size = Vector2(160, 150)
+offset_left = 1670.0
+offset_top = 880.0
+offset_right = 2129.0
+offset_bottom = 1288.0
+scale = Vector2(0.41, 0.41)
+texture_normal = ExtResource("2_y13mq")
+texture_hover = ExtResource("3_d2uli")
+
+[node name="Open_Inventory" type="TextureRect" parent="." unique_id=479278794]
+visible = false
+custom_minimum_size = Vector2(160, 150)
+offset_left = 1667.0
+offset_top = 166.00002
+offset_right = 2145.0
+offset_bottom = 2396.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_mva8e")
+
+[node name="Shotgun" type="Button" parent="Open_Inventory" unique_id=537038637]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 55.0
+offset_top = 1690.0
+offset_right = 205.0
+offset_bottom = 1840.0
+scale = Vector2(2.5, 2.5)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_nwt7c")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jqulp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3xuxb")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_arhjh")
+text = "Shotgun"
+
+[node name="EmptySlot1" type="TextureRect" parent="Open_Inventory" unique_id=255516927]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1282.0
+offset_right = 445.0
+offset_bottom = 1691.9999
+texture = ExtResource("2_0261c")
+
+[node name="Give_Medicine_1" type="TextureButton" parent="Open_Inventory" unique_id=701957524]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 52.5
+offset_top = 1290.0
+offset_right = 284.80762
+offset_bottom = 1526.0
+scale = Vector2(1.625, 1.625)
+disabled = true
+texture_normal = ExtResource("2_ki15f")
+texture_hover = ExtResource("4_e3raj")
+
+[node name="Med1_Name" type="Label" parent="Open_Inventory/Give_Medicine_1" unique_id=1879938275]
+layout_mode = 0
+offset_left = 1.5384474
+offset_top = 43.07693
+offset_right = 210.76941
+offset_bottom = 252.30765
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_nwt7c")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stripe" type="TextureRect" parent="Open_Inventory/Give_Medicine_1" unique_id=1503999197]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 92.30769
+offset_right = 250.0
+offset_bottom = 262.30768
+texture = ExtResource("9_d2uli")
+
+[node name="Med1_Count" type="Label" parent="Open_Inventory/Give_Medicine_1/Stripe" unique_id=3737459]
+layout_mode = 0
+offset_left = 43.076912
+offset_top = 3.07693
+offset_right = 252.30786
+offset_bottom = 212.30765
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_nwt7c")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmptySlot2" type="TextureRect" parent="Open_Inventory" unique_id=129431925]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 890.0
+offset_right = 445.0
+offset_bottom = 1300.0
+texture = ExtResource("2_0261c")
+
+[node name="Give_Medicine_2" type="TextureButton" parent="Open_Inventory" unique_id=99301570]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 52.5
+offset_top = 890.0
+offset_right = 283.2693
+offset_bottom = 1126.0
+scale = Vector2(1.625, 1.625)
+disabled = true
+texture_normal = ExtResource("2_ki15f")
+texture_hover = ExtResource("4_e3raj")
+
+[node name="Med2_Name" type="Label" parent="Open_Inventory/Give_Medicine_2" unique_id=69086619]
+layout_mode = 0
+offset_left = 1.5384474
+offset_top = 41.538467
+offset_right = 210.76941
+offset_bottom = 250.76918
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_nwt7c")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stripe" type="TextureRect" parent="Open_Inventory/Give_Medicine_2" unique_id=453467431]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 96.92307
+offset_right = 250.0
+offset_bottom = 266.92307
+texture = ExtResource("9_d2uli")
+
+[node name="Med2_Count" type="Label" parent="Open_Inventory/Give_Medicine_2/Stripe" unique_id=1785089631]
+layout_mode = 0
+offset_left = 43.076912
+offset_top = 3.07693
+offset_right = 252.30786
+offset_bottom = 212.30765
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_nwt7c")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmptySlot3" type="TextureRect" parent="Open_Inventory" unique_id=1257392023]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 517.5
+offset_right = 445.0
+offset_bottom = 902.5
+texture = ExtResource("2_0261c")
+
+[node name="Give_Medicine_3" type="TextureButton" parent="Open_Inventory" unique_id=1701878173]
+visible = false
+z_index = 1
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 52.5
+offset_top = 522.5
+offset_right = 283.2693
+offset_bottom = 748.6539
+scale = Vector2(1.625, 1.625)
+disabled = true
+texture_normal = ExtResource("4_jqulp")
+texture_hover = ExtResource("7_y13mq")
+
+[node name="Med3_Name" type="Label" parent="Open_Inventory/Give_Medicine_3" unique_id=296650180]
+layout_mode = 0
+offset_left = -1.538476
+offset_top = 35.38462
+offset_right = 207.69247
+offset_bottom = 244.61533
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_nwt7c")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stripe" type="TextureRect" parent="Open_Inventory/Give_Medicine_3" unique_id=2024647177]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 80.000046
+offset_right = 250.0
+offset_bottom = 250.00005
+texture = ExtResource("9_d2uli")
+
+[node name="Med3_Count" type="Label" parent="Open_Inventory/Give_Medicine_3/Stripe" unique_id=622812228]
+layout_mode = 0
+offset_left = 43.076912
+offset_top = 3.07693
+offset_right = 252.30786
+offset_bottom = 212.30765
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_nwt7c")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmptySlot4" type="TextureRect" parent="Open_Inventory" unique_id=1088888419]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 40.0
+offset_top = 120.0
+offset_right = 445.0
+offset_bottom = 530.0
+texture = ExtResource("2_0261c")
+
+[node name="Close" type="Button" parent="Open_Inventory" unique_id=1292431923]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 2075.0
+offset_right = 205.0
+offset_bottom = 2112.0
+scale = Vector2(2.5, 2.5)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ny8ul")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r8i0v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_trmqt")
+text = "X"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

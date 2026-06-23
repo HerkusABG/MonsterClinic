@@ -23,50 +23,6 @@ border_width_right = 14
 border_width_bottom = 14
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gm67"]
-bg_color = Color(0.4862745, 0.9411765, 0.5176471, 1)
-border_width_left = 14
-border_width_top = 14
-border_width_right = 14
-border_width_bottom = 14
-border_color = Color(0.6745098, 1, 0.6901961, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_si31g"]
-bg_color = Color(0.42352942, 0.8784314, 0.45490196, 1)
-border_width_left = 14
-border_width_top = 14
-border_width_right = 14
-border_width_bottom = 14
-border_color = Color(0.6745098, 1, 0.6901961, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mimag"]
-bg_color = Color(0.6745098, 1, 0.6901961, 1)
-border_color = Color(0.6745098, 1, 0.6901961, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sh5y"]
-bg_color = Color(0.42352942, 0.8784314, 0.45490196, 1)
-border_width_left = 14
-border_width_top = 14
-border_width_right = 14
-border_width_bottom = 14
-border_color = Color(0.6745098, 1, 0.6901961, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7nhj"]
-bg_color = Color(0.42352942, 0.8784314, 0.45490196, 1)
-border_width_left = 14
-border_width_top = 14
-border_width_right = 14
-border_width_bottom = 14
-border_color = Color(0.6745098, 1, 0.6901961, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtib3"]
-bg_color = Color(0.42352942, 0.8784314, 0.45490196, 1)
-border_width_left = 14
-border_width_top = 14
-border_width_right = 14
-border_width_bottom = 14
-border_color = Color(0.6745098, 1, 0.6901961, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khqja"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
 border_width_left = 14
@@ -135,75 +91,13 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_xebr5")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Stylish_Medicine_Background" type="ColorRect" parent="." unique_id=1513001360]
-offset_left = 550.85767
-offset_top = -716.96625
-offset_right = 1345.0146
-offset_bottom = 1575.9387
-color = Color(0.27058825, 0.27058825, 0.27058825, 1)
-
-[node name="Give_Medicine_1" type="Button" parent="Stylish_Medicine_Background" unique_id=1337990621]
-z_index = 1
-layout_mode = 0
-offset_left = 94.54248
-offset_top = 92.45578
-offset_right = 694.5425
-offset_bottom = 692.4558
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_7gm67")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_si31g")
-theme_override_styles/hover = SubResource("StyleBoxFlat_mimag")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_0sh5y")
-
-[node name="Give_Medicine_2" type="Button" parent="Stylish_Medicine_Background" unique_id=408054606]
-z_index = 1
-layout_mode = 0
-offset_left = 94.54248
-offset_top = 850.59375
-offset_right = 694.5425
-offset_bottom = 1450.5936
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_7gm67")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_si31g")
-theme_override_styles/hover = SubResource("StyleBoxFlat_mimag")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_b7nhj")
-
-[node name="Give_Medicine_3" type="Button" parent="Stylish_Medicine_Background" unique_id=819132043]
-z_index = 1
-layout_mode = 0
-offset_left = 94.54248
-offset_top = 1590.2405
-offset_right = 694.5425
-offset_bottom = 2190.2405
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_7gm67")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_si31g")
-theme_override_styles/hover = SubResource("StyleBoxFlat_mimag")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_vtib3")
-
-[node name="Wrong_Medicine_Popup" type="Label" parent="Stylish_Medicine_Background" unique_id=1279645988]
+[node name="Wrong_Medicine_Popup" type="Label" parent="." unique_id=1279645988]
 visible = false
 z_index = 1
-layout_mode = 0
-offset_left = -1415.7734
-offset_top = 753.51514
-offset_right = -380.5332
-offset_bottom = 1181.1233
+offset_left = -864.9158
+offset_top = 36.54883
+offset_right = 170.32446
+offset_bottom = 464.15698
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_khqja")
 text = "This medicine won't work for this patient.
@@ -212,7 +106,7 @@ But what's done is done, check in again tomorrow"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Close_Wrong_medicine_Popup" type="Button" parent="Stylish_Medicine_Background/Wrong_Medicine_Popup" unique_id=1279164653]
+[node name="Close_Wrong_medicine_Popup" type="Button" parent="Wrong_Medicine_Popup" unique_id=1279164653]
 layout_mode = 0
 offset_left = 945.42487
 offset_top = 7.053822e-05
@@ -224,21 +118,20 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_vofke")
 theme_override_styles/hover = SubResource("StyleBoxFlat_f1ah8")
 text = "X"
 
-[node name="No_Patient_Popup" type="Label" parent="Stylish_Medicine_Background" unique_id=1929407681]
+[node name="No_Patient_Popup" type="Label" parent="." unique_id=1929407681]
 visible = false
 z_index = 1
-layout_mode = 0
-offset_left = -1418.1372
-offset_top = 684.1733
-offset_right = -382.89697
-offset_bottom = 1111.7815
+offset_left = -867.27954
+offset_top = -32.79297
+offset_right = 167.9607
+offset_bottom = 394.81525
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_khqja")
 text = "No patient currently admitted"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Close" type="Button" parent="Stylish_Medicine_Background/No_Patient_Popup" unique_id=465048054]
+[node name="Close" type="Button" parent="No_Patient_Popup" unique_id=465048054]
 layout_mode = 0
 offset_left = 945.42487
 offset_top = 7.053822e-05
@@ -250,21 +143,20 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_vofke")
 theme_override_styles/hover = SubResource("StyleBoxFlat_f1ah8")
 text = "X"
 
-[node name="Patient_Cured_Popup" type="Label" parent="Stylish_Medicine_Background" unique_id=735954631]
+[node name="Patient_Cured_Popup" type="Label" parent="." unique_id=735954631]
 visible = false
 z_index = 1
-layout_mode = 0
-offset_left = -1512.6797
-offset_top = 776.629
-offset_right = -477.43945
-offset_bottom = 1204.2373
+offset_left = -961.822
+offset_top = 59.66278
+offset_right = 73.41821
+offset_bottom = 487.27106
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_khqja")
 text = "The patient is cured!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Close_Patient_Cured_Popup" type="Button" parent="Stylish_Medicine_Background/Patient_Cured_Popup" unique_id=1252280685]
+[node name="Close_Patient_Cured_Popup" type="Button" parent="Patient_Cured_Popup" unique_id=1252280685]
 layout_mode = 0
 offset_left = 945.42487
 offset_top = 7.053822e-05
@@ -276,14 +168,13 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_vofke")
 theme_override_styles/hover = SubResource("StyleBoxFlat_f1ah8")
 text = "X"
 
-[node name="Correct_Medicine_Popup" type="Label" parent="Stylish_Medicine_Background" unique_id=2072154064]
+[node name="Correct_Medicine_Popup" type="Label" parent="." unique_id=2072154064]
 visible = false
 z_index = 1
-layout_mode = 0
-offset_left = -1415.7734
-offset_top = 753.51514
-offset_right = -380.5332
-offset_bottom = 1181.1233
+offset_left = -864.9158
+offset_top = 36.54883
+offset_right = 170.32446
+offset_bottom = 464.15698
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_khqja")
 text = "Now let the patient rest, 
@@ -293,7 +184,7 @@ Check back in tomorrow"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Close_Correct_medicine_Popup" type="Button" parent="Stylish_Medicine_Background/Correct_Medicine_Popup" unique_id=847122877]
+[node name="Close_Correct_medicine_Popup" type="Button" parent="Correct_Medicine_Popup" unique_id=847122877]
 layout_mode = 0
 offset_left = 945.42487
 offset_top = 7.053822e-05

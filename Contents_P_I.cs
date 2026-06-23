@@ -25,6 +25,7 @@ public partial class Contents_P_I : Node2D
     Button ShotgunButton;
     Button VisitPatientButton;
     VBoxContainer InventoryContainer;
+     private Timer DiagnosisTimer;
 
     private int patientsLeft;
 
@@ -59,9 +60,9 @@ public partial class Contents_P_I : Node2D
         DialogueButton.Pressed += ShowSpeechDialogue;
         ZoomButton.Pressed += ShowSpeechZoom;
         PulseButton.Pressed += ShowSpeechHeartrate;
-        InventoryButton.Pressed += ToggleInventory;
+        RejectButton.Pressed += ShowSpeechReject;
+        //InventoryButton.Pressed += ToggleInventory;
         DiagnosisButton.Pressed += ShowSpeechDiagnosis;
-        ShotgunButton.Pressed += KillPatient;
 
         VisitButton.Pressed += VisitLatestPatient;
         VisitButton.Disabled = true;
@@ -101,7 +102,6 @@ public partial class Contents_P_I : Node2D
         //Going one step deeper for the inventory buttons.
         InventoryContainer = control.GetNode<VBoxContainer>("InventoryContainer");
         DiagnosisButton = InventoryContainer.GetNode<Button>("Diagnosis");
-        ShotgunButton = InventoryContainer.GetNode<Button>("Shotgun");
     }
 
     //All the show speech methods are just calling the speech manager and
@@ -126,6 +126,21 @@ public partial class Contents_P_I : Node2D
     private void ShowSpeechDiagnosis()
     {
         SpeechManagerAccess.SpeechText("soooo, you are telling me \n THAT is gonna help you diagnose me??");
+        
+        // Timer from the scene
+        var sceneTimer = GetNode<Timer>("Diagnosis_Timer");
+        sceneTimer.OneShot = true;
+
+        // connect the signals
+        sceneTimer.Timeout += OnSceneTimerTimeout;
+
+        // timer is getting set to 3 seconds and starts
+        sceneTimer.Start(3.0);
+    }
+    private void OnSceneTimerTimeout()
+    {
+        var speech = SpeechManagerAccess.GetNode<Label>("SpeechBubble");
+        speech.Hide();
     }
     //Toggling the inventory, pretty simple.
     private void ToggleInventory()
@@ -150,7 +165,19 @@ public partial class Contents_P_I : Node2D
             DeceasedSprite1.Show();
         }
     }
-    
+
+    private void _on_deceased_sprite_visibility_changed()
+    {
+        //since now the shotgun is in a different scene, we can't easily access the local instance of PatientStats when using it anymore, 
+        //so now we do this operation when the deceased sprite shows up, which is the exact same moment, but allows us to do this in this scene
+        if (DeceasedSprite1.Visible == true)
+        {
+            PatientStats.isAlive = false;
+            //also disable the admit button while we're at it, you're not admitting a dead man
+            AdmitButton.Disabled = true;
+        }
+    }
+
     private void ReturnToOffice()
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality

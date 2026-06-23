@@ -20,7 +20,6 @@ public static class GlobalData
     // the dealer dialog can spawn if the dialog_dealer is true
     public static Boolean Dialog_Dealer { get; set; } = false;
     public static Boolean Dialog_Dealer_Control { get; set; } = true;
-
     public static string Reasion { get; set; } = "none";
 
     //public static int Money { get; set; } = 150;
@@ -35,6 +34,10 @@ public static class GlobalData
     public static int Medicine2Count { get; set; } = 0;
 
     public static int Medicine3Count { get; set; } = 0;
+
+    //bool that becomes when you treat a patient, to prevent switching scenes from reactivating the GiveMedicine buttons when you've already
+    //treated the patient that day, and becomes false when you go to bed
+    public static bool DailyLockout { get; set; } = false;
 
     public static int patientCount = 0;
     public static string CurrentPatientMalady { get; set; } = "none";
