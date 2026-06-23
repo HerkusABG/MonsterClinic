@@ -25,7 +25,7 @@ public partial class TreatmentManager : Node
     Button ClosePatientCuredPopup;
     Button CloseCorrectMedicinePopup;
 
-    public Room Room;
+    private Room Room;
     
 
     public void Initialize()
@@ -111,12 +111,19 @@ public partial class TreatmentManager : Node
 
     public void ShowUI()
     {
-        PatientDisplay.Show();
-        PatientInfo.Show();
+        if(Room != null)
+        {
+            if (Room.Patient != null)
+            {
+                PatientInfo.Show();
+                PatientDisplay.Show();
+            }
+        }
         UpdateTreatmentText();
     }
     public void UpdateTreatmentText()
     {
+        if (Room == null) return;
         if (Room.Patient == null) return;
         PatientInfo.Text = $"Patient info: " +
                    $"\n Malady: {Room.Patient.malady.name}" +
@@ -227,5 +234,10 @@ public partial class TreatmentManager : Node
         GiveMedicine1Button.Disabled = false;
         GiveMedicine2Button.Disabled = false;
         GiveMedicine3Button.Disabled = false;
+    }
+
+    public void SetTreatmentRoomReference(Room room)
+    {
+        Room = room;
     }
 }

@@ -55,7 +55,9 @@ public partial class Hallway : Node2D
         RoomScene.Show();
         Room room = RoomScene as Room;
         room.UpdatePatientInfoLabel();
-
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
+        treatment.SetTreatmentRoomReference(room);
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(RoomScene.GetPath());
     }
@@ -69,7 +71,10 @@ public partial class Hallway : Node2D
         roomInput.Show();
         Room room = roomInput as Room;
         room.UpdatePatientInfoLabel();
-
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
+        treatment.SetTreatmentRoomReference(room);
+        //treatment.ShowUI();
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(roomInput.GetPath());
     }

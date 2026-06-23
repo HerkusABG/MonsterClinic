@@ -36,7 +36,7 @@ public partial class AdmissionManager : Node
                 var patientInfo = treatment.GetNode<CanvasItem>("Patient_Info");
 
                 Room room = roomNode as Room;
-                treatment.Room = room;
+                treatment.SetTreatmentRoomReference(room);
                 room.Patient = PatientAdmission.PatientPointer;
                 PatientAdmission.GenerateNewPatientVoid();
                 GlobalData.patientCount++;

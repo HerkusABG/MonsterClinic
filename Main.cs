@@ -75,6 +75,16 @@ public partial class Main : Node
                 var current_scene = (Node2D)GetNode(GlobalData.PreviousScenes.Pop().ToString());
                 //hide it
                 current_scene.Hide();
+                Room room = current_scene as Room;
+                if(room != null)
+                {
+                    Treatment.HideUI();
+                }
+                Contents_P_I patientInterface = current_scene as Contents_P_I;
+                if (patientInterface != null)
+                {
+                    patientInterface.HideSpeechBubble();
+                }
                 //pop a scene again, this is the scene we were previously in
                 var parent = (Node2D)GetNode(GlobalData.PreviousScenes.Peek().ToString());
                 //show it
