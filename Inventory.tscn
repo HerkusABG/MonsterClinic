@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="7_y13mq"]
 [ext_resource type="Texture2D" uid="uid://bbyfolabl5n1k" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Label_Counter_Blockout.png" id="9_d2uli"]
 [ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scenes/TreatmentManager.cs" id="12_ny8ul"]
-[ext_resource type="Texture2D" uid="uid://bcqtc40plwpsl" path="res://place holders/Patient_Sitting_Blocking.png" id="13_r8i0v"]
+[ext_resource type="Texture2D" uid="uid://cbdcpd8q7fwf" path="res://Assets/2D Art/PatientRoom/PatientRoom_Patient_White_Blockout.png" id="13_r8i0v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwt7c"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)

@@ -55,6 +55,16 @@ public partial class Hallway : Node2D
         RoomScene.Show();
         Room room = RoomScene as Room;
         room.UpdatePatientInfoLabel();
+        Sprite2D PatientDisplay = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<Sprite2D>("Patient_Display");
+        //GD.Print(room)
+        if (room.HasPatient() == true)
+        {
+            PatientDisplay.Show();
+            PatientDisplay.Modulate = room.Patient.PortraitColor;
+        } else
+        {
+            PatientDisplay.Hide();
+        }
 
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(RoomScene.GetPath());
@@ -69,6 +79,16 @@ public partial class Hallway : Node2D
         roomInput.Show();
         Room room = roomInput as Room;
         room.UpdatePatientInfoLabel();
+        Sprite2D PatientDisplay = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<Sprite2D>("Patient_Display");
+        if (room.HasPatient() == true)
+        {
+            PatientDisplay.Show();
+            PatientDisplay.Modulate = room.Patient.PortraitColor;
+        }
+        else
+        {
+            PatientDisplay.Hide();
+        }
 
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(roomInput.GetPath());

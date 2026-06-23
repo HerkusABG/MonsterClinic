@@ -39,6 +39,8 @@ public partial class AdmissionManager : Node
                 treatment.Room = room;
                 room.Patient = PatientAdmission.PatientPointer;
                 PatientAdmission.GenerateNewPatientVoid();
+                
+
                 GlobalData.patientCount++;
 
                 //give the newly admitted patient a random malady at a random severity
