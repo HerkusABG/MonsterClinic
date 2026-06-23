@@ -116,7 +116,6 @@ public partial class Inventory : Node2D
             else
             {
                 GiveMedicine1Button.Hide();
-                GD.Print("Line 118 in Inventory.cs");
             }
             if (MedicineManager.Database["Aspirin"].amount > 0)
             {
@@ -125,7 +124,6 @@ public partial class Inventory : Node2D
             else
             {
                 GiveMedicine2Button.Hide();
-                GD.Print("Line 127 in Inventory.cs");
             }
             if (MedicineManager.Database["Ozempic"].amount > 0)
             {
@@ -133,10 +131,8 @@ public partial class Inventory : Node2D
             }
             else
             {
-                GD.Print("Line 135 in Inventory.cs");
                 GiveMedicine3Button.Hide();
             }
-            GD.Print("Line 138-145 in Inventory.cs");
             Med1Name.Text = $"{MedicineManager.Database["Morphine"].name}";
             Med1Count.Text = $"{MedicineManager.Database["Morphine"].amount}";
             Med2Name.Text = $"{MedicineManager.Database["Aspirin"].name} ";

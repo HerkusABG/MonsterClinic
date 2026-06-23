@@ -58,6 +58,20 @@ public partial class Hallway : Node2D
         GlobalData.PreviousScenes.Push(RoomScene.GetPath());
     }
 
+    public void GoToRoom(Node2D roomInput)
+    {
+        Hide();
+        GlobalData.inPatientRoom = true;
+        //var RoomScene = (Node2D)GetParent().GetNode("Room");
+        //GD.Print($"Room count: {RoomList.Count}.");
+        roomInput.Show();
+        Room room = roomInput as Room;
+        room.UpdatePatientInfoLabel();
+
+        //push the scene we're entering to the previous scenes stack
+        GlobalData.PreviousScenes.Push(roomInput.GetPath());
+    }
+
     private void LeaveRoom()
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality

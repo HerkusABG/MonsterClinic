@@ -53,10 +53,10 @@ public partial class Room : Node2D
         LeaveRoomButton.Pressed += LeaveRoom;
 
         //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
-        //CloseWrongMedicinePopup.Pressed += () => CloseParent(CloseWrongMedicinePopup);
-        //CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
-        //ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
-        //CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);
+        CloseWrongMedicinePopup.Pressed += () => CloseParent(CloseWrongMedicinePopup);
+        CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
+        ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
+        CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);
     }
 
     private void GetNodes()
@@ -77,7 +77,7 @@ public partial class Room : Node2D
         Med2Count = GiveMedicine2Button.GetNode("Stripe").GetNode<Label>("Med2_Count");
         GiveMedicine3Button = GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
         Med3Name = GiveMedicine3Button.GetNode<Label>("Med3_Name");
-        Med3Count = GiveMedicine3Button.GetNode("Stripe").GetNode<Label>("Med3_Count");
+        Med3Count = GiveMedicine3Button.GetNode("Stripe").GetNode<Label>("Med3_Count");*/
         WrongMedicinePopup = GetNode<Label>("Wrong_Medicine_Popup");
         CloseWrongMedicinePopup = WrongMedicinePopup.GetNode<Button>("Close_Wrong_medicine_Popup");
         NoPatientPopup = GetNode<Label>("No_Patient_Popup");
@@ -85,7 +85,7 @@ public partial class Room : Node2D
         PatientCuredPopup = GetNode<Label>("Patient_Cured_Popup");
         ClosePatientCuredPopup = PatientCuredPopup.GetNode<Button>("Close_Patient_Cured_Popup");
         CorrectMedicinePopup = GetNode<Label>("Correct_Medicine_Popup");
-        CloseCorrectMedicinePopup = CorrectMedicinePopup.GetNode<Button>("Close_Correct_medicine_Popup");*/
+        CloseCorrectMedicinePopup = CorrectMedicinePopup.GetNode<Button>("Close_Correct_medicine_Popup");
     }
 
     private void HoverOn()
@@ -182,5 +182,15 @@ public partial class Room : Node2D
                    $"\n Severity: {Patient.malady.severity}" +
                    $"\n Age: {Patient.age}";
         }
+    }
+
+    public bool HasPatient()
+    {
+        return Patient != null;
+    }
+
+    public void DeletePatient()
+    {
+        Patient = null;
     }
 }

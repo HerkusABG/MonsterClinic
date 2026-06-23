@@ -63,7 +63,7 @@ public partial class PatientStats
         // For just assigning random numbers, this will be overhauled later.
         isAlive = true;
         Random rnd = new Random();
-        malady = MaladyList.Database.ElementAt(rnd.Next(0, MaladyList.Database.Count)).Value;
+        malady = MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value;
         malady.severity = rnd.Next(2, 5);
 
         heartRate = rnd.Next(50, 151);  

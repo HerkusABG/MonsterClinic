@@ -76,14 +76,14 @@ public partial class TreatmentManager : Node
         if (medicineChoice == GiveMedicine1Button)
         {
             medicine = MedicineManager.Database["Morphine"];
-            matchingMalady = "Accident";
+            matchingMalady = "an accident";
             nameBox = Med1Name;
             countBox = Med1Count;
         }
         else if (medicineChoice == GiveMedicine2Button)
         {
             medicine = MedicineManager.Database["Aspirin"];
-            matchingMalady = "Accident";
+            matchingMalady = "an ccident";
             nameBox = Med2Name;
             countBox = Med2Count;
         }
@@ -98,7 +98,6 @@ public partial class TreatmentManager : Node
         if (PatientDisplay.Visible == false)
         {
             NoPatientPopup.Show();
-
         }
         //else if (GlobalData.Medicine1Count > 0)
         else if (medicine.amount > 0)
@@ -129,6 +128,7 @@ public partial class TreatmentManager : Node
                     PatientCuredPopup.Show();
                     GlobalData.DailyEarnings += 40;
                     Room.isEmpty = true;
+                    Room.DeletePatient();
                 } 
                 else
                 {
@@ -145,7 +145,6 @@ public partial class TreatmentManager : Node
             GiveMedicine3Button.Disabled = true;
             GlobalData.DailyLockout = true;
         }
-
     }
 
     public void ReenableMedicine()
