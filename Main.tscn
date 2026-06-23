@@ -26,6 +26,7 @@ visible = false
 [node name="Bed" parent="." unique_id=615608472 instance=ExtResource("5_fos0i")]
 
 [node name="Pause" parent="." unique_id=370433973 instance=ExtResource("6_3dxm6")]
+visible = false
 z_index = 100
 
 [node name="Hallway" parent="." unique_id=1664626497 instance=ExtResource("8_trn2v")]

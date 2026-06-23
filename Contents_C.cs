@@ -9,13 +9,18 @@ public partial class Contents_C : Node2D
     Button MapButton;
     Button CatalogueButton;
     Button LogOutButton;
-    Button MoneyAdderButton;
-    Button MoneySubtractorButton;
-    Label MoneyDisplay;
     Label DealerWindow;
+    Button UpgradesButton;
+    Label UpgradesWindow;
+    VBoxContainer UpgradesList;
+    Button AspirinUnlock;
+    Button CloseUpgrades;
+    Button TreatmentResourcesButton;
+    Label ResourcesWindow;
+    Button CloseResources;
     Button CloseDealerWindowButton;
     Label DealerWindowMoneyDisplay;
-    HBoxContainer MedicineContainer;
+    VBoxContainer MedicineContainer;
     GridContainer RoomContainer;
     Button BuyMedicine1Button;
     Button BuyMedicine2Button;
@@ -44,9 +49,12 @@ public partial class Contents_C : Node2D
         MapButton.Pressed += ShowMapWindow;
         CatalogueButton.Pressed += ShowCatalogueWindow;
         LogOutButton.Pressed += LogOut;
-        MoneyAdderButton.Pressed += AddMoney;
-        MoneySubtractorButton.Pressed += SubtractMoney;
+        TreatmentResourcesButton.Pressed += OpenResourcesWindow;
+        UpgradesButton.Pressed += OpenUpgradesWindow;
+        AspirinUnlock.Pressed += UnlockAspirin;
         //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
+        CloseResources.Pressed += () => CloseParent(CloseResources);
+        CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
         CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
         BuyMedicine1Button.Pressed += () => BuyMedicine(BuyMedicine1Button);
         BuyMedicine2Button.Pressed += () => BuyMedicine(BuyMedicine2Button);
@@ -68,15 +76,20 @@ public partial class Contents_C : Node2D
         MapButton = control.GetNode<Button>("Map");
         CatalogueButton = control.GetNode<Button>("Malady_Catalogue");
         LogOutButton = control.GetNode<Button>("Log_out");
-        MoneyAdderButton = control.GetNode<Button>("Money_Adder");
-        MoneySubtractorButton = control.GetNode<Button>("Money_Subtractor");
-        MoneyDisplay = control.GetNode<Label>("Money_Display");
 
         //separate section for everything in the dealer window
         DealerWindow = control.GetNode<Label>("Dealer_PH");
+        UpgradesButton = DealerWindow.GetNode<Button>("Upgrades_Button");
+        UpgradesWindow = DealerWindow.GetNode<Label>("Upgrades_Window");
+        UpgradesList = UpgradesWindow.GetNode<VBoxContainer>("Upgrades_List");
+        AspirinUnlock = UpgradesList.GetNode<Button>("Aspirin_Unlock");
+        CloseUpgrades = UpgradesWindow.GetNode<Button>("Close");
+        TreatmentResourcesButton = DealerWindow.GetNode<Button>("Treatment_Resources_Button");
+        ResourcesWindow = DealerWindow.GetNode<Label>("Resources_Window");
+        CloseResources = ResourcesWindow.GetNode<Button>("Close");
         CloseDealerWindowButton = DealerWindow.GetNode<Button>("Close");
         DealerWindowMoneyDisplay = DealerWindow.GetNode<Label>("Money_Display");
-        MedicineContainer = DealerWindow.GetNode<HBoxContainer>("HBoxContainer");
+        MedicineContainer = ResourcesWindow.GetNode<VBoxContainer>("VBoxContainer");
         BuyMedicine1Button = MedicineContainer.GetNode<Button>("Medicine1");
         BuyMedicine2Button = MedicineContainer.GetNode<Button>("Medicine2");
         BuyMedicine3Button = MedicineContainer.GetNode<Button>("Medicine3");
@@ -126,23 +139,6 @@ public partial class Contents_C : Node2D
         GlobalData.PreviousScenes.Pop();
     }
 
-    //add money, update display
-    private void AddMoney()
-    {
-        DoctorInventory.Money += 10;
-        MoneyDisplay.Text = DoctorInventory.Money.ToString();
-    }
-    //subtract money, update display
-    private void SubtractMoney()
-    {
-        DoctorInventory.Money -= 10;
-        MoneyDisplay.Text = DoctorInventory.Money.ToString();
-    }
-    //update display whenever the display's visibility changes (this is about as infrequently as I can easily make it update while still always being up to date
-    private void _on_money_display_visibility_changed()
-    {
-        MoneyDisplay.Text = DoctorInventory.Money.ToString();
-    }
     //universal method for closing a node's parent, used for all the x's in the top right of popups
     private void CloseParent(Button button)
     {
@@ -161,16 +157,58 @@ public partial class Contents_C : Node2D
     //whenever the dealer window's visibility changes, update the text on the money display and the purchase buttons
     private void _on_dealer_ph_visibility_changed()
     {
-        MoneyDisplay.Text = DoctorInventory.Money.ToString();
-        DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
-
-        BuyMedicine1Button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
-        BuyMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
-        BuyMedicine3Button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
-
-        SelfTreatmentButton.Text = "Self Treatment \n (Price:" + GlobalData.MedicineCost + ")\n \n Owned: " + GlobalData.MedicinePlayer.ToString() + " \n availability in: " + GlobalData.Medicincavailability.ToString();
+        DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
+        
     }
     //semi-modular method for buying every type of medicine
+
+    private void OpenResourcesWindow()
+    {
+        UpgradesWindow.Hide();
+        ResourcesWindow.Show();
+    }
+    private void OpenUpgradesWindow()
+    {
+        ResourcesWindow.Hide();
+        UpgradesWindow.Show();
+    }
+
+    private void UnlockAspirin()
+    {
+        //if you can afford it, unlock aspirin, disables the unlock button, and enables the purchase button
+        if (DoctorInventory.Money >= 50)
+        {
+            Upgrades.UnlockAspirin();
+            AspirinUnlock.Disabled = true;
+            BuyMedicine2Button.Disabled = false;
+            DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
+
+        }
+        else
+        {
+            InsufficientFunds.Show();
+        }
+    }
+    private void _on_resources_window_visibility_changed()
+    {
+        if (ResourcesWindow.Visible)
+        {
+            if (Upgrades.AspirinUnlock == true)
+            {
+                BuyMedicine2Button.Disabled = false;
+                BuyMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
+            }
+            else
+            {
+                BuyMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Currently unavailable";
+            }
+
+            BuyMedicine1Button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
+            BuyMedicine3Button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
+
+            SelfTreatmentButton.Text = "Self Treatment \n (Price:" + GlobalData.MedicineCost + ")\n \n Owned: " + GlobalData.MedicinePlayer.ToString() + " \n availability in: " + GlobalData.Medicincavailability.ToString();
+        }
+    }
     private void BuyMedicine(Button button)
     {
         if (button == BuyMedicine1Button)
@@ -181,7 +219,7 @@ public partial class Contents_C : Node2D
                 DoctorInventory.Money -= MedicineManager.Database["Morphine"].cost;
                 MedicineManager.Database["Morphine"].amount++;
                 button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
-                DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
+                DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
 
                 //if you can't afford it, give em the poor idiot popup
             }
@@ -198,7 +236,7 @@ public partial class Contents_C : Node2D
                 DoctorInventory.Money -= MedicineManager.Database["Aspirin"].cost;
                 MedicineManager.Database["Aspirin"].amount++;
                 button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
-                DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
+                DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
             }
             //if you can't afford it, give em the poor idiot popup
             else
@@ -214,7 +252,7 @@ public partial class Contents_C : Node2D
                 DoctorInventory.Money -= MedicineManager.Database["Ozempic"].cost;
                 MedicineManager.Database["Ozempic"].amount++;
                 button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
-                DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
+                DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
             }
             //if you can't afford it, give em the poor idiot popup
             else
@@ -232,7 +270,7 @@ public partial class Contents_C : Node2D
                 GlobalData.MedicinePlayer++;
                 GlobalData.MedicineCost = GlobalData.MedicineCost * 2; // Increase the cost for the next purchase
                 button.Text = "Self Treatment \n (Price: " + GlobalData.MedicineCost + ") \n \n Owned: " + GlobalData.MedicinePlayer.ToString() + ") \n availability in: " + GlobalData.Medicincavailability.ToString();
-                DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
+                DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
 
             }
             else if (DoctorInventory.Money < GlobalData.MedicineCost)
