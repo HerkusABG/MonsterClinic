@@ -9,15 +9,12 @@ public partial class Contents_O : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-       
-
         // Timer from the scene
         sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
         sceneTimer.OneShot = true;
 
         // connect the signals
         sceneTimer.Timeout += OnSceneTimerTimeout;
-
     }
 
     private void _on_computer_a_pressed()
@@ -73,10 +70,11 @@ public partial class Contents_O : Node2D
         GlobalData.Countdown--;
         var BedScene = (Node2D)GetParent().GetNode("Bed");
         BedScene.Show();
-        
+
 
         //unlock the ability to enable the GiveMedicine buttons by entering the patient room
-        GlobalData.DailyLockout = false;
+        //GlobalData.DailyLockout = false;
+        RoomManager.NewDay();
 
         Hallway hallway = GetParent().GetNode<Hallway>("Hallway");
         hallway.ResetRoomUI();
@@ -96,7 +94,6 @@ public partial class Contents_O : Node2D
             }
             DialogDealer();
         }
-
     }
 
     private void OnSceneTimerTimeout()

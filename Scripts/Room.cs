@@ -32,7 +32,11 @@ public partial class Room : Node2D
 
     public bool isEmpty = true;
 
+    public int myIndex;
+
     public PatientStats Patient;
+
+    public bool alreadyTreated = false;
 
 
     //part of Princess's old stuff, keeping it around just in case

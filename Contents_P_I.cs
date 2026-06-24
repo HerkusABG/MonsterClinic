@@ -46,6 +46,7 @@ public partial class Contents_P_I : Node2D
 
     public override void _Ready()
 	{
+        nullPatient.age = 1000;
         Hide();
         //Grabbing the references to all the buttons
         GetAllButtons();
@@ -219,6 +220,8 @@ public partial class Contents_P_I : Node2D
 
         //  generate new data
         PatientStats patientStats = new PatientStats();
+        GD.Print($"severity is: {patientStats.malady.severity}");
+        
 
         // random tint to the portrait
         PortraitSprite.Modulate = patientStats.PortraitColor;

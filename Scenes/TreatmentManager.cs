@@ -202,6 +202,8 @@ public partial class TreatmentManager : Node
             {
                 //the correct use of the medicine, severity goes down, the text gets updated
                 patient.malady.severity--;
+                UpdateTreatmentText();
+                GD.Print($"Room: {Room.myIndex}");
                 //PatientInfo.Text = "Patient info: \n Malady: " + patient.malady.name + "\n Severity: " + patient.malady.severity; 
                 //if you get the severity down to 0, the patient is cured, you get a popup, and you get paid
                 if (patient.malady.severity <= 0)
@@ -224,9 +226,9 @@ public partial class TreatmentManager : Node
             GiveMedicine1Button.Disabled = true;
             GiveMedicine2Button.Disabled = true;
             GiveMedicine3Button.Disabled = true;
+            Room.alreadyTreated = true;
             GlobalData.DailyLockout = true;
         }
-        UpdateTreatmentText();
     }
 
     public void ReenableMedicine()
@@ -239,5 +241,10 @@ public partial class TreatmentManager : Node
     public void SetTreatmentRoomReference(Room room)
     {
         Room = room;
+    }
+
+    public Room GetRoom()
+    {
+        return Room;
     }
 }

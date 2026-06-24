@@ -57,4 +57,12 @@ public static class RoomManager
         }*/
         return count;
     }
+
+    public static void NewDay()
+    {
+        foreach(Room room in RoomList)
+        {
+            room.alreadyTreated = false;
+        }
+    }
 }
