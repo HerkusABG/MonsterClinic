@@ -91,8 +91,9 @@ public partial class Dialog : Control
 		{
 			// i try to fix the dialog with this but idk it needs to be reseted completly
 			currentIndex = 0;
-			// making the medicine availability random for the player, so he cant spam the self treatment
-			GlobalData.Medicincavailability += availibility;
+            dialog.Text = string.Join("\n", dialogues[0][currentIndex]);
+            // making the medicine availability random for the player, so he cant spam the self treatment
+            GlobalData.Medicincavailability += availibility;
             // when the dialog is finished, the medicine availability is added to the countdown, so it is more balanced for the player
             GlobalData.Countdown = GlobalData.Countdown + GlobalData.Medicincavailability;
 			// the dialog is set to false, so it can only be spawned once
