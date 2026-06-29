@@ -4,60 +4,69 @@ using System.Collections.Generic;
 
 public partial class Main : Node
 {
-    Node2D Office;
-    Node2D Computer;
-    Node2D PatientInterface;
-    Node2D PatientRoom;
-    Node2D Bed;
-    Node2D Pause;
-    Node2D Inventory;
+    Contents_O Office;
+    Contents_C Computer;
+    Contents_P_I PatientInterface;
+    //Node2D PatientRoom;
+    Bed Bed;
+    PauseMenu PauseMenu;
+    Inventory Inventory;
+    Hallway Hallway;
     TreatmentManager Treatment;
-// Called when the node enters the scene tree for the first time.
     [Export] Control RoomControl;
     int finalRoomCount = 6;
-	// Called when the node enters the scene tree for the first time.
+
+    //Since Main is the the main node, everything should be initialized here.
+    //Methods shouldn't use their individual "_Ready()" methods, unless
+    //it is absolutely necessary. This is to insure a very clear flow of actions.
+    //Otherwise a _Ready method of one class can be executed before its parent and cause some issues.
 	public override void _Ready()
 	{
-        InitializeAllData();
-        GetNodes();
-
-        //always keep the office at the bottom of the previous scenes stack, so the reference on how to return to it is always there
-        GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
-        GeneratePatientRooms(RoomControl);
-        
+        Initialize();
 	}
 
     private void GetNodes()
     {
-        Office = GetNode<Node2D>("Office");
-        Computer = GetNode<Node2D>("Computer");
-        PatientInterface = GetNode<Node2D>("Patient_Interface");
-        PatientRoom = GetNode<Node2D>("Room");
-        Bed = GetNode<Node2D>("Bed");
-        Pause = GetNode<Node2D>("Pause");
-        Inventory = GetNode<Node2D>("Inventory");
-        Inventory inv = Inventory as Inventory;
-        inv.Initialize();
-        Treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
+        Office = GetNode<Contents_O>("Office");
+        Computer = GetNode<Contents_C>("Computer");
+        PatientInterface = GetNode<Contents_P_I>("Patient_Interface");
+        //PatientRoom = GetNode<Node2D>("Room");
+        Bed = GetNode<Bed>("Bed");
+        PauseMenu = GetNode<PauseMenu>("Pause");
+        Inventory = GetNode<Inventory>("Inventory");
+        Hallway = GetNode<Hallway>("Hallway");
+        Treatment = Inventory.GetNode<TreatmentManager>("Treatment_Manager");
     }
-    private void InitializeAllData()
+    private void Initialize()
     {
-        GD.Print("init!");
+        GD.Print("Initialize Main");
+        GetNodes();
+        //always keep the office at the bottom of the previous scenes stack, so the reference on how to return to it is always there
+        GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
+        InitializeChildren();
+        GeneratePatientRooms(RoomControl);
+    }
+
+    private void InitializeChildren()
+    {
         RoomManager.Initialize();
-        Hallway hallway = GetNode<Node2D>("Hallway") as Hallway;
-        hallway.HallwayInitialize();
-        //GD.Print("Line 44 in Main.cs");
+        Office.Initialize();
+        Computer.Initialize();
+        PatientInterface.Initialize();
+        Hallway.Initialize();
+        Bed.Initialize();
+        PauseMenu.Initialize();
+        Inventory.Initialize();
     }
 
     private void GeneratePatientRooms(Control roomControl)
     {
-        var patientRoom = (Node2D)GetNode("Room");
+        var patientRoom = (Node2D)GetNode("RoomTemplate");
         Random random = new Random();
         for (int i = 0; i < finalRoomCount; i++)
         {
             Node2D newRoom = (Node2D)patientRoom.Duplicate();
             newRoom.Hide();
-            //newRoom.Modulate = new Color((float)(random.NextDouble()), (float)(random.NextDouble()), 0, 1);
             roomControl.AddChild(newRoom);
             RoomManager.RoomList.Add(newRoom);
             Room room = newRoom as Room;
@@ -70,7 +79,7 @@ public partial class Main : Node
         if (@event is InputEventMouseButton eventKey)
         {
             //if a key is pressed and that key is the right mouse button, and if the pause menu and the office aren't visible
-            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && Pause.Visible == false && Office.Visible == false)
+            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && Office.Visible == false)
             {
                 //pop a scene from the previous scenes stack, this is the scene currently in use
                 var current_scene = (Node2D)GetNode(GlobalData.PreviousScenes.Pop().ToString());
@@ -174,12 +183,6 @@ public partial class Main : Node
             GiveMedicine1Button.Disabled = true;
             GiveMedicine2Button.Disabled = true;
             GiveMedicine3Button.Disabled = true;
-
         }
     }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-	{
-	}
 }

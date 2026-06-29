@@ -24,16 +24,26 @@ public partial class Inventory : Node2D
         //grabs references to all the necessary nodes
         GetNodes();
 
+        InitializeChildren();
+
+        Subscribe();
+
+        //disables the shotgun until we're in the patient room
+        ShotgunButton.Disabled = true;
+    }
+
+    private void InitializeChildren()
+    {
         TreatmentManager treatment = GetNode<TreatmentManager>("Treatment_Manager");
         treatment.Initialize();
+    }
 
+    private void Subscribe()
+    {
         //assigning methods to all the buttons
         InventoryButton.Pressed += InventoryToggle;
         ShotgunButton.Pressed += KillPatient;
         Close.Pressed += () => CloseInventory(Close);
-
-        //disables the shotgun until we're in the patient room
-        ShotgunButton.Disabled = true;
     }
 
 

@@ -44,16 +44,28 @@ public partial class Contents_P_I : Node2D
 
     PatientStats nullPatient = new PatientStats();
 
-    public override void _Ready()
+    public void Initialize()
 	{
         nullPatient.age = 1000;
         Hide();
         //Grabbing the references to all the buttons
-        GetAllButtons();
+        GetNodes();
         //Grabbing the patient stats.
         NewDay(false);
         PatientPointer = GenerateNewPatient();
 
+        Subscribe();
+        VisitButton.Disabled = true;
+
+        InitializeChildren();
+
+        //Hiding the inventory and the "DECEASED" sprites which show up when patient is killed.
+        DeceasedSprite1.Hide();
+        InventoryContainer.Hide();
+    }
+
+    private void Subscribe()
+    {
         //Assigning functionality to each of the buttons.
         ReturnButton.Pressed += ReturnToOffice;
         DialogueButton.Pressed += ShowSpeechDialogue;
@@ -64,11 +76,15 @@ public partial class Contents_P_I : Node2D
         DiagnosisButton.Pressed += ShowSpeechDiagnosis;
 
         VisitButton.Pressed += VisitLatestPatient;
-        VisitButton.Disabled = true;
+    }
 
-        //Hiding the inventory and the "DECEASED" sprites which show up when patient is killed.
-        DeceasedSprite1.Hide();
-        InventoryContainer.Hide();
+    private void InitializeChildren()
+    {
+        SpeechManagerAccess.Initialize();
+        AdmissionManagerAccess.Initialize();
+        Diagnosis.Initialize();
+        Reject reject = RejectButton as Reject;
+        reject.Initialize();
     }
 
     public void UpdatePatientInterfaceUI()
@@ -84,7 +100,7 @@ public partial class Contents_P_I : Node2D
         }
     }
 
-    private void GetAllButtons()
+    private void GetNodes()
     {
         //Basically just grabbing all buttons. I have to reference the control because
         //otherwise they wouldn't be found.

@@ -1,4 +1,5 @@
 using Godot;
+using GodotPlugins.Game;
 using System;
 using System.Collections.Generic;
 
@@ -11,19 +12,32 @@ public partial class Hallway : Node2D
 
     public int testInt = 69;
     [Export] Button LeaveRoomButton;
-    public void HallwayInitialize()
+    public void Initialize()
 	{
+        GetNodes();
+
+        Subscribe();
+
+        DoorInitialize();
+    }
+
+    private void GetNodes()
+    {
         HallwayControl = GetNode<Control>("HallwayControl");
         LeaveButton = HallwayControl.GetNode<Button>("Leave_Room");
         DoorControl = HallwayControl.GetNode<Control>("DoorControl");
+    }
 
+    private void Subscribe()
+    {
         LeaveRoomButton.MouseEntered += HoverOn;
         LeaveRoomButton.MouseExited += HoverOff;
         LeaveRoomButton.Pressed += LeaveRoom;
+    }
 
-        GD.Print(GetParent().Name);
+    private void DoorInitialize()
+    {
         Main main = GetParent() as Main;
-
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         //Doors
@@ -125,6 +139,4 @@ public partial class Hallway : Node2D
         //makes the text disappear when you stop hovering
         LeaveRoomButton.Text = "";
     }
-
-    
 }

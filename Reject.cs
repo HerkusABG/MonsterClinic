@@ -5,9 +5,8 @@ public partial class Reject : Button
 {
     [Export] public Contents_P_I PatientManager; 
 
-    public override void _Ready()
+    public void Initialize()
     {
-        
         Pressed += OnRejectPressed;
     }
 

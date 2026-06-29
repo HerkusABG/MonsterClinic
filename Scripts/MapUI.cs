@@ -16,7 +16,7 @@ public partial class MapUI : Control
     RoomStructureRenderer RoomRenderer;
 
 
-    public override void _Ready()
+    public void Initialize()
     {
         UpdateUI();
         WarningLabel.Visible = false;

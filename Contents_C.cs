@@ -36,35 +36,17 @@ public partial class Contents_C : Node2D
     Button CloseCatalogueWindow;
 
 
-
-
     // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+    public void Initialize()
     {
         //grabs references to all the necessary nodes
         GetNodes();
 
-        //assigning methods to all the buttons
-        DealerButton.Pressed += ShowDealerWindow;
-        MapButton.Pressed += ShowMapWindow;
-        CatalogueButton.Pressed += ShowCatalogueWindow;
-        LogOutButton.Pressed += LogOut;
-        TreatmentResourcesButton.Pressed += OpenResourcesWindow;
-        UpgradesButton.Pressed += OpenUpgradesWindow;
-        AspirinUnlock.Pressed += UnlockAspirin;
-        //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
-        CloseResources.Pressed += () => CloseParent(CloseResources);
-        CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
-        CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
-        BuyMedicine1Button.Pressed += () => BuyMedicine(BuyMedicine1Button);
-        BuyMedicine2Button.Pressed += () => BuyMedicine(BuyMedicine2Button);
-        BuyMedicine3Button.Pressed += () => BuyMedicine(BuyMedicine3Button);
-        CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
-        SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
-        CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
-        CloseMapWindow.Pressed += DebugBla;
-        CloseCatalogueWindow.Pressed += () => CloseParent(CloseCatalogueWindow) ;
+        //Assigns methods to button actions
+        Subscribe();
 
+        //Initializing any children with their own scripts
+        InitializeChildren();
     }
 
     private void GetNodes()
@@ -107,7 +89,35 @@ public partial class Contents_C : Node2D
         //separate section for the malady catalogue
         CatalogueWindow = control.GetNode<Label>("Malady_PH");
         CloseCatalogueWindow = CatalogueWindow.GetNode<Button>("Close");
+    }
 
+    private void InitializeChildren()
+    {
+        MapUI mapUI = MapControl as MapUI;
+        mapUI.Initialize();
+    }
+
+    private void Subscribe()
+    {
+        //assigning methods to all the buttons
+        DealerButton.Pressed += ShowDealerWindow;
+        MapButton.Pressed += ShowMapWindow;
+        CatalogueButton.Pressed += ShowCatalogueWindow;
+        LogOutButton.Pressed += LogOut;
+        TreatmentResourcesButton.Pressed += OpenResourcesWindow;
+        UpgradesButton.Pressed += OpenUpgradesWindow;
+        AspirinUnlock.Pressed += UnlockAspirin;
+        //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
+        CloseResources.Pressed += () => CloseParent(CloseResources);
+        CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
+        CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
+        BuyMedicine1Button.Pressed += () => BuyMedicine(BuyMedicine1Button);
+        BuyMedicine2Button.Pressed += () => BuyMedicine(BuyMedicine2Button);
+        BuyMedicine3Button.Pressed += () => BuyMedicine(BuyMedicine3Button);
+        CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
+        SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
+        CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
+        CloseCatalogueWindow.Pressed += () => CloseParent(CloseCatalogueWindow);
     }
 
     private void DebugBla()

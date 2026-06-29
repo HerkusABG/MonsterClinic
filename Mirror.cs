@@ -20,8 +20,8 @@ public partial class Mirror : TextureButton
     GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman2.png"),
     GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman3.png"),
     GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman4.png")
-};
-    public override void _Ready()
+    };
+    public void Initialize()
     {
         // Grabbing all the mirror references
         // MirrorButton reference is unecessary and should just be replaced with "this"

@@ -16,7 +16,7 @@ public partial class PauseMenu : Node2D
 	bool escBlock = false;
 	bool escBlockSetup = false;
     
-    public override void _Ready()
+    public void Initialize()
 	{
 		SaveSystem.LoadFile_Settings();
         //grabs references to all the necessary nodes
@@ -25,10 +25,7 @@ public partial class PauseMenu : Node2D
         var get = GetNode<Control>("Spawn_Options");
 		get.Hide();
 
-		CheatsButton.Pressed += ShowCheats;
-		MoneyAdder.Pressed += AddMoney;
-		MoneySubtractor.Pressed += SubtractMoney;
-		CloseCheats.Pressed += () => CloseParent(CloseCheats);
+		Subscribe();
     }
 
 	private void GetNodes()
@@ -40,6 +37,14 @@ public partial class PauseMenu : Node2D
 		MoneyAdder = CheatsBackground.GetNode<Button>("Money_Adder");
 		MoneySubtractor = CheatsBackground.GetNode<Button>("Money_Subtractor");
 		CloseCheats = CheatsBackground.GetNode<Button>("Close");
+    }
+
+	private void Subscribe()
+	{
+        CheatsButton.Pressed += ShowCheats;
+        MoneyAdder.Pressed += AddMoney;
+        MoneySubtractor.Pressed += SubtractMoney;
+        CloseCheats.Pressed += () => CloseParent(CloseCheats);
     }
 
 	public override void _UnhandledInput(InputEvent @event)
