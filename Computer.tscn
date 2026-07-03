@@ -161,7 +161,6 @@ text = "Treatment Resources
 "
 
 [node name="Upgrades_Window" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=1992268291]
-visible = false
 layout_mode = 0
 offset_left = 733.0
 offset_top = 81.0
@@ -428,10 +427,10 @@ text = "X"
 
 [node name="MapMarginContainer" type="MarginContainer" parent="Player_Interactables_C/MapControl" unique_id=592572288]
 layout_mode = 0
-offset_left = 270.0
-offset_top = 297.0
-offset_right = 1270.0
-offset_bottom = 797.0
+offset_left = 454.0
+offset_top = 442.0
+offset_right = 1454.0
+offset_bottom = 942.0
 
 [node name="RoomContainer" type="GridContainer" parent="Player_Interactables_C/MapControl/MapMarginContainer" unique_id=38451968]
 custom_minimum_size = Vector2(500, 500)
@@ -441,9 +440,72 @@ columns = 3
 [node name="Panel" type="Panel" parent="Player_Interactables_C/MapControl" unique_id=517128099]
 z_index = -1
 layout_mode = 0
-offset_right = 1800.0
-offset_bottom = 1000.0
+offset_left = 13.0
+offset_top = 8.0
+offset_right = 1813.0
+offset_bottom = 1008.0
 mouse_filter = 2
+
+[node name="Room_Info" type="Label" parent="Player_Interactables_C/MapControl" unique_id=258169761]
+visible = false
+layout_mode = 0
+offset_left = 440.0
+offset_top = 63.0
+offset_right = 1466.0
+offset_bottom = 430.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Button" parent="Player_Interactables_C/MapControl/Room_Info" unique_id=461160945]
+layout_mode = 0
+offset_left = 975.0
+offset_top = 2.0
+offset_right = 1025.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
+text = "X"
+
+[node name="Patient_Info" type="Label" parent="Player_Interactables_C/MapControl/Room_Info" unique_id=1994373784]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 0
+offset_left = 517.0
+offset_top = 124.0
+offset_right = 821.0
+offset_bottom = 323.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Room_Number_Display" type="Label" parent="Player_Interactables_C/MapControl/Room_Info" unique_id=114264722]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 0
+offset_left = 321.0
+offset_top = 20.0
+offset_right = 666.0
+offset_bottom = 97.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fast_Travel" type="Button" parent="Player_Interactables_C/MapControl/Room_Info" unique_id=2138119426]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 0
+offset_left = 250.0
+offset_top = 170.0
+offset_right = 458.0
+offset_bottom = 261.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+text = "Fast Travel"
 
 [node name="Malady_PH" type="Label" parent="Player_Interactables_C" unique_id=1235186100]
 visible = false
@@ -505,3 +567,4 @@ text = "Insufficient funds :("
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine2" method="_on_dealer_ph_visibility_changed"]
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine3" method="_on_dealer_ph_visibility_changed"]
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH/Resources_Window" to="." method="_on_resources_window_visibility_changed"]
+[connection signal="visibility_changed" from="Player_Interactables_C/MapControl" to="Player_Interactables_C/MapControl" method="_on_visibility_changed"]

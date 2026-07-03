@@ -13,6 +13,7 @@ public partial class RoomStructureRenderer
         for (int i = 0; i < amount; i++)
         {
             Button newButton = new Button();
+            newButton.Name = "MapRoom" + amount;
             newButton.Modulate = new Color(1, 0, 0, 1);
             newButton.CustomMinimumSize = new Vector2(150, 150);
             //newButton.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
@@ -27,6 +28,7 @@ public partial class RoomStructureRenderer
     public void GenerateRoom(GridContainer container)
     {
         Button newButton = new Button();
+        newButton.Name = "MapRoom" + Upgrades.roomCount.ToString();
         newButton.Modulate = new Color(1, 0, 0, 1);
         newButton.CustomMinimumSize = new Vector2(150, 150);
         newButton.Text = $"Room {Upgrades.roomCount}";
