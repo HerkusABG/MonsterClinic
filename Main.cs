@@ -21,6 +21,9 @@ public partial class Main : Node
         InitializeAllData();
         GetNodes();
 
+        //uncomment after the related issue in MapUI is resolved
+        //Upgrades.NewGameRoomReset();
+
         //always keep the office at the bottom of the previous scenes stack, so the reference on how to return to it is always there
         GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
         GeneratePatientRooms(RoomControl);
@@ -148,6 +151,14 @@ public partial class Main : Node
             GiveMedicine2Button.Disabled = true;
             GiveMedicine3Button.Disabled = true;
 
+        }
+    }
+
+    private void _on_computer_visibility_changed()
+    {
+        if (Computer.Visible)
+        {
+            Inventory.Hide();
         }
     }
 

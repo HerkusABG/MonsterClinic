@@ -46,5 +46,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [connection signal="visibility_changed" from="Office" to="." method="_on_office_visibility_changed"]
+[connection signal="visibility_changed" from="Computer" to="." method="_on_computer_visibility_changed"]
 [connection signal="visibility_changed" from="Patient_Interface" to="." method="_on_patient_interface_visibility_changed"]
 [connection signal="visibility_changed" from="Room" to="." method="_on_room_visibility_changed"]

@@ -2,6 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dgsevwbdax2t4" path="res://Contents_C.cs" id="1_tjl6a"]
 [ext_resource type="Texture2D" uid="uid://0dsxnlqxdang" path="res://Assets/2D Art/Desktop_PH.PNG" id="2_7s1hw"]
+[ext_resource type="Texture2D" uid="uid://ck5pltj8yh3oh" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_Blockout.png" id="4_nyaym"]
+[ext_resource type="Texture2D" uid="uid://b5e6gugoptsp5" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_HL_Blockout.png" id="5_dekc5"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="6_vjhme"]
+[ext_resource type="Texture2D" uid="uid://bbyfolabl5n1k" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Label_Counter_Blockout.png" id="7_gbitc"]
+[ext_resource type="Texture2D" uid="uid://0p8gc3ax8rmb" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Pocket_Blockout.png" id="8_arhto"]
+[ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="9_vjhme"]
+[ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="10_gbitc"]
 [ext_resource type="Script" uid="uid://08n5ukorqdyk" path="res://ScrollCatalog.cs" id="15_vbt5y"]
 [ext_resource type="Script" uid="uid://bho5a8iwfj3pn" path="res://Scripts/MapUI.cs" id="16_l232m"]
 
@@ -119,7 +126,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Log out"
 
 [node name="Dealer_PH" type="Label" parent="Player_Interactables_C" unique_id=1842103304]
-visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 40.0
@@ -189,6 +195,18 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Unlock Aspirin for purchase
 
 Price: 50"
+
+[node name="Remote_Medicine_Unlock" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=1337456623]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+text = "Unlock treating 
+patients from the map
+
+Price: 200"
 
 [node name="Upgrades_Text" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=629698831]
 layout_mode = 0
@@ -398,7 +416,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
 
-[node name="MapControl" type="Control" parent="Player_Interactables_C" unique_id=395133012 node_paths=PackedStringArray("RoomCount", "PatientCount", "BuyRoomButton", "WarningLabel", "RoomContainer")]
+[node name="MapControl" type="Control" parent="Player_Interactables_C" unique_id=395133012 node_paths=PackedStringArray("RoomCount", "PatientCount", "BuyRoomButton", "WarningLabel", "RoomContainer1", "RoomContainer2")]
 visible = false
 z_index = 2
 anchors_preset = 0
@@ -411,7 +429,8 @@ RoomCount = NodePath("../Dealer_PH/Upgrades_Window/Rooms_Text/RoomBox/RoomCount"
 PatientCount = NodePath("../Dealer_PH/Upgrades_Window/Rooms_Text/RoomBox/PatientCount")
 BuyRoomButton = NodePath("../Dealer_PH/Upgrades_Window/Rooms_Text/RoomBox/BuyRoomButton")
 WarningLabel = NodePath("../../MapUI/WarningLabel")
-RoomContainer = NodePath("MapMarginContainer/RoomContainer")
+RoomContainer1 = NodePath("MapMarginContainer/RoomContainer")
+RoomContainer2 = NodePath("MapMarginContainer2/RoomContainer2")
 
 [node name="Close" type="Button" parent="Player_Interactables_C/MapControl" unique_id=834944]
 z_index = 2
@@ -427,13 +446,13 @@ text = "X"
 
 [node name="MapMarginContainer" type="MarginContainer" parent="Player_Interactables_C/MapControl" unique_id=592572288]
 layout_mode = 0
-offset_left = 454.0
-offset_top = 442.0
-offset_right = 1454.0
-offset_bottom = 942.0
+offset_left = 605.0
+offset_top = 443.0
+offset_right = 1605.0
+offset_bottom = 593.0
 
 [node name="RoomContainer" type="GridContainer" parent="Player_Interactables_C/MapControl/MapMarginContainer" unique_id=38451968]
-custom_minimum_size = Vector2(500, 500)
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 columns = 3
 
@@ -447,7 +466,6 @@ offset_bottom = 1008.0
 mouse_filter = 2
 
 [node name="Room_Info" type="Label" parent="Player_Interactables_C/MapControl" unique_id=258169761]
-visible = false
 layout_mode = 0
 offset_left = 440.0
 offset_top = 63.0
@@ -506,6 +524,223 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Fast Travel"
+
+[node name="Map_Office" type="Button" parent="Player_Interactables_C/MapControl" unique_id=1717215790]
+modulate = Color(1.353256, 0, 0, 1)
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 450.0
+offset_top = 598.0
+offset_right = 600.0
+offset_bottom = 748.0
+text = "Office"
+
+[node name="Map_Patient_Admission" type="Button" parent="Player_Interactables_C/MapControl" unique_id=255644889]
+modulate = Color(1.353256, 0, 0, 1)
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 450.0
+offset_top = 753.0
+offset_right = 600.0
+offset_bottom = 903.0
+text = "Patient
+Admission"
+
+[node name="MapMarginContainer2" type="MarginContainer" parent="Player_Interactables_C/MapControl" unique_id=1930394601]
+layout_mode = 0
+offset_left = 605.0
+offset_top = 753.0
+offset_right = 1605.0
+offset_bottom = 903.0
+
+[node name="RoomContainer2" type="GridContainer" parent="Player_Interactables_C/MapControl/MapMarginContainer2" unique_id=1914773544]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+columns = 3
+
+[node name="Map_Hallway" type="Button" parent="Player_Interactables_C/MapControl" unique_id=140827903]
+modulate = Color(1.353256, 0, 0, 1)
+custom_minimum_size = Vector2(458, 150)
+layout_mode = 0
+offset_left = 605.0
+offset_top = 598.0
+offset_right = 1063.0
+offset_bottom = 748.0
+text = "Hallway"
+
+[node name="Medicine_Menu" type="Label" parent="Player_Interactables_C/MapControl" unique_id=2019407629]
+visible = false
+layout_mode = 0
+offset_left = 1499.0
+offset_top = 129.0
+offset_right = 1745.0
+offset_bottom = 803.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmptySlot1" type="TextureRect" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=1288034118]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 22.0
+offset_top = 453.0
+offset_right = 427.0
+offset_bottom = 862.9999
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_arhto")
+
+[node name="Give_Medicine_1" type="TextureButton" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=1609194954]
+z_index = 1
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 458.0
+offset_right = 262.30762
+offset_bottom = 694.0
+scale = Vector2(0.813, 0.813)
+texture_normal = ExtResource("4_nyaym")
+texture_hover = ExtResource("5_dekc5")
+
+[node name="Med1_Name" type="Label" parent="Player_Interactables_C/MapControl/Medicine_Menu/Give_Medicine_1" unique_id=1340512820]
+layout_mode = 0
+offset_left = 1.5384474
+offset_top = 43.07693
+offset_right = 210.76941
+offset_bottom = 252.30765
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_vjhme")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stripe" type="TextureRect" parent="Player_Interactables_C/MapControl/Medicine_Menu/Give_Medicine_1" unique_id=595771045]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 92.30769
+offset_right = 250.0
+offset_bottom = 262.30768
+texture = ExtResource("7_gbitc")
+
+[node name="Med1_Count" type="Label" parent="Player_Interactables_C/MapControl/Medicine_Menu/Give_Medicine_1/Stripe" unique_id=1009407708]
+layout_mode = 0
+offset_left = 43.076912
+offset_top = 3.07693
+offset_right = 252.30786
+offset_bottom = 212.30765
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_vjhme")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmptySlot2" type="TextureRect" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=1264032658]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 22.0
+offset_top = 250.0
+offset_right = 427.0
+offset_bottom = 659.9999
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_arhto")
+
+[node name="Give_Medicine_2" type="TextureButton" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=1177729719]
+z_index = 1
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 250.0
+offset_right = 260.7693
+offset_bottom = 486.0
+scale = Vector2(0.813, 0.813)
+texture_normal = ExtResource("4_nyaym")
+texture_hover = ExtResource("5_dekc5")
+
+[node name="Med2_Name" type="Label" parent="Player_Interactables_C/MapControl/Medicine_Menu/Give_Medicine_2" unique_id=478250917]
+layout_mode = 0
+offset_left = 1.5384474
+offset_top = 41.538467
+offset_right = 210.76941
+offset_bottom = 250.76918
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_vjhme")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stripe" type="TextureRect" parent="Player_Interactables_C/MapControl/Medicine_Menu/Give_Medicine_2" unique_id=744632170]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 96.92307
+offset_right = 250.0
+offset_bottom = 266.92307
+texture = ExtResource("7_gbitc")
+
+[node name="Med2_Count" type="Label" parent="Player_Interactables_C/MapControl/Medicine_Menu/Give_Medicine_2/Stripe" unique_id=1938354582]
+layout_mode = 0
+offset_left = 43.076912
+offset_top = 3.07693
+offset_right = 252.30786
+offset_bottom = 212.30765
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_vjhme")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmptySlot3" type="TextureRect" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=1962372284]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 22.0
+offset_top = 47.0
+offset_right = 427.0
+offset_bottom = 456.99988
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_arhto")
+
+[node name="Give_Medicine_3" type="TextureButton" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=1549283926]
+z_index = 1
+custom_minimum_size = Vector2(170, 150)
+layout_mode = 0
+offset_left = 30.0
+offset_top = 61.0
+offset_right = 260.7693
+offset_bottom = 287.15387
+scale = Vector2(0.813, 0.813)
+texture_normal = ExtResource("9_vjhme")
+texture_hover = ExtResource("10_gbitc")
+
+[node name="Med3_Name" type="Label" parent="Player_Interactables_C/MapControl/Medicine_Menu/Give_Medicine_3" unique_id=1360227709]
+layout_mode = 0
+offset_left = -1.538476
+offset_top = 35.38462
+offset_right = 207.69247
+offset_bottom = 244.61533
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_vjhme")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stripe" type="TextureRect" parent="Player_Interactables_C/MapControl/Medicine_Menu/Give_Medicine_3" unique_id=1113717013]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 80.000046
+offset_right = 250.0
+offset_bottom = 250.00005
+texture = ExtResource("7_gbitc")
+
+[node name="Med3_Count" type="Label" parent="Player_Interactables_C/MapControl/Medicine_Menu/Give_Medicine_3/Stripe" unique_id=468754862]
+layout_mode = 0
+offset_left = 43.076912
+offset_top = 3.07693
+offset_right = 252.30786
+offset_bottom = 212.30765
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_vjhme")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Malady_PH" type="Label" parent="Player_Interactables_C" unique_id=1235186100]
 visible = false

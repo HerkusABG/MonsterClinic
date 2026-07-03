@@ -56,6 +56,16 @@ public partial class Hallway : Node2D
         Room room = RoomScene as Room;
         room.UpdatePatientInfoLabel();
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        //extra safeguards to ensure the medicine buttons are disabled if the room's patient has already been treated that day, since now they can also be treated from the map
+        TextureButton GiveMedicine1Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
+        TextureButton GiveMedicine2Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
+        TextureButton GiveMedicine3Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
+        if (room.alreadyTreated)
+        {
+            GiveMedicine1Button.Disabled = true;
+            GiveMedicine2Button.Disabled = true;
+            GiveMedicine3Button.Disabled = true;
+        }
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
         //push the scene we're entering to the previous scenes stack
@@ -72,6 +82,16 @@ public partial class Hallway : Node2D
         Room room = roomInput as Room;
         room.UpdatePatientInfoLabel();
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        //extra safeguards to ensure the medicine buttons are disabled if the room's patient has already been treated that day, since now they can also be treated from the map
+        TextureButton GiveMedicine1Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
+        TextureButton GiveMedicine2Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
+        TextureButton GiveMedicine3Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
+        if (room.alreadyTreated)
+        {
+            GiveMedicine1Button.Disabled = true;
+            GiveMedicine2Button.Disabled = true;
+            GiveMedicine3Button.Disabled = true;
+        }
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
         //treatment.ShowUI();

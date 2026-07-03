@@ -12,6 +12,14 @@ static class Upgrades
 	public static bool AspirinUnlock = false;
 	public static int newPatientSlots { get; private set; } = 3;
 
+	public static bool RemoteMedicineUnlock { get; private set; } = false;
+
+	//resets room count to one, should be used when starting a new game, else there's some issues
+	public static void NewGameRoomReset()
+	{
+		roomCount = 1;
+	}
+
 	public static void AddNewRoom()
 	{
 		if (roomCount <= 6)
@@ -26,5 +34,12 @@ static class Upgrades
             Upgrades.AspirinUnlock = true;
             DoctorInventory.Money -= 50;
     }
+
+	//unlock remote medicine use, pay for it
+	public static void UnlockRemoteMedicine()
+	{
+		RemoteMedicineUnlock = true;
+		DoctorInventory.Money -= 200;
+	}
 
 }
