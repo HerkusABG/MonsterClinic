@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bo2mf17bn6x0f"]
+
+[ext_resource type="Script" uid="uid://b1lwngvg0m2g4" path="res://Scripts/TutorialOverlay.cs" id="1_q1ee5"]
+[ext_resource type="Script" uid="uid://vf6liolyikpx" path="res://Scripts/PatientSignal.cs" id="2_0plre"]
+
+[node name="Node" type="CanvasLayer" unique_id=1773699143]
+script = ExtResource("1_q1ee5")
+
+[node name="Control" type="Control" parent="." unique_id=709605661]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_0plre")
+
+[node name="Label" type="Label" parent="Control" unique_id=727472546]
+layout_mode = 0
+offset_right = 468.0
+offset_bottom = 509.0
