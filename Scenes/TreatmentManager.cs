@@ -94,9 +94,7 @@ public partial class TreatmentManager : Node
         //in this specific case, we also remove the patient and reset patient malady data
         if (button == ClosePatientCuredPopup)
         {
-            PatientDisplay.Hide();
-            PatientInfo.Hide();
-
+            Room.UpdateSprites();
             //GlobalData.CurrentPatientMalady = "none";
             //GlobalData.CurrentPatientSeverity = 0;
         }
@@ -130,6 +128,7 @@ public partial class TreatmentManager : Node
 
     private void MedicineOperations(TextureButton medicineChoice)
 	{
+        GD.Print("medicine operations");
         //setting up crucial parameters of a medicine, and changing them depending on which medicine is being usesd
         Medicine medicine = null;
         string matchingMalady = "none";
@@ -146,7 +145,7 @@ public partial class TreatmentManager : Node
         else if (medicineChoice == GiveMedicine2Button)
         {
             medicine = MedicineManager.Database["Aspirin"];
-            matchingMalady = "an ccident";
+            matchingMalady = "an accident";
             nameBox = Med2Name;
             countBox = Med2Count;
         }
@@ -158,10 +157,10 @@ public partial class TreatmentManager : Node
             countBox = Med3Count;
         }
 
-        /*if (PatientDisplay.Visible == false)
+        if (!Room.HasPatient())
         {
             NoPatientPopup.Show();
-        }*/
+        }
         //else if (GlobalData.Medicine1Count > 0)
         else if (medicine.amount > 0)
         {
@@ -192,7 +191,6 @@ public partial class TreatmentManager : Node
                     GlobalData.patientCount--;
                     PatientCuredPopup.Show();
                     GlobalData.DailyEarnings += 40;
-                    Room.isEmpty = true;
                     Room.DeletePatient();
                 } 
                 else
@@ -203,6 +201,7 @@ public partial class TreatmentManager : Node
                     CorrectMedicinePopup.Show();
                 }
             }
+            Room.UpdateSprites();
             //disable the buttons, and prevent them form being reenabled by switching scenes until the lockout is disabled by going to bed
             GiveMedicine1Button.Disabled = true;
             GiveMedicine2Button.Disabled = true;

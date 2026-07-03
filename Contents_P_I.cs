@@ -246,6 +246,7 @@ public partial class Contents_P_I : Node2D
         {
             PatientsLeftLabel.Text = $"Patients left: {patients}";
             PatientPointer = AdmissionManagerAccess.GenerateNewPatient();
+            GD.Print($"GUGU is: {PatientPointer.malady.severity}");
         }
         else
         {

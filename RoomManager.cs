@@ -18,9 +18,8 @@ public static class RoomManager
         for (int i = 0; i < Upgrades.roomCount; i++)
         {
             Room room = RoomList[i] as Room;
-            if(room.isEmpty)
+            if(!room.HasPatient())
             {
-                room.isEmpty = false;
                 return room;
             }
         }
@@ -42,7 +41,7 @@ public static class RoomManager
         for(int i = 0; i < Upgrades.roomCount; i++)
         {
             Room room = RoomList[i] as Room;
-            if (room.isEmpty)
+            if (!room.HasPatient())
             {
                 count++;
             }

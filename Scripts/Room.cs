@@ -9,7 +9,7 @@ public partial class Room : Node2D
     [Export] Sprite2D PatientDisplay;
     [Export] Label PatientInfo;
 
-    public bool isEmpty = true;
+    private bool isEmpty = true;
 
     public int myIndex;
 
@@ -45,7 +45,8 @@ public partial class Room : Node2D
 
     public void OnRoomEnter()
     {
-        GD.Print("On room enter");
+        //GD.Print("On room enter");
+        //GD.Print($"My severity is: {Patient.malady.severity}");
         UpdateSprites();
     }
     private void HoverOff()
@@ -86,9 +87,13 @@ public partial class Room : Node2D
             SetPatientUIStatus(true);
             SetPatientRoomText();
         }
+        else
+        {
+            SetPatientUIStatus(false);
+        }
     }
 
-    public void SetPatientUIStatus(bool status)
+    private void SetPatientUIStatus(bool status)
     {
         if(status)
         {
@@ -115,6 +120,13 @@ public partial class Room : Node2D
     public void DeletePatient()
     {
         Patient = null;
+        isEmpty = true;
+    }
+
+    public void AssignPatient(PatientStats patient)
+    {
+        Patient = patient;
+        isEmpty = false;
     }
 
     /*public void UpdateTreatmentText()

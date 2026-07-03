@@ -30,14 +30,14 @@ public partial class AdmissionManager : Node
             var roomNode = RoomManager.FindEmptyRoom();
             if (roomNode != null)
             {
-                Inventory inv = GetParent().GetParent().GetNode<Inventory>("Inventory");
-                TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
+                //Inventory inv = GetParent().GetParent().GetNode<Inventory>("Inventory");
+                //TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
 
                 Room room = roomNode as Room;
                 //treatment.SetTreatmentRoomReference(room);
                 //PatientAdmission.GenerateNewPatientVoid();
 
-                room.Patient = PatientAdmission.PatientPointer;
+                room.AssignPatient(PatientAdmission.PatientPointer);
                 GlobalData.patientCount++;
 
                 //treatment.UpdateTreatmentText();
@@ -101,6 +101,7 @@ public partial class AdmissionManager : Node
     }
     public PatientStats GenerateNewPatient()
     {
+        GD.Print("Generating new patient");
         //  generate new data
         PatientStats patientStats = new PatientStats();
 
