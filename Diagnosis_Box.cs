@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Linq;
 
 public partial class Diagnosis_Box : Label
@@ -14,7 +13,7 @@ public partial class Diagnosis_Box : Label
     //IMPORTANT: Any new checkboxes that are added must be the children of the diagnosis box, otherwise it won't work!
     private List<Checkbox> CheckboxList = new List<Checkbox>();
     private List<bool> SymptomChecks = new List<bool>();
-    public override void _Ready()
+    public void Initialize()
 	{
         int count = 0;
         //Looking through all the children to find all the checkboxes.
@@ -37,6 +36,7 @@ public partial class Diagnosis_Box : Label
             }
         }
     }
+
     public void SetAllCheckboxStatus(bool status)
     {
         foreach (Checkbox checkbox in CheckboxList)

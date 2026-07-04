@@ -6,71 +6,132 @@ public partial class AdmissionManager : Node
 {
     [Export] Contents_P_I PatientAdmission;
     [Export] public Sprite2D PatientSpriteDisplay;
-    [Export] Admit AdmitButton;
+    [Export] Button AdmitButton;
 
-    public void _on_admit_pressed()
+    private int patientsLeft;
+
+    PatientStats nullPatient = new PatientStats();
+
+    private PatientStats InternalPatient;
+
+    Node2D LatestRoom = null;
+
+    public void Initialize()
     {
-        //part of Princess's system for moving the patient sprite to the patient room, currently deprecated, but just commented out because it might be useful again
-        // saves patient sprite
-        /* if (PatientSpriteDisplay != null)
-        {
-            GlobalData.AdmittedPatientTexture = PatientSpriteDisplay.Texture;
-        }*/
-
-
+        NullPatientInitialize();
+    }
+    public void Admit()
+    {
+        //Logic for admitting the patient.
         Node mainNode = GetParent().GetParent();
-
-
-        //var roomNode = mainNode.GetNode<Node2D>("Room");
-
-       if(IsClinicFull())
+       if(IsClinicFull()) //  <----- Is the clinic full?
        {
-            var roomNode = RoomManager.FindEmptyRoom();
+            //If yes, then find an empty room for the new patient!
+            var roomNode = RoomManager.FindEmptyRoom(); 
             if (roomNode != null)
             {
-                Inventory inv = GetParent().GetParent().GetNode<Inventory>("Inventory");
-                TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
-                Random random = new Random();
-                var patientInterface = mainNode.GetNode<Node2D>("Patient_Interface");
-                Node2D patient = treatment.GetNode<Node2D>("Patient_Display");
-                var patientInfo = treatment.GetNode<CanvasItem>("Patient_Info");
-
+                //Get the room class from the Node2D class
                 Room room = roomNode as Room;
-                treatment.SetTreatmentRoomReference(room);
-                PatientAdmission.GenerateNewPatientVoid();
-
-                room.Patient = PatientAdmission.PatientPointer;
+                //Assign patient to room
+                room.AssignPatient(PatientAdmission.PatientPointer);
                 GlobalData.patientCount++;
 
-                //give the newly admitted patient a random malady at a random severity
-                //room.Patient.malady = GlobalData.Maladies[rnd.Next(0, 3)];
-
-                treatment.UpdateTreatmentText();
-                treatment.ReenableMedicine();
-                
-
-
-                PatientAdmission.SetLatestPatientRoom(room);
+                //This method is needed to make the visit button work.
+                SetLatestPatientRoom(room);
+                //Checking to see if the clinic is full (again)
                 IsClinicFull();
             }
        }
     }
+    public PatientStats GetNullPatient()
+    {
+        //Grabbing the null patient. This is used when the patient admission has no more patients at the clinic.
+        //When the null patient is used, the dialogue manager won't show any messages, just "..."
+        return nullPatient;
+    }
+    public void PatientQueueLogic()
+    {
+        //Any logic that has to do with the patient queue goes here.
+        //Not to be confused with a similar method in Contents_P_I, there the class is mostly used for
+        //UI stuff, here for variables etc., that have to do with both the patient queue and the admission manager
+        patientsLeft--;
+    }
+
+    public int HowManyPatientsLeft()
+    {
+        //Return how many patients are left.
+        return patientsLeft;
+    }
+
+    public void NewDayLogic()
+    {
+        //New day logic
+        LatestRoom = null;
+        patientsLeft = Upgrades.newPatientSlots;
+    }
+
+    public Node2D GetLatestRoom()
+    {
+        //Return the last room in which a patient has been admitted.
+        //Used mainly for the visit button.
+        return LatestRoom;
+    }
+    public void Reject()
+    {
+
+    }
 
     public bool IsClinicFull()
     {
+        //Seeing if the clinic is full
+        //And then in the end we determine whether it's TRUE or FALSE
         int emptyRoomCount = RoomManager.GetEmptyRoomCount();
         if (emptyRoomCount > 0)
         {
-            AdmitButton.SetButtonStatus(true);
+            SetButtonStatus(AdmitButton, true);
         }
         else
         {
-            AdmitButton.SetButtonStatus(false);
+            SetButtonStatus(AdmitButton, false);
         }
         if (emptyRoomCount > 0)
         {
             return true;
         }
         return false;
+    }
+
+    public void SetButtonStatus(Button button, bool status)
+    {
+        //Used for enabling/disabling specific admission manager buttons. In this case
+        //used mainly for the IsClinicFull() method.
+        button.Disabled = !status;
+    }
+    public PatientStats GenerateNewPatient()
+    {
+        //Create a new instance of a patient.
+        PatientStats patientStats;
+        patientStats = new PatientStats();
+
+        InternalPatient = patientStats;
+        return patientStats;
+    }
+
+    public void SetLatestPatientRoom(Node2D room)
+    {
+        //Set the last room where a patient has been assigned.
+        LatestRoom = room;
+    }
+    private void VisitInternalLogic()
+    {
+        //CURRENTLY DEPRECATED
+        GlobalData.inPatientRoom = true;
+    }
+    private void NullPatientInitialize()
+    {
+        //Initializing the null patient.
+        nullPatient.malady = MaladyList.Database.ElementAt(0).Value;
+        nullPatient.age = 0;
+        nullPatient.patientID = "";
     }
 }

@@ -14,14 +14,14 @@ public partial class Mirror : TextureButton
     TextureRect MirrorImage;
 
     Texture2D[] mirrorImages =
-    {
-    // These are the place holder images stored in the godot files for the office
-    GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman1.png"),
-    GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman2.png"),
-    GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman3.png"),
-    GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman4.png")
-};
-    public override void _Ready()
+        {
+            // These are the place holder images stored in the godot files for the office
+            GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman1.png"),
+            GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman2.png"),
+            GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman3.png"),
+            GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman4.png")
+        };
+    public void Initialize()
     {
         // Grabbing all the mirror references
         // MirrorButton reference is unecessary and should just be replaced with "this"

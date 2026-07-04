@@ -36,10 +36,6 @@ public partial class TreatmentManager : Node
         GiveMedicine2Button.Pressed += () => MedicineOperations(GiveMedicine2Button);
         GiveMedicine3Button.Pressed += () => MedicineOperations(GiveMedicine3Button);
 
-        
-
-        
-
         CloseWrongMedicinePopup.Pressed += () => CloseParent(CloseWrongMedicinePopup);
         CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
         ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
@@ -60,9 +56,6 @@ public partial class TreatmentManager : Node
     private void GetNodes()
     {
         //Basically just grabbing all the nodes
-        PatientDisplay = GetNode<Sprite2D>("Patient_Display");
-        PatientInfo = GetNode<Label>("Patient_Info");
-        //GiveMedicine1Button = GetParent().GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
         GiveMedicine1Button = GetParent().GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
         Med1Name = GiveMedicine1Button.GetNode<Label>("Med1_Name");
         Med1Count = GiveMedicine1Button.GetNode("Stripe").GetNode<Label>("Med1_Count");
@@ -101,27 +94,13 @@ public partial class TreatmentManager : Node
         //in this specific case, we also remove the patient and reset patient malady data
         if (button == ClosePatientCuredPopup)
         {
-            PatientDisplay.Hide();
-            PatientInfo.Hide();
-
+            Room.UpdateSprites();
             //GlobalData.CurrentPatientMalady = "none";
             //GlobalData.CurrentPatientSeverity = 0;
         }
     }
 
-    public void ShowUI()
-    {
-        if(Room != null)
-        {
-            if (Room.Patient != null)
-            {
-                PatientInfo.Show();
-                PatientDisplay.Show();
-            }
-        }
-        UpdateTreatmentText();
-    }
-    public void UpdateTreatmentText()
+    /*public void UpdateTreatmentText()
     {
         if (Room == null) return;
         if (Room.Patient == null) return;
@@ -129,7 +108,7 @@ public partial class TreatmentManager : Node
                    $"\n Malady: {Room.Patient.malady.name}" +
                    $"\n Severity: {Room.Patient.malady.severity}" +
                    $"\n Age: {Room.Patient.age}";
-    }
+    }*/
     public void HideUI()
     {
         foreach(Node child in GetChildren())
@@ -149,6 +128,7 @@ public partial class TreatmentManager : Node
 
     private void MedicineOperations(TextureButton medicineChoice)
 	{
+        GD.Print("medicine operations");
         //setting up crucial parameters of a medicine, and changing them depending on which medicine is being usesd
         Medicine medicine = null;
         string matchingMalady = "none";
@@ -165,7 +145,7 @@ public partial class TreatmentManager : Node
         else if (medicineChoice == GiveMedicine2Button)
         {
             medicine = MedicineManager.Database["Aspirin"];
-            matchingMalady = "an ccident";
+            matchingMalady = "an accident";
             nameBox = Med2Name;
             countBox = Med2Count;
         }
@@ -177,7 +157,7 @@ public partial class TreatmentManager : Node
             countBox = Med3Count;
         }
 
-        if (PatientDisplay.Visible == false)
+        if (!Room.HasPatient())
         {
             NoPatientPopup.Show();
         }
@@ -202,8 +182,7 @@ public partial class TreatmentManager : Node
             {
                 //the correct use of the medicine, severity goes down, the text gets updated
                 patient.malady.severity--;
-                UpdateTreatmentText();
-                GD.Print($"Room: {Room.myIndex}");
+                //UpdateTreatmentText();
                 //PatientInfo.Text = "Patient info: \n Malady: " + patient.malady.name + "\n Severity: " + patient.malady.severity; 
                 //if you get the severity down to 0, the patient is cured, you get a popup, and you get paid
                 if (patient.malady.severity <= 0)
@@ -211,7 +190,6 @@ public partial class TreatmentManager : Node
                     GlobalData.patientCount--;
                     PatientCuredPopup.Show();
                     GlobalData.DailyEarnings += 40;
-                    Room.isEmpty = true;
                     Room.DeletePatient();
                 } 
                 else
@@ -222,6 +200,7 @@ public partial class TreatmentManager : Node
                     CorrectMedicinePopup.Show();
                 }
             }
+            Room.UpdateSprites();
             //disable the buttons, and prevent them form being reenabled by switching scenes until the lockout is disabled by going to bed
             GiveMedicine1Button.Disabled = true;
             GiveMedicine2Button.Disabled = true;

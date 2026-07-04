@@ -7,10 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c5b2sbksxoyvm" path="res://place holders/684146226_2513326992456987_2687682788803640839_n.jpg" id="4_ecejo"]
 [ext_resource type="Texture2D" uid="uid://wcwpr5c2jw40" path="res://Assets/2D Art/Admission/admission-background.png" id="5_ecejo"]
 [ext_resource type="Texture2D" uid="uid://bk0mng4lad56f" path="res://Assets/2D Art/Admission/admission-nextroom-overlay.png" id="6_3xib3"]
-[ext_resource type="Script" uid="uid://dgqxfanx26jy6" path="res://Admit.cs" id="6_7u4js"]
 [ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://SpeechManager.cs" id="7_3xib3"]
 [ext_resource type="Texture2D" uid="uid://caubt0llj6n3e" path="res://Assets/2D Art/Admission/admission-mic.png" id="7_7u4js"]
-[ext_resource type="Script" uid="uid://o0fif4q0pb77" path="res://Reject.cs" id="7_27yax"]
 [ext_resource type="Texture2D" uid="uid://crbfj6l15slrx" path="res://Assets/2D Art/Admission/admission-thermogun.png" id="8_f16jq"]
 [ext_resource type="Texture2D" uid="uid://cyew7rebghwwc" path="res://Assets/2D Art/Admission/admission-stethoscope.png" id="9_kytyi"]
 [ext_resource type="Texture2D" uid="uid://c8t7gu2gwco4j" path="res://Assets/2D Art/Admission/admission-redbutton.png" id="10_65rjk"]
@@ -60,9 +58,8 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkk41"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Contents_P_I" type="Node2D" unique_id=315031335 node_paths=PackedStringArray("SpeechManagerAccess", "DeceasedSprite1", "PatientLabel", "AgeLabel", "PatientsLeftLabel", "PortraitSprite", "AdmissionManagerAccess", "Diagnosis")]
+[node name="Contents_P_I" type="Node2D" unique_id=315031335 node_paths=PackedStringArray("DeceasedSprite1", "PatientLabel", "AgeLabel", "PatientsLeftLabel", "PortraitSprite", "AdmissionManagerAccess", "Diagnosis", "SpeechManagerAccess")]
 script = ExtResource("1_ljdgf")
-SpeechManagerAccess = NodePath("ControlPatientInterface/SpeechManager")
 DeceasedSprite1 = NodePath("Sprites_PH/Deceased_Sprite")
 PatientLabel = NodePath("Sprites_PH/PatientLabel")
 AgeLabel = NodePath("Sprites_PH/AgeLabel")
@@ -70,6 +67,13 @@ PatientsLeftLabel = NodePath("Sprites_PH/PatientsLeftLabel")
 PortraitSprite = NodePath("Sprites_PH/Patient")
 AdmissionManagerAccess = NodePath("AdmissionManager")
 Diagnosis = NodePath("ControlPatientInterface/Diagnosis_Box")
+SpeechManagerAccess = NodePath("ControlPatientInterface/SpeechManager")
+
+[node name="AdmissionManager" type="Node" parent="." unique_id=1218543265 node_paths=PackedStringArray("PatientAdmission", "PatientSpriteDisplay", "AdmitButton")]
+script = ExtResource("15_uph1y")
+PatientAdmission = NodePath("..")
+PatientSpriteDisplay = NodePath("../Sprites_PH/Patient")
+AdmitButton = NodePath("../ControlPatientInterface/Admit")
 
 [node name="Sprites_PH" type="Node2D" parent="." unique_id=2126787329]
 
@@ -212,7 +216,7 @@ icon = ExtResource("9_kytyi")
 flat = true
 expand_icon = true
 
-[node name="Reject" type="Button" parent="ControlPatientInterface" unique_id=1995509717 node_paths=PackedStringArray("PatientManager")]
+[node name="Reject" type="Button" parent="ControlPatientInterface" unique_id=1995509717]
 custom_minimum_size = Vector2(210, 100)
 layout_mode = 0
 offset_left = 1326.0
@@ -227,8 +231,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
 icon = ExtResource("10_65rjk")
 flat = true
 expand_icon = true
-script = ExtResource("7_27yax")
-PatientManager = NodePath("../..")
 
 [node name="Admit" type="Button" parent="ControlPatientInterface" unique_id=1942473230]
 custom_minimum_size = Vector2(210, 100)
@@ -245,7 +247,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
 icon = ExtResource("12_ecejo")
 flat = true
 expand_icon = true
-script = ExtResource("6_7u4js")
 
 [node name="VisitPatient" type="Button" parent="ControlPatientInterface" unique_id=984521041]
 custom_minimum_size = Vector2(210, 100)
@@ -420,14 +421,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 37
 text = "blablabla"
 
-[node name="AdmissionManager" type="Node" parent="." unique_id=1218543265 node_paths=PackedStringArray("PatientAdmission", "PatientSpriteDisplay", "AdmitButton")]
-script = ExtResource("15_uph1y")
-PatientAdmission = NodePath("..")
-PatientSpriteDisplay = NodePath("../Sprites_PH/Patient")
-AdmitButton = NodePath("../ControlPatientInterface/Admit")
-
 [node name="Diagnosis_Timer" type="Timer" parent="." unique_id=1696783989]
 
 [connection signal="visibility_changed" from="Sprites_PH/Deceased_Sprite" to="." method="_on_deceased_sprite_visibility_changed"]
-[connection signal="pressed" from="ControlPatientInterface/Admit" to="AdmissionManager" method="_on_admit_pressed"]
-[connection signal="visibility_changed" from="ControlPatientInterface/Admit" to="ControlPatientInterface/Admit" method="_on_visibility_changed"]

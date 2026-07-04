@@ -8,8 +8,7 @@ public partial class SpeechManager : Node
     //All we're doing is storing a label and then the Contents_P_I class
     //Changes the text when needed. 
 	[Export] Label SpeechBubble;
-
-    public override void _Ready()
+    public void Initialize()
     {
         SpeechBubble.Hide();
     }

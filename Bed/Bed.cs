@@ -8,7 +8,7 @@ public partial class Bed : Node2D
     private RichTextLabel MoneyEarned;
 
     // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+    public void Initialize()
     {
 
 

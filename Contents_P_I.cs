@@ -11,7 +11,6 @@ public partial class Contents_P_I : Node2D
     // Patient stats stores patient symptoms and other relevant info. Currently I just added it into the scene but later we'll have it instantiated.
 
     public PatientStats PatientPointer;
-    [Export] SpeechManager SpeechManagerAccess;
 
     Button ReturnButton;
     Button DialogueButton;
@@ -25,9 +24,8 @@ public partial class Contents_P_I : Node2D
     Button ShotgunButton;
     Button VisitPatientButton;
     VBoxContainer InventoryContainer;
-     private Timer DiagnosisTimer;
+    private Timer DiagnosisTimer;
 
-    private int patientsLeft;
 
 
     //References to the "DECEASED" sprites which show up when you kill the patient
@@ -39,41 +37,64 @@ public partial class Contents_P_I : Node2D
 
     [Export] AdmissionManager AdmissionManagerAccess;
     [Export] Diagnosis_Box Diagnosis;
+    [Export] SpeechManager SpeechManagerAccess;
 
-    Node2D LatestRoom = null;
 
-    PatientStats nullPatient = new PatientStats();
 
-    public override void _Ready()
+    public void Initialize()
 	{
-        nullPatient.age = 1000;
         Hide();
         //Grabbing the references to all the buttons
-        GetAllButtons();
-        //Grabbing the patient stats.
-        NewDay(false);
-        PatientPointer = GenerateNewPatient();
+        GetNodes();
 
-        //Assigning functionality to each of the buttons.
-        ReturnButton.Pressed += ReturnToOffice;
-        DialogueButton.Pressed += ShowSpeechDialogue;
-        ZoomButton.Pressed += ShowSpeechZoom;
-        PulseButton.Pressed += ShowSpeechHeartrate;
-        //RejectButton.Pressed += ShowSpeechReject;
-        //InventoryButton.Pressed += ToggleInventory;
-        DiagnosisButton.Pressed += ShowSpeechDiagnosis;
-
-        VisitButton.Pressed += VisitLatestPatient;
+        Subscribe();
         VisitButton.Disabled = true;
+
+        InitializeChildren();
+        NewDay();
 
         //Hiding the inventory and the "DECEASED" sprites which show up when patient is killed.
         DeceasedSprite1.Hide();
         InventoryContainer.Hide();
     }
 
+    private void Subscribe()
+    {
+        //Assigning functionality to each of the buttons.
+        ReturnButton.Pressed += ReturnToOffice;
+        DialogueButton.Pressed += ShowSpeechDialogue;
+        ZoomButton.Pressed += ShowSpeechZoom;
+        PulseButton.Pressed += ShowSpeechHeartrate;
+        AdmitButton.Pressed += OnAdmitPressed;
+        RejectButton.Pressed += OnRejectPressed;
+        //InventoryButton.Pressed += ToggleInventory;
+        DiagnosisButton.Pressed += ShowSpeechDiagnosis;
+
+        VisitButton.Pressed += Visit;
+    }
+
+    private void InitializeChildren()
+    {
+        // Initialize the children.
+        SpeechManagerAccess.Initialize();
+        AdmissionManagerAccess.Initialize();
+        Diagnosis.Initialize();
+    }
+    public void NewDay()
+    {
+        //Stuff that needs to happen when a new day is there.
+        AdmissionManagerAccess.NewDayLogic();
+        NextPatient();
+        PortraitSprite.Show();
+        Diagnosis.SetAllCheckboxStatus(true);
+        RejectButton.Disabled = false;
+        AdmitButton.Disabled = false;
+    }
     public void UpdatePatientInterfaceUI()
     {
-        if(patientsLeft > 0)
+        //Update how many patients are left in the queue.
+        int patientsLeft = AdmissionManagerAccess.HowManyPatientsLeft();
+        if (patientsLeft > 0)
         {
             AdmissionManagerAccess.IsClinicFull();
             PatientsLeftLabel.Text = $"Patients left: {patientsLeft}";
@@ -84,7 +105,7 @@ public partial class Contents_P_I : Node2D
         }
     }
 
-    private void GetAllButtons()
+    private void GetNodes()
     {
         //Basically just grabbing all buttons. I have to reference the control because
         //otherwise they wouldn't be found.
@@ -191,122 +212,114 @@ public partial class Contents_P_I : Node2D
         GlobalData.PreviousScenes.Pop();
     }
 
-    public PatientStats GenerateNewPatient()
+    private void OnRejectPressed()
     {
-        //This is only here until the milestone, then it should be put somewhere else.
-        SpeechManagerAccess.SetBubbleStatus(false);
-        Diagnosis.ClearAllBoxes();
-        //  generate new data
-        PatientStats patientStats = new PatientStats();
-
-       // random tint to the portrait
-        PortraitSprite.Modulate = patientStats.PortraitColor;
-        DeceasedSprite1.Hide();
-
-        PatientLabel.Text = "Patient: " + patientStats.patientID; //convert data to strings to display it on Labels  and '+' operator connects static text "ID: " with the variable value
-        AgeLabel.Text = "Age: " + patientStats.age.ToString(); //used stringt o convert the integer age to a string for display purposes
-
-        PatientQueue();
-        //ShotgunButton.Disabled = false;
-        GD.Print("Line 206 in Contents_P_I.cs");
-        return patientStats;
+        //Stuff that happens when the reject button is pressed.
+        NextPatient();
     }
 
-    public void GenerateNewPatientVoid()
+    private void OnAdmitPressed()
     {
+        //Stuff that happens when the admit button is pressed.
+        AdmissionManagerAccess.Admit();
+        NextPatient();
+        SetVisitButtonStatus();
+    }
+
+    private void NextPatient()
+    {
+        //NEXT PATIENT!!
         //This is only here until the milestone, then it should be put somewhere else.
         SpeechManagerAccess.SetBubbleStatus(false);
+        //Clearing the diagnosis box
         Diagnosis.ClearAllBoxes();
-
-        //  generate new data
-        PatientStats patientStats = new PatientStats();
-        GD.Print($"severity is: {patientStats.malady.severity}");
-        
+        //Anything that the admission manager needs to do when a new patient
+        //appears in the admission is activated
+        AdmissionManagerAccess.PatientQueueLogic();
+        //How many patients left? Saved in variable "patients"
+        int patients = AdmissionManagerAccess.HowManyPatientsLeft();
+        if (patients >= 0)
+        {
+            //If this wasn't the last patient, we generate a new one.
+            PatientsLeftLabel.Text = $"Patients left: {patients}";
+            PatientPointer = AdmissionManagerAccess.GenerateNewPatient();
+        }
+        else
+        {
+            //If this was the last patient, the logic is different.
+            //Disabling some stuff, telling the player that there are no more patients.
+            PortraitSprite.Hide();
+            PatientsLeftLabel.Text = $"Patients left: {0}";
+            RejectButton.Disabled = true;
+            AdmitButton.Disabled = true;
+            Diagnosis.SetAllCheckboxStatus(false);
+            //Null patient is used for making it so that no new dialogue options appear
+            //Also if there's no patient, the age and ID of patient will not show up.
+            PatientPointer = AdmissionManagerAccess.GetNullPatient();
+        }
 
         // random tint to the portrait
-        PortraitSprite.Modulate = patientStats.PortraitColor;
+        PortraitSprite.Modulate = PatientPointer.PortraitColor;
         DeceasedSprite1.Hide();
 
-        PatientLabel.Text = "Patient: " + patientStats.patientID; //convert data to strings to display it on Labels  and '+' operator connects static text "ID: " with the variable value
-        AgeLabel.Text = "Age: " + patientStats.age.ToString(); //used stringt o convert the integer age to a string for display purposes
-
-        PatientQueue();
-        PatientPointer = patientStats;
-
-        //ShotgunButton.Disabled = false;
+        PatientLabel.Text = "Patient: " + PatientPointer.patientID; //convert data to strings to display it on Labels  and '+' operator connects static text "ID: " with the variable value
+        AgeLabel.Text = "Age: " + PatientPointer.age.ToString(); //used stringt o convert the integer age to a string for display purposes
     }
 
-    public void SetLatestPatientRoom(Node2D room)
+    private void NextPatientInQueue()
     {
-        LatestRoom = room;
-        if(VisitButton.Disabled)
+       /* AdmissionManagerAccess.PatientQueueLogic();
+        int patients = AdmissionManagerAccess.HowManyPatientsLeft();
+        if (patients >= 0)
         {
-            VisitButton.Disabled = false;
+            PatientsLeftLabel.Text = $"Patients left: {patients}";
+            PatientPointer = AdmissionManagerAccess.GenerateNewPatient();
         }
-    }
-    private void VisitLatestPatient()
-    {
-        GlobalData.inPatientRoom = true;
-        SpeechManagerAccess.SetBubbleStatus(false);
-        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
-        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
-        var hallway = LatestRoom.GetParent().GetParent().GetNode<Node2D>("Hallway");
-        var patient = treatment.GetNode<Node2D>("Patient_Display");
-        var patientInfo = treatment.GetNode<CanvasItem>("Patient_Info");
-        //hide the patient admission screen, show the patient room, with the patient sprite and info now visible
-        Hide();
-        Hallway hallwayAccess = hallway as Hallway;
-        hallwayAccess.GoToRoom(LatestRoom);
-        Room roomRef = LatestRoom as Room;
-        if(roomRef.HasPatient())
-        {
-            LatestRoom.Show();
-            patient.Show();
-            patientInfo.Show();
-        }
-        //we don't need to go back to this scene from the patient room after they're admitted, better have the right click go back to the office, so we're removing the patient admission from the stack here
-        GlobalData.PreviousScenes.Pop();
-        GlobalData.PreviousScenes.Pop();
-        //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(hallway.GetPath());
-        GlobalData.PreviousScenes.Push(LatestRoom.GetPath());
-    }
-
-    private void NullPatientInitialize()
-    {
-        nullPatient.malady = MaladyList.Database.ElementAt(0).Value;
-        nullPatient.age = 0;
-        nullPatient.patientID = "";
-        PatientPointer = nullPatient;
-        PatientLabel.Text = "Patient: " + nullPatient.patientID; //convert data to strings to display it on Labels  and '+' operator connects static text "ID: " with the variable value
-        AgeLabel.Text = "Age: " + nullPatient.age.ToString();
-    }
-
-    public void NewDay(bool generateNewPatient)
-    {
-        patientsLeft = Upgrades.newPatientSlots;
-        PortraitSprite.Show();
-        Diagnosis.SetAllCheckboxStatus(true);
-        RejectButton.Disabled = false;
-        AdmitButton.Disabled = false;
-        if(generateNewPatient)
-        {
-            GenerateNewPatientVoid();
-        }
-    }
-    private void PatientQueue()
-    {
-        patientsLeft--;
-        PatientsLeftLabel.Text = $"Patients left: {patientsLeft}";
-        if(patientsLeft < 0)
+        else
         {
             PortraitSprite.Hide();
             PatientsLeftLabel.Text = $"Patients left: {0}";
             RejectButton.Disabled = true;
             AdmitButton.Disabled = true;
             Diagnosis.SetAllCheckboxStatus(false);
-            NullPatientInitialize();
+            PatientPointer = AdmissionManagerAccess.GetNullPatient();
+        }*/
+    }
+
+    private void SetVisitButtonStatus()
+    {
+        //Based on whether a patient has been assigned to a room today
+        //Turn on/off the visit button.
+        if (AdmissionManagerAccess.GetLatestRoom() != null)
+        {
+            VisitButton.Disabled = false;
         }
+    }
+
+    private void Visit()
+    {
+        //Visit button logic.
+        SpeechManagerAccess.SetBubbleStatus(false);
+        //For making the RMB "go back to last room" stuff work
+        GlobalData.PreviousScenes.Pop();
+        GlobalData.PreviousScenes.Pop();
+        var hallway = GetParent().GetNode<Node2D>("Hallway");
+        Hallway hallwayAccess = hallway as Hallway;
+
+        //Go to the room as based on the AdmissionManager's reference for the latest assigned room
+        Node2D room = AdmissionManagerAccess.GetLatestRoom();
+        hallwayAccess.GoToRoom(room);
+        Room roomRef = room as Room;
+        
+        //Hiding some more UI stuff.
+        Hide();
+        //Resetting the diagnosis box
+        Diagnosis.ClearAllBoxes();
+
+        //Saving the scene path, for RMB functionality
+        GlobalData.PreviousScenes.Push(hallway.GetPath());
+        GlobalData.PreviousScenes.Push(room.GetPath());
+
     }
 }
 
