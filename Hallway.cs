@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 
 public partial class Hallway : Node2D
@@ -76,6 +77,19 @@ public partial class Hallway : Node2D
     public void GoToRoom(Node2D roomInput)
     {
         //CALLED WHEN "VISIT" BUTTON IS PRESSED IN THE ADMISSION
+        Hide();
+        GlobalData.inPatientRoom = true;
+        //var RoomScene = (Node2D)GetParent().GetNode("Room");
+        //GD.Print($"Room count: {RoomList.Count}.");
+        var RoomScene = roomInput;
+        RoomScene.Show();
+        Room room = RoomScene as Room;
+        room.OnRoomEnter();
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
+        treatment.SetTreatmentRoomReference(room);
+        //push the scene we're entering to the previous scenes stack
+        GlobalData.PreviousScenes.Push(RoomScene.GetPath());
         /*Hide();
         GlobalData.inPatientRoom = true;
         //var RoomScene = (Node2D)GetParent().GetNode("Room");
@@ -86,8 +100,6 @@ public partial class Hallway : Node2D
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
-        //treatment.ShowUI();
-        //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(roomInput.GetPath());*/
     }
 

@@ -32,9 +32,7 @@ public partial class PatientStats
         isAlive = true;
         Random rnd = new Random();
         malady = new Malady();
-        //malady = MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value;
         AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value);
-        //malady = newMalady;
         if (malady.severity == -1)
         {
             malady.severity = rnd.Next(2, 5);
@@ -89,10 +87,6 @@ public partial class PatientStats
             return returnDialogue;
         }
         return "Not too hot, not too cold!";
-    }
-    private void PatientInitialize()
-	{
-        
     }
 }
     

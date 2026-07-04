@@ -246,7 +246,6 @@ public partial class Contents_P_I : Node2D
         {
             PatientsLeftLabel.Text = $"Patients left: {patients}";
             PatientPointer = AdmissionManagerAccess.GenerateNewPatient();
-            GD.Print($"GUGU is: {PatientPointer.malady.severity}, AGE: {PatientPointer.age}");
         }
         else
         {
@@ -270,6 +269,27 @@ public partial class Contents_P_I : Node2D
     private void Visit()
     {
         SpeechManagerAccess.SetBubbleStatus(false);
+        GlobalData.PreviousScenes.Pop();
+        GlobalData.PreviousScenes.Pop();
+        var hallway = GetParent().GetNode<Node2D>("Hallway");
+        Hallway hallwayAccess = hallway as Hallway;
+
+        Node2D room = AdmissionManagerAccess.GetLatestRoom();
+        hallwayAccess.GoToRoom(room);
+        Room roomRef = room as Room;
+        /*if (roomRef.HasPatient())
+        {
+            //room.Show();
+            hallwayAccess.GoToRoom(room);
+        }*/
+        Hide();
+        Diagnosis.ClearAllBoxes();
+        GlobalData.PreviousScenes.Push(hallway.GetPath());
+        GlobalData.PreviousScenes.Push(room.GetPath());
+
+
+
+
         /*Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         var hallway = LatestRoom.GetParent().GetParent().GetNode<Node2D>("Hallway");
@@ -291,24 +311,7 @@ public partial class Contents_P_I : Node2D
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(hallway.GetPath());
         GlobalData.PreviousScenes.Push(LatestRoom.GetPath());*/
-        GlobalData.PreviousScenes.Pop();
-        GlobalData.PreviousScenes.Pop();
-        var hallway = GetParent().GetNode<Node2D>("Hallway");
-        Hallway hallwayAccess = hallway as Hallway;
 
-        Node2D room = AdmissionManagerAccess.GetLatestRoom();
-        hallwayAccess.GoToRoom(room);
-        Room roomRef = room as Room;
-        if (roomRef.HasPatient())
-        {
-            room.Show();
-            //patient.Show();
-            //patientInfo.Show();
-        }
-        Hide();
-        Diagnosis.ClearAllBoxes();
-        GlobalData.PreviousScenes.Push(hallway.GetPath());
-        GlobalData.PreviousScenes.Push(room.GetPath());
     }
 }
 
