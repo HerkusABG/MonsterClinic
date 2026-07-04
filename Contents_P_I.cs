@@ -10,6 +10,7 @@ public partial class Contents_P_I : Node2D
     //Since the inventory currently is a container, I also store a reference to that so i don't have to show and hide both of the buttons individually.
     // Patient stats stores patient symptoms and other relevant info. Currently I just added it into the scene but later we'll have it instantiated.
 
+    [Export] public CanvasItem NoRoomsWarningSprite; // LOGIC ADDITION: Warning Sprite Reference
     public PatientStats PatientPointer;
     [Export] SpeechManager SpeechManagerAccess;
 
@@ -209,6 +210,9 @@ public partial class Contents_P_I : Node2D
         PatientQueue();
         //ShotgunButton.Disabled = false;
         GD.Print("Line 206 in Contents_P_I.cs");
+        
+        CheckRoomAvailabilityWarning();
+        
         return patientStats;
     }
 
@@ -234,6 +238,8 @@ public partial class Contents_P_I : Node2D
         PatientPointer = patientStats;
 
         //ShotgunButton.Disabled = false;
+        
+        CheckRoomAvailabilityWarning(); // room vacancy status check
     }
 
     public void SetLatestPatientRoom(Node2D room)
@@ -308,5 +314,14 @@ public partial class Contents_P_I : Node2D
             NullPatientInitialize();
         }
     }
+    private void CheckRoomAvailabilityWarning() // Self-contained warning visibility evaluation method
+    {
+        if (NoRoomsWarningSprite != null)
+        {
+            // If the room manager reports 0 or fewer empty rooms, show the warning sprite.
+            // Otherwise, keep it hidden.
+            NoRoomsWarningSprite.Visible = (RoomManager.GetEmptyRoomCount() <= 0);
+        }
+}
 }
 

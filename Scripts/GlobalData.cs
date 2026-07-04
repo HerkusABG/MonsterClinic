@@ -50,4 +50,6 @@ public static class GlobalData
     //stack that holds previous scenes accessed, going back to the office, kinda like the branches of a tree
     public static Stack PreviousScenes { get; set; } = new Stack();
 
+    
+
 }
