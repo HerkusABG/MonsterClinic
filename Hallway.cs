@@ -76,6 +76,44 @@ public partial class Hallway : Node2D
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
+        Sprite2D PatientDisplay = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<Sprite2D>("Patient_Display");
+        TextureButton Corpse = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<TextureButton>("Corpse");
+        if(Corpse != null)
+        {
+            GD.Print("not null");
+        }
+        else
+        {
+            GD.Print("null");
+        }
+        Corpse.Show();
+        //if room has a patient, show the universal patient and make their color the one corresponding to the room's patient
+        if (room.HasPatient() == true)
+        {
+            if (room.Patient.malady.severity < 4)
+            {
+                GD.Print("skiidi");
+                PatientDisplay.Show();
+                Corpse.Hide();
+                PatientDisplay.Modulate = room.Patient.PortraitColor;
+            }
+            else
+            {
+                GD.Print("skibidi");
+                room.Patient.isAlive = false;
+                PatientDisplay.Hide();
+                GD.Print(PatientDisplay.Visible.ToString());
+                Corpse.Show();
+            }
+        }
+        //if no patient, hide the universal patient
+        else
+        {
+            GD.Print("kibidi");
+            Corpse.Hide();
+            PatientDisplay.Hide();
+        }
+
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(RoomScene.GetPath());
     }
@@ -107,6 +145,39 @@ public partial class Hallway : Node2D
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
         GlobalData.PreviousScenes.Push(roomInput.GetPath());*/
+        //treatment.ShowUI();
+        Sprite2D PatientDisplay = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<Sprite2D>("Patient_Display");
+        TextureButton Corpse = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<TextureButton>("Corpse");
+        //if room has a patient, show the universal patient and make their color the one corresponding to the room's patient
+        if (room.HasPatient() == true)
+        {
+            if (room.Patient.malady.severity < 4)
+            {
+                GD.Print("skiidi");
+                PatientDisplay.Show();
+                Corpse.Hide();
+                PatientDisplay.Modulate = room.Patient.PortraitColor;
+            }
+            else
+            {
+                GD.Print("skibidi");
+                room.Patient.isAlive = false;
+                PatientDisplay.Hide();
+                GD.Print(PatientDisplay.Visible.ToString());
+                Corpse.Show();
+            }
+        }
+        //if no patient, hide the universal patient
+        else
+        {
+            GD.Print("kibidi");
+            Corpse.Hide();
+            PatientDisplay.Hide();
+        }
+
+        //push the scene we're entering to the previous scenes stack
+        GlobalData.PreviousScenes.Push(roomInput.GetPath());
+        
     }
 
     private void LeaveRoom()

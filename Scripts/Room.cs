@@ -29,6 +29,9 @@ public partial class Room : Node2D
         LeaveRoomButton.Pressed += LeaveRoom;
         LeaveRoomButton.Pressed += HideUIAction;
 
+        
+
+
         //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
 
     }

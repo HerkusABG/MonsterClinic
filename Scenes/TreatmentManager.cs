@@ -100,6 +100,18 @@ public partial class TreatmentManager : Node
         }
     }
 
+    public void ShowUI()
+    {
+        if(Room != null)
+        {
+            if (Room.Patient.isAlive == true)
+            {
+                PatientInfo.Show();
+                PatientDisplay.Show();
+            }
+        }
+        UpdateTreatmentText();
+    }
     /*public void UpdateTreatmentText()
     {
         if (Room == null) return;
