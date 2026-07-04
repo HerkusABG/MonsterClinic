@@ -9,10 +9,6 @@ public partial class PatientStats
     // The relevant stats will be changed according to the game designer's wishes.
     // This data will then be used for diagnosis, once we develop that further.
 
-    // Defining the values which will be used for diagnosis.
-    public int heartRate;
-    public int skinStatus;
-
     //Patients ID
     public string patientID;
     public int age;
@@ -25,8 +21,6 @@ public partial class PatientStats
 
     public PatientStats()
     {
-        //PatientInitialize();
-        GD.Print("PatientInitialize");
         // refresh the patient's data.
         // For just assigning random numbers, this will be overhauled later.
         isAlive = true;
@@ -37,8 +31,6 @@ public partial class PatientStats
         {
             malady.severity = rnd.Next(2, 5);
         }
-        heartRate = rnd.Next(50, 151);
-        skinStatus = rnd.Next(1, 6);
         patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
         age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
 
@@ -52,6 +44,8 @@ public partial class PatientStats
 
     private void AssignMaladyValues(Malady inputMalady)
     {
+        //ALL malady related information must go through here,
+        //otherwise the malady reference is static and curing one patient cures all patients.
         malady.name = inputMalady.name;
         malady.allSymptoms = inputMalady.allSymptoms;
         malady.dialogueSymptoms = inputMalady.dialogueSymptoms;
@@ -61,6 +55,7 @@ public partial class PatientStats
 
     public string GetDialogue()
     {
+        //Grab generic dialogue.
         if(malady.dialogueSymptoms.Count > 0)
         {
             string returnDialogue = malady.dialogueSymptoms[0].quotes[0];
@@ -71,6 +66,7 @@ public partial class PatientStats
 
     public string GetPulse()
     {
+        //Grab stethoscope dialogue
         if (malady.pulseSymptoms.Count > 0)
         {
             string returnDialogue = malady.pulseSymptoms[0].quotes[0];
@@ -81,6 +77,7 @@ public partial class PatientStats
 
     public string GetTemperature()
     {
+        //Grab temperature dialogue
         if (malady.temperatureSymptoms.Count > 0)
         {
             string returnDialogue = malady.temperatureSymptoms[0].quotes[0];

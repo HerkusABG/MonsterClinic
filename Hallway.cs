@@ -4,13 +4,16 @@ using System.Collections.Generic;
 
 public partial class Hallway : Node2D
 {
+    //Node that controls everything inside of the hallway
 	Control HallwayControl;
+    //Control node specifically for the doors.
 	Control DoorControl;
     Button LeaveButton;
     List<Button> Doors =  new List<Button>();
     [Export] Button LeaveRoomButton;
     public void Initialize()
 	{
+        //Initializing the hallway, all the main methods.
         GetNodes();
 
         Subscribe();
@@ -20,6 +23,7 @@ public partial class Hallway : Node2D
 
     private void GetNodes()
     {
+        //Grabbing relevant nodes that will later be used in other parts of code.
         HallwayControl = GetNode<Control>("HallwayControl");
         LeaveButton = HallwayControl.GetNode<Button>("Leave_Room");
         DoorControl = HallwayControl.GetNode<Control>("DoorControl");
@@ -27,6 +31,7 @@ public partial class Hallway : Node2D
 
     private void Subscribe()
     {
+        //Subscriptions. Basically assigning new methods to buttons.
         LeaveRoomButton.MouseEntered += HoverOn;
         LeaveRoomButton.MouseExited += HoverOff;
         LeaveRoomButton.Pressed += LeaveRoom;
@@ -34,6 +39,7 @@ public partial class Hallway : Node2D
 
     private void DoorInitialize()
     {
+        //Logic for generating door logic.
         Main main = GetParent() as Main;
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");

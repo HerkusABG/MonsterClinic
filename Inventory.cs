@@ -68,7 +68,11 @@ public partial class Inventory : Node2D
     //press i to toggle the inventory
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (@event is InputEventKey eventKey)
+        //You used to be able to press I for inventory, but this is not allowed
+        //per the semester rules.
+
+
+        /*if (@event is InputEventKey eventKey)
         {
             //if a key is pressed and that key is i
             if (eventKey.Pressed && eventKey.Keycode == Key.I)
@@ -76,7 +80,7 @@ public partial class Inventory : Node2D
                 OpenInventory.Visible = !OpenInventory.Visible;
             }
 
-        }
+        }*/
     }
     //you can also press the inventory to open it
 	private void InventoryToggle()

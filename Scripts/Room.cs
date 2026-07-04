@@ -9,12 +9,13 @@ public partial class Room : Node2D
     [Export] Sprite2D PatientDisplay;
     [Export] Label PatientInfo;
 
+    //Is the room empty?
     private bool isEmpty = true;
 
-    public int myIndex;
-
+    //Pointer to the patient information
     public PatientStats Patient;
 
+    //boolean that checks whether you can treat the patient.
     public bool alreadyTreated = false;
 
     public void Initialize(Action HideUIAction)
@@ -34,6 +35,7 @@ public partial class Room : Node2D
 
     private void GetNodes()
     {
+        //Grab references
         LeaveRoomButton = GetNode<Button>("Leave_Room");
     }
 
@@ -45,8 +47,7 @@ public partial class Room : Node2D
 
     public void OnRoomEnter()
     {
-        //GD.Print("On room enter");
-        //GD.Print($"My severity is: {Patient.malady.severity}");
+        //Piece of logic that gets executed whenever you enter the room.
         UpdateSprites();
     }
     private void HoverOff()

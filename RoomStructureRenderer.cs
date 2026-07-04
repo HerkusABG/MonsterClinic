@@ -8,8 +8,6 @@ public partial class RoomStructureRenderer
     //buttons and nothing else.
     public void GenerateRooms(GridContainer container, int amount)
 	{
-        GD.Print("GenerateMapButtons");
-        
         for (int i = 0; i < amount; i++)
         {
             Button newButton = new Button();

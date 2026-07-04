@@ -21,11 +21,16 @@ public partial class Main : Node
     //Otherwise a _Ready method of one class can be executed before its parent and cause some issues.
 	public override void _Ready()
 	{
+        //The initial initialize gets called here.
+        //Every other node then gets initialized from the chain starts right here.
+        //Every single class with an initialize method should be able to track back
+        //to these lines right here.
         Initialize();
 	}
 
     private void GetNodes()
     {
+        //Grabbing all the relevant nodes in the "main" scene of the game.
         Office = GetNode<Contents_O>("Office");
         Computer = GetNode<Contents_C>("Computer");
         PatientInterface = GetNode<Contents_P_I>("Patient_Interface");
@@ -40,12 +45,14 @@ public partial class Main : Node
         GetNodes();
         //always keep the office at the bottom of the previous scenes stack, so the reference on how to return to it is always there
         GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
+        //Initialization chain [BELOW]
         InitializeChildren();
         GeneratePatientRooms(RoomControl);
     }
 
     private void InitializeChildren()
     {
+        //This is where the children get initialized, the next step within the chain.
         RoomManager.Initialize();
         Office.Initialize();
         Computer.Initialize();
@@ -58,8 +65,11 @@ public partial class Main : Node
 
     private void GeneratePatientRooms(Control roomControl)
     {
+        //Generating the patient room scenes.
+        //Grabbing the existing template to create the other rooms
         var patientRoom = (Node2D)GetNode("RoomTemplate");
         Random random = new Random();
+        //Creating as many rooms as finalRoomCount specifies. Subject to change in the future.
         for (int i = 0; i < finalRoomCount; i++)
         {
             Node2D newRoom = (Node2D)patientRoom.Duplicate();
@@ -67,12 +77,12 @@ public partial class Main : Node
             roomControl.AddChild(newRoom);
             RoomManager.RoomList.Add(newRoom);
             Room room = newRoom as Room;
-            room.myIndex = i;
             room.Initialize(Treatment.HideUI);
         }
     }
     public override void _UnhandledInput(InputEvent @event)
     {
+        //This is the function that makes it so that right clicking takes you back to a previous room.
         if (@event is InputEventMouseButton eventKey)
         {
             //if a key is pressed and that key is the right mouse button, and if the pause menu and the office aren't visible
