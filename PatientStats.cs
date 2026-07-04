@@ -32,8 +32,9 @@ public partial class PatientStats
         isAlive = true;
         Random rnd = new Random();
         malady = new Malady();
-       // malady = MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value;
-        malady = MaladyList.Database.ElementAt(1).Value;
+        //malady = MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value;
+        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value);
+        //malady = newMalady;
         if (malady.severity == -1)
         {
             malady.severity = rnd.Next(2, 5);
@@ -49,6 +50,15 @@ public partial class PatientStats
             (float)rnd.NextDouble(),
             (float)rnd.NextDouble()
         );
+    }
+
+    private void AssignMaladyValues(Malady inputMalady)
+    {
+        malady.name = inputMalady.name;
+        malady.allSymptoms = inputMalady.allSymptoms;
+        malady.dialogueSymptoms = inputMalady.dialogueSymptoms;
+        malady.temperatureSymptoms = inputMalady.temperatureSymptoms;
+        malady.pulseSymptoms = inputMalady.pulseSymptoms;
     }
 
     public string GetDialogue()

@@ -103,7 +103,8 @@ public partial class AdmissionManager : Node
     {
         GD.Print("Generating new patient");
         //  generate new data
-        PatientStats patientStats = new PatientStats();
+        PatientStats patientStats;
+        patientStats = new PatientStats();
 
         InternalPatient = patientStats;
         return patientStats;
