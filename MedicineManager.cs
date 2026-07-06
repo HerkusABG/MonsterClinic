@@ -11,8 +11,14 @@ static class MedicineManager
     //In order to access individual members, type MedicineManager.Database["<Insert medicine name here>"]
     public static Dictionary<string, Medicine> Database = new()
     {
-        ["Morphine"] = new Medicine { name = "Morphine", cost = 10 },
+    	["Morphine"] = new Medicine { name = "Morphine", cost = 10 },
         ["Aspirin"] = new Medicine { name = "Aspirin", cost = 20 },
-        ["Ozempic"] = new Medicine { name = "Ozempic", cost = 30 }
+        ["Ozempic"] = new Medicine { name = "Ozempic", cost = 30 },
+        ["Antibiotics"] = new Medicine { name = "Antibiotics", cost = 13 },
+        ["FancyAntibiotics"] = new Medicine { name = "Fancy Antibiotics", cost = 30 },
+        ["Bandages"] = new Medicine { name = "Bandages", cost = 10 },
+        ["FancyBandages"] = new Medicine { name = "FancyBandages", cost = 18 },
+        ["GodMedicine"] = new Medicine { name = "Dog Medicine", cost = 999 }
+        
     };
 }
