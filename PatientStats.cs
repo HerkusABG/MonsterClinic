@@ -23,13 +23,20 @@ public partial class PatientStats
     {
         // refresh the patient's data.
         // For just assigning random numbers, this will be overhauled later.
-        isAlive = true;
         Random rnd = new Random();
         malady = new Malady();
         AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value);
         if (malady.severity == -1)
         {
             malady.severity = rnd.Next(2, 5);
+        }
+        if(malady.severity >= 5)
+        {
+            isAlive = false;
+        }
+        else
+        {
+            isAlive = true;
         }
         patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
         age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
@@ -84,6 +91,11 @@ public partial class PatientStats
             return returnDialogue;
         }
         return "Not too hot, not too cold!";
+    }
+
+    public bool IsPatientAlive()
+    {
+        return isAlive;
     }
 }
     

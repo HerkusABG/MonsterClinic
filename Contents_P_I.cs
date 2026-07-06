@@ -39,8 +39,6 @@ public partial class Contents_P_I : Node2D
     [Export] Diagnosis_Box Diagnosis;
     [Export] SpeechManager SpeechManagerAccess;
 
-
-
     public void Initialize()
 	{
         Hide();

@@ -110,17 +110,8 @@ public partial class TreatmentManager : Node
                 PatientDisplay.Show();
             }
         }
-        UpdateTreatmentText();
     }
-    /*public void UpdateTreatmentText()
-    {
-        if (Room == null) return;
-        if (Room.Patient == null) return;
-        PatientInfo.Text = $"Patient info: " +
-                   $"\n Malady: {Room.Patient.malady.name}" +
-                   $"\n Severity: {Room.Patient.malady.severity}" +
-                   $"\n Age: {Room.Patient.age}";
-    }*/
+    
     public void HideUI()
     {
         foreach(Node child in GetChildren())

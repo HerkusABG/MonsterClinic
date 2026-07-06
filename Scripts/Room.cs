@@ -7,6 +7,7 @@ public partial class Room : Node2D
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Button LeaveRoomButton;
     [Export] Sprite2D PatientDisplay;
+    [Export] Control Corpse;
     [Export] Label PatientInfo;
 
     //Is the room empty?
@@ -52,6 +53,8 @@ public partial class Room : Node2D
     {
         //Piece of logic that gets executed whenever you enter the room.
         UpdateSprites();
+        
+
     }
     private void HoverOff()
     {
@@ -88,21 +91,43 @@ public partial class Room : Node2D
     {
         if(!isEmpty)
         {
-            SetPatientUIStatus(true);
-            SetPatientRoomText();
+            if (Patient.IsPatientAlive())
+            {
+                GD.Print("skiidi");
+                SetPatientUIStatus(true, true);
+                SetPatientRoomText();
+            }
+            else
+            {
+                GD.Print("skibidi");
+                SetPatientUIStatus(true, false);
+            }
         }
         else
         {
-            SetPatientUIStatus(false);
+            SetPatientUIStatus(false, false);
+            GD.Print("kibidi");
+            Corpse.Hide();
+            PatientDisplay.Hide();
         }
     }
 
-    private void SetPatientUIStatus(bool status)
+    private void SetPatientUIStatus(bool status, bool alive)
     {
         if(status)
         {
-            PatientDisplay.Show();
-            PatientInfo.Show();
+            if(alive)
+            {
+                PatientDisplay.Show();
+                Corpse.Hide();
+                PatientInfo.Show();
+            }
+            else
+            {
+                PatientDisplay.Hide();
+                Corpse.Show();
+                PatientInfo.Show();
+            }
         }
         else
         {
@@ -130,6 +155,7 @@ public partial class Room : Node2D
     public void AssignPatient(PatientStats patient)
     {
         Patient = patient;
+        PatientDisplay.Modulate = patient.PortraitColor;
         isEmpty = false;
     }
 

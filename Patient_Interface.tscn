@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dkuuhw6j251v"]
 
 [ext_resource type="Script" uid="uid://dkm01vf4lknir" path="res://Contents_P_I.cs" id="1_ljdgf"]
-[ext_resource type="Texture2D" uid="uid://dv407cyytps0d" path="res://place holders/678389911_1870797110453119_1821731508704277239_n.png" id="2_bomhp"]
 [ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://CustomText/danielbd_MediumText.ttf" id="3_3xib3"]
+[ext_resource type="Texture2D" uid="uid://bj5t1docqxj1r" path="res://place holders/Admission Blockouts/Admission_Patient_White_Blockout.png" id="3_ecejo"]
 [ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://CustomText/digital-7_CountdownText.ttf" id="4_7u4js"]
 [ext_resource type="Texture2D" uid="uid://c5b2sbksxoyvm" path="res://place holders/684146226_2513326992456987_2687682788803640839_n.jpg" id="4_ecejo"]
 [ext_resource type="Texture2D" uid="uid://wcwpr5c2jw40" path="res://Assets/2D Art/Admission/admission-background.png" id="5_ecejo"]
@@ -78,9 +78,10 @@ AdmitButton = NodePath("../ControlPatientInterface/Admit")
 [node name="Sprites_PH" type="Node2D" parent="." unique_id=2126787329]
 
 [node name="Patient" type="Sprite2D" parent="Sprites_PH" unique_id=994478939]
-position = Vector2(1272, 356.00003)
-scale = Vector2(0.42309022, 0.43263888)
-texture = ExtResource("2_bomhp")
+z_index = -1
+position = Vector2(1259, 377.8633)
+scale = Vector2(0.40427235, 0.29729575)
+texture = ExtResource("3_ecejo")
 
 [node name="PatientLabel" type="Label" parent="Sprites_PH" unique_id=92196170]
 offset_left = 231.0
