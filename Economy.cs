@@ -10,7 +10,7 @@ static class Economy
 	public static int roomCost = 10;
 	public static float roomCostInflation = 1.5f;
 
-	//should theoret
+	//should theoretically increase the cost by 50% everytime
 	public static void IncreaseRoomCost()
 	{
 		roomCost = (int)(roomCost * roomCostInflation);
