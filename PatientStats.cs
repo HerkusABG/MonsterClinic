@@ -7,7 +7,6 @@ public partial class PatientStats
     // This class is used for storing the patient's data inside of the patient admission interface.
     // This will later be plugged in a way where this gets instantiated every time there is a new patient to be admitted.
     // The relevant stats will be changed according to the game designer's wishes.
-    // This data will then be used for diagnosis, once we develop that further.
 
     //Patients ID
     public string patientID;
@@ -58,6 +57,7 @@ public partial class PatientStats
         malady.dialogueSymptoms = inputMalady.dialogueSymptoms;
         malady.temperatureSymptoms = inputMalady.temperatureSymptoms;
         malady.pulseSymptoms = inputMalady.pulseSymptoms;
+        malady.tags = inputMalady.tags;
     }
 
     public string GetDialogue()
@@ -91,6 +91,24 @@ public partial class PatientStats
             return returnDialogue;
         }
         return "Not too hot, not too cold!";
+    }
+
+    public void TriggerDailyTags()
+    {
+        GD.Print($"Length is {malady.tags.Count}");
+        foreach (Tag tag in malady.tags)
+        {
+            GD.Print("2");
+            if (tag.GetTagType() == TagType.Daily)
+            {
+                GD.Print("3.1");
+                tag.Execute(malady);
+            }
+            else
+            {
+                GD.Print("3.2");
+            }
+        }
     }
 
     public bool IsPatientAlive()

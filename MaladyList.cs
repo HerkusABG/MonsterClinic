@@ -45,6 +45,10 @@ public static class MaladyList
                 SymptomList.Database["HeartProblems"].name,
                 SymptomList.Database["BodyPain"].name,
                 SymptomList.Database["Headache"].name
+            },
+            tags =
+            {
+                new WorseningTag()
             }
         },
         ["BluePox"] = new Malady 
@@ -64,6 +68,10 @@ public static class MaladyList
                 SymptomList.Database["Sneezing"].name,
                 SymptomList.Database["Headache"].name,
                 SymptomList.Database["Fever"].name
+            },
+            tags =
+            {
+                new WorseningTag()
             }
         },
     };
