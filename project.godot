@@ -25,9 +25,9 @@ MaladyAutoload="*uid://cil0v07xkr4ec"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=4
+window/size/minimize_disabled=true
 window/size/maximize_disabled=true
-window/stretch/mode="viewport"
-window/stretch/aspect="expand"
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
