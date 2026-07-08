@@ -14,6 +14,7 @@ public partial class Contents_C : Node2D
     Label UpgradesWindow;
     VBoxContainer UpgradesList;
     Button AspirinUnlock;
+    Button WaitingRoomUpgrade;
     Button CloseUpgrades;
     Button TreatmentResourcesButton;
     Label ResourcesWindow;
@@ -65,6 +66,7 @@ public partial class Contents_C : Node2D
         UpgradesWindow = DealerWindow.GetNode<Label>("Upgrades_Window");
         UpgradesList = UpgradesWindow.GetNode<VBoxContainer>("Upgrades_List");
         AspirinUnlock = UpgradesList.GetNode<Button>("Aspirin_Unlock");
+        WaitingRoomUpgrade = UpgradesList.GetNode<Button>("Waiting_Room_Upgrade");
         CloseUpgrades = UpgradesWindow.GetNode<Button>("Close");
         TreatmentResourcesButton = DealerWindow.GetNode<Button>("Treatment_Resources_Button");
         ResourcesWindow = DealerWindow.GetNode<Label>("Resources_Window");
@@ -107,6 +109,7 @@ public partial class Contents_C : Node2D
         TreatmentResourcesButton.Pressed += OpenResourcesWindow;
         UpgradesButton.Pressed += OpenUpgradesWindow;
         AspirinUnlock.Pressed += UnlockAspirin;
+        WaitingRoomUpgrade.Pressed += BuyWaitingRoomSeat;
         //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
         CloseResources.Pressed += () => CloseParent(CloseResources);
         CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
@@ -191,6 +194,20 @@ public partial class Contents_C : Node2D
             Upgrades.UnlockAspirin();
             AspirinUnlock.Disabled = true;
             BuyMedicine2Button.Disabled = false;
+            DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
+
+        }
+        else
+        {
+            InsufficientFunds.Show();
+        }
+    }
+    private void BuyWaitingRoomSeat()
+    {
+        //if you can afford it, unlock aspirin, disables the unlock button, and enables the purchase button
+        if (DoctorInventory.Money >= 50)
+        {
+            Upgrades.BuyWaitingRoomSeat();
             DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
 
         }

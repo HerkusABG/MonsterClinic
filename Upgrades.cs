@@ -30,4 +30,10 @@ static class Upgrades
             DoctorInventory.Money -= 50;
     }
 
+	public static void BuyWaitingRoomSeat()
+	{
+		newPatientSlots++;
+		DoctorInventory.Money -= 50;
+	}
+
 }
