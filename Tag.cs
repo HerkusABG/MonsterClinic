@@ -37,4 +37,17 @@ public class WorseningTag : Tag
     }
 }
 
+public class HealingTag : Tag
+{
+    public HealingTag()
+    {
+        //type = TagType.Daily;
+    }
+
+    public override void Execute(Malady inputMalady)
+    {
+        inputMalady.severity--;
+    }
+}
+
 

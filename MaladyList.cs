@@ -71,7 +71,7 @@ public static class MaladyList
             },
             tags =
             {
-                new WorseningTag()
+                new HealingTag()
             }
         },
     };

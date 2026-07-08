@@ -14,9 +14,10 @@ public partial class PatientStats
     public Color PortraitColor;
 
     // Also defining a bool that tracks if the patient is alive, in case he gets SHOT
-    public bool isAlive;
+    private bool isAlive;
 
     public Malady malady;
+    private Room myRoom;
 
     public PatientStats()
     {
@@ -27,16 +28,9 @@ public partial class PatientStats
         AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value);
         if (malady.severity == -1)
         {
-            malady.severity = rnd.Next(2, 5);
+            malady.severity = rnd.Next(2, 3);
         }
-        if(malady.severity >= 5)
-        {
-            isAlive = false;
-        }
-        else
-        {
-            isAlive = true;
-        }
+        isAlive = true;
         patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
         age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
 
@@ -95,25 +89,44 @@ public partial class PatientStats
 
     public void TriggerDailyTags()
     {
-        GD.Print($"Length is {malady.tags.Count}");
         foreach (Tag tag in malady.tags)
         {
-            GD.Print("2");
             if (tag.GetTagType() == TagType.Daily)
             {
-                GD.Print("3.1");
                 tag.Execute(malady);
             }
             else
             {
-                GD.Print("3.2");
             }
+        }
+        CheckLifeStatus();
+    }
+
+    private void CheckLifeStatus()
+    {
+        if(malady.severity <= 1)
+        {
+            myRoom.PatientCuredInAbsence();
+        }
+        else if(malady.severity >= 5)
+        {
+            KillPatient();
         }
     }
 
     public bool IsPatientAlive()
     {
         return isAlive;
+    }
+
+    public void KillPatient()
+    {
+        isAlive = false;
+    }
+
+    public void AssignRoom(Room room)
+    {
+        myRoom = room;
     }
 }
     

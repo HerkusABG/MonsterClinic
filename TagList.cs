@@ -8,6 +8,10 @@ public static class TagList
         ["Worsening"] = new WorseningTag
         {
             type = TagType.Daily
+        },
+        ["Healing"] = new HealingTag
+        {
+            type = TagType.Daily
         }
     };
 }

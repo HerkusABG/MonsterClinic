@@ -97,19 +97,6 @@ public partial class Hallway : Node2D
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
         //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(RoomScene.GetPath());
-        /*Hide();
-        GlobalData.inPatientRoom = true;
-        //var RoomScene = (Node2D)GetParent().GetNode("Room");
-        //GD.Print($"Room count: {RoomList.Count}.");
-        roomInput.Show();
-        Room room = roomInput as Room;
-        room.UpdateSprites();
-        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
-        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
-        treatment.SetTreatmentRoomReference(room);
-        GlobalData.PreviousScenes.Push(roomInput.GetPath());*/
-        //treatment.ShowUI();
         Sprite2D PatientDisplay = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<Sprite2D>("Patient_Display");
         TextureButton Corpse = GetParent().GetNode("Inventory").GetNode("Treatment_Manager").GetNode<TextureButton>("Corpse");
         //if room has a patient, show the universal patient and make their color the one corresponding to the room's patient
@@ -125,7 +112,7 @@ public partial class Hallway : Node2D
             else
             {
                 GD.Print("skibidi");
-                room.Patient.isAlive = false;
+                room.Patient.KillPatient();
                 PatientDisplay.Hide();
                 GD.Print(PatientDisplay.Visible.ToString());
                 Corpse.Show();
@@ -138,10 +125,8 @@ public partial class Hallway : Node2D
             Corpse.Hide();
             PatientDisplay.Hide();
         }
-
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(roomInput.GetPath());
-        
     }
 
     private void LeaveRoom()
@@ -162,13 +147,6 @@ public partial class Hallway : Node2D
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.ReenableMedicine();
-        /* foreach(Room room in RoomManager.RoomList)
-         {
-            TreatmentManager treatment = room.GetNode<TreatmentManager>("Treatment_Manager");
-            treatment.ReenableMedicine();
-
-            room.UpdatePatientInfoLabel();
-         }*/
     }
 
     public void UpdateHallwayUI()

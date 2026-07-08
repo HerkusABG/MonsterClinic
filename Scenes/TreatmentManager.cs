@@ -104,7 +104,7 @@ public partial class TreatmentManager : Node
     {
         if(Room != null)
         {
-            if (Room.Patient.isAlive == true)
+            if (Room.Patient.IsPatientAlive() == true)
             {
                 PatientInfo.Show();
                 PatientDisplay.Show();
@@ -190,10 +190,7 @@ public partial class TreatmentManager : Node
                 //if you get the severity down to 0, the patient is cured, you get a popup, and you get paid
                 if (patient.malady.severity <= 0)
                 {
-                    GlobalData.patientCount--;
-                    PatientCuredPopup.Show();
-                    GlobalData.DailyEarnings += 40;
-                    Room.DeletePatient();
+                    PatientCured();
                 } 
                 else
                 {
@@ -223,10 +220,22 @@ public partial class TreatmentManager : Node
     public void SetTreatmentRoomReference(Room room)
     {
         Room = room;
+        if(Room.curedInAbsence)
+        {
+            PatientCured();
+        }
     }
 
     public Room GetRoom()
     {
         return Room;
+    }
+
+    private void PatientCured()
+    {
+        GlobalData.patientCount--;
+        PatientCuredPopup.Show();
+        Economy.GiveDailyEarnings(40);
+        Room.DeletePatient();
     }
 }
