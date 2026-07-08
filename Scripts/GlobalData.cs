@@ -44,6 +44,9 @@ public static class GlobalData
     public static int patientCount = 0;
     public static string CurrentPatientMalady { get; set; } = "none";
 
+    // Tracks if there is currently a patient waiting at the office window
+    public static bool IsPatientInWindow { get; set; } = false;
+
     // this is a placeholder for the implementation of the future Malady Class system 
     public static int CurrentPatientSeverity { get; set; } = 0;
 
