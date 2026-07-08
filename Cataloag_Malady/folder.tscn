@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://ckb2jw28qvgga"]
+
+[ext_resource type="Script" uid="uid://bylrq00uis227" path="res://Cataloag_Malady/Folder_MC.cs" id="1_gkd4s"]
+[ext_resource type="Texture2D" uid="uid://lw85l3frsyy8" path="res://Cataloag_Malady/Folder_Idle.png" id="2_82ow6"]
+
+[node name="folder_MC" type="Control" unique_id=1495366430]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1655.0
+offset_bottom = -642.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gkd4s")
+
+[node name="FolderButton" type="Button" parent="." unique_id=1769443189]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -2.0
+offset_top = -71.0
+offset_right = 254.0
+offset_bottom = 185.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FolderButton" unique_id=1373268239]
+visible = false
+layout_mode = 0
+offset_left = 48.53
+offset_top = 293.395
+offset_right = 186.53
+offset_bottom = 487.195
+
+[node name="Malady_Button" type="Button" parent="FolderButton/VBoxContainer" unique_id=391925100]
+layout_mode = 2
+text = "Malady"
+
+[node name="Malady_Button2" type="Button" parent="FolderButton/VBoxContainer" unique_id=190009281]
+layout_mode = 2
+text = "Malady"
+
+[node name="Malady_Button3" type="Button" parent="FolderButton/VBoxContainer" unique_id=1530010869]
+layout_mode = 2
+text = "Malady"
+
+[node name="Malady_Button4" type="Button" parent="FolderButton/VBoxContainer" unique_id=1523437685]
+layout_mode = 2
+text = "Malady"
+
+[node name="Malady_Button5" type="Button" parent="FolderButton/VBoxContainer" unique_id=1241128363]
+layout_mode = 2
+text = "Malady"
+
+[node name="Malady_Button6" type="Button" parent="FolderButton/VBoxContainer" unique_id=579972696]
+layout_mode = 2
+text = "Malady"
+
+[node name="Tag" type="Label" parent="." unique_id=1210491120]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 190.0
+offset_right = 162.0
+offset_bottom = 213.0
+text = "Virus"
+horizontal_alignment = 1
+
+[node name="FolderIdle" type="Sprite2D" parent="." unique_id=2011704077]
+position = Vector2(131, 51)
+texture = ExtResource("2_82ow6")
+
+[connection signal="pressed" from="FolderButton" to="." method="_on_folder_button_pressed"]
+[connection signal="pressed" from="FolderButton/VBoxContainer/Malady_Button" to="." method="_on_blue_pox_pressed"]
