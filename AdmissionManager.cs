@@ -19,6 +19,9 @@ public partial class AdmissionManager : Node
     public void Initialize()
     {
         NullPatientInitialize();
+
+        // Added stuff for the patient sprite at the window
+        UpdateWindowStatus();  
     }
     public void Admit()
     {
@@ -39,6 +42,11 @@ public partial class AdmissionManager : Node
                 //This method is needed to make the visit button work.
                 SetLatestPatientRoom(room);
                 //Checking to see if the clinic is full (again)
+
+                // Added stuff for the patient sprite at the window
+                PatientQueueLogic(); 
+                UpdateWindowStatus();
+
                 IsClinicFull();
             }
        }
@@ -68,6 +76,9 @@ public partial class AdmissionManager : Node
         //New day logic
         LatestRoom = null;
         patientsLeft = Upgrades.newPatientSlots;
+
+        // Added stuff for the patient sprite at the window
+        UpdateWindowStatus(); 
     }
 
     public Node2D GetLatestRoom()
@@ -78,7 +89,15 @@ public partial class AdmissionManager : Node
     }
     public void Reject()
     {
+        // Added stuff for the patient sprite at the window
+        PatientQueueLogic();
+        UpdateWindowStatus();
+    }
 
+    // Added stuff for the patient sprite at the window
+    private void UpdateWindowStatus()
+    {
+        GlobalData.IsPatientInWindow = (patientsLeft > 0);
     }
 
     public bool IsClinicFull()

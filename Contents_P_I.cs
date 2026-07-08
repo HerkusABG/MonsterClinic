@@ -208,6 +208,9 @@ public partial class Contents_P_I : Node2D
         var OfficeScene = (Node2D)GetParent().GetNode("Office");
         OfficeScene.Show();
         GlobalData.PreviousScenes.Pop();
+
+        int patients = AdmissionManagerAccess.HowManyPatientsLeft();
+        GlobalData.IsPatientInWindow = (patients > 0);
     }
 
     private void OnRejectPressed()
@@ -262,6 +265,8 @@ public partial class Contents_P_I : Node2D
 
         PatientLabel.Text = "Patient: " + PatientPointer.patientID; //convert data to strings to display it on Labels  and '+' operator connects static text "ID: " with the variable value
         AgeLabel.Text = "Age: " + PatientPointer.age.ToString(); //used stringt o convert the integer age to a string for display purposes
+
+        GlobalData.IsPatientInWindow = (patients > 0); // update Globaldata  value
     }
 
     private void NextPatientInQueue()

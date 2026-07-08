@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://l74aru063sey"]
+
+[ext_resource type="Texture2D" uid="uid://dv407cyytps0d" path="res://place holders/678389911_1870797110453119_1821731508704277239_n.png" id="1_bt1j3"]
+[ext_resource type="Script" uid="uid://dk3jtffshlykp" path="res://Scripts/OfficePatientPlaceholder.cs" id="2_e3re3"]
+
+[node name="OfficePatientPlaceholder" type="Sprite2D" unique_id=986667268]
+modulate = Color(1, 1, 1, 0.19607843)
+texture = ExtResource("1_bt1j3")
+script = ExtResource("2_e3re3")
