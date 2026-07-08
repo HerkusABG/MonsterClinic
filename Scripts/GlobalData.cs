@@ -53,4 +53,6 @@ public static class GlobalData
     //stack that holds previous scenes accessed, going back to the office, kinda like the branches of a tree
     public static Stack PreviousScenes { get; set; } = new Stack();
 
+    public static bool IsClinicFullyOccupied { get; set; } = false; // Tracks if the clinic is fully occupied and is used for the NoVacancy flashing panel
+
 }

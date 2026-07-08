@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://SpeechManager.cs" id="7_3xib3"]
 [ext_resource type="Texture2D" uid="uid://caubt0llj6n3e" path="res://Assets/2D Art/Admission/admission-mic.png" id="7_7u4js"]
 [ext_resource type="Texture2D" uid="uid://crbfj6l15slrx" path="res://Assets/2D Art/Admission/admission-thermogun.png" id="8_f16jq"]
+[ext_resource type="Script" uid="uid://chjkfoixjhby0" path="res://Scripts/NoVacancy.cs" id="9_3xib3"]
 [ext_resource type="Texture2D" uid="uid://cyew7rebghwwc" path="res://Assets/2D Art/Admission/admission-stethoscope.png" id="9_kytyi"]
 [ext_resource type="Texture2D" uid="uid://c8t7gu2gwco4j" path="res://Assets/2D Art/Admission/admission-redbutton.png" id="10_65rjk"]
 [ext_resource type="Texture2D" uid="uid://dg1os5gpillxl" path="res://Assets/2D Art/Admission/admission-greenbutton.png" id="12_ecejo"]
@@ -137,6 +138,14 @@ texture = ExtResource("5_ecejo")
 position = Vector2(1280, 354)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_3xib3")
+
+[node name="NoVacancy" type="Panel" parent="Sprites_PH" unique_id=1515346006]
+modulate = Color(7.4859324, 0, 0, 1)
+offset_left = 952.0
+offset_top = 61.0
+offset_right = 1599.0
+offset_bottom = 653.0
+script = ExtResource("9_3xib3")
 
 [node name="ControlPatientInterface" type="Control" parent="." unique_id=832899310]
 layout_mode = 3
