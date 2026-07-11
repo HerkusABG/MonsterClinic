@@ -126,6 +126,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Log out"
 
 [node name="Dealer_PH" type="Label" parent="Player_Interactables_C" unique_id=1842103304]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 40.0
@@ -416,7 +417,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
 
-[node name="MapControl" type="Control" parent="Player_Interactables_C" unique_id=395133012 node_paths=PackedStringArray("RoomCount", "PatientCount", "BuyRoomButton", "WarningLabel", "RoomContainer1", "RoomContainer2")]
+[node name="MapControl" type="Control" parent="Player_Interactables_C" unique_id=395133012 node_paths=PackedStringArray("RoomCount", "PatientCount", "BuyRoomButton", "WarningLabel")]
 visible = false
 z_index = 2
 anchors_preset = 0
@@ -429,8 +430,6 @@ RoomCount = NodePath("../Dealer_PH/Upgrades_Window/Rooms_Text/RoomBox/RoomCount"
 PatientCount = NodePath("../Dealer_PH/Upgrades_Window/Rooms_Text/RoomBox/PatientCount")
 BuyRoomButton = NodePath("../Dealer_PH/Upgrades_Window/Rooms_Text/RoomBox/BuyRoomButton")
 WarningLabel = NodePath("../../MapUI/WarningLabel")
-RoomContainer1 = NodePath("MapMarginContainer/RoomContainer")
-RoomContainer2 = NodePath("MapMarginContainer2/RoomContainer2")
 
 [node name="Close" type="Button" parent="Player_Interactables_C/MapControl" unique_id=834944]
 z_index = 2

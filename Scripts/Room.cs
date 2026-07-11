@@ -102,14 +102,18 @@ public partial class Room : Node2D
 
     private void LeaveRoom()
     {
-        //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
+        //when leaving the room, hide it, show the hallway, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         Hide();
         var HallwayScene = (Node2D)GetParent().GetParent().GetNode("Hallway");
         HallwayScene.Show();
         GlobalData.inPatientRoom = false;
-        if(GlobalData.PreviousScenes.Count == 0)
+        GlobalData.PreviousScenes.Pop();
+        var ComputerScene = (Node2D)GetParent().GetParent().GetNode("Computer");
+        //if we reached this room through fast travel, alter the PreviousScenes stack so that right clikcing the hallway takes us back to the office, as it should
+        if ((NodePath)GlobalData.PreviousScenes.Peek() == ComputerScene.GetPath())
         {
             GlobalData.PreviousScenes.Pop();
+            GlobalData.PreviousScenes.Push(HallwayScene.GetPath());
         }
     }
 

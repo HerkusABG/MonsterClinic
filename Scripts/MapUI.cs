@@ -56,9 +56,8 @@ public partial class MapUI : Control
         WarningLabel.Visible = false;
         BuyRoomButton.Pressed += OnBuyRoomButtonPressed;
         RoomRenderer = new RoomStructureRenderer();
-        //since now the rooms are generated in 2 different containers, they cna no longer be generated en masse in one method, if the method will ever generate more than 3 at once,
+        //since now the rooms are generated in 2 different containers, they can no longer be generated en masse in one method, if the method will ever generate more than 3 at once,
         //so now it's a loop using the individual room generation
-        //RoomRenderer.GenerateRooms(RoomContainer1, Upgrades.roomCount);
         for (int i = 1; i <= Upgrades.roomCount; i++)
         {
             if (i < 4)
@@ -86,6 +85,8 @@ public partial class MapUI : Control
         MapOffice = GetNode<Button>("Map_Office");
         MapPatientAdmission = GetNode<Button>("Map_Patient_Admission");
         MapHallway = GetNode<Button>("Map_Hallway");
+        RoomContainer1 = GetNode("MapMarginContainer").GetNode<GridContainer>("RoomContainer");
+        RoomContainer2 = GetNode("MapMarginContainer2").GetNode<GridContainer>("RoomContainer2");
 
         MedicineMenu = GetNode<Label>("Medicine_Menu");
         GiveMedicine1Button = MedicineMenu.GetNode<TextureButton>("Give_Medicine_1");
@@ -132,6 +133,10 @@ public partial class MapUI : Control
             //gives the newly created button a method to execute when pressed
             AssignRoomButtonFunction(Upgrades.roomCount);
             UpdateUI();
+            Node2D currentScene = GetParent().GetParent<Node2D>();
+            Node2D HallwayScene = currentScene.GetParent().GetNode<Node2D>("Hallway");
+            Hallway hallway = HallwayScene as Hallway;
+            hallway.UpdateHallwayUI();
             DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
         }
         else
@@ -153,6 +158,9 @@ public partial class MapUI : Control
         Room room = RoomScene as Room;
         //update all the stuff in the room
         room.UpdatePatientInfoLabel();
+        Node2D HallwayScene = currentScene.GetParent().GetNode<Node2D>("Hallway");
+        Hallway hallway = HallwayScene as Hallway;
+        hallway.UpdateHallwayUI();
         Inventory inv = GetParent().GetParent().GetParent().GetNode<Inventory>("Inventory");
         TextureButton GiveMedicine1Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
         TextureButton GiveMedicine2Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
