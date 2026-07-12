@@ -96,7 +96,7 @@ public partial class Bed : Node2D
         {
             //Scene changed to the death Screen, The reasion can be also set in the Global autoload, so you can change the reasion for the death screen, depending on how the player died
             GlobalData.Reasion = "Your sickness killed you! Keep an eye on your treatment countdown";
-            GetTree().ChangeSceneToFile("res://DeathScreen/death_screen.tscn");
+            GetTree().ChangeSceneToFile("res://Scenes/death_screen.tscn");
         }
 
         if (GlobalData.MedicinePlayer >= 1)

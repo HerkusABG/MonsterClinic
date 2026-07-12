@@ -21,6 +21,6 @@ public partial class DeathScreen : Node2D
 	{
 		// For debugging (testingt) purposes, the Treatment countdown gets set to 2. Scene changes to the Office.
 		GlobalData.Countdown = 2;
-		GetTree().ChangeSceneToFile("res://Main.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Main.tscn");
 	}
 }

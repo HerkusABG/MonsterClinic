@@ -4,7 +4,7 @@ using System;
 public partial class MainMenu : Control
 {
 	// Called when the node enters the scene tree for the first time.
-	[Export] PackedScene option = ResourceLoader.Load<PackedScene>("res://Menu/option_menu.tscn");
+	[Export] PackedScene option = ResourceLoader.Load<PackedScene>("res://Scenes/option_menu.tscn");
 	[Signal] public delegate void DeleteSaveSystemEventHandler(bool deleteSafe);
     public override void _Ready()
 	{
@@ -31,7 +31,7 @@ public partial class MainMenu : Control
 
 	private void _on_new_game_button_pressed()
 	{
-		GetTree().ChangeSceneToFile("res://Main.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/Main.tscn");
 
 
     }
@@ -42,7 +42,7 @@ public partial class MainMenu : Control
 		{
             // loads the days and treatment countdown for the player
             SaveSystem.Load_Days();
-            GetTree().ChangeSceneToFile("res://Main.tscn");
+            GetTree().ChangeSceneToFile("res://Scenes/Main.tscn");
         }
 
 

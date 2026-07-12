@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://c0wl0p1tagma5"]
 
-[ext_resource type="Script" uid="uid://bpbh60enepajt" path="res://Inventory.cs" id="1_3n7vm"]
+[ext_resource type="Script" uid="uid://bpbh60enepajt" path="res://Scripts/AlwaysOnScreen/Tablet/Inventory/Inventory.cs" id="1_3n7vm"]
 [ext_resource type="Texture2D" uid="uid://0p8gc3ax8rmb" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Pocket_Blockout.png" id="2_0261c"]
 [ext_resource type="Texture2D" uid="uid://ck5pltj8yh3oh" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_Blockout.png" id="2_ki15f"]
 [ext_resource type="Texture2D" uid="uid://dfwx6gwwanux4" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Closed_Blockout (1).png" id="2_y13mq"]
 [ext_resource type="Texture2D" uid="uid://cfje0d52rdwyx" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Closed_Blockout (2).png" id="3_d2uli"]
 [ext_resource type="Texture2D" uid="uid://bi1hp683e4pjr" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Open_Blockout.png" id="3_mva8e"]
-[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_nwt7c"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_nwt7c"]
 [ext_resource type="Texture2D" uid="uid://b5e6gugoptsp5" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_HL_Blockout.png" id="4_e3raj"]
 [ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="4_jqulp"]
 [ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="7_y13mq"]
 [ext_resource type="Texture2D" uid="uid://bbyfolabl5n1k" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Label_Counter_Blockout.png" id="9_d2uli"]
-[ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scenes/TreatmentManager.cs" id="12_ny8ul"]
+[ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scripts/PatientRoom/PatientTreatment/TreatmentManager.cs" id="12_ny8ul"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwt7c"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)

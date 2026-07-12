@@ -4,7 +4,7 @@ using System;
 public partial class Contents_O : Node2D
 {
     private Timer sceneTimer;
-    [Export] PackedScene dealer_selftreatment_dialog = ResourceLoader.Load<PackedScene>("res://dialog.tscn");
+    [Export] PackedScene dealer_selftreatment_dialog = ResourceLoader.Load<PackedScene>("res://Scenes/dialog.tscn");
     // Called when the node enters the scene tree for the first time.
     public void Initialize()
 	{

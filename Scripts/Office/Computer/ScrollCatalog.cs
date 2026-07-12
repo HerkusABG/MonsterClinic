@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class ScrollCatalog : ScrollContainer
 {
     [Export] public PackedScene SlotUI;
-    [Export] PackedScene SlotUIMalady = ResourceLoader.Load<PackedScene>("res://Cataloag_Malady/malady_catalog_slot_ui.tscn");
+    [Export] PackedScene SlotUIMalady = ResourceLoader.Load<PackedScene>("res://Scenes/malady_catalog_slot_ui.tscn");
     public Malady_Autoload.MaladyData MaladyData;
 
     public override void _Ready()

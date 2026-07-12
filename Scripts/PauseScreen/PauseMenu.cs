@@ -3,7 +3,7 @@ using System;
 
 public partial class PauseMenu : Node2D
 {
-	[Export] PackedScene option = ResourceLoader.Load<PackedScene>("res://Menu/option_menu.tscn");
+	[Export] PackedScene option = ResourceLoader.Load<PackedScene>("res://Scenes/option_menu.tscn");
 
     //Added the cheat stuff in accordance with our post-overhaul approach, will probably overhaul the whole scene eventually too
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
@@ -150,7 +150,7 @@ public partial class PauseMenu : Node2D
     //when exit pressed, quit the game
     private void _on_exit_pressed()
 	{
-		GetTree().ChangeSceneToFile("res://Menu/main_menu.tscn");
+		GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
 	}
 
 	public void OptionMenuClose(Boolean op_Close)
