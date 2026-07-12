@@ -109,7 +109,7 @@ public partial class Contents_C : Node2D
         TreatmentResourcesButton.Pressed += OpenResourcesWindow;
         UpgradesButton.Pressed += OpenUpgradesWindow;
         AspirinUnlock.Pressed += UnlockAspirin;
-        WaitingRoomUpgrade.Pressed += BuyWaitingRoomSeat;
+        WaitingRoomUpgrade.Pressed += () => Upgrades.IncrementalUpgradeMethod(Upgrades.newPatientSlots, 1, WaitingRoomUpgrade, InsufficientFunds, DealerWindowMoneyDisplay);
         //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
         CloseResources.Pressed += () => CloseParent(CloseResources);
         CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
@@ -202,7 +202,7 @@ public partial class Contents_C : Node2D
             InsufficientFunds.Show();
         }
     }
-    private void BuyWaitingRoomSeat()
+    /*private void BuyWaitingRoomSeat()
     {
         //if you can afford it, unlock aspirin, disables the unlock button, and enables the purchase button
         if (DoctorInventory.Money >= 50)
@@ -215,7 +215,7 @@ public partial class Contents_C : Node2D
         {
             InsufficientFunds.Show();
         }
-    }
+    }*/
     private void _on_resources_window_visibility_changed()
     {
         if (ResourcesWindow.Visible)

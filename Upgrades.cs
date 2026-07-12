@@ -12,7 +12,13 @@ static class Upgrades
 
 	//boolean that control whether you can buy Aspirin
 	public static bool AspirinUnlock = false;
-	public static int newPatientSlots { get; private set; } = 3;
+	public static IncrementalUpgrade newPatientSlots = new IncrementalUpgrade
+	{
+		incrementTarget = 3,
+		cap = 999,
+		price = 50
+	};
+
 
 
 	public static void AddNewRoom()
@@ -30,10 +36,34 @@ static class Upgrades
             DoctorInventory.Money -= 50;
     }
 
-	public static void BuyWaitingRoomSeat()
+	/*public static void BuyWaitingRoomSeat()
 	{
 		newPatientSlots++;
 		DoctorInventory.Money -= 50;
+	}*/
+
+	public static void IncrementalUpgradeMethod(IncrementalUpgrade upgrade, int loops, Button upgradeButton, Label brokePopup, Label moneyDisplay) 
+	{
+		if (DoctorInventory.Money >= upgrade.price)
+		{
+			for (int i = 1; i <= loops; i++)
+			{
+				//increment the count, spend the money
+				upgrade.incrementTarget++;
+				DoctorInventory.Money -= upgrade.price;
+				//if we reach the cap, disable the button
+				if (upgrade.incrementTarget >= upgrade.cap)
+				{
+					upgradeButton.Disabled = true;
+					break;
+				}
+			}
+			//updae display
+            moneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
+        } else
+		{
+			brokePopup.Show();
+		}
 	}
 
 }
