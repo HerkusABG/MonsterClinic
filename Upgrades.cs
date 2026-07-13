@@ -12,14 +12,13 @@ static class Upgrades
 
 	//boolean that control whether you can buy Aspirin
 	public static bool AspirinUnlock = false;
-	public static IncrementalUpgrade newPatientSlots = new IncrementalUpgrade
+
+	public static IntegerUpgrade newPatientSlots = new IntegerUpgrade
 	{
 		incrementTarget = 3,
 		cap = 999,
 		price = 50
 	};
-
-
 
 	public static void AddNewRoom()
 	{
@@ -32,17 +31,11 @@ static class Upgrades
 	//unlock aspirin, pay for it
     public static void UnlockAspirin()
     {
-            Upgrades.AspirinUnlock = true;
-            DoctorInventory.Money -= 50;
+        Upgrades.AspirinUnlock = true;
+        DoctorInventory.Money -= 50;
     }
 
-	/*public static void BuyWaitingRoomSeat()
-	{
-		newPatientSlots++;
-		DoctorInventory.Money -= 50;
-	}*/
-
-	public static void IncrementalUpgradeMethod(IncrementalUpgrade upgrade, int loops, Button upgradeButton, Label brokePopup, Label moneyDisplay) 
+	public static void IntegerUpgrade(IntegerUpgrade upgrade, int loops, Button upgradeButton, Action successAction, Action failAction) 
 	{
 		if (DoctorInventory.Money >= upgrade.price)
 		{
@@ -58,11 +51,11 @@ static class Upgrades
 					break;
 				}
 			}
-			//updae display
-            moneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
-        } else
+			successAction();
+        } 
+		else
 		{
-			brokePopup.Show();
+			failAction();
 		}
 	}
 
