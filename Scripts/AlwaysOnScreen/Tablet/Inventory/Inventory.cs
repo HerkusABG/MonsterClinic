@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 public partial class Inventory : Node2D
 {
@@ -18,6 +20,11 @@ public partial class Inventory : Node2D
     Label Med3Count;
     Button Close;
 
+    [Export] TextureButton ButtonTemplate;
+
+    [Export] Control PositionControl;
+    private List<InventorySlot> Slots = new List<InventorySlot>();
+
 	// Called when the node enters the scene tree for the first time.
     public void Initialize()
     {
@@ -30,6 +37,8 @@ public partial class Inventory : Node2D
 
         //disables the shotgun until we're in the patient room
         ShotgunButton.Disabled = true;
+
+        SpawnMedicine();
     }
 
     private void InitializeChildren()
@@ -63,6 +72,21 @@ public partial class Inventory : Node2D
         Med3Name = GiveMedicine3Button.GetNode<Label>("Med3_Name");
         Med3Count = GiveMedicine3Button.GetNode("Stripe").GetNode<Label>("Med3_Count");
         Close = OpenInventory.GetNode<Button>("Close");
+
+        foreach(Node node in PositionControl.GetChildren())
+        {
+            Control control = node as Control;
+            if(control != null)
+            {
+                InventorySlot slot = new InventorySlot();
+                slot.control = control;
+                Slots.Add(slot);
+            }
+            else
+            {
+                GD.Print("ERROR IN INVENTORY.CS, NULL REFERENCE");
+            }
+        }
     }
 
     //press i to toggle the inventory
@@ -119,8 +143,22 @@ public partial class Inventory : Node2D
         var Parent = button.GetParent<TextureRect>();
         Parent.Hide();
     }
-
-        //update text whenever the inventory is shown, and also show or hide the medicines depending on if we have any
+    private void SpawnMedicine()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            TextureButton newButton = (TextureButton)ButtonTemplate.Duplicate();
+            OpenInventory.AddChild(newButton);
+            newButton.Show();
+            newButton.Position = Slots[i].GetPosition();
+            //newButton.Name = "MapRoom" + Upgrades.roomCount.ToString();
+            //newButton.Modulate = new Color(1, 0, 0, 1);
+            //newButton.CustomMinimumSize = new Vector2(150, 150);
+            //newButton.Text = $"Room {Upgrades.roomCount}";
+            //container.AddChild(newButton);
+        }
+    }
+    //update text whenever the inventory is shown, and also show or hide the medicines depending on if we have any
     private void _on_visibility_changed()
     {
         if (GiveMedicine1Button == null) return;

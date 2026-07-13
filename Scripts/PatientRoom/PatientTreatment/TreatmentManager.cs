@@ -42,17 +42,6 @@ public partial class TreatmentManager : Node
         CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);
     }
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-	{
-        //grabs references to all the necessary nodes
-        //GetNodes();
-
-        //assigning methods to all the buttons, yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
-        //GiveMedicine1Button.Pressed += () => MedicineOperations(GiveMedicine1Button);
-        //GiveMedicine2Button.Pressed += () => MedicineOperations(GiveMedicine2Button);
-        //GiveMedicine3Button.Pressed += () => MedicineOperations(GiveMedicine3Button);
-    }
     private void GetNodes()
     {
         //Basically just grabbing all the nodes
@@ -131,7 +120,6 @@ public partial class TreatmentManager : Node
 
     private void MedicineOperations(TextureButton medicineChoice)
 	{
-        GD.Print("medicine operations");
         //setting up crucial parameters of a medicine, and changing them depending on which medicine is being usesd
         Medicine medicine = null;
         string matchingMalady = "none";
