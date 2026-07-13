@@ -43,7 +43,6 @@ public partial class MapUI : Control
     {
         //resets the number of rooms to 1, prevents an issue when quitting to the main menu and starting a new game
         //should probably be in main, but the order in which the scripts are executed makes it not work, should be moved there after we have flow control
-        Upgrades.NewGameRoomReset();
         GD.Print(Upgrades.roomCount.ToString());
         getNodes();
         MapOffice.Pressed += MapOfficeFunction;
@@ -157,7 +156,7 @@ public partial class MapUI : Control
         RoomScene.Show();
         Room room = RoomScene as Room;
         //update all the stuff in the room
-        room.UpdatePatientInfoLabel();
+        room.UpdateSprites();
         Node2D HallwayScene = currentScene.GetParent().GetNode<Node2D>("Hallway");
         Hallway hallway = HallwayScene as Hallway;
         hallway.UpdateHallwayUI();
@@ -264,7 +263,7 @@ public partial class MapUI : Control
         Room room = RoomManager.RoomList[roomNum - 1] as Room;
         RoomNumber.Text = "Room " + roomNum.ToString();
         //show medicine menu if the room has an untreated patient, and the player has unlocked remote medicine
-        if (room.Patient != null && room.alreadyTreated == false && Upgrades.RemoteMedicineUnlock == true)
+        if (room.Patient != null && room.alreadyTreated == false && Upgrades.remoteMedicine.unlocked)
         {
             MedicineMenu.Show();
 
@@ -356,7 +355,6 @@ public partial class MapUI : Control
                            $"\n Malady: {room.Patient.malady.name}" +
                            $"\n Severity: {room.Patient.malady.severity}" +
                            $"\n Age: {room.Patient.age}";
-                GD.Print($"Room: {room.myIndex}");
                 //PatientInfo.Text = "Patient info: \n Malady: " + patient.malady.name + "\n Severity: " + patient.malady.severity; 
                 //if you get the severity down to 0, the patient is cured, you get a popup, and you get paid
                 if (patient.malady.severity <= 0)
@@ -365,7 +363,6 @@ public partial class MapUI : Control
                     GlobalData.DailyEarnings += 40;
                     PatientInfo.Text = "Room currently empty";
                     MedicineMenu.Hide();
-                    room.isEmpty = true;
                     room.DeletePatient();
                 }
             }

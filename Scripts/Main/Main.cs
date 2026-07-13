@@ -43,6 +43,7 @@ public partial class Main : Node
     private void Initialize()
     {
         GetNodes();
+        Upgrades.ResetAllUpgrades();
         //always keep the office at the bottom of the previous scenes stack, so the reference on how to return to it is always there
         GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
         //Initialization chain [BELOW]

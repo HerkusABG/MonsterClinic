@@ -8,7 +8,7 @@ static class Economy
 	//as any values related to it should be stored here.
 
 	public static int roomCost = 50;
-	//public static float roomCostInflation = 1.5f;
+	public static float roomCostInflation = 1.5f;
 
 	//should theoretically increase the cost by 50% everytime
 	public static void IncreaseRoomCost()

@@ -20,7 +20,13 @@ static class Upgrades
 		price = 50
 	};
 
-	public static void AddNewRoom()
+    public static BooleanUpgrage remoteMedicine = new BooleanUpgrage
+    {
+        unlocked = false,
+        price = 200
+    };
+
+    public static void AddNewRoom()
 	{
 		if (roomCount <= 6)
 		{
@@ -59,4 +65,25 @@ static class Upgrades
 		}
 	}
 
+	public static void BooleanUpgrade(BooleanUpgrage upgrade, Button upgradeButton, Action successAction, Action failAction)
+	{
+        if (DoctorInventory.Money >= upgrade.price)
+        {
+            //increment the count, spend the money
+            upgrade.unlocked = true;
+            DoctorInventory.Money -= upgrade.price;
+            upgradeButton.Disabled = true;
+            successAction();
+        }
+        else
+        {
+            failAction();
+        }
+    }
+    
+	public static void ResetAllUpgrades()
+	{
+		newPatientSlots.incrementTarget = 3;
+		remoteMedicine.unlocked = false;
+    }
 }

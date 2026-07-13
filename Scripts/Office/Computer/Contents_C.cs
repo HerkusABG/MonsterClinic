@@ -112,6 +112,7 @@ public partial class Contents_C : Node2D
         UpgradesButton.Pressed += OpenUpgradesWindow;
         AspirinUnlock.Pressed += UnlockAspirin;
         WaitingRoomUpgrade.Pressed += () => Upgrades.IntegerUpgrade(Upgrades.newPatientSlots, 1, WaitingRoomUpgrade, UpdateMoneyDisplay, ShowInsufficientFunds);
+        RemoteMedicineUnlock.Pressed += () => Upgrades.BooleanUpgrade(Upgrades.remoteMedicine, RemoteMedicineUnlock, UpdateMoneyDisplay, ShowInsufficientFunds);
         //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
         CloseResources.Pressed += () => CloseParent(CloseResources);
         CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
@@ -209,7 +210,7 @@ public partial class Contents_C : Node2D
         DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
     }
     
-    private void UnlockRemoteMedicine()
+    /*private void UnlockRemoteMedicine()
     {
         //if you can afford it, unlocks remote medicine, disables the unlock button, and enables the purchase button
         if (DoctorInventory.Money >= 200)
@@ -217,13 +218,12 @@ public partial class Contents_C : Node2D
             Upgrades.UnlockRemoteMedicine();
             RemoteMedicineUnlock.Disabled = true;
             UpdateMoneyDisplay();
-
         }
         else
         {
             ShowInsufficientFunds();
         }
-    }
+    }*/
     private void _on_resources_window_visibility_changed()
     {
         if (ResourcesWindow.Visible)
