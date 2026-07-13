@@ -161,7 +161,6 @@ public partial class Hallway : Node2D
 
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(roomInput.GetPath());
-        
     }
 
     private void LeaveRoom()
@@ -182,13 +181,6 @@ public partial class Hallway : Node2D
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.ReenableMedicine();
-        /* foreach(Room room in RoomManager.RoomList)
-         {
-            TreatmentManager treatment = room.GetNode<TreatmentManager>("Treatment_Manager");
-            treatment.ReenableMedicine();
-
-            room.UpdatePatientInfoLabel();
-         }*/
     }
 
     public void UpdateHallwayUI()

@@ -20,6 +20,8 @@ public class Malady
     public List<Symptom> pulseSymptoms = new();
     //Refers to symptoms and the related dialogue that appears when the thermometer is used.
     public List<Symptom> temperatureSymptoms = new();
+    //List of tags that define a malady's behaviour
+    public List<Tag> tags = new List<Tag>();
 
     public Malady()
     {

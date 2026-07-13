@@ -7,7 +7,6 @@ public partial class PatientStats
     // This class is used for storing the patient's data inside of the patient admission interface.
     // This will later be plugged in a way where this gets instantiated every time there is a new patient to be admitted.
     // The relevant stats will be changed according to the game designer's wishes.
-    // This data will then be used for diagnosis, once we develop that further.
 
     //Patients ID
     public string patientID;
@@ -15,9 +14,10 @@ public partial class PatientStats
     public Color PortraitColor;
 
     // Also defining a bool that tracks if the patient is alive, in case he gets SHOT
-    public bool isAlive;
+    private bool isAlive;
 
     public Malady malady;
+    private Room myRoom;
 
     public PatientStats()
     {
@@ -30,14 +30,7 @@ public partial class PatientStats
         {
             malady.severity = rnd.Next(2, 5);
         }
-        if(malady.severity >= 5)
-        {
-            isAlive = false;
-        }
-        else
-        {
-            isAlive = true;
-        }
+        isAlive = true;
         patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
         age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
 
@@ -58,6 +51,7 @@ public partial class PatientStats
         malady.dialogueSymptoms = inputMalady.dialogueSymptoms;
         malady.temperatureSymptoms = inputMalady.temperatureSymptoms;
         malady.pulseSymptoms = inputMalady.pulseSymptoms;
+        malady.tags = inputMalady.tags;
     }
 
     public string GetDialogue()
@@ -93,9 +87,55 @@ public partial class PatientStats
         return "Not too hot, not too cold!";
     }
 
+    public void TriggerDailyTags()
+    {
+        foreach (Tag tag in malady.tags)
+        {
+            if (tag.HasTagType(TagType.Daily))
+            {
+                tag.ExecuteDaily(malady);
+            }
+        }
+        CheckLifeStatus();
+    }
+
+    public void TriggerInteractionTags()
+    {
+        foreach (Tag tag in malady.tags)
+        {
+            if (tag.HasTagType(TagType.Interaction))
+            {
+                tag.ExecuteInteraction(malady);
+            }
+        }
+        CheckLifeStatus();
+    }
+
+    private void CheckLifeStatus()
+    {
+        if(malady.severity <= 1)
+        {
+            myRoom.PatientCuredInAbsence();
+        }
+        else if(malady.severity >= 5)
+        {
+            KillPatient();
+        }
+    }
+
     public bool IsPatientAlive()
     {
         return isAlive;
+    }
+
+    public void KillPatient()
+    {
+        isAlive = false;
+    }
+
+    public void AssignRoom(Room room)
+    {
+        myRoom = room;
     }
 }
     

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Net.Http;
 using static System.Net.Mime.MediaTypeNames;
 
 public partial class Room : Node2D 
@@ -13,8 +14,11 @@ public partial class Room : Node2D
     //Is the room empty?
     private bool isEmpty = true;
 
+    public bool curedInAbsence;
+
     //Pointer to the patient information
     public PatientStats Patient;
+
 
     //boolean that checks whether you can treat the patient.
     public bool alreadyTreated = false;
@@ -30,11 +34,7 @@ public partial class Room : Node2D
         LeaveRoomButton.Pressed += LeaveRoom;
         LeaveRoomButton.Pressed += HideUIAction;
 
-        
-
-
-        //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
-
+        curedInAbsence = false;
     }
 
     private void GetNodes()
@@ -52,9 +52,8 @@ public partial class Room : Node2D
     public void OnRoomEnter()
     {
         //Piece of logic that gets executed whenever you enter the room.
-        UpdateSprites();
         
-
+        UpdateSprites();
     }
     private void HoverOff()
     {
@@ -93,20 +92,17 @@ public partial class Room : Node2D
         {
             if (Patient.IsPatientAlive())
             {
-                GD.Print("skiidi");
                 SetPatientUIStatus(true, true);
                 SetPatientRoomText();
             }
             else
             {
-                GD.Print("skibidi");
                 SetPatientUIStatus(true, false);
             }
         }
         else
         {
             SetPatientUIStatus(false, false);
-            GD.Print("kibidi");
             Corpse.Hide();
             PatientDisplay.Hide();
         }
@@ -138,7 +134,19 @@ public partial class Room : Node2D
 
     private void SetPatientRoomText()
     {
-         PatientInfo.Text = $"Malady: {Patient.malady.name} \n Age: {Patient.age} \n Severity: {Patient.malady.severity}";
+        string input;
+        if(Patient.IsPatientAlive())
+        {
+            input = "Alive";
+        }
+        else
+        {
+            input = "Dead";
+        }
+        PatientInfo.Text = $"Malady: {Patient.malady.name}" +
+            $" \n Age: {Patient.age}" +
+            $" \n Severity: {Patient.malady.severity} " +
+            $"\n Status: {input}";
     }
 
     public bool HasPatient()
@@ -155,17 +163,14 @@ public partial class Room : Node2D
     public void AssignPatient(PatientStats patient)
     {
         Patient = patient;
+        Patient.AssignRoom(this);
         PatientDisplay.Modulate = patient.PortraitColor;
         isEmpty = false;
     }
 
-    /*public void UpdateTreatmentText()
+    public void PatientCuredInAbsence()
     {
-        if (Room == null) return;
-        if (Room.Patient == null) return;
-        PatientInfo.Text = $"Patient info: " +
-                   $"\n Malady: {Room.Patient.malady.name}" +
-                   $"\n Severity: {Room.Patient.malady.severity}" +
-                   $"\n Age: {Room.Patient.age}";
-    }*/
+        curedInAbsence = true;
+        DeletePatient();
+    }
 }

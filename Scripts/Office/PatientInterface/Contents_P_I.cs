@@ -167,7 +167,7 @@ public partial class Contents_P_I : Node2D
     private void ToggleInventory()
     {
         InventoryContainer.Visible = !InventoryContainer.Visible;
-        if(!PatientPointer.isAlive)
+        if(!PatientPointer.IsPatientAlive())
         {
             //ShotgunButton.Disabled = true;
         }
@@ -180,9 +180,10 @@ public partial class Contents_P_I : Node2D
     //For now killing the patient doesn't have any advanced functionality. Just showing the sprites.
     private void KillPatient()
     {
-        if(PatientPointer.isAlive)
+        if(PatientPointer.IsPatientAlive())
         {
-            PatientPointer.isAlive = false;
+            //PatientPointer.isAlive = false;
+            PatientPointer.KillPatient();
             DeceasedSprite1.Show();
         }
     }
@@ -193,7 +194,8 @@ public partial class Contents_P_I : Node2D
         //so now we do this operation when the deceased sprite shows up, which is the exact same moment, but allows us to do this in this scene
         if (DeceasedSprite1.Visible == true)
         {
-            PatientPointer.isAlive = false;
+            //PatientPointer.isAlive = false;
+            PatientPointer.KillPatient();
             //also disable the admit button while we're at it, you're not admitting a dead man
             AdmitButton.Disabled = true;
         }
@@ -264,26 +266,6 @@ public partial class Contents_P_I : Node2D
         AgeLabel.Text = "Age: " + PatientPointer.age.ToString(); //used stringt o convert the integer age to a string for display purposes
     }
 
-    private void NextPatientInQueue()
-    {
-       /* AdmissionManagerAccess.PatientQueueLogic();
-        int patients = AdmissionManagerAccess.HowManyPatientsLeft();
-        if (patients >= 0)
-        {
-            PatientsLeftLabel.Text = $"Patients left: {patients}";
-            PatientPointer = AdmissionManagerAccess.GenerateNewPatient();
-        }
-        else
-        {
-            PortraitSprite.Hide();
-            PatientsLeftLabel.Text = $"Patients left: {0}";
-            RejectButton.Disabled = true;
-            AdmitButton.Disabled = true;
-            Diagnosis.SetAllCheckboxStatus(false);
-            PatientPointer = AdmissionManagerAccess.GetNullPatient();
-        }*/
-    }
-
     private void SetVisitButtonStatus()
     {
         //Based on whether a patient has been assigned to a room today
@@ -317,7 +299,6 @@ public partial class Contents_P_I : Node2D
         //Saving the scene path, for RMB functionality
         GlobalData.PreviousScenes.Push(hallway.GetPath());
         GlobalData.PreviousScenes.Push(room.GetPath());
-
     }
 }
 

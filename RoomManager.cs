@@ -47,6 +47,10 @@ public static class RoomManager
         foreach(Room room in RoomList)
         {
             room.alreadyTreated = false;
+            if (room.HasPatient())
+            {
+                room.Patient.TriggerDailyTags();
+            }
         }
     }
 }

@@ -15,4 +15,9 @@ static class Economy
 	{
 		roomCost = (int)(roomCost * roomCostInflation);
 	}
+
+	public static void GiveDailyEarnings(int input)
+	{
+		GlobalData.DailyEarnings += input;
+	}
 }
