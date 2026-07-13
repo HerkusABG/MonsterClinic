@@ -24,10 +24,13 @@ border_width_right = 14
 border_width_bottom = 14
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Room" type="Node2D" unique_id=1403791563]
+[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("PatientDisplay", "Corpse", "PatientInfo")]
 position = Vector2(1302.9375, 342.1875)
 scale = Vector2(0.42309022, 0.43263888)
 script = ExtResource("1_5hpqs")
+PatientDisplay = NodePath("Control/Patient_Display")
+Corpse = NodePath("Control/Corpse")
+PatientInfo = NodePath("Control/Patient_Info")
 
 [node name="Patient_Room_Background" type="Sprite2D" parent="." unique_id=1209967813]
 position = Vector2(-810.5541, 461.84573)
