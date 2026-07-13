@@ -85,6 +85,8 @@ public partial class Hallway : Node2D
     public void GoToRoom(Node2D roomInput)
     {
         //CALLED WHEN "VISIT" BUTTON IS PRESSED IN THE ADMISSION
+        //var test1 = (Node2D)GlobalData.PreviousScenes.Peek();
+        //GD.Print(test1.Name);
         Hide();
         GlobalData.inPatientRoom = true;
         //var RoomScene = (Node2D)GetParent().GetNode("Room");
@@ -97,7 +99,6 @@ public partial class Hallway : Node2D
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
         //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(RoomScene.GetPath());
         /*Hide();
         GlobalData.inPatientRoom = true;
         //var RoomScene = (Node2D)GetParent().GetNode("Room");
@@ -118,30 +119,27 @@ public partial class Hallway : Node2D
             if (room.Patient.malady.severity < 4)
             {
                 GD.Print("skiidi");
-                PatientDisplay.Show();
-                Corpse.Hide();
-                PatientDisplay.Modulate = room.Patient.PortraitColor;
+                //PatientDisplay.Show();
+                //Corpse.Hide();
+                //PatientDisplay.Modulate = room.Patient.PortraitColor;
             }
             else
             {
                 GD.Print("skibidi");
                 room.Patient.isAlive = false;
-                PatientDisplay.Hide();
-                GD.Print(PatientDisplay.Visible.ToString());
-                Corpse.Show();
+                //PatientDisplay.Hide();
+                //GD.Print(PatientDisplay.Visible.ToString());
+                //Corpse.Show();
             }
         }
         //if no patient, hide the universal patient
         else
         {
             GD.Print("kibidi");
-            Corpse.Hide();
-            PatientDisplay.Hide();
+            //Corpse.Hide();
+            //PatientDisplay.Hide();
         }
 
-        //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(roomInput.GetPath());
-        
     }
 
     private void LeaveRoom()

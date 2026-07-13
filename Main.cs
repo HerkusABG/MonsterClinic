@@ -90,6 +90,7 @@ public partial class Main : Node
             {
                 //pop a scene from the previous scenes stack, this is the scene currently in use
                 var current_scene = (Node2D)GetNode(GlobalData.PreviousScenes.Pop().ToString());
+                //GD.Print(current_scene.Name);
                 //hide it
                 current_scene.Hide();
                 Room room = current_scene as Room;
@@ -104,6 +105,7 @@ public partial class Main : Node
                 }
                 //pop a scene again, this is the scene we were previously in
                 var parent = (Node2D)GetNode(GlobalData.PreviousScenes.Peek().ToString());
+                //GD.Print(parent.Name);
                 //show it
                 parent.Show();
             }

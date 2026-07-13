@@ -313,9 +313,7 @@ public partial class Contents_P_I : Node2D
     {
         //Visit button logic.
         SpeechManagerAccess.SetBubbleStatus(false);
-        //For making the RMB "go back to last room" stuff work
-        GlobalData.PreviousScenes.Pop();
-        GlobalData.PreviousScenes.Pop();
+
         var hallway = GetParent().GetNode<Node2D>("Hallway");
         Hallway hallwayAccess = hallway as Hallway;
 
