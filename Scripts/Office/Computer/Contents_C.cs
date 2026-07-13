@@ -15,6 +15,7 @@ public partial class Contents_C : Node2D
     VBoxContainer UpgradesList;
     Button AspirinUnlock;
     Button WaitingRoomUpgrade;
+    Button RemoteMedicineUnlock;
     Button CloseUpgrades;
     Button TreatmentResourcesButton;
     Label ResourcesWindow;
@@ -66,6 +67,7 @@ public partial class Contents_C : Node2D
         UpgradesWindow = DealerWindow.GetNode<Label>("Upgrades_Window");
         UpgradesList = UpgradesWindow.GetNode<VBoxContainer>("Upgrades_List");
         AspirinUnlock = UpgradesList.GetNode<Button>("Aspirin_Unlock");
+        RemoteMedicineUnlock = UpgradesList.GetNode<Button>("Remote_Medicine_Unlock");
         WaitingRoomUpgrade = UpgradesList.GetNode<Button>("Waiting_Room_Upgrade");
         CloseUpgrades = UpgradesWindow.GetNode<Button>("Close");
         TreatmentResourcesButton = DealerWindow.GetNode<Button>("Treatment_Resources_Button");
@@ -207,6 +209,21 @@ public partial class Contents_C : Node2D
         DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
     }
     
+    private void UnlockRemoteMedicine()
+    {
+        //if you can afford it, unlocks remote medicine, disables the unlock button, and enables the purchase button
+        if (DoctorInventory.Money >= 200)
+        {
+            Upgrades.UnlockRemoteMedicine();
+            RemoteMedicineUnlock.Disabled = true;
+            UpdateMoneyDisplay();
+
+        }
+        else
+        {
+            ShowInsufficientFunds();
+        }
+    }
     private void _on_resources_window_visibility_changed()
     {
         if (ResourcesWindow.Visible)

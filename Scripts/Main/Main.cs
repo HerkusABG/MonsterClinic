@@ -92,6 +92,7 @@ public partial class Main : Node
                 var current_scene = (Node2D)GetNode(GlobalData.PreviousScenes.Pop().ToString());
                 //hide it
                 current_scene.Hide();
+                GD.Print("exiting " + current_scene.Name);
                 Room room = current_scene as Room;
                 if(room != null)
                 {
@@ -106,6 +107,7 @@ public partial class Main : Node
                 var parent = (Node2D)GetNode(GlobalData.PreviousScenes.Peek().ToString());
                 //show it
                 parent.Show();
+                GD.Print("entering " + parent.Name);
             }
         }
     }
@@ -122,6 +124,9 @@ public partial class Main : Node
             else
             {
                 Inventory.Hide();
+                //Reset the PreviousScenes stack (except for the office) every time we go back to the office
+                GlobalData.PreviousScenes.Clear();
+                GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
             }
         }
     }
@@ -161,6 +166,14 @@ public partial class Main : Node
             GiveMedicine2Button.Disabled = true;
             GiveMedicine3Button.Disabled = true;
 
+        }
+    }
+
+    private void _on_computer_visibility_changed()
+    {
+        if (Computer.Visible)
+        {
+            Inventory.Hide();
         }
     }
 
