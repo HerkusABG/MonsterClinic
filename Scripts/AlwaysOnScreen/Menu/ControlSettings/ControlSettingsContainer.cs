@@ -29,7 +29,7 @@ public partial class ControlSettingsContainer : Control
 		if (toggle_on == true)
 		{
             // Fullscreen
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+            DisplayServer.WindowSetMode(DisplayServer.WindowMode.ExclusiveFullscreen);
             // Sets the toggle_on to the SettingsControls -> it is easier for the save system
             SettingsControls.FullscreenToggle_on = toggle_on;
         
@@ -37,10 +37,15 @@ public partial class ControlSettingsContainer : Control
 		else
 		{
             // Window
+            //grab the size we want for the windowed mode, fullscreen / 2
+            Vector2I windowSize = new Vector2I (DisplayServer.WindowGetSize().X / 2,DisplayServer.WindowGetSize().Y / 2);
+            //go windowed
             DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+            //resize to the desired size
+            DisplayServer.WindowSetSize(windowSize);
             // Sets the toggle_on to the SettingsControls -> it is easier for the save system
             SettingsControls.FullscreenToggle_on = toggle_on;
-            
+            //GD.Print("kibidi");
         }
         
     }

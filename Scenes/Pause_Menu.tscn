@@ -126,7 +126,6 @@ theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_eu8ou")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_00s40")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
-disabled = true
 text = "Settings
 "
 
@@ -174,6 +173,7 @@ offset_right = 1904.0
 offset_bottom = 1092.0
 
 [node name="Cheats_Background" type="ColorRect" parent="." unique_id=368848626]
+visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.13335153, 0.13335153, 0.13335153, 1)
