@@ -12,8 +12,8 @@ static class MedicineManager
     public static Dictionary<string, Medicine> Database = new()
     {
     	["Morphine"] = new Medicine { name = "Morphine", cost = 10 },
-        ["Aspirin"] = new Medicine { name = "Aspirin", cost = 20 },
-        ["Ozempic"] = new Medicine { name = "Ozempic", cost = 30 },
+        ["Aspirin"] = new Medicine { name = "Aspirin", cost = 15 },
+        ["Ozempic"] = new Medicine { name = "Ozempic", cost = 25 },
         ["Antibiotics"] = new Medicine { name = "Antibiotics", cost = 13 },
         ["FancyAntibiotics"] = new Medicine { name = "Fancy Antibiotics", cost = 30 },
         ["Bandages"] = new Medicine { name = "Bandages", cost = 10 },
