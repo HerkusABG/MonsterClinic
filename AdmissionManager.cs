@@ -86,20 +86,18 @@ public partial class AdmissionManager : Node
         //Seeing if the clinic is full
         //And then in the end we determine whether it's TRUE or FALSE
         int emptyRoomCount = RoomManager.GetEmptyRoomCount();
-        if (HowManyPatientsLeft() > 0) return true;
+        //if (HowManyPatientsLeft() > 0) return true;
         if (emptyRoomCount > 0)
         {
             SetButtonStatus(AdmitButton, true);
+            return true;
+
         }
         else
         {
             SetButtonStatus(AdmitButton, false);
+            return false;
         }
-        if (emptyRoomCount > 0)
-        {
-            return true;
-        }
-        return false;
     }
 
     public void SetButtonStatus(Button button, bool status)

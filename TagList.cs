@@ -7,11 +7,30 @@ public static class TagList
     {
         ["Worsening"] = new WorseningTag
         {
-            type = TagType.Daily
+            types =
+            {
+                TagType.Daily
+            },
+            increment = 2,
+            strength = 1
         },
         ["Healing"] = new HealingTag
         {
-            type = TagType.Daily
+            types =
+            {
+                TagType.Daily
+            },
+            increment = 2,
+            strength = -1
+        },
+        ["Unstable"] = new UnstableTag
+        {
+            types =
+            {
+                TagType.Daily,
+                TagType.Interaction
+            },
+            strength = 2
         }
     };
 }

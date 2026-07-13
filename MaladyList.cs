@@ -29,7 +29,7 @@ public static class MaladyList
                 SymptomList.Database["Nothing"].name,
             }
         },
-        ["Accident"] = new Malady { 
+        ["Accident"] = new Malady {
             name = "an accident",
             dialogueSymptoms =
             {
@@ -48,11 +48,11 @@ public static class MaladyList
             },
             tags =
             {
-                new WorseningTag()
+                TagList.Database["Unstable"]
             }
         },
-        ["BluePox"] = new Malady 
-        { 
+        ["BluePox"] = new Malady
+        {
             name = "Blue Pox",
             dialogueSymptoms =
             {
@@ -71,7 +71,7 @@ public static class MaladyList
             },
             tags =
             {
-                new HealingTag()
+                TagList.Database["Unstable"]
             }
         },
     };

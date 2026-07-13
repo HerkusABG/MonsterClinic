@@ -28,7 +28,7 @@ public partial class PatientStats
         AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value);
         if (malady.severity == -1)
         {
-            malady.severity = rnd.Next(2, 3);
+            malady.severity = rnd.Next(2, 5);
         }
         isAlive = true;
         patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
@@ -91,12 +91,21 @@ public partial class PatientStats
     {
         foreach (Tag tag in malady.tags)
         {
-            if (tag.GetTagType() == TagType.Daily)
+            if (tag.HasTagType(TagType.Daily))
             {
-                tag.Execute(malady);
+                tag.ExecuteDaily(malady);
             }
-            else
+        }
+        CheckLifeStatus();
+    }
+
+    public void TriggerInteractionTags()
+    {
+        foreach (Tag tag in malady.tags)
+        {
+            if (tag.HasTagType(TagType.Interaction))
             {
+                tag.ExecuteInteraction(malady);
             }
         }
         CheckLifeStatus();

@@ -92,20 +92,17 @@ public partial class Room : Node2D
         {
             if (Patient.IsPatientAlive())
             {
-                GD.Print("skiidi");
                 SetPatientUIStatus(true, true);
                 SetPatientRoomText();
             }
             else
             {
-                GD.Print("skibidi");
                 SetPatientUIStatus(true, false);
             }
         }
         else
         {
             SetPatientUIStatus(false, false);
-            GD.Print("kibidi");
             Corpse.Hide();
             PatientDisplay.Hide();
         }
