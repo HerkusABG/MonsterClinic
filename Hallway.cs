@@ -107,7 +107,7 @@ public partial class Hallway : Node2D
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
         //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(RoomScene.GetPath());
+        //GlobalData.PreviousScenes.Push(RoomScene.GetPath());
     }
 
     private void LeaveRoom()

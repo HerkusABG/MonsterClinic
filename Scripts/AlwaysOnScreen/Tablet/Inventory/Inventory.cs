@@ -1,7 +1,8 @@
 using Godot;
 using System;
-using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 
 public partial class Inventory : Node2D
 {
@@ -25,6 +26,8 @@ public partial class Inventory : Node2D
     [Export] Control PositionControl;
     private List<InventorySlot> Slots = new List<InventorySlot>();
 
+    private List<TextureButton> MedicineButtons = new List<TextureButton>();
+
 	// Called when the node enters the scene tree for the first time.
     public void Initialize()
     {
@@ -37,8 +40,6 @@ public partial class Inventory : Node2D
 
         //disables the shotgun until we're in the patient room
         ShotgunButton.Disabled = true;
-
-        SpawnMedicine();
     }
 
     private void InitializeChildren()
@@ -62,15 +63,30 @@ public partial class Inventory : Node2D
         InventoryButton = GetNode<TextureButton>("Inventory_Button");
 		OpenInventory = GetNode<TextureRect>("Open_Inventory");
 		ShotgunButton = OpenInventory.GetNode<Button>("Shotgun");
-        GiveMedicine1Button = OpenInventory.GetNode<TextureButton>("Give_Medicine_1");
-        Med1Name = GiveMedicine1Button.GetNode<Label>("Med1_Name");
-        Med1Count = GiveMedicine1Button.GetNode("Stripe").GetNode<Label>("Med1_Count");
-        GiveMedicine2Button = OpenInventory.GetNode<TextureButton>("Give_Medicine_2");
-        Med2Name = GiveMedicine2Button.GetNode<Label>("Med2_Name");
-        Med2Count = GiveMedicine2Button.GetNode("Stripe").GetNode<Label>("Med2_Count");
-        GiveMedicine3Button = OpenInventory.GetNode<TextureButton>("Give_Medicine_3");
-        Med3Name = GiveMedicine3Button.GetNode<Label>("Med3_Name");
-        Med3Count = GiveMedicine3Button.GetNode("Stripe").GetNode<Label>("Med3_Count");
+        
+        /*foreach(Node node in OpenInventory.GetChildren())
+        {
+            TextureButton button = node as TextureButton;
+            if(button != null)
+            {
+                MedicineButtons.Add(button);
+            }
+        }*/
+        
+
+
+        //GiveMedicine1Button = OpenInventory.GetNode<TextureButton>("Give_Medicine_1");
+        //Med1Name = MedicineButtons[0].GetNode<Label>("Med1_Name");
+        //Med1Count = MedicineButtons[0].GetNode("Stripe").GetNode<Label>("Med1_Count");
+
+        //GiveMedicine2Button = OpenInventory.GetNode<TextureButton>("Give_Medicine_2");
+        //Med2Name = MedicineButtons[1].GetNode<Label>("Med2_Name");
+        //Med2Count = MedicineButtons[1].GetNode("Stripe").GetNode<Label>("Med2_Count");
+
+        //GiveMedicine3Button = OpenInventory.GetNode<TextureButton>("Give_Medicine_3");
+        //Med3Name = MedicineButtons[2].GetNode<Label>("Med3_Name");
+        //Med3Count = MedicineButtons[2].GetNode("Stripe").GetNode<Label>("Med3_Count");
+
         Close = OpenInventory.GetNode<Button>("Close");
 
         foreach(Node node in PositionControl.GetChildren())
@@ -87,25 +103,18 @@ public partial class Inventory : Node2D
                 GD.Print("ERROR IN INVENTORY.CS, NULL REFERENCE");
             }
         }
-    }
-
-    //press i to toggle the inventory
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        //You used to be able to press I for inventory, but this is not allowed
-        //per the semester rules.
-
-
-        /*if (@event is InputEventKey eventKey)
+        for (int i = 0; i < 4; i++)
         {
-            //if a key is pressed and that key is i
-            if (eventKey.Pressed && eventKey.Keycode == Key.I)
-            {
-                OpenInventory.Visible = !OpenInventory.Visible;
-            }
-
-        }*/
+            TextureButton newButton = (TextureButton)ButtonTemplate.Duplicate();
+            MedicineButton medButton = newButton as MedicineButton;
+            medButton.Initialize();
+            OpenInventory.AddChild(newButton);
+            MedicineButtons.Add(newButton);
+            //newButton.Show();
+            //newButton.Position = Slots[i].GetPosition();
+        }
     }
+
     //you can also press the inventory to open it
 	private void InventoryToggle()
 	{
@@ -151,17 +160,43 @@ public partial class Inventory : Node2D
             OpenInventory.AddChild(newButton);
             newButton.Show();
             newButton.Position = Slots[i].GetPosition();
-            //newButton.Name = "MapRoom" + Upgrades.roomCount.ToString();
-            //newButton.Modulate = new Color(1, 0, 0, 1);
-            //newButton.CustomMinimumSize = new Vector2(150, 150);
-            //newButton.Text = $"Room {Upgrades.roomCount}";
-            //container.AddChild(newButton);
         }
+    }
+
+    private void RenderMedicine()
+    {
+        if (Visible == true)
+        {
+            for(int i = 0; i < MedicineButtons.Count; i++)
+            {
+                if (MedicineManager.Database.ElementAt(i).Value.amount > 0)
+                {
+                    InventorySlot slot = FindEmptySlot();
+                    if (slot == null) return;
+
+                    MedicineButtons[i].Position = slot.GetPosition();
+                    MedicineButtons[i].Show();
+                }
+            }
+        }
+    }
+
+    private InventorySlot FindEmptySlot()
+    {
+        foreach(InventorySlot slot in Slots)
+        {
+            if(!slot.occupied)
+            {
+                return slot;
+            }
+        }
+        return null;
     }
     //update text whenever the inventory is shown, and also show or hide the medicines depending on if we have any
     private void _on_visibility_changed()
     {
-        if (GiveMedicine1Button == null) return;
+        RenderMedicine();
+        /*if (GiveMedicine1Button == null) return;
         if (Visible == true)
         {
             if (MedicineManager.Database["Morphine"].amount > 0)
@@ -194,6 +229,6 @@ public partial class Inventory : Node2D
             Med2Count.Text = $"{MedicineManager.Database["Aspirin"].amount}";
             Med3Name.Text = $"{MedicineManager.Database["Ozempic"].name}";
             Med3Count.Text = $"{MedicineManager.Database["Ozempic"].amount}";
-        }
+        }*/
     }
 }
