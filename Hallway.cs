@@ -67,8 +67,6 @@ public partial class Hallway : Node2D
         //CALLED WHEN ONE OF THE DOORS ARE PRESSED IN THE HALLWAY
         Hide();
         GlobalData.inPatientRoom = true;
-        //var RoomScene = (Node2D)GetParent().GetNode("Room");
-        //GD.Print($"Room count: {RoomList.Count}.");
         var RoomScene = RoomManager.RoomList[index];
         RoomScene.Show();
         Room room = RoomScene as Room;
@@ -78,12 +76,14 @@ public partial class Hallway : Node2D
         TextureButton GiveMedicine1Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
         TextureButton GiveMedicine2Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
         TextureButton GiveMedicine3Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
-        if (room.alreadyTreated)
+        inv.SetButtonStatus(room.notYetTreated);
+        inv.InventoryActions();
+        /*if (!room.notYetTreated)
         {
             GiveMedicine1Button.Disabled = true;
             GiveMedicine2Button.Disabled = true;
             GiveMedicine3Button.Disabled = true;
-        }
+        }*/
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
         
@@ -106,6 +106,8 @@ public partial class Hallway : Node2D
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
+        inv.SetButtonStatus(room.notYetTreated);
+        inv.InventoryActions();
         //push the scene we're entering to the previous scenes stack
         //GlobalData.PreviousScenes.Push(RoomScene.GetPath());
     }

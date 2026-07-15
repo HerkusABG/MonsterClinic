@@ -46,14 +46,32 @@ public partial class PatientStats
     {
         //ALL malady related information must go through here,
         //otherwise the malady reference is static and curing one patient cures all patients.
-        malady.name = inputMalady.name;
+
+
+        malady = inputMalady.Clone();
+        /*malady.name = inputMalady.name;
         malady.allSymptoms = inputMalady.allSymptoms;
         malady.dialogueSymptoms = inputMalady.dialogueSymptoms;
         malady.temperatureSymptoms = inputMalady.temperatureSymptoms;
         malady.pulseSymptoms = inputMalady.pulseSymptoms;
-        malady.tags = inputMalady.tags;
+        malady.tags = inputMalady.tags;*/
     }
 
+    public bool TryCurePatient(Medicine inputMedicine)
+    {
+        bool isSuccessful = malady.cures.Contains(inputMedicine);
+        if(isSuccessful)
+        {
+            malady.severity--;
+            TriggerInteractionTags();
+        }
+        return isSuccessful;
+    }
+
+    public bool IsPatientCured()
+    {
+       return malady.severity <= 1;
+    }
     public string GetDialogue()
     {
         //Grab generic dialogue.

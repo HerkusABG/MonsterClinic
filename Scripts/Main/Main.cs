@@ -187,7 +187,7 @@ public partial class Main : Node
         {
             Inventory.Show();
             //if (GlobalData.DailyLockout == false)
-            if (Treatment.GetRoom().alreadyTreated == false)
+            if (!Treatment.GetRoom().notYetTreated == false)
             {
                 //enable the GiveMedicine buttons when entering the patient room if the lockout is disabled
                 GiveMedicine1Button.Disabled = false;

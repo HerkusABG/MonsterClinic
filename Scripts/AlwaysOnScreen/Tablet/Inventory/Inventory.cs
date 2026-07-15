@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.InteropServices.JavaScript;
 
 public partial class Inventory : Node2D
 {
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     TextureButton InventoryButton;
-	TextureRect OpenInventory;
-	Button ShotgunButton;
+    TextureRect OpenInventory;
+    Button ShotgunButton;
     TextureButton GiveMedicine1Button;
     Label Med1Name;
     Label Med1Count;
@@ -26,7 +27,9 @@ public partial class Inventory : Node2D
     [Export] Control PositionControl;
     private List<InventorySlot> Slots = new List<InventorySlot>();
 
-    private List<TextureButton> MedicineButtons = new List<TextureButton>();
+    private List<MedicineButton> MedicineButtons = new List<MedicineButton>();
+
+    TreatmentManager TreatmentManager;
 
 	// Called when the node enters the scene tree for the first time.
     public void Initialize()
@@ -46,6 +49,7 @@ public partial class Inventory : Node2D
     {
         TreatmentManager treatment = GetNode<TreatmentManager>("Treatment_Manager");
         treatment.Initialize();
+        TreatmentManager = treatment;
     }
 
     private void Subscribe()
@@ -63,7 +67,7 @@ public partial class Inventory : Node2D
         InventoryButton = GetNode<TextureButton>("Inventory_Button");
 		OpenInventory = GetNode<TextureRect>("Open_Inventory");
 		ShotgunButton = OpenInventory.GetNode<Button>("Shotgun");
-        
+
         /*foreach(Node node in OpenInventory.GetChildren())
         {
             TextureButton button = node as TextureButton;
@@ -72,7 +76,7 @@ public partial class Inventory : Node2D
                 MedicineButtons.Add(button);
             }
         }*/
-        
+
 
 
         //GiveMedicine1Button = OpenInventory.GetNode<TextureButton>("Give_Medicine_1");
@@ -109,7 +113,7 @@ public partial class Inventory : Node2D
             MedicineButton medButton = newButton as MedicineButton;
             medButton.Initialize();
             OpenInventory.AddChild(newButton);
-            MedicineButtons.Add(newButton);
+            MedicineButtons.Add(medButton);
             //newButton.Show();
             //newButton.Position = Slots[i].GetPosition();
         }
@@ -163,29 +167,79 @@ public partial class Inventory : Node2D
         }
     }
 
+    public void InventoryActions()
+    {
+        RenderMedicine();
+        UpdateInventory();
+    }
+
     private void RenderMedicine()
     {
-        if (Visible == true)
+        if (Visible)
         {
-            for(int i = 0; i < MedicineButtons.Count; i++)
+            for (int i = 0; i < MedicineButtons.Count; i++)
             {
-                if (MedicineManager.Database.ElementAt(i).Value.amount > 0)
+                Medicine medicine = MedicineManager.Database.ElementAt(i).Value;
+                if (MedicineButtons[i].GetIsAssigned())
+                {
+                    MedicineButtons[i].RenderText(medicine);
+                }
+            }
+        }
+    }
+
+    public void UpdateInventory()
+    {
+        for (int i = 0; i < MedicineButtons.Count; i++)
+        {
+            Medicine medicine = MedicineManager.Database.ElementAt(i).Value;
+            if (medicine.amount > 0)
+            {
+                if (!DoesButtonAlreadyExist(medicine))
                 {
                     InventorySlot slot = FindEmptySlot();
                     if (slot == null) return;
 
-                    MedicineButtons[i].Position = slot.GetPosition();
-                    MedicineButtons[i].Show();
+                    MedicineButtons[i].AssignToSlot(slot, medicine);
+                    TreatmentManager.AddSubscription(MedicineButtons[i]);
+                }
+            }
+            else
+            {
+                if (DoesButtonAlreadyExist(medicine))
+                {
+                    TreatmentManager.RemoveSubscription(MedicineButtons[i]);
+                    MedicineButtons[i].RemoveFromSlot();
                 }
             }
         }
+    }
+
+    public void SetButtonStatus(bool isActive)
+    {
+        foreach(MedicineButton button in MedicineButtons)
+        {
+            button.Disabled = !isActive;
+        }
+    }
+
+    private bool DoesButtonAlreadyExist(Medicine inputMedicine)
+    {
+        for (int i = 0; i < MedicineButtons.Count; i++)
+        {
+            if (MedicineButtons[i].HasSameMedicineReference(inputMedicine))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private InventorySlot FindEmptySlot()
     {
         foreach(InventorySlot slot in Slots)
         {
-            if(!slot.occupied)
+            if(!slot.GetOccupiedStatus())
             {
                 return slot;
             }
@@ -195,7 +249,7 @@ public partial class Inventory : Node2D
     //update text whenever the inventory is shown, and also show or hide the medicines depending on if we have any
     private void _on_visibility_changed()
     {
-        RenderMedicine();
+        InventoryActions();
         /*if (GiveMedicine1Button == null) return;
         if (Visible == true)
         {

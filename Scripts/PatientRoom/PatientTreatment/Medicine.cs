@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Xml.Linq;
 
 public class Medicine
 {
@@ -14,4 +15,14 @@ public class Medicine
 	public int cost { get; set; } = 10;
     //Amount of medicine bought
     public int amount { get; set; } = 0;
+
+    public Medicine Clone()
+    {
+        return new Medicine
+        {
+            name = name,
+            cost = cost,
+            amount = amount
+        };
+    }
 }

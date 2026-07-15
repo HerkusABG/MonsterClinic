@@ -49,6 +49,10 @@ public static class MaladyList
             tags =
             {
                 TagList.Database["Unstable"]
+            },
+            cures =
+            {
+                MedicineManager.Database["Morphine"]
             }
         },
         ["BluePox"] = new Malady
@@ -72,6 +76,10 @@ public static class MaladyList
             tags =
             {
                 TagList.Database["Unstable"]
+            },
+            cures =
+            {
+                MedicineManager.Database["Ozempic"]
             }
         },
     };

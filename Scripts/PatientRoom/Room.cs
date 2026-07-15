@@ -21,7 +21,7 @@ public partial class Room : Node2D
 
 
     //boolean that checks whether you can treat the patient.
-    public bool alreadyTreated = false;
+    public bool notYetTreated = true;
 
     public void Initialize(Action HideUIAction)
     {

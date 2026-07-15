@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 //class governing using medicine to treat the patient in the patient room
 public partial class TreatmentManager : Node
@@ -26,7 +27,11 @@ public partial class TreatmentManager : Node
     Button CloseCorrectMedicinePopup;
 
     private Room Room;
-    
+
+    Inventory Inventory;
+
+    private readonly Dictionary<MedicineButton, Action> Subscriptions = new();
+
 
     public void Initialize()
     {
@@ -42,9 +47,30 @@ public partial class TreatmentManager : Node
         CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);
     }
 
+    public void AddSubscription(MedicineButton button)
+    {
+        Action handler = () => ApplyMedicine(button);
+
+        Subscriptions[button] = handler;
+        button.Pressed += handler;
+
+        //button.Pressed += () => ApplyMedicine(button);
+    }
+
+    public void RemoveSubscription(MedicineButton button)
+    {
+        if (Subscriptions.TryGetValue(button, out var handler))
+        {
+            button.Pressed -= handler;
+            Subscriptions.Remove(button);
+        }
+        //button.Pressed -= () => ApplyMedicine(button);
+    }
+
     private void GetNodes()
     {
         //Basically just grabbing all the nodes
+        Inventory = GetParent() as Inventory;
         GiveMedicine1Button = GetParent().GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
         Med1Name = GiveMedicine1Button.GetNode<Label>("Med1_Name");
         Med1Count = GiveMedicine1Button.GetNode("Stripe").GetNode<Label>("Med1_Count");
@@ -115,6 +141,43 @@ public partial class TreatmentManager : Node
             {
                 controlChild.Hide();
             }
+        }
+    }
+
+    private void ApplyMedicine(MedicineButton button)
+    {
+        Medicine medicine = button.GetMedicineType();
+        GD.Print($"APPLYING {medicine.name} MEDICINE");
+        if (!Room.HasPatient())
+        {
+            NoPatientPopup.Show();
+            return;
+        }
+        if (Room == null)
+        {
+            NoPatientPopup.Show();
+            return;
+        }
+        if (medicine.amount > 0)
+        {
+            medicine.amount--;
+            if (Room.Patient.TryCurePatient(medicine))
+            {
+                CorrectMedicinePopup.Show();
+            }
+            else
+            {
+                WrongMedicinePopup.Show();
+            }
+            if (Room.Patient.IsPatientCured())
+            {
+                PatientCured();
+            }
+            Room.UpdateSprites();
+            //disable the buttons, and prevent them form being reenabled by switching scenes until the lockout is disabled by going to bed
+            Room.notYetTreated = false;
+            Inventory.SetButtonStatus(false);
+            Inventory.InventoryActions();
         }
     }
 
@@ -194,7 +257,7 @@ public partial class TreatmentManager : Node
             GiveMedicine1Button.Disabled = true;
             GiveMedicine2Button.Disabled = true;
             GiveMedicine3Button.Disabled = true;
-            Room.alreadyTreated = true;
+            Room.notYetTreated = false;
             GlobalData.DailyLockout = true;
         }
     }
