@@ -14,6 +14,8 @@ public partial class Contents_C : Node2D
     Label UpgradesWindow;
     VBoxContainer UpgradesList;
     Button AspirinUnlock;
+    //The one bellow is for the passive money gain
+    Button PassiveMoneyGain;
     Button CloseUpgrades;
     Button TreatmentResourcesButton;
     Label ResourcesWindow;
@@ -53,6 +55,8 @@ public partial class Contents_C : Node2D
         UpgradesButton.Pressed += OpenUpgradesWindow;
         AspirinUnlock.Pressed += UnlockAspirin;
         //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
+        //passive money
+        PassiveMoneyGain.Pressed += BuyPassiveMoneyGain;
         CloseResources.Pressed += () => CloseParent(CloseResources);
         CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
         CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
@@ -83,6 +87,8 @@ public partial class Contents_C : Node2D
         UpgradesWindow = DealerWindow.GetNode<Label>("Upgrades_Window");
         UpgradesList = UpgradesWindow.GetNode<VBoxContainer>("Upgrades_List");
         AspirinUnlock = UpgradesList.GetNode<Button>("Aspirin_Unlock");
+        //for passive money gain
+        PassiveMoneyGain = UpgradesList.GetNode<Button>("PassiveMoneyGain");
         CloseUpgrades = UpgradesWindow.GetNode<Button>("Close");
         TreatmentResourcesButton = DealerWindow.GetNode<Button>("Treatment_Resources_Button");
         ResourcesWindow = DealerWindow.GetNode<Label>("Resources_Window");
@@ -183,6 +189,21 @@ public partial class Contents_C : Node2D
             BuyMedicine2Button.Disabled = false;
             DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
 
+        }
+        else
+        {
+            InsufficientFunds.Show();
+        }
+    }
+    //for passive money gain
+    private void BuyPassiveMoneyGain()
+    {
+        if (DoctorInventory.Money >= 100)
+        {
+            DoctorInventory.Money -= 100;
+            GlobalData.PassiveIncome += 10;
+            DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
+            PassiveMoneyGain.Disabled = true;
         }
         else
         {

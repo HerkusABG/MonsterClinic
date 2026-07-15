@@ -191,6 +191,11 @@ text = "Unlock Aspirin for purchase
 
 Price: 50"
 
+[node name="PassiveMoneyGain" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=1718412375]
+layout_mode = 2
+text = "Passive Money Gain
+Cost: 100"
+
 [node name="Upgrades_Text" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=629698831]
 layout_mode = 0
 offset_left = 76.0
