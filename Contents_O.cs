@@ -51,23 +51,16 @@ public partial class Contents_O : Node2D
         var BedScene = (Node2D)GetParent().GetNode("Bed");
         BedScene.Show();
         GlobalData.Fading = false;
-        GlobalData.Countdown--;
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(BedScene.GetPath());
 
         // Timer from the scene
-
-        
         var sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
         sceneTimer.OneShot = true;
 
         // connect the signals
-        
         sceneTimer.Timeout += OnSceneTimerTimeout;
 
-       
-        //FadeAnimation g = GetNode<FadeAnimation>("FadeAnimation.cs");
-        //g.Fades();
         // timer is getting set to 3 seconds and starts
         sceneTimer.Start(3.0);
         if(GlobalData.Medicincavailability != 0)
@@ -89,16 +82,18 @@ public partial class Contents_O : Node2D
         // get node bed scene
         var BedScene = (Node2D)GetParent().GetNode("Bed");
 
-        // Condition Changes
-        GlobalData.Fading = true;
+        
 
         // condition for the Controled Spawn
-        if(GlobalData.ControlSpawnFading == 2)
+        if (GlobalData.ControlSpawnFading == 2)
         {
+            // Condition Changes
+            GlobalData.Fading = true;
             // add the scene FadeAnimation and call the Methode Fades
             AddChild(fading);
             fading.Fades();
             
+
         }
 
         if (GlobalData.Dialog_Dealer == true)

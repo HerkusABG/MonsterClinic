@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://b7dljt206gls"]
 
 [ext_resource type="Script" uid="uid://ca7mrbbcxd1eo" path="res://FadeAnimation.cs" id="1_fdfmr"]
+[ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://CustomText/digital-7_CountdownText.ttf" id="2_105j4"]
 
 [node name="FadeAnimation" type="Node2D" unique_id=694927562]
 script = ExtResource("1_fdfmr")
+metadata/_edit_vertical_guides_ = [-1681.0]
 
 [node name="Fade" type="ColorRect" parent="." unique_id=2130390889]
 offset_left = -24.0
@@ -15,4 +17,38 @@ color = Color(0, 0, 0, 0)
 [node name="Delete_Timer" type="Timer" parent="." unique_id=1877004464]
 wait_time = 3.0
 
-[connection signal="timeout" from="Delete_Timer" to="." method="_on_delete_timer_timeout"]
+[node name="Day" type="RichTextLabel" parent="." unique_id=352028918]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 15.0
+offset_top = 181.0
+offset_right = 1938.0
+offset_bottom = 625.0
+theme_override_fonts/normal_font = ExtResource("2_105j4")
+theme_override_fonts/bold_font = ExtResource("2_105j4")
+theme_override_font_sizes/normal_font_size = 140
+text = "{0} Days in Containment"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TreatmentDays" type="RichTextLabel" parent="." unique_id=1998273592]
+offset_left = 8.0
+offset_top = 557.0
+offset_right = 1964.0
+offset_bottom = 1109.0
+theme_override_fonts/normal_font = ExtResource("2_105j4")
+theme_override_fonts/bold_font = ExtResource("2_105j4")
+theme_override_font_sizes/normal_font_size = 80
+text = "{0} Treatment Days"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoneyEarned" type="RichTextLabel" parent="." unique_id=2039327691]
+offset_top = 9.0
+offset_right = 1919.0
+offset_bottom = 224.0
+theme_override_fonts/normal_font = ExtResource("2_105j4")
+theme_override_fonts/bold_font = ExtResource("2_105j4")
+theme_override_font_sizes/normal_font_size = 70
+text = "money"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -47,6 +47,7 @@ offset_right = 1939.0
 offset_bottom = 1079.0
 
 [node name="Day" type="RichTextLabel" parent="." unique_id=83163622]
+visible = false
 offset_left = 15.0
 offset_top = 181.0
 offset_right = 1938.0
@@ -59,6 +60,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TreatmentDays" type="RichTextLabel" parent="." unique_id=47269129]
+visible = false
 offset_left = 8.0
 offset_top = 557.0
 offset_right = 1964.0
@@ -71,6 +73,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MoneyEarned" type="RichTextLabel" parent="." unique_id=880434954]
+visible = false
 offset_top = 9.0
 offset_right = 1919.0
 offset_bottom = 224.0
