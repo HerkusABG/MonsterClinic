@@ -93,7 +93,7 @@ public partial class Main : Node
                 var current_scene = (Node2D)GetNode(GlobalData.PreviousScenes.Pop().ToString());
                 //hide it
                 current_scene.Hide();
-                GD.Print("exiting " + current_scene.Name);
+                //GD.Print("exiting " + current_scene.Name);
                 Room room = current_scene as Room;
                 if(room != null)
                 {
@@ -108,7 +108,7 @@ public partial class Main : Node
                 var parent = (Node2D)GetNode(GlobalData.PreviousScenes.Peek().ToString());
                 //show it
                 parent.Show();
-                GD.Print("entering " + parent.Name);
+                //GD.Print("entering " + parent.Name);
             }
         }
     }
@@ -187,7 +187,7 @@ public partial class Main : Node
         {
             Inventory.Show();
             //if (GlobalData.DailyLockout == false)
-            if (!Treatment.GetRoom().notYetTreated == false)
+            if (!Treatment.GetRoom().GetAlreadyTreated() == true)
             {
                 //enable the GiveMedicine buttons when entering the patient room if the lockout is disabled
                 GiveMedicine1Button.Disabled = false;

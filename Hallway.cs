@@ -76,18 +76,12 @@ public partial class Hallway : Node2D
         TextureButton GiveMedicine1Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
         TextureButton GiveMedicine2Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
         TextureButton GiveMedicine3Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
-        inv.SetButtonStatus(room.notYetTreated);
-        inv.InventoryActions();
-        /*if (!room.notYetTreated)
-        {
-            GiveMedicine1Button.Disabled = true;
-            GiveMedicine2Button.Disabled = true;
-            GiveMedicine3Button.Disabled = true;
-        }*/
-        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
-        treatment.SetTreatmentRoomReference(room);
-        
        
+        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
+       
+        treatment.SetTreatmentRoomReference(room);
+        inv.InventoryActions();
+
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(RoomScene.GetPath());
     }
@@ -106,7 +100,6 @@ public partial class Hallway : Node2D
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
-        inv.SetButtonStatus(room.notYetTreated);
         inv.InventoryActions();
         //push the scene we're entering to the previous scenes stack
         //GlobalData.PreviousScenes.Push(RoomScene.GetPath());

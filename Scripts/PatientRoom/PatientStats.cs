@@ -63,7 +63,7 @@ public partial class PatientStats
         if(isSuccessful)
         {
             malady.severity--;
-            TriggerInteractionTags();
+            //TriggerInteractionTags();
         }
         return isSuccessful;
     }

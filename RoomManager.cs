@@ -46,7 +46,7 @@ public static class RoomManager
         //Make the actions in the different rooms renewable daily.
         foreach(Room room in RoomList)
         {
-            room.notYetTreated = true;
+            room.SetAlreadyTreated(false);
             if (room.HasPatient())
             {
                 room.Patient.TriggerDailyTags();

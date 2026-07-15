@@ -165,7 +165,7 @@ public partial class MapUI : Control
         TextureButton GiveMedicine2Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
         TextureButton GiveMedicine3Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
         //make the buttons disabled if the patient has already been treated today
-        if (!room.notYetTreated)
+        if (room.GetAlreadyTreated())
         {
             GiveMedicine1Button.Disabled = true;
             GiveMedicine2Button.Disabled = true;
@@ -263,7 +263,7 @@ public partial class MapUI : Control
         Room room = RoomManager.RoomList[roomNum - 1] as Room;
         RoomNumber.Text = "Room " + roomNum.ToString();
         //show medicine menu if the room has an untreated patient, and the player has unlocked remote medicine
-        if (room.Patient != null && !room.notYetTreated == false && Upgrades.remoteMedicine.unlocked)
+        if (room.Patient != null && room.GetAlreadyTreated() == false && Upgrades.remoteMedicine.unlocked)
         {
             MedicineMenu.Show();
 
@@ -367,7 +367,7 @@ public partial class MapUI : Control
                 }
             }
             //disable the buttons, and prevent them form being reenabled by switching scenes until the lockout is disabled by going to bed
-            room.notYetTreated = true;
+            room.SetAlreadyTreated(false);
             
             MedicineMenu.Hide();
         }

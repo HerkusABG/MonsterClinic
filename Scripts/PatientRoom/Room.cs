@@ -21,7 +21,7 @@ public partial class Room : Node2D
 
 
     //boolean that checks whether you can treat the patient.
-    public bool notYetTreated = true;
+    private bool notYetTreated = true;
 
     public void Initialize(Action HideUIAction)
     {
@@ -156,6 +156,7 @@ public partial class Room : Node2D
 
     public void DeletePatient()
     {
+        GD.Print("patient deleted");
         Patient = null;
         isEmpty = true;
     }
@@ -172,5 +173,15 @@ public partial class Room : Node2D
     {
         curedInAbsence = true;
         DeletePatient();
+    }
+
+    public void SetAlreadyTreated(bool input)
+    {
+        notYetTreated = !input;
+    }
+
+    public bool GetAlreadyTreated()
+    {
+        return !notYetTreated;
     }
 }

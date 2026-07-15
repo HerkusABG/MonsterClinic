@@ -122,6 +122,7 @@ public partial class Inventory : Node2D
     //you can also press the inventory to open it
 	private void InventoryToggle()
 	{
+        InventoryActions();
         OpenInventory.Visible = !OpenInventory.Visible;
     }
 
@@ -171,6 +172,16 @@ public partial class Inventory : Node2D
     {
         RenderMedicine();
         UpdateInventory();
+        if (TreatmentManager.GetRoom() != null)
+        {
+            GD.Print("not null");
+            GD.Print($"Setting to: {TreatmentManager.GetRoom().GetAlreadyTreated()}");
+            SetButtonStatus(TreatmentManager.GetRoom().GetAlreadyTreated());
+        }
+        else
+        {
+            GD.Print("null");
+        }
     }
 
     private void RenderMedicine()
@@ -219,7 +230,7 @@ public partial class Inventory : Node2D
     {
         foreach(MedicineButton button in MedicineButtons)
         {
-            button.Disabled = !isActive;
+            button.Disabled = isActive;
         }
     }
 
@@ -245,44 +256,5 @@ public partial class Inventory : Node2D
             }
         }
         return null;
-    }
-    //update text whenever the inventory is shown, and also show or hide the medicines depending on if we have any
-    private void _on_visibility_changed()
-    {
-        InventoryActions();
-        /*if (GiveMedicine1Button == null) return;
-        if (Visible == true)
-        {
-            if (MedicineManager.Database["Morphine"].amount > 0)
-            {
-                GiveMedicine1Button.Show();
-            }
-            else
-            {
-                GiveMedicine1Button.Hide();
-            }
-            if (MedicineManager.Database["Aspirin"].amount > 0)
-            {
-                GiveMedicine2Button.Show();
-            }
-            else
-            {
-                GiveMedicine2Button.Hide();
-            }
-            if (MedicineManager.Database["Ozempic"].amount > 0)
-            {
-                GiveMedicine3Button.Show();
-            }
-            else
-            {
-                GiveMedicine3Button.Hide();
-            }
-            Med1Name.Text = $"{MedicineManager.Database["Morphine"].name}";
-            Med1Count.Text = $"{MedicineManager.Database["Morphine"].amount}";
-            Med2Name.Text = $"{MedicineManager.Database["Aspirin"].name} ";
-            Med2Count.Text = $"{MedicineManager.Database["Aspirin"].amount}";
-            Med3Name.Text = $"{MedicineManager.Database["Ozempic"].name}";
-            Med3Count.Text = $"{MedicineManager.Database["Ozempic"].amount}";
-        }*/
     }
 }
