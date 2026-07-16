@@ -1,16 +1,17 @@
 [gd_scene format=3 uid="uid://cd5mco04n5aoh"]
 
-[ext_resource type="Script" uid="uid://dgsevwbdax2t4" path="res://Contents_C.cs" id="1_tjl6a"]
+[ext_resource type="Script" uid="uid://dgsevwbdax2t4" path="res://Scripts/Office/Computer/Contents_C.cs" id="1_tjl6a"]
 [ext_resource type="Texture2D" uid="uid://0dsxnlqxdang" path="res://Assets/2D Art/Desktop_PH.PNG" id="2_7s1hw"]
 [ext_resource type="Texture2D" uid="uid://ck5pltj8yh3oh" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_Blockout.png" id="4_nyaym"]
 [ext_resource type="Texture2D" uid="uid://b5e6gugoptsp5" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_HL_Blockout.png" id="5_dekc5"]
-[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="6_vjhme"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="6_vjhme"]
 [ext_resource type="Texture2D" uid="uid://bbyfolabl5n1k" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Label_Counter_Blockout.png" id="7_gbitc"]
 [ext_resource type="Texture2D" uid="uid://0p8gc3ax8rmb" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Pocket_Blockout.png" id="8_arhto"]
 [ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="9_vjhme"]
 [ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="10_gbitc"]
-[ext_resource type="Script" uid="uid://08n5ukorqdyk" path="res://ScrollCatalog.cs" id="15_vbt5y"]
-[ext_resource type="Script" uid="uid://bho5a8iwfj3pn" path="res://Scripts/MapUI.cs" id="16_l232m"]
+[ext_resource type="Script" uid="uid://cgma1l84y5gfp" path="res://MedicineButton.cs" id="11_554if"]
+[ext_resource type="Script" uid="uid://08n5ukorqdyk" path="res://Scripts/Office/Computer/ScrollCatalog.cs" id="15_vbt5y"]
+[ext_resource type="Script" uid="uid://bho5a8iwfj3pn" path="res://Scripts/Office/Computer/MapUI.cs" id="16_l232m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqyqf"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -58,10 +59,12 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qsxs0"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Contents_C" type="Node2D" unique_id=1932071110]
+[node name="Contents_C" type="Node2D" unique_id=1932071110 node_paths=PackedStringArray("mapUi")]
 script = ExtResource("1_tjl6a")
+mapUi = NodePath("Player_Interactables_C/MapControl")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1460341576]
+z_index = -2
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("2_7s1hw")
@@ -126,6 +129,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Log out"
 
 [node name="Dealer_PH" type="Label" parent="Player_Interactables_C" unique_id=1842103304]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 40.0
@@ -219,6 +223,7 @@ text = "Add a seat to
 the waiting room
 
 Price: 50"
+
 [node name="Upgrades_Text" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=629698831]
 layout_mode = 0
 offset_left = 76.0
@@ -427,7 +432,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
 
-[node name="MapControl" type="Control" parent="Player_Interactables_C" unique_id=395133012 node_paths=PackedStringArray("RoomCount", "PatientCount", "BuyRoomButton", "WarningLabel")]
+[node name="MapControl" type="Control" parent="Player_Interactables_C" unique_id=395133012 node_paths=PackedStringArray("RoomCount", "PatientCount", "BuyRoomButton", "WarningLabel", "SlotControl", "ButtonTemplate")]
 visible = false
 z_index = 2
 anchors_preset = 0
@@ -440,6 +445,8 @@ RoomCount = NodePath("../Dealer_PH/Upgrades_Window/Rooms_Text/RoomBox/RoomCount"
 PatientCount = NodePath("../Dealer_PH/Upgrades_Window/Rooms_Text/RoomBox/PatientCount")
 BuyRoomButton = NodePath("../Dealer_PH/Upgrades_Window/Rooms_Text/RoomBox/BuyRoomButton")
 WarningLabel = NodePath("../../MapUI/WarningLabel")
+SlotControl = NodePath("Medicine_Menu/SlotControl")
+ButtonTemplate = NodePath("../../ButtonTemplate")
 
 [node name="Close" type="Button" parent="Player_Interactables_C/MapControl" unique_id=834944]
 z_index = 2
@@ -578,7 +585,6 @@ offset_bottom = 748.0
 text = "Hallway"
 
 [node name="Medicine_Menu" type="Label" parent="Player_Interactables_C/MapControl" unique_id=2019407629]
-visible = false
 layout_mode = 0
 offset_left = 1499.0
 offset_top = 129.0
@@ -588,6 +594,34 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_sfps3")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SlotControl" type="Control" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=298088353]
+anchors_preset = 0
+offset_left = 34.0
+offset_top = 62.0
+offset_right = 74.0
+offset_bottom = 102.0
+
+[node name="Slot1" type="Control" parent="Player_Interactables_C/MapControl/Medicine_Menu/SlotControl" unique_id=1112262307]
+anchors_preset = 0
+offset_left = 22.0
+offset_top = 33.0
+offset_right = 62.0
+offset_bottom = 73.0
+
+[node name="Slot2" type="Control" parent="Player_Interactables_C/MapControl/Medicine_Menu/SlotControl" unique_id=1552916939]
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 227.0
+offset_right = 60.0
+offset_bottom = 267.0
+
+[node name="Slot3" type="Control" parent="Player_Interactables_C/MapControl/Medicine_Menu/SlotControl" unique_id=946659512]
+anchors_preset = 0
+offset_left = 26.0
+offset_top = 449.0
+offset_right = 66.0
+offset_bottom = 489.0
 
 [node name="EmptySlot1" type="TextureRect" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=1288034118]
 custom_minimum_size = Vector2(150, 150)
@@ -600,6 +634,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_arhto")
 
 [node name="Give_Medicine_1" type="TextureButton" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=1609194954]
+visible = false
 z_index = 1
 custom_minimum_size = Vector2(170, 150)
 layout_mode = 0
@@ -654,6 +689,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_arhto")
 
 [node name="Give_Medicine_2" type="TextureButton" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=1177729719]
+visible = false
 z_index = 1
 custom_minimum_size = Vector2(170, 150)
 layout_mode = 0
@@ -708,6 +744,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("8_arhto")
 
 [node name="Give_Medicine_3" type="TextureButton" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=1549283926]
+visible = false
 z_index = 1
 custom_minimum_size = Vector2(170, 150)
 layout_mode = 0
@@ -805,6 +842,52 @@ offset_right = 1833.0
 offset_bottom = 647.0
 theme_override_colors/font_color = Color(1, 0.029999971, 0.029999971, 1)
 text = "Insufficient funds :("
+
+[node name="ButtonTemplate" type="TextureButton" parent="." unique_id=486749493]
+visible = false
+z_index = 3
+custom_minimum_size = Vector2(170, 150)
+offset_left = 1722.125
+offset_top = 714.625
+offset_right = 1952.8943
+offset_bottom = 940.7789
+scale = Vector2(0.8, 0.8)
+disabled = true
+texture_normal = ExtResource("9_vjhme")
+texture_hover = ExtResource("10_gbitc")
+script = ExtResource("11_554if")
+
+[node name="Name" type="Label" parent="ButtonTemplate" unique_id=112977281]
+layout_mode = 0
+offset_left = -1.538476
+offset_top = 35.38462
+offset_right = 207.69247
+offset_bottom = 244.61533
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_vjhme")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stripe" type="TextureRect" parent="ButtonTemplate" unique_id=1785827544]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 80.000046
+offset_right = 250.0
+offset_bottom = 250.00005
+texture = ExtResource("7_gbitc")
+
+[node name="Count" type="Label" parent="ButtonTemplate/Stripe" unique_id=1183068435]
+layout_mode = 0
+offset_left = 43.076912
+offset_top = 3.07693
+offset_right = 252.30786
+offset_bottom = 212.30765
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_vjhme")
+theme_override_font_sizes/font_size = 60
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH" to="." method="_on_dealer_ph_visibility_changed"]
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine1" method="_on_dealer_ph_visibility_changed"]

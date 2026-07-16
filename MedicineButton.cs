@@ -24,6 +24,7 @@ public partial class MedicineButton : TextureButton
         Position = slot.GetPosition();
         Show();
         medicine = inputMedicine;
+        GD.Print($"My name is {medicine.name} I am showing up now.");
         RenderText(inputMedicine);
         slot.SetOccupiedStatus(true);
     }

@@ -8,15 +8,7 @@ public partial class TreatmentManager : Node
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Sprite2D PatientDisplay;
     Label PatientInfo;
-    TextureButton GiveMedicine1Button;
-    Label Med1Name;
-    Label Med1Count;
-    TextureButton GiveMedicine2Button;
-    Label Med2Name;
-    Label Med2Count;
-    TextureButton GiveMedicine3Button;
-    Label Med3Name;
-    Label Med3Count;
+    
     Label WrongMedicinePopup;
     Label NoPatientPopup;
     Label PatientCuredPopup;
@@ -37,10 +29,6 @@ public partial class TreatmentManager : Node
     {
         GetNodes();
 
-        //GiveMedicine1Button.Pressed += () => MedicineOperations(GiveMedicine1Button);
-        //GiveMedicine2Button.Pressed += () => MedicineOperations(GiveMedicine2Button);
-        //GiveMedicine3Button.Pressed += () => MedicineOperations(GiveMedicine3Button);
-
         CloseWrongMedicinePopup.Pressed += () => CloseParent(CloseWrongMedicinePopup);
         CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
         ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
@@ -53,8 +41,6 @@ public partial class TreatmentManager : Node
 
         Subscriptions[button] = handler;
         button.Pressed += handler;
-
-        //button.Pressed += () => ApplyMedicine(button);
     }
 
     public void RemoveSubscription(MedicineButton button)
@@ -64,22 +50,13 @@ public partial class TreatmentManager : Node
             button.Pressed -= handler;
             Subscriptions.Remove(button);
         }
-        //button.Pressed -= () => ApplyMedicine(button);
     }
 
     private void GetNodes()
     {
         //Basically just grabbing all the nodes
         Inventory = GetParent() as Inventory;
-        GiveMedicine1Button = GetParent().GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
-        Med1Name = GiveMedicine1Button.GetNode<Label>("Med1_Name");
-        Med1Count = GiveMedicine1Button.GetNode("Stripe").GetNode<Label>("Med1_Count");
-        GiveMedicine2Button = GetParent().GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
-        Med2Name = GiveMedicine2Button.GetNode<Label>("Med2_Name");
-        Med2Count = GiveMedicine2Button.GetNode("Stripe").GetNode<Label>("Med2_Count");
-        GiveMedicine3Button = GetParent().GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
-        Med3Name = GiveMedicine3Button.GetNode<Label>("Med3_Name");
-        Med3Count = GiveMedicine3Button.GetNode("Stripe").GetNode<Label>("Med3_Count");
+        
         WrongMedicinePopup = GetNode<Label>("Wrong_Medicine_Popup");
         NoPatientPopup = GetNode<Label>("No_Patient_Popup");
         PatientCuredPopup = GetNode<Label>("Patient_Cured_Popup");
@@ -178,121 +155,13 @@ public partial class TreatmentManager : Node
             {
                 WrongMedicinePopup.Show();
             }
-            if (Room == null)
-            {
-                GD.Print("room NO");
-            }
-            else
-            {
-                GD.Print("room YES");
-            }
-            if (Room.Patient == null)
-            {
-                GD.Print("patient NO");
-            }
-            else
-            {
-                GD.Print("patient YES");
-            }
-            
             Room.UpdateSprites();
-            //disable the buttons, and prevent them form being reenabled by switching scenes until the lockout is disabled by going to bed
-            //Inventory.SetButtonStatus(false);
             Inventory.InventoryActions();
         }
     }
 
-    private void MedicineOperations(TextureButton medicineChoice)
-	{
-        //setting up crucial parameters of a medicine, and changing them depending on which medicine is being usesd
-        Medicine medicine = null;
-        string matchingMalady = "none";
-        PatientStats patient = Room.Patient;
-        Label nameBox = null;
-        Label countBox = null;
-        if (medicineChoice == GiveMedicine1Button)
-        {
-            medicine = MedicineManager.Database["Morphine"];
-            matchingMalady = "an accident";
-            nameBox = Med1Name;
-            countBox = Med1Count;
-        }
-        else if (medicineChoice == GiveMedicine2Button)
-        {
-            medicine = MedicineManager.Database["Aspirin"];
-            matchingMalady = "an accident";
-            nameBox = Med2Name;
-            countBox = Med2Count;
-        }
-        else if (medicineChoice == GiveMedicine3Button)
-        {
-            medicine = MedicineManager.Database["Ozempic"];
-            matchingMalady = "Blue Pox";
-            nameBox = Med3Name;
-            countBox = Med3Count;
-        }
-
-        if (!Room.HasPatient())
-        {
-            NoPatientPopup.Show();
-        }
-        //else if (GlobalData.Medicine1Count > 0)
-        else if (medicine.amount > 0)
-        {
-            //use the medicine
-            medicine.amount--;
-            nameBox.Text = $"{medicine.name}";
-            countBox.Text = $"{medicine.amount}";
-            //if we're out of the medicine, remove it from the inventory
-            if (medicine.amount == 0)
-            {
-                medicineChoice.Hide();
-            }
-            //if you try to use the medicine on the wrong malady, you get the appropriate popup, and the medicine buttons get disabled until you close it
-            if (patient.malady.name != matchingMalady)
-            {
-                WrongMedicinePopup.Show();
-            }
-            else
-            {
-                //the correct use of the medicine, severity goes down, the text gets updated
-                patient.malady.severity--;
-                patient.TriggerInteractionTags();
-                //UpdateTreatmentText();
-                //PatientInfo.Text = "Patient info: \n Malady: " + patient.malady.name + "\n Severity: " + patient.malady.severity; 
-                //if you get the severity down to 0, the patient is cured, you get a popup, and you get paid
-                if (patient.malady.severity <= 0)
-                {
-                    PatientCured();
-                } 
-                else
-                {
-                    //give the popup about the patient needing to rest, and asking to check back in tomorrow. It needs to be there to explain to players why they can't use more medicine, 
-                    //and what they need to do to fix that, but it's probably gonna get annoying if it happens every time, in the final game,
-                    //something like this should probably only happen the first time
-                    CorrectMedicinePopup.Show();
-                }
-            }
-            Room.UpdateSprites();
-            //disable the buttons, and prevent them form being reenabled by switching scenes until the lockout is disabled by going to bed
-            GiveMedicine1Button.Disabled = true;
-            GiveMedicine2Button.Disabled = true;
-            GiveMedicine3Button.Disabled = true;
-            Room.SetAlreadyTreated(true);
-            GlobalData.DailyLockout = true;
-        }
-    }
-
-    public void ReenableMedicine()
-    {
-        GiveMedicine1Button.Disabled = false;
-        GiveMedicine2Button.Disabled = false;
-        GiveMedicine3Button.Disabled = false;
-    }
-
     public void SetTreatmentRoomReference(Room room)
     {
-        GD.Print("Setting treatment reference");
         Room = room;
         if(Room.curedInAbsence)
         {

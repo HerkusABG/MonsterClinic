@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks; // i added this for delays, but it may not be necessary 
@@ -32,18 +34,27 @@ public partial class MapUI : Control
     Label Med3Name;
     Label Med3Count;
 
+
     int currentRoomNum = 0;
 
     private int admittedPatients = 0;
 
     RoomStructureRenderer RoomRenderer;
 
+    [Export] Control SlotControl;
+    [Export] MedicineButton ButtonTemplate;
+
+    private List<InventorySlot> Slots = new List<InventorySlot>();
+
+    private List<MedicineButton> MedicineButtons = new List<MedicineButton>();
+
+    TreatmentManager Treatment;
+    Inventory Inventory;
 
     public void Initialize()
     {
         //resets the number of rooms to 1, prevents an issue when quitting to the main menu and starting a new game
         //should probably be in main, but the order in which the scripts are executed makes it not work, should be moved there after we have flow control
-        GD.Print(Upgrades.roomCount.ToString());
         getNodes();
         MapOffice.Pressed += MapOfficeFunction;
         MapPatientAdmission.Pressed += MapPatientAdmissionFunction;
@@ -72,15 +83,19 @@ public partial class MapUI : Control
         DealerWindowMoneyDisplay = GetParent().GetNode<Label>("Dealer_PH").GetNode<Label>("Money_Display");
         Button CloseRoomInfoButton = GetNode<Label>("Room_Info").GetNode<Button>("Close");
         CloseRoomInfoButton.Pressed += CloseRoomInfo;
+
     }
+
 
     private void getNodes()
     {
+        Treatment = GetTree().Root.GetNode("Main").GetNode("Inventory").GetNode<TreatmentManager>("Treatment_Manager");
+        Inventory = Treatment.GetParent().GetParent().GetNode("Inventory") as Inventory;
         //grabbing all the nodes
         RoomInfo = GetNode<Label>("Room_Info");
         RoomNumber = RoomInfo.GetNode<Label>("Room_Number_Display");
         PatientInfo = RoomInfo.GetNode<Label>("Patient_Info");
-        FastTravel = RoomInfo.GetNode<Button>("Fast_Travel");
+        //FastTravel = RoomInfo.GetNode<Button>("Fast_Travel");
         MapOffice = GetNode<Button>("Map_Office");
         MapPatientAdmission = GetNode<Button>("Map_Patient_Admission");
         MapHallway = GetNode<Button>("Map_Hallway");
@@ -97,6 +112,38 @@ public partial class MapUI : Control
         GiveMedicine3Button = MedicineMenu.GetNode<TextureButton>("Give_Medicine_3");
         Med3Name = GiveMedicine3Button.GetNode<Label>("Med3_Name");
         Med3Count = GiveMedicine3Button.GetNode("Stripe").GetNode<Label>("Med3_Count");
+
+        //InitializeRemoteHealing();
+        Inventory inv = Treatment.GetParent().GetParent().GetNode<Inventory>("Inventory");
+        inv.InventoryButtonGeneration(SlotControl, MedicineMenu, ButtonTemplate);
+    }
+
+    public void InitializeRemoteHealing()
+    {
+        foreach (Node node in SlotControl.GetChildren())
+        {
+            Control control = node as Control;
+            if (control != null)
+            {
+                InventorySlot slot = new InventorySlot();
+                slot.control = control;
+                Slots.Add(slot);
+            }
+            else
+            {
+                GD.Print("ERROR IN INVENTORY.CS, NULL REFERENCE");
+            }
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            MedicineButton medButton = ButtonTemplate.Duplicate() as MedicineButton;
+            medButton.Initialize();
+            MedicineMenu.AddChild(medButton);
+            MedicineButtons.Add(medButton);
+            medButton.Show();
+            medButton.Position = Slots[i].GetPosition();
+            Treatment.AddSubscription(medButton);
+        }
     }
 
     private void CloseRoomInfo()
@@ -177,7 +224,7 @@ public partial class MapUI : Control
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(RoomScene.GetPath());
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= RoomFastTravel;
+        //FastTravel.Pressed -= RoomFastTravel;
 
     }
 
@@ -191,7 +238,7 @@ public partial class MapUI : Control
         currentScene.Hide();
         officeScene.Show();
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= OfficeFastTravel;
+        //FastTravel.Pressed -= OfficeFastTravel;
 
     }
 
@@ -205,7 +252,7 @@ public partial class MapUI : Control
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(PatientScene.GetPath());
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= PatientAdmissionFastTravel;
+        //FastTravel.Pressed -= PatientAdmissionFastTravel;
     }
 
     private void HallwayFastTravel()
@@ -222,7 +269,7 @@ public partial class MapUI : Control
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(HallwayScene.GetPath());
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= HallwayFastTravel;
+        //FastTravel.Pressed -= HallwayFastTravel;
     }
 
     private void MapOfficeFunction()
@@ -230,15 +277,15 @@ public partial class MapUI : Control
         //show office related info, make the fast travel button go to the office
         RoomInfo.Show();
         PatientInfo.Hide();
-        MedicineMenu.Hide();
+        //MedicineMenu.Hide();
         RoomNumber.Text = "Office";
-        FastTravel.Pressed += OfficeFastTravel;
+        //FastTravel.Pressed += OfficeFastTravel;
     }
 
     private void MapPatientAdmissionFunction() {
         //show patient admission related info, make the fast travel button go to patient admission
         RoomInfo.Show();
-        MedicineMenu.Hide();
+       // MedicineMenu.Hide();
         RoomNumber.Text = "Patient Admission";
         Label OriginalPatientsLeftLabel = GetParent().GetParent().GetParent().GetNode("Patient_Interface").GetNode("Sprites_PH").GetNode<Label>("PatientsLeftLabel");
         PatientInfo.Text = OriginalPatientsLeftLabel.Text;
@@ -250,9 +297,9 @@ public partial class MapUI : Control
         //show hallway related info, make the fast travel button go to the hallway
         RoomInfo.Show();
         PatientInfo.Hide();
-        MedicineMenu.Hide();
+        //MedicineMenu.Hide();
         RoomNumber.Text = "Hallway";
-        FastTravel.Pressed += HallwayFastTravel;
+        //FastTravel.Pressed += HallwayFastTravel;
     }
 
     private void RoomButtonFunction(int roomNum)
@@ -265,10 +312,16 @@ public partial class MapUI : Control
         //show medicine menu if the room has an untreated patient, and the player has unlocked remote medicine
         if (room.Patient != null && room.GetAlreadyTreated() == false && Upgrades.remoteMedicine.unlocked)
         {
+            Inventory.InventoryActions();
             MedicineMenu.Show();
-
-        } else
+            foreach(Control child in MedicineMenu.GetChildren())
+            {
+                GD.Print(child.Name);
+            }
+        }
+        else
         {
+            Inventory.InventoryActions();
             MedicineMenu.Hide();
         }
         //if there is a patient, display patient info
@@ -284,7 +337,7 @@ public partial class MapUI : Control
             PatientInfo.Text = "Room currently empty";
         }
         //connect fast travel to this specific room
-        FastTravel.Pressed += RoomFastTravel;
+        //FastTravel.Pressed += RoomFastTravel;
     } 
 
     private void AssignRoomButtonFunction(int roomNum)
@@ -362,21 +415,26 @@ public partial class MapUI : Control
                     GlobalData.patientCount--;
                     GlobalData.DailyEarnings += 40;
                     PatientInfo.Text = "Room currently empty";
-                    MedicineMenu.Hide();
+                    //MedicineMenu.Hide();
                     room.DeletePatient();
                 }
             }
             //disable the buttons, and prevent them form being reenabled by switching scenes until the lockout is disabled by going to bed
             room.SetAlreadyTreated(false);
             
-            MedicineMenu.Hide();
+            //MedicineMenu.Hide();
         }
+    }
+
+    public void OnMapButtonPressed()
+    {
+        MedicineMenu.Hide();
     }
 
     //a whole lotta ensuring the medicine buttons show the correct data
     private void _on_visibility_changed()
     {
-        MedicineMenu.Hide();
+       /* MedicineMenu.Hide();
         if (GiveMedicine1Button == null) return;
         if (Visible)
         {
@@ -412,6 +470,6 @@ public partial class MapUI : Control
             Med2Count.Text = $"{MedicineManager.Database["Aspirin"].amount}";
             Med3Name.Text = $"{MedicineManager.Database["Ozempic"].name}";
             Med3Count.Text = $"{MedicineManager.Database["Ozempic"].amount}";
-        }
+        }*/
     }
 }

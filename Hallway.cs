@@ -122,7 +122,6 @@ public partial class Hallway : Node2D
     {
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
-        treatment.ReenableMedicine();
     }
 
     public void UpdateHallwayUI()

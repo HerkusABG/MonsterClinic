@@ -37,6 +37,8 @@ public partial class Contents_C : Node2D
     Label CatalogueWindow;
     Button CloseCatalogueWindow;
 
+    [Export] MapUI mapUi;
+
 
     // Called when the node enters the scene tree for the first time.
     public void Initialize()
@@ -134,6 +136,7 @@ public partial class Contents_C : Node2D
     private void ShowMapWindow()
     {
         MapControl.Show();
+        mapUi.OnMapButtonPressed();
     }
 
     private void ShowCatalogueWindow()

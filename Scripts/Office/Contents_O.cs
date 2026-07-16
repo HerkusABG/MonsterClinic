@@ -98,6 +98,10 @@ public partial class Contents_O : Node2D
 
         Contents_P_I patientInterface = GetParent().GetNode<Contents_P_I>("Patient_Interface");
         patientInterface.NewDay();
+
+        Inventory inventory = GetParent().GetNode<Inventory>("Inventory");
+        inventory.InventoryActions();
+
         if (GlobalData.Countdown >= 0)
         {
             //push the scene we're entering to the previous scenes stack
