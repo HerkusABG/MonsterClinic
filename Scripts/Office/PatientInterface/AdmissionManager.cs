@@ -67,7 +67,7 @@ public partial class AdmissionManager : Node
     {
         //New day logic
         LatestRoom = null;
-        patientsLeft = Upgrades.newPatientSlots.incrementTarget;
+        patientsLeft = Upgrades.IntUpgradeDatabase["PatientSlots"].incrementTarget;
     }
 
     public Node2D GetLatestRoom()

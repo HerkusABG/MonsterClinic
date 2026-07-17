@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class BooleanUpgrage : IncrementalUpgrade
+public class BooleanUpgrade : IncrementalUpgrade
 {
     //the bool that gets incremented when an upgrade is purchased
     public bool unlocked { get; set; }

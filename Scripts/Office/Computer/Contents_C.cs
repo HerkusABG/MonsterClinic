@@ -128,7 +128,6 @@ public partial class Contents_C : Node2D
     {
         int myIndex = button.index;
         DealerSlot slot = DealerList.Database.ElementAt(myIndex + startingIndex).Value;
-        GD.Print($"Buying something at index {myIndex + startingIndex}");
         slot.BuyMedicine();
         RefreshDealerButtons(startingIndex);
         DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
@@ -179,8 +178,8 @@ public partial class Contents_C : Node2D
         TreatmentResourcesButton.Pressed += OpenResourcesWindow;
         UpgradesButton.Pressed += OpenUpgradesWindow;
         AspirinUnlock.Pressed += UnlockAspirin;
-        WaitingRoomUpgrade.Pressed += () => Upgrades.IntegerUpgrade(Upgrades.newPatientSlots, 1, WaitingRoomUpgrade, UpdateMoneyDisplay, ShowInsufficientFunds);
-        RemoteMedicineUnlock.Pressed += () => Upgrades.BooleanUpgrade(Upgrades.remoteMedicine, RemoteMedicineUnlock, UpdateMoneyDisplay, ShowInsufficientFunds);
+        WaitingRoomUpgrade.Pressed += () => Upgrades.IntegerUpgrade(Upgrades.IntUpgradeDatabase["PatientSlots"], 1, WaitingRoomUpgrade, UpdateMoneyDisplay, ShowInsufficientFunds);
+        RemoteMedicineUnlock.Pressed += () => Upgrades.BooleanUpgrade(Upgrades.BoolUpgradeDatabase["RemoteMedicine"], RemoteMedicineUnlock, UpdateMoneyDisplay, ShowInsufficientFunds);
         //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
         CloseResources.Pressed += () => CloseParent(CloseResources);
         CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);

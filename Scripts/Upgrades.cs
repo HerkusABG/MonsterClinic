@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 static class Upgrades
@@ -13,19 +14,47 @@ static class Upgrades
 	//boolean that control whether you can buy Aspirin
 	public static bool AspirinUnlock = false;
 
-	public static IntegerUpgrade newPatientSlots = new IntegerUpgrade
-	{
-		incrementTarget = 3,
-		cap = 999,
-		price = 50
-	};
+	public static List<IncrementalUpgrade> AllUpgrades = new List<IncrementalUpgrade>();
 
-    public static BooleanUpgrage remoteMedicine = new BooleanUpgrage
-    {
-        unlocked = false,
-        price = 200
+	public static Dictionary<string, IntegerUpgrade> IntUpgradeDatabase = new()
+	{
+		["PatientSlots"] = new IntegerUpgrade
+		{
+			name = "More patient slots",
+			incrementTarget = 3,
+			cap = 999,
+			price = 50
+		}
     };
 
+    public static Dictionary<string, BooleanUpgrade> BoolUpgradeDatabase = new()
+    {
+        ["RemoteMedicine"] = new BooleanUpgrade
+        {
+            name = "Remotely treat patients",
+            unlocked = false,
+            price = 200
+        },
+		["Aspirin"] = new BooleanUpgrade
+        {
+            name = "Be able to buy aspirin",
+            unlocked = false,
+            price = 200
+        }
+    };
+
+	public static void Initialize()
+	{
+		for(int i = 0; i < IntUpgradeDatabase.Count; i++)
+		{
+			AllUpgrades.Add(IntUpgradeDatabase.ElementAt(i).Value);
+        }
+        for (int i = 0; i < BoolUpgradeDatabase.Count; i++)
+        {
+            AllUpgrades.Add(BoolUpgradeDatabase.ElementAt(i).Value);
+        }
+        ResetAllUpgrades();
+    }
     public static void AddNewRoom()
 	{
 		if (roomCount <= 6)
@@ -65,7 +94,7 @@ static class Upgrades
 		}
 	}
 
-	public static void BooleanUpgrade(BooleanUpgrage upgrade, Button upgradeButton, Action successAction, Action failAction)
+	public static void BooleanUpgrade(BooleanUpgrade upgrade, Button upgradeButton, Action successAction, Action failAction)
 	{
         if (DoctorInventory.Money >= upgrade.price)
         {
@@ -83,7 +112,10 @@ static class Upgrades
     
 	public static void ResetAllUpgrades()
 	{
-		newPatientSlots.incrementTarget = 3;
-		remoteMedicine.unlocked = false;
+		IntegerUpgrade patientUpgrade = IntUpgradeDatabase["PatientSlots"];
+        patientUpgrade.incrementTarget = 3;
+
+		BooleanUpgrade remoteUpgrade = BoolUpgradeDatabase["RemoteMedicine"];
+		remoteUpgrade.unlocked = false;
     }
 }

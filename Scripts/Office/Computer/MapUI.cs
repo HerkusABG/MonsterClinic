@@ -247,7 +247,7 @@ public partial class MapUI : Control
         Room room = RoomManager.RoomList[roomNum - 1] as Room;
         RoomNumber.Text = "Room " + roomNum.ToString();
         //show medicine menu if the room has an untreated patient, and the player has unlocked remote medicine
-        if (room.Patient != null && room.GetAlreadyTreated() == false && Upgrades.remoteMedicine.unlocked)
+        if (room.Patient != null && room.GetAlreadyTreated() == false && Upgrades.BoolUpgradeDatabase["RemoteMedicine"].unlocked)
         {
             Inventory.InventoryActions();
             MedicineMenu.Show();

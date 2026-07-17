@@ -29,6 +29,5 @@ public class DealerSlot
 	{
 		medicine.amount++;
 		DoctorInventory.Money -= medicine.cost;
-        GD.Print($"Bought {name}");
     }
 }

@@ -16,10 +16,6 @@ public static class DealerList
 
     public static void Initialize()
     {
-        /*foreach(Medicine medicine in MedicineManager.Database)
-        {
-
-        }*/
         int index = 0;
         for(int i = 0; i < MedicineManager.Database.Count; i++)
         {
@@ -30,10 +26,6 @@ public static class DealerList
                 Database.Add(MedicineManager.Database.ElementAt(i).Key, newSlot);
                 index++;
             }
-        }
-        for (int i = 0; i < Database.Count; i++)
-        {
-            //DealerSlot newSlot = new DealerSlot(MedicineManager.Database.ElementAt(i).Value, i);
         }
     }
 }

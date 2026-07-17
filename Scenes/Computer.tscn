@@ -173,7 +173,6 @@ text = "Treatment Resources
 "
 
 [node name="Upgrades_Window" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=1992268291]
-visible = false
 layout_mode = 0
 offset_left = 733.0
 offset_top = 81.0
@@ -240,6 +239,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Rooms_Text" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=1580332183]
+visible = false
 layout_mode = 0
 offset_left = 35.0
 offset_top = 638.0
