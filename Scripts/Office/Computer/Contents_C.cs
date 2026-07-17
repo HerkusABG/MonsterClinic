@@ -47,9 +47,10 @@ public partial class Contents_C : Node2D
     [Export] Button DownButton;
 
     List<DealerButton> DealerButtons = new List<DealerButton>();
-    List<DealerSlot> DealerSlots = new List<DealerSlot>();
 
     int startingIndex = 0;
+
+    private readonly Dictionary<DealerButton, Action> Subscriptions = new();
 
 
     // Called when the node enters the scene tree for the first time.
@@ -110,16 +111,27 @@ public partial class Contents_C : Node2D
         CatalogueWindow = control.GetNode<Label>("Malady_PH");
         CloseCatalogueWindow = CatalogueWindow.GetNode<Button>("Close");
 
-        
+        int count = 0;
         foreach(Button button in MedicineContainer.GetChildren())
         {
             DealerButton castButton = button as DealerButton;
             if(castButton != null)
             {
-                
                 DealerButtons.Add(castButton);
+                castButton.index = count;
+                count++;
             }
         }
+    }
+
+    private void PurchaseMedicine(DealerButton button)
+    {
+        int myIndex = button.index;
+        DealerSlot slot = DealerList.Database.ElementAt(myIndex + startingIndex).Value;
+        GD.Print($"Buying something at index {myIndex + startingIndex}");
+        slot.BuyMedicine();
+        RefreshDealerButtons(startingIndex);
+        DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
     }
 
     private void DealerMenuNavigation(int input)
@@ -144,11 +156,8 @@ public partial class Contents_C : Node2D
 
     private void RefreshDealerButtons(int start)
     {
-        GD.Print($"count is {DealerList.Database.Count}");
-
         for (int i = 0; i < DealerButtons.Count; i++)
         {
-            GD.Print($"Going to index: {i + start}");
             DealerButtons[i].Text = DealerList.Database.ElementAt(i + start).Value.GetSlotText();
         }
     }
@@ -183,6 +192,14 @@ public partial class Contents_C : Node2D
         SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
         CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
         CloseCatalogueWindow.Pressed += () => CloseParent(CloseCatalogueWindow);
+
+
+        foreach(DealerButton button in DealerButtons)
+        {
+            Action handler = () => PurchaseMedicine(button);
+
+            button.Pressed += handler;
+        }
     }
 
     private void ShowDealerWindow()

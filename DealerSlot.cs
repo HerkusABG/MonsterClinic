@@ -7,6 +7,7 @@ public class DealerSlot
 	public string name;
 	int cost;
 	int amountOwned;
+	Medicine medicine;
 
 	public DealerSlot(Medicine medicine, int index)
 	{
@@ -14,12 +15,20 @@ public class DealerSlot
 		name = medicine.name;
         cost = medicine.cost;
 		amountOwned = medicine.amount;
+		this.medicine = medicine;
 	}
 
 	public string GetSlotText()
 	{
-		return $"{name} \n " +
-			$"(Price: {cost}) \n " +
-			$"\n Owned: {amountOwned}";
+		return $"{medicine.name} \n " +
+			$"(Price: {medicine.cost}) \n " +
+			$"\n Owned: {medicine.amount}";
+    }
+
+	public void BuyMedicine()
+	{
+		medicine.amount++;
+		DoctorInventory.Money -= medicine.cost;
+        GD.Print($"Bought {name}");
     }
 }
