@@ -25,10 +25,10 @@ public partial class PatientStats
         // For just assigning random numbers, this will be overhauled later.
         Random rnd = new Random();
         malady = new Malady();
-        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count)).Value);
+        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count - 1)).Value);
         if (malady.severity == -1)
         {
-            malady.severity = rnd.Next(2, 5);
+            malady.severity = rnd.Next(2, 3);
         }
         isAlive = true;
         patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
@@ -46,15 +46,7 @@ public partial class PatientStats
     {
         //ALL malady related information must go through here,
         //otherwise the malady reference is static and curing one patient cures all patients.
-
-
         malady = inputMalady.Clone();
-        /*malady.name = inputMalady.name;
-        malady.allSymptoms = inputMalady.allSymptoms;
-        malady.dialogueSymptoms = inputMalady.dialogueSymptoms;
-        malady.temperatureSymptoms = inputMalady.temperatureSymptoms;
-        malady.pulseSymptoms = inputMalady.pulseSymptoms;
-        malady.tags = inputMalady.tags;*/
     }
 
     public bool TryCurePatient(Medicine inputMedicine)

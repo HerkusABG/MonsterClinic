@@ -36,7 +36,7 @@ public class Malady
 
     public Malady Clone()
     {
-        return new Malady
+        Malady malady = new Malady
         {
             name = name,
             severity = severity,
@@ -44,9 +44,13 @@ public class Malady
             dialogueSymptoms = dialogueSymptoms,
             pulseSymptoms = pulseSymptoms,
             temperatureSymptoms = temperatureSymptoms,
-            tags = tags,
             cures = cures
         };
+        foreach(Tag tag in tags)
+        {
+            malady.tags.Add(tag.Clone());
+        }
+        return malady;
     }
 }
 

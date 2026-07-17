@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Xml.Linq;
+using static Godot.EditorToaster;
 
 public class Tag
 {
@@ -17,19 +19,30 @@ public class Tag
         return false;
     }
 
-    public virtual void ExecuteDaily(PatientStats patient)
-    {
+    public virtual void ExecuteDaily(PatientStats patient) { }
 
+    public virtual void ExecuteInteraction(PatientStats patient) { }
+
+    public virtual void ExecuteMaxSeverity(PatientStats patient) { }
+
+    public virtual Tag Clone() { return null; }
+    
+
+    public void GetParentData(Tag tag)
+    {
+        tag.increment = increment;
+        tag.types = types;
+        tag.strength = strength;
     }
-
-    public virtual void ExecuteInteraction(PatientStats patient)
+    public Tag CloneParent()
     {
-
-    }
-
-    public virtual void ExecuteMaxSeverity(PatientStats patient)
-    {
-
+        Tag clonedTag = new Tag
+        {
+            increment = increment,
+            types = types,
+            strength = strength
+        };
+        return clonedTag;
     }
 }
 public enum TagType
@@ -60,6 +73,16 @@ public class WorseningTag : Tag
             count = 0;
         }
     }
+
+    public override Tag Clone()
+    {
+        WorseningTag specifiedClone = new WorseningTag
+        {
+            count = count
+        };
+        GetParentData(specifiedClone);
+        return specifiedClone;
+    }
 }
 
 public class HealingTag : Tag
@@ -79,6 +102,16 @@ public class HealingTag : Tag
             malady.severity += strength;
             count = 0;
         }
+    }
+
+    public override Tag Clone()
+    {
+        HealingTag specifiedClone = new HealingTag
+        {
+            count = count
+        };
+        GetParentData(specifiedClone);
+        return specifiedClone;
     }
 }
 
@@ -109,6 +142,17 @@ public class UnstableTag : Tag
     {
         wasTreatedToday = true;
     }
+
+    public override Tag Clone()
+    {
+        UnstableTag specifiedClone = new UnstableTag
+        {
+            count = count,
+            wasTreatedToday = wasTreatedToday
+        };
+        GetParentData(specifiedClone);
+        return specifiedClone;
+    }
 }
 
 
@@ -125,6 +169,15 @@ public class DeadlyTag : Tag
         {
             patient.KillPatient();
         }
+    }
+
+    public override Tag Clone()
+    {
+        DeadlyTag specifiedClone = new DeadlyTag
+        {
+        };
+        GetParentData(specifiedClone);
+        return specifiedClone;
     }
 }
 
@@ -145,6 +198,17 @@ public class ResistantTag : Tag
         {
             patient.malady.isImmune = true;
         }
+    }
+
+    public override Tag Clone() 
+    {
+        ResistantTag specifiedClone = new ResistantTag
+        {
+            ratioA = ratioA,
+            ratioB = ratioB
+        };
+        GetParentData(specifiedClone);
+        return specifiedClone;
     }
 }
 
