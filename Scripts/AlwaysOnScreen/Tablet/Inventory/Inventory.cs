@@ -95,28 +95,6 @@ public partial class Inventory : Node2D
         }
         InventoryUiInstance instance = new InventoryUiInstance(slots, medicineButtons);
         InventoryInstances.Add(instance);
-        /*foreach (Node node in PositionControl.GetChildren())
-        {
-            Control control = node as Control;
-            if (control != null)
-            {
-                InventorySlot slot = new InventorySlot();
-                slot.control = control;
-                Slots.Add(slot);
-            }
-            else
-            {
-                GD.Print("ERROR IN INVENTORY.CS, NULL REFERENCE");
-            }
-        }
-        for (int i = 0; i < 4; i++)
-        {
-            TextureButton newButton = (TextureButton)ButtonTemplate.Duplicate();
-            MedicineButton medButton = newButton as MedicineButton;
-            medButton.Initialize();
-            OpenInventory.AddChild(newButton);
-            MedicineButtons.Add(medButton);
-        }*/
     }
     //you can also press the inventory to open it
 	private void InventoryToggle()
@@ -186,17 +164,13 @@ public partial class Inventory : Node2D
     public void UpdateInventory(InventoryUiInstance instance)
     {
         List<MedicineButton> buttons = instance.MedicineButtons;
-        GD.Print("buttons cound is " + buttons.Count);
         for (int i = 0; i < buttons.Count; i++)
         {
             Medicine medicine = MedicineManager.Database.ElementAt(i).Value;
-            GD.Print($"testing medicine {medicine.name}");
             if (medicine.amount > 0)
             {
-                GD.Print($"{medicine.name} has more than 0");
                 if (!DoesButtonAlreadyExist(medicine, instance))
                 {
-                    GD.Print($"{medicine.name} button doesnt exist so we need to make one.");
                     InventorySlot slot = FindEmptySlot(instance);
                     if (slot == null)
                     {
@@ -209,7 +183,6 @@ public partial class Inventory : Node2D
             }
             else
             {
-                GD.Print($"{medicine.name} has 0 or less");
                 if (DoesButtonAlreadyExist(medicine, instance))
                 {
                     TreatmentManager.RemoveSubscription(instance.MedicineButtons[i]);

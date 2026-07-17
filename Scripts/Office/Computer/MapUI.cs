@@ -24,16 +24,6 @@ public partial class MapUI : Control
     Button MapHallway;
 
     Label MedicineMenu;
-    TextureButton GiveMedicine1Button;
-    Label Med1Name;
-    Label Med1Count;
-    TextureButton GiveMedicine2Button;
-    Label Med2Name;
-    Label Med2Count;
-    TextureButton GiveMedicine3Button;
-    Label Med3Name;
-    Label Med3Count;
-
 
     int currentRoomNum = 0;
 
@@ -55,13 +45,10 @@ public partial class MapUI : Control
     {
         //resets the number of rooms to 1, prevents an issue when quitting to the main menu and starting a new game
         //should probably be in main, but the order in which the scripts are executed makes it not work, should be moved there after we have flow control
-        getNodes();
+        GetNodes();
         MapOffice.Pressed += MapOfficeFunction;
         MapPatientAdmission.Pressed += MapPatientAdmissionFunction;
         MapHallway.Pressed += MapHallwayFunction;
-        GiveMedicine1Button.Pressed += () => MedicineOperations(GiveMedicine1Button);
-        GiveMedicine2Button.Pressed += () => MedicineOperations(GiveMedicine2Button);
-        GiveMedicine3Button.Pressed += () => MedicineOperations(GiveMedicine3Button);
         UpdateUI();
         WarningLabel.Visible = false;
         BuyRoomButton.Pressed += OnBuyRoomButtonPressed;
@@ -83,67 +70,25 @@ public partial class MapUI : Control
         DealerWindowMoneyDisplay = GetParent().GetNode<Label>("Dealer_PH").GetNode<Label>("Money_Display");
         Button CloseRoomInfoButton = GetNode<Label>("Room_Info").GetNode<Button>("Close");
         CloseRoomInfoButton.Pressed += CloseRoomInfo;
-
     }
 
-
-    private void getNodes()
+    private void GetNodes()
     {
         Treatment = GetTree().Root.GetNode("Main").GetNode("Inventory").GetNode<TreatmentManager>("Treatment_Manager");
         Inventory = Treatment.GetParent().GetParent().GetNode("Inventory") as Inventory;
+        MedicineMenu = GetNode<Label>("Medicine_Menu");
+        Inventory.InventoryButtonGeneration(SlotControl, MedicineMenu, ButtonTemplate);
         //grabbing all the nodes
         RoomInfo = GetNode<Label>("Room_Info");
         RoomNumber = RoomInfo.GetNode<Label>("Room_Number_Display");
         PatientInfo = RoomInfo.GetNode<Label>("Patient_Info");
-        //FastTravel = RoomInfo.GetNode<Button>("Fast_Travel");
+        FastTravel = RoomInfo.GetNode<Button>("Fast_Travel");
         MapOffice = GetNode<Button>("Map_Office");
         MapPatientAdmission = GetNode<Button>("Map_Patient_Admission");
         MapHallway = GetNode<Button>("Map_Hallway");
         RoomContainer1 = GetNode("MapMarginContainer").GetNode<GridContainer>("RoomContainer");
         RoomContainer2 = GetNode("MapMarginContainer2").GetNode<GridContainer>("RoomContainer2");
 
-        MedicineMenu = GetNode<Label>("Medicine_Menu");
-        GiveMedicine1Button = MedicineMenu.GetNode<TextureButton>("Give_Medicine_1");
-        Med1Name = GiveMedicine1Button.GetNode<Label>("Med1_Name");
-        Med1Count = GiveMedicine1Button.GetNode("Stripe").GetNode<Label>("Med1_Count");
-        GiveMedicine2Button = MedicineMenu.GetNode<TextureButton>("Give_Medicine_2");
-        Med2Name = GiveMedicine2Button.GetNode<Label>("Med2_Name");
-        Med2Count = GiveMedicine2Button.GetNode("Stripe").GetNode<Label>("Med2_Count");
-        GiveMedicine3Button = MedicineMenu.GetNode<TextureButton>("Give_Medicine_3");
-        Med3Name = GiveMedicine3Button.GetNode<Label>("Med3_Name");
-        Med3Count = GiveMedicine3Button.GetNode("Stripe").GetNode<Label>("Med3_Count");
-
-        Inventory inv = Treatment.GetParent().GetParent().GetNode<Inventory>("Inventory");
-        inv.InventoryButtonGeneration(SlotControl, MedicineMenu, ButtonTemplate);
-
-    }
-
-    public void InitializeRemoteHealing()
-    {
-        foreach (Node node in SlotControl.GetChildren())
-        {
-            Control control = node as Control;
-            if (control != null)
-            {
-                InventorySlot slot = new InventorySlot();
-                slot.control = control;
-                Slots.Add(slot);
-            }
-            else
-            {
-                GD.Print("ERROR IN INVENTORY.CS, NULL REFERENCE");
-            }
-        }
-        for (int i = 0; i < 3; i++)
-        {
-            MedicineButton medButton = ButtonTemplate.Duplicate() as MedicineButton;
-            medButton.Initialize();
-            MedicineMenu.AddChild(medButton);
-            MedicineButtons.Add(medButton);
-            medButton.Show();
-            medButton.Position = Slots[i].GetPosition();
-            Treatment.AddSubscription(medButton);
-        }
     }
 
     private void CloseRoomInfo()
@@ -172,7 +117,8 @@ public partial class MapUI : Control
             if (Upgrades.roomCount < 4)
             {
                 RoomRenderer.GenerateRoom(RoomContainer1);
-            } else
+            } 
+            else
             {
                 RoomRenderer.GenerateRoom(RoomContainer2);
             }
@@ -199,33 +145,25 @@ public partial class MapUI : Control
         GlobalData.inPatientRoom = true;
         Node2D currentScene = GetParent().GetParent<Node2D>();
         Node2D RoomScene = RoomManager.RoomList[currentRoomNum - 1];
-        currentScene.Hide();
-        RoomScene.Show();
-        Room room = RoomScene as Room;
-        //update all the stuff in the room
-        room.UpdateSprites();
         Node2D HallwayScene = currentScene.GetParent().GetNode<Node2D>("Hallway");
         Hallway hallway = HallwayScene as Hallway;
         hallway.UpdateHallwayUI();
-        Inventory inv = GetParent().GetParent().GetParent().GetNode<Inventory>("Inventory");
-        TextureButton GiveMedicine1Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
-        TextureButton GiveMedicine2Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
-        TextureButton GiveMedicine3Button = inv.GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
+        hallway.GoToRoom(RoomScene);
+        currentScene.Hide();
+
+        //RoomScene.Show();
+        Room room = RoomScene as Room;
+        //update all the stuff in the room
+        //room.UpdateSprites();
+
+
         //make the buttons disabled if the patient has already been treated today
-        if (room.GetAlreadyTreated())
-        {
-            GiveMedicine1Button.Disabled = true;
-            GiveMedicine2Button.Disabled = true;
-            GiveMedicine3Button.Disabled = true;
-        }
-        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
-        treatment.SetTreatmentRoomReference(room);
-        treatment.ShowUI();
+        Inventory.InventoryActions();
+        Treatment.SetTreatmentRoomReference(room);
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(RoomScene.GetPath());
         //unbind the method from the fast travel button
-        //FastTravel.Pressed -= RoomFastTravel;
-
+        FastTravel.Pressed -= RoomFastTravel;
     }
 
     private void OfficeFastTravel()
@@ -238,8 +176,7 @@ public partial class MapUI : Control
         currentScene.Hide();
         officeScene.Show();
         //unbind the method from the fast travel button
-        //FastTravel.Pressed -= OfficeFastTravel;
-
+        FastTravel.Pressed -= OfficeFastTravel;
     }
 
     private void PatientAdmissionFastTravel()
@@ -252,7 +189,7 @@ public partial class MapUI : Control
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(PatientScene.GetPath());
         //unbind the method from the fast travel button
-        //FastTravel.Pressed -= PatientAdmissionFastTravel;
+        FastTravel.Pressed -= PatientAdmissionFastTravel;
     }
 
     private void HallwayFastTravel()
@@ -269,7 +206,7 @@ public partial class MapUI : Control
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(HallwayScene.GetPath());
         //unbind the method from the fast travel button
-        //FastTravel.Pressed -= HallwayFastTravel;
+        FastTravel.Pressed -= HallwayFastTravel;
     }
 
     private void MapOfficeFunction()
@@ -279,7 +216,7 @@ public partial class MapUI : Control
         PatientInfo.Hide();
         //MedicineMenu.Hide();
         RoomNumber.Text = "Office";
-        //FastTravel.Pressed += OfficeFastTravel;
+        FastTravel.Pressed += OfficeFastTravel;
     }
 
     private void MapPatientAdmissionFunction() {
@@ -299,7 +236,7 @@ public partial class MapUI : Control
         PatientInfo.Hide();
         //MedicineMenu.Hide();
         RoomNumber.Text = "Hallway";
-        //FastTravel.Pressed += HallwayFastTravel;
+        FastTravel.Pressed += HallwayFastTravel;
     }
 
     private void RoomButtonFunction(int roomNum)
@@ -328,7 +265,6 @@ public partial class MapUI : Control
         //if there is a patient, display patient info
         if (room.Patient != null)
         {
-            //room.UpdateSprites();
             UpdateComputerPatientText(room);
         } 
         else
@@ -336,7 +272,7 @@ public partial class MapUI : Control
             UpdateComputerPatientText(null);
         }
         //connect fast travel to this specific room
-        //FastTravel.Pressed += RoomFastTravel;
+        FastTravel.Pressed += RoomFastTravel;
     } 
 
     private void AssignRoomButtonFunction(int roomNum)
@@ -351,77 +287,6 @@ public partial class MapUI : Control
         {
             Button roomButton = GetNode("MapMarginContainer2").GetNode("RoomContainer2").GetNode<Button>("MapRoom" + roomNum.ToString());
             roomButton.Pressed += () => RoomButtonFunction(roomNum);
-        }
-    }
-
-    //this is basically a copy of MedicineOperations in the treatment manager, modified to work with the medicine buttons here
-    private void MedicineOperations(TextureButton medicineChoice)
-    {
-        //setting up crucial parameters of a medicine, and changing them depending on which medicine is being usesd
-        Medicine medicine = null;
-        string matchingMalady = "none";
-        Room room = RoomManager.RoomList[currentRoomNum - 1] as Room;
-        PatientStats patient = room.Patient;
-        Label nameBox = null;
-        Label countBox = null;
-        if (medicineChoice == GiveMedicine1Button)
-        {
-            medicine = MedicineManager.Database["Morphine"];
-            matchingMalady = "an accident";
-            nameBox = Med1Name;
-            countBox = Med1Count;
-        }
-        else if (medicineChoice == GiveMedicine2Button)
-        {
-            medicine = MedicineManager.Database["Aspirin"];
-            matchingMalady = "an ccident";
-            nameBox = Med2Name;
-            countBox = Med2Count;
-        }
-        else if (medicineChoice == GiveMedicine3Button)
-        {
-            medicine = MedicineManager.Database["Ozempic"];
-            matchingMalady = "Blue Pox";
-            nameBox = Med3Name;
-            countBox = Med3Count;
-        }
-        //else if (GlobalData.Medicine1Count > 0)
-        if (medicine.amount > 0)
-        {
-            //use the medicine
-            medicine.amount--;
-            nameBox.Text = $"{medicine.name}";
-            countBox.Text = $"{medicine.amount}";
-            //if we're out of the medicine, remove it from the inventory
-            if (medicine.amount == 0)
-            {
-                medicineChoice.Hide();
-            }
-            if (patient.malady.name == matchingMalady)
-            {
-                //the correct use of the medicine, severity goes down, the text gets updated
-                patient.malady.severity--;
-                if (room == null) return;
-                if (room.Patient == null) return;
-                PatientInfo.Text = $"Patient info: " +
-                           $"\n Malady: {room.Patient.malady.name}" +
-                           $"\n Severity: {room.Patient.malady.severity}" +
-                           $"\n Age: {room.Patient.age}";
-                //PatientInfo.Text = "Patient info: \n Malady: " + patient.malady.name + "\n Severity: " + patient.malady.severity; 
-                //if you get the severity down to 0, the patient is cured, you get a popup, and you get paid
-                if (patient.malady.severity <= 0)
-                {
-                    GlobalData.patientCount--;
-                    GlobalData.DailyEarnings += 40;
-                    PatientInfo.Text = "Room currently empty";
-                    //MedicineMenu.Hide();
-                    room.DeletePatient();
-                }
-            }
-            //disable the buttons, and prevent them form being reenabled by switching scenes until the lockout is disabled by going to bed
-            room.SetAlreadyTreated(false);
-            
-            //MedicineMenu.Hide();
         }
     }
 
@@ -442,47 +307,5 @@ public partial class MapUI : Control
     public void OnMapButtonPressed()
     {
         MedicineMenu.Hide();
-    }
-
-    //a whole lotta ensuring the medicine buttons show the correct data
-    private void _on_visibility_changed()
-    {
-       /* MedicineMenu.Hide();
-        if (GiveMedicine1Button == null) return;
-        if (Visible)
-        {
-            Label RoomInfo = GetNode<Label>("Room_Info");
-            RoomInfo.Hide();
-            if (MedicineManager.Database["Morphine"].amount > 0)
-            {
-                GiveMedicine1Button.Show();
-            }
-            else
-            {
-                GiveMedicine1Button.Hide();
-            }
-            if (MedicineManager.Database["Aspirin"].amount > 0)
-            {
-                GiveMedicine2Button.Show();
-            }
-            else
-            {
-                GiveMedicine2Button.Hide();
-            }
-            if (MedicineManager.Database["Ozempic"].amount > 0)
-            {
-                GiveMedicine3Button.Show();
-            }
-            else
-            {
-                GiveMedicine3Button.Hide();
-            }
-            Med1Name.Text = $"{MedicineManager.Database["Morphine"].name}";
-            Med1Count.Text = $"{MedicineManager.Database["Morphine"].amount}";
-            Med2Name.Text = $"{MedicineManager.Database["Aspirin"].name} ";
-            Med2Count.Text = $"{MedicineManager.Database["Aspirin"].amount}";
-            Med3Name.Text = $"{MedicineManager.Database["Ozempic"].name}";
-            Med3Count.Text = $"{MedicineManager.Database["Ozempic"].amount}";
-        }*/
     }
 }

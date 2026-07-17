@@ -93,18 +93,6 @@ public partial class TreatmentManager : Node
         }
     }
 
-    public void ShowUI()
-    {
-        if(Room != null)
-        {
-            if (Room.Patient.IsPatientAlive() == true)
-            {
-                PatientInfo.Show();
-                PatientDisplay.Show();
-            }
-        }
-    }
-    
     public void HideUI()
     {
         foreach(Node child in GetChildren())
