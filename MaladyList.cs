@@ -48,7 +48,8 @@ public static class MaladyList
             },
             tags =
             {
-                TagList.Database["Unstable"]
+                TagList.Database["Worsening"],
+                TagList.Database["Deadly"]
             },
             cures =
             {
@@ -75,7 +76,8 @@ public static class MaladyList
             },
             tags =
             {
-                TagList.Database["Unstable"]
+                TagList.Database["Worsening"],
+                TagList.Database["Deadly"]
             },
             cures =
             {

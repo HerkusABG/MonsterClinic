@@ -111,7 +111,7 @@ public partial class PatientStats
         {
             if (tag.HasTagType(TagType.Daily))
             {
-                tag.ExecuteDaily(malady);
+                tag.ExecuteDaily(this);
             }
         }
         CheckLifeStatus();
@@ -123,7 +123,7 @@ public partial class PatientStats
         {
             if (tag.HasTagType(TagType.Interaction))
             {
-                tag.ExecuteInteraction(malady);
+                tag.ExecuteInteraction(this);
             }
         }
         CheckLifeStatus();
@@ -135,9 +135,12 @@ public partial class PatientStats
         {
             myRoom.PatientCuredInAbsence();
         }
-        else if(malady.severity >= 5)
+        foreach (Tag tag in malady.tags)
         {
-            KillPatient();
+            if (tag.HasTagType(TagType.MaxSeverity))
+            {
+                tag.ExecuteMaxSeverity(this);
+            }
         }
     }
 
@@ -148,6 +151,7 @@ public partial class PatientStats
 
     public void KillPatient()
     {
+        GD.Print("killing the patient");
         isAlive = false;
     }
 

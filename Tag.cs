@@ -17,12 +17,17 @@ public class Tag
         return false;
     }
 
-    public virtual void ExecuteDaily(Malady inputMalady)
+    public virtual void ExecuteDaily(PatientStats patient)
     {
 
     }
 
-    public virtual void ExecuteInteraction(Malady inputMalady)
+    public virtual void ExecuteInteraction(PatientStats patient)
+    {
+
+    }
+
+    public virtual void ExecuteMaxSeverity(PatientStats patient)
     {
 
     }
@@ -30,7 +35,8 @@ public class Tag
 public enum TagType
 {
     Daily,
-    Interaction
+    Interaction,
+    MaxSeverity
 }
 public class WorseningTag : Tag
 {
@@ -40,13 +46,17 @@ public class WorseningTag : Tag
         count = 0;
     }
 
-    public override void ExecuteDaily(Malady inputMalady)
+    public override void ExecuteDaily(PatientStats patient)
     {
+        Malady malady = patient.malady;
         count++;
-        GD.Print($"Count is now {count}, increment is {increment}");
         if (count >= increment)
         {
-            inputMalady.severity += strength;
+            malady.severity += strength;
+            if (malady.severity > 5)
+            {
+                malady.severity = 5;
+            }
             count = 0;
         }
     }
@@ -60,13 +70,13 @@ public class HealingTag : Tag
         count = 0;
     }
 
-    public override void ExecuteDaily(Malady inputMalady)
+    public override void ExecuteDaily(PatientStats patient)
     {
+        Malady malady = patient.malady;
         count++;
-        GD.Print($"Count is now {count}, increment is {increment}");
         if (count >= increment)
         {
-            inputMalady.severity += strength;
+            malady.severity += strength;
             count = 0;
         }
     }
@@ -82,22 +92,39 @@ public class UnstableTag : Tag
         wasTreatedToday = false;
     }
 
-    public override void ExecuteDaily(Malady inputMalady)
+    public override void ExecuteDaily(PatientStats patient)
     {
-        if(wasTreatedToday)
+        Malady malady = patient.malady;
+        if (wasTreatedToday)
         {
             wasTreatedToday = false;
         }
         else
         {
-            inputMalady.severity += strength;
+            malady.severity += strength;
         }
     }
 
-    public override void ExecuteInteraction(Malady inputMalady)
+    public override void ExecuteInteraction(PatientStats patient)
     {
         wasTreatedToday = true;
     }
 }
 
+
+public class DeadlyTag : Tag
+{
+    public DeadlyTag()
+    {
+    }
+
+    public override void ExecuteMaxSeverity(PatientStats patient)
+    {
+        Malady malady = patient.malady;
+        if(malady.severity >= 5)
+        {
+            patient.KillPatient();
+        }
+    }
+}
 

@@ -98,6 +98,7 @@ public partial class Room : Node2D
             else
             {
                 SetPatientUIStatus(true, false);
+                SetPatientRoomText();
             }
         }
         else
@@ -135,6 +136,7 @@ public partial class Room : Node2D
     private void SetPatientRoomText()
     {
         string input;
+        GD.Print($"Patient is alive: {Patient.IsPatientAlive()}");
         if(Patient.IsPatientAlive())
         {
             input = "Alive";
