@@ -5,6 +5,7 @@ using System.Collections.Generic;
 //class governing using medicine to treat the patient in the patient room
 public partial class TreatmentManager : Node
 {
+
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Sprite2D PatientDisplay;
     Label PatientInfo;
@@ -24,6 +25,8 @@ public partial class TreatmentManager : Node
 
     private readonly Dictionary<MedicineButton, Action> Subscriptions = new();
 
+    //MapUi reference so that the treatment there is linked with 
+    //the treatment in the inventory
     MapUI MapUi;
 
     public void Initialize()
@@ -34,23 +37,6 @@ public partial class TreatmentManager : Node
         CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
         ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
         CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);
-    }
-
-    public void AddSubscription(MedicineButton button)
-    {
-        Action handler = () => ApplyMedicine(button);
-
-        Subscriptions[button] = handler;
-        button.Pressed += handler;
-    }
-
-    public void RemoveSubscription(MedicineButton button)
-    {
-        if (Subscriptions.TryGetValue(button, out var handler))
-        {
-            button.Pressed -= handler;
-            Subscriptions.Remove(button);
-        }
     }
 
     private void GetNodes()
@@ -67,6 +53,130 @@ public partial class TreatmentManager : Node
         CloseNoPatientPopup = NoPatientPopup.GetNode<Button>("Close");
         ClosePatientCuredPopup = PatientCuredPopup.GetNode<Button>("Close_Patient_Cured_Popup");
         CloseCorrectMedicinePopup = CorrectMedicinePopup.GetNode<Button>("Close_Correct_medicine_Popup");
+    }
+    public void AddSubscription(MedicineButton button)
+    {
+        //Adding a subscription to a medicine button.
+        //This will then apply medicine based on the button pressed.
+        Action handler = () => ApplyMedicine(button);
+
+        Subscriptions[button] = handler;
+        button.Pressed += handler;
+    }
+
+    public void RemoveSubscription(MedicineButton button)
+    {
+        //Removing the subscription.
+        if (Subscriptions.TryGetValue(button, out var handler))
+        {
+            button.Pressed -= handler;
+            Subscriptions.Remove(button);
+        }
+    }
+
+    public void SetTreatmentRoomReference(Room room)
+    {
+        //Used for connecting the treatment functinality to
+        //the individual rooms
+        Room = room;
+        //In case the patient got better overnight, let the patient go.
+        if (Room.curedInAbsence)
+        {
+
+            PatientCured();
+        }
+    }
+
+    public Room GetRoom()
+    {
+        //Grabbing the room reference
+        return Room;
+    }
+
+    public void HideUI()
+    {
+        foreach(Node child in GetChildren())
+        {
+            Node2D child2d = child as Node2D;
+            if(child2d != null)
+            {
+                child2d.Hide();
+            }
+            Control controlChild = child as Control;
+            if (controlChild != null)
+            {
+                controlChild.Hide();
+            }
+        }
+    }
+
+    private void ApplyMedicine(MedicineButton button)
+    {
+        //The new and improved, modular version of MedicineOperations.
+        //Triggered on button press.
+        //Grabbing the medicine type, which is stored inside of the button.
+        Medicine medicine = button.GetMedicineType();
+        if (!Room.HasPatient())
+        {
+            //No patient -- medicine can't be applied.
+            NoPatientPopup.Show();
+            return;
+        }
+        if (Room == null)
+        {
+            //If we're not in a room we can't apply medicine.
+            NoPatientPopup.Show();
+            return;
+        }
+        //Do we have medicine? If yes...
+        if (medicine.amount > 0)
+        {
+            //Then apply medicine.
+            medicine.amount--;
+            //Checking to see if the medicine works
+            if (Room.Patient.TryCurePatient(medicine))
+            {
+                //If medicine type is correct
+                //Is the patient cured?
+                if (Room.Patient.IsPatientCured())
+                {
+                    //severity lower than 0? Then fully cure the patient.
+                    PatientCured();
+                }
+                else
+                {
+                    //Otherwise the patients needs to stay there for longer.
+                    Room.SetAlreadyTreated(true);
+                    Room.Patient.TriggerInteractionTags();
+                    CorrectMedicinePopup.Show();
+                }
+            }
+            else
+            {
+                //Wrong medicine used, come back tomorrow.
+                WrongMedicinePopup.Show();
+            }
+            //Updating the relevant visual information
+            Room.UpdateSprites();
+            if(!Room.GetIsEmpty())
+            {
+                MapUi.UpdateComputerPatientText(Room);
+            }
+            //Updating inventory
+            Inventory.InventoryActions();
+        }
+    }
+
+    private void PatientCured()
+    {
+        //Reset the room in which the patient existed.
+        //Add daily earnings.
+        //Show relevant information
+        GlobalData.patientCount--;
+        PatientCuredPopup.Show();
+        Economy.GiveDailyEarnings(40);
+        Room.SetAlreadyTreated(false);
+        Room.DeletePatient();
     }
 
     private void CloseParent(Button button)
@@ -91,88 +201,5 @@ public partial class TreatmentManager : Node
             //GlobalData.CurrentPatientMalady = "none";
             //GlobalData.CurrentPatientSeverity = 0;
         }
-    }
-
-    public void HideUI()
-    {
-        foreach(Node child in GetChildren())
-        {
-            Node2D child2d = child as Node2D;
-            if(child2d != null)
-            {
-                child2d.Hide();
-            }
-            Control controlChild = child as Control;
-            if (controlChild != null)
-            {
-                controlChild.Hide();
-            }
-        }
-    }
-
-    private void ApplyMedicine(MedicineButton button)
-    {
-        Medicine medicine = button.GetMedicineType();
-        GD.Print($"APPLYING {medicine.name} MEDICINE");
-        if (!Room.HasPatient())
-        {
-            NoPatientPopup.Show();
-            return;
-        }
-        if (Room == null)
-        {
-            NoPatientPopup.Show();
-            return;
-        }
-        if (medicine.amount > 0)
-        {
-            medicine.amount--;
-            if (Room.Patient.TryCurePatient(medicine))
-            {
-                if (Room.Patient.IsPatientCured())
-                {
-                    PatientCured();
-                }
-                else
-                {
-                    Room.SetAlreadyTreated(true);
-                    Room.Patient.TriggerInteractionTags();
-                    CorrectMedicinePopup.Show();
-                }
-            }
-            else
-            {
-                WrongMedicinePopup.Show();
-            }
-            Room.UpdateSprites();
-            if(!Room.GetIsEmpty())
-            {
-                MapUi.UpdateComputerPatientText(Room);
-            }
-            Inventory.InventoryActions();
-        }
-    }
-
-    public void SetTreatmentRoomReference(Room room)
-    {
-        Room = room;
-        if(Room.curedInAbsence)
-        {
-            PatientCured();
-        }
-    }
-
-    public Room GetRoom()
-    {
-       return Room;
-    }
-
-    private void PatientCured()
-    {
-        GlobalData.patientCount--;
-        PatientCuredPopup.Show();
-        Economy.GiveDailyEarnings(40);
-        Room.SetAlreadyTreated(false);
-        Room.DeletePatient();
     }
 }
