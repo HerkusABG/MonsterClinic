@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bw0pahok3mlpx" path="res://Scripts/Room.cs" id="1_5hpqs"]
 [ext_resource type="Texture2D" uid="uid://bf3om3qmf68vl" path="res://place holders/Patient_Room_Blocking.png" id="2_uj218"]
+[ext_resource type="Texture2D" uid="uid://cbdcpd8q7fwf" path="res://Assets/2D Art/PatientRoom/PatientRoom_Patient_White_Blockout.png" id="4_7gm67"]
+[ext_resource type="Texture2D" uid="uid://b3u4qcrd3kkl4" path="res://Assets/2D Art/PatientRoom/PatientRoom_Corpse_Blockout.png" id="5_xebr5"]
+[ext_resource type="Texture2D" uid="uid://8aajck4t28sx" path="res://Assets/2D Art/PatientRoom/PatientRoom_Corpse_HL_Blockout.png" id="6_si31g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nn86p"]
 
@@ -13,10 +16,21 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 0)
 bg_color = Color(1, 0.5176471, 0.49803922, 0.65882355)
 border_color = Color(0.8, 0.8, 0.8, 0)
 
-[node name="Room" type="Node2D" unique_id=1403791563]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2si3"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 14
+border_width_top = 14
+border_width_right = 14
+border_width_bottom = 14
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("PatientDisplay", "Corpse", "PatientInfo")]
 position = Vector2(1302.9375, 342.1875)
 scale = Vector2(0.42309022, 0.43263888)
 script = ExtResource("1_5hpqs")
+PatientDisplay = NodePath("Control/Patient_Display")
+Corpse = NodePath("Control/Corpse")
+PatientInfo = NodePath("Control/Patient_Info")
 
 [node name="Patient_Room_Background" type="Sprite2D" parent="." unique_id=1209967813]
 position = Vector2(-810.5541, 461.84573)
@@ -36,5 +50,44 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_nn86p")
 theme_override_styles/hover = SubResource("StyleBoxFlat_uj218")
 
 [node name="BedPosition" type="Marker2D" parent="." unique_id=902232887]
+
+[node name="Control" type="Control" parent="." unique_id=1934401757]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Patient_Info" type="Label" parent="Control" unique_id=1535907014]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = -2658.8594
+offset_top = -250.06415
+offset_right = -1373.0815
+offset_bottom = 323.1621
+scale = Vector2(0.83532, 0.8888013)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_a2si3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Patient_Display" type="Sprite2D" parent="Control" unique_id=3793736]
+visible = false
+z_index = 2
+position = Vector2(-1181.6333, 859.4061)
+scale = Vector2(1.396, 1.396)
+texture = ExtResource("4_7gm67")
+
+[node name="Corpse" type="TextureButton" parent="Control" unique_id=1178348791]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = -739.6473
+offset_top = 857.0947
+offset_right = 33.352722
+offset_bottom = 1598.0947
+scale = Vector2(1.1961806, 1.0942975)
+texture_normal = ExtResource("5_xebr5")
+texture_hover = ExtResource("6_si31g")
 
 [connection signal="visibility_changed" from="Patient_Room_Background" to="." method="_on_patient_room_background_visibility_changed"]

@@ -221,6 +221,16 @@ public partial class Contents_P_I : Node2D
 
     private void OnAdmitPressed()
     {
+        if (RoomManager.GetEmptyRoomCount() <= 0)
+        {
+            // Find our NoVacancy panel child node and trigger its flicker
+            var noVacancyPanel = GetNode<NoVacancy>("Sprites_PH/NoVacancy");
+            if (noVacancyPanel != null)
+            {
+                noVacancyPanel.TriggerFullWarning();
+            }
+            return; // STOP execution here so they aren't assigned a room or advanced
+        }
         //Stuff that happens when the admit button is pressed.
         AdmissionManagerAccess.Admit();
         NextPatient();

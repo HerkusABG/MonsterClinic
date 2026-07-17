@@ -3,23 +3,41 @@ using System;
 
 public partial class Contents_O : Node2D
 {
-
     private Timer sceneTimer;
     [Export] PackedScene dealer_selftreatment_dialog = ResourceLoader.Load<PackedScene>("res://dialog.tscn");
     // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+    public void Initialize()
 	{
+        GetNodes();
         // Timer from the scene
-        sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
         sceneTimer.OneShot = true;
 
         // connect the signals
         sceneTimer.Timeout += OnSceneTimerTimeout;
+
+        Subscribe();
+
+        InitializeChildren();
+    }
+
+    private void Subscribe()
+    {
+
+    }
+
+    private void InitializeChildren()
+    {
+        Control control = GetNode<Control>("Player_Interactables_O");
+        Mirror mirror = control.GetNode<Mirror>("Mirror");
+        mirror.Initialize();
+    }
+    private void GetNodes()
+    {
+        sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
     }
 
     private void _on_computer_a_pressed()
 	{
-
 		Hide();
 		var ComputerScene = (Node2D)GetParent().GetNode("Computer");
 		ComputerScene.Show();
@@ -71,7 +89,6 @@ public partial class Contents_O : Node2D
         var BedScene = (Node2D)GetParent().GetNode("Bed");
         BedScene.Show();
 
-
         //unlock the ability to enable the GiveMedicine buttons by entering the patient room
         //GlobalData.DailyLockout = false;
         RoomManager.NewDay();
@@ -80,7 +97,7 @@ public partial class Contents_O : Node2D
         hallway.ResetRoomUI();
 
         Contents_P_I patientInterface = GetParent().GetNode<Contents_P_I>("Patient_Interface");
-        patientInterface.NewDay(true);
+        patientInterface.NewDay();
         if (GlobalData.Countdown >= 0)
         {
             //push the scene we're entering to the previous scenes stack
@@ -134,13 +151,4 @@ public partial class Contents_O : Node2D
         }
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-	{
-        
-
-
-
-    }
-
-    }
+}

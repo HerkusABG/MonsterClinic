@@ -14,52 +14,36 @@ public static class RoomManager
 
     public static Node2D FindEmptyRoom()
     {
-
+        //Go through the list of empty rooms and find one.
         for (int i = 0; i < Upgrades.roomCount; i++)
         {
             Room room = RoomList[i] as Room;
-            if(room.isEmpty)
+            if(!room.HasPatient())
             {
-                room.isEmpty = false;
                 return room;
             }
         }
-        /*foreach(Node2D roomListEntry in RoomList)
-        {
-            Room room = roomListEntry as Room;
-            if(room.isEmpty)
-            {
-                room.isEmpty = false;
-                return room;
-            }
-        }*/
         return null;
     }
 
     public static int GetEmptyRoomCount()
     {
+        //Find all empty rooms.
         int count = 0;
         for(int i = 0; i < Upgrades.roomCount; i++)
         {
             Room room = RoomList[i] as Room;
-            if (room.isEmpty)
+            if (!room.HasPatient())
             {
                 count++;
             }
         }
-        /*foreach (Node2D roomListEntry in RoomList)
-        {
-            Room room = roomListEntry as Room;
-            if (room.isEmpty)
-            {
-                count++;
-            }
-        }*/
         return count;
     }
 
     public static void NewDay()
     {
+        //Make the actions in the different rooms renewable daily.
         foreach(Room room in RoomList)
         {
             room.alreadyTreated = false;

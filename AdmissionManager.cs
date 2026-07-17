@@ -105,6 +105,9 @@ public partial class AdmissionManager : Node
         //Seeing if the clinic is full
         //And then in the end we determine whether it's TRUE or FALSE
         int emptyRoomCount = RoomManager.GetEmptyRoomCount();
+
+        GlobalData.IsClinicFullyOccupied = (emptyRoomCount <= 0); // checks if the clinic is fully occupied and updates the global data 
+        
         if (HowManyPatientsLeft() > 0) return true;
         if (emptyRoomCount > 0)
         {

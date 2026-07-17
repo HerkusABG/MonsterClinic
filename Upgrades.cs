@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+
 
 static class Upgrades
 {
@@ -11,6 +13,7 @@ static class Upgrades
 	//boolean that control whether you can buy Aspirin
 	public static bool AspirinUnlock = false;
 	public static int newPatientSlots { get; private set; } = 3;
+
 
 	public static void AddNewRoom()
 	{
