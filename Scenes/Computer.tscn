@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgsevwbdax2t4" path="res://Scripts/Office/Computer/Contents_C.cs" id="1_tjl6a"]
 [ext_resource type="Texture2D" uid="uid://0dsxnlqxdang" path="res://Assets/2D Art/Desktop_PH.PNG" id="2_7s1hw"]
+[ext_resource type="Script" uid="uid://cq86685btgs2e" path="res://DealerButton.cs" id="3_5uut4"]
 [ext_resource type="Texture2D" uid="uid://ck5pltj8yh3oh" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_Blockout.png" id="4_nyaym"]
 [ext_resource type="Texture2D" uid="uid://b5e6gugoptsp5" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_HL_Blockout.png" id="5_dekc5"]
 [ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="6_vjhme"]
@@ -59,9 +60,11 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qsxs0"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Contents_C" type="Node2D" unique_id=1932071110 node_paths=PackedStringArray("mapUi")]
+[node name="Contents_C" type="Node2D" unique_id=1932071110 node_paths=PackedStringArray("mapUi", "UpButton", "DownButton")]
 script = ExtResource("1_tjl6a")
 mapUi = NodePath("Player_Interactables_C/MapControl")
+UpButton = NodePath("Player_Interactables_C/Dealer_PH/Resources_Window/GoUp")
+DownButton = NodePath("Player_Interactables_C/Dealer_PH/Resources_Window/GoDown")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1460341576]
 z_index = -2
@@ -129,7 +132,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Log out"
 
 [node name="Dealer_PH" type="Label" parent="Player_Interactables_C" unique_id=1842103304]
-visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 40.0
@@ -171,6 +173,7 @@ text = "Treatment Resources
 "
 
 [node name="Upgrades_Window" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=1992268291]
+visible = false
 layout_mode = 0
 offset_left = 733.0
 offset_top = 81.0
@@ -307,6 +310,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+script = ExtResource("3_5uut4")
 
 [node name="Medicine2" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer" unique_id=1726209352]
 custom_minimum_size = Vector2(150, 150)
@@ -315,7 +319,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-disabled = true
+script = ExtResource("3_5uut4")
 
 [node name="Medicine3" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer" unique_id=1721866980]
 custom_minimum_size = Vector2(150, 150)
@@ -324,8 +328,10 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+script = ExtResource("3_5uut4")
 
 [node name="SelfTreatment" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer" unique_id=1553974830]
+visible = false
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -355,6 +361,32 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
+
+[node name="GoUp" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=1059641802]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 49.0
+offset_top = 759.0
+offset_right = 199.0
+offset_bottom = 909.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+text = "UP"
+
+[node name="GoDown" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=572412346]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 213.0
+offset_top = 763.0
+offset_right = 363.0
+offset_bottom = 913.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+text = "DOWN"
 
 [node name="Close" type="Button" parent="Player_Interactables_C/Dealer_PH" unique_id=434525094]
 layout_mode = 0

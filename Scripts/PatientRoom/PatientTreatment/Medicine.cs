@@ -16,6 +16,8 @@ public class Medicine
     //Amount of medicine bought
     public int amount { get; set; } = 0;
 
+    public bool buyable = true;
+
     public Medicine Clone()
     {
         return new Medicine

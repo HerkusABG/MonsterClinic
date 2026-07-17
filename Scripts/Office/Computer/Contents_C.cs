@@ -1,6 +1,9 @@
 using Godot;
 using System;
 using static System.Net.Mime.MediaTypeNames;
+using System.Collections.Generic;
+using System.Linq;
+
 
 public partial class Contents_C : Node2D
 {
@@ -24,9 +27,11 @@ public partial class Contents_C : Node2D
     Label DealerWindowMoneyDisplay;
     VBoxContainer MedicineContainer;
     GridContainer RoomContainer;
-    Button BuyMedicine1Button;
-    Button BuyMedicine2Button;
-    Button BuyMedicine3Button;
+
+    //Button BuyMedicine1Button;
+    //Button BuyMedicine2Button;
+    //Button BuyMedicine3Button;
+
     Button SelfTreatmentButton;
     Label InsufficientFunds;
     Button CloseFundsPopup;
@@ -38,6 +43,13 @@ public partial class Contents_C : Node2D
     Button CloseCatalogueWindow;
 
     [Export] MapUI mapUi;
+    [Export] Button UpButton;
+    [Export] Button DownButton;
+
+    List<DealerButton> DealerButtons = new List<DealerButton>();
+    List<DealerSlot> DealerSlots = new List<DealerSlot>();
+
+    int startingIndex = 0;
 
 
     // Called when the node enters the scene tree for the first time.
@@ -51,6 +63,8 @@ public partial class Contents_C : Node2D
 
         //Initializing any children with their own scripts
         InitializeChildren();
+
+        DealerMenuNavigation(0);
     }
 
     private void GetNodes()
@@ -78,9 +92,9 @@ public partial class Contents_C : Node2D
         CloseDealerWindowButton = DealerWindow.GetNode<Button>("Close");
         DealerWindowMoneyDisplay = DealerWindow.GetNode<Label>("Money_Display");
         MedicineContainer = ResourcesWindow.GetNode<VBoxContainer>("VBoxContainer");
-        BuyMedicine1Button = MedicineContainer.GetNode<Button>("Medicine1");
-        BuyMedicine2Button = MedicineContainer.GetNode<Button>("Medicine2");
-        BuyMedicine3Button = MedicineContainer.GetNode<Button>("Medicine3");
+        //BuyMedicine1Button = MedicineContainer.GetNode<Button>("Medicine1");
+        //BuyMedicine2Button = MedicineContainer.GetNode<Button>("Medicine2");
+        //BuyMedicine3Button = MedicineContainer.GetNode<Button>("Medicine3");
         SelfTreatmentButton = MedicineContainer.GetNode<Button>("SelfTreatment");
         InsufficientFunds = DealerWindow.GetNode<Label>("Insufficient_Funds");
         CloseFundsPopup = InsufficientFunds.GetNode<Button>("Close");
@@ -95,8 +109,49 @@ public partial class Contents_C : Node2D
         //separate section for the malady catalogue
         CatalogueWindow = control.GetNode<Label>("Malady_PH");
         CloseCatalogueWindow = CatalogueWindow.GetNode<Button>("Close");
+
+        
+        foreach(Button button in MedicineContainer.GetChildren())
+        {
+            DealerButton castButton = button as DealerButton;
+            if(castButton != null)
+            {
+                
+                DealerButtons.Add(castButton);
+            }
+        }
     }
 
+    private void DealerMenuNavigation(int input)
+    {
+        startingIndex += input;
+        RefreshDealerButtons(startingIndex);
+        if (startingIndex == 0)
+        {
+            UpButton.Disabled = true;
+        }
+        else if(startingIndex + DealerButtons.Count >= DealerList.Database.Count)
+        {
+            DownButton.Disabled = true;
+        }
+        else
+        {
+            UpButton.Disabled = false;
+            DownButton.Disabled = false;
+        }
+    }
+
+
+    private void RefreshDealerButtons(int start)
+    {
+        GD.Print($"count is {DealerList.Database.Count}");
+
+        for (int i = 0; i < DealerButtons.Count; i++)
+        {
+            GD.Print($"Going to index: {i + start}");
+            DealerButtons[i].Text = DealerList.Database.ElementAt(i + start).Value.GetSlotText();
+        }
+    }
     private void InitializeChildren()
     {
         MapUI mapUI = MapControl as MapUI;
@@ -106,6 +161,8 @@ public partial class Contents_C : Node2D
     private void Subscribe()
     {
         //assigning methods to all the buttons
+        UpButton.Pressed += () => DealerMenuNavigation(-1);
+        DownButton.Pressed += () => DealerMenuNavigation(1);
         DealerButton.Pressed += ShowDealerWindow;
         MapButton.Pressed += ShowMapWindow;
         CatalogueButton.Pressed += ShowCatalogueWindow;
@@ -119,9 +176,9 @@ public partial class Contents_C : Node2D
         CloseResources.Pressed += () => CloseParent(CloseResources);
         CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
         CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
-        BuyMedicine1Button.Pressed += () => BuyMedicine(BuyMedicine1Button);
-        BuyMedicine2Button.Pressed += () => BuyMedicine(BuyMedicine2Button);
-        BuyMedicine3Button.Pressed += () => BuyMedicine(BuyMedicine3Button);
+        //BuyMedicine1Button.Pressed += () => BuyMedicine(BuyMedicine1Button);
+        //BuyMedicine2Button.Pressed += () => BuyMedicine(BuyMedicine2Button);
+        //BuyMedicine3Button.Pressed += () => BuyMedicine(BuyMedicine3Button);
         CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
         SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
         CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
@@ -194,7 +251,7 @@ public partial class Contents_C : Node2D
         {
             Upgrades.UnlockAspirin();
             AspirinUnlock.Disabled = true;
-            BuyMedicine2Button.Disabled = false;
+            //BuyMedicine2Button.Disabled = false;
             UpdateMoneyDisplay();
         }
         else
@@ -233,95 +290,95 @@ public partial class Contents_C : Node2D
         {
             if (Upgrades.AspirinUnlock == true)
             {
-                BuyMedicine2Button.Disabled = false;
-                BuyMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
+                //BuyMedicine2Button.Disabled = false;
+                //BuyMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
             }
             else
             {
-                BuyMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Currently unavailable";
+                //BuyMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Currently unavailable";
             }
 
-            BuyMedicine1Button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
-            BuyMedicine3Button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
+            //BuyMedicine1Button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
+            //BuyMedicine3Button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
 
             SelfTreatmentButton.Text = "Self Treatment \n (Price:" + GlobalData.MedicineCost + ")\n \n Owned: " + GlobalData.MedicinePlayer.ToString() + " \n availability in: " + GlobalData.Medicincavailability.ToString();
         }
     }
     private void BuyMedicine(Button button)
     {
-        if (button == BuyMedicine1Button)
-        {
-            //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
-            if (DoctorInventory.Money >= MedicineManager.Database["Morphine"].cost)
-            {
-                DoctorInventory.Money -= MedicineManager.Database["Morphine"].cost;
-                MedicineManager.Database["Morphine"].amount++;
-                button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
-                UpdateMoneyDisplay();
+        /* if (button == BuyMedicine1Button)
+         {
+             //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
+             if (DoctorInventory.Money >= MedicineManager.Database["Morphine"].cost)
+             {
+                 DoctorInventory.Money -= MedicineManager.Database["Morphine"].cost;
+                 MedicineManager.Database["Morphine"].amount++;
+                 button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
+                 UpdateMoneyDisplay();
 
-                //if you can't afford it, give em the poor idiot popup
-            }
-            else
-            {
-                ShowInsufficientFunds();
-            }
-        }
-        else if (button == BuyMedicine2Button)
-        {
-            //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
-            if (DoctorInventory.Money >= MedicineManager.Database["Aspirin"].cost)
-            {
-                DoctorInventory.Money -= MedicineManager.Database["Aspirin"].cost;
-                MedicineManager.Database["Aspirin"].amount++;
-                button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
-                UpdateMoneyDisplay();
-            }
-            //if you can't afford it, give em the poor idiot popup
-            else
-            {
-                ShowInsufficientFunds();
-            }
-        }
-        else if (button == BuyMedicine3Button)
-        {
-            //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
-            if (DoctorInventory.Money >= MedicineManager.Database["Ozempic"].cost)
-            {
-                DoctorInventory.Money -= MedicineManager.Database["Ozempic"].cost;
-                MedicineManager.Database["Ozempic"].amount++;
-                button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
-                UpdateMoneyDisplay();
-            }
-            //if you can't afford it, give em the poor idiot popup
-            else
-            {
-                ShowInsufficientFunds();
-            }
-        } 
-        else if (button == SelfTreatmentButton) 
-        {
-            // Check if the player has the money and if the medicine is available before allowing him to purchase item
-            if (DoctorInventory.Money >= GlobalData.MedicineCost && GlobalData.Medicincavailability <= 0)
-            {
-                // Money deduction, player gets the medicine and the cost of the medicine gets increased (probally needs balancing)
-                DoctorInventory.Money -= GlobalData.MedicineCost;
-                GlobalData.MedicinePlayer++;
-                GlobalData.MedicineCost = GlobalData.MedicineCost * 2; // Increase the cost for the next purchase
-                button.Text = "Self Treatment \n (Price: " + GlobalData.MedicineCost + ") \n \n Owned: " + GlobalData.MedicinePlayer.ToString() + ") \n availability in: " + GlobalData.Medicincavailability.ToString();
-                UpdateMoneyDisplay();
-            }
-            else if (DoctorInventory.Money < GlobalData.MedicineCost)
-            {
-                ShowInsufficientFunds();
-            }
-            else
-            {
-                InsufficientAvailability.Show();
-            }
-        }
-        else
-        {
-            GD.Print("well this isn't supposed to happen");
-        }
+                 //if you can't afford it, give em the poor idiot popup
+             }
+             else
+             {
+                 ShowInsufficientFunds();
+             }
+         }
+         else if (button == BuyMedicine2Button)
+         {
+             //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
+             if (DoctorInventory.Money >= MedicineManager.Database["Aspirin"].cost)
+             {
+                 DoctorInventory.Money -= MedicineManager.Database["Aspirin"].cost;
+                 MedicineManager.Database["Aspirin"].amount++;
+                 button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
+                 UpdateMoneyDisplay();
+             }
+             //if you can't afford it, give em the poor idiot popup
+             else
+             {
+                 ShowInsufficientFunds();
+             }
+         }
+         else if (button == BuyMedicine3Button)
+         {
+             //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
+             if (DoctorInventory.Money >= MedicineManager.Database["Ozempic"].cost)
+             {
+                 DoctorInventory.Money -= MedicineManager.Database["Ozempic"].cost;
+                 MedicineManager.Database["Ozempic"].amount++;
+                 button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
+                 UpdateMoneyDisplay();
+             }
+             //if you can't afford it, give em the poor idiot popup
+             else
+             {
+                 ShowInsufficientFunds();
+             }
+         } 
+         else if (button == SelfTreatmentButton) 
+         {
+             // Check if the player has the money and if the medicine is available before allowing him to purchase item
+             if (DoctorInventory.Money >= GlobalData.MedicineCost && GlobalData.Medicincavailability <= 0)
+             {
+                 // Money deduction, player gets the medicine and the cost of the medicine gets increased (probally needs balancing)
+                 DoctorInventory.Money -= GlobalData.MedicineCost;
+                 GlobalData.MedicinePlayer++;
+                 GlobalData.MedicineCost = GlobalData.MedicineCost * 2; // Increase the cost for the next purchase
+                 button.Text = "Self Treatment \n (Price: " + GlobalData.MedicineCost + ") \n \n Owned: " + GlobalData.MedicinePlayer.ToString() + ") \n availability in: " + GlobalData.Medicincavailability.ToString();
+                 UpdateMoneyDisplay();
+             }
+             else if (DoctorInventory.Money < GlobalData.MedicineCost)
+             {
+                 ShowInsufficientFunds();
+             }
+             else
+             {
+                 InsufficientAvailability.Show();
+             }
+         }
+         else
+         {
+             GD.Print("well this isn't supposed to happen");
+         }*/
     }
 }
