@@ -22,7 +22,7 @@ public partial class Inventory : Node2D
 
     TreatmentManager TreatmentManager;
 
-    MapUI MapUi;
+    public MapUI MapUi;
 
 	// Called when the node enters the scene tree for the first time.
     public void Initialize()
@@ -85,7 +85,7 @@ public partial class Inventory : Node2D
                 GD.Print("ERROR IN INVENTORY.CS, NULL REFERENCE");
             }
         }
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             TextureButton newButton = (TextureButton)Template.Duplicate();
             MedicineButton medButton = newButton as MedicineButton;
@@ -186,35 +186,34 @@ public partial class Inventory : Node2D
     public void UpdateInventory(InventoryUiInstance instance)
     {
         List<MedicineButton> buttons = instance.MedicineButtons;
+        GD.Print("buttons cound is " + buttons.Count);
         for (int i = 0; i < buttons.Count; i++)
         {
             Medicine medicine = MedicineManager.Database.ElementAt(i).Value;
+            GD.Print($"testing medicine {medicine.name}");
             if (medicine.amount > 0)
             {
+                GD.Print($"{medicine.name} has more than 0");
                 if (!DoesButtonAlreadyExist(medicine, instance))
                 {
-                    for(int j = 0; j < InventoryInstances.Count; j++)
+                    GD.Print($"{medicine.name} button doesnt exist so we need to make one.");
+                    InventorySlot slot = FindEmptySlot(instance);
+                    if (slot == null)
                     {
-                        InventorySlot slot = FindEmptySlot(InventoryInstances[j]);
-                        if (slot == null)
-                        {
-                            GD.Print("ERROR IN INVENTORY.CS, NULL");
-                            return;
-                        }
-                        buttons[i].AssignToSlot(slot, medicine);
-                        TreatmentManager.AddSubscription(InventoryInstances[j].MedicineButtons[i]);
+                        GD.Print("ERROR IN INVENTORY.CS, NULL");
+                        return;
                     }
+                    buttons[i].AssignToSlot(slot, medicine);
+                    TreatmentManager.AddSubscription(instance.MedicineButtons[i]);
                 }
             }
             else
             {
+                GD.Print($"{medicine.name} has 0 or less");
                 if (DoesButtonAlreadyExist(medicine, instance))
                 {
-                    for (int j = 0; j < InventoryInstances.Count; j++)
-                    {
-                        TreatmentManager.RemoveSubscription(InventoryInstances[j].MedicineButtons[i]);
-                        buttons[i].RemoveFromSlot();
-                    }
+                    TreatmentManager.RemoveSubscription(instance.MedicineButtons[i]);
+                    buttons[i].RemoveFromSlot();
                 }
             }
         }

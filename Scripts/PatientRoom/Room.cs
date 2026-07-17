@@ -184,4 +184,9 @@ public partial class Room : Node2D
     {
         return !notYetTreated;
     }
+
+    public bool GetIsEmpty()
+    {
+        return isEmpty;
+    }
 }

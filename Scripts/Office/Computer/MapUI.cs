@@ -113,9 +113,9 @@ public partial class MapUI : Control
         Med3Name = GiveMedicine3Button.GetNode<Label>("Med3_Name");
         Med3Count = GiveMedicine3Button.GetNode("Stripe").GetNode<Label>("Med3_Count");
 
-        //InitializeRemoteHealing();
         Inventory inv = Treatment.GetParent().GetParent().GetNode<Inventory>("Inventory");
         inv.InventoryButtonGeneration(SlotControl, MedicineMenu, ButtonTemplate);
+
     }
 
     public void InitializeRemoteHealing()
@@ -314,6 +314,7 @@ public partial class MapUI : Control
         {
             Inventory.InventoryActions();
             MedicineMenu.Show();
+            Treatment.SetTreatmentRoomReference(room);
             foreach(Control child in MedicineMenu.GetChildren())
             {
                 GD.Print(child.Name);
@@ -327,14 +328,12 @@ public partial class MapUI : Control
         //if there is a patient, display patient info
         if (room.Patient != null)
         {
-            PatientInfo.Text = $"Patient info: " +
-                       $"\n Malady: {room.Patient.malady.name}" +
-                       $"\n Severity: {room.Patient.malady.severity}" +
-                       $"\n Age: {room.Patient.age}";
-        } else
-        //else, this stuff=
+            //room.UpdateSprites();
+            UpdateComputerPatientText(room);
+        } 
+        else
         {
-            PatientInfo.Text = "Room currently empty";
+            UpdateComputerPatientText(null);
         }
         //connect fast travel to this specific room
         //FastTravel.Pressed += RoomFastTravel;
@@ -426,6 +425,20 @@ public partial class MapUI : Control
         }
     }
 
+    public void UpdateComputerPatientText(Room room)
+    {
+        if(room != null)
+        {
+            PatientInfo.Text = $"Patient info: " +
+                       $"\n Malady: {room.Patient.malady.name}" +
+                       $"\n Severity: {room.Patient.malady.severity}" +
+                       $"\n Age: {room.Patient.age}";
+        }
+        else
+        {
+            PatientInfo.Text = "Room currently empty";
+        }
+    }
     public void OnMapButtonPressed()
     {
         MedicineMenu.Hide();

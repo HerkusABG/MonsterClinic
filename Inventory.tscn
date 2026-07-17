@@ -353,7 +353,7 @@ script = ExtResource("12_ny8ul")
 
 [node name="Wrong_Medicine_Popup" type="Label" parent="Treatment_Manager" unique_id=1826661236]
 visible = false
-z_index = 1
+z_index = 5
 offset_left = 905.0
 offset_top = 462.0
 offset_right = 1940.2402
@@ -381,7 +381,7 @@ text = "X"
 
 [node name="No_Patient_Popup" type="Label" parent="Treatment_Manager" unique_id=1931442699]
 visible = false
-z_index = 1
+z_index = 5
 offset_left = 767.0
 offset_top = 423.0
 offset_right = 1802.2402
@@ -407,7 +407,7 @@ text = "X"
 
 [node name="Patient_Cured_Popup" type="Label" parent="Treatment_Manager" unique_id=484769877]
 visible = false
-z_index = 1
+z_index = 5
 offset_left = 808.0
 offset_top = 362.0
 offset_right = 1843.2402
@@ -433,7 +433,7 @@ text = "X"
 
 [node name="Correct_Medicine_Popup" type="Label" parent="Treatment_Manager" unique_id=1055475848]
 visible = false
-z_index = 1
+z_index = 5
 offset_left = 745.0
 offset_top = 368.0
 offset_right = 1780.2402

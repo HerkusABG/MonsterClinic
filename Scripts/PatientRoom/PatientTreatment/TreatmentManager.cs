@@ -24,6 +24,7 @@ public partial class TreatmentManager : Node
 
     private readonly Dictionary<MedicineButton, Action> Subscriptions = new();
 
+    MapUI MapUi;
 
     public void Initialize()
     {
@@ -56,7 +57,7 @@ public partial class TreatmentManager : Node
     {
         //Basically just grabbing all the nodes
         Inventory = GetParent() as Inventory;
-        
+        MapUi = Inventory.MapUi;
         WrongMedicinePopup = GetNode<Label>("Wrong_Medicine_Popup");
         NoPatientPopup = GetNode<Label>("No_Patient_Popup");
         PatientCuredPopup = GetNode<Label>("Patient_Cured_Popup");
@@ -156,6 +157,10 @@ public partial class TreatmentManager : Node
                 WrongMedicinePopup.Show();
             }
             Room.UpdateSprites();
+            if(!Room.GetIsEmpty())
+            {
+                MapUi.UpdateComputerPatientText(Room);
+            }
             Inventory.InventoryActions();
         }
     }
