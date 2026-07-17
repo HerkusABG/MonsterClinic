@@ -460,6 +460,34 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_v4tu4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_388oq")
 text = "X"
 
+[node name="Patient_Immune_Popup" type="Label" parent="Treatment_Manager" unique_id=2013456747]
+visible = false
+z_index = 5
+offset_left = 745.0
+offset_top = 368.0
+offset_right = 1780.2402
+offset_bottom = 795.60815
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ey27o")
+text = "The medicine applied was correct, but the malady has resisted its treatment.
+
+Check back in tomorrow."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close_Patient_Immune_Popup" type="Button" parent="Treatment_Manager/Patient_Immune_Popup" unique_id=616907812]
+layout_mode = 0
+offset_left = 945.42487
+offset_top = 7.053822e-05
+offset_right = 1033.2417
+offset_bottom = 87.83308
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_aq2i0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4tu4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_388oq")
+text = "X"
+
 [node name="Templateeeee" type="TextureButton" parent="." unique_id=1367009333]
 visible = false
 z_index = 1

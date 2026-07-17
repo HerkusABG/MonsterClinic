@@ -9,11 +9,13 @@ public partial class TreatmentManager : Node
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Sprite2D PatientDisplay;
     Label PatientInfo;
-    
+
+    Label PatientImmunePopup;
     Label WrongMedicinePopup;
     Label NoPatientPopup;
     Label PatientCuredPopup;
     Label CorrectMedicinePopup;
+    Button ClosePatientImmunePopup;
     Button CloseWrongMedicinePopup;
     Button CloseNoPatientPopup;
     Button ClosePatientCuredPopup;
@@ -37,6 +39,7 @@ public partial class TreatmentManager : Node
         CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
         ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
         CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);
+        ClosePatientImmunePopup.Pressed += () => CloseParent(ClosePatientImmunePopup);
     }
 
     private void GetNodes()
@@ -45,10 +48,12 @@ public partial class TreatmentManager : Node
         Inventory = GetParent() as Inventory;
         MapUi = Inventory.MapUi;
         WrongMedicinePopup = GetNode<Label>("Wrong_Medicine_Popup");
+        PatientImmunePopup = GetNode<Label>("Patient_Immune_Popup");
         NoPatientPopup = GetNode<Label>("No_Patient_Popup");
         PatientCuredPopup = GetNode<Label>("Patient_Cured_Popup");
         CorrectMedicinePopup = GetNode<Label>("Correct_Medicine_Popup");
 
+        ClosePatientImmunePopup = PatientImmunePopup.GetNode<Button>("Close_Patient_Immune_Popup");
         CloseWrongMedicinePopup = WrongMedicinePopup.GetNode<Button>("Close_Wrong_medicine_Popup");
         CloseNoPatientPopup = NoPatientPopup.GetNode<Button>("Close");
         ClosePatientCuredPopup = PatientCuredPopup.GetNode<Button>("Close_Patient_Cured_Popup");
@@ -133,8 +138,17 @@ public partial class TreatmentManager : Node
         {
             //Then apply medicine.
             medicine.amount--;
+
+            Room.Patient.TriggerInteractionTags();
+
+            if(Room.Patient.malady.isImmune)
+            {
+                Room.Patient.malady.isImmune = false;
+                PatientImmunePopup.Show();
+                Room.SetAlreadyTreated(true);
+            }
             //Checking to see if the medicine works
-            if (Room.Patient.TryCurePatient(medicine))
+            else if (Room.Patient.TryCurePatient(medicine))
             {
                 //If medicine type is correct
                 //Is the patient cured?
@@ -147,7 +161,6 @@ public partial class TreatmentManager : Node
                 {
                     //Otherwise the patients needs to stay there for longer.
                     Room.SetAlreadyTreated(true);
-                    Room.Patient.TriggerInteractionTags();
                     CorrectMedicinePopup.Show();
                 }
             }

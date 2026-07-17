@@ -136,7 +136,6 @@ public partial class Room : Node2D
     private void SetPatientRoomText()
     {
         string input;
-        GD.Print($"Patient is alive: {Patient.IsPatientAlive()}");
         if(Patient.IsPatientAlive())
         {
             input = "Alive";

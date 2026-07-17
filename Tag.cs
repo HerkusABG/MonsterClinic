@@ -128,3 +128,23 @@ public class DeadlyTag : Tag
     }
 }
 
+public class ResistantTag : Tag
+{
+    public int ratioA;
+    public int ratioB;
+
+    public ResistantTag()
+    {
+    }
+
+    public override void ExecuteInteraction(PatientStats patient)
+    {
+        Random rnd = new Random();
+        int chance = rnd.Next(1, ratioB + 1);
+        if(chance <= ratioA)
+        {
+            patient.malady.isImmune = true;
+        }
+    }
+}
+

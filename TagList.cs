@@ -39,6 +39,15 @@ public static class TagList
                 TagType.Daily,
                 TagType.MaxSeverity
             }
+        },
+        ["Resistant"] = new ResistantTag
+        {
+            types =
+            {
+                TagType.Interaction
+            },
+            ratioA = 2,
+            ratioB = 4
         }
     };
 }

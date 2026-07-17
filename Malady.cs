@@ -25,6 +25,8 @@ public class Malady
 
     public List<Medicine> cures = new List<Medicine>();
 
+    public bool isImmune = false;
+
     public Malady()
     {
         //Small piece of logic to ensure malady severity gets assigned properly in PatientStats.
