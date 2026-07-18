@@ -6,12 +6,14 @@ using System.Linq;
 
 public static class DealerList
 {
-    public static Dictionary<string, DealerSlot> Database = new()
+    public static Dictionary<string, DealerSlot> MedicineDatabase = new()
     {
-       /* ["Nothing"] = new DealerSlot
-        {
-            name = "",
-        }*/
+      
+    };
+
+    public static Dictionary<string, DealerSlot> UpgradeDatabase = new()
+    {
+
     };
 
     public static void Initialize()
@@ -19,13 +21,20 @@ public static class DealerList
         int index = 0;
         for(int i = 0; i < MedicineManager.Database.Count; i++)
         {
-            //GD.Print(MedicineManager.Database.ElementAt(i).Key);
             if (MedicineManager.Database.ElementAt(i).Value.buyable)
             {
                 DealerSlot newSlot = new DealerSlot(MedicineManager.Database.ElementAt(i).Value, index);
-                Database.Add(MedicineManager.Database.ElementAt(i).Key, newSlot);
+                MedicineDatabase.Add(MedicineManager.Database.ElementAt(i).Key, newSlot);
                 index++;
             }
+        }
+
+        index = 0;
+        for (int i = 0; i < Upgrades.AllUpgrades.Count; i++)
+        {
+            DealerSlot newSlot = new DealerSlot(Upgrades.AllUpgrades.ElementAt(i).Value, index);
+            UpgradeDatabase.Add(Upgrades.AllUpgrades.ElementAt(i).Key, newSlot);
+            index++;
         }
     }
 }

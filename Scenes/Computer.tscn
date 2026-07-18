@@ -60,11 +60,13 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qsxs0"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Contents_C" type="Node2D" unique_id=1932071110 node_paths=PackedStringArray("mapUi", "UpButton", "DownButton")]
+[node name="Contents_C" type="Node2D" unique_id=1932071110 node_paths=PackedStringArray("mapUi", "UpButtonDealer", "DownButtonDealer", "UpButtonUpgrades", "DownButtonUpgrades")]
 script = ExtResource("1_tjl6a")
 mapUi = NodePath("Player_Interactables_C/MapControl")
-UpButton = NodePath("Player_Interactables_C/Dealer_PH/Resources_Window/GoUp")
-DownButton = NodePath("Player_Interactables_C/Dealer_PH/Resources_Window/GoDown")
+UpButtonDealer = NodePath("Player_Interactables_C/Dealer_PH/Resources_Window/UpDealer")
+DownButtonDealer = NodePath("Player_Interactables_C/Dealer_PH/Resources_Window/DownDealer")
+UpButtonUpgrades = NodePath("Player_Interactables_C/Dealer_PH/Upgrades_Window/UpUpgrade")
+DownButtonUpgrades = NodePath("Player_Interactables_C/Dealer_PH/Upgrades_Window/DownUpgrade")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1460341576]
 z_index = -2
@@ -173,6 +175,7 @@ text = "Treatment Resources
 "
 
 [node name="Upgrades_Window" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=1992268291]
+visible = false
 layout_mode = 0
 offset_left = 733.0
 offset_top = 81.0
@@ -191,7 +194,7 @@ offset_top = 134.0
 offset_right = 345.0
 offset_bottom = 746.0
 
-[node name="Aspirin_Unlock" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=630815456]
+[node name="Upgrade1" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=630815456]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -201,8 +204,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Unlock Aspirin for purchase
 
 Price: 50"
+script = ExtResource("3_5uut4")
 
-[node name="Remote_Medicine_Unlock" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=1337456623]
+[node name="Upgrade2" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=1337456623]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -213,8 +217,9 @@ text = "Unlock treating
 patients from the map
 
 Price: 200"
+script = ExtResource("3_5uut4")
 
-[node name="Waiting_Room_Upgrade" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=522712602]
+[node name="Upgrade3" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=522712602]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -225,6 +230,7 @@ text = "Add a seat to
 the waiting room
 
 Price: 50"
+script = ExtResource("3_5uut4")
 
 [node name="Upgrades_Text" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=629698831]
 layout_mode = 0
@@ -282,6 +288,34 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
+
+[node name="UpUpgrade" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=963205501]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 11.0
+offset_top = 658.0
+offset_right = 161.0
+offset_bottom = 808.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+text = "UP"
+script = ExtResource("3_5uut4")
+
+[node name="DownUpgrade" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=1833639266]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 194.0
+offset_top = 656.0
+offset_right = 374.0
+offset_bottom = 806.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+text = "DOWN"
+script = ExtResource("3_5uut4")
 
 [node name="Resources_Window" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=1066429848]
 visible = false
@@ -362,7 +396,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
 
-[node name="GoUp" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=1059641802]
+[node name="UpDealer" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=1059641802]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = 49.0
@@ -375,7 +409,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "UP"
 
-[node name="GoDown" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=572412346]
+[node name="DownDealer" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=572412346]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = 213.0

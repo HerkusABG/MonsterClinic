@@ -14,9 +14,12 @@ static class Upgrades
 	//boolean that control whether you can buy Aspirin
 	public static bool AspirinUnlock = false;
 
-	public static List<IncrementalUpgrade> AllUpgrades = new List<IncrementalUpgrade>();
+	public static Dictionary<string, IncrementalUpgrade> AllUpgrades = new()
+    {
+     
+    };
 
-	public static Dictionary<string, IntegerUpgrade> IntUpgradeDatabase = new()
+    public static Dictionary<string, IntegerUpgrade> IntUpgradeDatabase = new()
 	{
 		["PatientSlots"] = new IntegerUpgrade
 		{
@@ -40,6 +43,18 @@ static class Upgrades
             name = "Be able to buy aspirin",
             unlocked = false,
             price = 200
+        },
+        ["Placeholder1"] = new BooleanUpgrade
+        {
+            name = "placeholder upgrade1",
+            unlocked = false,
+            price = 200
+        },
+        ["Placeholder2"] = new BooleanUpgrade
+        {
+            name = "placeholder upgrade2",
+            unlocked = false,
+            price = 200
         }
     };
 
@@ -47,11 +62,11 @@ static class Upgrades
 	{
 		for(int i = 0; i < IntUpgradeDatabase.Count; i++)
 		{
-			AllUpgrades.Add(IntUpgradeDatabase.ElementAt(i).Value);
+			AllUpgrades.Add(IntUpgradeDatabase.ElementAt(i).Key, IntUpgradeDatabase.ElementAt(i).Value);
         }
         for (int i = 0; i < BoolUpgradeDatabase.Count; i++)
         {
-            AllUpgrades.Add(BoolUpgradeDatabase.ElementAt(i).Value);
+            AllUpgrades.Add(BoolUpgradeDatabase.ElementAt(i).Key, BoolUpgradeDatabase.ElementAt(i).Value);
         }
         ResetAllUpgrades();
     }

@@ -16,9 +16,11 @@ public partial class Contents_C : Node2D
     Button UpgradesButton;
     Label UpgradesWindow;
     VBoxContainer UpgradesList;
+    //------------------
     Button AspirinUnlock;
     Button WaitingRoomUpgrade;
     Button RemoteMedicineUnlock;
+    //------------------
     Button CloseUpgrades;
     Button TreatmentResourcesButton;
     Label ResourcesWindow;
@@ -27,10 +29,6 @@ public partial class Contents_C : Node2D
     Label DealerWindowMoneyDisplay;
     VBoxContainer MedicineContainer;
     GridContainer RoomContainer;
-
-    //Button BuyMedicine1Button;
-    //Button BuyMedicine2Button;
-    //Button BuyMedicine3Button;
 
     Button SelfTreatmentButton;
     Label InsufficientFunds;
@@ -43,14 +41,19 @@ public partial class Contents_C : Node2D
     Button CloseCatalogueWindow;
 
     [Export] MapUI mapUi;
-    [Export] Button UpButton;
-    [Export] Button DownButton;
+    [Export] Button UpButtonDealer;
+    [Export] Button DownButtonDealer;
+
+    [Export] Button UpButtonUpgrades;
+    [Export] Button DownButtonUpgrades;
 
     List<DealerButton> DealerButtons = new List<DealerButton>();
+    List<DealerButton> UpgradeButtons = new List<DealerButton>();
 
-    int startingIndex = 0;
+    int dealerStartingIndex = 0;
+    int upgradeStartingIndex = 0;
 
-    private readonly Dictionary<DealerButton, Action> Subscriptions = new();
+    //private readonly Dictionary<DealerButton, Action> Subscriptions = new();
 
 
     // Called when the node enters the scene tree for the first time.
@@ -65,7 +68,8 @@ public partial class Contents_C : Node2D
         //Initializing any children with their own scripts
         InitializeChildren();
 
-        DealerMenuNavigation(0);
+        DealerMenuNavigation(dealerStartingIndex);
+        UpgradeMenuNavigation(upgradeStartingIndex);
     }
 
     private void GetNodes()
@@ -83,9 +87,9 @@ public partial class Contents_C : Node2D
         UpgradesButton = DealerWindow.GetNode<Button>("Upgrades_Button");
         UpgradesWindow = DealerWindow.GetNode<Label>("Upgrades_Window");
         UpgradesList = UpgradesWindow.GetNode<VBoxContainer>("Upgrades_List");
-        AspirinUnlock = UpgradesList.GetNode<Button>("Aspirin_Unlock");
-        RemoteMedicineUnlock = UpgradesList.GetNode<Button>("Remote_Medicine_Unlock");
-        WaitingRoomUpgrade = UpgradesList.GetNode<Button>("Waiting_Room_Upgrade");
+        //AspirinUnlock = UpgradesList.GetNode<Button>("Aspirin_Unlock");
+        //RemoteMedicineUnlock = UpgradesList.GetNode<Button>("Remote_Medicine_Unlock");
+        //WaitingRoomUpgrade = UpgradesList.GetNode<Button>("Waiting_Room_Upgrade");
         CloseUpgrades = UpgradesWindow.GetNode<Button>("Close");
         TreatmentResourcesButton = DealerWindow.GetNode<Button>("Treatment_Resources_Button");
         ResourcesWindow = DealerWindow.GetNode<Label>("Resources_Window");
@@ -93,9 +97,6 @@ public partial class Contents_C : Node2D
         CloseDealerWindowButton = DealerWindow.GetNode<Button>("Close");
         DealerWindowMoneyDisplay = DealerWindow.GetNode<Label>("Money_Display");
         MedicineContainer = ResourcesWindow.GetNode<VBoxContainer>("VBoxContainer");
-        //BuyMedicine1Button = MedicineContainer.GetNode<Button>("Medicine1");
-        //BuyMedicine2Button = MedicineContainer.GetNode<Button>("Medicine2");
-        //BuyMedicine3Button = MedicineContainer.GetNode<Button>("Medicine3");
         SelfTreatmentButton = MedicineContainer.GetNode<Button>("SelfTreatment");
         InsufficientFunds = DealerWindow.GetNode<Label>("Insufficient_Funds");
         CloseFundsPopup = InsufficientFunds.GetNode<Button>("Close");
@@ -122,42 +123,97 @@ public partial class Contents_C : Node2D
                 count++;
             }
         }
+        count = 0;
+        foreach (Button button in UpgradesList.GetChildren())
+        {
+            DealerButton castButton = button as DealerButton;
+            if (castButton != null)
+            {
+                UpgradeButtons.Add(castButton);
+                castButton.index = count;
+                count++;
+            }
+        }
     }
 
     private void PurchaseMedicine(DealerButton button)
     {
         int myIndex = button.index;
-        DealerSlot slot = DealerList.Database.ElementAt(myIndex + startingIndex).Value;
+        DealerSlot slot = DealerList.MedicineDatabase.ElementAt(myIndex + dealerStartingIndex).Value;
         slot.BuyMedicine();
-        RefreshDealerButtons(startingIndex);
+        RefreshDealerButtons(dealerStartingIndex, DealerButtons);
+        DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
+    }
+
+    private void PurchaseUpgrade(DealerButton button)
+    {
+        int myIndex = button.index;
+        DealerSlot slot = DealerList.UpgradeDatabase.ElementAt(myIndex + upgradeStartingIndex).Value;
+        if(slot.type == DealerSlot.SlotType.Boolean)
+        {
+            BooleanUpgrade upgrade = DealerList.UpgradeDatabase.ElementAt(myIndex + upgradeStartingIndex).Value.upgrade as BooleanUpgrade;
+            Upgrades.BooleanUpgrade(upgrade, button, UpdateMoneyDisplay, ShowInsufficientFunds);
+        }
+        else if(slot.type == DealerSlot.SlotType.Integer)
+        {
+            IntegerUpgrade upgrade = DealerList.UpgradeDatabase.ElementAt(myIndex + upgradeStartingIndex).Value.upgrade as IntegerUpgrade;
+            Upgrades.IntegerUpgrade(upgrade, 1,button, UpdateMoneyDisplay, ShowInsufficientFunds);
+        }
+        RefreshUpgradeButtons(upgradeStartingIndex, UpgradeButtons);
         DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
     }
 
     private void DealerMenuNavigation(int input)
     {
-        startingIndex += input;
-        RefreshDealerButtons(startingIndex);
-        if (startingIndex == 0)
+        dealerStartingIndex += input;
+        RefreshDealerButtons(dealerStartingIndex, DealerButtons);
+        if (dealerStartingIndex == 0)
         {
-            UpButton.Disabled = true;
+            UpButtonDealer.Disabled = true;
         }
-        else if(startingIndex + DealerButtons.Count >= DealerList.Database.Count)
+        else if(dealerStartingIndex + DealerButtons.Count >= DealerList.MedicineDatabase.Count)
         {
-            DownButton.Disabled = true;
+            DownButtonDealer.Disabled = true;
         }
         else
         {
-            UpButton.Disabled = false;
-            DownButton.Disabled = false;
+            UpButtonDealer.Disabled = false;
+            DownButtonDealer.Disabled = false;
+        }
+    }
+
+    private void UpgradeMenuNavigation(int input)
+    {
+        upgradeStartingIndex += input;
+        RefreshUpgradeButtons(upgradeStartingIndex, UpgradeButtons);
+        if (upgradeStartingIndex == 0)
+        {
+            UpButtonUpgrades.Disabled = true;
+        }
+        else if (upgradeStartingIndex + UpgradeButtons.Count >= DealerList.UpgradeDatabase.Count)
+        {
+            DownButtonUpgrades.Disabled = true;
+        }
+        else
+        {
+            UpButtonUpgrades.Disabled = false;
+            DownButtonUpgrades.Disabled = false;
         }
     }
 
 
-    private void RefreshDealerButtons(int start)
+    private void RefreshDealerButtons(int start, List<DealerButton> list)
     {
-        for (int i = 0; i < DealerButtons.Count; i++)
+        for (int i = 0; i < list.Count; i++)
         {
-            DealerButtons[i].Text = DealerList.Database.ElementAt(i + start).Value.GetSlotText();
+            list[i].Text = DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText();
+        }
+    }
+    private void RefreshUpgradeButtons(int start, List<DealerButton> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            list[i].Text = DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText();
         }
     }
     private void InitializeChildren()
@@ -169,24 +225,23 @@ public partial class Contents_C : Node2D
     private void Subscribe()
     {
         //assigning methods to all the buttons
-        UpButton.Pressed += () => DealerMenuNavigation(-1);
-        DownButton.Pressed += () => DealerMenuNavigation(1);
+        UpButtonDealer.Pressed += () => DealerMenuNavigation(-1);
+        DownButtonDealer.Pressed += () => DealerMenuNavigation(1);
+        UpButtonUpgrades.Pressed += () => UpgradeMenuNavigation(-1);
+        DownButtonUpgrades.Pressed += () => UpgradeMenuNavigation(1);
         DealerButton.Pressed += ShowDealerWindow;
         MapButton.Pressed += ShowMapWindow;
         CatalogueButton.Pressed += ShowCatalogueWindow;
         LogOutButton.Pressed += LogOut;
         TreatmentResourcesButton.Pressed += OpenResourcesWindow;
         UpgradesButton.Pressed += OpenUpgradesWindow;
-        AspirinUnlock.Pressed += UnlockAspirin;
-        WaitingRoomUpgrade.Pressed += () => Upgrades.IntegerUpgrade(Upgrades.IntUpgradeDatabase["PatientSlots"], 1, WaitingRoomUpgrade, UpdateMoneyDisplay, ShowInsufficientFunds);
-        RemoteMedicineUnlock.Pressed += () => Upgrades.BooleanUpgrade(Upgrades.BoolUpgradeDatabase["RemoteMedicine"], RemoteMedicineUnlock, UpdateMoneyDisplay, ShowInsufficientFunds);
+        //AspirinUnlock.Pressed += UnlockAspirin;
+        //WaitingRoomUpgrade.Pressed += () => Upgrades.IntegerUpgrade(Upgrades.IntUpgradeDatabase["PatientSlots"], 1, WaitingRoomUpgrade, UpdateMoneyDisplay, ShowInsufficientFunds);
+        //RemoteMedicineUnlock.Pressed += () => Upgrades.BooleanUpgrade(Upgrades.BoolUpgradeDatabase["RemoteMedicine"], RemoteMedicineUnlock, UpdateMoneyDisplay, ShowInsufficientFunds);
         //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
         CloseResources.Pressed += () => CloseParent(CloseResources);
         CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
         CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
-        //BuyMedicine1Button.Pressed += () => BuyMedicine(BuyMedicine1Button);
-        //BuyMedicine2Button.Pressed += () => BuyMedicine(BuyMedicine2Button);
-        //BuyMedicine3Button.Pressed += () => BuyMedicine(BuyMedicine3Button);
         CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
         SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
         CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
@@ -196,6 +251,13 @@ public partial class Contents_C : Node2D
         foreach(DealerButton button in DealerButtons)
         {
             Action handler = () => PurchaseMedicine(button);
+
+            button.Pressed += handler;
+        }
+
+        foreach (DealerButton button in UpgradeButtons)
+        {
+            Action handler = () => PurchaseUpgrade(button);
 
             button.Pressed += handler;
         }
