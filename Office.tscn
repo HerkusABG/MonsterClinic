@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://c5ncjx7yugc5j" path="res://Assets/2D Art/Office/office-pc.png" id="2_kjhbo"]
 [ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="4_n8ipj"]
 [ext_resource type="Texture2D" uid="uid://ba6h4djyflram" path="res://Assets/2D Art/Office/office-pc-hover.png" id="4_ttk34"]
+[ext_resource type="Script" uid="uid://df0qewcgkls1a" path="res://Scripts/Computer.cs" id="5_gisrx"]
 [ext_resource type="Texture2D" uid="uid://b4o0ubcg603ro" path="res://Assets/2D Art/Office/office-mirror.png" id="6_4fm71"]
 [ext_resource type="Script" uid="uid://damlipp41xqb1" path="res://Mirror.cs" id="7_4fm71"]
+[ext_resource type="Texture2D" uid="uid://0p8gc3ax8rmb" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Pocket_Blockout.png" id="7_grpir"]
 [ext_resource type="Texture2D" uid="uid://c0vxsda0mkipe" path="res://Assets/2D Art/Office/office-mirror-hover.png" id="8_knk1q"]
 [ext_resource type="Texture2D" uid="uid://jdngferi6lje" path="res://Assets/2D Art/Office/office-elevator.png" id="9_yauhp"]
 [ext_resource type="Texture2D" uid="uid://bfwmwuxfbo8c1" path="res://Assets/2D Art/Office/office-elevator-hover.png" id="11_43i68"]
@@ -16,6 +18,44 @@
 [ext_resource type="Texture2D" uid="uid://orf6jcr622m" path="res://Assets/2D Art/Office/office-bed-hover.png" id="15_4fm71"]
 [ext_resource type="Texture2D" uid="uid://7ph5wsicr3ic" path="res://Assets/2D Art/Office/office-cans.png" id="16_gisrx"]
 [ext_resource type="PackedScene" uid="uid://l74aru063sey" path="res://Scenes/OfficePatientPlaceholder.tscn" id="16_yauhp"]
+
+[sub_resource type="Animation" id="Animation_3080y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Interactables_O/Computer/ScreenGlow:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b6brs"]
+resource_name = "flash"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player_Interactables_O/Computer/ScreenGlow:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.94149524, 0.80248964, 0.50965375, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kfihx"]
+_data = {
+&"RESET": SubResource("Animation_3080y"),
+&"flash": SubResource("Animation_b6brs")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ye4h6"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -68,6 +108,7 @@ offset_bottom = 833.7257
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("2_kjhbo")
 texture_hover = ExtResource("4_ttk34")
+script = ExtResource("5_gisrx")
 
 [node name="ComputerLabel" type="Label" parent="Player_Interactables_O/Computer" unique_id=764561184]
 layout_mode = 0
@@ -81,6 +122,23 @@ theme_override_font_sizes/font_size = 120
 text = "Computer"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ScreenGlow" type="TextureRect" parent="Player_Interactables_O/Computer" unique_id=177397799]
+visible = false
+layout_mode = 0
+offset_left = 97.0
+offset_top = 78.549995
+offset_right = 472.0
+offset_bottom = 358.55
+rotation = -0.0038662683
+scale = Vector2(0.5983069, 0.5217139)
+texture = ExtResource("7_grpir")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player_Interactables_O/Computer" unique_id=1838589988]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_kfihx")
 
 [node name="Mirror" type="TextureButton" parent="Player_Interactables_O" unique_id=1571392299]
 layout_mode = 0
