@@ -51,7 +51,7 @@ public partial class MapUI : Control
         MapHallway.Pressed += MapHallwayFunction;
         UpdateUI();
         WarningLabel.Visible = false;
-        BuyRoomButton.Pressed += OnBuyRoomButtonPressed;
+        //BuyRoomButton.Pressed += OnBuyRoomButtonPressed;
         RoomRenderer = new RoomStructureRenderer();
         //since now the rooms are generated in 2 different containers, they can no longer be generated en masse in one method, if the method will ever generate more than 3 at once,
         //so now it's a loop using the individual room generation
@@ -70,6 +70,7 @@ public partial class MapUI : Control
         DealerWindowMoneyDisplay = GetParent().GetNode<Label>("Dealer_PH").GetNode<Label>("Money_Display");
         Button CloseRoomInfoButton = GetNode<Label>("Room_Info").GetNode<Button>("Close");
         CloseRoomInfoButton.Pressed += CloseRoomInfo;
+        Upgrades.IntUpgradeDatabase["Rooms"].OnUpgradePressed = BuyRoomActions;
     }
 
     private void GetNodes()
@@ -108,13 +109,13 @@ public partial class MapUI : Control
         }
     }
 
-    public async void OnBuyRoomButtonPressed()
+    public async void BuyRoomActions()
     {
-        if (DoctorInventory.Money >= Economy.roomCost)
+       // if (DoctorInventory.Money >= Economy.roomCost)
         {
-            DoctorInventory.Money -= Economy.roomCost;
-            Upgrades.AddNewRoom();
-            if (Upgrades.roomCount < 4)
+            //DoctorInventory.Money -= Economy.roomCost;
+            //Upgrades.AddNewRoom();
+            if (Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget < 4)
             {
                 RoomRenderer.GenerateRoom(RoomContainer1);
             } 
@@ -123,19 +124,19 @@ public partial class MapUI : Control
                 RoomRenderer.GenerateRoom(RoomContainer2);
             }
             //gives the newly created button a method to execute when pressed
-            AssignRoomButtonFunction(Upgrades.roomCount);
-            UpdateUI();
-            Node2D currentScene = GetParent().GetParent<Node2D>();
-            Node2D HallwayScene = currentScene.GetParent().GetNode<Node2D>("Hallway");
-            Hallway hallway = HallwayScene as Hallway;
-            hallway.UpdateHallwayUI();
-            DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
+            AssignRoomButtonFunction(Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget);
+            //UpdateUI();
+            //Node2D currentScene = GetParent().GetParent<Node2D>();
+            //Node2D HallwayScene = currentScene.GetParent().GetNode<Node2D>("Hallway");
+            //Hallway hallway = HallwayScene as Hallway;
+            //hallway.UpdateHallwayUI();
+            //DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
         }
-        else
+       // else
         {
-			WarningLabel.Visible = true;
-			await Task.Delay(2000); // wait 2 seconds before hiding the warning again
-			WarningLabel.Visible = false;
+			//WarningLabel.Visible = true;
+			//await Task.Delay(2000); // wait 2 seconds before hiding the warning again
+			//WarningLabel.Visible = false;
         }
     }
 

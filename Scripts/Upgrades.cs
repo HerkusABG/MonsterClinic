@@ -27,7 +27,14 @@ static class Upgrades
 			incrementTarget = 3,
 			cap = 6,
 			price = 50
-		}
+		},
+        ["Rooms"] = new IntegerUpgrade
+        {
+            name = "More rooms to treat patients",
+            incrementTarget = 1,
+            cap = 6,
+            price = 100
+        }
     };
 
     public static Dictionary<string, BooleanUpgrade> BoolUpgradeDatabase = new()
@@ -95,6 +102,12 @@ static class Upgrades
 				//increment the count, spend the money
 				upgrade.incrementTarget++;
 				DoctorInventory.Money -= upgrade.price;
+
+                if(upgrade.OnUpgradePressed != null)
+                {
+                    upgrade.OnUpgradePressed();
+                }
+
 				//if we reach the cap, disable the button
 				if (upgrade.incrementTarget >= upgrade.cap)
 				{

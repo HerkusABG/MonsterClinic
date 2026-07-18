@@ -8,4 +8,6 @@ public class IncrementalUpgrade
     public int price { get; set; }
     public bool fullyUnlocked { get; set; } = false;
     public Medicine medicine { get; set; }
+
+    public Action OnUpgradePressed { get; set; }
 }
