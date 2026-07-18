@@ -16,11 +16,6 @@ public partial class Contents_C : Node2D
     Button UpgradesButton;
     Label UpgradesWindow;
     VBoxContainer UpgradesList;
-    //------------------
-    Button AspirinUnlock;
-    Button WaitingRoomUpgrade;
-    Button RemoteMedicineUnlock;
-    //------------------
     Button CloseUpgrades;
     Button TreatmentResourcesButton;
     Label ResourcesWindow;
@@ -29,6 +24,10 @@ public partial class Contents_C : Node2D
     Label DealerWindowMoneyDisplay;
     VBoxContainer MedicineContainer;
     GridContainer RoomContainer;
+
+    Button SpecialOffersButton;
+    Label SpecialOffersWindow;
+    VBoxContainer SpecialOffersList;
 
     Button SelfTreatmentButton;
     Label InsufficientFunds;
@@ -84,9 +83,16 @@ public partial class Contents_C : Node2D
 
         //separate section for everything in the dealer window
         DealerWindow = control.GetNode<Label>("Dealer_PH");
+
         UpgradesButton = DealerWindow.GetNode<Button>("Upgrades_Button");
         UpgradesWindow = DealerWindow.GetNode<Label>("Upgrades_Window");
         UpgradesList = UpgradesWindow.GetNode<VBoxContainer>("Upgrades_List");
+
+        SpecialOffersButton = DealerWindow.GetNode<Button>("Special_Offers_Button");
+        SpecialOffersWindow = DealerWindow.GetNode<Label>("Special_Offers_Window");
+        SpecialOffersList = SpecialOffersWindow.GetNode<VBoxContainer>("Special_Offers_List");
+        SelfTreatmentButton = SpecialOffersList.GetNode<Button>("SelfTreatment");
+
         CloseUpgrades = UpgradesWindow.GetNode<Button>("Close");
         TreatmentResourcesButton = DealerWindow.GetNode<Button>("Treatment_Resources_Button");
         ResourcesWindow = DealerWindow.GetNode<Label>("Resources_Window");
@@ -94,7 +100,7 @@ public partial class Contents_C : Node2D
         CloseDealerWindowButton = DealerWindow.GetNode<Button>("Close");
         DealerWindowMoneyDisplay = DealerWindow.GetNode<Label>("Money_Display");
         MedicineContainer = ResourcesWindow.GetNode<VBoxContainer>("VBoxContainer");
-        SelfTreatmentButton = MedicineContainer.GetNode<Button>("SelfTreatment");
+        
         InsufficientFunds = DealerWindow.GetNode<Label>("Insufficient_Funds");
         CloseFundsPopup = InsufficientFunds.GetNode<Button>("Close");
         InsufficientAvailability = DealerWindow.GetNode<Label>("Insufficient_Availability");
@@ -132,7 +138,46 @@ public partial class Contents_C : Node2D
             }
         }
     }
+    private void Subscribe()
+    {
+        //assigning methods to all the buttons
+        UpButtonDealer.Pressed += () => DealerMenuNavigation(-1);
+        DownButtonDealer.Pressed += () => DealerMenuNavigation(1);
+        UpButtonUpgrades.Pressed += () => UpgradeMenuNavigation(-1);
+        DownButtonUpgrades.Pressed += () => UpgradeMenuNavigation(1);
 
+
+
+        DealerButton.Pressed += ShowDealerWindow;
+        MapButton.Pressed += ShowMapWindow;
+        CatalogueButton.Pressed += ShowCatalogueWindow;
+        LogOutButton.Pressed += LogOut;
+        TreatmentResourcesButton.Pressed += OpenResourcesWindow;
+        UpgradesButton.Pressed += OpenUpgradesWindow;
+        SpecialOffersButton.Pressed += OpenSpecialOffersWindow;
+        CloseResources.Pressed += () => CloseParent(CloseResources);
+        CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
+        CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
+        CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
+        SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
+        CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
+        CloseCatalogueWindow.Pressed += () => CloseParent(CloseCatalogueWindow);
+
+
+        foreach (DealerButton button in DealerButtons)
+        {
+            Action handler = () => PurchaseMedicine(button);
+
+            button.Pressed += handler;
+        }
+
+        foreach (DealerButton button in UpgradeButtons)
+        {
+            Action handler = () => PurchaseUpgrade(button);
+
+            button.Pressed += handler;
+        }
+    }
     private void PurchaseMedicine(DealerButton button)
     {
         int myIndex = button.index;
@@ -234,46 +279,7 @@ public partial class Contents_C : Node2D
         mapUI.Initialize();
     }
 
-    private void Subscribe()
-    {
-        //assigning methods to all the buttons
-        UpButtonDealer.Pressed += () => DealerMenuNavigation(-1);
-        DownButtonDealer.Pressed += () => DealerMenuNavigation(1);
-        UpButtonUpgrades.Pressed += () => UpgradeMenuNavigation(-1);
-        DownButtonUpgrades.Pressed += () => UpgradeMenuNavigation(1);
-        DealerButton.Pressed += ShowDealerWindow;
-        MapButton.Pressed += ShowMapWindow;
-        CatalogueButton.Pressed += ShowCatalogueWindow;
-        LogOutButton.Pressed += LogOut;
-        TreatmentResourcesButton.Pressed += OpenResourcesWindow;
-        UpgradesButton.Pressed += OpenUpgradesWindow;
-        //AspirinUnlock.Pressed += UnlockAspirin;
-        //WaitingRoomUpgrade.Pressed += () => Upgrades.IntegerUpgrade(Upgrades.IntUpgradeDatabase["PatientSlots"], 1, WaitingRoomUpgrade, UpdateMoneyDisplay, ShowInsufficientFunds);
-        //RemoteMedicineUnlock.Pressed += () => Upgrades.BooleanUpgrade(Upgrades.BoolUpgradeDatabase["RemoteMedicine"], RemoteMedicineUnlock, UpdateMoneyDisplay, ShowInsufficientFunds);
-        //yes this looks kinda wacky, but apparently that's how I gotta write it if I want to have methods that take arguments
-        CloseResources.Pressed += () => CloseParent(CloseResources);
-        CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
-        CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
-        CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
-        SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
-        CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
-        CloseCatalogueWindow.Pressed += () => CloseParent(CloseCatalogueWindow);
-
-
-        foreach(DealerButton button in DealerButtons)
-        {
-            Action handler = () => PurchaseMedicine(button);
-
-            button.Pressed += handler;
-        }
-
-        foreach (DealerButton button in UpgradeButtons)
-        {
-            Action handler = () => PurchaseUpgrade(button);
-
-            button.Pressed += handler;
-        }
-    }
+    
 
     private void ShowDealerWindow()
     {
@@ -327,27 +333,22 @@ public partial class Contents_C : Node2D
     {
         UpgradesWindow.Hide();
         ResourcesWindow.Show();
+        SpecialOffersWindow.Hide();
+        DealerMenuNavigation(dealerStartingIndex);
     }
     private void OpenUpgradesWindow()
     {
         ResourcesWindow.Hide();
         UpgradesWindow.Show();
+        SpecialOffersWindow.Hide();
+        UpgradeMenuNavigation(upgradeStartingIndex);
     }
 
-    private void UnlockAspirin()
+    private void OpenSpecialOffersWindow()
     {
-        //if you can afford it, unlock aspirin, disables the unlock button, and enables the purchase button
-        if (DoctorInventory.Money >= 50)
-        {
-            Upgrades.UnlockAspirin();
-            AspirinUnlock.Disabled = true;
-            //BuyMedicine2Button.Disabled = false;
-            UpdateMoneyDisplay();
-        }
-        else
-        {
-            ShowInsufficientFunds();
-        }
+        ResourcesWindow.Hide();
+        UpgradesWindow.Hide();
+        SpecialOffersWindow.Show();
     }
 
     private void ShowInsufficientFunds()
@@ -360,20 +361,6 @@ public partial class Contents_C : Node2D
         DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
     }
     
-    /*private void UnlockRemoteMedicine()
-    {
-        //if you can afford it, unlocks remote medicine, disables the unlock button, and enables the purchase button
-        if (DoctorInventory.Money >= 200)
-        {
-            Upgrades.UnlockRemoteMedicine();
-            RemoteMedicineUnlock.Disabled = true;
-            UpdateMoneyDisplay();
-        }
-        else
-        {
-            ShowInsufficientFunds();
-        }
-    }*/
     private void _on_resources_window_visibility_changed()
     {
         if (ResourcesWindow.Visible)
@@ -396,6 +383,24 @@ public partial class Contents_C : Node2D
     }
     private void BuyMedicine(Button button)
     {
+        GD.Print("buying self treatment");
+        if (DoctorInventory.Money >= GlobalData.MedicineCost && GlobalData.Medicincavailability <= 0)
+        {
+            // Money deduction, player gets the medicine and the cost of the medicine gets increased (probally needs balancing)
+            DoctorInventory.Money -= GlobalData.MedicineCost;
+            GlobalData.MedicinePlayer++;
+            GlobalData.MedicineCost = GlobalData.MedicineCost * 2; // Increase the cost for the next purchase
+            button.Text = "Self Treatment \n (Price: " + GlobalData.MedicineCost + ") \n \n Owned: " + GlobalData.MedicinePlayer.ToString() + ") \n availability in: " + GlobalData.Medicincavailability.ToString();
+            UpdateMoneyDisplay();
+        }
+        else if (DoctorInventory.Money < GlobalData.MedicineCost)
+        {
+            ShowInsufficientFunds();
+        }
+        else
+        {
+            InsufficientAvailability.Show();
+        }
         /* if (button == BuyMedicine1Button)
          {
              //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
