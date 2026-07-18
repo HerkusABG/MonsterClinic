@@ -18,6 +18,8 @@ public class Medicine
 
     public bool buyable = true;
 
+    public bool unlocked = true;
+
     public Medicine Clone()
     {
         return new Medicine

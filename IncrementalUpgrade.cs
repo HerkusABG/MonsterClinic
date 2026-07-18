@@ -6,4 +6,6 @@ public class IncrementalUpgrade
 {
     public string name {  get; set; }
     public int price { get; set; }
+    public bool fullyUnlocked { get; set; } = false;
+    public Medicine medicine { get; set; }
 }

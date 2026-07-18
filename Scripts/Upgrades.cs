@@ -25,7 +25,7 @@ static class Upgrades
 		{
 			name = "More patient slots",
 			incrementTarget = 3,
-			cap = 999,
+			cap = 6,
 			price = 50
 		}
     };
@@ -42,7 +42,8 @@ static class Upgrades
         {
             name = "Be able to buy aspirin",
             unlocked = false,
-            price = 200
+            price = 200,
+            medicine = MedicineManager.Database["Aspirin"]
         },
         ["Placeholder1"] = new BooleanUpgrade
         {
@@ -97,7 +98,8 @@ static class Upgrades
 				//if we reach the cap, disable the button
 				if (upgrade.incrementTarget >= upgrade.cap)
 				{
-					upgradeButton.Disabled = true;
+                    upgrade.fullyUnlocked = true;
+                    //upgradeButton.Disabled = true;
 					break;
 				}
 			}
@@ -114,9 +116,11 @@ static class Upgrades
         if (DoctorInventory.Money >= upgrade.price)
         {
             //increment the count, spend the money
+            upgrade.medicine.unlocked = true;
             upgrade.unlocked = true;
+            upgrade.fullyUnlocked = true;
             DoctorInventory.Money -= upgrade.price;
-            upgradeButton.Disabled = true;
+            //upgradeButton.Disabled = true;
             successAction();
         }
         else
@@ -130,7 +134,17 @@ static class Upgrades
 		IntegerUpgrade patientUpgrade = IntUpgradeDatabase["PatientSlots"];
         patientUpgrade.incrementTarget = 3;
 
-		BooleanUpgrade remoteUpgrade = BoolUpgradeDatabase["RemoteMedicine"];
-		remoteUpgrade.unlocked = false;
+
+        for(int i = 0; i < BoolUpgradeDatabase.Count; i++)
+        {
+            BooleanUpgrade boolUpgrade = BoolUpgradeDatabase.ElementAt(i).Value;
+            boolUpgrade.unlocked = false;
+            if(boolUpgrade.medicine != null)
+            {
+                boolUpgrade.medicine.unlocked = false;
+            }
+        }
+		//BooleanUpgrade remoteUpgrade = BoolUpgradeDatabase["RemoteMedicine"];
+		//remoteUpgrade.unlocked = false;
     }
 }

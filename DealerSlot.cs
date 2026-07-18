@@ -5,7 +5,7 @@ public class DealerSlot
 {
 	public SlotType type;
     public int index;
-	Medicine medicine;
+	public Medicine medicine;
 	public IncrementalUpgrade upgrade;
 
 
@@ -56,7 +56,6 @@ public class DealerSlot
         if (type == SlotType.Boolean)
         {
             BooleanUpgrade bUpgrade = upgrade as BooleanUpgrade;
-            //bUpgrade.
         }
         else
         {

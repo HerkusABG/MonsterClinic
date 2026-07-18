@@ -87,9 +87,6 @@ public partial class Contents_C : Node2D
         UpgradesButton = DealerWindow.GetNode<Button>("Upgrades_Button");
         UpgradesWindow = DealerWindow.GetNode<Label>("Upgrades_Window");
         UpgradesList = UpgradesWindow.GetNode<VBoxContainer>("Upgrades_List");
-        //AspirinUnlock = UpgradesList.GetNode<Button>("Aspirin_Unlock");
-        //RemoteMedicineUnlock = UpgradesList.GetNode<Button>("Remote_Medicine_Unlock");
-        //WaitingRoomUpgrade = UpgradesList.GetNode<Button>("Waiting_Room_Upgrade");
         CloseUpgrades = UpgradesWindow.GetNode<Button>("Close");
         TreatmentResourcesButton = DealerWindow.GetNode<Button>("Treatment_Resources_Button");
         ResourcesWindow = DealerWindow.GetNode<Label>("Resources_Window");
@@ -201,12 +198,19 @@ public partial class Contents_C : Node2D
         }
     }
 
-
     private void RefreshDealerButtons(int start, List<DealerButton> list)
     {
         for (int i = 0; i < list.Count; i++)
         {
             list[i].Text = DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText();
+            if (!DealerList.MedicineDatabase.ElementAt(i + start).Value.medicine.unlocked)
+            {
+                list[i].Disabled = true;
+            }
+            else
+            {
+                list[i].Disabled = false;
+            }
         }
     }
     private void RefreshUpgradeButtons(int start, List<DealerButton> list)
@@ -214,6 +218,14 @@ public partial class Contents_C : Node2D
         for (int i = 0; i < list.Count; i++)
         {
             list[i].Text = DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText();
+            if(DealerList.UpgradeDatabase.ElementAt(i + start).Value.upgrade.fullyUnlocked)
+            {
+                list[i].Disabled = true;
+            }
+            else
+            {
+                list[i].Disabled = false;
+            }
         }
     }
     private void InitializeChildren()
