@@ -29,7 +29,7 @@ public static class MaladyList
                 SymptomList.Database["Nothing"].name,
             }
         },
-        ["Accident"] = new Malady { 
+        ["Accident"] = new Malady {
             name = "an accident",
             dialogueSymptoms =
             {
@@ -45,10 +45,19 @@ public static class MaladyList
                 SymptomList.Database["HeartProblems"].name,
                 SymptomList.Database["BodyPain"].name,
                 SymptomList.Database["Headache"].name
+            },
+            tags =
+            {
+                TagList.Database["Worsening"].Clone(),
+                TagList.Database["Deadly"].Clone()
+            },
+            cures =
+            {
+                MedicineManager.Database["Morphine"]
             }
         },
-        ["BluePox"] = new Malady 
-        { 
+        ["BluePox"] = new Malady
+        {
             name = "Blue Pox",
             dialogueSymptoms =
             {
@@ -64,6 +73,15 @@ public static class MaladyList
                 SymptomList.Database["Sneezing"].name,
                 SymptomList.Database["Headache"].name,
                 SymptomList.Database["Fever"].name
+            },
+            tags =
+            {
+                TagList.Database["Resistant"],
+                TagList.Database["Deadly"]
+            },
+            cures =
+            {
+                MedicineManager.Database["Ozempic"]
             }
         },
     };

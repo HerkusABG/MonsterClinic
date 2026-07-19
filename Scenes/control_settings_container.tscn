@@ -1,0 +1,233 @@
+[gd_scene format=3 uid="uid://ba7isbgbng5ow"]
+
+[ext_resource type="Script" uid="uid://bwg0tlm7ed4qu" path="res://Scripts/AlwaysOnScreen/Menu/ControlSettings/ControlSettingsContainer.cs" id="1_hbg1o"]
+[ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://Assets/CustomText/danielbd_MediumText.ttf" id="2_0i3va"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_px3u5"]
+color = Color(1, 1, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hbg1o"]
+color = Color(0.32717237, 0.5531823, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_0i3va"]
+color = Color(0.27749273, 0.24234524, 1, 1)
+
+[node name="ControlSettings_Container" type="Control" unique_id=1570700948]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hbg1o")
+
+[node name="TabContainer" type="TabContainer" parent="." unique_id=2139882899]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Sound" type="TabBar" parent="TabContainer" unique_id=1088369450]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Sound" unique_id=348743873]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Sound/MarginContainer" unique_id=1370446040]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Music_Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer" unique_id=338978363]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0i3va")
+theme_override_font_sizes/font_size = 63
+text = "Music"
+
+[node name="SXF_Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer" unique_id=1573269189]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0i3va")
+theme_override_font_sizes/font_size = 63
+text = "SXF"
+
+[node name="Ambient_Label" type="Label" parent="TabContainer/Sound/MarginContainer/VBoxContainer" unique_id=1790943760]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0i3va")
+theme_override_font_sizes/font_size = 63
+text = "Ambient"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="TabContainer/Sound" unique_id=1116496211]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -675.21497
+offset_top = -425.5
+offset_right = -75.21631
+offset_bottom = 425.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = -441
+alignment = 1
+
+[node name="Music_Slider" type="HSlider" parent="TabContainer/Sound/VBoxContainer3" unique_id=58649050]
+layout_mode = 2
+size_flags_horizontal = 9
+size_flags_vertical = 6
+theme_override_styles/slider = SubResource("StyleBoxLine_px3u5")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_hbg1o")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_0i3va")
+value = 50.0
+
+[node name="SXF_Slider" type="HSlider" parent="TabContainer/Sound/VBoxContainer3" unique_id=1359581999]
+layout_mode = 2
+size_flags_horizontal = 9
+size_flags_vertical = 6
+theme_override_styles/slider = SubResource("StyleBoxLine_px3u5")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_hbg1o")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_0i3va")
+value = 50.0
+
+[node name="Ambient_Slide" type="HSlider" parent="TabContainer/Sound/VBoxContainer3" unique_id=1124506023]
+layout_mode = 2
+size_flags_horizontal = 9
+size_flags_vertical = 6
+theme_override_styles/slider = SubResource("StyleBoxLine_px3u5")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_hbg1o")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_0i3va")
+value = 50.0
+
+[node name="Grafic" type="TabBar" parent="TabContainer" unique_id=350242752]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Grafic" unique_id=1120652881]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Grafic/MarginContainer" unique_id=1573391643]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="WindowSize_Label" type="Label" parent="TabContainer/Grafic/MarginContainer/VBoxContainer" unique_id=1837050857]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0i3va")
+theme_override_font_sizes/font_size = 63
+text = "Window Size"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TabContainer/Grafic/MarginContainer" unique_id=1558698416]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="TabContainer/Grafic" unique_id=281363769]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -675.21497
+offset_top = -425.5
+offset_right = -75.21631
+offset_bottom = 425.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/separation = -185
+alignment = 1
+
+[node name="WindowSize_Slider" type="CheckButton" parent="TabContainer/Grafic/VBoxContainer3" unique_id=1281976512]
+layout_mode = 2
+size_flags_horizontal = 9
+size_flags_vertical = 6
+theme_override_constants/h_separation = 4
+theme_override_font_sizes/font_size = 16
+button_pressed = true
+
+[node name="Controls" type="TabBar" parent="TabContainer" unique_id=1687648128]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Controls" unique_id=273006356]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Controls/MarginContainer" unique_id=1164955267]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=760482797]
+layout_mode = 2
+theme_override_font_sizes/font_size = 63
+text = "dddd"
+
+[node name="Label2" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=227815304]
+layout_mode = 2
+theme_override_font_sizes/font_size = 63
+text = "dddd"
+
+[node name="Label3" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=47374363]
+layout_mode = 2
+theme_override_font_sizes/font_size = 63
+text = "dddd"
+
+[node name="Label4" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=570614382]
+layout_mode = 2
+theme_override_font_sizes/font_size = 63
+text = "dddd"
+
+[node name="Label5" type="Label" parent="TabContainer/Controls/MarginContainer/VBoxContainer" unique_id=549422666]
+layout_mode = 2
+theme_override_font_sizes/font_size = 63
+text = "dddd"
+
+[connection signal="value_changed" from="TabContainer/Sound/VBoxContainer3/Music_Slider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Sound/VBoxContainer3/SXF_Slider" to="." method="_on_sxf_slider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Sound/VBoxContainer3/Ambient_Slide" to="." method="_on_ambient_slide_value_changed"]
+[connection signal="toggled" from="TabContainer/Grafic/VBoxContainer3/WindowSize_Slider" to="." method="_on_window_size_slider_toggled"]

@@ -1,0 +1,234 @@
+[gd_scene format=3 uid="uid://j7adtnydmxx5"]
+
+[ext_resource type="Script" uid="uid://5r317s7kx2gg" path="res://Scripts/PauseScreen/PauseMenu.cs" id="1_eu8ou"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eu8ou"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00s40"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrbao"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rpp1"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbcds"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_606fb"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ep3h1"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68158"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65cb6"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0py76"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eyvbu"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjpsm"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbuvc"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[node name="Pause" type="Node2D" unique_id=738940643]
+script = ExtResource("1_eu8ou")
+
+[node name="Stylish_Transaprent_Background" type="ColorRect" parent="." unique_id=1851092982]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.13333334, 0.13333334, 0.13333334, 0.8627451)
+
+[node name="Player_Interactables_Menu" type="Control" parent="." unique_id=1379209115]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Menu_Box" type="VBoxContainer" parent="Player_Interactables_Menu" unique_id=644168724]
+custom_minimum_size = Vector2(300, 98)
+layout_mode = 0
+offset_left = 810.0
+offset_top = 341.0
+offset_right = 1110.0
+offset_bottom = 757.0
+
+[node name="Resume" type="Button" parent="Player_Interactables_Menu/Menu_Box" unique_id=870631301]
+custom_minimum_size = Vector2(300, 98)
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_eu8ou")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_00s40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
+text = "Resume"
+
+[node name="Settings" type="Button" parent="Player_Interactables_Menu/Menu_Box" unique_id=71303191]
+custom_minimum_size = Vector2(300, 89)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_eu8ou")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_00s40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
+text = "Settings
+"
+
+[node name="Save_Game" type="Button" parent="Player_Interactables_Menu/Menu_Box" unique_id=2106268901]
+custom_minimum_size = Vector2(300, 89)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_eu8ou")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_00s40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
+disabled = true
+text = "Save Game
+"
+
+[node name="Exit" type="Button" parent="Player_Interactables_Menu/Menu_Box" unique_id=1371537945]
+custom_minimum_size = Vector2(300, 98)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_eu8ou")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_00s40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
+text = "Quit Game"
+
+[node name="Cheats" type="Button" parent="Player_Interactables_Menu" unique_id=1710299043]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 0
+offset_left = 1870.0
+offset_top = 1050.0
+offset_right = 1918.0
+offset_bottom = 1078.0
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxFlat_eu8ou")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_00s40")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
+text = "Cheats"
+
+[node name="Spawn_Options" type="Control" parent="." unique_id=1728791162]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1904.0
+offset_bottom = 1092.0
+
+[node name="Cheats_Background" type="ColorRect" parent="." unique_id=368848626]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.13335153, 0.13335153, 0.13335153, 1)
+
+[node name="Money_Display" type="Label" parent="Cheats_Background" unique_id=1393685944]
+layout_mode = 0
+offset_left = 649.0
+offset_top = 715.0
+offset_right = 1352.0
+offset_bottom = 880.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_1rpp1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Money_Subtractor" type="Button" parent="Cheats_Background" unique_id=891230286]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 0
+offset_left = 659.0
+offset_top = 902.0
+offset_right = 959.0
+offset_bottom = 1019.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_pbcds")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_606fb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ep3h1")
+text = "BOUNDLESS DEBT"
+
+[node name="Money_Adder" type="Button" parent="Cheats_Background" unique_id=1367387670]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 0
+offset_left = 1043.0
+offset_top = 903.0
+offset_right = 1343.0
+offset_bottom = 1020.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_68158")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_65cb6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0py76")
+text = "Infinite wealth 
+be upon ye"
+
+[node name="Close" type="Button" parent="Cheats_Background" unique_id=312436137]
+layout_mode = 0
+offset_left = 1870.0
+offset_right = 1920.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_eyvbu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kjpsm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mbuvc")
+text = "X"
+
+[connection signal="pressed" from="Player_Interactables_Menu/Menu_Box/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Player_Interactables_Menu/Menu_Box/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Player_Interactables_Menu/Menu_Box/Save_Game" to="." method="_on_save_game_pressed"]
+[connection signal="pressed" from="Player_Interactables_Menu/Menu_Box/Exit" to="." method="_on_exit_pressed"]
+[connection signal="visibility_changed" from="Cheats_Background/Money_Display" to="." method="_on_money_display_visibility_changed"]
