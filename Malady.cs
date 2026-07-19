@@ -20,12 +20,37 @@ public class Malady
     public List<Symptom> pulseSymptoms = new();
     //Refers to symptoms and the related dialogue that appears when the thermometer is used.
     public List<Symptom> temperatureSymptoms = new();
+    //List of tags that define a malady's behaviour
+    public List<Tag> tags = new List<Tag>();
+
+    public List<Medicine> cures = new List<Medicine>();
+
+    public bool isImmune = false;
 
     public Malady()
     {
         //Small piece of logic to ensure malady severity gets assigned properly in PatientStats.
         //As far as I know it helps assign severity to each instance of a malady correctly.
         severity = -1;
+    }
+
+    public Malady Clone()
+    {
+        Malady malady = new Malady
+        {
+            name = name,
+            severity = severity,
+            allSymptoms = allSymptoms,
+            dialogueSymptoms = dialogueSymptoms,
+            pulseSymptoms = pulseSymptoms,
+            temperatureSymptoms = temperatureSymptoms,
+            cures = cures
+        };
+        foreach(Tag tag in tags)
+        {
+            malady.tags.Add(tag.Clone());
+        }
+        return malady;
     }
 }
 
