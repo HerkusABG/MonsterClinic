@@ -126,8 +126,18 @@ public partial class AdmissionManager : Node
     {
         //Create a new instance of a patient.
         PatientStats patientStats;
-        patientStats = new PatientStats();
-
+        Random random = new Random();
+        int odds = random.Next(10);
+        if (odds > 9) //|| StoryPatientList.StoryPatientsLeft == 0)
+        {
+            patientStats = new PatientStats();
+        } else
+        {
+            int rnd = random.Next(0, StoryPatientList.Database.Count);
+            patientStats = StoryPatientList.Database.ElementAt(rnd).Value;
+            StoryPatientList.Database.ElementAt(rnd).Value.arrived = true;
+            StoryPatientList.StoryPatientsLeft--;
+        }
         InternalPatient = patientStats;
         return patientStats;
     }
