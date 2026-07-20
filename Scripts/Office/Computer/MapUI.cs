@@ -55,13 +55,14 @@ public partial class MapUI : Control
         RoomRenderer = new RoomStructureRenderer();
         //since now the rooms are generated in 2 different containers, they can no longer be generated en masse in one method, if the method will ever generate more than 3 at once,
         //so now it's a loop using the individual room generation
-        for (int i = 1; i <= Upgrades.roomCount; i++)
+        for (int i = 1; i <= Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget; i++)
         {
             if (i < 4)
             {
                 RoomRenderer.GenerateRoom(RoomContainer1);
                 AssignRoomButtonFunction(i);
-            } else
+            } 
+            else
             {
                 RoomRenderer.GenerateRoom(RoomContainer2);
                 AssignRoomButtonFunction(i);
@@ -99,47 +100,42 @@ public partial class MapUI : Control
 
     private void UpdateUI()
     {
-        BuyRoomButton.Text = $"Price: {Economy.roomCost}";
-        RoomCount.Text = $"Rooms: {Upgrades.roomCount}";
+        /*BuyRoomButton.Text = $"Price: {Economy.roomCost}";
+        RoomCount.Text = $"Rooms: {Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget}";
         PatientCount.Text = $"Patients: {admittedPatients}";
         //disable the button if we're at max rooms
-        if (Upgrades.roomCount == 6)
+        if (Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget == 6)
         {
             BuyRoomButton.Disabled = true;
-        }
+        }*/
     }
 
     public async void BuyRoomActions()
     {
-       // if (DoctorInventory.Money >= Economy.roomCost)
+        if (Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget < 4)
         {
-            //DoctorInventory.Money -= Economy.roomCost;
-            //Upgrades.AddNewRoom();
-            if (Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget < 4)
-            {
-                RoomRenderer.GenerateRoom(RoomContainer1);
-            } 
-            else
-            {
-                RoomRenderer.GenerateRoom(RoomContainer2);
-            }
-            //gives the newly created button a method to execute when pressed
-            AssignRoomButtonFunction(Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget);
-            //UpdateUI();
-            //Node2D currentScene = GetParent().GetParent<Node2D>();
-            //Node2D HallwayScene = currentScene.GetParent().GetNode<Node2D>("Hallway");
-            //Hallway hallway = HallwayScene as Hallway;
-            //hallway.UpdateHallwayUI();
-            //DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
+            RoomRenderer.GenerateRoom(RoomContainer1);
+        } 
+        else
+        {
+            RoomRenderer.GenerateRoom(RoomContainer2);
         }
-       // else
+        AssignRoomButtonFunction(Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget);
+    }
+    private void AssignRoomButtonFunction(int roomNum)
+    {
+        //connect the roomButton variable with the actual button in the scene, and assign a method to be executed when pressed
+        if (roomNum < 4)
         {
-			//WarningLabel.Visible = true;
-			//await Task.Delay(2000); // wait 2 seconds before hiding the warning again
-			//WarningLabel.Visible = false;
+            Button roomButton = GetNode("MapMarginContainer").GetNode("RoomContainer").GetNode<Button>("MapRoom" + roomNum.ToString());
+            roomButton.Pressed += () => RoomButtonFunction(roomNum);
+        }
+        else
+        {
+            Button roomButton = GetNode("MapMarginContainer2").GetNode("RoomContainer2").GetNode<Button>("MapRoom" + roomNum.ToString());
+            roomButton.Pressed += () => RoomButtonFunction(roomNum);
         }
     }
-
     private void RoomFastTravel()
     {
         //check inPatientRoom to be true, hide the computer, go to the room corresponding to the most recent room button pressed
@@ -276,24 +272,11 @@ public partial class MapUI : Control
         FastTravel.Pressed += RoomFastTravel;
     } 
 
-    private void AssignRoomButtonFunction(int roomNum)
-    {
-        //connect the roomButton variable with the actual button in the scene, and assign a method to be executed when pressed
-        if (roomNum < 4)
-        {
-            Button roomButton = GetNode("MapMarginContainer").GetNode("RoomContainer").GetNode<Button>("MapRoom" + roomNum.ToString());
-            roomButton.Pressed += () => RoomButtonFunction(roomNum);
-        }
-        else
-        {
-            Button roomButton = GetNode("MapMarginContainer2").GetNode("RoomContainer2").GetNode<Button>("MapRoom" + roomNum.ToString());
-            roomButton.Pressed += () => RoomButtonFunction(roomNum);
-        }
-    }
+    
 
     public void UpdateComputerPatientText(Room room)
     {
-        if(room != null)
+        if(room != null && room.Patient != null)
         {
             PatientInfo.Text = $"Patient info: " +
                        $"\n Malady: {room.Patient.malady.name}" +

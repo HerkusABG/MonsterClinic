@@ -156,6 +156,7 @@ public partial class TreatmentManager : Node
                 {
                     //severity lower than 0? Then fully cure the patient.
                     PatientCured();
+                    //MapUi.UpdateComputerPatientText(Room);
                 }
                 else
                 {
@@ -171,7 +172,7 @@ public partial class TreatmentManager : Node
             }
             //Updating the relevant visual information
             Room.UpdateSprites();
-            if(!Room.GetIsEmpty())
+            //if(!Room.GetIsEmpty())
             {
                 MapUi.UpdateComputerPatientText(Room);
             }

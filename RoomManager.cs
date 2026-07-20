@@ -15,7 +15,7 @@ public static class RoomManager
     public static Node2D FindEmptyRoom()
     {
         //Go through the list of empty rooms and find one.
-        for (int i = 0; i < Upgrades.roomCount; i++)
+        for (int i = 0; i < Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget; i++)
         {
             Room room = RoomList[i] as Room;
             if(!room.HasPatient())
@@ -30,7 +30,7 @@ public static class RoomManager
     {
         //Find all empty rooms.
         int count = 0;
-        for(int i = 0; i < Upgrades.roomCount; i++)
+        for(int i = 0; i < Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget; i++)
         {
             Room room = RoomList[i] as Room;
             if (!room.HasPatient())

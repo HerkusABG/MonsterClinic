@@ -122,7 +122,7 @@ public partial class Hallway : Node2D
 
     public void UpdateHallwayUI()
     {
-        for(int i = 0; i < Upgrades.roomCount; i++)
+        for(int i = 0; i < Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget; i++)
         {
             Doors[i].Disabled = false;
         }

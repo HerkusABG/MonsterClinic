@@ -18,7 +18,7 @@ public partial class RoomStructureRenderer
             newButton.CustomMinimumSize = new Vector2(150, 150);
             //newButton.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
             //newButton.SizeFlagsVertical = Control.SizeFlags.ExpandFill;
-            newButton.Text = $"Room {Upgrades.roomCount}";
+            newButton.Text = $"Room {Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget}";
             //newButton.Position = new Vector2(x + 200, 800);
             //control.AddChild(newButton);
             container.AddChild(newButton);
@@ -28,10 +28,10 @@ public partial class RoomStructureRenderer
     public void GenerateRoom(GridContainer container)
     {
         Button newButton = new Button();
-        newButton.Name = "MapRoom" + Upgrades.roomCount.ToString();
+        newButton.Name = "MapRoom" + Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget.ToString();
         newButton.Modulate = new Color(1, 0, 0, 1);
         newButton.CustomMinimumSize = new Vector2(150, 150);
-        newButton.Text = $"Room {Upgrades.roomCount}";
+        newButton.Text = $"Room {Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget}";
         container.AddChild(newButton);
     }
 }

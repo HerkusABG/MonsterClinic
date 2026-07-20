@@ -78,14 +78,7 @@ static class Upgrades
         }
         ResetAllUpgrades();
     }
-    public static void AddNewRoom()
-	{
-		if (roomCount <= 6)
-		{
-			roomCount++;
-			Economy.roomCost = (int)((float)Economy.roomCost * Economy.roomCostInflation);
-		}
-	}
+   
 	//unlock aspirin, pay for it
     public static void UnlockAspirin()
     {
@@ -129,7 +122,10 @@ static class Upgrades
         if (DoctorInventory.Money >= upgrade.price)
         {
             //increment the count, spend the money
-            upgrade.medicine.unlocked = true;
+            if(upgrade.medicine != null)
+            {
+                upgrade.medicine.unlocked = true;
+            }
             upgrade.unlocked = true;
             upgrade.fullyUnlocked = true;
             DoctorInventory.Money -= upgrade.price;
