@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Reject : Button
+public partial class Reject : TextureButton
 {
     [Export] public Contents_P_I PatientManager; 
 

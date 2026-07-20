@@ -13,17 +13,17 @@ public partial class Contents_P_I : Node2D
     public PatientStats PatientPointer;
     [Export] SpeechManager SpeechManagerAccess;
 
-    Button ReturnButton;
-    Button DialogueButton;
-    Button ZoomButton;
-    Button PulseButton;
-    Button RejectButton;
-    Button AdmitButton;
-    Button VisitButton;
-    Button InventoryButton;
-    Button DiagnosisButton;
-    Button ShotgunButton;
-    Button VisitPatientButton;
+    TextureButton ReturnButton;
+    TextureButton DialogueButton;
+    TextureButton ZoomButton;
+    TextureButton PulseButton;
+    TextureButton RejectButton;
+    TextureButton AdmitButton;
+    TextureButton VisitButton;
+    TextureButton InventoryButton;
+    TextureButton DiagnosisButton;
+    TextureButton ShotgunButton;
+    TextureButton VisitPatientButton;
     VBoxContainer InventoryContainer;
 
     private int patientsLeft;
@@ -89,19 +89,19 @@ public partial class Contents_P_I : Node2D
         //Basically just grabbing all buttons. I have to reference the control because
         //otherwise they wouldn't be found.
         Control control = GetNode<Control>("ControlPatientInterface");
-        ReturnButton = control.GetNode<Button>("Return");
-        DialogueButton = control.GetNode<Button>("Dialogue");
-        ZoomButton = control.GetNode<Button>("Zoom");
-        PulseButton = control.GetNode<Button>("Pulse");
-        RejectButton = control.GetNode<Button>("Reject");
-        AdmitButton = control.GetNode<Button>("Admit");
-        VisitButton = control.GetNode<Button>("VisitPatient");
-        InventoryButton = control.GetNode<Button>("Inventory");
+        ReturnButton = control.GetNode<TextureButton>("Return");
+        DialogueButton = control.GetNode<TextureButton>("Dialogue");
+        ZoomButton = control.GetNode<TextureButton>("Zoom");
+        PulseButton = control.GetNode<TextureButton>("Pulse");
+        RejectButton = control.GetNode<TextureButton>("Reject");
+        AdmitButton = control.GetNode<TextureButton>("Admit");
+        VisitButton = control.GetNode<TextureButton>("VisitPatient");
+        InventoryButton = control.GetNode<TextureButton>("Inventory");
 
         //Going one step deeper for the inventory buttons.
         InventoryContainer = control.GetNode<VBoxContainer>("InventoryContainer");
-        DiagnosisButton = InventoryContainer.GetNode<Button>("Diagnosis");
-        ShotgunButton = InventoryContainer.GetNode<Button>("Shotgun");
+        DiagnosisButton = InventoryContainer.GetNode<TextureButton>("Diagnosis");
+        ShotgunButton = InventoryContainer.GetNode<TextureButton>("Shotgun");
     }
 
     //All the show speech methods are just calling the speech manager and

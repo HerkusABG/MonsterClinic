@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Admit : Button
+public partial class Admit : TextureButton
 {
     // called when the node enters the scene tree for the first time.
     [Export] public Contents_P_I PatientManager;
