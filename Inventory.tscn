@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bpbh60enepajt" path="res://Scripts/AlwaysOnScreen/Tablet/Inventory/Inventory.cs" id="1_3n7vm"]
 [ext_resource type="Texture2D" uid="uid://0p8gc3ax8rmb" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Pocket_Blockout.png" id="2_0261c"]
-[ext_resource type="Texture2D" uid="uid://ck5pltj8yh3oh" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_Blockout.png" id="2_ki15f"]
 [ext_resource type="Texture2D" uid="uid://dfwx6gwwanux4" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Closed_Blockout (1).png" id="2_y13mq"]
 [ext_resource type="Texture2D" uid="uid://cfje0d52rdwyx" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Closed_Blockout (2).png" id="3_d2uli"]
 [ext_resource type="Texture2D" uid="uid://bi1hp683e4pjr" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Open_Blockout.png" id="3_mva8e"]
 [ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_nwt7c"]
-[ext_resource type="Texture2D" uid="uid://b5e6gugoptsp5" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_Antibiotics_HL_Blockout.png" id="4_e3raj"]
 [ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="4_jqulp"]
 [ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="7_y13mq"]
 [ext_resource type="Texture2D" uid="uid://bbyfolabl5n1k" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Label_Counter_Blockout.png" id="9_d2uli"]
@@ -131,174 +129,36 @@ text = "Shotgun"
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = 40.0
-offset_top = 1282.0
+offset_top = 1182.0
 offset_right = 445.0
-offset_bottom = 1691.9999
+offset_bottom = 1591.9999
 texture = ExtResource("2_0261c")
-
-[node name="Give_Medicine_1" type="TextureButton" parent="Open_Inventory" unique_id=701957524]
-visible = false
-z_index = 1
-custom_minimum_size = Vector2(170, 150)
-layout_mode = 0
-offset_left = 52.5
-offset_top = 1290.0
-offset_right = 284.80762
-offset_bottom = 1526.0
-scale = Vector2(1.625, 1.625)
-disabled = true
-texture_normal = ExtResource("2_ki15f")
-texture_hover = ExtResource("4_e3raj")
-
-[node name="Med1_Name" type="Label" parent="Open_Inventory/Give_Medicine_1" unique_id=1879938275]
-layout_mode = 0
-offset_left = 1.5384474
-offset_top = 43.07693
-offset_right = 210.76941
-offset_bottom = 252.30765
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_nwt7c")
-theme_override_font_sizes/font_size = 60
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Stripe" type="TextureRect" parent="Open_Inventory/Give_Medicine_1" unique_id=1503999197]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 92.30769
-offset_right = 250.0
-offset_bottom = 262.30768
-texture = ExtResource("9_d2uli")
-
-[node name="Med1_Count" type="Label" parent="Open_Inventory/Give_Medicine_1/Stripe" unique_id=3737459]
-layout_mode = 0
-offset_left = 43.076912
-offset_top = 3.07693
-offset_right = 252.30786
-offset_bottom = 212.30765
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_nwt7c")
-theme_override_font_sizes/font_size = 60
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="EmptySlot2" type="TextureRect" parent="Open_Inventory" unique_id=129431925]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = 40.0
-offset_top = 890.0
+offset_top = 790.0
 offset_right = 445.0
-offset_bottom = 1300.0
+offset_bottom = 1200.0
 texture = ExtResource("2_0261c")
-
-[node name="Give_Medicine_2" type="TextureButton" parent="Open_Inventory" unique_id=99301570]
-visible = false
-z_index = 1
-custom_minimum_size = Vector2(170, 150)
-layout_mode = 0
-offset_left = 52.5
-offset_top = 890.0
-offset_right = 283.2693
-offset_bottom = 1126.0
-scale = Vector2(1.625, 1.625)
-disabled = true
-texture_normal = ExtResource("2_ki15f")
-texture_hover = ExtResource("4_e3raj")
-
-[node name="Med2_Name" type="Label" parent="Open_Inventory/Give_Medicine_2" unique_id=69086619]
-layout_mode = 0
-offset_left = 1.5384474
-offset_top = 41.538467
-offset_right = 210.76941
-offset_bottom = 250.76918
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_nwt7c")
-theme_override_font_sizes/font_size = 60
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Stripe" type="TextureRect" parent="Open_Inventory/Give_Medicine_2" unique_id=453467431]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 96.92307
-offset_right = 250.0
-offset_bottom = 266.92307
-texture = ExtResource("9_d2uli")
-
-[node name="Med2_Count" type="Label" parent="Open_Inventory/Give_Medicine_2/Stripe" unique_id=1785089631]
-layout_mode = 0
-offset_left = 43.076912
-offset_top = 3.07693
-offset_right = 252.30786
-offset_bottom = 212.30765
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_nwt7c")
-theme_override_font_sizes/font_size = 60
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="EmptySlot3" type="TextureRect" parent="Open_Inventory" unique_id=1257392023]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = 40.0
-offset_top = 517.5
+offset_top = 417.49997
 offset_right = 445.0
-offset_bottom = 902.5
+offset_bottom = 802.5
 texture = ExtResource("2_0261c")
-
-[node name="Give_Medicine_3" type="TextureButton" parent="Open_Inventory" unique_id=1701878173]
-visible = false
-z_index = 1
-custom_minimum_size = Vector2(170, 150)
-layout_mode = 0
-offset_left = 52.5
-offset_top = 522.5
-offset_right = 283.2693
-offset_bottom = 748.6539
-scale = Vector2(1.625, 1.625)
-disabled = true
-texture_normal = ExtResource("4_jqulp")
-texture_hover = ExtResource("7_y13mq")
-
-[node name="Med3_Name" type="Label" parent="Open_Inventory/Give_Medicine_3" unique_id=296650180]
-layout_mode = 0
-offset_left = -1.538476
-offset_top = 35.38462
-offset_right = 207.69247
-offset_bottom = 244.61533
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_nwt7c")
-theme_override_font_sizes/font_size = 60
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Stripe" type="TextureRect" parent="Open_Inventory/Give_Medicine_3" unique_id=2024647177]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 80.000046
-offset_right = 250.0
-offset_bottom = 250.00005
-texture = ExtResource("9_d2uli")
-
-[node name="Med3_Count" type="Label" parent="Open_Inventory/Give_Medicine_3/Stripe" unique_id=622812228]
-layout_mode = 0
-offset_left = 43.076912
-offset_top = 3.07693
-offset_right = 252.30786
-offset_bottom = 212.30765
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_nwt7c")
-theme_override_font_sizes/font_size = 60
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="EmptySlot4" type="TextureRect" parent="Open_Inventory" unique_id=1088888419]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = 40.0
-offset_top = 120.0
+offset_top = 19.99997
 offset_right = 445.0
-offset_bottom = 530.0
+offset_bottom = 429.99997
 texture = ExtResource("2_0261c")
 
 [node name="Close" type="Button" parent="Open_Inventory" unique_id=1292431923]
@@ -316,9 +176,9 @@ text = "X"
 [node name="InventoryPositions" type="Control" parent="Open_Inventory" unique_id=420312018]
 anchors_preset = 0
 offset_left = 222.49998
-offset_top = 294.99994
+offset_top = 194.99991
 offset_right = 262.5
-offset_bottom = 334.99994
+offset_bottom = 234.99991
 
 [node name="InventoryControl1" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=464793263]
 anchors_preset = 0
@@ -347,6 +207,30 @@ offset_left = 114.99999
 offset_top = 1300.0
 offset_right = 155.0
 offset_bottom = 1340.0
+
+[node name="Up" type="Button" parent="Open_Inventory" unique_id=1442244285]
+layout_mode = 0
+offset_left = 55.0
+offset_top = -62.5
+offset_right = 205.0
+offset_bottom = -25.5
+scale = Vector2(2.5, 2.5)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ny8ul")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r8i0v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_trmqt")
+text = "/\\"
+
+[node name="Down" type="Button" parent="Open_Inventory" unique_id=173468292]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 1582.5
+offset_right = 205.0
+offset_bottom = 1619.5
+scale = Vector2(2.5, 2.5)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ny8ul")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r8i0v")
+theme_override_styles/hover = SubResource("StyleBoxFlat_trmqt")
+text = "\\/"
 
 [node name="Treatment_Manager" type="Node" parent="." unique_id=1061490128]
 script = ExtResource("12_ny8ul")

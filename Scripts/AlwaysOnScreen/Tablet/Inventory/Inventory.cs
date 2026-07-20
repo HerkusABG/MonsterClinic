@@ -116,7 +116,8 @@ public partial class Inventory : Node2D
         //Logic used to update everything inventory related.
 
         //Running the update for each of the inventory instances.
-        for (int i = 0; i < InventoryInstances.Count; i++)
+        //for (int i = 0; i < InventoryInstances.Count; i++)
+        for (int i = 1; i < 2; i++)
         {
             //Render the medicine text
             RenderMedicine(InventoryInstances[i]);
@@ -142,8 +143,49 @@ public partial class Inventory : Node2D
     public void UpdateInventory(InventoryUiInstance instance)
     {
         List<MedicineButton> buttons = instance.MedicineButtons;
+
+        int index = 0;
+        int visibleSlots = instance.Slots.Count;
+        for (int i = 0; i < MedicineManager.Database.Count; i++)
+        {
+            Medicine medicine = MedicineManager.Database.ElementAt(i).Value;
+            if (medicine.amount > 0 && visibleSlots > 0)
+            {
+                if (!DoesButtonAlreadyExist(medicine, instance))
+                {
+                    //If no, then assign a new button to represent the medicine
+                    InventorySlot slot = FindEmptySlot(instance);
+                    if (slot == null)
+                    {
+                        GD.Print("ERROR IN INVENTORY.CS, NULL");
+                        return;
+                    }
+                    buttons[index].AssignToSlot(slot, medicine);
+                    visibleSlots--;
+                    TreatmentManager.AddSubscription(instance.MedicineButtons[index]);
+                    index++;
+                }
+            }
+            else
+            {
+                //Medicine count is 0 or less
+               /* if (DoesButtonAlreadyExist(medicine, instance))
+                {
+                    //If the button exists, it should stop being rendered.
+                    TreatmentManager.RemoveSubscription(instance.MedicineButtons[i]);
+                    buttons[i].RemoveFromSlot();
+                }*/
+            }
+        }
+
+
+
+        /*List<MedicineButton> buttons = instance.MedicineButtons;
+        GD.Print($"Buttons count: {buttons.Count}");
         //For each button on the list
-        for (int i = 0; i < buttons.Count; i++)
+        //for (int i = 0; i < buttons.Count; i++)
+        int index = 0;
+        for (int i = 0; i < MedicineManager.Database.Count; i++)
         {
             Medicine medicine = MedicineManager.Database.ElementAt(i).Value;
             //Medicine count larger than 0?
@@ -160,8 +202,9 @@ public partial class Inventory : Node2D
                         GD.Print("ERROR IN INVENTORY.CS, NULL");
                         return;
                     }
-                    buttons[i].AssignToSlot(slot, medicine);
-                    TreatmentManager.AddSubscription(instance.MedicineButtons[i]);
+                    buttons[index].AssignToSlot(slot, medicine);
+                    index++;
+                    //TreatmentManager.AddSubscription(instance.MedicineButtons[index]);
                 }
             }
             else
@@ -174,8 +217,8 @@ public partial class Inventory : Node2D
                     buttons[i].RemoveFromSlot();
                 }
             }
+        }*/
         }
-    }
     //you can also press the inventory to open it
     private void InventoryToggle()
 	{
@@ -222,6 +265,7 @@ public partial class Inventory : Node2D
 
     private void RenderMedicine(InventoryUiInstance instance)
     {
+        GD.Print("Render buttons called");
         List<MedicineButton> buttons = instance.MedicineButtons;
         //Going through each button in the list
         for (int i = 0; i < buttons.Count; i++)
@@ -232,6 +276,7 @@ public partial class Inventory : Node2D
             {
                 //If yes, update the text
                 buttons[i].RenderText(medicine);
+                GD.Print($"My type is {buttons[i].GetMedicineType().name}");
             }
         }
     }
