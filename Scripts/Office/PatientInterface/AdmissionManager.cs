@@ -28,7 +28,7 @@ public partial class AdmissionManager : Node
         //Logic for admitting the patient.
         Node mainNode = GetParent().GetParent();
         if (IsClinicFull()) //  <----- Is the clinic full?
-       {
+        {
             //If yes, then find an empty room for the new patient!
             var roomNode = RoomManager.FindEmptyRoom(); 
             if (roomNode != null)
@@ -44,7 +44,6 @@ public partial class AdmissionManager : Node
                 //Checking to see if the clinic is full (again)
 
                 // Added stuff for the patient sprite at the window
-                PatientQueueLogic(); 
                 UpdateWindowStatus();
 
                 IsClinicFull();

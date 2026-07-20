@@ -11,8 +11,8 @@ public static class TagList
             {
                 TagType.Daily
             },
-            increment = 2,
-            strength = 1
+            increment = 1,
+            strength = 2
         },
         ["Healing"] = new HealingTag
         {

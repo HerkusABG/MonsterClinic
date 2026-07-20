@@ -29,6 +29,7 @@ public partial class Contents_C : Node2D
     Label SpecialOffersWindow;
     VBoxContainer SpecialOffersList;
 
+    Button BodyDisposalButton;
     Button SelfTreatmentButton;
     Label InsufficientFunds;
     Button CloseFundsPopup;
@@ -92,6 +93,7 @@ public partial class Contents_C : Node2D
         SpecialOffersWindow = DealerWindow.GetNode<Label>("Special_Offers_Window");
         SpecialOffersList = SpecialOffersWindow.GetNode<VBoxContainer>("Special_Offers_List");
         SelfTreatmentButton = SpecialOffersList.GetNode<Button>("SelfTreatment");
+        BodyDisposalButton = SpecialOffersList.GetNode<Button>("BodyDisposal");
 
         CloseUpgrades = UpgradesWindow.GetNode<Button>("Close");
         TreatmentResourcesButton = DealerWindow.GetNode<Button>("Treatment_Resources_Button");
@@ -147,7 +149,7 @@ public partial class Contents_C : Node2D
         DownButtonUpgrades.Pressed += () => UpgradeMenuNavigation(1);
 
 
-
+        BodyDisposalButton.Pressed += BodyDisposal;
         DealerButton.Pressed += ShowDealerWindow;
         MapButton.Pressed += ShowMapWindow;
         CatalogueButton.Pressed += ShowCatalogueWindow;
@@ -284,6 +286,9 @@ public partial class Contents_C : Node2D
     private void ShowDealerWindow()
     {
         DealerWindow.Show();
+        ResourcesWindow.Hide();
+        UpgradesWindow.Hide();
+        SpecialOffersWindow.Hide();
     }
 
     private void ShowMapWindow()
@@ -349,6 +354,10 @@ public partial class Contents_C : Node2D
         ResourcesWindow.Hide();
         UpgradesWindow.Hide();
         SpecialOffersWindow.Show();
+        UpdateBodyDisposalButton();
+        SelfTreatmentButton.Text = "Self Treatment \n (Price:" + GlobalData.MedicineCost + ")\n " +
+            "\n Owned: " + GlobalData.MedicinePlayer.ToString() + " " +
+            "\n availability in: " + GlobalData.Medicincavailability.ToString();
     }
 
     private void ShowInsufficientFunds()
@@ -361,25 +370,27 @@ public partial class Contents_C : Node2D
         DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
     }
     
-    private void _on_resources_window_visibility_changed()
+    private void UpdateBodyDisposalButton()
     {
-        if (ResourcesWindow.Visible)
+        int count = RoomManager.GetDeadPatientCount();
+        int cost = Economy.bodyDisposalCost * count;
+        BodyDisposalButton.Text = $"Dispose of {count} dead patients \n Price: {cost}";
+        BodyDisposalButton.Disabled = count <= 0;
+    }
+
+    private void BodyDisposal()
+    {
+        Room[] deadRooms = RoomManager.GetAllDeadPatients();
+        int count = RoomManager.GetDeadPatientCount();
+        for (int i = 0; i < count; i++)
         {
-            if (Upgrades.AspirinUnlock == true)
-            {
-                //BuyMedicine2Button.Disabled = false;
-                //BuyMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
-            }
-            else
-            {
-                //BuyMedicine2Button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Currently unavailable";
-            }
-
-            //BuyMedicine1Button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
-            //BuyMedicine3Button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
-
-            SelfTreatmentButton.Text = "Self Treatment \n (Price:" + GlobalData.MedicineCost + ")\n \n Owned: " + GlobalData.MedicinePlayer.ToString() + " \n availability in: " + GlobalData.Medicincavailability.ToString();
+            GlobalData.patientCount--;
+            Room deadRoom = deadRooms[i];
+            //Room deadRoom = RoomManager.FindDeadPatient();
+            deadRoom.SetAlreadyTreated(false);
+            deadRoom.DeletePatient();
         }
+        UpdateBodyDisposalButton();
     }
     private void BuyMedicine(Button button)
     {

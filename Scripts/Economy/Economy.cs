@@ -9,6 +9,7 @@ static class Economy
 
 	public static int roomCost = 50;
 	public static float roomCostInflation = 1.5f;
+	public static int bodyDisposalCost = 100;
 
 	//should theoretically increase the cost by 50% everytime
 	public static void IncreaseRoomCost()

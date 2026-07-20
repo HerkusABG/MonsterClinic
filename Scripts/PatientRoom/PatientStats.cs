@@ -28,7 +28,8 @@ public partial class PatientStats
         AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count - 1)).Value);
         if (malady.severity == -1)
         {
-            malady.severity = rnd.Next(2, 3);
+            //malady.severity = rnd.Next(2, 5);
+            malady.severity = rnd.Next(4, 5);
         }
         isAlive = true;
         patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
@@ -143,7 +144,6 @@ public partial class PatientStats
 
     public void KillPatient()
     {
-        GD.Print("killing the patient");
         isAlive = false;
     }
 

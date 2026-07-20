@@ -444,20 +444,17 @@ offset_top = 134.0
 offset_right = 345.0
 offset_bottom = 746.0
 
-[node name="Upgrade1" type="Button" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List" unique_id=1533367960]
-visible = false
+[node name="SelfTreatment" type="Button" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List" unique_id=1564459406]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-text = "Unlock Aspirin for purchase
+text = "Buy Self Treatment
+Price: 200"
 
-Price: 50"
-script = ExtResource("3_5uut4")
-
-[node name="SelfTreatment" type="Button" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List" unique_id=1564459406]
+[node name="BodyDisposal" type="Button" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List" unique_id=1791540]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
