@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public partial class AdmissionManager : Node
@@ -16,12 +17,24 @@ public partial class AdmissionManager : Node
 
     Node2D LatestRoom = null;
 
+    private List<StoryPatientStats> StoryPatientsLeft = new List<StoryPatientStats>();
+
+    //need to store where in the StoryPatientsLeft list we got the current patient from, so we can remove them when we admit them
+    private int storyPatientsLeftPosition;
+
     public void Initialize()
     {
         NullPatientInitialize();
 
         // Added stuff for the patient sprite at the window
-        UpdateWindowStatus();  
+        UpdateWindowStatus();
+
+        //grab all the story patients and put them in a list
+        for (int i = 0; i < StoryPatientList.Database.Count; i++)
+        {
+            StoryPatientsLeft.Add(StoryPatientList.Database.ElementAt(i).Value);
+            StoryPatientsLeft[i].AddInfo();
+        }
     }
     public void Admit()
     {
@@ -38,6 +51,11 @@ public partial class AdmissionManager : Node
                 //Assign patient to room
                 room.AssignPatient(PatientAdmission.PatientPointer);
                 GlobalData.patientCount++;
+                //if we're admitting a story patient, remove them from the list so they don't come back
+                if (PatientAdmission.PatientPointer is StoryPatientStats)
+                {
+                    StoryPatientsLeft.RemoveAt(storyPatientsLeftPosition);
+                }
 
                 //This method is needed to make the visit button work.
                 SetLatestPatientRoom(room);
@@ -126,20 +144,23 @@ public partial class AdmissionManager : Node
     {
         //Create a new instance of a patient.
         PatientStats patientStats;
+        StoryPatientStats storyPatientStats;
         Random random = new Random();
         int odds = random.Next(10);
-        if (odds > 9) //|| StoryPatientList.StoryPatientsLeft == 0)
+        //based on the odds, or if there's no story patients left, make a normal one
+        if (odds > 8 || StoryPatientsLeft.Count == 0)
         {
             patientStats = new PatientStats();
+            InternalPatient = patientStats;
+            return patientStats;
+        //else, make a story patient
         } else
         {
-            int rnd = random.Next(0, StoryPatientList.Database.Count);
-            patientStats = StoryPatientList.Database.ElementAt(rnd).Value;
-            StoryPatientList.Database.ElementAt(rnd).Value.arrived = true;
-            StoryPatientList.StoryPatientsLeft--;
+            storyPatientsLeftPosition = random.Next(0, StoryPatientsLeft.Count);
+            storyPatientStats = StoryPatientsLeft[storyPatientsLeftPosition];
+            InternalPatient = storyPatientStats;
+            return storyPatientStats;
         }
-        InternalPatient = patientStats;
-        return patientStats;
     }
 
     public void SetLatestPatientRoom(Node2D room)

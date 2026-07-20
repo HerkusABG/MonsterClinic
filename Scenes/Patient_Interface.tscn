@@ -167,6 +167,7 @@ offset_bottom = 454.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_kqp7s")
+autowrap_mode = 2
 
 [node name="Return" type="Button" parent="ControlPatientInterface" unique_id=294028163]
 custom_minimum_size = Vector2(210, 100)

@@ -2,18 +2,16 @@ using Godot;
 using System;
 using System.Linq;
 
+//am extension of the patientStats class, with additions for story patients
 public partial class StoryPatientStats : PatientStats
 {
     public string name;
-    public bool arrived;
     public string entrySpeech;
 
-    public StoryPatientStats()
+    //little method for adding data common to all story patients
+    public void AddInfo()
     {
         patientID += " (Story)";
-        arrived = false;
-        Random rnd = new Random();
-        malady = new Malady();
         isAlive = true;
     }
 }
