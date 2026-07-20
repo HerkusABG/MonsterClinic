@@ -56,7 +56,6 @@ public partial class Hallway : Node2D
                 doorIndex++;
                 childButton.Pressed += () => GoToRoom(doorButton.doorId);
                 //childButton.Pressed += treatment.ShowUI;
-                childButton.Pressed += main.InventoryPatientRoom;
                 childButton.Disabled = true;
             }
         }
@@ -70,9 +69,11 @@ public partial class Hallway : Node2D
         var RoomScene = RoomManager.RoomList[index];
         RoomScene.Show();
         Room room = RoomScene as Room;
-        room.OnRoomEnter();
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
-       
+
+        //room.OnRoomEnter();
+        room.OnRoomEnter();
+
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
        
         treatment.SetTreatmentRoomReference(room);
@@ -92,8 +93,9 @@ public partial class Hallway : Node2D
         var RoomScene = roomInput;
         RoomScene.Show();
         Room room = RoomScene as Room;
-        room.OnRoomEnter();
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+
+        room.OnRoomEnter();
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         treatment.SetTreatmentRoomReference(room);
         inv.InventoryActions();

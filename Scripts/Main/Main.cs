@@ -142,32 +142,23 @@ public partial class Main : Node
         }
         else
         {
-            Inventory.Hide();
+            if (!GlobalData.inPatientRoom)
+            {
+                Inventory.Hide();
+            }
         }
     }
 
     private void _on_room_visibility_changed()
     {
         if (Treatment == null) return;
-        var GiveMedicine1Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
-        var GiveMedicine2Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
-        var GiveMedicine3Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
         if (GlobalData.inPatientRoom)
         {
             Inventory.Show();
-            //if (GlobalData.DailyLockout == false)
-            //enable the GiveMedicine buttons when entering the patient room if the lockout is disabled
-            GiveMedicine1Button.Disabled = false;
-            GiveMedicine2Button.Disabled = false;
-            GiveMedicine3Button.Disabled = false;
         }   
         else
         {
             Inventory.Hide();
-            GiveMedicine1Button.Disabled = true;
-            GiveMedicine2Button.Disabled = true;
-            GiveMedicine3Button.Disabled = true;
-
         }
     }
 
@@ -176,32 +167,6 @@ public partial class Main : Node
         if (Computer.Visible)
         {
             Inventory.Hide();
-        }
-    }
-
-    public void InventoryPatientRoom()
-    {
-        var GiveMedicine1Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
-        var GiveMedicine2Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
-        var GiveMedicine3Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
-        if (GlobalData.inPatientRoom)
-        {
-            Inventory.Show();
-            //if (GlobalData.DailyLockout == false)
-            if (!Treatment.GetRoom().GetAlreadyTreated() == true)
-            {
-                //enable the GiveMedicine buttons when entering the patient room if the lockout is disabled
-                GiveMedicine1Button.Disabled = false;
-                GiveMedicine2Button.Disabled = false;
-                GiveMedicine3Button.Disabled = false;
-            }
-        }
-        else
-        {
-            Inventory.Hide();
-            GiveMedicine1Button.Disabled = true;
-            GiveMedicine2Button.Disabled = true;
-            GiveMedicine3Button.Disabled = true;
         }
     }
 }

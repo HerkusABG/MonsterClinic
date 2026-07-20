@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
 public partial class Room : Node2D 
@@ -22,6 +23,8 @@ public partial class Room : Node2D
 
     //boolean that checks whether you can treat the patient.
     private bool notYetTreated = true;
+
+    Inventory invy;
 
     public void Initialize(Action HideUIAction)
     {
@@ -55,6 +58,7 @@ public partial class Room : Node2D
         
         UpdateSprites();
     }
+
     private void HoverOff()
     {
         //makes the text disappear when you stop hovering
