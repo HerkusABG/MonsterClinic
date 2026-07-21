@@ -8,7 +8,7 @@ public partial class ScrollCatalog : ScrollContainer
     [Export] public PackedScene SlotUI;
 
     // loads the Malady Catalog Slot UI scene and the Folder scene
-    [Export] PackedScene SlotUIMalady = ResourceLoader.Load<PackedScene>("res://Cataloag_Malady/malady_catalog_slot_ui.tscn");
+    [Export] PackedScene SlotUIMalady = ResourceLoader.Load<PackedScene>("res://Scenes/malady_catalog_slot_ui.tscn");
     [Export] PackedScene Folders = ResourceLoader.Load<PackedScene>("res://Cataloag_Malady/folder.tscn");
     // loads the Malady_Autoload script to access the list of maladies(ListMaladies)
     public Malady_Autoload MaladyData;
