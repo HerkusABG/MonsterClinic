@@ -283,7 +283,6 @@ public partial class MapUI : Control
 
     private void RoomButtonFunction(int roomNum)
     {
-        GD.Print("Clicked on room");
         //show room info, set curretnRoomNum to the room we are now dealing with
         RoomInfo.Show();
         currentRoomNum = roomNum;
