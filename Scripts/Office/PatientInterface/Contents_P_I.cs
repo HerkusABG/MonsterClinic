@@ -126,9 +126,19 @@ public partial class Contents_P_I : Node2D
     //displaying different information pulled from the PatientStats class.
     //In the future this could probably be done in a more sleek way, but for now it's functional.
 
+
+
     private void ShowSpeechDialogue()
     {
-        SpeechManagerAccess.SpeechText(PatientPointer.GetDialogue());
+        //if the patient is their story patient, they do their lil intro
+        if (PatientPointer is StoryPatientStats)
+        {
+            SpeechManagerAccess.SpeechText(((StoryPatientStats)PatientPointer).entrySpeech);
+        }
+        else
+        {
+            SpeechManagerAccess.SpeechText(PatientPointer.GetDialogue());
+        }
     }
   
     private void ShowSpeechZoom()

@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="9_vjhme"]
 [ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="10_gbitc"]
 [ext_resource type="Script" uid="uid://cgma1l84y5gfp" path="res://MedicineButton.cs" id="11_554if"]
+[ext_resource type="PackedScene" uid="uid://drw087si7s5t6" path="res://Scenes/malady_catalog_slot_ui.tscn" id="13_qk5mf"]
 [ext_resource type="Script" uid="uid://08n5ukorqdyk" path="res://Scripts/Office/Computer/ScrollCatalog.cs" id="15_vbt5y"]
 [ext_resource type="Script" uid="uid://bho5a8iwfj3pn" path="res://Scripts/Office/Computer/MapUI.cs" id="16_l232m"]
 
@@ -898,6 +899,14 @@ layout_mode = 2
 theme_override_constants/h_separation = 274
 theme_override_constants/v_separation = 222
 columns = 6
+
+[node name="MaladyCatalogSlotUi" parent="Player_Interactables_C/Malady_PH" unique_id=149421627 instance=ExtResource("13_qk5mf")]
+layout_mode = 1
+offset_left = 874.0
+offset_top = 37.0
+offset_right = -100.0
+offset_bottom = 37.0
+scale = Vector2(1, 0.84000045)
 
 [node name="MapUI" type="CanvasLayer" parent="." unique_id=2110428934]
 

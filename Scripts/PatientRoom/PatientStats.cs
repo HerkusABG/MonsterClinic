@@ -14,7 +14,7 @@ public partial class PatientStats
     public Color PortraitColor;
 
     // Also defining a bool that tracks if the patient is alive, in case he gets SHOT
-    private bool isAlive;
+    public bool isAlive;
 
     public Malady malady;
     private Room myRoom;
@@ -53,7 +53,7 @@ public partial class PatientStats
     public bool TryCurePatient(Medicine inputMedicine)
     {
         bool isSuccessful = malady.cures.Contains(inputMedicine);
-        if(isSuccessful)
+        if (isSuccessful)
         {
             malady.severity--;
             //TriggerInteractionTags();
@@ -63,12 +63,12 @@ public partial class PatientStats
 
     public bool IsPatientCured()
     {
-       return malady.severity <= 1;
+        return malady.severity <= 1;
     }
     public string GetDialogue()
     {
         //Grab generic dialogue.
-        if(malady.dialogueSymptoms.Count > 0)
+        if (malady.dialogueSymptoms.Count > 0)
         {
             string returnDialogue = malady.dialogueSymptoms[0].quotes[0];
             return returnDialogue;
@@ -124,7 +124,7 @@ public partial class PatientStats
 
     private void CheckLifeStatus()
     {
-        if(malady.severity <= 1)
+        if (malady.severity <= 1)
         {
             myRoom.PatientCuredInAbsence();
         }
@@ -151,6 +151,7 @@ public partial class PatientStats
     {
         myRoom = room;
     }
+
 }
     
 
