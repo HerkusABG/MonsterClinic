@@ -447,6 +447,7 @@ offset_bottom = 1000.0
 mouse_filter = 2
 
 [node name="Malady_PH" type="Label" parent="Player_Interactables_C" unique_id=1235186100]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 40.0
@@ -472,9 +473,10 @@ anchor_bottom = 0.0
 offset_left = 881.0
 offset_top = -4.0
 offset_right = 1792.0
-offset_bottom = 1016.0
+offset_bottom = 964.0
 grow_horizontal = 1
 grow_vertical = 1
+scale = Vector2(1, 0.9200003)
 
 [node name="Close" type="Button" parent="Player_Interactables_C/Malady_PH" unique_id=779862827]
 layout_mode = 0
