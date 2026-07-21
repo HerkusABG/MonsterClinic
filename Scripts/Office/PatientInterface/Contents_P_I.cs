@@ -173,31 +173,7 @@ public partial class Contents_P_I : Node2D
         var speech = SpeechManagerAccess.GetNode<Label>("SpeechBubble");
         speech.Hide();
     }
-    //Toggling the inventory, pretty simple.
-    private void ToggleInventory()
-    {
-        InventoryContainer.Visible = !InventoryContainer.Visible;
-        if(!PatientPointer.IsPatientAlive())
-        {
-            //ShotgunButton.Disabled = true;
-        }
-        else
-        {
-            //ShotgunButton.Disabled = false;
-        }
-    }
-   
-    //For now killing the patient doesn't have any advanced functionality. Just showing the sprites.
-    private void KillPatient()
-    {
-        if(PatientPointer.IsPatientAlive())
-        {
-            //PatientPointer.isAlive = false;
-            PatientPointer.KillPatient();
-            DeceasedSprite1.Show();
-        }
-    }
-
+  
     private void _on_deceased_sprite_visibility_changed()
     {
         //since now the shotgun is in a different scene, we can't easily access the local instance of PatientStats when using it anymore, 
@@ -220,6 +196,9 @@ public partial class Contents_P_I : Node2D
         var OfficeScene = (Node2D)GetParent().GetNode("Office");
         OfficeScene.Show();
         GlobalData.PreviousScenes.Pop();
+        GlobalData.inPatientAdmission = false;
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        inv.InventoryActions();
 
         int patients = AdmissionManagerAccess.HowManyPatientsLeft();
         GlobalData.IsPatientInWindow = (patients > 0);
@@ -229,6 +208,27 @@ public partial class Contents_P_I : Node2D
     {
         //Stuff that happens when the reject button is pressed.
         NextPatient();
+    }
+
+    public void ShootPatient()
+    {
+        if(GlobalData.inPatientRoom)
+        {
+            GD.Print("patient SHOT");
+        }
+        else if(GlobalData.inPatientAdmission)
+        {
+            int patients = AdmissionManagerAccess.HowManyPatientsLeft();
+            if (patients >= 0)
+            {
+                OnRejectPressed();
+                SpeechManagerAccess.SpeechText("Patient killed. Sending in the next patient.");
+            }
+            else
+            {
+                SpeechManagerAccess.SpeechText("No more patients!");
+            }
+        }
     }
 
     private void OnAdmitPressed()
@@ -303,6 +303,9 @@ public partial class Contents_P_I : Node2D
 
     private void Visit()
     {
+        GlobalData.inPatientAdmission = false;
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        inv.InventoryActions();
         //Visit button logic.
         SpeechManagerAccess.SetBubbleStatus(false);
         //For making the RMB "go back to last room" stuff work

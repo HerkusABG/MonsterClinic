@@ -12,6 +12,8 @@ public static class GlobalData
     public static int Player_Ingame_Days = 0;
 
     public static bool inPatientRoom = false;
+
+    public static bool inPatientAdmission = false;
     public static int Countdown { get; set; } = 7;
 
     // self treatment medicine for the player -> the cost and availibility so the player cant spamm the selftreatment

@@ -31,6 +31,8 @@ public partial class Inventory : Node2D
 
     private int inventoryIndex = 0;
 
+    Contents_P_I PatientInterface;
+
 	// Called when the node enters the scene tree for the first time.
     public void Initialize()
     {
@@ -42,7 +44,7 @@ public partial class Inventory : Node2D
         Subscribe();
 
         //disables the shotgun until we're in the patient room
-        ShotgunButton.Disabled = true;
+        //ShotgunButton.Disabled = true;
 
     }
 
@@ -70,6 +72,7 @@ public partial class Inventory : Node2D
 	{
         //Basically just grabbing all the nodes
         MapUi = GetTree().Root.GetNode("Main").GetNode("Computer").GetNode("Player_Interactables_C").GetNode<MapUI>("MapControl");
+        PatientInterface = GetTree().Root.GetNode("Main").GetNode("Patient_Interface") as Contents_P_I;
         InventoryButton = GetNode<TextureButton>("Inventory_Button");
 		OpenInventory = GetNode<TextureRect>("Open_Inventory");
 		ShotgunButton = OpenInventory.GetNode<Button>("Shotgun");
@@ -179,6 +182,14 @@ public partial class Inventory : Node2D
     }
     public void InventoryActions()
     {
+        if (GlobalData.inPatientAdmission || GlobalData.inPatientRoom)
+        {
+            ShotgunButton.Disabled = false;
+        }
+        else
+        {
+            ShotgunButton.Disabled = true;
+        }
         //Logic used to update everything inventory related.
 
         //Running the update for each of the inventory instances.
@@ -285,6 +296,8 @@ public partial class Inventory : Node2D
 	{
         //Turn the inventory on/off.
         InventoryActions();
+        //ShotgunButton.Disabled = !shotgunEnabled;
+        
         OpenInventory.Visible = !OpenInventory.Visible;
     }
 
@@ -292,14 +305,16 @@ public partial class Inventory : Node2D
     private void KillPatient()
     {
         //CURRENTLY NOT FUNCTIONAL
-        var PatientAdmission = GetParent().GetNode<Node2D>("Patient_Interface");
+        /*var PatientAdmission = GetParent().GetNode<Node2D>("Patient_Interface");
         var patientRoomSprites = PatientAdmission.GetNode<Node2D>("Sprites_PH");
         var DeceasedSprite1 = patientRoomSprites.GetNode<Sprite2D>("Deceased_Sprite");
         var DeceasedSprite2 = patientRoomSprites.GetNode<Sprite2D>("Deceased_Sprite_2");
 
         DeceasedSprite1.Show();
         DeceasedSprite2.Show();
-        ShotgunButton.Disabled = true;
+        ShotgunButton.Disabled = true;*/
+
+        PatientInterface.ShootPatient();
     }
 
     //disable the shotgun if we're not in the patient admission room

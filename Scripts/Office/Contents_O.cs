@@ -41,6 +41,7 @@ public partial class Contents_O : Node2D
 		Hide();
 		var ComputerScene = (Node2D)GetParent().GetNode("Computer");
 		ComputerScene.Show();
+        GlobalData.inPatientAdmission = false;
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(ComputerScene.GetPath());
 	}
@@ -56,6 +57,10 @@ public partial class Contents_O : Node2D
 
         Hallway hallway = GetParent().GetNode<Hallway>("Hallway");
         hallway.UpdateHallwayUI();
+
+        GlobalData.inPatientAdmission = true;
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        inv.InventoryActions();
 
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(PatientScene.GetPath());
@@ -73,6 +78,8 @@ public partial class Contents_O : Node2D
 
         Hallway hallway = GetParent().GetNode<Hallway>("Hallway");
         hallway.UpdateHallwayUI();
+
+        GlobalData.inPatientAdmission = false;
 
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(HallwayScene.GetPath());
@@ -101,6 +108,8 @@ public partial class Contents_O : Node2D
 
         Inventory inventory = GetParent().GetNode<Inventory>("Inventory");
         inventory.InventoryActions();
+
+        GlobalData.inPatientAdmission = false;
 
         if (GlobalData.Countdown >= 0)
         {

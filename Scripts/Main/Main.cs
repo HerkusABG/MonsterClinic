@@ -90,6 +90,7 @@ public partial class Main : Node
             //if a key is pressed and that key is the right mouse button, and if the pause menu and the office aren't visible
             if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && Office.Visible == false)
             {
+                
                 //pop a scene from the previous scenes stack, this is the scene currently in use
                 var current_scene = (Node2D)GetNode(GlobalData.PreviousScenes.Pop().ToString());
                 //GD.Print(current_scene.Name);
@@ -99,11 +100,15 @@ public partial class Main : Node
                 Room room = current_scene as Room;
                 if(room != null)
                 {
+                    GlobalData.inPatientRoom = false;
+                    Inventory.InventoryActions();
                     Treatment.HideUI();
                 }
                 Contents_P_I patientInterface = current_scene as Contents_P_I;
                 if (patientInterface != null)
                 {
+                    GlobalData.inPatientAdmission = false;
+                    Inventory.InventoryActions();
                     patientInterface.HideSpeechBubble();
                 }
                 //pop a scene again, this is the scene we were previously in
