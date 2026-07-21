@@ -421,15 +421,16 @@ texture = ExtResource("10_6b1vu")
 
 [node name="Close" type="Button" parent="Player_Interactables_C/Malady_PH" unique_id=779862827]
 layout_mode = 0
-offset_left = 1861.0
-offset_top = 20.0
-offset_right = 1911.0
-offset_bottom = 70.0
+offset_left = 1393.0
+offset_top = 197.0
+offset_right = 1485.0
+offset_bottom = 287.0
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
-text = "X"
+icon = ExtResource("17_l7uy0")
+flat = true
 
 [node name="ScrollCatalog" type="ScrollContainer" parent="Player_Interactables_C/Malady_PH" unique_id=1770234032]
 layout_mode = 0

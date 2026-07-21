@@ -10,6 +10,7 @@
 [ext_resource type="StyleBox" uid="uid://dy5fikt614yn7" path="res://Grinch_button.tres" id="7_trmqt"]
 [ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="7_y13mq"]
 [ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scripts/PatientRoom/PatientTreatment/TreatmentManager.cs" id="12_ny8ul"]
+[ext_resource type="FontFile" uid="uid://d076lt4s4m3cn" path="res://Font/uglyhandwriting.ttf" id="13_fgswf"]
 [ext_resource type="Script" uid="uid://cgma1l84y5gfp" path="res://MedicineButton.cs" id="13_r8i0v"]
 [ext_resource type="Texture2D" uid="uid://7jjjvywr424n" path="res://Assets/2D Art/inventory/inventory-pocket-label-number.png" id="13_trmqt"]
 
@@ -123,19 +124,19 @@ text = "Shotgun"
 [node name="EmptySlot1" type="TextureRect" parent="Open_Inventory" unique_id=255516927]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 32.5
-offset_top = 1134.9999
-offset_right = 468.5
-offset_bottom = 1544.9998
+offset_left = 37.5
+offset_top = 1135.0
+offset_right = 473.5
+offset_bottom = 1544.9999
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("5_fgswf")
 
 [node name="EmptySlot2" type="TextureRect" parent="Open_Inventory" unique_id=129431925]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 32.5
+offset_left = 37.5
 offset_top = 785.0
-offset_right = 468.5
+offset_right = 473.5
 offset_bottom = 1195.0
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("5_fgswf")
@@ -143,10 +144,10 @@ texture = ExtResource("5_fgswf")
 [node name="EmptySlot3" type="TextureRect" parent="Open_Inventory" unique_id=1257392023]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 40.0
-offset_top = 457.49994
-offset_right = 476.0
-offset_bottom = 847.49994
+offset_left = 37.5
+offset_top = 455.0
+offset_right = 473.5
+offset_bottom = 845.0
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("5_fgswf")
 
@@ -154,9 +155,9 @@ texture = ExtResource("5_fgswf")
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = 37.5
-offset_top = 112.49996
+offset_top = 115.0
 offset_right = 473.5
-offset_bottom = 522.49994
+offset_bottom = 525.0
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("5_fgswf")
 
@@ -181,31 +182,31 @@ offset_bottom = 44.99994
 
 [node name="InventoryControl1" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=464793263]
 anchors_preset = 0
-offset_left = 135.0
-offset_top = 112.50003
-offset_right = 175.00002
-offset_bottom = 152.50003
+offset_left = 100.0
+offset_top = 120.0
+offset_right = 140.00002
+offset_bottom = 160.0
 
 [node name="InventoryControl2" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=1721244620]
 anchors_preset = 0
-offset_left = 125.0
-offset_top = 497.50006
-offset_right = 165.0
-offset_bottom = 537.5001
+offset_left = 100.0
+offset_top = 455.0
+offset_right = 140.0
+offset_bottom = 495.00006
 
 [node name="InventoryControl3" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=990366297]
 anchors_preset = 0
-offset_left = 137.5
-offset_top = 899.99994
-offset_right = 177.5
-offset_bottom = 939.99994
+offset_left = 100.0
+offset_top = 787.5
+offset_right = 140.0
+offset_bottom = 827.5
 
 [node name="InventoryControl4" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=672183547]
 anchors_preset = 0
-offset_left = 137.5
-offset_top = 1297.5001
-offset_right = 177.5
-offset_bottom = 1337.5001
+offset_left = 100.0
+offset_top = 1137.5
+offset_right = 140.0
+offset_bottom = 1177.5
 
 [node name="Up" type="Button" parent="Open_Inventory" unique_id=1442244285]
 layout_mode = 0
@@ -379,7 +380,7 @@ offset_left = 1722.125
 offset_top = 714.625
 offset_right = 1952.8943
 offset_bottom = 940.7789
-scale = Vector2(1.25, 1.25)
+scale = Vector2(1.4, 1.4)
 disabled = true
 texture_normal = ExtResource("4_jqulp")
 texture_hover = ExtResource("7_y13mq")
@@ -408,13 +409,14 @@ texture = ExtResource("13_trmqt")
 
 [node name="Count" type="Label" parent="Template/Stripe" unique_id=1793362135]
 layout_mode = 0
-offset_left = 43.076912
-offset_top = 3.07693
-offset_right = 252.30786
-offset_bottom = 212.30765
+offset_left = 232.14293
+offset_top = 200.71416
+offset_right = 441.3739
+offset_bottom = 409.9449
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_nwt7c")
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("13_fgswf")
+theme_override_font_sizes/font_size = 100
+text = "12"
 horizontal_alignment = 1
 vertical_alignment = 1
 
