@@ -21,7 +21,7 @@ public partial class MedicineButton : TextureButton
 
     public void AssignToSlot(InventorySlot inputSlot, Medicine inputMedicine)
     {
-        GD.Print("assign to slot called");
+        /*GD.Print("assign to slot called");
         //Setting up all the relevant info so that the button appears
         //In the inventory views.
         //Making sure everybody knows this button is already used for something
@@ -37,7 +37,7 @@ public partial class MedicineButton : TextureButton
         //Render button text based on the medicine type
         RenderText(inputMedicine);
         //Telling the slot that it's occupied
-        slot.SetOccupiedStatus(true);
+        slot.SetOccupiedStatus(true);*/
     }
 
     public void RemoveFromSlot()
