@@ -160,9 +160,11 @@ public partial class Contents_C : Node2D
         CloseResources.Pressed += () => CloseParent(CloseResources);
         CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
         CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
+        CloseDealerWindowButton.Pressed += mapUi.OnMapUiClose;
         CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
         SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
         CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
+        CloseMapWindow.Pressed += mapUi.OnMapUiClose;
         CloseCatalogueWindow.Pressed += () => CloseParent(CloseCatalogueWindow);
 
 
@@ -339,14 +341,14 @@ public partial class Contents_C : Node2D
         UpgradesWindow.Hide();
         ResourcesWindow.Show();
         SpecialOffersWindow.Hide();
-        DealerMenuNavigation(dealerStartingIndex);
+        DealerMenuNavigation(0);
     }
     private void OpenUpgradesWindow()
     {
         ResourcesWindow.Hide();
         UpgradesWindow.Show();
         SpecialOffersWindow.Hide();
-        UpgradeMenuNavigation(upgradeStartingIndex);
+        UpgradeMenuNavigation(0);
     }
 
     private void OpenSpecialOffersWindow()

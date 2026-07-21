@@ -57,12 +57,12 @@ public partial class Main : Node
         //This is where the children get initialized, the next step within the chain.
         RoomManager.Initialize();
         Office.Initialize();
+        Inventory.Initialize();
         Computer.Initialize();
         PatientInterface.Initialize();
         Hallway.Initialize();
         Bed.Initialize();
         PauseMenu.Initialize();
-        Inventory.Initialize();
     }
 
     private void GeneratePatientRooms(Control roomControl)

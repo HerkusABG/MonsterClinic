@@ -34,6 +34,10 @@ public partial class MapUI : Control
     [Export] Control SlotControl;
     [Export] MedicineButton ButtonTemplate;
 
+    public int inventoryIndex = 0;
+    [Export] Button UpButton;
+    [Export] Button DownButton;
+
     private List<InventorySlot> Slots = new List<InventorySlot>();
 
     private List<MedicineButton> MedicineButtons = new List<MedicineButton>();
@@ -49,6 +53,10 @@ public partial class MapUI : Control
         MapOffice.Pressed += MapOfficeFunction;
         MapPatientAdmission.Pressed += MapPatientAdmissionFunction;
         MapHallway.Pressed += MapHallwayFunction;
+
+        UpButton.Pressed += () => InventoryNavigation(-1);
+        DownButton.Pressed += () => InventoryNavigation(1);
+
         UpdateUI();
         WarningLabel.Visible = false;
         //BuyRoomButton.Pressed += OnBuyRoomButtonPressed;
@@ -90,12 +98,21 @@ public partial class MapUI : Control
         MapHallway = GetNode<Button>("Map_Hallway");
         RoomContainer1 = GetNode("MapMarginContainer").GetNode<GridContainer>("RoomContainer");
         RoomContainer2 = GetNode("MapMarginContainer2").GetNode<GridContainer>("RoomContainer2");
+    }
 
+    public void OnMapUiClose()
+    {
+        CloseRoomInfo();
     }
 
     private void CloseRoomInfo()
     {
         RoomInfo.Hide();
+        if (FastTravel.IsConnected(Button.SignalName.Pressed, Callable.From(RoomFastTravel)))
+        {
+            FastTravel.Pressed -= RoomFastTravel;
+        }
+        //FastTravel.Pressed -= RoomFastTravel;
     }
 
     private void UpdateUI()
@@ -134,6 +151,37 @@ public partial class MapUI : Control
         {
             Button roomButton = GetNode("MapMarginContainer2").GetNode("RoomContainer2").GetNode<Button>("MapRoom" + roomNum.ToString());
             roomButton.Pressed += () => RoomButtonFunction(roomNum);
+        }
+    }
+    private void InventoryNavigation(int input)
+    {
+        inventoryIndex += input;
+        GD.Print($"index now {inventoryIndex}");
+        Inventory.InventoryActions();
+        //Inventory.NewRenderMedicine(Inventory.InventoryInstances[1], inventoryIndex);
+        //SetNavigationButtonStatus(InventoryInstances[0]);
+    }
+    public void SetNavigationButtonStatus(InventoryUiInstance instance)
+    {
+        if (instance.ActiveSlots.Count <= instance.Slots.Count)
+        {
+            UpButton.Disabled = true;
+            DownButton.Disabled = true;
+        }
+        else
+        {
+            UpButton.Disabled = false;
+            DownButton.Disabled = false;
+        }
+        if (inventoryIndex + instance.Slots.Count > instance.ActiveSlots.Count)
+        {
+            //UpButton.Disabled = true;
+            DownButton.Disabled = true;
+        }
+        if (inventoryIndex <= 0)
+        {
+            UpButton.Disabled = true;
+            //DownButton.Disabled = true;
         }
     }
     private void RoomFastTravel()

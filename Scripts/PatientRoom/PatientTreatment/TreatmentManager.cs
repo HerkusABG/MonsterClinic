@@ -121,15 +121,15 @@ public partial class TreatmentManager : Node
         //Triggered on button press.
         //Grabbing the medicine type, which is stored inside of the button.
         Medicine medicine = inputMedicine;
-        if (!Room.HasPatient())
-        {
-            //No patient -- medicine can't be applied.
-            NoPatientPopup.Show();
-            return;
-        }
         if (Room == null)
         {
             //If we're not in a room we can't apply medicine.
+            NoPatientPopup.Show();
+            return;
+        }
+        if (!Room.HasPatient())
+        {
+            //No patient -- medicine can't be applied.
             NoPatientPopup.Show();
             return;
         }

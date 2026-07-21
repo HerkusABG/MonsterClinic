@@ -29,7 +29,7 @@ public partial class PatientStats
         if (malady.severity == -1)
         {
             //malady.severity = rnd.Next(2, 5);
-            malady.severity = rnd.Next(4, 5);
+            malady.severity = rnd.Next(3, 4);
         }
         isAlive = true;
         patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 

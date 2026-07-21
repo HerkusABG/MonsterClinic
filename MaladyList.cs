@@ -48,7 +48,6 @@ public static class MaladyList
             },
             tags =
             {
-                TagList.Database["Worsening"].Clone(),
                 TagList.Database["Deadly"].Clone()
             },
             cures =
@@ -76,7 +75,6 @@ public static class MaladyList
             },
             tags =
             {
-                TagList.Database["Resistant"],
                 TagList.Database["Deadly"]
             },
             cures =
