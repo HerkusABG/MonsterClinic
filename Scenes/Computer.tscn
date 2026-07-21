@@ -135,6 +135,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Log out"
 
 [node name="Dealer_PH" type="Label" parent="Player_Interactables_C" unique_id=1842103304]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 40.0
