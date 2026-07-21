@@ -216,7 +216,8 @@ public partial class MapUI : Control
         FastTravel.Pressed += OfficeFastTravel;
     }
 
-    private void MapPatientAdmissionFunction() {
+    private void MapPatientAdmissionFunction() 
+    {
         //show patient admission related info, make the fast travel button go to patient admission
         RoomInfo.Show();
        // MedicineMenu.Hide();

@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bi1hp683e4pjr" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Open_Blockout.png" id="3_mva8e"]
 [ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_nwt7c"]
 [ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="4_jqulp"]
+[ext_resource type="StyleBox" uid="uid://4xqx68dnpjts" path="res://Red_button.tres" id="6_r8i0v"]
+[ext_resource type="StyleBox" uid="uid://dy5fikt614yn7" path="res://Grinch_button.tres" id="7_trmqt"]
 [ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="7_y13mq"]
 [ext_resource type="Texture2D" uid="uid://bbyfolabl5n1k" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Label_Counter_Blockout.png" id="9_d2uli"]
 [ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scripts/PatientRoom/PatientTreatment/TreatmentManager.cs" id="12_ny8ul"]
@@ -38,14 +40,6 @@ border_width_top = 7
 border_width_right = 7
 border_width_bottom = 7
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ny8ul"]
-bg_color = Color(0.8980392, 0.21176471, 0.18431373, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(1, 0.5179158, 0.4977886, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8i0v"]
 bg_color = Color(1, 0, 0, 1)
@@ -85,10 +79,12 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_388oq"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Inventory" type="Node2D" unique_id=126072234 node_paths=PackedStringArray("ButtonTemplate", "PositionControl")]
+[node name="Inventory" type="Node2D" unique_id=126072234 node_paths=PackedStringArray("ButtonTemplate", "PositionControl", "UpButton", "DownButton")]
 script = ExtResource("1_3n7vm")
 ButtonTemplate = NodePath("Templateeeee")
 PositionControl = NodePath("Open_Inventory/InventoryPositions")
+UpButton = NodePath("Open_Inventory/Up")
+DownButton = NodePath("Open_Inventory/Down")
 
 [node name="Inventory_Button" type="TextureButton" parent="." unique_id=448040149]
 custom_minimum_size = Vector2(160, 150)
@@ -168,7 +164,7 @@ offset_top = 2075.0
 offset_right = 205.0
 offset_bottom = 2112.0
 scale = Vector2(2.5, 2.5)
-theme_override_styles/normal = SubResource("StyleBoxFlat_ny8ul")
+theme_override_styles/normal = ExtResource("6_r8i0v")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r8i0v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_trmqt")
 text = "X"
@@ -215,7 +211,7 @@ offset_top = -62.5
 offset_right = 205.0
 offset_bottom = -25.5
 scale = Vector2(2.5, 2.5)
-theme_override_styles/normal = SubResource("StyleBoxFlat_ny8ul")
+theme_override_styles/normal = ExtResource("7_trmqt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r8i0v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_trmqt")
 text = "/\\"
@@ -227,7 +223,7 @@ offset_top = 1582.5
 offset_right = 205.0
 offset_bottom = 1619.5
 scale = Vector2(2.5, 2.5)
-theme_override_styles/normal = SubResource("StyleBoxFlat_ny8ul")
+theme_override_styles/normal = ExtResource("7_trmqt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_r8i0v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_trmqt")
 text = "\\/"
@@ -380,7 +376,6 @@ offset_left = 1722.125
 offset_top = 714.625
 offset_right = 1952.8943
 offset_bottom = 940.7789
-scale = Vector2(1.625, 1.625)
 disabled = true
 texture_normal = ExtResource("4_jqulp")
 texture_hover = ExtResource("7_y13mq")

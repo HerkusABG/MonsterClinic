@@ -20,6 +20,9 @@ public partial class Inventory : Node2D
 
     [Export] Control PositionControl;
 
+    [Export] Button UpButton;
+    [Export] Button DownButton;
+
     private List<InventoryUiInstance> InventoryInstances = new List<InventoryUiInstance>();
     private List<InventorySlot> AllSlots = new List<InventorySlot>();
     private List<InventorySlot> ActiveSlots = new List<InventorySlot>();
@@ -27,6 +30,8 @@ public partial class Inventory : Node2D
     TreatmentManager TreatmentManager;
 
     public MapUI MapUi;
+
+    private int inventoryIndex = 0;
 
 	// Called when the node enters the scene tree for the first time.
     public void Initialize()
@@ -57,6 +62,9 @@ public partial class Inventory : Node2D
         InventoryButton.Pressed += InventoryToggle;
         ShotgunButton.Pressed += KillPatient;
         Close.Pressed += () => CloseInventory(Close);
+
+        UpButton.Pressed += () => InventoryNavigation(-1);
+        DownButton.Pressed += () => InventoryNavigation(1);
     }
 
 
@@ -86,8 +94,41 @@ public partial class Inventory : Node2D
             slot.button.RenderText(slot.medicine);
             AllSlots.Add(slot);
             OpenInventory.AddChild(newButton);
+            TreatmentManager.AddSubscription(slot.button, slot.medicine);
             //medicineButtons.Add(medButton);
         }
+    }
+
+    private void SetNavigationButtonStatus()
+    {
+        if(ActiveSlots.Count <= InventoryInstances[1].Slots.Count)
+        {
+            UpButton.Disabled = true;
+            DownButton.Disabled = true;
+        }
+        else
+        {
+            UpButton.Disabled = false;
+            DownButton.Disabled = false;
+        }
+        if(inventoryIndex + InventoryInstances[1].Slots.Count > ActiveSlots.Count)
+        {
+            //UpButton.Disabled = true;
+            DownButton.Disabled = true;
+        }
+        if (inventoryIndex <= 0)
+        {
+            UpButton.Disabled = true;
+            //DownButton.Disabled = true;
+        }
+    }
+
+    private void InventoryNavigation(int input)
+    {
+        inventoryIndex += input;
+        GD.Print($"index now {inventoryIndex}");
+        NewRenderMedicine(InventoryInstances[1]);
+        SetNavigationButtonStatus();
     }
 
     public void InventoryButtonGeneration(Control inputControl, Control parent, TextureButton Template)
@@ -141,7 +182,8 @@ public partial class Inventory : Node2D
         for (int i = 1; i < 2; i++)
         {
             NewUpdateInventory(InventoryInstances[i]);
-            DebugSlots();
+            SetNavigationButtonStatus();
+            //DebugSlots();
             NewRenderMedicine(InventoryInstances[i]);
             //Render the medicine text
             //RenderMedicine(InventoryInstances[i]);
@@ -150,7 +192,7 @@ public partial class Inventory : Node2D
             //Updating the button status in case they should be disabled/enabled
             if (TreatmentManager.GetRoom() != null)
             {
-                //SetButtonStatus(TreatmentManager.GetRoom().GetAlreadyTreated(), InventoryInstances[i]);
+                SetButtonStatus(TreatmentManager.GetRoom().GetAlreadyTreated(), InventoryInstances[i]);
             }
         }
     }
@@ -158,10 +200,14 @@ public partial class Inventory : Node2D
     {
         //Enabling/disabling the buttons
         List<MedicineButton> buttons = instance.MedicineButtons;
-        foreach (MedicineButton button in buttons)
+        foreach(InventorySlot slot in AllSlots)
+        {
+            slot.button.Disabled = isActive;
+        }
+        /*foreach (MedicineButton button in buttons)
         {
             button.Disabled = isActive;
-        }
+        }*/
     }
 
     private void NewUpdateInventory(InventoryUiInstance instance)
@@ -193,11 +239,15 @@ public partial class Inventory : Node2D
     }
     private void NewRenderMedicine(InventoryUiInstance instance)
     {
-        GD.Print("RENDERING BUTTONS");
         List<MedicineButton> buttons = instance.MedicineButtons;
         //Going through each button in the list
 
-        for (int i = 0; i < instance.Slots.Count; i++)
+        foreach (InventorySlot slot in AllSlots)
+        {
+            slot.button.Hide();
+        }
+        int index = 0;
+        for (int i = inventoryIndex; i < inventoryIndex + instance.Slots.Count; i++)
         {
             if(i < ActiveSlots.Count)
             {
@@ -205,10 +255,10 @@ public partial class Inventory : Node2D
                 {
                     if (slot.ReferenceAlreadyExists(ActiveSlots[i].medicine))
                     {
-                        GD.Print("SHOWING");
                         slot.button.Show();
-                        slot.button.Position = instance.Slots[i].control.Position;
+                        slot.button.Position = instance.Slots[index].control.Position;
                         slot.button.RenderText(slot.medicine);
+                        index++;
                     }
                 }
                 /*buttons[i].RenderText(ActiveSlots[i].medicine);
@@ -218,21 +268,6 @@ public partial class Inventory : Node2D
                 buttons[i].Show();*/
             }
         }
-
-        /*for (int i = 0; i < buttons.Count; i++)
-        {
-            if(i < AllSlots.Count)
-            {
-                GD.Print($"Showing {i} button");
-                buttons[i].RenderText(AllSlots[i].medicine);
-                buttons[i].Show();
-            }
-            else
-            {
-                GD.Print($"Hiding {i} button");
-                buttons[i].Hide();
-            }
-        }*/
      }
 
     private void DebugSlots()
@@ -268,86 +303,7 @@ public partial class Inventory : Node2D
         return null;
     }
 
-    public void UpdateInventory(InventoryUiInstance instance)
-    {
-        List<MedicineButton> buttons = instance.MedicineButtons;
-
-        int index = 0;
-        int visibleSlots = instance.Slots.Count;
-        for (int i = 0; i < MedicineManager.Database.Count; i++)
-        {
-            Medicine medicine = MedicineManager.Database.ElementAt(i).Value;
-            if (medicine.amount > 0 && visibleSlots > 0)
-            {
-                if (!DoesButtonAlreadyExist(medicine, instance))
-                {
-                    //If no, then assign a new button to represent the medicine
-                    InventorySlot slot = FindEmptySlot(instance);
-                    if (slot == null)
-                    {
-                        GD.Print("ERROR IN INVENTORY.CS, NULL");
-                        return;
-                    }
-                    buttons[index].AssignToSlot(slot, medicine);
-                    visibleSlots--;
-                    TreatmentManager.AddSubscription(instance.MedicineButtons[index]);
-                    index++;
-                }
-            }
-            else
-            {
-                //Medicine count is 0 or less
-               /* if (DoesButtonAlreadyExist(medicine, instance))
-                {
-                    //If the button exists, it should stop being rendered.
-                    TreatmentManager.RemoveSubscription(instance.MedicineButtons[i]);
-                    buttons[i].RemoveFromSlot();
-                }*/
-            }
-        }
-
-
-
-        /*List<MedicineButton> buttons = instance.MedicineButtons;
-        GD.Print($"Buttons count: {buttons.Count}");
-        //For each button on the list
-        //for (int i = 0; i < buttons.Count; i++)
-        int index = 0;
-        for (int i = 0; i < MedicineManager.Database.Count; i++)
-        {
-            Medicine medicine = MedicineManager.Database.ElementAt(i).Value;
-            //Medicine count larger than 0?
-            if (medicine.amount > 0)
-            {
-                //If yes, then does another button already
-                //show the same type of medicine?
-                if (!DoesButtonAlreadyExist(medicine, instance))
-                {
-                    //If no, then assign a new button to represent the medicine
-                    InventorySlot slot = FindEmptySlot(instance);
-                    if (slot == null)
-                    {
-                        GD.Print("ERROR IN INVENTORY.CS, NULL");
-                        return;
-                    }
-                    buttons[index].AssignToSlot(slot, medicine);
-                    index++;
-                    //TreatmentManager.AddSubscription(instance.MedicineButtons[index]);
-                }
-            }
-            else
-            {
-                //Medicine count is 0 or less
-                if (DoesButtonAlreadyExist(medicine, instance))
-                {
-                    //If the button exists, it should stop being rendered.
-                    TreatmentManager.RemoveSubscription(instance.MedicineButtons[i]);
-                    buttons[i].RemoveFromSlot();
-                }
-            }
-        }*/
-        }
-    //you can also press the inventory to open it
+    
     private void InventoryToggle()
 	{
         //Turn the inventory on/off.
@@ -387,57 +343,5 @@ public partial class Inventory : Node2D
     {
         var Parent = button.GetParent<TextureRect>();
         Parent.Hide();
-    }
-
-    
-
-    private void RenderMedicine(InventoryUiInstance instance)
-    {
-        GD.Print("Render buttons called");
-        List<MedicineButton> buttons = instance.MedicineButtons;
-        //Going through each button in the list
-        for (int i = 0; i < buttons.Count; i++)
-        {
-            Medicine medicine = MedicineManager.Database.ElementAt(i).Value;
-            //Is the button actively in use by the inventory?
-            if (buttons[i].GetIsAssigned())
-            {
-                //If yes, update the text
-                //buttons[i].RenderText(medicine);
-                GD.Print($"My type is {buttons[i].GetMedicineType().name}");
-            }
-        }
-    }
-
-    
-
-    
-
-    private bool DoesButtonAlreadyExist(Medicine inputMedicine, InventoryUiInstance instance)
-    {
-        //Checking to see if a button representing a particular medicine
-        //type already existss
-        List<MedicineButton> buttons = instance.MedicineButtons;
-        for (int i = 0; i < buttons.Count; i++)
-        {
-            if (buttons[i].HasSameMedicineReference(inputMedicine))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private InventorySlot FindEmptySlot(InventoryUiInstance instance)
-    {
-        //Find an empty slot to put the button in.
-        foreach (InventorySlot slot in instance.Slots)
-        {
-            if(!slot.GetOccupiedStatus())
-            {
-                return slot;
-            }
-        }
-        return null;
     }
 }

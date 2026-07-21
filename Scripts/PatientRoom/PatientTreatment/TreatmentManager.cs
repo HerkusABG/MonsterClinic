@@ -59,11 +59,11 @@ public partial class TreatmentManager : Node
         ClosePatientCuredPopup = PatientCuredPopup.GetNode<Button>("Close_Patient_Cured_Popup");
         CloseCorrectMedicinePopup = CorrectMedicinePopup.GetNode<Button>("Close_Correct_medicine_Popup");
     }
-    public void AddSubscription(MedicineButton button)
+    public void AddSubscription(MedicineButton button, Medicine inputMedicine)
     {
         //Adding a subscription to a medicine button.
         //This will then apply medicine based on the button pressed.
-        Action handler = () => ApplyMedicine(button);
+        Action handler = () => ApplyMedicine(inputMedicine);
 
         Subscriptions[button] = handler;
         button.Pressed += handler;
@@ -115,12 +115,12 @@ public partial class TreatmentManager : Node
         }
     }
 
-    private void ApplyMedicine(MedicineButton button)
+    private void ApplyMedicine(Medicine inputMedicine)
     {
         //The new and improved, modular version of MedicineOperations.
         //Triggered on button press.
         //Grabbing the medicine type, which is stored inside of the button.
-        Medicine medicine = button.GetMedicineType();
+        Medicine medicine = inputMedicine;
         if (!Room.HasPatient())
         {
             //No patient -- medicine can't be applied.
