@@ -72,7 +72,7 @@ public partial class MapUI : Control
                 AssignRoomButtonFunction(i);
             }
         }
-        DealerWindowMoneyDisplay = GetParent().GetNode<Label>("Dealer_PH").GetNode<Label>("Money_Display");
+        DealerWindowMoneyDisplay = GetParent().GetNode<Control>("Dealer_PH").GetNode<Label>("Money_Display");
         Button CloseRoomInfoButton = GetNode<Label>("Room_Info").GetNode<Button>("Close");
         CloseRoomInfoButton.Pressed += CloseRoomInfo;
         Upgrades.IntUpgradeDatabase["Rooms"].OnUpgradePressed = BuyRoomActions;

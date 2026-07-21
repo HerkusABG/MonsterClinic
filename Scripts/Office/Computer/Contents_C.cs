@@ -12,7 +12,7 @@ public partial class Contents_C : Node2D
     Button MapButton;
     Button CatalogueButton;
     Button LogOutButton;
-    Label DealerWindow;
+    Control DealerWindow;
     Button UpgradesButton;
     Label UpgradesWindow;
     VBoxContainer UpgradesList;
@@ -37,7 +37,7 @@ public partial class Contents_C : Node2D
     Button CloseInsufficientStockPopup;
     Control MapControl;
     Button CloseMapWindow;
-    Label CatalogueWindow;
+    Control CatalogueWindow;
     Button CloseCatalogueWindow;
 
     [Export] MapUI mapUi;
@@ -83,7 +83,7 @@ public partial class Contents_C : Node2D
         LogOutButton = control.GetNode<Button>("Log_out");
 
         //separate section for everything in the dealer window
-        DealerWindow = control.GetNode<Label>("Dealer_PH");
+        DealerWindow = control.GetNode<Control>("Dealer_PH");
 
         UpgradesButton = DealerWindow.GetNode<Button>("Upgrades_Button");
         UpgradesWindow = DealerWindow.GetNode<Label>("Upgrades_Window");
@@ -114,7 +114,7 @@ public partial class Contents_C : Node2D
         RoomContainer = MapControl.GetNode<MarginContainer>("MapMarginContainer").GetNode<GridContainer>("RoomContainer");
 
         //separate section for the malady catalogue
-        CatalogueWindow = control.GetNode<Label>("Malady_PH");
+        CatalogueWindow = control.GetNode<Control>("Malady_PH");
         CloseCatalogueWindow = CatalogueWindow.GetNode<Button>("Close");
 
         int count = 0;
@@ -124,6 +124,7 @@ public partial class Contents_C : Node2D
             if(castButton != null)
             {
                 DealerButtons.Add(castButton);
+                castButton.Initialize();
                 castButton.index = count;
                 count++;
             }
@@ -135,6 +136,7 @@ public partial class Contents_C : Node2D
             if (castButton != null)
             {
                 UpgradeButtons.Add(castButton);
+                castButton.Initialize();
                 castButton.index = count;
                 count++;
             }
@@ -251,7 +253,8 @@ public partial class Contents_C : Node2D
     {
         for (int i = 0; i < list.Count; i++)
         {
-            list[i].Text = DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText();
+            //list[i].Text = DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText();
+            list[i].ChangeText(DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText());
             if (!DealerList.MedicineDatabase.ElementAt(i + start).Value.medicine.unlocked)
             {
                 list[i].Disabled = true;
@@ -266,7 +269,8 @@ public partial class Contents_C : Node2D
     {
         for (int i = 0; i < list.Count; i++)
         {
-            list[i].Text = DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText();
+            //list[i].Text = DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText();
+            list[i].ChangeText(DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText());
             if(DealerList.UpgradeDatabase.ElementAt(i + start).Value.upgrade.fullyUnlocked)
             {
                 list[i].Disabled = true;
@@ -287,6 +291,7 @@ public partial class Contents_C : Node2D
 
     private void ShowDealerWindow()
     {
+        UpdateMoneyDisplay();
         DealerWindow.Show();
         ResourcesWindow.Hide();
         UpgradesWindow.Hide();
@@ -331,13 +336,13 @@ public partial class Contents_C : Node2D
     //whenever the dealer window's visibility changes, update the text on the money display and the purchase buttons
     private void _on_dealer_ph_visibility_changed()
     {
-        UpdateMoneyDisplay();
-
+        
     }
     //semi-modular method for buying every type of medicine
 
     private void OpenResourcesWindow()
     {
+        UpdateMoneyDisplay();
         UpgradesWindow.Hide();
         ResourcesWindow.Show();
         SpecialOffersWindow.Hide();
@@ -345,6 +350,7 @@ public partial class Contents_C : Node2D
     }
     private void OpenUpgradesWindow()
     {
+        UpdateMoneyDisplay();
         ResourcesWindow.Hide();
         UpgradesWindow.Show();
         SpecialOffersWindow.Hide();
@@ -353,13 +359,14 @@ public partial class Contents_C : Node2D
 
     private void OpenSpecialOffersWindow()
     {
+        UpdateMoneyDisplay();
         ResourcesWindow.Hide();
         UpgradesWindow.Hide();
         SpecialOffersWindow.Show();
         UpdateBodyDisposalButton();
-        SelfTreatmentButton.Text = "Self Treatment \n (Price:" + GlobalData.MedicineCost + ")\n " +
-            "\n Owned: " + GlobalData.MedicinePlayer.ToString() + " " +
-            "\n availability in: " + GlobalData.Medicincavailability.ToString();
+        SelfTreatmentButton.GetNode<Label>("DealerLabel").Text = "Self Treatment  (Price:" + GlobalData.MedicineCost + ") " +
+            " Owned: " + GlobalData.MedicinePlayer.ToString() + " " +
+            " availability in: " + GlobalData.Medicincavailability.ToString();
     }
 
     private void ShowInsufficientFunds()
@@ -376,7 +383,7 @@ public partial class Contents_C : Node2D
     {
         int count = RoomManager.GetDeadPatientCount();
         int cost = Economy.bodyDisposalCost * count;
-        BodyDisposalButton.Text = $"Dispose of {count} dead patients \n Price: {cost}";
+        BodyDisposalButton.GetNode<Label>("DealerLabel").Text = $"Dispose of {count} dead patients \n Price: {cost}";
         BodyDisposalButton.Disabled = count <= 0;
     }
 
@@ -403,7 +410,7 @@ public partial class Contents_C : Node2D
             DoctorInventory.Money -= GlobalData.MedicineCost;
             GlobalData.MedicinePlayer++;
             GlobalData.MedicineCost = GlobalData.MedicineCost * 2; // Increase the cost for the next purchase
-            button.Text = "Self Treatment \n (Price: " + GlobalData.MedicineCost + ") \n \n Owned: " + GlobalData.MedicinePlayer.ToString() + ") \n availability in: " + GlobalData.Medicincavailability.ToString();
+            button.GetNode<Label>("DealerLabel").Text = "Self Treatment (Price: " + GlobalData.MedicineCost + ") Owned: " + GlobalData.MedicinePlayer.ToString() + ") availability in: " + GlobalData.Medicincavailability.ToString();
             UpdateMoneyDisplay();
         }
         else if (DoctorInventory.Money < GlobalData.MedicineCost)
@@ -414,79 +421,6 @@ public partial class Contents_C : Node2D
         {
             InsufficientAvailability.Show();
         }
-        /* if (button == BuyMedicine1Button)
-         {
-             //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
-             if (DoctorInventory.Money >= MedicineManager.Database["Morphine"].cost)
-             {
-                 DoctorInventory.Money -= MedicineManager.Database["Morphine"].cost;
-                 MedicineManager.Database["Morphine"].amount++;
-                 button.Text = $"{MedicineManager.Database["Morphine"].name} \n (Price: {MedicineManager.Database["Morphine"].cost}) \n \n Owned: {MedicineManager.Database["Morphine"].amount}";
-                 UpdateMoneyDisplay();
-
-                 //if you can't afford it, give em the poor idiot popup
-             }
-             else
-             {
-                 ShowInsufficientFunds();
-             }
-         }
-         else if (button == BuyMedicine2Button)
-         {
-             //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
-             if (DoctorInventory.Money >= MedicineManager.Database["Aspirin"].cost)
-             {
-                 DoctorInventory.Money -= MedicineManager.Database["Aspirin"].cost;
-                 MedicineManager.Database["Aspirin"].amount++;
-                 button.Text = $"{MedicineManager.Database["Aspirin"].name} \n (Price: {MedicineManager.Database["Aspirin"].cost}) \n \n Owned: {MedicineManager.Database["Aspirin"].amount}";
-                 UpdateMoneyDisplay();
-             }
-             //if you can't afford it, give em the poor idiot popup
-             else
-             {
-                 ShowInsufficientFunds();
-             }
-         }
-         else if (button == BuyMedicine3Button)
-         {
-             //if you can afford it, subtract the price from your money, add it to your inventory, and update the text
-             if (DoctorInventory.Money >= MedicineManager.Database["Ozempic"].cost)
-             {
-                 DoctorInventory.Money -= MedicineManager.Database["Ozempic"].cost;
-                 MedicineManager.Database["Ozempic"].amount++;
-                 button.Text = $"{MedicineManager.Database["Ozempic"].name} \n (Price: {MedicineManager.Database["Ozempic"].cost}) \n \n Owned: {MedicineManager.Database["Ozempic"].amount}";
-                 UpdateMoneyDisplay();
-             }
-             //if you can't afford it, give em the poor idiot popup
-             else
-             {
-                 ShowInsufficientFunds();
-             }
-         } 
-         else if (button == SelfTreatmentButton) 
-         {
-             // Check if the player has the money and if the medicine is available before allowing him to purchase item
-             if (DoctorInventory.Money >= GlobalData.MedicineCost && GlobalData.Medicincavailability <= 0)
-             {
-                 // Money deduction, player gets the medicine and the cost of the medicine gets increased (probally needs balancing)
-                 DoctorInventory.Money -= GlobalData.MedicineCost;
-                 GlobalData.MedicinePlayer++;
-                 GlobalData.MedicineCost = GlobalData.MedicineCost * 2; // Increase the cost for the next purchase
-                 button.Text = "Self Treatment \n (Price: " + GlobalData.MedicineCost + ") \n \n Owned: " + GlobalData.MedicinePlayer.ToString() + ") \n availability in: " + GlobalData.Medicincavailability.ToString();
-                 UpdateMoneyDisplay();
-             }
-             else if (DoctorInventory.Money < GlobalData.MedicineCost)
-             {
-                 ShowInsufficientFunds();
-             }
-             else
-             {
-                 InsufficientAvailability.Show();
-             }
-         }
-         else
-         {
-             GD.Print("well this isn't supposed to happen");
-         }*/
+       
     }
 }

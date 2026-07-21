@@ -35,14 +35,14 @@ public class DealerSlot
 	{
 		if(medicine != null)
 		{
-            return $"{medicine.name} \n " +
-            $"(Price: {medicine.cost}) \n " +
-            $"\n Owned: {medicine.amount}";
+            return $"{medicine.name}  " +
+            $"(Price: {medicine.cost})  " +
+            $" Owned: {medicine.amount}";
         }
         else
         {
-            return $"{upgrade.name} \n " +
-            $"(Price: {upgrade.price}) \n ";
+            return $"{upgrade.name} " +
+            $"(Price: {upgrade.price}) ";
         }
     }
 
