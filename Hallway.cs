@@ -86,6 +86,8 @@ public partial class Hallway : Node2D
     public void GoToRoom(Node2D roomInput)
     {
         //CALLED WHEN "VISIT" BUTTON IS PRESSED IN THE ADMISSION
+        //var test1 = (Node2D)GlobalData.PreviousScenes.Peek();
+        //GD.Print(test1.Name);
         Hide();
         GlobalData.inPatientRoom = true;
         //var RoomScene = (Node2D)GetParent().GetNode("Room");
