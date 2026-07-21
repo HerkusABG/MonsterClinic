@@ -37,7 +37,6 @@ public static class StoryPatientList
             age = 31,
             PortraitColor = new Color(0f, 0f, 1f),
             malady = MaladyList.Database.ElementAt(1).Value,
-
         }
     };
 
