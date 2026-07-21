@@ -17,8 +17,8 @@ public partial class NoVacancy : Panel
         this.Visible = false;
 
         
-	_vacancyLabel = GetParent().GetNode<Label>("PatientsLeftLabel");    
-}
+	    _vacancyLabel = GetParent().GetNode<Label>("PatientsLeftParent").GetNode<Label>("PatientsLeftLabel");    
+    }
 
     public override void _Process(double delta)
     {

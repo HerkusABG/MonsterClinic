@@ -313,6 +313,10 @@ public partial class Contents_C : Node2D
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         Hide();
+        DealerWindow.Hide();
+        ResourcesWindow.Hide();
+        UpgradesWindow.Hide();
+        SpecialOffersWindow.Hide();
         var OfficeScene = (Node2D)GetParent().GetNode("Office");
         OfficeScene.Show();
         GlobalData.PreviousScenes.Pop();

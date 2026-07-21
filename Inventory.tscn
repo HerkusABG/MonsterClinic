@@ -1,18 +1,17 @@
 [gd_scene format=3 uid="uid://c0wl0p1tagma5"]
 
 [ext_resource type="Script" uid="uid://bpbh60enepajt" path="res://Scripts/AlwaysOnScreen/Tablet/Inventory/Inventory.cs" id="1_3n7vm"]
-[ext_resource type="Texture2D" uid="uid://0p8gc3ax8rmb" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Pocket_Blockout.png" id="2_0261c"]
-[ext_resource type="Texture2D" uid="uid://dfwx6gwwanux4" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Closed_Blockout (1).png" id="2_y13mq"]
-[ext_resource type="Texture2D" uid="uid://cfje0d52rdwyx" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Closed_Blockout (2).png" id="3_d2uli"]
-[ext_resource type="Texture2D" uid="uid://bi1hp683e4pjr" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Bag_Open_Blockout.png" id="3_mva8e"]
+[ext_resource type="Texture2D" uid="uid://br71y2evi5ua2" path="res://Assets/2D Art/inventory/inventory-bag-closed.png" id="2_r8i0v"]
 [ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_nwt7c"]
 [ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="4_jqulp"]
+[ext_resource type="Texture2D" uid="uid://b7of5ppd34pym" path="res://Assets/2D Art/inventory/inventory-bag-open.png" id="4_trmqt"]
+[ext_resource type="Texture2D" uid="uid://brc0s8l5se7kn" path="res://Assets/2D Art/inventory/inventory-pocket-closed.png" id="5_fgswf"]
 [ext_resource type="StyleBox" uid="uid://4xqx68dnpjts" path="res://Red_button.tres" id="6_r8i0v"]
 [ext_resource type="StyleBox" uid="uid://dy5fikt614yn7" path="res://Grinch_button.tres" id="7_trmqt"]
 [ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="7_y13mq"]
-[ext_resource type="Texture2D" uid="uid://bbyfolabl5n1k" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Label_Counter_Blockout.png" id="9_d2uli"]
 [ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scripts/PatientRoom/PatientTreatment/TreatmentManager.cs" id="12_ny8ul"]
 [ext_resource type="Script" uid="uid://cgma1l84y5gfp" path="res://MedicineButton.cs" id="13_r8i0v"]
+[ext_resource type="Texture2D" uid="uid://7jjjvywr424n" path="res://Assets/2D Art/inventory/inventory-pocket-label-number.png" id="13_trmqt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwt7c"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -93,8 +92,8 @@ offset_top = 880.0
 offset_right = 2129.0
 offset_bottom = 1288.0
 scale = Vector2(0.41, 0.41)
-texture_normal = ExtResource("2_y13mq")
-texture_hover = ExtResource("3_d2uli")
+texture_normal = ExtResource("2_r8i0v")
+texture_hover = ExtResource("2_r8i0v")
 
 [node name="Open_Inventory" type="TextureRect" parent="." unique_id=479278794]
 visible = false
@@ -104,7 +103,7 @@ offset_top = 166.00002
 offset_right = 2145.0
 offset_bottom = 2396.0
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_mva8e")
+texture = ExtResource("4_trmqt")
 
 [node name="Shotgun" type="Button" parent="Open_Inventory" unique_id=537038637]
 custom_minimum_size = Vector2(150, 150)
@@ -124,38 +123,42 @@ text = "Shotgun"
 [node name="EmptySlot1" type="TextureRect" parent="Open_Inventory" unique_id=255516927]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 40.0
-offset_top = 1182.0
-offset_right = 445.0
-offset_bottom = 1591.9999
-texture = ExtResource("2_0261c")
+offset_left = 32.5
+offset_top = 1134.9999
+offset_right = 468.5
+offset_bottom = 1544.9998
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("5_fgswf")
 
 [node name="EmptySlot2" type="TextureRect" parent="Open_Inventory" unique_id=129431925]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 40.0
-offset_top = 790.0
-offset_right = 445.0
-offset_bottom = 1200.0
-texture = ExtResource("2_0261c")
+offset_left = 32.5
+offset_top = 785.0
+offset_right = 468.5
+offset_bottom = 1195.0
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("5_fgswf")
 
 [node name="EmptySlot3" type="TextureRect" parent="Open_Inventory" unique_id=1257392023]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = 40.0
-offset_top = 417.49997
-offset_right = 445.0
-offset_bottom = 802.5
-texture = ExtResource("2_0261c")
+offset_top = 457.49994
+offset_right = 476.0
+offset_bottom = 847.49994
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("5_fgswf")
 
 [node name="EmptySlot4" type="TextureRect" parent="Open_Inventory" unique_id=1088888419]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 40.0
-offset_top = 19.99997
-offset_right = 445.0
-offset_bottom = 429.99997
-texture = ExtResource("2_0261c")
+offset_left = 37.5
+offset_top = 112.49996
+offset_right = 473.5
+offset_bottom = 522.49994
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("5_fgswf")
 
 [node name="Close" type="Button" parent="Open_Inventory" unique_id=1292431923]
 layout_mode = 0
@@ -400,7 +403,8 @@ offset_left = 40.0
 offset_top = 80.000046
 offset_right = 250.0
 offset_bottom = 250.00005
-texture = ExtResource("9_d2uli")
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("13_trmqt")
 
 [node name="Count" type="Label" parent="Template/Stripe" unique_id=1793362135]
 layout_mode = 0

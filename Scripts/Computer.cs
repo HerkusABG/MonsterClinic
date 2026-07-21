@@ -16,7 +16,7 @@ public partial class Computer : TextureButton
             _ScreenGlow.Visible = false;
         }
 
-        StartNotificationGlow();
+        //StartNotificationGlow();
     }
 
     public void StartNotificationGlow()
