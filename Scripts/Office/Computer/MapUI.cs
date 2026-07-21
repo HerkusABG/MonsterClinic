@@ -32,15 +32,11 @@ public partial class MapUI : Control
     RoomStructureRenderer RoomRenderer;
 
     [Export] Control SlotControl;
-    [Export] MedicineButton ButtonTemplate;
+    [Export] TextureButton ButtonTemplate;
 
     public int inventoryIndex = 0;
     [Export] Button UpButton;
     [Export] Button DownButton;
-
-    private List<InventorySlot> Slots = new List<InventorySlot>();
-
-    private List<MedicineButton> MedicineButtons = new List<MedicineButton>();
 
     TreatmentManager Treatment;
     Inventory Inventory;
@@ -318,7 +314,10 @@ public partial class MapUI : Control
             UpdateComputerPatientText(null);
         }
         //connect fast travel to this specific room
-        FastTravel.Pressed += RoomFastTravel;
+        if (!FastTravel.IsConnected(Button.SignalName.Pressed, Callable.From(RoomFastTravel)))
+        {
+            FastTravel.Pressed += RoomFastTravel;
+        }
     } 
 
     

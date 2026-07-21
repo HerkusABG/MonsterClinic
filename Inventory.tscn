@@ -81,7 +81,7 @@ bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [node name="Inventory" type="Node2D" unique_id=126072234 node_paths=PackedStringArray("ButtonTemplate", "PositionControl", "UpButton", "DownButton")]
 script = ExtResource("1_3n7vm")
-ButtonTemplate = NodePath("Templateeeee")
+ButtonTemplate = NodePath("Template")
 PositionControl = NodePath("Open_Inventory/InventoryPositions")
 UpButton = NodePath("Open_Inventory/Up")
 DownButton = NodePath("Open_Inventory/Down")
@@ -171,38 +171,38 @@ text = "X"
 
 [node name="InventoryPositions" type="Control" parent="Open_Inventory" unique_id=420312018]
 anchors_preset = 0
-offset_left = 222.49998
-offset_top = 194.99991
-offset_right = 262.5
-offset_bottom = 234.99991
+offset_left = -2.4999866
+offset_top = 4.999939
+offset_right = 37.50003
+offset_bottom = 44.99994
 
 [node name="InventoryControl1" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=464793263]
 anchors_preset = 0
-offset_left = 112.5
-offset_top = 115.0
-offset_right = 152.50002
-offset_bottom = 155.0
+offset_left = 135.0
+offset_top = 112.50003
+offset_right = 175.00002
+offset_bottom = 152.50003
 
 [node name="InventoryControl2" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=1721244620]
 anchors_preset = 0
-offset_left = 102.49999
-offset_top = 500.0
-offset_right = 142.5
-offset_bottom = 540.0
+offset_left = 125.0
+offset_top = 497.50006
+offset_right = 165.0
+offset_bottom = 537.5001
 
 [node name="InventoryControl3" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=990366297]
 anchors_preset = 0
-offset_left = 114.99999
-offset_top = 902.49994
-offset_right = 155.0
-offset_bottom = 942.49994
+offset_left = 137.5
+offset_top = 899.99994
+offset_right = 177.5
+offset_bottom = 939.99994
 
 [node name="InventoryControl4" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=672183547]
 anchors_preset = 0
-offset_left = 114.99999
-offset_top = 1300.0
-offset_right = 155.0
-offset_bottom = 1340.0
+offset_left = 137.5
+offset_top = 1297.5001
+offset_right = 177.5
+offset_bottom = 1337.5001
 
 [node name="Up" type="Button" parent="Open_Inventory" unique_id=1442244285]
 layout_mode = 0
@@ -368,7 +368,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_v4tu4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_388oq")
 text = "X"
 
-[node name="Templateeeee" type="TextureButton" parent="." unique_id=1367009333]
+[node name="Template" type="TextureButton" parent="." unique_id=1367009333]
 visible = false
 z_index = 1
 custom_minimum_size = Vector2(170, 150)
@@ -376,12 +376,13 @@ offset_left = 1722.125
 offset_top = 714.625
 offset_right = 1952.8943
 offset_bottom = 940.7789
+scale = Vector2(1.25, 1.25)
 disabled = true
 texture_normal = ExtResource("4_jqulp")
 texture_hover = ExtResource("7_y13mq")
 script = ExtResource("13_r8i0v")
 
-[node name="Name" type="Label" parent="Templateeeee" unique_id=702683046]
+[node name="Name" type="Label" parent="Template" unique_id=702683046]
 layout_mode = 0
 offset_left = -1.538476
 offset_top = 35.38462
@@ -393,7 +394,7 @@ theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Stripe" type="TextureRect" parent="Templateeeee" unique_id=256219047]
+[node name="Stripe" type="TextureRect" parent="Template" unique_id=256219047]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 80.000046
@@ -401,7 +402,7 @@ offset_right = 250.0
 offset_bottom = 250.00005
 texture = ExtResource("9_d2uli")
 
-[node name="Count" type="Label" parent="Templateeeee/Stripe" unique_id=1793362135]
+[node name="Count" type="Label" parent="Template/Stripe" unique_id=1793362135]
 layout_mode = 0
 offset_left = 43.076912
 offset_top = 3.07693

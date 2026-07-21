@@ -144,6 +144,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
 text = "Log out"
 
 [node name="Dealer_PH" type="Label" parent="Player_Interactables_C" unique_id=1842103304]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 40.0
@@ -775,31 +776,31 @@ vertical_alignment = 1
 
 [node name="SlotControl" type="Control" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=298088353]
 anchors_preset = 0
-offset_left = 34.0
-offset_top = 62.0
-offset_right = 74.0
-offset_bottom = 102.0
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 41.0
+offset_bottom = 45.0
 
 [node name="Slot1" type="Control" parent="Player_Interactables_C/MapControl/Medicine_Menu/SlotControl" unique_id=1112262307]
 anchors_preset = 0
-offset_left = 22.0
-offset_top = 33.0
-offset_right = 62.0
-offset_bottom = 73.0
+offset_left = 61.0
+offset_top = 80.0
+offset_right = 101.0
+offset_bottom = 120.0
 
 [node name="Slot2" type="Control" parent="Player_Interactables_C/MapControl/Medicine_Menu/SlotControl" unique_id=1552916939]
 anchors_preset = 0
-offset_left = 20.0
-offset_top = 227.0
-offset_right = 60.0
-offset_bottom = 267.0
+offset_left = 59.0
+offset_top = 274.0
+offset_right = 99.0
+offset_bottom = 314.0
 
 [node name="Slot3" type="Control" parent="Player_Interactables_C/MapControl/Medicine_Menu/SlotControl" unique_id=946659512]
 anchors_preset = 0
-offset_left = 26.0
-offset_top = 449.0
-offset_right = 66.0
-offset_bottom = 489.0
+offset_left = 65.0
+offset_top = 496.0
+offset_right = 105.0
+offset_bottom = 536.0
 
 [node name="EmptySlot1" type="TextureRect" parent="Player_Interactables_C/MapControl/Medicine_Menu" unique_id=1288034118]
 custom_minimum_size = Vector2(150, 150)
@@ -917,7 +918,7 @@ offset_left = 1722.125
 offset_top = 714.625
 offset_right = 1952.8943
 offset_bottom = 940.7789
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.7, 0.7)
 disabled = true
 texture_normal = ExtResource("9_vjhme")
 texture_hover = ExtResource("10_gbitc")

@@ -142,34 +142,35 @@ public partial class Inventory : Node2D
         //Generate the buttons themselves
         for (int i = 0; i < slots.Count; i++)
         {
-            TextureButton newButton = (TextureButton)Template.Duplicate();
+           /* TextureButton newButton = (TextureButton)Template.Duplicate();
             MedicineButton medButton = newButton as MedicineButton;
             medButton.Initialize();
             parent.AddChild(newButton);
-            medicineButtons.Add(medButton);
+            medicineButtons.Add(medButton);*/
         }
         //Save references to buttons and their slots
         //That way we can use that info later when we need
         //to update the inventory
         InventoryUiInstance instance = new InventoryUiInstance(slots);
         InventoryInstances.Add(instance);
-        SlotSetup(instance, parent);
+        SlotSetup(instance, inputControl, parent, Template);
     }
 
-    private void SlotSetup(InventoryUiInstance instance, Control parent)
+    private void SlotSetup(InventoryUiInstance instance, Control inputControl, Control parent, TextureButton Template)
     {
         for (int i = 0; i < MedicineManager.Database.Count; i++)
         {
             InventorySlot slot = new InventorySlot();
-            TextureButton newButton = (TextureButton)ButtonTemplate.Duplicate();
+            TextureButton newButton = (TextureButton)Template.Duplicate();
             MedicineButton medButton = newButton as MedicineButton;
             medButton.Initialize();
             slot.medicine = MedicineManager.Database.ElementAt(i).Value;
             slot.button = medButton;
             slot.button.RenderText(slot.medicine);
             instance.AllSlots.Add(slot);
-            parent.AddChild(newButton);
-            if(TreatmentManager == null)
+            parent.AddChild(medButton);
+            //inputControl.AddChild(medButton);
+            if (TreatmentManager == null)
             {
                 GD.Print("TREATMENT NULL");
             }
@@ -194,7 +195,6 @@ public partial class Inventory : Node2D
         NewRenderMedicine(InventoryInstances[0], inventoryIndex);
         MapUi.SetNavigationButtonStatus(InventoryInstances[1]);
         NewRenderMedicine(InventoryInstances[1], MapUi.inventoryIndex);
-
     }
     public void SetButtonStatus(bool isActive, InventoryUiInstance instance)
     {
@@ -253,7 +253,7 @@ public partial class Inventory : Node2D
                 }
             }
         }
-     }
+    }
 
 
     private bool CheckSlotReferences(Medicine medicine, InventoryUiInstance instance)
