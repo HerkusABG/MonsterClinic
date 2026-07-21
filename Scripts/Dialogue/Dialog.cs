@@ -92,15 +92,18 @@ public partial class Dialog : Control
         }   
         else
 		{
-			// when the dialog is finished, the medicine availability is added to the countdown, so it is more balanced for the player
-			GlobalData.Countdown = GlobalData.Countdown + GlobalData.Medicincavailability;
+			GlobalData.Countdown += 5;
 			// the dialog is set to false, so it can only be spawned once
 			GlobalData.Dialog_Dealer = false;
 			// the control for the dealer dialog, so it isnt spammed
 			GlobalData.Dialog_Dealer_Control = true;
 			// the dialog self destructs itself
+			GD.Print(GetParent().Name);
 			QueueFree();
-		}
+			//hide the GridContainer once the dialogue is done, finally fixing that issue where you can't click on the office
+            GridContainer GridContainer = GetParent<GridContainer>();
+            GridContainer.Hide();
+        }
 
         
     }

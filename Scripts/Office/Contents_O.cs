@@ -146,13 +146,5 @@ public partial class Contents_O : Node2D
             // The medicine need to decrease for the player
             GlobalData.MedicinePlayer--;
         }
-
-        if (GlobalData.Dialog_Dealer == false)
-        {
-            // The GridContainer needs to be hidden again, so the player can interact with the objects behind it
-            var GridContainer = GetNode<GridContainer>("Spawn_DialogControl");
-            GridContainer.Hide();
-        }
     }
-
 }
