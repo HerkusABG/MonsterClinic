@@ -283,6 +283,7 @@ public partial class MapUI : Control
 
     private void RoomButtonFunction(int roomNum)
     {
+        GD.Print("Clicked on room");
         //show room info, set curretnRoomNum to the room we are now dealing with
         RoomInfo.Show();
         currentRoomNum = roomNum;
@@ -291,13 +292,9 @@ public partial class MapUI : Control
         //show medicine menu if the room has an untreated patient, and the player has unlocked remote medicine
         if (room.Patient != null && room.GetAlreadyTreated() == false && Upgrades.BoolUpgradeDatabase["RemoteMedicine"].unlocked)
         {
+            Treatment.SetTreatmentRoomReference(room);
             Inventory.InventoryActions();
             MedicineMenu.Show();
-            Treatment.SetTreatmentRoomReference(room);
-            foreach(Control child in MedicineMenu.GetChildren())
-            {
-                GD.Print(child.Name);
-            }
         }
         else
         {

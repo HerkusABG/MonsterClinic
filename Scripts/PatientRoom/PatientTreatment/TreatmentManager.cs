@@ -167,6 +167,7 @@ public partial class TreatmentManager : Node
             }
             else
             {
+                Room.SetAlreadyTreated(true);
                 //Wrong medicine used, come back tomorrow.
                 WrongMedicinePopup.Show();
             }
