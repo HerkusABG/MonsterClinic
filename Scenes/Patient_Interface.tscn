@@ -94,9 +94,9 @@ texture = ExtResource("3_ecejo")
 
 [node name="PatientLabel" type="Label" parent="Sprites_PH" unique_id=92196170]
 offset_left = 231.0
-offset_top = 171.0
+offset_top = 157.0
 offset_right = 676.80475
-offset_bottom = 318.59818
+offset_bottom = 304.59818
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_3xib3")
 theme_override_font_sizes/font_size = 50
@@ -106,9 +106,9 @@ vertical_alignment = 1
 
 [node name="AgeLabel" type="Label" parent="Sprites_PH" unique_id=1101784673]
 offset_left = 278.0
-offset_top = 287.0
+offset_top = 273.0
 offset_right = 652.8812
-offset_bottom = 395.23856
+offset_bottom = 381.23856
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_3xib3")
 theme_override_font_sizes/font_size = 50
@@ -180,10 +180,10 @@ SpeechBubble = NodePath("SpeechBubble")
 [node name="SpeechBubble" type="Label" parent="ControlPatientInterface/SpeechManager" unique_id=1448112577]
 visible = false
 z_index = 3
-offset_left = 1379.0
-offset_top = 395.0
-offset_right = 1601.0
-offset_bottom = 454.0
+offset_left = 947.0
+offset_top = 455.0
+offset_right = 1447.0
+offset_bottom = 655.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_kqp7s")
@@ -342,9 +342,10 @@ script = ExtResource("13_3xib3")
 [node name="Checkbox_1" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=468010843]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = -100.0
-offset_top = -500.0
-offset_bottom = -396.0
+offset_left = -126.0
+offset_top = -526.0
+offset_right = -26.0
+offset_bottom = -422.0
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
@@ -365,9 +366,10 @@ text = "blablabla"
 [node name="Checkbox_2" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1325796187]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = -100.0
-offset_top = -400.0
-offset_bottom = -296.0
+offset_left = -126.0
+offset_top = -426.0
+offset_right = -26.0
+offset_bottom = -322.0
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
@@ -388,9 +390,10 @@ text = "blablabla"
 [node name="Checkbox_3" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1293334289]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = -100.0
-offset_top = -300.0
-offset_bottom = -196.0
+offset_left = -126.0
+offset_top = -326.0
+offset_right = -26.0
+offset_bottom = -222.0
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
@@ -411,9 +414,10 @@ text = "blablabla"
 [node name="Checkbox_4" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1379858808]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = -100.0
-offset_top = -200.0
-offset_bottom = -96.0
+offset_left = -126.0
+offset_top = -226.0
+offset_right = -26.0
+offset_bottom = -122.0
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
@@ -434,9 +438,10 @@ text = "blablabla"
 [node name="Checkbox_5" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1861412027]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = -100.0
-offset_top = -100.0
-offset_bottom = 4.0
+offset_left = -126.0
+offset_top = -126.0
+offset_right = -26.0
+offset_bottom = -22.0
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
@@ -445,6 +450,126 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
 script = ExtResource("12_oaj4u")
 
 [node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_5" unique_id=1676854035]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "blablabla"
+
+[node name="Checkbox_6" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1965136087]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 229.0
+offset_top = -526.0
+offset_right = 329.0
+offset_bottom = -422.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_6" unique_id=404615901]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "blablabla"
+
+[node name="Checkbox_7" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1835389015]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 229.0
+offset_top = -426.0
+offset_right = 329.0
+offset_bottom = -322.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_7" unique_id=1613633309]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "blablabla"
+
+[node name="Checkbox_8" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=702594541]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 229.0
+offset_top = -326.0
+offset_right = 329.0
+offset_bottom = -222.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_8" unique_id=1749138452]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "blablabla"
+
+[node name="Checkbox_9" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1019033358]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 229.0
+offset_top = -226.0
+offset_right = 329.0
+offset_bottom = -122.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_9" unique_id=204369062]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "blablabla"
+
+[node name="Checkbox_10" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=642705766]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 229.0
+offset_top = -126.0
+offset_right = 329.0
+offset_bottom = -22.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_10" unique_id=2030160416]
 layout_mode = 0
 offset_left = 144.0
 offset_top = 38.0

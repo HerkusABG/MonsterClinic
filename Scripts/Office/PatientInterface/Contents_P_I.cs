@@ -131,14 +131,15 @@ public partial class Contents_P_I : Node2D
     private void ShowSpeechDialogue()
     {
         //if the patient is their story patient, they do their lil intro
-        if (PatientPointer is StoryPatientStats)
+        SpeechManagerAccess.SpeechText(PatientPointer.GetDialogue());
+        /*if (PatientPointer is StoryPatientStats)
         {
             SpeechManagerAccess.SpeechText(((StoryPatientStats)PatientPointer).entrySpeech);
         }
         else
         {
             SpeechManagerAccess.SpeechText(PatientPointer.GetDialogue());
-        }
+        }*/
     }
   
     private void ShowSpeechZoom()

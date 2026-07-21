@@ -204,7 +204,7 @@ public partial class MapUI : Control
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(RoomScene.GetPath());
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= RoomFastTravel;
+        //FastTravel.Pressed -= RoomFastTravel;
     }
 
     private void OfficeFastTravel()
@@ -217,7 +217,7 @@ public partial class MapUI : Control
         currentScene.Hide();
         officeScene.Show();
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= OfficeFastTravel;
+        //FastTravel.Pressed -= OfficeFastTravel;
     }
 
     private void PatientAdmissionFastTravel()
@@ -230,7 +230,7 @@ public partial class MapUI : Control
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(PatientScene.GetPath());
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= PatientAdmissionFastTravel;
+        //FastTravel.Pressed -= PatientAdmissionFastTravel;
     }
 
     private void HallwayFastTravel()
@@ -247,7 +247,7 @@ public partial class MapUI : Control
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(HallwayScene.GetPath());
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= HallwayFastTravel;
+        //FastTravel.Pressed -= HallwayFastTravel;
     }
 
     private void MapOfficeFunction()
@@ -257,7 +257,7 @@ public partial class MapUI : Control
         PatientInfo.Hide();
         //MedicineMenu.Hide();
         RoomNumber.Text = "Office";
-        FastTravel.Pressed += OfficeFastTravel;
+        //FastTravel.Pressed += OfficeFastTravel;
     }
 
     private void MapPatientAdmissionFunction() 
@@ -266,9 +266,9 @@ public partial class MapUI : Control
         RoomInfo.Show();
        // MedicineMenu.Hide();
         RoomNumber.Text = "Patient Admission";
-        Label OriginalPatientsLeftLabel = GetParent().GetParent().GetParent().GetNode("Patient_Interface").GetNode("Sprites_PH").GetNode<Label>("PatientsLeftLabel");
+        Label OriginalPatientsLeftLabel = GetParent().GetParent().GetParent().GetNode("Patient_Interface").GetNode("Sprites_PH").GetNode<Label>("PatientsLeftParent").GetNode<Label>("PatientsLeftLabel");
         PatientInfo.Text = OriginalPatientsLeftLabel.Text;
-        FastTravel.Pressed += PatientAdmissionFastTravel;
+        //FastTravel.Pressed += PatientAdmissionFastTravel;
     }
 
     private void MapHallwayFunction()
@@ -278,7 +278,7 @@ public partial class MapUI : Control
         PatientInfo.Hide();
         //MedicineMenu.Hide();
         RoomNumber.Text = "Hallway";
-        FastTravel.Pressed += HallwayFastTravel;
+        //FastTravel.Pressed += HallwayFastTravel;
     }
 
     private void RoomButtonFunction(int roomNum)
@@ -303,10 +303,12 @@ public partial class MapUI : Control
         //if there is a patient, display patient info
         if (room.Patient != null)
         {
+            PatientInfo.Show();
             UpdateComputerPatientText(room);
         } 
         else
         {
+            PatientInfo.Hide();
             UpdateComputerPatientText(null);
         }
         //connect fast travel to this specific room

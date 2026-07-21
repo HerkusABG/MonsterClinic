@@ -18,16 +18,14 @@ public partial class StoryPatientStats : PatientStats
     {
         StoryPatientStats patient = StoryPatientList.Database.ElementAt(index).Value;
         
-        GD.Print("Setup active");
         // refresh the patient's data.
         // For just assigning random numbers, this will be overhauled later.
         Random rnd = new Random();
         malady = new Malady();
-        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count - 1)).Value);
+        AssignMaladyValues(patient.malady);
         if (malady.severity == -1)
         {
-            GD.Print("AKTIV");
-            malady.severity = rnd.Next(2, 3);
+            malady.severity = rnd.Next(3, 5);
         }
         isAlive = true;
         patientID = patient.patientID;//  "D3" writes the ID as a 3-digit string  005 

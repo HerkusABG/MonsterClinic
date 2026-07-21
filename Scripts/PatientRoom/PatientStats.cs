@@ -19,17 +19,19 @@ public partial class PatientStats
     public Malady malady;
     private Room myRoom;
 
+    int dialogueIndex = 0;
+
     public PatientStats()
     {
         // refresh the patient's data.
         // For just assigning random numbers, this will be overhauled later.
         Random rnd = new Random();
         malady = new Malady();
-        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count - 1)).Value);
+        dialogueIndex = 0;
+        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, 6)).Value);
         if (malady.severity == -1)
         {
-            //malady.severity = rnd.Next(2, 5);
-            malady.severity = rnd.Next(3, 4);
+            malady.severity = rnd.Next(2, 5);
         }
         isAlive = true;
         patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
@@ -70,7 +72,15 @@ public partial class PatientStats
         //Grab generic dialogue.
         if (malady.dialogueSymptoms.Count > 0)
         {
-            string returnDialogue = malady.dialogueSymptoms[0].quotes[0];
+            string returnDialogue = malady.dialogueSymptoms[dialogueIndex].quotes[0];
+            if(dialogueIndex + 1 < malady.dialogueSymptoms.Count)
+            {
+                dialogueIndex++;
+            }
+            else
+            {
+                dialogueIndex = 0;
+            }
             return returnDialogue;
         }
         return "...";

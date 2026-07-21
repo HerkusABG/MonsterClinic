@@ -271,6 +271,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
+disabled = true
 text = "Fast Travel"
 
 [node name="Map_Office" type="Button" parent="Player_Interactables_C/MapControl" unique_id=1717215790]
