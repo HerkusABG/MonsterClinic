@@ -46,10 +46,18 @@ public class DealerSlot
         }
     }
 
-	public void BuyMedicine()
+	public bool BuyMedicine()
 	{
-		medicine.amount++;
-		DoctorInventory.Money -= medicine.cost;
+        if(DoctorInventory.Money >= medicine.cost)
+        {
+            medicine.amount++;
+            DoctorInventory.Money -= medicine.cost;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public void BuyUpgrade()
     {

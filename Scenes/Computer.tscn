@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://08n5ukorqdyk" path="res://Scripts/Office/Computer/ScrollCatalog.cs" id="15_vbt5y"]
 [ext_resource type="Script" uid="uid://bho5a8iwfj3pn" path="res://Scripts/Office/Computer/MapUI.cs" id="16_l232m"]
 [ext_resource type="Texture2D" uid="uid://db100q8k8e4mb" path="res://Assets/2D Art/PC/pc-desktop-window-closebutton.png" id="17_l7uy0"]
+[ext_resource type="Script" uid="uid://bnfoxvhhm3bek" path="res://Popup.cs" id="19_h2577"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqyqf"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -81,13 +82,41 @@ border_color = Color(1, 0.5176471, 0.49803922, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qk5mf"]
 bg_color = Color(1, 0.5176471, 0.49803922, 1)
 
-[node name="Contents_C" type="Node2D" unique_id=1932071110 node_paths=PackedStringArray("mapUi", "UpButtonDealer", "DownButtonDealer", "UpButtonUpgrades", "DownButtonUpgrades")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ums5j"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 14
+border_width_top = 14
+border_width_right = 14
+border_width_bottom = 14
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1dwtd"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 14
+border_width_top = 14
+border_width_right = 14
+border_width_bottom = 14
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbdnv"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 14
+border_width_top = 14
+border_width_right = 14
+border_width_bottom = 14
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_obv51"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[node name="Contents_C" type="Node2D" unique_id=1932071110 node_paths=PackedStringArray("mapUi", "UpButtonDealer", "DownButtonDealer", "UpButtonUpgrades", "DownButtonUpgrades", "Popup")]
 script = ExtResource("1_tjl6a")
 mapUi = NodePath("Player_Interactables_C/MapControl")
 UpButtonDealer = NodePath("Player_Interactables_C/Dealer_PH/Resources_Window/UpDealer")
 DownButtonDealer = NodePath("Player_Interactables_C/Dealer_PH/Resources_Window/DownDealer")
 UpButtonUpgrades = NodePath("Player_Interactables_C/Dealer_PH/Upgrades_Window/UpUpgrade")
 DownButtonUpgrades = NodePath("Player_Interactables_C/Dealer_PH/Upgrades_Window/DownUpgrade")
+Popup = NodePath("Player_Interactables_C/Popup")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1460341576]
 z_index = -2
@@ -1019,6 +1048,45 @@ theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
+text = "X"
+
+[node name="Popup" type="Control" parent="Player_Interactables_C" unique_id=1598705561]
+visible = false
+anchors_preset = 0
+offset_left = 930.0
+offset_top = 507.0
+offset_right = 970.0
+offset_bottom = 547.0
+script = ExtResource("19_h2577")
+
+[node name="PopupLabel" type="Label" parent="Player_Interactables_C/Popup" unique_id=390651742]
+z_index = 5
+layout_mode = 0
+offset_left = -25.0
+offset_top = -45.0
+offset_right = 1010.24023
+offset_bottom = 382.60815
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ums5j")
+text = "This medicine won't work for this patient.
+
+But what's done is done, check in again tomorrow"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PopupClose" type="Button" parent="Player_Interactables_C/Popup" unique_id=1773875808]
+z_index = 5
+layout_mode = 0
+offset_left = 373.0
+offset_top = -69.0
+offset_right = 433.0
+offset_bottom = 14.0
+scale = Vector2(2, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_1dwtd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_xbdnv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_obv51")
 text = "X"
 
 [node name="MapUI" type="CanvasLayer" parent="." unique_id=2110428934]

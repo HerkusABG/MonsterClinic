@@ -31,10 +31,10 @@ public partial class Contents_C : Node2D
 
     Button BodyDisposalButton;
     Button SelfTreatmentButton;
-    Label InsufficientFunds;
-    Button CloseFundsPopup;
-    Label InsufficientAvailability;
-    Button CloseInsufficientStockPopup;
+    //Label InsufficientFunds;
+    //Button CloseFundsPopup;
+    //Label InsufficientAvailability;
+    //Button CloseInsufficientStockPopup;
     Control MapControl;
     Button CloseMapWindow;
     Control CatalogueWindow;
@@ -46,6 +46,8 @@ public partial class Contents_C : Node2D
 
     [Export] Button UpButtonUpgrades;
     [Export] Button DownButtonUpgrades;
+
+    [Export] Popup Popup;
 
     List<DealerButton> DealerButtons = new List<DealerButton>();
     List<DealerButton> UpgradeButtons = new List<DealerButton>();
@@ -103,10 +105,10 @@ public partial class Contents_C : Node2D
         DealerWindowMoneyDisplay = DealerWindow.GetNode<Label>("Money_Display");
         MedicineContainer = ResourcesWindow.GetNode<VBoxContainer>("VBoxContainer");
         
-        InsufficientFunds = DealerWindow.GetNode<Label>("Insufficient_Funds");
-        CloseFundsPopup = InsufficientFunds.GetNode<Button>("Close");
-        InsufficientAvailability = DealerWindow.GetNode<Label>("Insufficient_Availability");
-        CloseInsufficientStockPopup = InsufficientAvailability.GetNode<Button>("Close_IA");
+        //InsufficientFunds = DealerWindow.GetNode<Label>("Insufficient_Funds");
+        //CloseFundsPopup = InsufficientFunds.GetNode<Button>("Close");
+        //InsufficientAvailability = DealerWindow.GetNode<Label>("Insufficient_Availability");
+        //CloseInsufficientStockPopup = InsufficientAvailability.GetNode<Button>("Close_IA");
 
         //seperate section for the map window
         MapControl = control.GetNode<MapUI>("MapControl");
@@ -163,7 +165,7 @@ public partial class Contents_C : Node2D
         CloseUpgrades.Pressed += () => CloseParent(CloseUpgrades);
         CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
         CloseDealerWindowButton.Pressed += mapUi.OnMapUiClose;
-        CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
+        //CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
         SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
         CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
         CloseMapWindow.Pressed += mapUi.OnMapUiClose;
@@ -188,9 +190,15 @@ public partial class Contents_C : Node2D
     {
         int myIndex = button.index;
         DealerSlot slot = DealerList.MedicineDatabase.ElementAt(myIndex + dealerStartingIndex).Value;
-        slot.BuyMedicine();
-        RefreshDealerButtons(dealerStartingIndex, DealerButtons);
-        DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
+        if(slot.BuyMedicine())
+        {
+            RefreshDealerButtons(dealerStartingIndex, DealerButtons);
+            DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
+        }
+        else
+        {
+            ShowInsufficientFunds();
+        }
     }
 
     private void PurchaseUpgrade(DealerButton button)
@@ -285,6 +293,7 @@ public partial class Contents_C : Node2D
     {
         MapUI mapUI = MapControl as MapUI;
         mapUI.Initialize();
+        Popup.Initialize();
     }
 
     
@@ -375,7 +384,8 @@ public partial class Contents_C : Node2D
 
     private void ShowInsufficientFunds()
     {
-        InsufficientFunds.Show();
+        //InsufficientFunds.Show();
+        Popup.DisplayPopup(PopupMessages.ComputerMessages["NoMoney"]);
     }
 
     private void UpdateMoneyDisplay()
@@ -419,11 +429,12 @@ public partial class Contents_C : Node2D
         }
         else if (DoctorInventory.Money < GlobalData.MedicineCost)
         {
-            ShowInsufficientFunds();
+            //ShowInsufficientFunds();
+            Popup.DisplayPopup(PopupMessages.ComputerMessages["NoMoney"]);
         }
         else
         {
-            InsufficientAvailability.Show();
+            Popup.DisplayPopup(PopupMessages.ComputerMessages["NoMedicine"]);
         }
        
     }

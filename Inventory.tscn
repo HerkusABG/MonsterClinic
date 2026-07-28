@@ -9,6 +9,7 @@
 [ext_resource type="StyleBox" uid="uid://4xqx68dnpjts" path="res://Red_button.tres" id="6_r8i0v"]
 [ext_resource type="StyleBox" uid="uid://dy5fikt614yn7" path="res://Grinch_button.tres" id="7_trmqt"]
 [ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="7_y13mq"]
+[ext_resource type="Script" uid="uid://bnfoxvhhm3bek" path="res://Popup.cs" id="8_trmqt"]
 [ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scripts/PatientRoom/PatientTreatment/TreatmentManager.cs" id="12_ny8ul"]
 [ext_resource type="FontFile" uid="uid://d076lt4s4m3cn" path="res://Font/uglyhandwriting.ttf" id="13_fgswf"]
 [ext_resource type="Script" uid="uid://cgma1l84y5gfp" path="res://MedicineButton.cs" id="13_r8i0v"]
@@ -232,8 +233,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_r8i0v")
 theme_override_styles/hover = SubResource("StyleBoxFlat_trmqt")
 text = "\\/"
 
-[node name="Treatment_Manager" type="Node" parent="." unique_id=1061490128]
+[node name="Treatment_Manager" type="Node" parent="." unique_id=1061490128 node_paths=PackedStringArray("Popup")]
 script = ExtResource("12_ny8ul")
+Popup = NodePath("Popup")
 
 [node name="Wrong_Medicine_Popup" type="Label" parent="Treatment_Manager" unique_id=1826661236]
 visible = false
@@ -366,6 +368,46 @@ offset_left = 945.42487
 offset_top = 7.053822e-05
 offset_right = 1033.2417
 offset_bottom = 87.83308
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_aq2i0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4tu4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_388oq")
+text = "X"
+
+[node name="Popup" type="Control" parent="Treatment_Manager" unique_id=1659019980]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 930.0
+offset_top = 507.0
+offset_right = 970.0
+offset_bottom = 547.0
+script = ExtResource("8_trmqt")
+
+[node name="PopupLabel" type="Label" parent="Treatment_Manager/Popup" unique_id=2005975626]
+z_index = 5
+layout_mode = 0
+offset_left = -25.0
+offset_top = -45.0
+offset_right = 1010.24023
+offset_bottom = 382.60815
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ey27o")
+text = "This medicine won't work for this patient.
+
+But what's done is done, check in again tomorrow"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PopupClose" type="Button" parent="Treatment_Manager/Popup" unique_id=1266657561]
+z_index = 5
+layout_mode = 0
+offset_left = 373.0
+offset_top = -69.0
+offset_right = 433.0
+offset_bottom = 14.0
+scale = Vector2(2, 1)
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_aq2i0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_v4tu4")

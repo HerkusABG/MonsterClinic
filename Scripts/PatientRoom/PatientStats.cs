@@ -28,7 +28,7 @@ public partial class PatientStats
         Random rnd = new Random();
         malady = new Malady();
         dialogueIndex = 0;
-        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, 6)).Value);
+        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, 2)).Value);
         if (malady.severity == -1)
         {
             malady.severity = rnd.Next(2, 5);
