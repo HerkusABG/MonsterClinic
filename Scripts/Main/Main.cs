@@ -50,6 +50,7 @@ public partial class Main : Node
         //Initialization chain [BELOW]
         InitializeChildren();
         GeneratePatientRooms(RoomControl);
+        RoomTracker.Initialize(this);
     }
 
     private void InitializeChildren()
@@ -88,10 +89,10 @@ public partial class Main : Node
         if (@event is InputEventMouseButton eventKey)
         {
             //if a key is pressed and that key is the right mouse button, and if the pause menu and the office aren't visible
-            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && Office.Visible == false)
+            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && !RoomTracker.IsInRoom(ActiveRoom.Office))
             {
-                
-                //pop a scene from the previous scenes stack, this is the scene currently in use
+                RoomTracker.GoBack();
+              /*  //pop a scene from the previous scenes stack, this is the scene currently in use
                 var current_scene = (Node2D)GetNode(GlobalData.PreviousScenes.Pop().ToString());
                 //GD.Print(current_scene.Name);
                 //hide it
@@ -100,14 +101,57 @@ public partial class Main : Node
                 Room room = current_scene as Room;
                 if(room != null)
                 {
-                    GlobalData.inPatientRoom = false;
+                    //GlobalData.inPatientRoom = false;
+                    RoomTracker.RoomTrack(ActiveRoom.Hallway);
                     Inventory.InventoryActions();
                     Treatment.HideUI();
                 }
                 Contents_P_I patientInterface = current_scene as Contents_P_I;
                 if (patientInterface != null)
                 {
-                    GlobalData.inPatientAdmission = false;
+                    //GlobalData.inPatientAdmission = false;
+                    RoomTracker.RoomTrack(ActiveRoom.Office);
+                    Inventory.InventoryActions();
+                    patientInterface.HideSpeechBubble();
+                }
+                //pop a scene again, this is the scene we were previously in
+                var parent = (Node2D)GetNode(GlobalData.PreviousScenes.Peek().ToString());
+                //GD.Print(parent.Name);
+                //show it
+                parent.Show();
+                //GD.Print("entering " + parent.Name);*/
+            }
+        }
+    }
+
+    /*public override void _UnhandledInput(InputEvent @event)
+    {
+        //This is the function that makes it so that right clicking takes you back to a previous room.
+        if (@event is InputEventMouseButton eventKey)
+        {
+            //if a key is pressed and that key is the right mouse button, and if the pause menu and the office aren't visible
+            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && Office.Visible == false)
+            {
+
+                //pop a scene from the previous scenes stack, this is the scene currently in use
+                var current_scene = (Node2D)GetNode(GlobalData.PreviousScenes.Pop().ToString());
+                //GD.Print(current_scene.Name);
+                //hide it
+                current_scene.Hide();
+                //GD.Print("exiting " + current_scene.Name);
+                Room room = current_scene as Room;
+                if (room != null)
+                {
+                    //GlobalData.inPatientRoom = false;
+                    RoomTracker.RoomTrack(ActiveRoom.Hallway);
+                    Inventory.InventoryActions();
+                    Treatment.HideUI();
+                }
+                Contents_P_I patientInterface = current_scene as Contents_P_I;
+                if (patientInterface != null)
+                {
+                    //GlobalData.inPatientAdmission = false;
+                    RoomTracker.RoomTrack(ActiveRoom.Office);
                     Inventory.InventoryActions();
                     patientInterface.HideSpeechBubble();
                 }
@@ -119,7 +163,7 @@ public partial class Main : Node
                 //GD.Print("entering " + parent.Name);
             }
         }
-    }
+    }*/
 
     //this, and the next 2 methods are for showing the inventory in the scenes it's meant to be accessible, and hiding it otherwise
     private void _on_office_visibility_changed()
@@ -149,7 +193,8 @@ public partial class Main : Node
         }
         else
         {
-            if (!GlobalData.inPatientRoom)
+            //if (!GlobalData.inPatientRoom)
+            if (!RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
             {
                 Inventory.Hide();
             }
@@ -159,7 +204,7 @@ public partial class Main : Node
     private void _on_room_visibility_changed()
     {
         if (Treatment == null) return;
-        if (GlobalData.inPatientRoom)
+        if (RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
         {
             Inventory.Show();
         }   

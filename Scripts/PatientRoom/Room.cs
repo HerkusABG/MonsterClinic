@@ -72,7 +72,8 @@ public partial class Room : Node2D
         var HallwayScene = (Node2D)GetParent().GetParent().GetNode("Hallway");
         HallwayScene.Show();
         Inventory inv = HallwayScene.GetParent().GetNode<Inventory>("Inventory");
-        GlobalData.inPatientRoom = false;
+        //GlobalData.inPatientRoom = false;
+        RoomTracker.RoomTrack(ActiveRoom.Hallway);
         inv.InventoryActions();
         if (GlobalData.PreviousScenes.Count == 0)
         {

@@ -182,7 +182,8 @@ public partial class Inventory : Node2D
     }
     public void InventoryActions()
     {
-        if (GlobalData.inPatientAdmission || GlobalData.inPatientRoom)
+        //if (GlobalData.inPatientAdmission || GlobalData.inPatientRoom)
+        if (RoomTracker.IsInRoom(ActiveRoom.Admission) || RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
         {
             ShotgunButton.Disabled = false;
         }

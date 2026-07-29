@@ -197,7 +197,8 @@ public partial class Contents_P_I : Node2D
         var OfficeScene = (Node2D)GetParent().GetNode("Office");
         OfficeScene.Show();
         GlobalData.PreviousScenes.Pop();
-        GlobalData.inPatientAdmission = false;
+        RoomTracker.RoomTrack(ActiveRoom.Office);
+        //GlobalData.inPatientAdmission = false;
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         inv.InventoryActions();
 
@@ -213,11 +214,13 @@ public partial class Contents_P_I : Node2D
 
     public void ShootPatient()
     {
-        if(GlobalData.inPatientRoom)
+        //if(GlobalData.inPatientRoom)
+        if(RoomTracker.GetRoomTrack() == ActiveRoom.PatientRoom)
         {
             GD.Print("patient SHOT");
         }
-        else if(GlobalData.inPatientAdmission)
+        //else if(GlobalData.inPatientAdmission)
+        else if (RoomTracker.GetRoomTrack() == ActiveRoom.Admission)
         {
             int patients = AdmissionManagerAccess.HowManyPatientsLeft();
             if (patients >= 0)
@@ -304,7 +307,8 @@ public partial class Contents_P_I : Node2D
 
     private void Visit()
     {
-        GlobalData.inPatientAdmission = false;
+        //GlobalData.inPatientAdmission = false;
+        RoomTracker.RoomTrack(ActiveRoom.PatientRoom);
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         inv.InventoryActions();
         //Visit button logic.

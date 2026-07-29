@@ -38,16 +38,18 @@ public partial class Contents_O : Node2D
 
     private void _on_computer_a_pressed()
 	{
-		Hide();
+        /*Hide();
 		var ComputerScene = (Node2D)GetParent().GetNode("Computer");
 		ComputerScene.Show();
-        GlobalData.inPatientAdmission = false;
+        RoomTracker.RoomTrack(ActiveRoom.Computer);
+        //GlobalData.inPatientAdmission = false;
         //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(ComputerScene.GetPath());
-	}
+        GlobalData.PreviousScenes.Push(ComputerScene.GetPath());*/
+        RoomTracker.EnterRoom(ActiveRoom.Computer);
+    }
     private void _on_patient_i_a_pressed()
     {
-        Hide();
+        /*Hide();
 
         var PatientScene = (Node2D)GetParent().GetNode("Patient_Interface");
         PatientScene.Show();
@@ -58,17 +60,19 @@ public partial class Contents_O : Node2D
         Hallway hallway = GetParent().GetNode<Hallway>("Hallway");
         hallway.UpdateHallwayUI();
 
-        GlobalData.inPatientAdmission = true;
+        //GlobalData.inPatientAdmission = true;
+        RoomTracker.RoomTrack(ActiveRoom.Admission);
         Inventory inv = GetParent().GetNode<Inventory>("Inventory");
         inv.InventoryActions();
 
         //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(PatientScene.GetPath());
+        GlobalData.PreviousScenes.Push(PatientScene.GetPath());*/
+        RoomTracker.EnterRoom(ActiveRoom.Admission);
     }
 
 	private void _on_elevator_pressed()
 	{
-        Hide();
+        /*Hide();
 
         var HallwayScene = (Node2D)GetParent().GetNode("Hallway");
         HallwayScene.Show();
@@ -79,10 +83,12 @@ public partial class Contents_O : Node2D
         Hallway hallway = GetParent().GetNode<Hallway>("Hallway");
         hallway.UpdateHallwayUI();
 
-        GlobalData.inPatientAdmission = false;
+        //GlobalData.inPatientAdmission = false;
+        RoomTracker.RoomTrack(ActiveRoom.Hallway);
 
         //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(HallwayScene.GetPath());
+        GlobalData.PreviousScenes.Push(HallwayScene.GetPath());*/
+        RoomTracker.EnterRoom(ActiveRoom.Hallway);
     }
     private void _on_bed_pressed()
     {
@@ -109,7 +115,8 @@ public partial class Contents_O : Node2D
         Inventory inventory = GetParent().GetNode<Inventory>("Inventory");
         inventory.InventoryActions();
 
-        GlobalData.inPatientAdmission = false;
+        //GlobalData.inPatientAdmission = false;
+        RoomTracker.RoomTrack(ActiveRoom.Office);
 
         if (GlobalData.Countdown >= 0)
         {

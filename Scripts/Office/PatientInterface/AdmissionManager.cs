@@ -173,7 +173,6 @@ public partial class AdmissionManager : Node
     private void VisitInternalLogic()
     {
         //CURRENTLY DEPRECATED
-        GlobalData.inPatientRoom = true;
     }
     private void NullPatientInitialize()
     {

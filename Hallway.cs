@@ -65,7 +65,8 @@ public partial class Hallway : Node2D
     {
         //CALLED WHEN ONE OF THE DOORS ARE PRESSED IN THE HALLWAY
         Hide();
-        GlobalData.inPatientRoom = true;
+        //GlobalData.inPatientRoom = true;
+        RoomTracker.RoomTrack(ActiveRoom.PatientRoom);
         var RoomScene = RoomManager.RoomList[index];
         RoomScene.Show();
         Room room = RoomScene as Room;
@@ -89,7 +90,8 @@ public partial class Hallway : Node2D
         //var test1 = (Node2D)GlobalData.PreviousScenes.Peek();
         //GD.Print(test1.Name);
         Hide();
-        GlobalData.inPatientRoom = true;
+        //GlobalData.inPatientRoom = true;
+        RoomTracker.RoomTrack(ActiveRoom.PatientRoom);
         //var RoomScene = (Node2D)GetParent().GetNode("Room");
         //GD.Print($"Room count: {RoomList.Count}.");
         var RoomScene = roomInput;
@@ -109,7 +111,8 @@ public partial class Hallway : Node2D
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         Hide();
-        GlobalData.inPatientRoom = false;
+        //GlobalData.inPatientRoom = false;
+        RoomTracker.RoomTrack(ActiveRoom.Office);
         var OfficeScene = (Node2D)GetParent().GetNode("Office");
         OfficeScene.Show();
         if(GlobalData.PreviousScenes.Count != 0)

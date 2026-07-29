@@ -183,7 +183,8 @@ public partial class MapUI : Control
     private void RoomFastTravel()
     {
         //check inPatientRoom to be true, hide the computer, go to the room corresponding to the most recent room button pressed
-        GlobalData.inPatientRoom = true;
+        //GlobalData.inPatientRoom = true;
+        RoomTracker.RoomTrack(ActiveRoom.PatientRoom);
         Node2D currentScene = GetParent().GetParent<Node2D>();
         Node2D RoomScene = RoomManager.RoomList[currentRoomNum - 1];
         Node2D HallwayScene = currentScene.GetParent().GetNode<Node2D>("Hallway");
