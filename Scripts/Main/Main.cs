@@ -75,7 +75,7 @@ public partial class Main : Node
         //Creating as many rooms as finalRoomCount specifies. Subject to change in the future.
         for (int i = 0; i < finalRoomCount; i++)
         {
-            Node2D newRoom = (Node2D)patientRoom.Duplicate();
+            ExpNode2D newRoom = (ExpNode2D)patientRoom.Duplicate();
             newRoom.Hide();
             roomControl.AddChild(newRoom);
             RoomManager.RoomList.Add(newRoom);

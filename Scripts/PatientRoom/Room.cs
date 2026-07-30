@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-public partial class Room : Node2D 
+public partial class Room : ExpNode2D 
 {
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Button LeaveRoomButton;
@@ -50,11 +50,15 @@ public partial class Room : Node2D
         LeaveRoomButton.Text = "Leave";
     }
 
-    public void OnRoomEnter()
+    public override void OnRoomEnter()
     {
         //Piece of logic that gets executed whenever you enter the room.
         
         UpdateSprites();
+    }
+
+    public override void OnRoomExit()
+    {
     }
 
     private void HoverOff()
@@ -73,12 +77,6 @@ public partial class Room : Node2D
     private void CloseParent(Button button)
     {
       
-    }
-
-    
-    private void _on_patient_room_background_visibility_changed()
-    {
-        
     }
 
     public void UpdateSprites()

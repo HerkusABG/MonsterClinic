@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-public partial class Contents_C : Node2D
+public partial class Contents_C : ExpNode2D
 {
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Button DealerButton;
@@ -318,14 +318,6 @@ public partial class Contents_C : Node2D
 
         //RoomTracker.EnterRoom(ActiveRoom.Office);
         RoomTracker.GoBack();
-        /*Hide();
-        DealerWindow.Hide();
-        ResourcesWindow.Hide();
-        UpgradesWindow.Hide();
-        SpecialOffersWindow.Hide();
-        var OfficeScene = (Node2D)GetParent().GetNode("Office");
-        OfficeScene.Show();
-        GlobalData.PreviousScenes.Pop();*/
     }
 
     //universal method for closing a node's parent, used for all the x's in the top right of popups
@@ -343,13 +335,6 @@ public partial class Contents_C : Node2D
             ControlParent.Hide();
         }
     }
-    //whenever the dealer window's visibility changes, update the text on the money display and the purchase buttons
-    private void _on_dealer_ph_visibility_changed()
-    {
-        
-    }
-    //semi-modular method for buying every type of medicine
-
     private void OpenResourcesWindow()
     {
         UpdateMoneyDisplay();
@@ -434,5 +419,15 @@ public partial class Contents_C : Node2D
             Popup.DisplayPopup(PopupMessages.ComputerMessages["NoMedicine"]);
         }
        
+    }
+
+    public override void OnRoomEnter(Node mainNode)
+    {
+        //GD.Print("Entering computer");
+    }
+
+    public override void OnRoomExit()
+    {
+        //GD.Print("Exiting computer");
     }
 }

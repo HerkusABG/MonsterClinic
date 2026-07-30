@@ -15,7 +15,7 @@ public partial class AdmissionManager : Node
 
     private PatientStats InternalPatient;
 
-    Node2D LatestRoom = null;
+    ExpNode2D LatestRoom = null;
 
     private List<StoryPatientStats> StoryPatientsLeft = new List<StoryPatientStats>();
 
@@ -95,7 +95,7 @@ public partial class AdmissionManager : Node
         patientsLeft = Upgrades.IntUpgradeDatabase["PatientSlots"].incrementTarget;
     }
 
-    public Node2D GetLatestRoom()
+    public ExpNode2D GetLatestRoom()
     {
         //Return the last room in which a patient has been admitted.
         //Used mainly for the visit button.
@@ -165,7 +165,7 @@ public partial class AdmissionManager : Node
         }
     }
 
-    public void SetLatestPatientRoom(Node2D room)
+    public void SetLatestPatientRoom(ExpNode2D room)
     {
         //Set the last room where a patient has been assigned.
         LatestRoom = room;

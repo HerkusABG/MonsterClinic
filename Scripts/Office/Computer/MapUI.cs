@@ -186,7 +186,7 @@ public partial class MapUI : Control
         //GlobalData.inPatientRoom = true;
         RoomTracker.RoomTrack(ActiveRoom.PatientRoom);
         Node2D currentScene = GetParent().GetParent<Node2D>();
-        Node2D RoomScene = RoomManager.RoomList[currentRoomNum - 1];
+        ExpNode2D RoomScene = RoomManager.RoomList[currentRoomNum - 1];
         Node2D HallwayScene = currentScene.GetParent().GetNode<Node2D>("Hallway");
         Hallway hallway = HallwayScene as Hallway;
         hallway.UpdateHallwayUI();

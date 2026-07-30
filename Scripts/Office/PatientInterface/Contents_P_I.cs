@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
 
-public partial class Contents_P_I : Node2D
+public partial class Contents_P_I : ExpNode2D
 {
     //Storing a reference to all the buttons as well as the speech manager, which is responsible for the dialogue inside the P.A.
     //Since the inventory currently is a container, I also store a reference to that so i don't have to show and hide both of the buttons individually.
@@ -314,7 +314,7 @@ public partial class Contents_P_I : Node2D
         Hallway hallwayAccess = hallway as Hallway;
 
         //Go to the room as based on the AdmissionManager's reference for the latest assigned room
-        Node2D room = AdmissionManagerAccess.GetLatestRoom();
+        ExpNode2D room = AdmissionManagerAccess.GetLatestRoom();
         hallwayAccess.GoToRoom(room);
         Room roomRef = room as Room;
         
@@ -326,6 +326,24 @@ public partial class Contents_P_I : Node2D
         //Saving the scene path, for RMB functionality
         GlobalData.PreviousScenes.Push(hallway.GetPath());
         GlobalData.PreviousScenes.Push(room.GetPath());
+    }
+
+    public override void OnRoomEnter(Node mainNode)
+    {
+        //GD.Print("Entering admission");
+
+        UpdatePatientInterfaceUI();
+
+        Hallway hallway = mainNode.GetNode<Hallway>("Hallway");
+        hallway.UpdateHallwayUI();
+
+        Inventory inv = mainNode.GetNode<Inventory>("Inventory");
+        inv.InventoryActions();
+    }
+
+    public override void OnRoomExit()
+    {
+        //GD.Print("Exiting admission");
     }
 }
 

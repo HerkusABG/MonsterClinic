@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Hallway : Node2D
+public partial class Hallway : ExpNode2D
 {
     //Node that controls everything inside of the hallway
 	Control HallwayControl;
@@ -67,7 +67,7 @@ public partial class Hallway : Node2D
         RoomTracker.EnterPatientRoom(index);
     }
 
-    public void GoToRoom(Node2D roomInput)
+    public void GoToRoom(ExpNode2D roomInput)
     {
         //CALLED WHEN "VISIT" BUTTON IS PRESSED IN THE ADMISSION
         RoomTracker.EnterPatientRoom(roomInput);
@@ -76,18 +76,7 @@ public partial class Hallway : Node2D
     private void LeaveRoom()
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
-
         RoomTracker.GoBack();
-        //RoomTracker.EnterRoom(ActiveRoom.Office);
-        /*Hide();
-        //GlobalData.inPatientRoom = false;
-        RoomTracker.RoomTrack(ActiveRoom.Office);
-        var OfficeScene = (Node2D)GetParent().GetNode("Office");
-        OfficeScene.Show();
-        if(GlobalData.PreviousScenes.Count != 0)
-        {
-            GlobalData.PreviousScenes.Pop();
-        }*/
     }
 
     public void ResetRoomUI()
@@ -114,5 +103,20 @@ public partial class Hallway : Node2D
     {
         //makes the text disappear when you stop hovering
         LeaveRoomButton.Text = "";
+    }
+
+    public override void OnRoomEnter(Node mainNode)
+    {
+        //GD.Print("Entering hallway");
+
+        UpdateHallwayUI();
+
+        Inventory inv = mainNode.GetNode<Inventory>("Inventory");
+        inv.InventoryActions();
+    }
+
+    public override void OnRoomExit()
+    {
+        //GD.Print("Exiting hallway");
     }
 }
