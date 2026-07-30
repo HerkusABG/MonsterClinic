@@ -25,6 +25,7 @@ public static class RoomTracker
     public static void GoBack()
     {
         CurrentScene.Hide();
+        CurrentScene.OnRoomExit();
         GlobalData.PreviousScenes.Pop();
 
         Room room = CurrentScene as Room;
@@ -37,7 +38,6 @@ public static class RoomTracker
         if (patientInterface != null)
         {
             EnterRoom(ActiveRoom.Office);
-            patientInterface.HideSpeechBubble();
             return;
         }
         Contents_C computer = CurrentScene as Contents_C;
@@ -101,6 +101,7 @@ public static class RoomTracker
     public static void EnterPatientRoom(int index)
     {
         CurrentScene.Hide();
+        CurrentScene.OnRoomExit();
         RoomTrack(ActiveRoom.PatientRoom);
         ExpNode2D RoomScene = RoomManager.RoomList[index];
         //RoomScene.Show();
@@ -122,6 +123,7 @@ public static class RoomTracker
     public static void EnterPatientRoom(ExpNode2D roomInput)
     {
         CurrentScene.Hide();
+        CurrentScene.OnRoomExit();
         RoomTrack(ActiveRoom.PatientRoom);
         ExpNode2D RoomScene = roomInput;
         //RoomScene.Show();

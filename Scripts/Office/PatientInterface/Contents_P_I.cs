@@ -344,6 +344,7 @@ public partial class Contents_P_I : ExpNode2D
     public override void OnRoomExit()
     {
         //GD.Print("Exiting admission");
+        HideSpeechBubble();
     }
 }
 
