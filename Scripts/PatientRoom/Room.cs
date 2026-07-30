@@ -106,6 +106,8 @@ public partial class Room : Node2D
                 SetPatientUIStatus(true, false);
                 SetPatientRoomText();
             }
+
+            DialogSetUp();
         }
         else
         {
@@ -195,5 +197,18 @@ public partial class Room : Node2D
     public bool GetIsEmpty()
     {
         return isEmpty;
+    }
+
+    public void DialogSetUp()
+    {
+        var dialogScene = GetParent().GetNode<Control>("Dialog");
+        //var DialogScene = (Control)GetParent().GetNode("Dialog");
+        dialogScene.Show();
+
+        if (StoryPatientList.Database.ContainsKey("Karl") && StoryPatientList.Database["Karl"].name == "Karl")
+        {
+            Dialog.currentNPC = 1;
+        }
+        
     }
 }

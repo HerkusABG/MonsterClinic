@@ -116,6 +116,16 @@ public partial class Hallway : Node2D
         {
             GlobalData.PreviousScenes.Pop();
         }
+       // show Dialog in the office, if the dialog didnt ended.
+       var DialogScene = (Control)GetParent().GetNode("Dialog");
+       if(GlobalData.Dialog_Dealer == true){
+            DialogScene.Show();
+        }
+        else
+        {
+            DialogScene.Hide();
+        }
+        
     }
 
     public void ResetRoomUI()
