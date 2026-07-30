@@ -26,14 +26,12 @@ public partial class ScrollCatalog : ScrollContainer
         var gridContainer = GetNode<GridContainer>("GridContainer");
 
         // get the length of the array of the maladyCategorie and instantiate(add) a folder for each categorie
-        for(int i = 0; i < maladyCategorie.Length; i++) 
+        //for(int i = 0; i < maladyCategorie.Length; i++)
+        for (int i = 0; i < 1; i++)
         {
-            var slotfolder = Folders.Instantiate<Folder_MC>();
+            Folder_MC slotfolder = Folders.Instantiate<Folder_MC>();
+            slotfolder.Initialize(CategoryList.Database.ElementAt(i + 1).Value);
             gridContainer.AddChild(slotfolder);
-        
         }
-
-
-
     }
 }

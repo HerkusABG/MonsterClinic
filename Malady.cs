@@ -27,6 +27,10 @@ public class Malady
 
     public bool isImmune = false;
 
+    public MaladyCategory category;
+
+    public string description;
+
     public Malady()
     {
         //Small piece of logic to ensure malady severity gets assigned properly in PatientStats.
@@ -52,5 +56,17 @@ public class Malady
         }
         return malady;
     }
-}
 
+    public bool HasThisCategory(MaladyCategory category)
+    {
+        if (this.category == category)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+}

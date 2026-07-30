@@ -13,7 +13,7 @@ public partial class Folder_MC : Control
 	Texture2D folderopen = (Texture2D)ResourceLoader.Load("res://Cataloag_Malady/Folder_Open.png");
     Texture2D folderclose = (Texture2D)ResourceLoader.Load("res://Cataloag_Malady/Folder_Idle.png");
     public Boolean doubleclick = false;
-    public List<Malady_Autoload.MaladyData> MaladyList;
+    //public List<Malady_Autoload.MaladyData> MaladyList;
 
     //
     //[Export] PackedScene Maladydescription = ResourceLoader.Load<PackedScene>("res://Cataloag_Malady/malady_catalog_slot_ui.tscn");
@@ -25,28 +25,47 @@ public partial class Folder_MC : Control
     public MaladyCatalogSlotUi MCSU;
 
     // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+    public void Initialize(MaladyCategory category)
 	{
 
-        var MaladyAutoload = GetNode<Malady_Autoload>("/root/MaladyAutoload");
-        
+        //var MaladyAutoload = GetNode<Malady_Autoload>("/root/MaladyAutoload");
+
         // get the MaladyData from the MaladyAutoload using the indexChecker to set the tag and text for the button
-        MaladyData = MaladyAutoload.ListMaladies[MaladyAutoload.indexChecker];
-        GetNode<Label>("Tag").Text = MaladyData.Categorie;
-        GetNode<Button>("FolderButton/VBoxContainer/Malady_Button").Text = MaladyData.MaladyName;
+        //MaladyData = MaladyAutoload.ListMaladies[MaladyAutoload.indexChecker];
+        var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
+
+
+
+
+        GetNode<Label>("Tag").Text = category.PluralName;
+
+        List<Malady> SortedMaladies = new List<Malady>();
+        SortedMaladies = MaladyList.GetAllMaladiesOfType(category);
+        int index = 0;
+        foreach (Button button in container_Button.GetChildren())
+        {
+            if(index < SortedMaladies.Count)
+            {
+                button.Text = SortedMaladies[index].name;
+                index++;
+            }
+        }
+        //GetNode<Button>("FolderButton/VBoxContainer/Malady_Button").Text = "Googoogaga";
+
+        //GetNode<Label>("Tag").Text = MaladyData.Categorie;
+        //GetNode<Button>("FolderButton/VBoxContainer/Malady_Button").Text = MaladyData.MaladyName;
        
         // set the button name from the MaladyData and the index gets higher to get the next data
-        if (MaladyAutoload.indexChecker == 0)
+        //if (MaladyAutoload.indexChecker == 0)
         {
-            setbuttonname = MaladyData.MaladyName;
+          //  setbuttonname = MaladyData.MaladyName;
         }
-        MaladyAutoload.indexChecker++;
+       // MaladyAutoload.indexChecker++;
 
         // get VBoxContainer from the scene and hides the container which contains the buttons
-        var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
         container_Button.Hide();
         // get the Malady_Button from the scene
-        Malady_Button = GetNode<Button>("FolderButton/VBoxContainer/Malady_Button");
+        //Malady_Button = GetNode<Button>("FolderButton/VBoxContainer/Malady_Button");
         // connects every button in the VBoxContainer to the _on_malady_button_pressed function, when the button is pressed it will call the function and pass the button as a parameter
         foreach (var child in container_Button.GetChildren())
         {
@@ -62,6 +81,7 @@ public partial class Folder_MC : Control
 
     public void _on_folder_button_pressed()
     {
+        GD.Print("Folder button pressed");
         // get FolderSprite and VBoxContainer from the scene
         var FolderSprite = GetNode<Sprite2D>("FolderIdle");
         var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
@@ -92,7 +112,6 @@ public partial class Folder_MC : Control
         // get the button name from the button
         string getButtonName = btn.Text;
         
-        // check the button name and call the appropriate function in MCSU(MaladyCatalogSlotUi)
         // check the button name and call the appropriate function in MCSU(MaladyCatalogSlotUi)
         if (getButtonName == "Blue Pox")
         {

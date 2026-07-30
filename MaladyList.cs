@@ -12,6 +12,8 @@ public static class MaladyList
         ["Nothing"] = new Malady
         {
             name = "",
+            description = "",
+            category = CategoryList.Database["Nothing"],
             dialogueSymptoms =
             {
                 SymptomList.Database["Nothing"],
@@ -31,6 +33,11 @@ public static class MaladyList
         },
         ["Injury"] = new Malady {
             name = "Injury",
+            description = "A physical injury that leaves the patient weak while they recover from the damage. " +
+            "To your knowledge you know that Bandages would definitly help the patient, but the dealer" +
+            " has also in his shop fancy bandages and the god medicine as an option for dealing with them. " +
+            "There is the risk of further damaging them, do you take it?",
+            category = CategoryList.Database["Injury"],
             dialogueSymptoms =
             {
                 SymptomList.Database["BodyPain"],
@@ -59,6 +66,12 @@ public static class MaladyList
         ["BluePox"] = new Malady
         {
             name = "Blue Pox",
+            description = "A highly infectious virus that presents with cold-like " +
+            "symptoms and purplish spots in areas on the patient´s skin. " +
+            "Some Doctors noticed that Aspirin, Antibiotics, fany Antibiotics " +
+            "and God medicine has affects on the patient, on how bad or good t" +
+            "hese are isnt noted",
+            category = CategoryList.Database["Virus"],
             dialogueSymptoms =
             {
                 SymptomList.Database["Sneezing"],
@@ -87,6 +100,9 @@ public static class MaladyList
         ["GreenPox"] = new Malady
         {
             name = "Green Pox",
+            description = "A cousin strain of the Blue Pox, well known for ravaging communities in [REDACTED], " +
+            "luckily most cases can be treated with Antibiotics.",
+            category = CategoryList.Database["Virus"],
             dialogueSymptoms =
             {
                 SymptomList.Database["Sneezing"],
@@ -116,6 +132,9 @@ public static class MaladyList
         ["Sthyricoids"] = new Malady
         {
             name = "Sthyricoids",
+            description = "A condition caught by people who have breathed in low-quality air for an extended period of time, " +
+            "making bloodflow to the limbs and brain difficult. Can be treated with Aptomitol and Morphine.",
+            category = CategoryList.Database["Injury"],
             dialogueSymptoms =
             {
                 SymptomList.Database["Vertigo"],
@@ -145,6 +164,10 @@ public static class MaladyList
         ["SoliderGut"] = new Malady
         {
             name = "Soldier's Gut",
+            description = "Named after the soldier who were among the first to be afflicted by it, " +
+            "soldier's gut refers to an airborne virus which shuts down the digestive system in mere hours. " +
+            "Antibiotics usually help, but the virus is known to be unpredictable.",
+            category = CategoryList.Database["Injury"],
             dialogueSymptoms =
             {
                 SymptomList.Database["Vertigo"],
@@ -169,6 +192,9 @@ public static class MaladyList
         ["Slithic"] = new Malady
         {
             name = "Slithic",
+            description = "A rare and incredibly deadly virus which can do irreperable damage to a person's body in mere days. " +
+            "Usually treated with Aptomitol and Phranax",
+            category = CategoryList.Database["Virus"],
             dialogueSymptoms =
             {
                 SymptomList.Database["Vomitting"],
@@ -197,4 +223,22 @@ public static class MaladyList
             }
         }
     };
+
+    public static List<Malady> GetAllMaladiesOfType(MaladyCategory category)
+    {
+        List<Malady> outputList = new List<Malady>();
+        foreach(KeyValuePair<string, Malady> malady in Database)
+        {
+            if(malady.Value.HasThisCategory(category))
+            {
+                outputList.Add(malady.Value);
+            }
+        }
+        return outputList;
+    }
+
+    public static void Googa()
+    {
+
+    }
 }
