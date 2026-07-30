@@ -191,19 +191,13 @@ public partial class Contents_P_I : Node2D
     private void ReturnToOffice()
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
-        Hide();
         SpeechManagerAccess.SetBubbleStatus(false);
         Diagnosis.ClearAllBoxes();
-        var OfficeScene = (Node2D)GetParent().GetNode("Office");
-        OfficeScene.Show();
         GlobalData.PreviousScenes.Pop();
-        RoomTracker.RoomTrack(ActiveRoom.Office);
-        //GlobalData.inPatientAdmission = false;
-        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
-        inv.InventoryActions();
-
         int patients = AdmissionManagerAccess.HowManyPatientsLeft();
         GlobalData.IsPatientInWindow = (patients > 0);
+
+        RoomTracker.GoBack();
     }
 
     private void OnRejectPressed()

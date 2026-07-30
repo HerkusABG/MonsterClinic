@@ -31,22 +31,27 @@ public static class RoomTracker
         if (room != null)
         {
             EnterRoom(ActiveRoom.Hallway);
+            return;
         }
         Contents_P_I patientInterface = CurrentScene as Contents_P_I;
         if (patientInterface != null)
         {
             EnterRoom(ActiveRoom.Office);
             patientInterface.HideSpeechBubble();
+            return;
         }
-        //pop a scene again, this is the scene we were previously in
-        //var parent = (Node2D)GetNode(GlobalData.PreviousScenes.Peek().ToString
-        Node2D parent = (Node2D)Main.GetNode(GlobalData.PreviousScenes.Peek().ToString()) as Node2D;
-        //GD.Print(GlobalData.PreviousScenes.Peek().ToString());
-        //Node2D parent = Main.GetNode("Office") as Node2D;
-        //GD.Print(parent.Name);
-        //show it
-        parent.Show();
-        //GD.Print("entering " + parent.Name);
+        Contents_C computer = CurrentScene as Contents_C;
+        if (computer != null)
+        {
+            EnterRoom(ActiveRoom.Office);
+            return;
+        }
+        Hallway hallway = CurrentScene as Hallway;
+        if (hallway != null)
+        {
+            EnterRoom(ActiveRoom.Office);
+            return;
+        }
     }
 
     public static void EnterRoom(ActiveRoom input)
@@ -109,6 +114,47 @@ public static class RoomTracker
             //push the scene we're entering to the previous scenes stack
             GlobalData.PreviousScenes.Push(ComputerScene.GetPath());
         }
+        
+    }
+
+    public static void EnterPatientRoom(int index)
+    {
+        CurrentScene.Hide();
+        RoomTrack(ActiveRoom.PatientRoom);
+        Node2D RoomScene = RoomManager.RoomList[index];
+        RoomScene.Show();
+        CurrentScene = RoomScene;
+
+        Room room = RoomScene as Room;
+        room.OnRoomEnter();
+
+        Inventory inv = Main.GetNode<Inventory>("Inventory");
+        inv.InventoryActions();
+
+        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
+        treatment.SetTreatmentRoomReference(room);
+
+        GlobalData.PreviousScenes.Push(RoomScene.GetPath());
+    }
+
+    public static void EnterPatientRoom(Node2D roomInput)
+    {
+        CurrentScene.Hide();
+        RoomTrack(ActiveRoom.PatientRoom);
+        Node2D RoomScene = roomInput;
+        RoomScene.Show();
+        CurrentScene = RoomScene;
+
+        Room room = RoomScene as Room;
+        room.OnRoomEnter();
+
+        Inventory inv = Main.GetNode<Inventory>("Inventory");
+        inv.InventoryActions();
+
+        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
+        treatment.SetTreatmentRoomReference(room);
+
+        GlobalData.PreviousScenes.Push(RoomScene.GetPath());
     }
     public static void RoomTrack(ActiveRoom input)
     {

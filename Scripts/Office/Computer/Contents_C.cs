@@ -105,11 +105,6 @@ public partial class Contents_C : Node2D
         DealerWindowMoneyDisplay = DealerWindow.GetNode<Label>("Money_Display");
         MedicineContainer = ResourcesWindow.GetNode<VBoxContainer>("VBoxContainer");
         
-        //InsufficientFunds = DealerWindow.GetNode<Label>("Insufficient_Funds");
-        //CloseFundsPopup = InsufficientFunds.GetNode<Button>("Close");
-        //InsufficientAvailability = DealerWindow.GetNode<Label>("Insufficient_Availability");
-        //CloseInsufficientStockPopup = InsufficientAvailability.GetNode<Button>("Close_IA");
-
         //seperate section for the map window
         MapControl = control.GetNode<MapUI>("MapControl");
         CloseMapWindow = MapControl.GetNode<Button>("Close");
@@ -295,9 +290,6 @@ public partial class Contents_C : Node2D
         mapUI.Initialize();
         Popup.Initialize();
     }
-
-    
-
     private void ShowDealerWindow()
     {
         UpdateMoneyDisplay();
@@ -306,29 +298,34 @@ public partial class Contents_C : Node2D
         UpgradesWindow.Hide();
         SpecialOffersWindow.Hide();
     }
-
     private void ShowMapWindow()
     {
         MapControl.Show();
         mapUi.OnMapButtonPressed();
     }
-
     private void ShowCatalogueWindow()
     {
         CatalogueWindow.Show();
     }
-
     private void LogOut()
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
-        Hide();
+        DealerWindow.Hide();
+        ResourcesWindow.Hide();
+        UpgradesWindow.Hide();
+        SpecialOffersWindow.Hide();
+        GlobalData.PreviousScenes.Pop();
+
+        //RoomTracker.EnterRoom(ActiveRoom.Office);
+        RoomTracker.GoBack();
+        /*Hide();
         DealerWindow.Hide();
         ResourcesWindow.Hide();
         UpgradesWindow.Hide();
         SpecialOffersWindow.Hide();
         var OfficeScene = (Node2D)GetParent().GetNode("Office");
         OfficeScene.Show();
-        GlobalData.PreviousScenes.Pop();
+        GlobalData.PreviousScenes.Pop();*/
     }
 
     //universal method for closing a node's parent, used for all the x's in the top right of popups

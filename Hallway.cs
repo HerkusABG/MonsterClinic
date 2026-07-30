@@ -64,53 +64,22 @@ public partial class Hallway : Node2D
     private void GoToRoom(int index)
     {
         //CALLED WHEN ONE OF THE DOORS ARE PRESSED IN THE HALLWAY
-        Hide();
-        //GlobalData.inPatientRoom = true;
-        RoomTracker.RoomTrack(ActiveRoom.PatientRoom);
-        var RoomScene = RoomManager.RoomList[index];
-        RoomScene.Show();
-        Room room = RoomScene as Room;
-        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
-
-        //room.OnRoomEnter();
-        room.OnRoomEnter();
-
-        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
-       
-        treatment.SetTreatmentRoomReference(room);
-        inv.InventoryActions();
-
-        //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(RoomScene.GetPath());
+        RoomTracker.EnterPatientRoom(index);
     }
 
     public void GoToRoom(Node2D roomInput)
     {
         //CALLED WHEN "VISIT" BUTTON IS PRESSED IN THE ADMISSION
-        //var test1 = (Node2D)GlobalData.PreviousScenes.Peek();
-        //GD.Print(test1.Name);
-        Hide();
-        //GlobalData.inPatientRoom = true;
-        RoomTracker.RoomTrack(ActiveRoom.PatientRoom);
-        //var RoomScene = (Node2D)GetParent().GetNode("Room");
-        //GD.Print($"Room count: {RoomList.Count}.");
-        var RoomScene = roomInput;
-        RoomScene.Show();
-        Room room = RoomScene as Room;
-        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
-
-        room.OnRoomEnter();
-        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
-        treatment.SetTreatmentRoomReference(room);
-        inv.InventoryActions();
-        //push the scene we're entering to the previous scenes stack
-        //GlobalData.PreviousScenes.Push(RoomScene.GetPath());
+        RoomTracker.EnterPatientRoom(roomInput);
     }
 
     private void LeaveRoom()
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
-        Hide();
+
+        RoomTracker.GoBack();
+        //RoomTracker.EnterRoom(ActiveRoom.Office);
+        /*Hide();
         //GlobalData.inPatientRoom = false;
         RoomTracker.RoomTrack(ActiveRoom.Office);
         var OfficeScene = (Node2D)GetParent().GetNode("Office");
@@ -118,7 +87,7 @@ public partial class Hallway : Node2D
         if(GlobalData.PreviousScenes.Count != 0)
         {
             GlobalData.PreviousScenes.Pop();
-        }
+        }*/
     }
 
     public void ResetRoomUI()

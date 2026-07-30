@@ -24,8 +24,6 @@ public partial class Room : Node2D
     //boolean that checks whether you can treat the patient.
     private bool notYetTreated = true;
 
-    Inventory invy;
-
     public void Initialize(Action HideUIAction)
     {
         //grabs references to all the necessary nodes
@@ -68,17 +66,7 @@ public partial class Room : Node2D
     private void LeaveRoom()
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
-        Hide();
-        var HallwayScene = (Node2D)GetParent().GetParent().GetNode("Hallway");
-        HallwayScene.Show();
-        Inventory inv = HallwayScene.GetParent().GetNode<Inventory>("Inventory");
-        //GlobalData.inPatientRoom = false;
-        RoomTracker.RoomTrack(ActiveRoom.Hallway);
-        inv.InventoryActions();
-        if (GlobalData.PreviousScenes.Count == 0)
-        {
-            GlobalData.PreviousScenes.Pop();
-        }
+        RoomTracker.GoBack();
     }
 
     
