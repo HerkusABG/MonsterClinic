@@ -6,15 +6,24 @@
 [ext_resource type="Texture2D" uid="uid://b3u4qcrd3kkl4" path="res://Assets/2D Art/PatientRoom/PatientRoom_Corpse_Blockout.png" id="5_xebr5"]
 [ext_resource type="Texture2D" uid="uid://8aajck4t28sx" path="res://Assets/2D Art/PatientRoom/PatientRoom_Corpse_HL_Blockout.png" id="6_si31g"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nn86p"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaq88"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn86p"]
-bg_color = Color(1, 0.21176471, 0.18431373, 1)
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gm67"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj218"]
-bg_color = Color(1, 0.5176471, 0.49803922, 0.65882355)
-border_color = Color(0.8, 0.8, 0.8, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xebr5"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2si3"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -37,17 +46,17 @@ position = Vector2(-810.5541, 461.84573)
 scale = Vector2(1.181781, 1.1599786)
 texture = ExtResource("2_aaq88")
 
-[node name="Leave_Room" type="Button" parent="." unique_id=1531308757]
-z_index = 1
-custom_minimum_size = Vector2(200, 10)
-offset_left = -3079.5737
-offset_top = 1483.4832
-offset_right = 1458.4648
-offset_bottom = 1705.3772
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nn86p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_nn86p")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uj218")
+[node name="Leave_Room" type="Button" parent="." unique_id=1286135011]
+custom_minimum_size = Vector2(210, 100)
+offset_left = 973.9353
+offset_top = 1451.1235
+offset_right = 1373.9353
+offset_bottom = 1651.1235
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_aaq88")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7gm67")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xebr5")
+text = "Return "
 
 [node name="BedPosition" type="Marker2D" parent="." unique_id=902232887]
 

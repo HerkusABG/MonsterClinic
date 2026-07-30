@@ -8,10 +8,10 @@ using System.Linq;
 public partial class Contents_C : ExpNode2D
 {
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
-    Button DealerButton;
+    BaseButton DealerButton;
     Button MapButton;
-    Button CatalogueButton;
-    Button LogOutButton;
+    BaseButton CatalogueButton;
+    BaseButton LogOutButton;
     Control DealerWindow;
     Button UpgradesButton;
     Label UpgradesWindow;
@@ -79,10 +79,10 @@ public partial class Contents_C : ExpNode2D
         //Basically just grabbing all buttons. I have to reference the control because
         //otherwise they wouldn't be found.
         Control control = GetNode<Control>("Player_Interactables_C");
-        DealerButton = control.GetNode<Button>("Dealer");
+        DealerButton = control.GetNode<BaseButton>("Dealer");
         MapButton = control.GetNode<Button>("Map");
-        CatalogueButton = control.GetNode<Button>("Malady_Catalogue");
-        LogOutButton = control.GetNode<Button>("Log_out");
+        CatalogueButton = control.GetNode<BaseButton>("Malady_Catalogue");
+        LogOutButton = control.GetNode<BaseButton>("Log_out");
 
         //separate section for everything in the dealer window
         DealerWindow = control.GetNode<Control>("Dealer_PH");

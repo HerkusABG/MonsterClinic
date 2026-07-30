@@ -9,7 +9,7 @@ public partial class Hallway : ExpNode2D
     //Control node specifically for the doors.
 	Control DoorControl;
     Button LeaveButton;
-    List<Button> Doors =  new List<Button>();
+    List<BaseButton> Doors = new List<BaseButton>();
     [Export] Button LeaveRoomButton;
     public void Initialize()
 	{
@@ -25,7 +25,7 @@ public partial class Hallway : ExpNode2D
     {
         //Grabbing relevant nodes that will later be used in other parts of code.
         HallwayControl = GetNode<Control>("HallwayControl");
-        LeaveButton = HallwayControl.GetNode<Button>("Leave_Room");
+        //LeaveButton = HallwayControl.GetNode<Button>("Leave_Room");
         DoorControl = HallwayControl.GetNode<Control>("DoorControl");
     }
 
@@ -47,9 +47,9 @@ public partial class Hallway : ExpNode2D
         int doorIndex = 0;
         foreach (Node child in DoorControl.GetChildren())
         {
-            if (child.GetClass() == "Button")
+            BaseButton childButton = child as BaseButton;
+            if (childButton != null)
             {
-                Button childButton = child as Button;
                 Doors.Add(childButton);
                 Door doorButton = childButton as Door;
                 doorButton.doorId = doorIndex;

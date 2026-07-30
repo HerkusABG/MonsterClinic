@@ -13,11 +13,11 @@ public partial class Contents_P_I : ExpNode2D
     public PatientStats PatientPointer;
 
     Button ReturnButton;
-    Button DialogueButton;
-    Button ZoomButton;
-    Button PulseButton;
-    Button RejectButton;
-    Button AdmitButton;
+    BaseButton DialogueButton;
+    BaseButton ZoomButton;
+    BaseButton PulseButton;
+    BaseButton RejectButton;
+    BaseButton AdmitButton;
     Button VisitButton;
     Button InventoryButton;
     Button DiagnosisButton;
@@ -109,11 +109,11 @@ public partial class Contents_P_I : ExpNode2D
         //otherwise they wouldn't be found.
         Control control = GetNode<Control>("ControlPatientInterface");
         ReturnButton = control.GetNode<Button>("Return");
-        DialogueButton = control.GetNode<Button>("Dialogue");
-        ZoomButton = control.GetNode<Button>("Zoom");
-        PulseButton = control.GetNode<Button>("Pulse");
-        RejectButton = control.GetNode<Button>("Reject");
-        AdmitButton = control.GetNode<Button>("Admit");
+        DialogueButton = control.GetNode<BaseButton>("Dialogue");
+        ZoomButton = control.GetNode<BaseButton>("Zoom");
+        PulseButton = control.GetNode<BaseButton>("Pulse");
+        RejectButton = control.GetNode<BaseButton>("Reject");
+        AdmitButton = control.GetNode<BaseButton>("Admit");
         VisitButton = control.GetNode<Button>("VisitPatient");
         InventoryButton = control.GetNode<Button>("Inventory");
 
