@@ -13,11 +13,11 @@ public partial class Contents_C : ExpNode2D
     Button CatalogueButton;
     Button LogOutButton;
     Control DealerWindow;
-    Button UpgradesButton;
+    TextureButton UpgradesButton;
     Label UpgradesWindow;
     VBoxContainer UpgradesList;
     Button CloseUpgrades;
-    Button TreatmentResourcesButton;
+    TextureButton TreatmentResourcesButton;
     Label ResourcesWindow;
     Button CloseResources;
     Button CloseDealerWindowButton;
@@ -25,12 +25,12 @@ public partial class Contents_C : ExpNode2D
     VBoxContainer MedicineContainer;
     GridContainer RoomContainer;
 
-    Button SpecialOffersButton;
+    TextureButton SpecialOffersButton;
     Label SpecialOffersWindow;
     VBoxContainer SpecialOffersList;
 
-    Button BodyDisposalButton;
-    Button SelfTreatmentButton;
+    TextureButton BodyDisposalButton;
+    TextureButton SelfTreatmentButton;
     //Label InsufficientFunds;
     //Button CloseFundsPopup;
     //Label InsufficientAvailability;
@@ -41,11 +41,11 @@ public partial class Contents_C : ExpNode2D
     Button CloseCatalogueWindow;
 
     [Export] MapUI mapUi;
-    [Export] Button UpButtonDealer;
-    [Export] Button DownButtonDealer;
+    [Export] TextureButton UpButtonDealer;
+    [Export] TextureButton DownButtonDealer;
 
-    [Export] Button UpButtonUpgrades;
-    [Export] Button DownButtonUpgrades;
+    [Export] TextureButton UpButtonUpgrades;
+    [Export] TextureButton DownButtonUpgrades;
 
     [Export] Popup Popup;
 
@@ -87,18 +87,18 @@ public partial class Contents_C : ExpNode2D
         //separate section for everything in the dealer window
         DealerWindow = control.GetNode<Control>("Dealer_PH");
 
-        UpgradesButton = DealerWindow.GetNode<Button>("Upgrades_Button");
+        UpgradesButton = DealerWindow.GetNode<TextureButton>("Upgrades_Button");
         UpgradesWindow = DealerWindow.GetNode<Label>("Upgrades_Window");
         UpgradesList = UpgradesWindow.GetNode<VBoxContainer>("Upgrades_List");
 
-        SpecialOffersButton = DealerWindow.GetNode<Button>("Special_Offers_Button");
+        SpecialOffersButton = DealerWindow.GetNode<TextureButton>("Special_Offers_Button");
         SpecialOffersWindow = DealerWindow.GetNode<Label>("Special_Offers_Window");
         SpecialOffersList = SpecialOffersWindow.GetNode<VBoxContainer>("Special_Offers_List");
-        SelfTreatmentButton = SpecialOffersList.GetNode<Button>("SelfTreatment");
-        BodyDisposalButton = SpecialOffersList.GetNode<Button>("BodyDisposal");
+        SelfTreatmentButton = SpecialOffersList.GetNode<TextureButton>("SelfTreatment");
+        BodyDisposalButton = SpecialOffersList.GetNode<TextureButton>("BodyDisposal");
 
         CloseUpgrades = UpgradesWindow.GetNode<Button>("Close");
-        TreatmentResourcesButton = DealerWindow.GetNode<Button>("Treatment_Resources_Button");
+        TreatmentResourcesButton = DealerWindow.GetNode<TextureButton>("Treatment_Resources_Button");
         ResourcesWindow = DealerWindow.GetNode<Label>("Resources_Window");
         CloseResources = ResourcesWindow.GetNode<Button>("Close");
         CloseDealerWindowButton = DealerWindow.GetNode<Button>("Close");
@@ -115,7 +115,7 @@ public partial class Contents_C : ExpNode2D
         CloseCatalogueWindow = CatalogueWindow.GetNode<Button>("Close");
 
         int count = 0;
-        foreach(Button button in MedicineContainer.GetChildren())
+        foreach(TextureButton button in MedicineContainer.GetChildren())
         {
             DealerButton castButton = button as DealerButton;
             if(castButton != null)
@@ -127,7 +127,7 @@ public partial class Contents_C : ExpNode2D
             }
         }
         count = 0;
-        foreach (Button button in UpgradesList.GetChildren())
+        foreach (TextureButton button in UpgradesList.GetChildren())
         {
             DealerButton castButton = button as DealerButton;
             if (castButton != null)
@@ -397,7 +397,7 @@ public partial class Contents_C : ExpNode2D
         }
         UpdateBodyDisposalButton();
     }
-    private void BuyMedicine(Button button)
+    private void BuyMedicine(TextureButton button)
     {
         GD.Print("buying self treatment");
         if (DoctorInventory.Money >= GlobalData.MedicineCost && GlobalData.Medicincavailability <= 0)

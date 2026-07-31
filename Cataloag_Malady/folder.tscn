@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bylrq00uis227" path="res://Cataloag_Malady/Folder_MC.cs" id="1_gkd4s"]
 [ext_resource type="Texture2D" uid="uid://lw85l3frsyy8" path="res://Cataloag_Malady/Folder_Idle.png" id="2_82ow6"]
+[ext_resource type="FontFile" uid="uid://cygukaybulvh" path="res://Font/MSW98UI-Regular.ttf" id="2_lj3xs"]
 
 [node name="folder_MC" type="Control" unique_id=1495366430]
 layout_mode = 3
@@ -60,8 +61,11 @@ offset_left = 56.0
 offset_top = 190.0
 offset_right = 162.0
 offset_bottom = 213.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_lj3xs")
 text = "Virus"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FolderIdle" type="Sprite2D" parent="." unique_id=2011704077]
 position = Vector2(131, 51)

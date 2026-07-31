@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class DealerButton : Button
+public partial class DealerButton : TextureButton
 {
 	public int index;
 	Label label;

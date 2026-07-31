@@ -23,7 +23,14 @@
 [ext_resource type="Script" uid="uid://08n5ukorqdyk" path="res://Scripts/Office/Computer/ScrollCatalog.cs" id="15_vbt5y"]
 [ext_resource type="Script" uid="uid://bho5a8iwfj3pn" path="res://Scripts/Office/Computer/MapUI.cs" id="16_l232m"]
 [ext_resource type="Texture2D" uid="uid://db100q8k8e4mb" path="res://Assets/2D Art/PC/pc-desktop-window-closebutton.png" id="17_l7uy0"]
+[ext_resource type="Texture2D" uid="uid://coqixjy7vni4k" path="res://Assets/2D Art/PC/Dealer/pc-dealer-section-clicked.png" id="17_xbdnv"]
+[ext_resource type="FontFile" uid="uid://cygukaybulvh" path="res://Font/MSW98UI-Regular.ttf" id="18_obv51"]
 [ext_resource type="Script" uid="uid://bnfoxvhhm3bek" path="res://Popup.cs" id="19_h2577"]
+[ext_resource type="Texture2D" uid="uid://dprynudt3fvqe" path="res://Assets/2D Art/PC/Dealer/pc-dealer-item-clicked.png" id="21_xbdnv"]
+[ext_resource type="Texture2D" uid="uid://drl5vltein81" path="res://Assets/2D Art/PC/Catalogue/pc-catalogue-arrowup.png" id="22_md7yb"]
+[ext_resource type="Texture2D" uid="uid://d0ty8tg8sm8x7" path="res://Assets/2D Art/PC/Catalogue/pc-catalogue-arrowup-clicked.png" id="23_2bhit"]
+[ext_resource type="Texture2D" uid="uid://dy8fet5bs3pow" path="res://Assets/2D Art/PC/Catalogue/pc-catalogue-arrowdown.png" id="24_yeqts"]
+[ext_resource type="Texture2D" uid="uid://dh21pjjxf4pil" path="res://Assets/2D Art/PC/Catalogue/pc-catalogue-arrowdown-clicked.png" id="25_kjhr5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqyqf"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -419,7 +426,7 @@ texture = ExtResource("8_arhto")
 layout_mode = 0
 offset_left = 30.000002
 offset_right = 180.0
-offset_bottom = 36.999996
+offset_bottom = 37.0
 scale = Vector2(1.25, 1.25)
 theme_override_styles/normal = ExtResource("6_554if")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_5uut4")
@@ -500,7 +507,7 @@ position = Vector2(1142, 533)
 scale = Vector2(0.5680291, 0.5453477)
 texture = ExtResource("13_sotu5")
 
-[node name="Upgrades_Button" type="Button" parent="Player_Interactables_C/Dealer_PH" unique_id=383514002]
+[node name="Upgrades_Button" type="TextureButton" parent="Player_Interactables_C/Dealer_PH" unique_id=978768733]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
 offset_left = 255.0
@@ -508,23 +515,23 @@ offset_top = 454.00003
 offset_right = 901.0
 offset_bottom = 673.0
 scale = Vector2(0.6, 0.6)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-icon = ExtResource("14_hwd26")
-flat = true
+texture_normal = ExtResource("14_hwd26")
+texture_pressed = ExtResource("17_xbdnv")
 
 [node name="Label" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Button" unique_id=1476935489]
 layout_mode = 0
-offset_left = 126.66666
-offset_top = 33.333336
-offset_right = 588.3334
-offset_bottom = 157.33334
-theme_override_font_sizes/font_size = 90
+offset_left = 96.66666
+offset_top = 48.333282
+offset_right = 558.3334
+offset_bottom = 172.33328
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 50
 text = "Upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Treatment_Resources_Button" type="Button" parent="Player_Interactables_C/Dealer_PH" unique_id=1305183997]
+[node name="Treatment_Resources_Button" type="TextureButton" parent="Player_Interactables_C/Dealer_PH" unique_id=443859567]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
 offset_left = 255.0
@@ -532,23 +539,23 @@ offset_top = 256.0
 offset_right = 901.0
 offset_bottom = 475.0
 scale = Vector2(0.6, 0.6)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-icon = ExtResource("14_hwd26")
-flat = true
+texture_normal = ExtResource("14_hwd26")
+texture_pressed = ExtResource("17_xbdnv")
 
 [node name="Label" type="Label" parent="Player_Interactables_C/Dealer_PH/Treatment_Resources_Button" unique_id=642513525]
 layout_mode = 0
-offset_left = 126.66666
-offset_top = 33.333336
-offset_right = 588.3334
-offset_bottom = 157.33334
-theme_override_font_sizes/font_size = 90
+offset_left = 96.66667
+offset_top = 43.333344
+offset_right = 558.33344
+offset_bottom = 167.33337
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 50
 text = "Medicine"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Special_Offers_Button" type="Button" parent="Player_Interactables_C/Dealer_PH" unique_id=1521252742]
+[node name="Special_Offers_Button" type="TextureButton" parent="Player_Interactables_C/Dealer_PH" unique_id=2046291204]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
 offset_left = 255.0
@@ -556,24 +563,23 @@ offset_top = 633.0
 offset_right = 901.0
 offset_bottom = 852.0
 scale = Vector2(0.6, 0.6)
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-icon = ExtResource("14_hwd26")
-flat = true
+texture_normal = ExtResource("14_hwd26")
+texture_pressed = ExtResource("17_xbdnv")
 
 [node name="Label" type="Label" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Button" unique_id=794500069]
 layout_mode = 0
-offset_left = 64.99999
-offset_top = 43.333336
-offset_right = 663.0
-offset_bottom = 167.33334
-theme_override_font_sizes/font_size = 80
+offset_left = 34.999992
+offset_top = 46.666668
+offset_right = 633.0
+offset_bottom = 170.66667
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 50
 text = "Special Offers"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Resources_Window" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=1066429848]
-visible = false
 layout_mode = 0
 offset_left = 710.0
 offset_top = 130.0
@@ -592,69 +598,71 @@ offset_right = 757.0
 offset_bottom = 742.0
 scale = Vector2(0.6, 0.6)
 
-[node name="Medicine1" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer" unique_id=408994854]
+[node name="Medicine1" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer" unique_id=1583071185]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-icon = ExtResource("15_hwd26")
-flat = true
+texture_normal = ExtResource("15_hwd26")
+texture_pressed = ExtResource("21_xbdnv")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine1" unique_id=934023047]
 layout_mode = 0
-offset_left = 56.666664
-offset_top = 38.333332
-offset_right = 765.00006
-offset_bottom = 126.66667
-theme_override_font_sizes/font_size = 50
+offset_left = 38.333332
+offset_top = 30.0
+offset_right = 746.6667
+offset_bottom = 118.33334
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Medicine2" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer" unique_id=1726209352]
+[node name="Medicine2" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer" unique_id=920761479]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-icon = ExtResource("15_hwd26")
-flat = true
+texture_normal = ExtResource("15_hwd26")
+texture_pressed = ExtResource("21_xbdnv")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine2" unique_id=1532704146]
 layout_mode = 0
-offset_left = 56.666664
-offset_top = 38.333332
-offset_right = 765.00006
-offset_bottom = 126.66667
-theme_override_font_sizes/font_size = 50
+offset_left = 45.0
+offset_top = 26.00001
+offset_right = 753.3334
+offset_bottom = 114.33335
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Medicine3" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer" unique_id=1721866980]
+[node name="Medicine3" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer" unique_id=1736545130]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-icon = ExtResource("15_hwd26")
-flat = true
+texture_normal = ExtResource("15_hwd26")
+texture_pressed = ExtResource("21_xbdnv")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine3" unique_id=190581192]
 layout_mode = 0
-offset_left = 56.666664
-offset_top = 38.333332
-offset_right = 765.00006
-offset_bottom = 126.66667
-theme_override_font_sizes/font_size = 50
+offset_left = 41.666664
+offset_top = 30.333353
+offset_right = 750.00006
+offset_bottom = 118.666695
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Resources_Text" type="Label" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=319311484]
 layout_mode = 0
-offset_left = -70.0
-offset_top = 45.0
-offset_right = 172.0
-offset_bottom = 141.0
+offset_left = -65.0
+offset_top = 49.0
+offset_right = 177.0
+offset_bottom = 145.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
 theme_override_font_sizes/font_size = 20
 text = "Medicine"
 horizontal_alignment = 1
@@ -672,31 +680,27 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
 
-[node name="UpDealer" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=1059641802]
+[node name="UpDealer" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=1640538388]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 49.0
-offset_top = 572.0
-offset_right = 199.0
-offset_bottom = 722.0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-text = "UP"
+offset_left = -14.0
+offset_top = 644.0
+offset_right = 636.0
+offset_bottom = 794.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("22_md7yb")
+texture_pressed = ExtResource("23_2bhit")
 
-[node name="DownDealer" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=572412346]
+[node name="DownDealer" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=1592878874]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 213.0
-offset_top = 574.0
-offset_right = 363.0
-offset_bottom = 724.0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-text = "DOWN"
+offset_left = 192.0
+offset_top = 645.0
+offset_right = 829.0
+offset_bottom = 795.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("24_yeqts")
+texture_pressed = ExtResource("25_kjhr5")
 
 [node name="Upgrades_Window" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=1992268291]
 visible = false
@@ -718,69 +722,72 @@ offset_right = 757.0
 offset_bottom = 742.0
 scale = Vector2(0.6, 0.6)
 
-[node name="Upgrade1" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=630815456]
+[node name="Upgrade1" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=1983039582]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-icon = ExtResource("15_hwd26")
-flat = true
+texture_normal = ExtResource("15_hwd26")
+texture_pressed = ExtResource("21_xbdnv")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade1" unique_id=1065136190]
 layout_mode = 0
-offset_left = 56.666664
-offset_top = 38.333332
-offset_right = 765.00006
-offset_bottom = 126.66667
-theme_override_font_sizes/font_size = 50
+offset_left = 41.666664
+offset_top = 31.666666
+offset_right = 750.00006
+offset_bottom = 120.00001
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Upgrade2" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=1337456623]
+[node name="Upgrade2" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=875154773]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-icon = ExtResource("15_hwd26")
-flat = true
+texture_normal = ExtResource("15_hwd26")
+texture_pressed = ExtResource("21_xbdnv")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade2" unique_id=2110672593]
 layout_mode = 0
-offset_left = 56.666664
-offset_top = 38.333332
-offset_right = 765.00006
-offset_bottom = 126.66667
-theme_override_font_sizes/font_size = 50
+offset_left = 45.0
+offset_top = 29.333344
+offset_right = 753.3334
+offset_bottom = 117.66669
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="Upgrade3" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=522712602]
+[node name="Upgrade3" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List" unique_id=97494469]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-icon = ExtResource("15_hwd26")
-flat = true
+texture_normal = ExtResource("15_hwd26")
+texture_pressed = ExtResource("21_xbdnv")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade3" unique_id=789189518]
 layout_mode = 0
-offset_left = 56.666664
-offset_top = 38.333332
-offset_right = 765.00006
-offset_bottom = 126.66667
-theme_override_font_sizes/font_size = 50
+offset_left = 36.666664
+offset_top = 28.666687
+offset_right = 745.00006
+offset_bottom = 117.00003
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Upgrades_Text" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=629698831]
 layout_mode = 0
-offset_left = -70.0
-offset_top = 45.0
-offset_right = 172.0
-offset_bottom = 141.0
+offset_left = -61.0
+offset_top = 50.0
+offset_right = 181.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
 theme_override_font_sizes/font_size = 20
 text = "Upgrades"
 horizontal_alignment = 1
@@ -832,32 +839,28 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
 
-[node name="UpUpgrade" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=963205501]
+[node name="UpUpgrade" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=1894243892]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 11.0
-offset_top = 580.0
-offset_right = 161.0
-offset_bottom = 730.0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-text = "UP"
+offset_left = -14.0
+offset_top = 644.0
+offset_right = 636.0
+offset_bottom = 794.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("22_md7yb")
+texture_pressed = ExtResource("23_2bhit")
 script = ExtResource("3_5uut4")
 
-[node name="DownUpgrade" type="Button" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=1833639266]
+[node name="DownUpgrade" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=1577366160]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 194.0
-offset_top = 578.0
-offset_right = 374.0
-offset_bottom = 728.0
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-text = "DOWN"
+offset_left = 192.0
+offset_top = 645.0
+offset_right = 829.0
+offset_bottom = 795.0
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("24_yeqts")
+texture_pressed = ExtResource("25_kjhr5")
 script = ExtResource("3_5uut4")
 
 [node name="Special_Offers_Window" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=1187620859]
@@ -880,48 +883,51 @@ offset_right = 757.0
 offset_bottom = 730.0
 scale = Vector2(0.6, 0.6)
 
-[node name="SelfTreatment" type="Button" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List" unique_id=1564459406]
+[node name="SelfTreatment" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List" unique_id=1880465992]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-icon = ExtResource("15_hwd26")
-flat = true
+texture_normal = ExtResource("15_hwd26")
+texture_pressed = ExtResource("21_xbdnv")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List/SelfTreatment" unique_id=698051589]
 layout_mode = 0
-offset_left = 56.666664
-offset_top = 38.333332
-offset_right = 765.00006
-offset_bottom = 126.66667
-theme_override_font_sizes/font_size = 50
+offset_left = 48.333332
+offset_top = 30.0
+offset_right = 756.6667
+offset_bottom = 118.33334
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
-[node name="BodyDisposal" type="Button" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List" unique_id=1791540]
+[node name="BodyDisposal" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List" unique_id=1528112655]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_fqyqf")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_jn5dn")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7escd")
-icon = ExtResource("15_hwd26")
-flat = true
+texture_normal = ExtResource("15_hwd26")
+texture_pressed = ExtResource("21_xbdnv")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List/BodyDisposal" unique_id=1438703792]
 layout_mode = 0
-offset_left = 56.666664
-offset_top = 38.333332
-offset_right = 765.00006
-offset_bottom = 126.66667
-theme_override_font_sizes/font_size = 50
+offset_left = 45.0
+offset_top = 29.333344
+offset_right = 753.3334
+offset_bottom = 117.66669
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Special Offers" type="Label" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window" unique_id=387376138]
 layout_mode = 0
-offset_left = -70.0
+offset_left = -54.0
 offset_top = 62.0
-offset_right = 172.0
+offset_right = 188.0
 offset_bottom = 158.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
 theme_override_font_sizes/font_size = 20
 text = "Special Offers
 "
@@ -989,11 +995,13 @@ flat = true
 
 [node name="Money_Display" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=368042294]
 layout_mode = 0
-offset_left = 1258.0
-offset_top = 154.0
-offset_right = 1579.0
-offset_bottom = 230.0
-theme_override_font_sizes/font_size = 40
+offset_left = 1263.0
+offset_top = 159.0
+offset_right = 1584.0
+offset_bottom = 235.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
 
