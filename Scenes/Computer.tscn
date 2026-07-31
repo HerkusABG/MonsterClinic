@@ -426,7 +426,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_qk5mf")
 text = "\\/"
 
 [node name="Malady_PH" type="Control" parent="Player_Interactables_C" unique_id=2143752587]
-visible = false
 anchors_preset = 0
 offset_right = 1700.0
 offset_bottom = 1080.0
@@ -461,7 +460,7 @@ script = ExtResource("15_vbt5y")
 layout_mode = 2
 theme_override_constants/h_separation = 274
 theme_override_constants/v_separation = 222
-columns = 6
+columns = 2
 
 [node name="MaladyCatalogSlotUi" parent="Player_Interactables_C/Malady_PH" unique_id=149421627 instance=ExtResource("13_qk5mf")]
 layout_mode = 1

@@ -30,7 +30,17 @@ text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sympthoms_label" type="Label" parent="." unique_id=1624665971]
+[node name="CuredBy_label" type="Label" parent="." unique_id=1317259889]
+layout_mode = 0
+offset_left = 482.0
+offset_top = 197.0
+offset_right = 809.0
+offset_bottom = 275.0
+theme_override_font_sizes/font_size = 41
+text = "Cured by:"
+vertical_alignment = 1
+
+[node name="Symptoms_label" type="Label" parent="." unique_id=1624665971]
 layout_mode = 0
 offset_left = 5.0
 offset_top = 194.0
@@ -40,7 +50,7 @@ theme_override_font_sizes/font_size = 41
 text = "Symptoms:"
 vertical_alignment = 1
 
-[node name="Sympthoms" type="RichTextLabel" parent="." unique_id=888889044]
+[node name="Symptoms" type="RichTextLabel" parent="." unique_id=888889044]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 275.0
@@ -58,7 +68,17 @@ offset_bottom = 1090.0
 theme_override_font_sizes/normal_font_size = 56
 text = "ahahaha"
 
+[node name="CuredBy" type="RichTextLabel" parent="." unique_id=1167547223]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 275.0
+offset_right = 836.0
+offset_bottom = 601.0
+theme_override_font_sizes/normal_font_size = 43
+text = "Sympthom"
+
 [node name="Picture" type="ColorRect" parent="." unique_id=2108837858]
+visible = false
 layout_mode = 0
 offset_left = 367.0
 offset_top = 128.0

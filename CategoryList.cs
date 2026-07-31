@@ -18,6 +18,11 @@ public static class CategoryList
         {
             Name = "Injury",
             PluralName = "Physical Injuries"
+        },
+        ["Zaza"] = new MaladyCategory
+        {
+            Name = "Zaza",
+            PluralName = "Zaza"
         }
     };
 }

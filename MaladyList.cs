@@ -221,6 +221,65 @@ public static class MaladyList
                 MedicineManager.Database["Aptomitol"],
                 MedicineManager.Database["Phranax"]
             }
+        },
+        ["Fungus"] = new Malady
+        {
+            name = "Aurian Fungus",
+            description = "Often caused by people spending prolonged periods of time in enclosed, moist spaces such as bunkers or cellars" +
+            ", the Aurian fungus is a mutated version of fungi found on trees. It is unclear why this strain prefers to colonize human flesh," +
+            "however. Can be treated with ",
+            category = CategoryList.Database["Injury"],
+            dialogueSymptoms =
+            {
+                SymptomList.Database["Paralysis"],
+                SymptomList.Database["SkinPeel"],
+                SymptomList.Database["BodyPain"]
+            },
+            pulseSymptoms =
+            {
+                SymptomList.Database["HeartProblems"]
+            },
+            allSymptoms =
+            {
+                SymptomList.Database["Paralysis"].name,
+                SymptomList.Database["SkinPeel"].name,
+                SymptomList.Database["BodyPain"].name,
+                SymptomList.Database["HeartProblems"].name
+            },
+            tags =
+            {
+                TagList.Database["Deadly"],
+                TagList.Database["StrongWorsening"],
+                TagList.Database["Unstable"]
+            },
+            cures =
+            {
+                MedicineManager.Database["Aptomitol"],
+                MedicineManager.Database["Phranax"]
+            }
+        },
+        ["Zazington"] = new Malady
+        {
+            name = "Zazington's disease",
+            description = "Caused by when you smoke too much za",
+            category = CategoryList.Database["Zaza"],
+            dialogueSymptoms =
+            {
+                SymptomList.Database["Paralysis"]
+            },
+            allSymptoms =
+            {
+                SymptomList.Database["Paralysis"].name,
+            },
+            tags =
+            {
+                TagList.Database["Healing"],
+            },
+            cures =
+            {
+                MedicineManager.Database["Aptomitol"],
+                MedicineManager.Database["Phranax"]
+            }
         }
     };
 
@@ -237,8 +296,4 @@ public static class MaladyList
         return outputList;
     }
 
-    public static void Googa()
-    {
-
-    }
 }

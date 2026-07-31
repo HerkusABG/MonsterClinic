@@ -48,11 +48,13 @@ public partial class Folder_MC : Control
             {
                 Malady malady = SortedMaladies[index];
                 button.Text = SortedMaladies[index].name;
-                GD.Print($"Index is gonna be {index}");
-
                 button.Pressed += () => MCSU.DisplayMaladyInfo(malady);
 
                 index++;
+            }
+            else
+            {
+                button.Hide();
             }
         }
         //GetNode<Button>("FolderButton/VBoxContainer/Malady_Button").Text = "Googoogaga";
@@ -86,7 +88,6 @@ public partial class Folder_MC : Control
 
     public void _on_folder_button_pressed()
     {
-        GD.Print("Folder button pressed");
         // get FolderSprite and VBoxContainer from the scene
         var FolderSprite = GetNode<Sprite2D>("FolderIdle");
         var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");

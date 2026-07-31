@@ -50,7 +50,13 @@ public partial class MaladyCatalogSlotUi : Control
         // set up the name, description and sympthoms of the malady in the Labels and RichtextLabels.
         GetNode<Label>("Name").Text = malady.name;
         GetNode<RichTextLabel>("Description").Text = malady.description;
-        GetNode<RichTextLabel>("Sympthoms").Text = string.Join("\n", malady.allSymptoms);
+        List<string> cureNames = new List<string>();
+        foreach (Medicine medicine in malady.cures)
+        {
+            cureNames.Add(medicine.name);
+        }
+        GetNode<RichTextLabel>("CuredBy").Text = string.Join("\n", cureNames);
+        GetNode<RichTextLabel>("Symptoms").Text = string.Join("\n", malady.allSymptoms);
     }
 }
 

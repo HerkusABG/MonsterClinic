@@ -5,7 +5,6 @@ using System.Collections.Generic;
 //class governing using medicine to treat the patient in the patient room
 public partial class TreatmentManager : Node
 {
-
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Sprite2D PatientDisplay;
     Label PatientInfo;
