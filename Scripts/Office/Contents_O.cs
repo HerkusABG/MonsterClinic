@@ -5,6 +5,7 @@ public partial class Contents_O : ExpNode2D
 {
     private Timer sceneTimer;
     [Export] PackedScene dealer_selftreatment_dialog = ResourceLoader.Load<PackedScene>("res://Scenes/dialog.tscn");
+    [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
     // Called when the node enters the scene tree for the first time.
     public void Initialize()
 	{
@@ -58,6 +59,9 @@ public partial class Contents_O : ExpNode2D
         GlobalData.PassiveIncome = GlobalData.patientCount * 20;
         DoctorInventory.Money += GlobalData.DailyEarnings + GlobalData.PassiveIncome;
         GlobalData.Countdown--;
+
+        GlobalData.ControlSpawnFading = 1;
+
         var BedScene = (Node2D)GetParent().GetNode("Bed");
         BedScene.Show();
 
@@ -99,6 +103,16 @@ public partial class Contents_O : ExpNode2D
         var BedScene = (Node2D)GetParent().GetNode("Bed");
         BedScene.Hide();
         Show();
+        if(GlobalData.ControlSpawnFading == 2)
+        {
+
+            Bed bed = GetParent().GetNode<Bed>("Bed");
+            bed.FadeQuickFix();
+            /*var spawn = GetNode<GridContainer>("Spawn");
+            var fading = Transition.Instantiate<FadeAnimation>();
+            spawn.AddChild(fading);
+            fading.Fades();*/
+        }
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
     }

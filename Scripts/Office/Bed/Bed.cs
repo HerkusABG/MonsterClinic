@@ -18,9 +18,11 @@ public partial class Bed : Node2D
 
     private void _on_visibility_changed()
     {
+        //GD.Print("On vibility changed in bed.cs");
         // i use a int, some how it worked better than a boolean
         if (GlobalData.ControlSpawnFading == 1)
         {
+            //GD.Print("True");
             GlobalData.Fading = false;
 
             // get the GridContainer, so the text dont get covered from the FadeAnimation. FadeAnimation gets added to the GridContainer
@@ -34,9 +36,26 @@ public partial class Bed : Node2D
             // Control for the spawn FadeAnimation
             GlobalData.ControlSpawnFading = 2;
         }
+    }
+
+    public void FadeQuickFix()
+    {
+        GD.Print("Fadequickfix");
+        if (GlobalData.ControlSpawnFading == 1) return;
+
+        GlobalData.Fading = true;
 
 
+        // get the GridContainer, so the text dont get covered from the FadeAnimation. FadeAnimation gets added to the GridContainer
+        var spawn = GetNode<GridContainer>("Spawn");
+        var fading = Transition.Instantiate<FadeAnimation>();
+        spawn.AddChild(fading);
 
+        // calls the Methode Fades from the FadeAnimation
+        fading.Fades();
+
+        // Control for the spawn FadeAnimation
+        GlobalData.ControlSpawnFading = 1;
     }
 }
 

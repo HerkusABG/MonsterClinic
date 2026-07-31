@@ -63,6 +63,7 @@ public partial class FadeAnimation : Node2D
 
     public void Fades()
     {
+        GD.Print("Fades triggered");
         // creates a Tween
         tw_fade = GetTree().CreateTween().SetParallel();
 
@@ -75,6 +76,7 @@ public partial class FadeAnimation : Node2D
         // condition for the animation
         if (GlobalData.Fading == false)
         {
+            GD.Print("False");
             // get the ColorRect and set the new Color invisible
             var Colorrect_visibility = GetNode<ColorRect>("Fade");
             Colorrect_visibility.Color = new Color(Colorrect_visibility.Color.R, Colorrect_visibility.Color.G, Colorrect_visibility.Color.B, 0);
@@ -112,6 +114,7 @@ public partial class FadeAnimation : Node2D
         }
         else
         {
+            GD.Print("true");
             // get the ColorRect and set the new Color invisible
             var Colorrect_visibility = GetNode<ColorRect>("Fade");
             Colorrect_visibility.Color = new Color(Colorrect_visibility.Color.R, Colorrect_visibility.Color.G, Colorrect_visibility.Color.B, 1);
