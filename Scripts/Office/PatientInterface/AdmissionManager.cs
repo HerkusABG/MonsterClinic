@@ -90,9 +90,17 @@ public partial class AdmissionManager : Node
 
     public void NewDayLogic()
     {
+
+        Random rnd = new Random();
+        
         //New day logic
         LatestRoom = null;
-        patientsLeft = Upgrades.IntUpgradeDatabase["PatientSlots"].incrementTarget;
+        int maxLostPatients = (int)(-Math.Log(2.2f, OutsideWorld.GetReputation()) + 2);
+        int lostPatients = rnd.Next(-1, maxLostPatients + 1);
+        GD.Print($"Lost {lostPatients} patients");
+        patientsLeft = Upgrades.IntUpgradeDatabase["PatientSlots"].incrementTarget - lostPatients;
+        Mathf.Clamp(patientsLeft, 0, 10);
+        GD.Print($"Patients in clinic: {patientsLeft}");
     }
 
     public ExpNode2D GetLatestRoom()
