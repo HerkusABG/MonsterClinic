@@ -33,10 +33,10 @@ public partial class Folder_MC : Control
         // get the MaladyData from the MaladyAutoload using the indexChecker to set the tag and text for the button
         //MaladyData = MaladyAutoload.ListMaladies[MaladyAutoload.indexChecker];
         var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
-
-
-
-
+        MCSU = GetTree().Root.FindChild("MaladyCatalogSlotUi", true, false) as MaladyCatalogSlotUi;
+        //MCSU = GetTree().Root.GetNode<MaladyCatalogSlotUi>("Main/Computer/Malady_PH");
+        //Node nodey = GetTree().Root.GetNode<Node>("Main/Computer/Malady_PH");
+        //GD.Print(GetParent().Name);
         GetNode<Label>("Tag").Text = category.PluralName;
 
         List<Malady> SortedMaladies = new List<Malady>();
@@ -46,7 +46,12 @@ public partial class Folder_MC : Control
         {
             if(index < SortedMaladies.Count)
             {
+                Malady malady = SortedMaladies[index];
                 button.Text = SortedMaladies[index].name;
+                GD.Print($"Index is gonna be {index}");
+
+                button.Pressed += () => MCSU.DisplayMaladyInfo(malady);
+
                 index++;
             }
         }
@@ -63,7 +68,7 @@ public partial class Folder_MC : Control
        // MaladyAutoload.indexChecker++;
 
         // get VBoxContainer from the scene and hides the container which contains the buttons
-        container_Button.Hide();
+        //container_Button.Hide();
         // get the Malady_Button from the scene
         //Malady_Button = GetNode<Button>("FolderButton/VBoxContainer/Malady_Button");
         // connects every button in the VBoxContainer to the _on_malady_button_pressed function, when the button is pressed it will call the function and pass the button as a parameter
@@ -72,7 +77,7 @@ public partial class Folder_MC : Control
             // checks if the child is a button, if it connected to the _on_malady_button_pressed funtion the button as a parameter gets transfered to the function
             if (child is Button btn)
             {
-                btn.Pressed += () => _on_malady_button_pressed(btn);
+                //btn.Pressed += () => _on_malady_button_pressed(btn);
             }
         }
 

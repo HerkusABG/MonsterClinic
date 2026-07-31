@@ -289,6 +289,9 @@ public partial class Contents_C : ExpNode2D
         MapUI mapUI = MapControl as MapUI;
         mapUI.Initialize();
         Popup.Initialize();
+
+        ScrollCatalog catalog = CatalogueWindow.GetNode("ScrollCatalog") as ScrollCatalog;
+        catalog.Initialize();
     }
     private void ShowDealerWindow()
     {

@@ -15,7 +15,7 @@ public partial class ScrollCatalog : ScrollContainer
     // new array to store the categories of the maladies without duplicates
     public string[] maladyCategorie;
     
-    public override void _Ready()
+    public void Initialize()
     {
         // Get the Malady_Autoload node to access the list of maladies
         MaladyData = GetNode<Malady_Autoload>("/root/MaladyAutoload");
@@ -30,8 +30,8 @@ public partial class ScrollCatalog : ScrollContainer
         for (int i = 0; i < 1; i++)
         {
             Folder_MC slotfolder = Folders.Instantiate<Folder_MC>();
-            slotfolder.Initialize(CategoryList.Database.ElementAt(i + 1).Value);
             gridContainer.AddChild(slotfolder);
+            slotfolder.Initialize(CategoryList.Database.ElementAt(i + 1).Value);
         }
     }
 }
