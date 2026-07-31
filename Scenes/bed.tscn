@@ -1,19 +1,53 @@
 [gd_scene format=3 uid="uid://ct6tj36bp5ro0"]
 
-[ext_resource type="Script" uid="uid://6brpwrb647a2" path="res://Scripts/Office/Bed/Bed.cs" id="1_abbq1"]
-[ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://Assets/CustomText/digital-7_CountdownText.ttf" id="2_7vlmp"]
+[ext_resource type="Script" uid="uid://6brpwrb647a2" path="res://Bed/Bed.cs" id="1_abbq1"]
+[ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://CustomText/digital-7_CountdownText.ttf" id="2_7vlmp"]
+[ext_resource type="Texture2D" uid="uid://duxu8md0l1yr5" path="res://Assets/2D Art/Office/office-background.png" id="3_5c33g"]
+[ext_resource type="Texture2D" uid="uid://jdngferi6lje" path="res://Assets/2D Art/Office/office-elevator.png" id="4_lbah1"]
+[ext_resource type="Texture2D" uid="uid://b4o0ubcg603ro" path="res://Assets/2D Art/Office/office-mirror.png" id="5_iah2a"]
+[ext_resource type="Texture2D" uid="uid://c5ncjx7yugc5j" path="res://Assets/2D Art/Office/office-pc.png" id="6_dgwq8"]
+[ext_resource type="Texture2D" uid="uid://djvdgfra7b3b8" path="res://Assets/2D Art/Office/office-phone.png" id="7_qoqk3"]
+[ext_resource type="Texture2D" uid="uid://cvcqxyesknw0" path="res://Assets/2D Art/Office/office-bed.png" id="8_mukss"]
 
 [node name="Bed" type="Node2D" unique_id=615608472]
 script = ExtResource("1_abbq1")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1676701847]
-offset_left = -89.0
-offset_top = -69.0
-offset_right = 1980.0
-offset_bottom = 1148.0
-color = Color(0, 0, 0, 1)
+[node name="OfficeBackground" type="Sprite2D" parent="." unique_id=1958229641]
+position = Vector2(996.00006, 618)
+scale = Vector2(0.53984374, 0.6032407)
+texture = ExtResource("3_5c33g")
+
+[node name="OfficeElevator" type="Sprite2D" parent="." unique_id=8916168]
+position = Vector2(1510, 448.0001)
+scale = Vector2(0.8234536, 0.7262997)
+texture = ExtResource("4_lbah1")
+
+[node name="OfficeMirror" type="Sprite2D" parent="." unique_id=1289082471]
+position = Vector2(377, 339.99997)
+scale = Vector2(0.7314991, 0.7)
+texture = ExtResource("5_iah2a")
+
+[node name="OfficePc" type="Sprite2D" parent="." unique_id=184063797]
+position = Vector2(242, 571.00006)
+scale = Vector2(0.65555555, 0.6333333)
+texture = ExtResource("6_dgwq8")
+
+[node name="OfficePhone" type="Sprite2D" parent="." unique_id=1690384404]
+position = Vector2(1744, 780.99994)
+scale = Vector2(0.7027833, 0.6894737)
+texture = ExtResource("7_qoqk3")
+
+[node name="OfficeBed" type="Sprite2D" parent="." unique_id=17972817]
+position = Vector2(821.99994, 708)
+scale = Vector2(0.6243825, 0.62158144)
+texture = ExtResource("8_mukss")
+
+[node name="Spawn" type="GridContainer" parent="." unique_id=1660455128]
+offset_right = 1939.0
+offset_bottom = 1079.0
 
 [node name="Day" type="RichTextLabel" parent="." unique_id=83163622]
+visible = false
 offset_left = 15.0
 offset_top = 181.0
 offset_right = 1938.0
@@ -26,6 +60,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TreatmentDays" type="RichTextLabel" parent="." unique_id=47269129]
+visible = false
 offset_left = 8.0
 offset_top = 557.0
 offset_right = 1964.0
@@ -38,6 +73,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MoneyEarned" type="RichTextLabel" parent="." unique_id=880434954]
+visible = false
 offset_top = 9.0
 offset_right = 1919.0
 offset_bottom = 224.0
@@ -47,4 +83,10 @@ theme_override_font_sizes/normal_font_size = 70
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Timer" type="Timer" parent="." unique_id=2010748099]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
