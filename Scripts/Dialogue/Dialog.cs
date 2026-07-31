@@ -95,11 +95,12 @@ public partial class Dialog : Control
 			// the control for the dealer dialog, so it isnt spammed
 			GlobalData.Dialog_Dealer_Control = true;
 			// the dialog self destructs itself
-			GD.Print(GetParent().Name);
-			QueueFree();
+			//GD.Print(GetParent().Name);
+			//QueueFree();
 			//hide the GridContainer once the dialogue is done, finally fixing that issue where you can't click on the office
-            GridContainer GridContainer = GetParent<GridContainer>();
-            GridContainer.Hide();
+			//GridContainer GridContainer = GetParent<GridContainer>();
+			//GridContainer.Hide();
+			Hide();
         }
 
     }

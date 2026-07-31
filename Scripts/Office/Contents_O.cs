@@ -98,23 +98,66 @@ public partial class Contents_O : ExpNode2D
 
     private void OnSceneTimerTimeout()
     {
-        // switching scenes
+        Dialog dialog = GetParent().GetNode<Dialog>("Dialog");
+        dialog.Show();
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+
+        // Daily earnings gets reseted
         GlobalData.DailyEarnings = 0;
+
+        // get node bed scene
         var BedScene = (Node2D)GetParent().GetNode("Bed");
+
+        // condition for the Controled Spawn
+        if (GlobalData.ControlSpawnFading == 2)
+        {
+            // Condition Changes
+            GlobalData.Fading = true;
+            // add the scene FadeAnimation and call the Methode Fades
+            AddChild(fading);
+            fading.Fades();
+
+
+        }
+        if (GlobalData.Dialog_Dealer == true)
+        {
+            var DialogForDealer = (Control)GetParent().GetNode("Dialog");
+            DialogForDealer.Show();
+            Dialog.currentIndex = 0;
+
+        }
+
+        // switches scene
         BedScene.Hide();
         Show();
-        if(GlobalData.ControlSpawnFading == 2)
-        {
-
-            Bed bed = GetParent().GetNode<Bed>("Bed");
-            bed.FadeQuickFix();
-            /*var spawn = GetNode<GridContainer>("Spawn");
-            var fading = Transition.Instantiate<FadeAnimation>();
-            spawn.AddChild(fading);
-            fading.Fades();*/
-        }
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
+
+
+
+
+
+
+        /* // switching scenes
+         GlobalData.DailyEarnings = 0;
+         var BedScene = (Node2D)GetParent().GetNode("Bed");
+         BedScene.Hide();
+         Show();
+         if(GlobalData.ControlSpawnFading == 2)
+         {
+
+             Bed bed = GetParent().GetNode<Bed>("Bed");
+             bed.FadeQuickFix();
+             /*var spawn = GetNode<GridContainer>("Spawn");
+             var fading = Transition.Instantiate<FadeAnimation>();
+             spawn.AddChild(fading);
+             fading.Fades();
+          }
+        //push the scene we're entering to the previous scenes stack
+        GlobalData.PreviousScenes.Pop();
+        */
+
     }
 
 
@@ -124,12 +167,13 @@ public partial class Contents_O : ExpNode2D
         if (GlobalData.Dialog_Dealer == true && GlobalData.Dialog_Dealer_Control == true)
         {
             // Gridcontainer gets shown, the dialog gets instanciated and added as a child to the GridContainer
-            var GridContainer = GetNode<GridContainer>("Spawn_DialogControl");
+            //var GridContainer = GetNode<GridContainer>("Spawn_DialogControl");
             // GridContainer shows, so the player cant interact with the other objects behind it
-            GridContainer.Show();
+            // GridContainer.Show();
             // Dialog gets instantiated and added so it spawns in the GridContainer
-            var selftreatmentDialog = dealer_selftreatment_dialog.Instantiate<Dialog>();
-            GridContainer.AddChild(selftreatmentDialog);
+            //var selftreatmentDialog = dealer_selftreatment_dialog.Instantiate<Dialog>();
+            //GridContainer.AddChild(selftreatmentDialog);
+            
             // Dealer Control checks if the dialog should spawn again
             GlobalData.Dialog_Dealer_Control = false;
             // The medicine need to decrease for the player
