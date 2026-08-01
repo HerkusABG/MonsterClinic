@@ -31,18 +31,30 @@ public class DealerSlot
         this.upgrade = upgrade;
     }
 
+    public string GetSlotName()
+    {
+        if (medicine != null)
+        {
+            return $"{medicine.name}";
+        }
+        else
+        {
+            return $"{upgrade.name}";
+        }
+    }
+
     public string GetSlotText()
 	{
 		if(medicine != null)
 		{
-            return $"{medicine.name}  " +
-            $"(Price: {medicine.cost})  " +
+            return $"{medicine.name} \n" +
+            $"(Price: {medicine.cost})  \n" +
             $" Owned: {medicine.amount}";
         }
         else
         {
-            return $"{upgrade.name} " +
-            $"(Price: {upgrade.price}) ";
+            return $"{upgrade.name} \n" +
+            $"(Price: {upgrade.price}) \n";
         }
     }
 

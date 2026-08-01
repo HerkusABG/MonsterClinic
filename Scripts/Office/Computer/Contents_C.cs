@@ -40,6 +40,8 @@ public partial class Contents_C : ExpNode2D
     Control CatalogueWindow;
     Button CloseCatalogueWindow;
 
+    Label PurchaseInfo;
+
     [Export] MapUI mapUi;
     [Export] TextureButton UpButtonDealer;
     [Export] TextureButton DownButtonDealer;
@@ -113,6 +115,8 @@ public partial class Contents_C : ExpNode2D
         //separate section for the malady catalogue
         CatalogueWindow = control.GetNode<Control>("Malady_PH");
         CloseCatalogueWindow = CatalogueWindow.GetNode<Button>("Close");
+
+        PurchaseInfo = DealerWindow.GetNode<Label>("Purchase_Info");
 
         int count = 0;
         foreach(TextureButton button in MedicineContainer.GetChildren())
@@ -257,7 +261,16 @@ public partial class Contents_C : ExpNode2D
         for (int i = 0; i < list.Count; i++)
         {
             //list[i].Text = DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText();
-            list[i].ChangeText(DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText());
+            //grab the text for the button
+            list[i].ChangeText("Buy " + DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotName());
+            //grab the text for the info box
+            list[i].StoreInfo(DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText());
+            //when buying. if the current button in the loop is the one whose info is currently displayed in the info box, update the text in it
+            //can't compare the whole strings because the quantity of medicine at the end is different, so we just compare enough of it to confirm it's a match
+            if (string.Compare(PurchaseInfo.Text, 0, DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText(), 0, 10) == 0)
+            {
+                list[i].UpdateInfo();
+            }
             if (!DealerList.MedicineDatabase.ElementAt(i + start).Value.medicine.unlocked)
             {
                 list[i].Disabled = true;
@@ -273,8 +286,9 @@ public partial class Contents_C : ExpNode2D
         for (int i = 0; i < list.Count; i++)
         {
             //list[i].Text = DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText();
-            list[i].ChangeText(DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText());
-            if(DealerList.UpgradeDatabase.ElementAt(i + start).Value.upgrade.fullyUnlocked)
+            list[i].ChangeText(DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotName());
+            list[i].StoreInfo(DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText());
+            if (DealerList.UpgradeDatabase.ElementAt(i + start).Value.upgrade.fullyUnlocked)
             {
                 list[i].Disabled = true;
             }
@@ -358,10 +372,21 @@ public partial class Contents_C : ExpNode2D
         ResourcesWindow.Hide();
         UpgradesWindow.Hide();
         SpecialOffersWindow.Show();
-        UpdateBodyDisposalButton();
-        SelfTreatmentButton.GetNode<Label>("DealerLabel").Text = "Self Treatment  (Price:" + GlobalData.MedicineCost + ") " +
-            " Owned: " + GlobalData.MedicinePlayer.ToString() + " " +
-            " availability in: " + GlobalData.Medicincavailability.ToString();
+        UpdateBodyDisposalInfo();
+        SelfTreatmentButton.GetNode<Label>("DealerLabel").Text = "Self Treatment";
+    }
+
+
+    private void _on_self_treatment_mouse_entered()
+    {
+        PurchaseInfo.Text = "Self Treatment  (Price:" + GlobalData.MedicineCost + ") \n" +
+            "Owned: " + GlobalData.MedicinePlayer.ToString() + "\n" +
+            "Availability in: " + GlobalData.Medicincavailability.ToString();
+    }
+
+    private void _on_self_treatment_mouse_exited()
+    {
+        PurchaseInfo.Text = "";
     }
 
     private void ShowInsufficientFunds()
@@ -375,14 +400,23 @@ public partial class Contents_C : ExpNode2D
         DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
     }
     
-    private void UpdateBodyDisposalButton()
+    private void UpdateBodyDisposalInfo()
+    {
+        _on_body_disposal_mouse_entered();
+    }
+
+    private void _on_body_disposal_mouse_entered()
     {
         int count = RoomManager.GetDeadPatientCount();
         int cost = Economy.bodyDisposalCost * count;
-        BodyDisposalButton.GetNode<Label>("DealerLabel").Text = $"Dispose of {count} dead patients \n Price: {cost}";
+        PurchaseInfo.Text = $"Dispose of {count} dead patients \n Price: {cost}";
         BodyDisposalButton.Disabled = count <= 0;
     }
 
+    private void _on_body_disposal_mouse_exited()
+    {
+        PurchaseInfo.Text = "";
+    }
     private void BodyDisposal()
     {
         Room[] deadRooms = RoomManager.GetAllDeadPatients();
@@ -395,7 +429,7 @@ public partial class Contents_C : ExpNode2D
             deadRoom.SetAlreadyTreated(false);
             deadRoom.DeletePatient();
         }
-        UpdateBodyDisposalButton();
+        UpdateBodyDisposalInfo();
     }
     private void BuyMedicine(TextureButton button)
     {
@@ -406,7 +440,9 @@ public partial class Contents_C : ExpNode2D
             DoctorInventory.Money -= GlobalData.MedicineCost;
             GlobalData.MedicinePlayer++;
             GlobalData.MedicineCost = GlobalData.MedicineCost * 2; // Increase the cost for the next purchase
-            button.GetNode<Label>("DealerLabel").Text = "Self Treatment (Price: " + GlobalData.MedicineCost + ") Owned: " + GlobalData.MedicinePlayer.ToString() + ") availability in: " + GlobalData.Medicincavailability.ToString();
+            PurchaseInfo.Text = "Self Treatment  (Price:" + GlobalData.MedicineCost + ") \n" +
+            "Owned: " + GlobalData.MedicinePlayer.ToString() + "\n" +
+            "Availability in: " + GlobalData.Medicincavailability.ToString();
             UpdateMoneyDisplay();
         }
         else if (DoctorInventory.Money < GlobalData.MedicineCost)
