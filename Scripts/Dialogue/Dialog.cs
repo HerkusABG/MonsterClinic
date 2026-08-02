@@ -14,10 +14,14 @@ public partial class Dialog : Control
     public static int currentIndex = 0;
     public static int currentNPC = 0;
     [Export] private Button _button;
+    [Export] private Timer Reset_Dialog;
+
 
     public override void _Ready()
     {
+        var Reset_Dialog = GetNode<Timer>("Reset_Dialog");
         var dialog = GetNode<RichTextLabel>("DialogText");
+
         dialog.VisibleRatio = 0;
 
         currentIndex = 0;
@@ -76,10 +80,13 @@ public partial class Dialog : Control
             GlobalData.Dialog_Dealer_Control = true;
             // the dialog self destructs itself
             //GD.Print(GetParent().Name);
-           // QueueFree();
+            // QueueFree();
             //hide the GridContainer once the dialogue is done, finally fixing that issue where you can't click on the office
             //GridContainer GridContainer = GetParent<GridContainer>();
-           // GridContainer.Hide();
+            // GridContainer.Hide();
+
+            currentIndex = 0;
+            DiologText();
             Hide();
         }
 
@@ -104,6 +111,11 @@ public partial class Dialog : Control
 
             // Label declares which persons speaks
             Name_label.Text = "Dealer";
+
+            /*if(currentIndex == 0)
+            {
+                currentIndex++;
+            }*/
         }
         else if (currentNPC == 1)
         {

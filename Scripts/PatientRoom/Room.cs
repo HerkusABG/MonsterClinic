@@ -21,11 +21,12 @@ public partial class Room : Node2D
     public PatientStats Patient;
 
 
+
     //boolean that checks whether you can treat the patient.
     private bool notYetTreated = true;
 
     Inventory invy;
-
+    [Export] SpeechManager SpeechManagerAccess;
     public void Initialize(Action HideUIAction)
     {
         //grabs references to all the necessary nodes
@@ -107,7 +108,7 @@ public partial class Room : Node2D
                 SetPatientRoomText();
             }
 
-            DialogSetUp();
+
         }
         else
         {
@@ -198,17 +199,20 @@ public partial class Room : Node2D
     {
         return isEmpty;
     }
-
-    public void DialogSetUp()
+    private void ShowSpeechDialogue()
     {
-        var dialogScene = GetParent().GetNode<Control>("Dialog");
-        //var DialogScene = (Control)GetParent().GetNode("Dialog");
-        dialogScene.Show();
+        if (SpeechManagerAccess == null)
+            GD.Print("SpeechManagerAccess ist null!");
 
-        if (StoryPatientList.Database.ContainsKey("Karl") && StoryPatientList.Database["Karl"].name == "Karl")
+        //if the patient is their story patient, they do their lil intro
+        if (Patient is not StoryPatientStats)
         {
-            Dialog.currentNPC = 1;
+            //speech.Text(PatientPointer.GetDialogue());
+            SpeechManagerAccess.SpeechText(Patient.GetDialogue());
         }
-        
+        else
+        {
+            SpeechManagerAccess.SpeechText(((StoryPatientStats)Patient).entrySpeech);
+        }
     }
-}
+    }

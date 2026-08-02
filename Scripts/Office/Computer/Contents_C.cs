@@ -329,6 +329,17 @@ public partial class Contents_C : Node2D
         var OfficeScene = (Node2D)GetParent().GetNode("Office");
         OfficeScene.Show();
         GlobalData.PreviousScenes.Pop();
+
+        // show Dialog in the office, if the dialog didnt ended.
+        var DialogScene = (Control)GetParent().GetNode("Dialog");
+        if (GlobalData.Dialog_Dealer == true)
+        {
+            DialogScene.Show();
+        }
+        else
+        {
+            DialogScene.Hide();
+        }
     }
 
     //universal method for closing a node's parent, used for all the x's in the top right of popups
