@@ -97,10 +97,10 @@ public partial class AdmissionManager : Node
         LatestRoom = null;
         int maxLostPatients = (int)(-Math.Log(2.2f, OutsideWorld.GetReputation()) + 2);
         int lostPatients = rnd.Next(-1, maxLostPatients + 1);
-        GD.Print($"Lost {lostPatients} patients");
+        //GD.Print($"Lost {lostPatients} patients");
         patientsLeft = Upgrades.IntUpgradeDatabase["PatientSlots"].incrementTarget - lostPatients;
         Mathf.Clamp(patientsLeft, 0, 10);
-        GD.Print($"Patients in clinic: {patientsLeft}");
+        //GD.Print($"Patients in clinic: {patientsLeft}");
     }
 
     public ExpNode2D GetLatestRoom()

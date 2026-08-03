@@ -148,6 +148,13 @@ public partial class Room : ExpNode2D
         return Patient != null;
     }
 
+    public void KillPatient()
+    {
+        DeletePatient();
+        UpdateSprites();
+        OutsideWorld.ChangeReputation((int)ReputationValue.ShotPatient);
+    }
+
     public void DeletePatient()
     {
         GD.Print("patient deleted");

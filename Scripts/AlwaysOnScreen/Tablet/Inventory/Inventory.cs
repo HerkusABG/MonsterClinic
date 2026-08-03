@@ -315,7 +315,11 @@ public partial class Inventory : Node2D
         DeceasedSprite2.Show();
         ShotgunButton.Disabled = true;*/
 
-        PatientInterface.ShootPatient();
+        //PatientInterface.ShootPatient();
+        if (RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
+        {
+            TreatmentManager.GetRoom().KillPatient();
+        }
     }
 
     //disable the shotgun if we're not in the patient admission room

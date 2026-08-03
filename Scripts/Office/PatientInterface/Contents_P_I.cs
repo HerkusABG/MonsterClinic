@@ -209,17 +209,16 @@ public partial class Contents_P_I : ExpNode2D
     public void ShootPatient()
     {
         //if(GlobalData.inPatientRoom)
-        if(RoomTracker.GetRoomTrack() == ActiveRoom.PatientRoom)
-        {
-            GD.Print("patient SHOT");
-        }
+        
         //else if(GlobalData.inPatientAdmission)
-        else if (RoomTracker.GetRoomTrack() == ActiveRoom.Admission)
+        if (RoomTracker.IsInRoom(ActiveRoom.Admission))
         {
             int patients = AdmissionManagerAccess.HowManyPatientsLeft();
             if (patients >= 0)
             {
                 OnRejectPressed();
+                OutsideWorld.ChangeReputation((int)ReputationValue.ShotPatient);
+                GD.Print($"Reputation now is {OutsideWorld.GetReputation()}");
                 SpeechManagerAccess.SpeechText("Patient killed. Sending in the next patient.");
             }
             else
