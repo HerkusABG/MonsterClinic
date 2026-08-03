@@ -43,11 +43,17 @@ public partial class Contents_O : ExpNode2D
     private void _on_patient_i_a_pressed()
     {
         RoomTracker.EnterRoom(ActiveRoom.Admission);
+		var DialogScene = (Control)GetParent().GetNode("Dialog");
+        DialogScene.Hide();
+
     }
 
 	private void _on_elevator_pressed()
 	{
         RoomTracker.EnterRoom(ActiveRoom.Hallway);
+		var DialogScene = (Control)GetParent().GetNode("Dialog");
+        DialogScene.Hide();
+
     }
     private void _on_bed_pressed()
     {
@@ -88,7 +94,7 @@ public partial class Contents_O : ExpNode2D
             {
                 GlobalData.Medicincavailability--;
             }
-            DialogDealer();
+            //DialogDealer();
         }
     }
 
@@ -101,6 +107,7 @@ public partial class Contents_O : ExpNode2D
         Show();
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
+        DialogDealer();
     }
 
 
@@ -109,13 +116,11 @@ public partial class Contents_O : ExpNode2D
         // Dialog Dealer checks if the dialog should spawn again and the dealer control is so that the code isnt spammened in the process
         if (GlobalData.Dialog_Dealer == true && GlobalData.Dialog_Dealer_Control == true)
         {
-            // Gridcontainer gets shown, the dialog gets instanciated and added as a child to the GridContainer
-            var GridContainer = GetNode<GridContainer>("Spawn_DialogControl");
-            // GridContainer shows, so the player cant interact with the other objects behind it
-            GridContainer.Show();
-            // Dialog gets instantiated and added so it spawns in the GridContainer
-            var selftreatmentDialog = dealer_selftreatment_dialog.Instantiate<Dialog>();
-            GridContainer.AddChild(selftreatmentDialog);
+            var DialogScene = (Control)GetParent().GetNode("Dialog");
+            DialogScene.Show();
+
+            // the dialog for the dealer is set to the 0, because he is the first one in the two dimensional array
+            Dialog.currentNPC = 0;
             // Dealer Control checks if the dialog should spawn again
             GlobalData.Dialog_Dealer_Control = false;
             // The medicine need to decrease for the player

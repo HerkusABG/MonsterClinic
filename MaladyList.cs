@@ -61,6 +61,11 @@ public static class MaladyList
             {
                 MedicineManager.Database["Morphine"],
                 MedicineManager.Database["Bandages"]
+            },
+            admittedDialogue =
+            {
+                "Doesn't look too good, does it?",
+                "Ouch."
             }
         },
         ["BluePox"] = new Malady
@@ -95,6 +100,11 @@ public static class MaladyList
             {
                 MedicineManager.Database["Antibiotics"],
                 MedicineManager.Database["FancyAntibiotics"]
+            },
+            admittedDialogue =
+            {
+                "I am so sick... sick with the blue pox. It's so scary",
+                "Cough cough I have the BLUE POX"
             }
         },
         ["GreenPox"] = new Malady
@@ -127,6 +137,11 @@ public static class MaladyList
             {
                 MedicineManager.Database["Antibiotics"],
                 MedicineManager.Database["FancyAntibiotics"]
+            },
+            admittedDialogue =
+            {
+                "I am so sick... green pox infection!",
+                "GREEN POX"
             }
         },
         ["Sthyricoids"] = new Malady
@@ -159,6 +174,11 @@ public static class MaladyList
             {
                 MedicineManager.Database["Aptomitol"],
                 MedicineManager.Database["Morphine"]
+            },
+            admittedDialogue =
+            {
+                "Sthrocoids. What?",
+                "MY LUNGS HURT!!!"
             }
         },
         ["SoliderGut"] = new Malady
@@ -187,6 +207,11 @@ public static class MaladyList
             {
                 MedicineManager.Database["FancyAntibiotics"],
                 MedicineManager.Database["Antibiotics"]
+            },
+            admittedDialogue =
+            {
+                "My stomach hurts, because I have the SOLDIER'S GUT!",
+                "SOLDIER GUT"
             }
         },
         ["Slithic"] = new Malady
@@ -220,6 +245,11 @@ public static class MaladyList
             {
                 MedicineManager.Database["Aptomitol"],
                 MedicineManager.Database["Phranax"]
+            },
+            admittedDialogue =
+            {
+                "SLITHIC",
+                "I am THROWING UP everywhere!"
             }
         },
         ["Fungus"] = new Malady

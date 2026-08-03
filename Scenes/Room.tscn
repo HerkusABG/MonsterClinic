@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://drisd8gocaaub" path="res://Assets/2D Art/Patient Rooms/room-background.png" id="2_aaq88"]
 [ext_resource type="Texture2D" uid="uid://cbdcpd8q7fwf" path="res://Assets/2D Art/PatientRoom/PatientRoom_Patient_White_Blockout.png" id="4_7gm67"]
 [ext_resource type="Texture2D" uid="uid://b3u4qcrd3kkl4" path="res://Assets/2D Art/PatientRoom/PatientRoom_Corpse_Blockout.png" id="5_xebr5"]
+[ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://Scripts/SpeechManager.cs" id="6_7gm67"]
 [ext_resource type="Texture2D" uid="uid://8aajck4t28sx" path="res://Assets/2D Art/PatientRoom/PatientRoom_Corpse_HL_Blockout.png" id="6_si31g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaq88"]
@@ -33,13 +34,17 @@ border_width_right = 14
 border_width_bottom = 14
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("PatientDisplay", "Corpse", "PatientInfo")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xebr5"]
+bg_color = Color(0.9661711, 0.66405463, 0.6947776, 1)
+
+[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("PatientDisplay", "Corpse", "PatientInfo", "SpeechManagerAccess")]
 position = Vector2(1302.9375, 342.1875)
 scale = Vector2(0.42309022, 0.43263888)
 script = ExtResource("1_5hpqs")
 PatientDisplay = NodePath("Control/Patient_Display")
 Corpse = NodePath("Control/Corpse")
 PatientInfo = NodePath("Control/Patient_Info")
+SpeechManagerAccess = NodePath("SpeechManager")
 
 [node name="Patient_Room_Background" type="Sprite2D" parent="." unique_id=1209967813]
 position = Vector2(-810.5541, 461.84573)
@@ -98,5 +103,21 @@ offset_bottom = 1598.0947
 scale = Vector2(1.1961806, 1.0942975)
 texture_normal = ExtResource("5_xebr5")
 texture_hover = ExtResource("6_si31g")
+
+[node name="SpeechManager" type="Node" parent="." unique_id=1401227399 node_paths=PackedStringArray("SpeechBubble")]
+script = ExtResource("6_7gm67")
+SpeechBubble = NodePath("SpeechBubble")
+
+[node name="SpeechBubble" type="Label" parent="SpeechManager" unique_id=508108362]
+visible = false
+z_index = 3
+offset_left = 947.0
+offset_top = 455.0
+offset_right = 1447.0
+offset_bottom = 655.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_xebr5")
+autowrap_mode = 2
 
 [connection signal="visibility_changed" from="Patient_Room_Background" to="." method="_on_patient_room_background_visibility_changed"]

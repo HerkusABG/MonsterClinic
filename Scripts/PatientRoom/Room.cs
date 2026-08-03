@@ -21,9 +21,12 @@ public partial class Room : ExpNode2D
     public PatientStats Patient;
 
 
+
     //boolean that checks whether you can treat the patient.
     private bool notYetTreated = true;
 
+    Inventory invy;
+    [Export] SpeechManager SpeechManagerAccess;
     public void Initialize(Action HideUIAction)
     {
         //grabs references to all the necessary nodes
@@ -55,6 +58,7 @@ public partial class Room : ExpNode2D
         //Piece of logic that gets executed whenever you enter the room.
         
         UpdateSprites();
+        ShowSpeechDialogue();
     }
 
     public override void OnRoomExit()
@@ -71,6 +75,8 @@ public partial class Room : ExpNode2D
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         RoomTracker.GoBack();
+		SpeechManagerAccess.SetBubbleStatus(false);
+
     }
 
     
@@ -93,6 +99,8 @@ public partial class Room : ExpNode2D
                 SetPatientUIStatus(true, false);
                 SetPatientRoomText();
             }
+
+
         }
         else
         {
@@ -189,5 +197,20 @@ public partial class Room : ExpNode2D
     public bool GetIsEmpty()
     {
         return isEmpty;
+    }
+    private void ShowSpeechDialogue()
+    {
+        if (SpeechManagerAccess == null) return;
+        if (Patient == null) return;
+        //if the patient is their story patient, they do their lil intro
+        //SpeechManagerAccess.SpeechText(Patient.GetAdmittedDialogue());
+        if (Patient is not StoryPatientStats)
+        {
+            SpeechManagerAccess.SpeechText(Patient.GetAdmittedDialogue());
+        }
+        else
+        {
+            SpeechManagerAccess.SpeechText(((StoryPatientStats)Patient).GetAdmittedDialogue());
+        }
     }
 }

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 //am extension of the patientStats class, with additions for story patients
@@ -7,6 +8,7 @@ public partial class StoryPatientStats : PatientStats
 {
     public string name;
     public string entrySpeech;
+    public List<string> storyDialogue = new List<string>();
 
     //little method for adding data common to all story patients
     public void AddInfo()
@@ -17,7 +19,7 @@ public partial class StoryPatientStats : PatientStats
     public void StoryPatientSetup(int index)
     {
         StoryPatientStats patient = StoryPatientList.Database.ElementAt(index).Value;
-        
+        admittedDialogueIndex = 0;
         // refresh the patient's data.
         // For just assigning random numbers, this will be overhauled later.
         Random rnd = new Random();
@@ -31,6 +33,7 @@ public partial class StoryPatientStats : PatientStats
         patientID = patient.patientID;//  "D3" writes the ID as a 3-digit string  005 
         age = patient.age; // random ages of patients between 18 and 90 seemed appropriate for the game
         entrySpeech = patient.entrySpeech;
+        storyDialogue = patient.storyDialogue;
         // Assigning a random color to the patient's portrait, This will be changed later when we have actual portraits.
         PortraitColor = new Color(
             (float)rnd.NextDouble(),
@@ -44,5 +47,23 @@ public partial class StoryPatientStats : PatientStats
         //ALL malady related information must go through here,
         //otherwise the malady reference is static and curing one patient cures all patients.
         malady = inputMalady.Clone();
+    }
+
+    public override string GetAdmittedDialogue()
+    {
+        if (storyDialogue.Count > 0)
+        {
+            string returnDialogue = storyDialogue[admittedDialogueIndex];
+            if (admittedDialogueIndex + 1 < storyDialogue.Count)
+            {
+                admittedDialogueIndex++;
+            }
+            else
+            {
+                admittedDialogueIndex = 0;
+            }
+            return returnDialogue;
+        }
+        return "...";
     }
 }

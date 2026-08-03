@@ -30,6 +30,7 @@ public class Malady
     public MaladyCategory category;
 
     public string description;
+    public List<string> admittedDialogue = new List<string>();
 
     public Malady()
     {

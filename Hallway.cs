@@ -77,6 +77,16 @@ public partial class Hallway : ExpNode2D
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         RoomTracker.GoBack();
+		// show Dialog in the office, if the dialog didnt ended.
+       var DialogScene = (Control)GetParent().GetNode("Dialog");
+       if(GlobalData.Dialog_Dealer == true)
+       {
+            DialogScene.Show();
+        }
+        else
+        {
+            DialogScene.Hide();
+        }
     }
 
     public void ResetRoomUI()

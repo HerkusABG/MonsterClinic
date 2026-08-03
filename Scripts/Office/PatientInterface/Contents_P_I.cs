@@ -198,6 +198,17 @@ public partial class Contents_P_I : ExpNode2D
         GlobalData.IsPatientInWindow = (patients > 0);
 
         RoomTracker.GoBack();
+
+        //shows the Dialog for the dealer, when return to the office
+        var DialogScene = (Control)GetParent().GetNode("Dialog");
+        if (GlobalData.Dialog_Dealer == true)
+        {
+            DialogScene.Show();
+        }
+        else
+        {
+            DialogScene.Hide();
+        }
     }
 
     private void OnRejectPressed()
