@@ -119,6 +119,7 @@ public partial class TreatmentManager : Node
             medicine.amount--;
 
             Room.Patient.TriggerInteractionTags();
+            
 
             if(Room.Patient.malady.isImmune)
             {
@@ -130,6 +131,7 @@ public partial class TreatmentManager : Node
             //Checking to see if the medicine works
             else if (Room.Patient.TryCurePatient(medicine))
             {
+                Room.Patient.ShowCorrectMedicineDialogue(Room.SpeechManagerAccess);
                 //If medicine type is correct
                 //Is the patient cured?
                 if (Room.Patient.IsPatientCured())
@@ -148,6 +150,7 @@ public partial class TreatmentManager : Node
             }
             else
             {
+                Room.Patient.ShowIncorrectMedicineDialogue(Room.SpeechManagerAccess);
                 Room.SetAlreadyTreated(true);
                 //Wrong medicine used, come back tomorrow.
                 Popup.DisplayPopup(PopupMessages.TreatmentMessages["WrongMedicine"]);

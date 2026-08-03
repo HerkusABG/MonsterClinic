@@ -26,7 +26,7 @@ public partial class Room : ExpNode2D
     private bool notYetTreated = true;
 
     Inventory invy;
-    [Export] SpeechManager SpeechManagerAccess;
+    [Export] public SpeechManager SpeechManagerAccess;
     public void Initialize(Action HideUIAction)
     {
         //grabs references to all the necessary nodes
@@ -63,6 +63,9 @@ public partial class Room : ExpNode2D
 
     public override void OnRoomExit()
     {
+        //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
+        
+        SpeechManagerAccess.SetBubbleStatus(false);
     }
 
     private void HoverOff()
@@ -73,10 +76,7 @@ public partial class Room : ExpNode2D
 
     private void LeaveRoom()
     {
-        //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         RoomTracker.GoBack();
-		SpeechManagerAccess.SetBubbleStatus(false);
-
     }
 
     

@@ -24,7 +24,7 @@ border_width_bottom = 7
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xebr5"]
-bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+bg_color = Color(0.9661711, 0.66405463, 0.6947776, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2si3"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -33,9 +33,6 @@ border_width_top = 14
 border_width_right = 14
 border_width_bottom = 14
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xebr5"]
-bg_color = Color(0.9661711, 0.66405463, 0.6947776, 1)
 
 [node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("PatientDisplay", "Corpse", "PatientInfo", "SpeechManagerAccess")]
 position = Vector2(1302.9375, 342.1875)
@@ -111,9 +108,9 @@ SpeechBubble = NodePath("SpeechBubble")
 [node name="SpeechBubble" type="Label" parent="SpeechManager" unique_id=508108362]
 visible = false
 z_index = 3
-offset_left = 947.0
+offset_left = 184.0
 offset_top = 455.0
-offset_right = 1447.0
+offset_right = 584.0
 offset_bottom = 655.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20

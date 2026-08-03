@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public partial class PatientStats
@@ -20,7 +21,6 @@ public partial class PatientStats
     private Room myRoom;
 
     int dialogueIndex = 0;
-    protected int admittedDialogueIndex = 0;
 
     public PatientStats()
     {
@@ -73,15 +73,11 @@ public partial class PatientStats
         //Grab generic dialogue.
         if (malady.dialogueSymptoms.Count > 0)
         {
-            string returnDialogue = malady.dialogueSymptoms[dialogueIndex].quotes[0];
-            if(dialogueIndex + 1 < malady.dialogueSymptoms.Count)
-            {
-                dialogueIndex++;
-            }
-            else
-            {
-                dialogueIndex = 0;
-            }
+            Random rnd = new Random();
+            int length = malady.dialogueSymptoms.Count;
+            int symptomId = rnd.Next(0, length);
+            int quoteListLength = malady.dialogueSymptoms[symptomId].quotes.Count;
+            string returnDialogue = malady.dialogueSymptoms[symptomId].quotes[rnd.Next(0, quoteListLength)];
             return returnDialogue;
         }
         return "...";
@@ -91,15 +87,9 @@ public partial class PatientStats
     {
         if (malady.admittedDialogue.Count > 0)
         {
-            string returnDialogue = malady.admittedDialogue[admittedDialogueIndex];
-            if (admittedDialogueIndex + 1 < malady.admittedDialogue.Count)
-            {
-                admittedDialogueIndex++;
-            }
-            else
-            {
-                admittedDialogueIndex = 0;
-            }
+            Random rnd = new Random();
+            int length = malady.admittedDialogue.Count;
+            string returnDialogue = malady.admittedDialogue[rnd.Next(0, length)];
             return returnDialogue;
         }
         return "...";
@@ -149,6 +139,24 @@ public partial class PatientStats
             }
         }
         CheckLifeStatus();
+    }
+
+    public void ShowCorrectMedicineDialogue(SpeechManager speechManager)
+    {
+        int length = Quotes.Database["CorrectMedicine"].Count;
+        List<string> list = Quotes.Database["CorrectMedicine"];
+
+        Random rnd = new Random();
+        speechManager.SpeechText(list[rnd.Next(0, length)]);
+    }
+
+    public void ShowIncorrectMedicineDialogue(SpeechManager speechManager)
+    {
+        int length = Quotes.Database["IncorrectMedicine"].Count;
+        List<string> list = Quotes.Database["IncorrectMedicine"];
+
+        Random rnd = new Random();
+        speechManager.SpeechText(list[rnd.Next(0, length)]);
     }
 
     private void CheckLifeStatus()

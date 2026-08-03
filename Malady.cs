@@ -49,7 +49,8 @@ public class Malady
             dialogueSymptoms = dialogueSymptoms,
             pulseSymptoms = pulseSymptoms,
             temperatureSymptoms = temperatureSymptoms,
-            cures = cures
+            cures = cures,
+            admittedDialogue = admittedDialogue,
         };
         foreach(Tag tag in tags)
         {

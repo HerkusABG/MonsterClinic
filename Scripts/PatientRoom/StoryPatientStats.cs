@@ -19,7 +19,6 @@ public partial class StoryPatientStats : PatientStats
     public void StoryPatientSetup(int index)
     {
         StoryPatientStats patient = StoryPatientList.Database.ElementAt(index).Value;
-        admittedDialogueIndex = 0;
         // refresh the patient's data.
         // For just assigning random numbers, this will be overhauled later.
         Random rnd = new Random();
@@ -53,15 +52,9 @@ public partial class StoryPatientStats : PatientStats
     {
         if (storyDialogue.Count > 0)
         {
-            string returnDialogue = storyDialogue[admittedDialogueIndex];
-            if (admittedDialogueIndex + 1 < storyDialogue.Count)
-            {
-                admittedDialogueIndex++;
-            }
-            else
-            {
-                admittedDialogueIndex = 0;
-            }
+            Random rnd = new Random();
+            int length = storyDialogue.Count;
+            string returnDialogue = storyDialogue[rnd.Next(0, length)];
             return returnDialogue;
         }
         return "...";
