@@ -70,13 +70,15 @@ static class Upgrades
 
 	public static void Initialize()
 	{
-		for(int i = 0; i < IntUpgradeDatabase.Count; i++)
-		{
-			AllUpgrades.Add(IntUpgradeDatabase.ElementAt(i).Key, IntUpgradeDatabase.ElementAt(i).Value);
-        }
-        for (int i = 0; i < BoolUpgradeDatabase.Count; i++)
-        {
-            AllUpgrades.Add(BoolUpgradeDatabase.ElementAt(i).Key, BoolUpgradeDatabase.ElementAt(i).Value);
+        if (AllUpgrades.Count == 0) { 
+		    for(int i = 0; i < IntUpgradeDatabase.Count; i++)
+		    {
+			    AllUpgrades.Add(IntUpgradeDatabase.ElementAt(i).Key, IntUpgradeDatabase.ElementAt(i).Value);
+            }
+            for (int i = 0; i < BoolUpgradeDatabase.Count; i++)
+            {
+                AllUpgrades.Add(BoolUpgradeDatabase.ElementAt(i).Key, BoolUpgradeDatabase.ElementAt(i).Value);
+            }
         }
         ResetAllUpgrades();
     }

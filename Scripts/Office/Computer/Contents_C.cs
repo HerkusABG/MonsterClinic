@@ -270,6 +270,7 @@ public partial class Contents_C : ExpNode2D
     }
     private void RefreshUpgradeButtons(int start, List<DealerButton> list)
     {
+        GD.Print(list.Count);
         for (int i = 0; i < list.Count; i++)
         {
             //list[i].Text = DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText();

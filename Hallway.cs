@@ -60,6 +60,10 @@ public partial class Hallway : ExpNode2D
             }
         }
     }
+    private void _on_button_pressed()
+    {
+        DoorInitialize();
+    }
 
     private void GoToRoom(int index)
     {

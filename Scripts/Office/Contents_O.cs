@@ -39,6 +39,13 @@ public partial class Contents_O : ExpNode2D
     private void _on_computer_a_pressed()
 	{
         RoomTracker.EnterRoom(ActiveRoom.Computer);
+        var eh = ResourceLoader.Load<PackedScene>("res://Scenes/Main.tscn").Instantiate();
+        eh.Name = "Main";
+        GD.Print(eh.Name);
+        GetParent().QueueFree();
+        GetParent().GetParent().AddChild(eh);
+        //HasReset
+
     }
     private void _on_patient_i_a_pressed()
     {
@@ -135,4 +142,5 @@ public partial class Contents_O : ExpNode2D
     {
         //GD.Print("Exiting office");
     }
+
 }

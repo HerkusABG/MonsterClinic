@@ -18,17 +18,20 @@ public static class DealerList
 
     public static void Initialize()
     {
+        MedicineDatabase.Clear();
         int index = 0;
         for(int i = 0; i < MedicineManager.Database.Count; i++)
         {
-            if (MedicineManager.Database.ElementAt(i).Value.buyable)
+            if (MedicineManager.Database.ElementAt(i).Value.buyable && MedicineDatabase.Count < MedicineManager.Database.Count)
             {
+                GD.Print("skibidi");
                 DealerSlot newSlot = new DealerSlot(MedicineManager.Database.ElementAt(i).Value, index);
                 MedicineDatabase.Add(MedicineManager.Database.ElementAt(i).Key, newSlot);
                 index++;
             }
         }
 
+        UpgradeDatabase.Clear();
         index = 0;
         for (int i = 0; i < Upgrades.AllUpgrades.Count; i++)
         {
