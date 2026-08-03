@@ -22,10 +22,15 @@ public partial class PatientStats
 
     int dialogueIndex = 0;
 
+    public TextureUnit textureUnit;
+
     public PatientStats()
     {
         // refresh the patient's data.
         // For just assigning random numbers, this will be overhauled later.
+        textureUnit = new TextureUnit();
+        textureUnit.Initialize();
+
         Random rnd = new Random();
         malady = new Malady();
         dialogueIndex = 0;
@@ -40,9 +45,9 @@ public partial class PatientStats
 
         // Assigning a random color to the patient's portrait, This will be changed later when we have actual portraits.
         PortraitColor = new Color(
-            (float)rnd.NextDouble(),
-            (float)rnd.NextDouble(),
-            (float)rnd.NextDouble()
+            1,
+            1,
+            1
         );
     }
 
@@ -189,6 +194,10 @@ public partial class PatientStats
         myRoom = room;
     }
 
+    public TextureUnit GetPatientTextures()
+    {
+        return textureUnit;
+    }
 }
     
 

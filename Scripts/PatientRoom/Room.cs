@@ -8,7 +8,9 @@ public partial class Room : ExpNode2D
 {
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Button LeaveRoomButton;
+    [Export] Control WholePatient;
     [Export] Sprite2D PatientDisplay;
+    [Export] Sprite2D PatientHead;
     [Export] Control Corpse;
     [Export] Label PatientInfo;
 
@@ -99,14 +101,12 @@ public partial class Room : ExpNode2D
                 SetPatientUIStatus(true, false);
                 SetPatientRoomText();
             }
-
-
         }
         else
         {
             SetPatientUIStatus(false, false);
             Corpse.Hide();
-            PatientDisplay.Hide();
+            WholePatient.Hide();
         }
     }
 
@@ -116,22 +116,30 @@ public partial class Room : ExpNode2D
         {
             if(alive)
             {
-                PatientDisplay.Show();
+                WholePatient.Show();
+                AssignPatientTextures();
                 Corpse.Hide();
                 PatientInfo.Show();
             }
             else
             {
-                PatientDisplay.Hide();
+                WholePatient.Hide();
                 Corpse.Show();
                 PatientInfo.Show();
             }
         }
         else
         {
-            PatientDisplay.Hide();
+            WholePatient.Hide();
             PatientInfo.Hide();
         }
+    }
+
+    private void AssignPatientTextures()
+    {
+        TextureUnit unit = Patient.GetPatientTextures();
+        PatientDisplay.Texture = unit.BodySet.sitting;
+        PatientHead.Texture = unit.HeadSet.sitting;
     }
 
     private void SetPatientRoomText()
@@ -174,7 +182,6 @@ public partial class Room : ExpNode2D
     {
         Patient = patient;
         Patient.AssignRoom(this);
-        PatientDisplay.Modulate = patient.PortraitColor;
         isEmpty = false;
     }
 

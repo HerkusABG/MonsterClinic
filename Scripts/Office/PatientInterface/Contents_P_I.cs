@@ -122,12 +122,11 @@ public partial class Contents_P_I : ExpNode2D
         DiagnosisButton = InventoryContainer.GetNode<Button>("Diagnosis");
     }
 
+   
+
     //All the show speech methods are just calling the speech manager and
     //displaying different information pulled from the PatientStats class.
     //In the future this could probably be done in a more sleek way, but for now it's functional.
-
-
-
     private void ShowSpeechDialogue()
     {
         //if the patient is their story patient, they do their lil intro
@@ -274,6 +273,7 @@ public partial class Contents_P_I : ExpNode2D
             //If this wasn't the last patient, we generate a new one.
             PatientsLeftLabel.Text = $"Patients left: {patients}";
             PatientPointer = AdmissionManagerAccess.GenerateNewPatient();
+            RenderNewPatient();
         }
         else
         {
@@ -297,6 +297,12 @@ public partial class Contents_P_I : ExpNode2D
         AgeLabel.Text = "Age: " + PatientPointer.age.ToString(); //used stringt o convert the integer age to a string for display purposes
 
         GlobalData.IsPatientInWindow = (patients > 0); // update Globaldata  value
+    }
+
+    private void RenderNewPatient()
+    {
+       TextureUnit unit = PatientPointer.GetPatientTextures();
+       PortraitSprite.Texture = unit.BodySet.standing;
     }
 
     private void SetVisitButtonStatus()

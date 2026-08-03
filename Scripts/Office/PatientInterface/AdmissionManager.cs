@@ -11,7 +11,7 @@ public partial class AdmissionManager : Node
 
     private int patientsLeft;
 
-    PatientStats nullPatient = new PatientStats();
+    PatientStats nullPatient;
 
     private PatientStats InternalPatient;
 
@@ -184,6 +184,7 @@ public partial class AdmissionManager : Node
     }
     private void NullPatientInitialize()
     {
+        nullPatient = new PatientStats();
         //Initializing the null patient.
         nullPatient.malady = MaladyList.Database.ElementAt(0).Value;
         nullPatient.age = 0;

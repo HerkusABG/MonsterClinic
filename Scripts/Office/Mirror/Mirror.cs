@@ -16,10 +16,10 @@ public partial class Mirror : TextureButton
     Texture2D[] mirrorImages =
         {
             // These are the place holder images stored in the godot files for the office
-            GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman1.png"),
-            GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman2.png"),
-            GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman3.png"),
-            GD.Load<Texture2D>("res://Assets/2D Art/Office/MirrorImage/stickman4.png")
+            GD.Load<Texture2D>("res://Assets/2DArt/Office/MirrorImage/stickman1.png"),
+            GD.Load<Texture2D>("res://Assets/2DArt/Office/MirrorImage/stickman2.png"),
+            GD.Load<Texture2D>("res://Assets/2DArt/Office/MirrorImage/stickman3.png"),
+            GD.Load<Texture2D>("res://Assets/2DArt/Office/MirrorImage/stickman4.png")
         };
     public void Initialize()
     {

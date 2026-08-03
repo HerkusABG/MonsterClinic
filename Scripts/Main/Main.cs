@@ -43,6 +43,7 @@ public partial class Main : Node
     private void Initialize()
     {
         GetNodes();
+        TextureList.Initialize();
         OutsideWorld.Initialize();
         Upgrades.Initialize();
         DealerList.Initialize();
