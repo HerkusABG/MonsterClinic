@@ -20,6 +20,7 @@ public partial class PatientStats
     private Room myRoom;
 
     int dialogueIndex = 0;
+    protected int admittedDialogueIndex = 0;
 
     public PatientStats()
     {
@@ -80,6 +81,24 @@ public partial class PatientStats
             else
             {
                 dialogueIndex = 0;
+            }
+            return returnDialogue;
+        }
+        return "...";
+    }
+
+    public virtual string GetAdmittedDialogue()
+    {
+        if (malady.admittedDialogue.Count > 0)
+        {
+            string returnDialogue = malady.admittedDialogue[admittedDialogueIndex];
+            if (admittedDialogueIndex + 1 < malady.admittedDialogue.Count)
+            {
+                admittedDialogueIndex++;
+            }
+            else
+            {
+                admittedDialogueIndex = 0;
             }
             return returnDialogue;
         }

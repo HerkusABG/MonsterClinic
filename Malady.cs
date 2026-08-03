@@ -27,6 +27,8 @@ public class Malady
 
     public bool isImmune = false;
 
+    public List<string> admittedDialogue = new List<string>();
+
     public Malady()
     {
         //Small piece of logic to ensure malady severity gets assigned properly in PatientStats.

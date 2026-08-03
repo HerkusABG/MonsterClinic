@@ -58,6 +58,7 @@ public partial class Room : Node2D
         //Piece of logic that gets executed whenever you enter the room.
         
         UpdateSprites();
+        ShowSpeechDialogue();
     }
 
     private void HoverOff()
@@ -75,6 +76,8 @@ public partial class Room : Node2D
         Inventory inv = HallwayScene.GetParent().GetNode<Inventory>("Inventory");
         GlobalData.inPatientRoom = false;
         inv.InventoryActions();
+        SpeechManagerAccess.SetBubbleStatus(false);
+        GD.Print("Called");
         if (GlobalData.PreviousScenes.Count == 0)
         {
             GlobalData.PreviousScenes.Pop();
@@ -201,18 +204,17 @@ public partial class Room : Node2D
     }
     private void ShowSpeechDialogue()
     {
-        if (SpeechManagerAccess == null)
-            GD.Print("SpeechManagerAccess ist null!");
-
+        if (SpeechManagerAccess == null) return;
+        if (Patient == null) return;
         //if the patient is their story patient, they do their lil intro
+        //SpeechManagerAccess.SpeechText(Patient.GetAdmittedDialogue());
         if (Patient is not StoryPatientStats)
         {
-            //speech.Text(PatientPointer.GetDialogue());
-            SpeechManagerAccess.SpeechText(Patient.GetDialogue());
+            SpeechManagerAccess.SpeechText(Patient.GetAdmittedDialogue());
         }
         else
         {
-            SpeechManagerAccess.SpeechText(((StoryPatientStats)Patient).entrySpeech);
+            SpeechManagerAccess.SpeechText(((StoryPatientStats)Patient).GetAdmittedDialogue());
         }
     }
-    }
+}

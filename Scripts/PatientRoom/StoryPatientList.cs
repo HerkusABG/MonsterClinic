@@ -17,6 +17,11 @@ public static class StoryPatientList
             age = 23,
             PortraitColor = new Color(1f, 0f, 0f),
             malady = MaladyList.Database["Slithic"],
+            storyDialogue =
+            {
+                "Story dialogue",
+                "Story dialogue 2"
+            }
         }/*,
         ["Mina"] = new StoryPatientStats
         {
