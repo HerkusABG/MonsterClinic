@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
@@ -12,7 +13,7 @@ public partial class Room : ExpNode2D
     [Export] Sprite2D PatientDisplay;
     [Export] Sprite2D PatientHead;
     [Export] Control Corpse;
-    [Export] Label PatientInfo;
+    [Export] Control PatientInfo;
     [Export] Sprite2D MaladySprite;
     [Export] Sprite2D TopMaladySprite;
 
@@ -24,6 +25,8 @@ public partial class Room : ExpNode2D
     //Pointer to the patient information
     public PatientStats Patient;
 
+    
+
 
 
     //boolean that checks whether you can treat the patient.
@@ -31,10 +34,13 @@ public partial class Room : ExpNode2D
 
     Inventory invy;
     [Export] public SpeechManager SpeechManagerAccess;
+    [Export] PatientInfoManager PatientInfoScreen;
     public void Initialize(Action HideUIAction)
     {
         //grabs references to all the necessary nodes
         GetNodes();
+
+        PatientInfoScreen.Initialize(this);
 
         //assigning methods to all the buttons
         LeaveRoomButton.MouseEntered += HoverOn;
@@ -121,19 +127,19 @@ public partial class Room : ExpNode2D
                 WholePatient.Show();
                 AssignPatientTextures();
                 Corpse.Hide();
-                PatientInfo.Show();
+                PatientInfoScreen.Show();
             }
             else
             {
                 WholePatient.Hide();
                 Corpse.Show();
-                PatientInfo.Show();
+                PatientInfoScreen.Show();
             }
         }
         else
         {
             WholePatient.Hide();
-            PatientInfo.Hide();
+            PatientInfoScreen.Hide();
         }
     }
 
@@ -158,7 +164,7 @@ public partial class Room : ExpNode2D
 
     private void SetPatientRoomText()
     {
-        string input;
+        /*string input;
         if(Patient.IsPatientAlive())
         {
             input = "Alive";
@@ -167,10 +173,16 @@ public partial class Room : ExpNode2D
         {
             input = "Dead";
         }
-        PatientInfo.Text = $"Malady: {Patient.malady.name}" +
+        string mainText = $"Malady: {Patient.malady.name}" +
             $" \n Age: {Patient.age}" +
             $" \n Severity: {Patient.malady.severity} " +
-            $"\n Status: {input}";
+            $"\n Status: {input}";*/
+        PatientInfoScreen.UpdateText(TabType.General, true);
+        //PatientInfoScreen.Write(mainText, TabType.General, true);
+        /*PatientInfo.Text = $"Malady: {Patient.malady.name}" +
+            $" \n Age: {Patient.age}" +
+            $" \n Severity: {Patient.malady.severity} " +
+            $"\n Status: {input}";*/
     }
 
     public bool HasPatient()
@@ -198,10 +210,19 @@ public partial class Room : ExpNode2D
 
     public void AssignPatient(PatientStats patient)
     {
+        
         Patient = patient;
         Patient.AssignRoom(this);
+        PatientInfoScreen.SetPatient(Patient);
         isEmpty = false;
     }
+
+    public void NewDay()
+    {
+        
+        UpdateSprites();
+    }
+
 
     public void PatientCuredInAbsence()
     {

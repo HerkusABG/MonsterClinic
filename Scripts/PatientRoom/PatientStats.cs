@@ -24,6 +24,8 @@ public partial class PatientStats
 
     public TextureUnit textureUnit;
 
+    public List<ClinicAction> clinicActions = new List<ClinicAction>();
+
     public PatientStats()
     {
         // refresh the patient's data.
@@ -54,6 +56,8 @@ public partial class PatientStats
             1,
             1
         );
+        clinicActions.Clear();
+        NewClinicAction(ClinicActionList.Database["Admitted"].output);
     }
 
     private void AssignMaladyValues(Malady inputMalady)
@@ -129,6 +133,7 @@ public partial class PatientStats
 
     public void TriggerDailyTags()
     {
+        NewDayClinicAction();
         foreach (Tag tag in malady.tags)
         {
             if (tag.HasTagType(TagType.Daily))
@@ -139,8 +144,23 @@ public partial class PatientStats
         CheckLifeStatus();
     }
 
-    public void TriggerInteractionTags()
+    public void NewDayClinicAction()
     {
+        ClinicAction action = new ClinicAction();
+        action.output = $"----Day {GlobalData.Player_Ingame_Days}----";
+        clinicActions.Add(action);
+    }
+
+    public void NewClinicAction(string input)
+    {
+        ClinicAction action = new ClinicAction();
+        action.output = $"{input}";
+        clinicActions.Add(action);
+    }
+
+    public void TriggerInteractionTags(Medicine medicine)
+    {
+        NewClinicAction("Interaction");
         foreach (Tag tag in malady.tags)
         {
             if (tag.HasTagType(TagType.Interaction))
@@ -191,6 +211,7 @@ public partial class PatientStats
 
     public void KillPatient()
     {
+        NewClinicAction("Dead");
         isAlive = false;
     }
 

@@ -60,6 +60,7 @@ public partial class Contents_O : ExpNode2D
         Hide();
         var day_M = GetNode<DayManager>("/root/DayManager");
         day_M.Player_Ingame_Days++;
+        GlobalData.Player_Ingame_Days++;
         //make the money from treating patients, and the passive income
         GlobalData.PassiveIncome = GlobalData.patientCount * 20;
         DoctorInventory.Money += GlobalData.DailyEarnings + GlobalData.PassiveIncome;

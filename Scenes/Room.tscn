@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dxmmoipoobqxt" path="res://Assets/2DArt/Patient/Sitting/patient-sitting-uniform.png" id="6_mimag"]
 [ext_resource type="Texture2D" uid="uid://8aajck4t28sx" path="res://Assets/2DArt/PatientRoom/PatientRoom_Corpse_HL_Blockout.png" id="6_si31g"]
 [ext_resource type="Texture2D" uid="uid://qsx2ufggk2u4" path="res://Assets/2DArt/Patient/Sitting/Head/patient-sitting-head1.png" id="6_xebr5"]
+[ext_resource type="Script" uid="uid://di87l8u018703" path="res://PatientInfoManager.cs" id="9_ijr7e"]
+[ext_resource type="Script" uid="uid://cb1ujlti3k2jc" path="res://TabInfo.cs" id="9_mimag"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaq88"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -36,7 +38,7 @@ border_width_right = 14
 border_width_bottom = 14
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("WholePatient", "PatientDisplay", "PatientHead", "Corpse", "PatientInfo", "MaladySprite", "TopMaladySprite", "SpeechManagerAccess")]
+[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("WholePatient", "PatientDisplay", "PatientHead", "Corpse", "PatientInfo", "MaladySprite", "TopMaladySprite", "SpeechManagerAccess", "PatientInfoScreen")]
 position = Vector2(1302.9375, 342.1875)
 scale = Vector2(0.42309022, 0.43263888)
 script = ExtResource("1_5hpqs")
@@ -48,6 +50,7 @@ PatientInfo = NodePath("Control/Patient_Info")
 MaladySprite = NodePath("Control/WholePatient/Patient_Malady")
 TopMaladySprite = NodePath("Control/WholePatient/Patient_TopMalady")
 SpeechManagerAccess = NodePath("SpeechManager")
+PatientInfoScreen = NodePath("PatientInfo")
 
 [node name="Patient_Room_Background" type="Sprite2D" parent="." unique_id=1209967813]
 position = Vector2(-810.5541, 461.84573)
@@ -142,9 +145,9 @@ SpeechBubble = NodePath("SpeechBubble")
 visible = false
 z_index = 3
 offset_left = 184.0
-offset_top = 455.0
+offset_top = 712.0
 offset_right = 584.0
-offset_bottom = 655.0
+offset_bottom = 912.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_xebr5")
@@ -154,5 +157,54 @@ autowrap_mode = 2
 position = Vector2(-810.5541, 461.84573)
 scale = Vector2(1.181781, 1.1599786)
 texture = ExtResource("2_aaq88")
+
+[node name="PatientInfo" type="TabContainer" parent="." unique_id=436648055]
+visible = false
+offset_left = -2481.5925
+offset_top = -136.80583
+offset_right = -1956.8816
+offset_bottom = 223.77205
+scale = Vector2(2.25, 2.25)
+current_tab = 0
+script = ExtResource("9_ijr7e")
+
+[node name="General" type="TabBar" parent="PatientInfo" unique_id=303885043]
+layout_mode = 2
+script = ExtResource("9_mimag")
+metadata/_tab_index = 0
+
+[node name="Text" type="Label" parent="PatientInfo/General" unique_id=906407502]
+layout_mode = 0
+offset_left = 34.665577
+offset_top = 30.63726
+offset_right = 484.6656
+offset_bottom = 280.63727
+
+[node name="Malady" type="TabBar" parent="PatientInfo" unique_id=802278181]
+visible = false
+layout_mode = 2
+script = ExtResource("9_mimag")
+metadata/_tab_index = 1
+
+[node name="Text" type="Label" parent="PatientInfo/Malady" unique_id=760511374]
+layout_mode = 0
+offset_left = 34.665577
+offset_top = 30.63726
+offset_right = 484.6656
+offset_bottom = 280.63727
+
+[node name="History" type="TabBar" parent="PatientInfo" unique_id=1713677384]
+visible = false
+layout_mode = 2
+script = ExtResource("9_mimag")
+metadata/_tab_index = 2
+
+[node name="Text" type="Label" parent="PatientInfo/History" unique_id=1094535223]
+layout_mode = 0
+offset_left = 34.665577
+offset_top = 30.63726
+offset_right = 484.6656
+offset_bottom = 280.63727
+vertical_alignment = 2
 
 [connection signal="visibility_changed" from="Patient_Room_Background" to="." method="_on_patient_room_background_visibility_changed"]

@@ -7,6 +7,7 @@ public static class TagList
     {
         ["Worsening"] = new WorseningTag
         {
+            name = "Worsening",
             types =
             {
                 TagType.Daily
@@ -16,6 +17,7 @@ public static class TagList
         },
         ["Healing"] = new HealingTag
         {
+            name = "Healing",
             types =
             {
                 TagType.Daily
@@ -25,6 +27,7 @@ public static class TagList
         },
         ["Unstable"] = new UnstableTag
         {
+            name = "Unstable",
             types =
             {
                 TagType.Daily,
@@ -34,6 +37,7 @@ public static class TagList
         },
         ["Deadly"] = new DeadlyTag
         {
+            name = "Deadly",
             types =
             {
                 TagType.Daily,
@@ -42,6 +46,7 @@ public static class TagList
         },
         ["Resistant"] = new ResistantTag
         {
+            name = "Resistant",
             types =
             {
                 TagType.Interaction
@@ -51,6 +56,7 @@ public static class TagList
         },
         ["StrongWorsening"] = new WorseningTag
         {
+            name = "Strong Worsening",
             types =
             {
                 TagType.Daily
@@ -60,6 +66,7 @@ public static class TagList
         },
         ["WeakHealing"] = new HealingTag
         {
+            name = "Weak Healing",
             types =
             {
                 TagType.Daily

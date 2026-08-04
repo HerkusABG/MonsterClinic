@@ -8,6 +8,7 @@ public class Tag
     public List<TagType> types = new List<TagType>();
     public int increment;
     public int strength;
+    public string name;
 
     public bool HasTagType(TagType inputType)
     {
@@ -64,6 +65,7 @@ public class WorseningTag : Tag
         count++;
         if (count >= increment)
         {
+            patient.NewClinicAction("Worsened");
             malady.severity += strength;
             if (malady.severity > 5)
             {
@@ -77,7 +79,8 @@ public class WorseningTag : Tag
     {
         WorseningTag specifiedClone = new WorseningTag
         {
-            count = count
+            count = count,
+            name = name
         };
         GetParentData(specifiedClone);
         return specifiedClone;
@@ -98,6 +101,7 @@ public class HealingTag : Tag
         count++;
         if (count >= increment)
         {
+            patient.NewClinicAction("Healed");
             malady.severity += strength;
             count = 0;
         }
@@ -107,7 +111,8 @@ public class HealingTag : Tag
     {
         HealingTag specifiedClone = new HealingTag
         {
-            count = count
+            count = count,
+            name = name
         };
         GetParentData(specifiedClone);
         return specifiedClone;
@@ -133,6 +138,7 @@ public class UnstableTag : Tag
         }
         else
         {
+            patient.NewClinicAction("Unstable");
             malady.severity += strength;
         }
     }
@@ -147,7 +153,8 @@ public class UnstableTag : Tag
         UnstableTag specifiedClone = new UnstableTag
         {
             count = count,
-            wasTreatedToday = wasTreatedToday
+            wasTreatedToday = wasTreatedToday,
+            name = name
         };
         GetParentData(specifiedClone);
         return specifiedClone;
@@ -174,6 +181,7 @@ public class DeadlyTag : Tag
     {
         DeadlyTag specifiedClone = new DeadlyTag
         {
+            name = name
         };
         GetParentData(specifiedClone);
         return specifiedClone;
@@ -195,6 +203,7 @@ public class ResistantTag : Tag
         int chance = rnd.Next(1, ratioB + 1);
         if(chance <= ratioA)
         {
+            patient.NewClinicAction("Resisted");
             patient.malady.isImmune = true;
         }
     }
@@ -204,7 +213,8 @@ public class ResistantTag : Tag
         ResistantTag specifiedClone = new ResistantTag
         {
             ratioA = ratioA,
-            ratioB = ratioB
+            ratioB = ratioB,
+            name = name
         };
         GetParentData(specifiedClone);
         return specifiedClone;
