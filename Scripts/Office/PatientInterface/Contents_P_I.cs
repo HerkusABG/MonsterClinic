@@ -33,7 +33,12 @@ public partial class Contents_P_I : ExpNode2D
     [Export] Label PatientLabel;
     [Export] Label AgeLabel;
     [Export] Label PatientsLeftLabel;
+    [Export] Control WholeBody;
     [Export] public Sprite2D PortraitSprite;
+    [Export] Sprite2D HeadSprite;
+    [Export] Sprite2D ClothingSprite;
+    [Export] Sprite2D MaladySprite;
+    [Export] Sprite2D TopMaladySprite;
 
     [Export] AdmissionManager AdmissionManagerAccess;
     [Export] Diagnosis_Box Diagnosis;
@@ -83,7 +88,7 @@ public partial class Contents_P_I : ExpNode2D
         //Stuff that needs to happen when a new day is there.
         AdmissionManagerAccess.NewDayLogic();
         NextPatient();
-        PortraitSprite.Show();
+        WholeBody.Show();
         Diagnosis.SetAllCheckboxStatus(true);
         RejectButton.Disabled = false;
         AdmitButton.Disabled = false;
@@ -279,7 +284,7 @@ public partial class Contents_P_I : ExpNode2D
         {
             //If this was the last patient, the logic is different.
             //Disabling some stuff, telling the player that there are no more patients.
-            PortraitSprite.Hide();
+            WholeBody.Hide();
             PatientsLeftLabel.Text = $"Patients left: {0}";
             RejectButton.Disabled = true;
             AdmitButton.Disabled = true;
@@ -290,7 +295,7 @@ public partial class Contents_P_I : ExpNode2D
         }
 
         // random tint to the portrait
-        PortraitSprite.Modulate = PatientPointer.PortraitColor;
+        //PortraitSprite.Modulate = PatientPointer.PortraitColor;
         DeceasedSprite1.Hide();
 
         PatientLabel.Text = "Patient: " + PatientPointer.patientID; //convert data to strings to display it on Labels  and '+' operator connects static text "ID: " with the variable value
@@ -303,6 +308,20 @@ public partial class Contents_P_I : ExpNode2D
     {
        TextureUnit unit = PatientPointer.GetPatientTextures();
        PortraitSprite.Texture = unit.BodySet.standing;
+       HeadSprite.Texture = unit.HeadSet.standing;
+       ClothingSprite.Texture = unit.Clothing;
+        if (unit.unitType == TextureType.Normal)
+        {
+            if (PatientPointer.malady.severity < 4) return;
+            TopMaladySprite.Texture = null;
+            MaladySprite.Texture = unit.MaladySet.sitting;
+        }
+        else if (unit.unitType == TextureType.Top)
+        {
+            if (PatientPointer.malady.severity < 4) return;
+            MaladySprite.Texture = null;
+            TopMaladySprite.Texture = unit.MaladySet.sitting;
+        }
     }
 
     private void SetVisitButtonStatus()

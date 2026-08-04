@@ -26,10 +26,86 @@ public static class TextureList
 
     public static Dictionary<string, TextureSet> HeadTextures = new()
     {
-        /*["Head1"] = new TextureSet()
+    };
+
+    public static Dictionary<string, TextureSet> MaladyTextures = new()
+    {
+        ["Lycanthropy"] = new TextureSet()
         {
-            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/Head/patient-sitting-head1.png"),
-        }*/
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-animaltransform.png"),
+            standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/NormalSymptoms/patient-standing-symptom-animaltransform.png")
+        },
+        ["BluePox"] = new TextureSet()
+        {
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-bluepox.png"),
+            standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/NormalSymptoms/patient-standing-symptom-bluepox.png")
+        },
+         ["BrokenBones"] = new TextureSet()
+        {
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-brokenbones.png"),
+             standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/NormalSymptoms/patient-standing-symptom-brokenbones.png")
+         },
+        ["Centipede"] = new TextureSet()
+        {
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-centipede.png"),
+            standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/NormalSymptoms/patient-standing-symptom-centipede.png")
+        },
+        ["CultMarkings"] = new TextureSet()
+        {
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-cultmarkings.png"),
+            standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/NormalSymptoms/patient-standing-symptom-cultmarkings.png")
+        },
+        ["Leeches"] = new TextureSet()
+        {
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-leeches.png"),
+            standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/NormalSymptoms/patient-standing-symptom-leeches.png")
+        },
+        ["Necrosis"] = new TextureSet()
+        {
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-necrosis.png"),
+            standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/NormalSymptoms/patient-standing-symptom-necrosis.png")
+        },
+        ["Radiation"] = new TextureSet()
+        {
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-radiation.png"),
+            standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/NormalSymptoms/patient-standing-symptom-radiation.png")
+        },
+        ["Shattered"] = new TextureSet()
+        {
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-shattered.png"),
+            standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/NormalSymptoms/patient-standing-symptom-shattered.png")
+        },
+        ["Tumors"] = new TextureSet()
+        {
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-tumors.png"),
+            standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/NormalSymptoms/patient-standing-symptom-tumors.png")
+        }
+    };
+
+    public static Dictionary<string, TextureSet> TopMaladyTextures = new()
+    {
+        ["Mushrooms"] = new TextureSet()
+        {
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/TopSymptoms/patient-sitting-symptom-mushrooms.png"),
+            standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/TopSymptoms/patient-standing-symptom-mushrooms.png")
+        },
+        ["Portal"] = new TextureSet()
+        {
+            sitting = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Sitting/TopSymptoms/patient-sitting-symptom-portal.png"),
+            standing = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/TopSymptoms/patient-standing-symptom-portal.png")
+        }
+    };
+
+    public static Dictionary<string, Texture2D> CivilianOutfits = new()
+    {
+        ["Clothing1"] = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/Outfits/patient-standing-clothes1.png"),
+        ["Clothing2"] = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/Outfits/patient-standing-clothes2.png"),
+        ["Clothing3"] = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/Outfits/patient-standing-clothes3.png"),
+        ["Clothing4"] = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/Outfits/patient-standing-clothes4.png"),
+        ["Clothing5"] = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/Outfits/patient-standing-clothes5.png"),
+        ["Clothing6"] = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/Outfits/patient-standing-clothes6.png"),
+        ["Clothing7"] = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/Outfits/patient-standing-clothes7.png"),
+        ["Clothing8"] = GD.Load<Texture2D>("res://Assets/2DArt/Patient/Standing/Outfits/patient-standing-clothes8.png")
     };
 
     public static void Initialize()
@@ -69,7 +145,14 @@ public static class TextureList
         int length = dictionary.Count;
         Random rnd = new Random();
         int randIndex = rnd.Next(0, length);
-        GD.Print($"max range is {length}, index is {randIndex}");
+        return dictionary.ElementAt(randIndex).Value;
+    }
+
+    public static Texture2D GetRandomTexture(Dictionary<string, Texture2D> dictionary)
+    {
+        int length = dictionary.Count;
+        Random rnd = new Random();
+        int randIndex = rnd.Next(0, length);
         return dictionary.ElementAt(randIndex).Value;
     }
 }

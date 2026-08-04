@@ -5,12 +5,37 @@ public class TextureUnit
 {
 	public TextureSet BodySet;
     public TextureSet HeadSet;
+    public TextureSet MaladySet;
+    public TextureType unitType;
+
+    public Texture2D Clothing;
 
     public void Initialize()
 	{
-		BodySet = new TextureSet();
+        unitType = TextureType.None;
+        BodySet = new TextureSet();
 		BodySet = TextureList.GetRandomSet(TextureList.BodyTextures).Clone();
         HeadSet = TextureList.GetRandomSet(TextureList.HeadTextures).Clone();
-        //BodySet.sitting = TextureList.BodyTextures["Body1"].sitting;
+        Clothing = TextureList.GetRandomTexture(TextureList.CivilianOutfits);
     }
+
+    public void SaveMaladySet(string input, TextureType type)
+    {
+        if (type == TextureType.Normal)
+        {
+            MaladySet = TextureList.MaladyTextures[input].Clone();
+        }
+        else
+        {
+            MaladySet = TextureList.TopMaladyTextures[input].Clone();
+        }
+        //TextureList.GetRandomSet(TextureList.BodyTextures).Clone();
+    }
+}
+
+public enum TextureType
+{
+    None,
+    Normal,
+    Top
 }

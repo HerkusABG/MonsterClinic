@@ -66,7 +66,9 @@ public static class MaladyList
             {
                 "Doesn't look too good, does it?",
                 "Ouch."
-            }
+            },
+            visualKey = "BrokenBones",
+            layerType = TextureType.Normal
         },
         ["BluePox"] = new Malady
         {
@@ -105,7 +107,9 @@ public static class MaladyList
             {
                 "I am so sick... sick with the blue pox. It's so scary",
                 "Cough cough I have the BLUE POX"
-            }
+            },
+            visualKey = "BluePox",
+            layerType = TextureType.Normal
         },
         ["GreenPox"] = new Malady
         {
@@ -142,7 +146,9 @@ public static class MaladyList
             {
                 "I am so sick... green pox infection!",
                 "GREEN POX"
-            }
+            },
+            visualKey = "Mushrooms",
+            layerType = TextureType.Top
         },
         ["Sthyricoids"] = new Malady
         {

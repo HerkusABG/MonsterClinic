@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cxce8t3ylfvfl" path="res://Assets/2DArt/Patient/Sitting/Body/patient-sitting-body2.png" id="3_7gm67"]
 [ext_resource type="Texture2D" uid="uid://b3u4qcrd3kkl4" path="res://Assets/2DArt/PatientRoom/PatientRoom_Corpse_Blockout.png" id="5_xebr5"]
 [ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://Scripts/SpeechManager.cs" id="6_7gm67"]
+[ext_resource type="Texture2D" uid="uid://dxmmoipoobqxt" path="res://Assets/2DArt/Patient/Sitting/patient-sitting-uniform.png" id="6_mimag"]
 [ext_resource type="Texture2D" uid="uid://8aajck4t28sx" path="res://Assets/2DArt/PatientRoom/PatientRoom_Corpse_HL_Blockout.png" id="6_si31g"]
 [ext_resource type="Texture2D" uid="uid://qsx2ufggk2u4" path="res://Assets/2DArt/Patient/Sitting/Head/patient-sitting-head1.png" id="6_xebr5"]
 
@@ -35,7 +36,7 @@ border_width_right = 14
 border_width_bottom = 14
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("WholePatient", "PatientDisplay", "PatientHead", "Corpse", "PatientInfo", "SpeechManagerAccess")]
+[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("WholePatient", "PatientDisplay", "PatientHead", "Corpse", "PatientInfo", "MaladySprite", "TopMaladySprite", "SpeechManagerAccess")]
 position = Vector2(1302.9375, 342.1875)
 scale = Vector2(0.42309022, 0.43263888)
 script = ExtResource("1_5hpqs")
@@ -44,6 +45,8 @@ PatientDisplay = NodePath("Control/WholePatient/Patient_Display")
 PatientHead = NodePath("Control/WholePatient/Patient_Head")
 Corpse = NodePath("Control/Corpse")
 PatientInfo = NodePath("Control/Patient_Info")
+MaladySprite = NodePath("Control/WholePatient/Patient_Malady")
+TopMaladySprite = NodePath("Control/WholePatient/Patient_TopMalady")
 SpeechManagerAccess = NodePath("SpeechManager")
 
 [node name="Patient_Room_Background" type="Sprite2D" parent="." unique_id=1209967813]
@@ -109,11 +112,27 @@ position = Vector2(-1181.6333, 859.40607)
 scale = Vector2(1.396, 1.396)
 texture = ExtResource("3_7gm67")
 
+[node name="Patient_Clothing" type="Sprite2D" parent="Control/WholePatient" unique_id=1865938776]
+z_index = 3
+position = Vector2(-1181.6333, 859.40607)
+scale = Vector2(1.396, 1.396)
+texture = ExtResource("6_mimag")
+
 [node name="Patient_Head" type="Sprite2D" parent="Control/WholePatient" unique_id=1029930262]
 z_index = 2
 position = Vector2(-1181.6333, 859.40607)
 scale = Vector2(1.396, 1.396)
 texture = ExtResource("6_xebr5")
+
+[node name="Patient_Malady" type="Sprite2D" parent="Control/WholePatient" unique_id=1834853020]
+z_index = 2
+position = Vector2(-1181.6333, 859.40607)
+scale = Vector2(1.396, 1.396)
+
+[node name="Patient_TopMalady" type="Sprite2D" parent="Control/WholePatient" unique_id=661322169]
+z_index = 4
+position = Vector2(-1181.6333, 859.40607)
+scale = Vector2(1.396, 1.396)
 
 [node name="SpeechManager" type="Node" parent="." unique_id=1401227399 node_paths=PackedStringArray("SpeechBubble")]
 script = ExtResource("6_7gm67")

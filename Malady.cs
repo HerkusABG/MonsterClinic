@@ -32,6 +32,10 @@ public class Malady
     public string description;
     public List<string> admittedDialogue = new List<string>();
 
+    public string visualKey;
+
+    public TextureType layerType;
+
     public Malady()
     {
         //Small piece of logic to ensure malady severity gets assigned properly in PatientStats.
@@ -51,6 +55,8 @@ public class Malady
             temperatureSymptoms = temperatureSymptoms,
             cures = cures,
             admittedDialogue = admittedDialogue,
+            visualKey = visualKey,
+            layerType = layerType
         };
         foreach(Tag tag in tags)
         {

@@ -13,6 +13,8 @@ public partial class Room : ExpNode2D
     [Export] Sprite2D PatientHead;
     [Export] Control Corpse;
     [Export] Label PatientInfo;
+    [Export] Sprite2D MaladySprite;
+    [Export] Sprite2D TopMaladySprite;
 
     //Is the room empty?
     private bool isEmpty = true;
@@ -140,6 +142,18 @@ public partial class Room : ExpNode2D
         TextureUnit unit = Patient.GetPatientTextures();
         PatientDisplay.Texture = unit.BodySet.sitting;
         PatientHead.Texture = unit.HeadSet.sitting;
+        if (unit.unitType == TextureType.Normal)
+        {
+            if (Patient.malady.severity < 4) return;
+            TopMaladySprite.Texture = null;
+            MaladySprite.Texture = unit.MaladySet.sitting;
+        }
+        else if (unit.unitType == TextureType.Top)
+        {
+            if (Patient.malady.severity < 4) return;
+            MaladySprite.Texture = null;
+            TopMaladySprite.Texture = unit.MaladySet.sitting;
+        }
     }
 
     private void SetPatientRoomText()
@@ -176,6 +190,10 @@ public partial class Room : ExpNode2D
         GD.Print("patient deleted");
         Patient = null;
         isEmpty = true;
+        PatientDisplay.Texture = null;
+        PatientHead.Texture = null;
+        MaladySprite.Texture = null;
+        TopMaladySprite.Texture = null;
     }
 
     public void AssignPatient(PatientStats patient)

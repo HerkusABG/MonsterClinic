@@ -34,7 +34,12 @@ public partial class PatientStats
         Random rnd = new Random();
         malady = new Malady();
         dialogueIndex = 0;
-        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 3)).Value);
+        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 4)).Value);
+        textureUnit.unitType = malady.layerType;
+        if (malady.layerType == TextureType.Normal || malady.layerType == TextureType.Top)
+        {
+            textureUnit.SaveMaladySet(malady.visualKey, malady.layerType);
+        }
         if (malady.severity == -1)
         {
             malady.severity = rnd.Next(2, 5);
