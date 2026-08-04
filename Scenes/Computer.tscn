@@ -1069,6 +1069,7 @@ theme_override_fonts/font = ExtResource("18_obv51")
 theme_override_font_sizes/font_size = 23
 
 [node name="Purchase_Button" type="TextureButton" parent="Player_Interactables_C/Dealer_PH" unique_id=814923762]
+visible = false
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = 1214.0

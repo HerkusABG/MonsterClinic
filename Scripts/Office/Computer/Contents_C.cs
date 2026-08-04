@@ -78,6 +78,8 @@ public partial class Contents_C : ExpNode2D
 
         DealerMenuNavigation(dealerStartingIndex);
         UpgradeMenuNavigation(upgradeStartingIndex);
+
+        
     }
 
     private void GetNodes()
@@ -194,20 +196,19 @@ public partial class Contents_C : ExpNode2D
     private void ConnectPurchaseToMedicine(DealerButton button)
     {
         PurchaseButtonHolder = button;
-        GD.Print(button.index);
-        GD.Print(PurchaseButtonHolder.index);
         PurchaseMode = "medicine";
+        PurchaseButton.Show();
     }
 
     private void ConnectPurchaseToUpgrade(DealerButton button)
     {
         PurchaseButtonHolder = button;
         PurchaseMode = "upgrade";
+        PurchaseButton.Show();
     }
 
     private void Purchase()
     {
-        GD.Print("ski");
         if (PurchaseMode == "medicine")
         {
             PurchaseMedicine(PurchaseButtonHolder);
@@ -264,15 +265,19 @@ public partial class Contents_C : ExpNode2D
         if (dealerStartingIndex == 0)
         {
             UpButtonDealer.Disabled = true;
+            UpButtonDealer.Modulate = new Color(1, 1, 1, (float)0.5);
         }
         else if(dealerStartingIndex + DealerButtons.Count >= DealerList.MedicineDatabase.Count)
         {
             DownButtonDealer.Disabled = true;
+            DownButtonDealer.Modulate = new Color(1, 1, 1, (float)0.5);
         }
         else
         {
             UpButtonDealer.Disabled = false;
+            UpButtonDealer.Modulate = new Color(1, 1, 1, 1);
             DownButtonDealer.Disabled = false;
+            DownButtonDealer.Modulate = new Color(1, 1, 1, 1);
         }
     }
 
@@ -283,15 +288,19 @@ public partial class Contents_C : ExpNode2D
         if (upgradeStartingIndex == 0)
         {
             UpButtonUpgrades.Disabled = true;
+            UpButtonUpgrades.Modulate = new Color(1, 1, 1, (float)0.5);
         }
         else if (upgradeStartingIndex + UpgradeButtons.Count >= DealerList.UpgradeDatabase.Count)
         {
             DownButtonUpgrades.Disabled = true;
+            DownButtonUpgrades.Modulate = new Color(1, 1, 1, (float)0.5);
         }
         else
         {
             UpButtonUpgrades.Disabled = false;
+            UpButtonUpgrades.Modulate = new Color(1, 1, 1, 1);
             DownButtonUpgrades.Disabled = false;
+            DownButtonUpgrades.Modulate = new Color(1, 1, 1, 1);
         }
     }
 
@@ -394,6 +403,8 @@ public partial class Contents_C : ExpNode2D
         UpgradesWindow.Hide();
         ResourcesWindow.Show();
         SpecialOffersWindow.Hide();
+        PurchaseInfo.Text = "";
+        PurchaseButton.Hide();
         DealerMenuNavigation(0);
     }
     private void OpenUpgradesWindow()
@@ -402,6 +413,8 @@ public partial class Contents_C : ExpNode2D
         ResourcesWindow.Hide();
         UpgradesWindow.Show();
         SpecialOffersWindow.Hide();
+        PurchaseInfo.Text = "";
+        PurchaseButton.Hide();
         UpgradeMenuNavigation(0);
     }
 
@@ -411,6 +424,8 @@ public partial class Contents_C : ExpNode2D
         ResourcesWindow.Hide();
         UpgradesWindow.Hide();
         SpecialOffersWindow.Show();
+        PurchaseInfo.Text = "";
+        PurchaseButton.Hide();
         UpdateBodyDisposalInfo();
         SelfTreatmentButton.GetNode<Label>("DealerLabel").Text = "Self Treatment";
     }
@@ -423,6 +438,7 @@ public partial class Contents_C : ExpNode2D
             "Availability in: " + GlobalData.Medicincavailability.ToString();
         PurchaseButtonHolder = SelfTreatmentButton as DealerButton;
         PurchaseMode = "self";
+        PurchaseButton.Show();
     }
 
     private void ShowInsufficientFunds()
@@ -448,6 +464,7 @@ public partial class Contents_C : ExpNode2D
         PurchaseInfo.Text = $"Dispose of {count} dead patients \n Price: {cost}";
         BodyDisposalButton.Disabled = count <= 0;
         PurchaseMode = "body";
+        PurchaseButton.Show();
     }
 
     private void BodyDisposal()
