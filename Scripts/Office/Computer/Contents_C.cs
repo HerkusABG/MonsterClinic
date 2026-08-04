@@ -41,6 +41,7 @@ public partial class Contents_C : ExpNode2D
     Button CloseCatalogueWindow;
 
     Label PurchaseInfo;
+    TextureButton PurchaseButton;
 
     [Export] MapUI mapUi;
     [Export] TextureButton UpButtonDealer;
@@ -56,6 +57,9 @@ public partial class Contents_C : ExpNode2D
 
     int dealerStartingIndex = 0;
     int upgradeStartingIndex = 0;
+
+    DealerButton PurchaseButtonHolder;
+    string PurchaseMode;
 
     //private readonly Dictionary<DealerButton, Action> Subscriptions = new();
 
@@ -117,6 +121,7 @@ public partial class Contents_C : ExpNode2D
         CloseCatalogueWindow = CatalogueWindow.GetNode<Button>("Close");
 
         PurchaseInfo = DealerWindow.GetNode<Label>("Purchase_Info");
+        PurchaseButton = DealerWindow.GetNode<TextureButton>("Purchase_Button");
 
         int count = 0;
         foreach(TextureButton button in MedicineContainer.GetChildren())
@@ -152,7 +157,7 @@ public partial class Contents_C : ExpNode2D
         DownButtonUpgrades.Pressed += () => UpgradeMenuNavigation(1);
 
 
-        BodyDisposalButton.Pressed += BodyDisposal;
+        BodyDisposalButton.Pressed += BodyDisposalInfo;
         DealerButton.Pressed += ShowDealerWindow;
         MapButton.Pressed += ShowMapWindow;
         CatalogueButton.Pressed += ShowCatalogueWindow;
@@ -165,26 +170,60 @@ public partial class Contents_C : ExpNode2D
         CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
         CloseDealerWindowButton.Pressed += mapUi.OnMapUiClose;
         //CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
-        SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
+        SelfTreatmentButton.Pressed += SelfTreatmentInfo;
         CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
         CloseMapWindow.Pressed += mapUi.OnMapUiClose;
         CloseCatalogueWindow.Pressed += () => CloseParent(CloseCatalogueWindow);
+        PurchaseButton.Pressed += Purchase;
 
 
         foreach (DealerButton button in DealerButtons)
         {
-            Action handler = () => PurchaseMedicine(button);
+            Action handler = () => ConnectPurchaseToMedicine(button);
 
             button.Pressed += handler;
         }
 
         foreach (DealerButton button in UpgradeButtons)
         {
-            Action handler = () => PurchaseUpgrade(button);
+            Action handler = () => ConnectPurchaseToUpgrade(button);
 
             button.Pressed += handler;
         }
     }
+    private void ConnectPurchaseToMedicine(DealerButton button)
+    {
+        PurchaseButtonHolder = button;
+        GD.Print(button.index);
+        GD.Print(PurchaseButtonHolder.index);
+        PurchaseMode = "medicine";
+    }
+
+    private void ConnectPurchaseToUpgrade(DealerButton button)
+    {
+        PurchaseButtonHolder = button;
+        PurchaseMode = "upgrade";
+    }
+
+    private void Purchase()
+    {
+        GD.Print("ski");
+        if (PurchaseMode == "medicine")
+        {
+            PurchaseMedicine(PurchaseButtonHolder);
+        }
+        else if (PurchaseMode == "upgrade")
+        {
+            PurchaseUpgrade(PurchaseButtonHolder);
+        } else if (PurchaseMode == "self")
+        {
+            BuyMedicine(PurchaseButtonHolder);
+        } else if (PurchaseMode == "body")
+        {
+            BodyDisposal();
+        }
+    }
+
     private void PurchaseMedicine(DealerButton button)
     {
         int myIndex = button.index;
@@ -377,16 +416,13 @@ public partial class Contents_C : ExpNode2D
     }
 
 
-    private void _on_self_treatment_mouse_entered()
+    private void SelfTreatmentInfo()
     {
         PurchaseInfo.Text = "Self Treatment  (Price:" + GlobalData.MedicineCost + ") \n" +
             "Owned: " + GlobalData.MedicinePlayer.ToString() + "\n" +
             "Availability in: " + GlobalData.Medicincavailability.ToString();
-    }
-
-    private void _on_self_treatment_mouse_exited()
-    {
-        PurchaseInfo.Text = "";
+        PurchaseButtonHolder = SelfTreatmentButton as DealerButton;
+        PurchaseMode = "self";
     }
 
     private void ShowInsufficientFunds()
@@ -402,21 +438,18 @@ public partial class Contents_C : ExpNode2D
     
     private void UpdateBodyDisposalInfo()
     {
-        _on_body_disposal_mouse_entered();
+        BodyDisposalInfo();
     }
 
-    private void _on_body_disposal_mouse_entered()
+    private void BodyDisposalInfo()
     {
         int count = RoomManager.GetDeadPatientCount();
         int cost = Economy.bodyDisposalCost * count;
         PurchaseInfo.Text = $"Dispose of {count} dead patients \n Price: {cost}";
         BodyDisposalButton.Disabled = count <= 0;
+        PurchaseMode = "body";
     }
 
-    private void _on_body_disposal_mouse_exited()
-    {
-        PurchaseInfo.Text = "";
-    }
     private void BodyDisposal()
     {
         Room[] deadRooms = RoomManager.GetAllDeadPatients();

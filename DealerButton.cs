@@ -29,13 +29,8 @@ public partial class DealerButton : TextureButton
         info.Text = storeInfo;
     }
 
-	private void _on_mouse_entered()
+	private void _on_pressed()
 	{
 		UpdateInfo();
-	}
-
-	private void _on_mouse_exited()
-	{
-		info.Text = "";
 	}
 }

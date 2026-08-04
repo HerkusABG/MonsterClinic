@@ -492,7 +492,6 @@ offset_bottom = 350.0
 scale = Vector2(0.5, 0.42)
 
 [node name="Dealer_PH" type="Control" parent="Player_Interactables_C" unique_id=1778326563]
-visible = false
 anchors_preset = 0
 offset_right = 1700.0
 offset_bottom = 1080.0
@@ -1069,6 +1068,30 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("18_obv51")
 theme_override_font_sizes/font_size = 23
 
+[node name="Purchase_Button" type="TextureButton" parent="Player_Interactables_C/Dealer_PH" unique_id=814923762]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 0
+offset_left = 1214.0
+offset_top = 811.0
+offset_right = 2007.0
+offset_bottom = 961.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("15_hwd26")
+texture_pressed = ExtResource("21_xbdnv")
+
+[node name="Label" type="Label" parent="Player_Interactables_C/Dealer_PH/Purchase_Button" unique_id=1809708630]
+layout_mode = 0
+offset_left = 38.333332
+offset_top = 30.0
+offset_right = 746.6667
+offset_bottom = 118.33334
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 40
+text = "Purchase"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Popup" type="Control" parent="Player_Interactables_C" unique_id=1598705561]
 visible = false
 anchors_preset = 0
@@ -1167,19 +1190,9 @@ vertical_alignment = 1
 
 [connection signal="visibility_changed" from="Player_Interactables_C/MapControl" to="Player_Interactables_C/MapControl" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH/Resources_Window" to="." method="_on_resources_window_visibility_changed"]
-[connection signal="mouse_entered" from="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine1" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine1" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine1" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine1" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine2" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine2" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine2" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine2" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine3" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine3" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine3" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine3" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade1" to="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade1" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade1" to="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade1" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade2" to="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade2" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade2" to="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade2" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade3" to="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade3" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade3" to="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade3" method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List/SelfTreatment" to="." method="_on_self_treatment_mouse_entered"]
-[connection signal="mouse_exited" from="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List/SelfTreatment" to="." method="_on_self_treatment_mouse_exited"]
-[connection signal="mouse_entered" from="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List/BodyDisposal" to="." method="_on_body_disposal_mouse_entered"]
-[connection signal="mouse_exited" from="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List/BodyDisposal" to="." method="_on_body_disposal_mouse_exited"]
+[connection signal="pressed" from="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine1" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine1" method="_on_pressed"]
+[connection signal="pressed" from="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine2" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine2" method="_on_pressed"]
+[connection signal="pressed" from="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine3" to="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine3" method="_on_pressed"]
+[connection signal="pressed" from="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade1" to="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade1" method="_on_pressed"]
+[connection signal="pressed" from="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade2" to="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade2" method="_on_pressed"]
+[connection signal="pressed" from="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade3" to="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade3" method="_on_pressed"]
