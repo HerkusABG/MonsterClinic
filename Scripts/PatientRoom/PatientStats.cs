@@ -57,7 +57,7 @@ public partial class PatientStats
             1
         );
         clinicActions.Clear();
-        NewClinicAction(ClinicActionList.Database["Admitted"].output);
+        NewClinicAction(ClinicActionList.Actions["Admitted"].output);
     }
 
     private void AssignMaladyValues(Malady inputMalady)
@@ -158,9 +158,22 @@ public partial class PatientStats
         clinicActions.Add(action);
     }
 
-    public void TriggerInteractionTags(Medicine medicine)
+    public void NewClinicAction(string input, string extraInfo)
     {
-        NewClinicAction("Interaction");
+        ClinicAction action = new ClinicAction();
+        action.output = $"{input} {extraInfo}";
+        clinicActions.Add(action);
+    }
+    public void NewClinicAction(string input, string extraInfo, string result)
+    {
+        ClinicAction action = new ClinicAction();
+        action.output = $"{input} {extraInfo} {result}";
+        clinicActions.Add(action);
+    }
+
+    public void TriggerInteractionTags()
+    {
+        
         foreach (Tag tag in malady.tags)
         {
             if (tag.HasTagType(TagType.Interaction))

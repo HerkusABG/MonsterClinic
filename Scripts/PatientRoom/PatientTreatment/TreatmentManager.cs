@@ -119,14 +119,15 @@ public partial class TreatmentManager : Node
             medicine.amount--;
 
             Room.Patient.TriggerInteractionTags();
-            
 
-            if(Room.Patient.malady.isImmune)
+            string result = "";
+            if (Room.Patient.malady.isImmune)
             {
                 Room.Patient.malady.isImmune = false;
                 Popup.DisplayPopup(PopupMessages.TreatmentMessages["Immune"]);
                 //PatientImmunePopup.Show();
                 Room.SetAlreadyTreated(true);
+                result = ClinicActionList.Results["MedImmune"].output;
             }
             //Checking to see if the medicine works
             else if (Room.Patient.TryCurePatient(medicine))
@@ -147,6 +148,7 @@ public partial class TreatmentManager : Node
                     Popup.DisplayPopup(PopupMessages.TreatmentMessages["CorrectMedicine"]);
                     //CorrectMedicinePopup.Show();
                 }
+                result = ClinicActionList.Results["MedSuccess"].output;
             }
             else
             {
@@ -155,7 +157,9 @@ public partial class TreatmentManager : Node
                 //Wrong medicine used, come back tomorrow.
                 Popup.DisplayPopup(PopupMessages.TreatmentMessages["WrongMedicine"]);
                 //WrongMedicinePopup.Show();
+                result = ClinicActionList.Results["MedFail"].output;
             }
+            Room.Patient.NewClinicAction(ClinicActionList.Actions["GiveMedicine"].output, medicine.name, result);
             //Updating the relevant visual information
             Room.UpdateSprites();
             //if(!Room.GetIsEmpty())
