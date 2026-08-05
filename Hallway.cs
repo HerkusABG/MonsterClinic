@@ -11,6 +11,7 @@ public partial class Hallway : ExpNode2D
     Button LeaveButton;
     List<BaseButton> Doors = new List<BaseButton>();
     [Export] Button LeaveRoomButton;
+    [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
     public void Initialize()
 	{
         //Initializing the hallway, all the main methods.
@@ -27,6 +28,7 @@ public partial class Hallway : ExpNode2D
         HallwayControl = GetNode<Control>("HallwayControl");
         //LeaveButton = HallwayControl.GetNode<Button>("Leave_Room");
         DoorControl = HallwayControl.GetNode<Control>("DoorControl");
+        
     }
 
     private void Subscribe()
@@ -118,7 +120,7 @@ public partial class Hallway : ExpNode2D
     public override void OnRoomEnter(Node mainNode)
     {
         //GD.Print("Entering hallway");
-
+        TriggerFading();
         UpdateHallwayUI();
 
         Inventory inv = mainNode.GetNode<Inventory>("Inventory");
@@ -128,5 +130,14 @@ public partial class Hallway : ExpNode2D
     public override void OnRoomExit()
     {
         //GD.Print("Exiting hallway");
+    }
+
+    private void TriggerFading()
+    {
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+        // add the scene FadeAnimation and call the Methode Fades
+        AddChild(fading);
+        fading.Fades();
     }
 }

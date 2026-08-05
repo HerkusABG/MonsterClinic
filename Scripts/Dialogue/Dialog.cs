@@ -15,6 +15,7 @@ public partial class Dialog : Control
     public static int currentNPC = 0;
     [Export] private Button _button;
     [Export] private Timer Reset_Dialog;
+	public static int availibility;
 
 
     public override void _Ready()
@@ -25,25 +26,38 @@ public partial class Dialog : Control
         dialog.VisibleRatio = 0;
 
         currentIndex = 0;
-        //one dialog text is initiated for the dealer dialog. This dialog can be used provally for the patients too, but need than modifications
-        dialogues = new string[1][];
+		//one dialog text is initiated for the dealer dialog. This dialog can be used provally for the patients too, but need than modifications
+		dialogues = new string[1][];
+        
+// making the medicine availability random for the player, so he cant spam the self treatment
+        var randomavalibility = new Random(); //<--- ADDED THIS
+        GlobalData.Medicincavailability = randomavalibility.Next(2, 5); //<-- ADDED THIS
 
-        // making the medicine availability random for the player, so he cant spam the self treatment
-        var randomavalibility = new Random();
-        GlobalData.Medicincavailability = randomavalibility.Next(2, 5);
 
-        _on_button_pressed();
 
-    }
+		_on_button_pressed();
 
-    private void _on_button_pressed()
-    {
+
+	}
+
+	private void _on_button_pressed()
+	{
+        // the dialog for the dealer has the index 0, for other dialogs use 0 + 1, so the second dialog has the index 1 and so on.
+        // for an out put or input for the array use the second index, so dialogues[0][0] is the first line of the dealer dialog, dialogues[0][1] is the second line and so on. For the second dialog you need to put dialogues[1][0] and so on.
+       	// someone should make a different methode for the dialog and put it here, i cant put it in ready because it doesnt spawn now
+		dialogues[0] = new string[]
+        {
+            "...",
+            "I have some medicine for you",
+            "you get a new delievery of medicine in " + availibility + " days, but the price is higher than before.",
+            "We see us next time <3"
+        };
         var dialog = GetNode<RichTextLabel>("DialogText");
         DiologText();
         if (tw_dialog != null && tw_dialog.IsRunning())
         {
+			// kills the current Tween
             tw_dialog.Kill();
-
         }
 
 

@@ -5,6 +5,7 @@ public partial class Contents_O : ExpNode2D
 {
     private Timer sceneTimer;
     [Export] PackedScene dealer_selftreatment_dialog = ResourceLoader.Load<PackedScene>("res://Scenes/dialog.tscn");
+    [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
     // Called when the node enters the scene tree for the first time.
     public void Initialize()
 	{
@@ -38,10 +39,12 @@ public partial class Contents_O : ExpNode2D
 
     private void _on_computer_a_pressed()
 	{
+        GlobalData.Bed = false;
         RoomTracker.EnterRoom(ActiveRoom.Computer);
     }
     private void _on_patient_i_a_pressed()
     {
+        GlobalData.Bed = false;
         RoomTracker.EnterRoom(ActiveRoom.Admission);
 		var DialogScene = (Control)GetParent().GetNode("Dialog");
         DialogScene.Hide();
@@ -50,6 +53,7 @@ public partial class Contents_O : ExpNode2D
 
 	private void _on_elevator_pressed()
 	{
+        GlobalData.Bed = false;
         RoomTracker.EnterRoom(ActiveRoom.Hallway);
 		var DialogScene = (Control)GetParent().GetNode("Dialog");
         DialogScene.Hide();
@@ -65,6 +69,9 @@ public partial class Contents_O : ExpNode2D
         GlobalData.PassiveIncome = GlobalData.patientCount * 20;
         DoctorInventory.Money += GlobalData.DailyEarnings + GlobalData.PassiveIncome;
         GlobalData.Countdown--;
+
+        GlobalData.ControlSpawnFading = 1;
+
         var BedScene = (Node2D)GetParent().GetNode("Bed");
         BedScene.Show();
 
@@ -101,14 +108,72 @@ public partial class Contents_O : ExpNode2D
 
     private void OnSceneTimerTimeout()
     {
-        // switching scenes
+        Dialog dialog = GetParent().GetNode<Dialog>("Dialog");
+        dialog.Show();
+        
+
+        // Daily earnings gets reseted
         GlobalData.DailyEarnings = 0;
+
+        // get node bed scene
         var BedScene = (Node2D)GetParent().GetNode("Bed");
+
+        // condition for the Controled Spawn
+        if (GlobalData.ControlSpawnFading == 2)
+        {
+            GlobalData.Bed = true;
+            // Condition Changes
+            GlobalData.Fading = true;
+            TriggerFading();
+        }
+        if (GlobalData.Dialog_Dealer == true)
+        {
+            var DialogForDealer = (Control)GetParent().GetNode("Dialog");
+            DialogForDealer.Show();
+            Dialog.currentIndex = 0;
+
+        }
+
+        // switches scene
         BedScene.Hide();
         Show();
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
         DialogDealer();
+
+
+
+
+
+
+        /* // switching scenes
+         GlobalData.DailyEarnings = 0;
+         var BedScene = (Node2D)GetParent().GetNode("Bed");
+         BedScene.Hide();
+         Show();
+         if(GlobalData.ControlSpawnFading == 2)
+         {
+
+             Bed bed = GetParent().GetNode<Bed>("Bed");
+             bed.FadeQuickFix();
+             /*var spawn = GetNode<GridContainer>("Spawn");
+             var fading = Transition.Instantiate<FadeAnimation>();
+             spawn.AddChild(fading);
+             fading.Fades();
+          }
+        //push the scene we're entering to the previous scenes stack
+        GlobalData.PreviousScenes.Pop();
+        */
+
+    }
+
+    private void TriggerFading()
+    {
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+        // add the scene FadeAnimation and call the Methode Fades
+        AddChild(fading);
+        fading.Fades();
     }
 
 
@@ -132,7 +197,7 @@ public partial class Contents_O : ExpNode2D
     public override void OnRoomEnter(Node mainNode)
     {
         //GD.Print("Entering office");
-
+        TriggerFading();
         Inventory inv = mainNode.GetNode<Inventory>("Inventory");
         inv.InventoryActions();
     }
