@@ -159,25 +159,26 @@ scale = Vector2(1.181781, 1.1599786)
 texture = ExtResource("2_aaq88")
 
 [node name="PatientInfo" type="TabContainer" parent="." unique_id=436648055]
-visible = false
 offset_left = -2940.1238
 offset_top = -136.80576
 offset_right = -2415.4128
 offset_bottom = 223.77213
 scale = Vector2(2.5, 2.5)
-current_tab = 0
+current_tab = 2
 script = ExtResource("9_ijr7e")
 
 [node name="General" type="TabBar" parent="PatientInfo" unique_id=303885043]
+visible = false
 layout_mode = 2
 script = ExtResource("9_mimag")
 metadata/_tab_index = 0
 
 [node name="Text" type="Label" parent="PatientInfo/General" unique_id=906407502]
 layout_mode = 0
-offset_top = 75.0
-offset_right = 450.0
-offset_bottom = 325.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 470.0
+offset_bottom = 270.0
 
 [node name="Malady" type="TabBar" parent="PatientInfo" unique_id=802278181]
 visible = false
@@ -187,12 +188,12 @@ metadata/_tab_index = 1
 
 [node name="Text" type="Label" parent="PatientInfo/Malady" unique_id=760511374]
 layout_mode = 0
-offset_top = 75.0
-offset_right = 450.0
-offset_bottom = 325.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 470.0
+offset_bottom = 270.0
 
 [node name="History" type="TabBar" parent="PatientInfo" unique_id=1713677384]
-visible = false
 layout_mode = 2
 script = ExtResource("9_mimag")
 metadata/_tab_index = 2
@@ -202,6 +203,14 @@ layout_mode = 0
 offset_top = 75.0
 offset_right = 450.0
 offset_bottom = 325.0
+text = "1
+2
+3
+4
+5
+6
+7"
 vertical_alignment = 2
+max_lines_visible = 5
 
 [connection signal="visibility_changed" from="Patient_Room_Background" to="." method="_on_patient_room_background_visibility_changed"]

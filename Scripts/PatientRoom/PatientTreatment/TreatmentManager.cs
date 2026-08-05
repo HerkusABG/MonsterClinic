@@ -159,7 +159,10 @@ public partial class TreatmentManager : Node
                 //WrongMedicinePopup.Show();
                 result = ClinicActionList.Results["MedFail"].output;
             }
-            Room.Patient.NewClinicAction(ClinicActionList.Actions["GiveMedicine"].output, medicine.name, result);
+            if(Room.Patient != null)
+            {
+                Room.Patient.NewClinicAction(ClinicActionList.Actions["GiveMedicine"].output, medicine.name, result);
+            }
             //Updating the relevant visual information
             Room.UpdateSprites();
             //if(!Room.GetIsEmpty())
