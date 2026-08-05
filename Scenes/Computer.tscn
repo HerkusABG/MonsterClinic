@@ -24,16 +24,16 @@
 [ext_resource type="Texture2D" uid="uid://cppsyslag23pv" path="res://Assets/2DArt/PC/Dealer/pc-dealer-item.png" id="15_hwd26"]
 [ext_resource type="Script" uid="uid://08n5ukorqdyk" path="res://Scripts/Office/Computer/ScrollCatalog.cs" id="15_vbt5y"]
 [ext_resource type="Script" uid="uid://bho5a8iwfj3pn" path="res://Scripts/Office/Computer/MapUI.cs" id="16_l232m"]
-[ext_resource type="Texture2D" uid="uid://db100q8k8e4mb" path="res://Assets/2D Art/PC/pc-desktop-window-closebutton.png" id="17_l7uy0"]
-[ext_resource type="Texture2D" uid="uid://coqixjy7vni4k" path="res://Assets/2D Art/PC/Dealer/pc-dealer-section-clicked.png" id="17_xbdnv"]
+[ext_resource type="Texture2D" uid="uid://db100q8k8e4mb" path="res://Assets/2DArt/PC/pc-desktop-window-closebutton.png" id="17_l7uy0"]
+[ext_resource type="Texture2D" uid="uid://coqixjy7vni4k" path="res://Assets/2DArt/PC/Dealer/pc-dealer-section-clicked.png" id="17_xbdnv"]
 [ext_resource type="FontFile" uid="uid://cygukaybulvh" path="res://Font/MSW98UI-Regular.ttf" id="18_obv51"]
 [ext_resource type="Script" uid="uid://bnfoxvhhm3bek" path="res://Popup.cs" id="19_h2577"]
-[ext_resource type="Texture2D" uid="uid://cy7ik2msxfs4q" path="res://Assets/2D Art/PC/Dealer/pc-disabled-quickfix.png" id="21_2bhit"]
-[ext_resource type="Texture2D" uid="uid://dprynudt3fvqe" path="res://Assets/2D Art/PC/Dealer/pc-dealer-item-clicked.png" id="21_xbdnv"]
-[ext_resource type="Texture2D" uid="uid://drl5vltein81" path="res://Assets/2D Art/PC/Catalogue/pc-catalogue-arrowup.png" id="22_md7yb"]
-[ext_resource type="Texture2D" uid="uid://d0ty8tg8sm8x7" path="res://Assets/2D Art/PC/Catalogue/pc-catalogue-arrowup-clicked.png" id="23_2bhit"]
-[ext_resource type="Texture2D" uid="uid://dy8fet5bs3pow" path="res://Assets/2D Art/PC/Catalogue/pc-catalogue-arrowdown.png" id="24_yeqts"]
-[ext_resource type="Texture2D" uid="uid://dh21pjjxf4pil" path="res://Assets/2D Art/PC/Catalogue/pc-catalogue-arrowdown-clicked.png" id="25_kjhr5"]
+[ext_resource type="Texture2D" uid="uid://cy7ik2msxfs4q" path="res://Assets/2DArt/PC/Dealer/pc-disabled-quickfix.png" id="21_2bhit"]
+[ext_resource type="Texture2D" uid="uid://dprynudt3fvqe" path="res://Assets/2DArt/PC/Dealer/pc-dealer-item-clicked.png" id="21_xbdnv"]
+[ext_resource type="Texture2D" uid="uid://drl5vltein81" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-arrowup.png" id="22_md7yb"]
+[ext_resource type="Texture2D" uid="uid://d0ty8tg8sm8x7" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-arrowup-clicked.png" id="23_2bhit"]
+[ext_resource type="Texture2D" uid="uid://dy8fet5bs3pow" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-arrowdown.png" id="24_yeqts"]
+[ext_resource type="Texture2D" uid="uid://dh21pjjxf4pil" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-arrowdown-clicked.png" id="25_kjhr5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqyqf"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -480,10 +480,12 @@ offset_bottom = 350.0
 scale = Vector2(0.5, 0.42)
 
 [node name="Dealer_PH" type="Control" parent="Player_Interactables_C" unique_id=1778326563]
-visible = false
 anchors_preset = 0
-offset_right = 1700.0
-offset_bottom = 1080.0
+offset_left = 97.0
+offset_top = 45.0
+offset_right = 1797.0
+offset_bottom = 1125.0
+scale = Vector2(0.9, 0.9)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player_Interactables_C/Dealer_PH" unique_id=1116517749]
 position = Vector2(966.99994, 512)
@@ -834,6 +836,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
 
 [node name="UpUpgrade" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=1894243892]
+visible = false
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = -14.0
@@ -846,6 +849,7 @@ texture_pressed = ExtResource("23_2bhit")
 script = ExtResource("3_5uut4")
 
 [node name="DownUpgrade" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window" unique_id=1577366160]
+visible = false
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = 192.0
