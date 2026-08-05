@@ -84,7 +84,7 @@ public partial class Main : Node
             room.Initialize(Treatment.HideUI);
         }
     }
-    public override void _UnhandledInput(InputEvent @event)
+    public override void _Input(InputEvent @event)
     {
         //This is the function that makes it so that right clicking takes you back to a previous room.
         if (@event is InputEventMouseButton eventKey)
