@@ -78,8 +78,6 @@ public partial class Contents_C : ExpNode2D
 
         DealerMenuNavigation(dealerStartingIndex);
         UpgradeMenuNavigation(upgradeStartingIndex);
-
-        
     }
 
     private void GetNodes()
@@ -449,7 +447,7 @@ public partial class Contents_C : ExpNode2D
 
     private void UpdateMoneyDisplay()
     {
-        DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
+        DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
     }
     
     private void UpdateBodyDisposalInfo()

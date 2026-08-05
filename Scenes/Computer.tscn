@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://coqixjy7vni4k" path="res://Assets/2D Art/PC/Dealer/pc-dealer-section-clicked.png" id="17_xbdnv"]
 [ext_resource type="FontFile" uid="uid://cygukaybulvh" path="res://Font/MSW98UI-Regular.ttf" id="18_obv51"]
 [ext_resource type="Script" uid="uid://bnfoxvhhm3bek" path="res://Popup.cs" id="19_h2577"]
+[ext_resource type="Texture2D" uid="uid://cy7ik2msxfs4q" path="res://Assets/2D Art/PC/Dealer/pc-disabled-quickfix.png" id="21_2bhit"]
 [ext_resource type="Texture2D" uid="uid://dprynudt3fvqe" path="res://Assets/2D Art/PC/Dealer/pc-dealer-item-clicked.png" id="21_xbdnv"]
 [ext_resource type="Texture2D" uid="uid://drl5vltein81" path="res://Assets/2D Art/PC/Catalogue/pc-catalogue-arrowup.png" id="22_md7yb"]
 [ext_resource type="Texture2D" uid="uid://d0ty8tg8sm8x7" path="res://Assets/2D Art/PC/Catalogue/pc-catalogue-arrowup-clicked.png" id="23_2bhit"]
@@ -492,6 +493,7 @@ offset_bottom = 350.0
 scale = Vector2(0.5, 0.42)
 
 [node name="Dealer_PH" type="Control" parent="Player_Interactables_C" unique_id=1778326563]
+visible = false
 anchors_preset = 0
 offset_right = 1700.0
 offset_bottom = 1080.0
@@ -602,6 +604,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine1" unique_id=934023047]
@@ -621,6 +624,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine2" unique_id=1532704146]
@@ -640,6 +644,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer/Medicine3" unique_id=190581192]
@@ -726,6 +731,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade1" unique_id=1065136190]
@@ -745,6 +751,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade2" unique_id=2110672593]
@@ -765,6 +772,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Window/Upgrades_List/Upgrade3" unique_id=789189518]
@@ -887,6 +895,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_disabled = ExtResource("21_2bhit")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List/SelfTreatment" unique_id=698051589]
 layout_mode = 0
@@ -906,6 +915,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_disabled = ExtResource("21_2bhit")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List/BodyDisposal" unique_id=1438703792]
 layout_mode = 0
