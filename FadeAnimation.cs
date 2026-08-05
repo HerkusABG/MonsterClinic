@@ -80,7 +80,7 @@ public partial class FadeAnimation : Node2D
 
             
             // Tween affects the color rect, 0f -> from invisible to visible, 1f -> animation speed
-            tw_fade.TweenProperty(Colorrect_visibility, "color:a", 0f, 1f);
+            tw_fade.TweenProperty(Colorrect_visibility, "color:a", 0f, 0.4f);
 
             if (GlobalData.Bed == true)
             {
@@ -100,7 +100,7 @@ public partial class FadeAnimation : Node2D
 
             // Timer get set to 1 sec, so long is that the player isnt stuck. Timer starts
            //deleteselfTimer.SetWaitTime(1.0);
-            deleteselfTimer.Start(1.0);
+            deleteselfTimer.Start(0.4f);
 
         }
         // Timer gets connected to the function, when the timer is done, the function gets called

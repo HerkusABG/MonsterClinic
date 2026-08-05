@@ -61,15 +61,14 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("LeaveRoomButton")]
-position = Vector2(1302.9375, 342.1875)
-scale = Vector2(0.42309022, 0.43263888)
+scale = Vector2(0.977, 1)
 script = ExtResource("1_ak6jr")
 LeaveRoomButton = NodePath("HallwayControl/Leave_Room")
 
 [node name="Patient_Room_Background" type="Sprite2D" parent="." unique_id=1209967813]
 z_index = -1
-position = Vector2(-810.5541, 461.84573)
-scale = Vector2(1.182, 1.16)
+position = Vector2(983.1116, 540)
+scale = Vector2(0.5120373, 0.5)
 texture = ExtResource("2_m5f80")
 
 [node name="HallwayControl" type="Control" parent="." unique_id=141817288]
@@ -82,10 +81,11 @@ offset_bottom = 40.0
 z_index = 1
 custom_minimum_size = Vector2(210, 100)
 layout_mode = 0
-offset_left = 959.7539
-offset_top = 1432.6323
-offset_right = 1359.7539
-offset_bottom = 1682.6323
+offset_left = 1706.2437
+offset_top = 934.0
+offset_right = 2106.2437
+offset_bottom = 1184.0
+scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxFlat_ar6hc")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fclus")
@@ -116,11 +116,11 @@ offset_bottom = 40.0
 
 [node name="Door" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=2118502634]
 layout_mode = 0
-offset_left = -2975.577
-offset_top = -534.36597
-offset_right = -2332.577
-offset_bottom = 1195.634
-scale = Vector2(1.175, 1.175)
+offset_left = 45.035824
+offset_top = 121.0
+offset_right = 688.0358
+offset_bottom = 1851.0
+scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("3_ar6hc")
 texture_hover = ExtResource("10_fclus")
 texture_disabled = ExtResource("6_glggw")
@@ -128,11 +128,11 @@ script = ExtResource("4_3js8s")
 
 [node name="Door2" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1489299767]
 layout_mode = 0
-offset_left = -1994.6987
-offset_top = -330.9631
-offset_right = -1688.6987
-offset_bottom = 797.03687
-scale = Vector2(1.175, 1.175)
+offset_left = 470.82907
+offset_top = 205.0
+offset_right = 776.8291
+offset_bottom = 1333.0
+scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("5_fclus")
 texture_hover = ExtResource("8_m5f80")
 texture_disabled = ExtResource("9_j2yjr")
@@ -140,11 +140,11 @@ script = ExtResource("4_3js8s")
 
 [node name="Door3" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1373175735]
 layout_mode = 0
-offset_left = -1474.7151
-offset_top = -215.39326
-offset_right = -1311.7151
-offset_bottom = 578.60675
-scale = Vector2(1.175, 1.175)
+offset_left = 693.96106
+offset_top = 253.0
+offset_right = 856.96106
+offset_bottom = 1047.0
+scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("6_l4f6k")
 texture_hover = ExtResource("11_5eg2f")
 texture_disabled = ExtResource("12_bve6k")
@@ -152,11 +152,11 @@ script = ExtResource("4_3js8s")
 
 [node name="Door4" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=2050616105]
 layout_mode = 0
-offset_left = -330.75095
-offset_top = -194.59067
-offset_right = -167.75095
-offset_bottom = 584.4093
-scale = Vector2(1.175, 1.175)
+offset_left = 1189.3552
+offset_top = 263.0
+offset_right = 1352.3552
+offset_bottom = 1042.0
+scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("7_44psh")
 texture_hover = ExtResource("14_vsvav")
 texture_disabled = ExtResource("15_m32xt")
@@ -164,11 +164,11 @@ script = ExtResource("4_3js8s")
 
 [node name="Door5" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=259033622]
 layout_mode = 0
-offset_left = 28.510567
-offset_top = -291.66934
-offset_right = 325.51056
-offset_bottom = 802.3307
-scale = Vector2(1.175, 1.175)
+offset_left = 1346.9806
+offset_top = 221.0
+offset_right = 1643.9806
+offset_bottom = 1315.0
+scale = Vector2(0.52, 0.52)
 texture_normal = ExtResource("8_dlwjk")
 texture_hover = ExtResource("17_st2uq")
 texture_disabled = ExtResource("18_b24wc")
@@ -176,11 +176,11 @@ script = ExtResource("4_3js8s")
 
 [node name="Door6" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1331711908]
 layout_mode = 0
-offset_left = 595.7655
-offset_top = -534.36597
-offset_right = 1265.7655
-offset_bottom = 1200.634
-scale = Vector2(1.175, 1.175)
+offset_left = 1588.5364
+offset_top = 117.0
+offset_right = 2258.5364
+offset_bottom = 1852.0
+scale = Vector2(0.52, 0.52)
 texture_normal = ExtResource("9_jtvsb")
 texture_hover = ExtResource("20_yuk7c")
 texture_disabled = ExtResource("21_43qi4")

@@ -40,8 +40,6 @@ border_width_bottom = 14
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("WholePatient", "PatientDisplay", "PatientHead", "Corpse", "PatientInfo", "MaladySprite", "TopMaladySprite", "SpeechManagerAccess", "PatientInfoScreen")]
-position = Vector2(1302.9375, 342.1875)
-scale = Vector2(0.42309022, 0.43263888)
 script = ExtResource("1_5hpqs")
 WholePatient = NodePath("Control/WholePatient")
 PatientDisplay = NodePath("Control/WholePatient/Patient_Display")
@@ -54,17 +52,18 @@ SpeechManagerAccess = NodePath("SpeechManager")
 PatientInfoScreen = NodePath("PatientInfo")
 
 [node name="Patient_Room_Background" type="Sprite2D" parent="." unique_id=1209967813]
-position = Vector2(-810.5541, 461.84573)
-scale = Vector2(1.181781, 1.1599786)
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_aaq88")
 
 [node name="Leave_Room" type="Button" parent="." unique_id=1286135011]
 z_index = 1
 custom_minimum_size = Vector2(210, 100)
-offset_left = 973.9353
-offset_top = 1451.1235
-offset_right = 1373.9353
-offset_bottom = 1651.1235
+offset_left = 1696.0
+offset_top = 966.0
+offset_right = 2096.0
+offset_bottom = 1166.0
+scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 80
 theme_override_styles/normal = SubResource("StyleBoxFlat_aaq88")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_7gm67")
@@ -97,18 +96,22 @@ vertical_alignment = 1
 visible = false
 z_index = 2
 layout_mode = 0
-offset_left = -739.6473
-offset_top = 857.0947
-offset_right = 33.352722
-offset_bottom = 1598.0947
-scale = Vector2(1.1961806, 1.0942975)
+offset_left = 1013.0
+offset_top = 738.0
+offset_right = 1786.0
+offset_bottom = 1479.0
+scale = Vector2(0.5, 0.457)
 texture_normal = ExtResource("5_xebr5")
 texture_hover = ExtResource("6_si31g")
 
 [node name="WholePatient" type="Control" parent="Control" unique_id=134966433]
+visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1251.0
+offset_top = 359.0
+offset_right = 1291.0
+offset_bottom = 399.0
+scale = Vector2(0.4, 0.4)
 
 [node name="Patient_Display" type="Sprite2D" parent="Control/WholePatient" unique_id=3793736]
 z_index = 2
@@ -157,18 +160,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Patient_Room_Background2" type="Sprite2D" parent="." unique_id=324989275]
-position = Vector2(-810.5541, 461.84573)
-scale = Vector2(1.181781, 1.1599786)
-texture = ExtResource("2_aaq88")
-
 [node name="PatientInfo" type="TabContainer" parent="." unique_id=436648055]
 visible = false
-offset_left = -2940.1238
-offset_top = -136.80576
-offset_right = -2415.4128
-offset_bottom = 223.77213
-scale = Vector2(2.5, 2.5)
+offset_left = 103.0
+offset_top = 320.0
+offset_right = 627.71094
+offset_bottom = 680.5779
 current_tab = 1
 script = ExtResource("9_ijr7e")
 
