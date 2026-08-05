@@ -10,54 +10,54 @@ public class Tag
     public int strength;
     public string name;
 
-    public bool HasTagType(TagType inputType)
-    {
-        if(types.Contains(inputType))
-        {
-            return true;
-        }
-        return false;
-    }
+	public bool HasTagType(TagType inputType)
+	{
+		if(types.Contains(inputType))
+		{
+			return true;
+		}
+		return false;
+	}
 
-    public virtual void ExecuteDaily(PatientStats patient) { }
+	public virtual void ExecuteDaily(PatientStats patient) { }
 
-    public virtual void ExecuteInteraction(PatientStats patient) { }
+	public virtual void ExecuteInteraction(PatientStats patient) { }
 
-    public virtual void ExecuteMaxSeverity(PatientStats patient) { }
+	public virtual void ExecuteMaxSeverity(PatientStats patient) { }
 
-    public virtual Tag Clone() { return null; }
-    
+	public virtual Tag Clone() { return null; }
+	
 
-    public void GetParentData(Tag tag)
-    {
-        tag.increment = increment;
-        tag.types = types;
-        tag.strength = strength;
-    }
-    public Tag CloneParent()
-    {
-        Tag clonedTag = new Tag
-        {
-            increment = increment,
-            types = types,
-            strength = strength
-        };
-        return clonedTag;
-    }
+	public void GetParentData(Tag tag)
+	{
+		tag.increment = increment;
+		tag.types = types;
+		tag.strength = strength;
+	}
+	public Tag CloneParent()
+	{
+		Tag clonedTag = new Tag
+		{
+			increment = increment,
+			types = types,
+			strength = strength
+		};
+		return clonedTag;
+	}
 }
 public enum TagType
 {
-    Daily,
-    Interaction,
-    MaxSeverity
+	Daily,
+	Interaction,
+	MaxSeverity
 }
 public class WorseningTag : Tag
 {
-    public int count;
-    public WorseningTag()
-    {
-        count = 0;
-    }
+	public int count;
+	public WorseningTag()
+	{
+		count = 0;
+	}
 
     public override void ExecuteDaily(PatientStats patient)
     {
@@ -89,11 +89,11 @@ public class WorseningTag : Tag
 
 public class HealingTag : Tag
 {
-    public int count;
-    public HealingTag()
-    {
-        count = 0;
-    }
+	public int count;
+	public HealingTag()
+	{
+		count = 0;
+	}
 
     public override void ExecuteDaily(PatientStats patient)
     {
@@ -121,13 +121,13 @@ public class HealingTag : Tag
 
 public class UnstableTag : Tag
 {
-    public int count;
-    bool wasTreatedToday;
-    public UnstableTag()
-    {
-        count = 0;
-        wasTreatedToday = false;
-    }
+	public int count;
+	bool wasTreatedToday;
+	public UnstableTag()
+	{
+		count = 0;
+		wasTreatedToday = false;
+	}
 
     public override void ExecuteDaily(PatientStats patient)
     {
@@ -143,10 +143,10 @@ public class UnstableTag : Tag
         }
     }
 
-    public override void ExecuteInteraction(PatientStats patient)
-    {
-        wasTreatedToday = true;
-    }
+	public override void ExecuteInteraction(PatientStats patient)
+	{
+		wasTreatedToday = true;
+	}
 
     public override Tag Clone()
     {
@@ -164,18 +164,18 @@ public class UnstableTag : Tag
 
 public class DeadlyTag : Tag
 {
-    public DeadlyTag()
-    {
-    }
+	public DeadlyTag()
+	{
+	}
 
-    public override void ExecuteMaxSeverity(PatientStats patient)
-    {
-        Malady malady = patient.malady;
-        if(malady.severity >= 5)
-        {
-            patient.KillPatient();
-        }
-    }
+	public override void ExecuteMaxSeverity(PatientStats patient)
+	{
+		Malady malady = patient.malady;
+		if(malady.severity >= 5)
+		{
+			patient.KillPatient();
+		}
+	}
 
     public override Tag Clone()
     {
@@ -190,12 +190,12 @@ public class DeadlyTag : Tag
 
 public class ResistantTag : Tag
 {
-    public int ratioA;
-    public int ratioB;
+	public int ratioA;
+	public int ratioB;
 
-    public ResistantTag()
-    {
-    }
+	public ResistantTag()
+	{
+	}
 
     public override void ExecuteInteraction(PatientStats patient)
     {
@@ -220,4 +220,3 @@ public class ResistantTag : Tag
         return specifiedClone;
     }
 }
-

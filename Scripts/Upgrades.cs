@@ -15,11 +15,11 @@ static class Upgrades
 	public static bool AspirinUnlock = false;
 
 	public static Dictionary<string, IncrementalUpgrade> AllUpgrades = new()
-    {
-     
-    };
+	{
+	 
+	};
 
-    public static Dictionary<string, IntegerUpgrade> IntUpgradeDatabase = new()
+	public static Dictionary<string, IntegerUpgrade> IntUpgradeDatabase = new()
 	{
 		["PatientSlots"] = new IntegerUpgrade
 		{
@@ -28,65 +28,45 @@ static class Upgrades
 			cap = 6,
 			price = 50
 		},
-        ["Rooms"] = new IntegerUpgrade
-        {
-            name = "Buy a new room for patient treatment",
-            incrementTarget = 1,
-            cap = 6,
-            price = 100
-        }
-    };
+		["Rooms"] = new IntegerUpgrade
+		{
+			name = "Buy a new room for patient treatment",
+			incrementTarget = 1,
+			cap = 6,
+			price = 100
+		}
+	};
 
-    public static Dictionary<string, BooleanUpgrade> BoolUpgradeDatabase = new()
-    {
-        ["RemoteMedicine"] = new BooleanUpgrade
-        {
-            name = "Remotely treat patients",
-            unlocked = false,
-            price = 500
-        },
+	public static Dictionary<string, BooleanUpgrade> BoolUpgradeDatabase = new()
+	{
 		["Phranax"] = new BooleanUpgrade
-        {
-            name = "Make Phranax purchasable",
-            unlocked = false,
-            price = 200,
-            medicine = MedicineManager.Database["Phranax"]
-        },
-        ["FancyBandages"] = new BooleanUpgrade
-        {
-            name = "Make fancy bandages purchasable",
-            unlocked = false,
-            price = 40,
-            medicine = MedicineManager.Database["FancyBandages"]
-        },
-        ["FancyAntibiotics"] = new BooleanUpgrade
-        {
-            name = "placeholder upgrade2",
-            unlocked = false,
-            price = 210,
-            medicine = MedicineManager.Database["FancyAntibiotics"]
-        }
-    };
+		{
+			name = "Unlock Curitol",
+			unlocked = false,
+			price = 200,
+			medicine = MedicineManager.Database["Curitol"]
+		},
+	};
 
 	public static void Initialize()
 	{
 		for(int i = 0; i < IntUpgradeDatabase.Count; i++)
 		{
 			AllUpgrades.Add(IntUpgradeDatabase.ElementAt(i).Key, IntUpgradeDatabase.ElementAt(i).Value);
-        }
-        for (int i = 0; i < BoolUpgradeDatabase.Count; i++)
-        {
-            AllUpgrades.Add(BoolUpgradeDatabase.ElementAt(i).Key, BoolUpgradeDatabase.ElementAt(i).Value);
-        }
-        ResetAllUpgrades();
-    }
+		}
+		for (int i = 0; i < BoolUpgradeDatabase.Count; i++)
+		{
+			AllUpgrades.Add(BoolUpgradeDatabase.ElementAt(i).Key, BoolUpgradeDatabase.ElementAt(i).Value);
+		}
+		ResetAllUpgrades();
+	}
    
 	//unlock aspirin, pay for it
-    public static void UnlockAspirin()
-    {
-        Upgrades.AspirinUnlock = true;
-        DoctorInventory.Money -= 50;
-    }
+	public static void UnlockAspirin()
+	{
+		Upgrades.AspirinUnlock = true;
+		DoctorInventory.Money -= 50;
+	}
 
 	public static void IntegerUpgrade(IntegerUpgrade upgrade, int loops, TextureButton upgradeButton, Action successAction, Action failAction) 
 	{
@@ -98,21 +78,21 @@ static class Upgrades
 				upgrade.incrementTarget++;
 				DoctorInventory.Money -= upgrade.price;
 
-                if(upgrade.OnUpgradePressed != null)
-                {
-                    upgrade.OnUpgradePressed();
-                }
+				if(upgrade.OnUpgradePressed != null)
+				{
+					upgrade.OnUpgradePressed();
+				}
 
 				//if we reach the cap, disable the button
 				if (upgrade.incrementTarget >= upgrade.cap)
 				{
-                    upgrade.fullyUnlocked = true;
-                    //upgradeButton.Disabled = true;
+					upgrade.fullyUnlocked = true;
+					//upgradeButton.Disabled = true;
 					break;
 				}
 			}
 			successAction();
-        } 
+		} 
 		else
 		{
 			failAction();
@@ -121,41 +101,41 @@ static class Upgrades
 
 	public static void BooleanUpgrade(BooleanUpgrade upgrade, TextureButton upgradeButton, Action successAction, Action failAction)
 	{
-        if (DoctorInventory.Money >= upgrade.price)
-        {
-            //increment the count, spend the money
-            if(upgrade.medicine != null)
-            {
-                upgrade.medicine.unlocked = true;
-            }
-            upgrade.unlocked = true;
-            upgrade.fullyUnlocked = true;
-            DoctorInventory.Money -= upgrade.price;
-            //upgradeButton.Disabled = true;
-            successAction();
-        }
-        else
-        {
-            failAction();
-        }
-    }
-    
+		if (DoctorInventory.Money >= upgrade.price)
+		{
+			//increment the count, spend the money
+			if(upgrade.medicine != null)
+			{
+				upgrade.medicine.unlocked = true;
+			}
+			upgrade.unlocked = true;
+			upgrade.fullyUnlocked = true;
+			DoctorInventory.Money -= upgrade.price;
+			//upgradeButton.Disabled = true;
+			successAction();
+		}
+		else
+		{
+			failAction();
+		}
+	}
+	
 	public static void ResetAllUpgrades()
 	{
 		IntegerUpgrade patientUpgrade = IntUpgradeDatabase["PatientSlots"];
-        patientUpgrade.incrementTarget = 3;
+		patientUpgrade.incrementTarget = 3;
 
 
-        for(int i = 0; i < BoolUpgradeDatabase.Count; i++)
-        {
-            BooleanUpgrade boolUpgrade = BoolUpgradeDatabase.ElementAt(i).Value;
-            boolUpgrade.unlocked = false;
-            if(boolUpgrade.medicine != null)
-            {
-                boolUpgrade.medicine.unlocked = false;
-            }
-        }
+		for(int i = 0; i < BoolUpgradeDatabase.Count; i++)
+		{
+			BooleanUpgrade boolUpgrade = BoolUpgradeDatabase.ElementAt(i).Value;
+			boolUpgrade.unlocked = false;
+			if(boolUpgrade.medicine != null)
+			{
+				boolUpgrade.medicine.unlocked = false;
+			}
+		}
 		//BooleanUpgrade remoteUpgrade = BoolUpgradeDatabase["RemoteMedicine"];
 		//remoteUpgrade.unlocked = false;
-    }
+	}
 }
