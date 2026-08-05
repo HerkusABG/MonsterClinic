@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b7dljt206gls"]
 
 [ext_resource type="Script" uid="uid://ca7mrbbcxd1eo" path="res://FadeAnimation.cs" id="1_fdfmr"]
-[ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://CustomText/digital-7_CountdownText.ttf" id="2_105j4"]
+[ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://Assets/CustomText/digital-7_CountdownText.ttf" id="2_105j4"]
 
 [node name="FadeAnimation" type="Node2D" unique_id=694927562]
 script = ExtResource("1_fdfmr")
@@ -12,12 +12,14 @@ offset_left = -24.0
 offset_top = -18.0
 offset_right = 1935.0
 offset_bottom = 1102.0
+scale = Vector2(2.5, 2.5)
 color = Color(0, 0, 0, 0)
 
 [node name="Delete_Timer" type="Timer" parent="." unique_id=1877004464]
 wait_time = 3.0
 
 [node name="Day" type="RichTextLabel" parent="." unique_id=352028918]
+visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_left = 15.0
 offset_top = 181.0
@@ -31,6 +33,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TreatmentDays" type="RichTextLabel" parent="." unique_id=1998273592]
+visible = false
 offset_left = 8.0
 offset_top = 557.0
 offset_right = 1964.0
@@ -43,6 +46,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MoneyEarned" type="RichTextLabel" parent="." unique_id=2039327691]
+visible = false
 offset_top = 9.0
 offset_right = 1919.0
 offset_bottom = 224.0

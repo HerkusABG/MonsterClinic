@@ -39,15 +39,18 @@ public partial class Contents_O : ExpNode2D
 
     private void _on_computer_a_pressed()
 	{
+        GlobalData.Bed = false;
         RoomTracker.EnterRoom(ActiveRoom.Computer);
     }
     private void _on_patient_i_a_pressed()
     {
+        GlobalData.Bed = false;
         RoomTracker.EnterRoom(ActiveRoom.Admission);
     }
 
 	private void _on_elevator_pressed()
 	{
+        GlobalData.Bed = false;
         RoomTracker.EnterRoom(ActiveRoom.Hallway);
     }
     private void _on_bed_pressed()
@@ -100,8 +103,7 @@ public partial class Contents_O : ExpNode2D
     {
         Dialog dialog = GetParent().GetNode<Dialog>("Dialog");
         dialog.Show();
-        // instantiate the scene FadeAnimation
-        var fading = Transition.Instantiate<FadeAnimation>();
+        
 
         // Daily earnings gets reseted
         GlobalData.DailyEarnings = 0;
@@ -112,13 +114,10 @@ public partial class Contents_O : ExpNode2D
         // condition for the Controled Spawn
         if (GlobalData.ControlSpawnFading == 2)
         {
+            GlobalData.Bed = true;
             // Condition Changes
             GlobalData.Fading = true;
-            // add the scene FadeAnimation and call the Methode Fades
-            AddChild(fading);
-            fading.Fades();
-
-
+            TriggerFading();
         }
         if (GlobalData.Dialog_Dealer == true)
         {
@@ -160,6 +159,15 @@ public partial class Contents_O : ExpNode2D
 
     }
 
+    private void TriggerFading()
+    {
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+        // add the scene FadeAnimation and call the Methode Fades
+        AddChild(fading);
+        fading.Fades();
+    }
+
 
     private void DialogDealer()
     {
@@ -184,7 +192,7 @@ public partial class Contents_O : ExpNode2D
     public override void OnRoomEnter(Node mainNode)
     {
         //GD.Print("Entering office");
-
+        TriggerFading();
         Inventory inv = mainNode.GetNode<Inventory>("Inventory");
         inv.InventoryActions();
     }

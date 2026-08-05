@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
+using System.Transactions;
 
 public partial class Contents_P_I : ExpNode2D
 {
@@ -39,6 +40,7 @@ public partial class Contents_P_I : ExpNode2D
     [Export] Diagnosis_Box Diagnosis;
     [Export] SpeechManager SpeechManagerAccess;
 
+    [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
     public void Initialize()
 	{
         Hide();
@@ -331,6 +333,7 @@ public partial class Contents_P_I : ExpNode2D
     public override void OnRoomEnter(Node mainNode)
     {
         //GD.Print("Entering admission");
+        TriggerFading();
 
         UpdatePatientInterfaceUI();
 
@@ -339,6 +342,15 @@ public partial class Contents_P_I : ExpNode2D
 
         Inventory inv = mainNode.GetNode<Inventory>("Inventory");
         inv.InventoryActions();
+    }
+
+    private void TriggerFading()
+    {
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+        // add the scene FadeAnimation and call the Methode Fades
+        AddChild(fading);
+        fading.Fades();
     }
 
     public override void OnRoomExit()

@@ -22,6 +22,7 @@ public partial class Bed : Node2D
         // i use a int, some how it worked better than a boolean
         if (GlobalData.ControlSpawnFading == 1)
         {
+            GlobalData.Bed = true;
             //GD.Print("True");
             GlobalData.Fading = false;
 
@@ -40,7 +41,6 @@ public partial class Bed : Node2D
 
     public void FadeQuickFix()
     {
-        GD.Print("Fadequickfix");
         if (GlobalData.ControlSpawnFading == 1) return;
 
         GlobalData.Fading = true;

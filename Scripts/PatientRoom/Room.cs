@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Transactions;
 using static System.Net.Mime.MediaTypeNames;
 
 public partial class Room : ExpNode2D 
@@ -11,6 +12,7 @@ public partial class Room : ExpNode2D
     [Export] Sprite2D PatientDisplay;
     [Export] Control Corpse;
     [Export] Label PatientInfo;
+    [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
 
     //Is the room empty?
     private bool isEmpty = true;
@@ -53,7 +55,7 @@ public partial class Room : ExpNode2D
     public override void OnRoomEnter()
     {
         //Piece of logic that gets executed whenever you enter the room.
-        
+        TriggerFading();
         UpdateSprites();
     }
 
@@ -183,4 +185,14 @@ public partial class Room : ExpNode2D
     {
         return isEmpty;
     }
+
+    private void TriggerFading()
+    {
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+        // add the scene FadeAnimation and call the Methode Fades
+        AddChild(fading);
+        fading.Fades();
+    }
+
 }

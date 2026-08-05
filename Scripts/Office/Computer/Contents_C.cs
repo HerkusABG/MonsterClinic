@@ -1,8 +1,9 @@
 using Godot;
 using System;
-using static System.Net.Mime.MediaTypeNames;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
+using static System.Net.Mime.MediaTypeNames;
 
 
 public partial class Contents_C : ExpNode2D
@@ -54,6 +55,8 @@ public partial class Contents_C : ExpNode2D
 
     int dealerStartingIndex = 0;
     int upgradeStartingIndex = 0;
+
+    [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
 
     //private readonly Dictionary<DealerButton, Action> Subscriptions = new();
 
@@ -423,11 +426,21 @@ public partial class Contents_C : ExpNode2D
 
     public override void OnRoomEnter(Node mainNode)
     {
+        TriggerFading();
         //GD.Print("Entering computer");
     }
 
     public override void OnRoomExit()
     {
         //GD.Print("Exiting computer");
+    }
+
+    private void TriggerFading()
+    {
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+        // add the scene FadeAnimation and call the Methode Fades
+        AddChild(fading);
+        fading.Fades();
     }
 }
