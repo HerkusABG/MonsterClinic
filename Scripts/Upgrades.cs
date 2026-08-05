@@ -26,14 +26,14 @@ static class Upgrades
 			name = "Expand clinic waiting room",
 			incrementTarget = 3,
 			cap = 6,
-			price = 50
+			price = 20
 		},
 		["Rooms"] = new IntegerUpgrade
 		{
 			name = "Buy a new room for patient treatment",
 			incrementTarget = 1,
 			cap = 6,
-			price = 100
+			price = 50
 		}
 	};
 

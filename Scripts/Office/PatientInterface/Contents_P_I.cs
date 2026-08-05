@@ -316,13 +316,13 @@ public partial class Contents_P_I : ExpNode2D
         {
             if (PatientPointer.malady.severity < 4) return;
             TopMaladySprite.Texture = null;
-            MaladySprite.Texture = unit.MaladySet.sitting;
+            MaladySprite.Texture = unit.MaladySet.standing;
         }
         else if (unit.unitType == TextureType.Top)
         {
             if (PatientPointer.malady.severity < 4) return;
             MaladySprite.Texture = null;
-            TopMaladySprite.Texture = unit.MaladySet.sitting;
+            TopMaladySprite.Texture = unit.MaladySet.standing;
         }
     }
 
