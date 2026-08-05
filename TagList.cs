@@ -58,15 +58,6 @@ public static class TagList
 			increment = 2,
 			strength = 2
 		},
-		["WeakWorsening"] = new WorseningTag
-		{
-			types =
-			{
-				TagType.Daily
-			},
-			increment = 3,
-			strength = 1
-		},
 		["WeakHealing"] = new HealingTag
 		{
 			types =

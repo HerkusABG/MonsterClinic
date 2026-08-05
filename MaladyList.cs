@@ -33,7 +33,10 @@ public static class MaladyList
 		},
 		["Accident"] = new Malady {
 			name = "Accident",
-			description = "If you are physically injured, your wounds will heal over time given time to rest after being stabilised, and should be dressed with fresh, clean antiseptic bandages to prevent further complications. \n - @IDC_Official",
+			description = "`If you are physically injured, your wounds will heal over time given 
+			time to rest after being stabilised, and should be dressed with 
+			fresh, clean antiseptic bandages to prevent further complications`
+			 - @IDC_Official",
 			category = CategoryList.Database["Mundane"],
 			dialogueSymptoms =
 			{
@@ -70,7 +73,11 @@ public static class MaladyList
 		["BluePox"] = new Malady
 		{
 			name = "Blue Pox",
-			description = "`A highly infectious and irritating mundane bacterial infection. Presents with flu-like symptoms and patches of blue spots. Treated with responsibly administered antibiotics. \n - @IDC_Official",
+			description = "`A highly infectious and irritating mundane bacterial infection. 
+			Presents with flu-like symptoms and patches of blue spots. Treated with 
+			responsibly administered antibiotics`
+			 - @IDC_Official",
+
 			category = CategoryList.Database["Mundane"],
 			dialogueSymptoms =
 			{
@@ -103,10 +110,14 @@ public static class MaladyList
                 "Cough cough I hate blue pox"
 			}
 		},
-		["TheGlow"] = new Malady
+		["The Glow"] = new Malady
 		{
 			name = "The Glow",
-			description = "The Glow causes patient bodies to start producing radioactive slush beneath their skin. This slush can be safely lanced and disposed of in lead syringes until the symptoms abate.\n - @IDC_Official",
+			description = "`The Glow causes patient bodies to start producing radioactive
+			 slush beneath their skin. This slush can be safely lanced and disposed of in 
+			lead syringes until the symptoms abate.`
+			 - @IDC_Official"
+,
 			category = CategoryList.Database["Supernatural"],
 			dialogueSymptoms =
 			{
@@ -119,109 +130,106 @@ public static class MaladyList
 			},
 			allSymptoms =
 			{
-				SymptomList.Database["Delirious"].name,
-				SymptomList.Database["SkinPeel"].name,
+				SymptomList.Database["Sneezing"].name,
+				SymptomList.Database["Headache"].name,
 				SymptomList.Database["Fever"].name
 			},
 			tags =
 			{
-				TagList.Database["Deadly"].Clone(),
-				TagList.Database["Worsening"].Clone()
+				TagList.Database["Deadly"],
+				TagList.Database["Worsening"]
 			},
 			cures =
 			{
-				MedicineManager.Database["LeadSyringe"],
+				MedicineManager.Database["Antibiotics"],
 				MedicineManager.Database["Curitol"]
 			},
 			admittedDialogue =
 			{
-				"Why does everything look so green?",
-                "I feel like I swallowed a microwave."
+				"I am so sick... green pox infection!",
+                "GREEN POX"
 			}
 		},
-		["RadiationSickness"] = new Malady
+		["Sthyricoids"] = new Malady
 		{
-			name = "Radiation Sickness",
-			description = "Avoid exposure to or ingestion of radioactive materials. If exposed, Prussian Blue may be used to flush some radioactive compounds from the body. \n - @IDC_Official",
-			category = CategoryList.Database["Mundane"],
-			dialogueSymptoms =
-			{
-				SymptomList.Database["SkinPeel"],
-				SymptomList.Database["Vomitting"]
-			},
-			pulseSymptoms =
-			{
-				SymptomList.Database["HeartProblems"]
-			},
-			allSymptoms =
-			{
-				SymptomList.Database["SkinPeel"].name,
-				SymptomList.Database["Vomitting"].name,
-				SymptomList.Database["HeartProblems"].name
-			},
-			tags =
-			{
-				TagList.Database["Resistant"].Clone(),
-				TagList.Database["Deadly"].Clone(),
-				TagList.Database["Healing"].Clone()
-			},
-			cures =
-			{
-				MedicineManager.Database["PrussianBlue"],
-				MedicineManager.Database["Curitol"]
-			},
-			admittedDialogue =
-			{
-				"I swear I didn't mean to drop that screwdriver",
-                "Worst. Sunburn. Ever."
-			}
-		},
-		["BoneCrawler"] = new Malady
-		{
-			name = "BoneCrawler",
-			description = "HELPMEGETITOUTGETITOUTGETITOUTGETITOUTGE \n - @UnknownResearcher420",
-			category = CategoryList.Database["Supernatural"],
+			name = "Sthyricoids",
+			description = "A condition caught by people who have breathed in low-quality air for an extended period of time, " +
+			"making bloodflow to the limbs and brain difficult. Can be treated with Aptomitol and Morphine.",
+			category = CategoryList.Database["Injury"],
 			dialogueSymptoms =
 			{
 				SymptomList.Database["Vertigo"],
-				SymptomList.Database["Vomitting"]
+				SymptomList.Database["Paralysis"]
 			},
-			pulseSymptoms =
+			temperatureSymptoms =
 			{
 				SymptomList.Database["HeartProblems"]
 			},
 			allSymptoms =
 			{
 				SymptomList.Database["Vertigo"].name,
-				SymptomList.Database["Vomitting"].name,
+				SymptomList.Database["Paralysis"].name,
 				SymptomList.Database["HeartProblems"].name
 			},
 			tags =
 			{
-				TagList.Database["Unstable"].Clone(),
-				TagList.Database["Deadly"].Clone(),
-				TagList.Database["WeakHealing"].Clone()
+				TagList.Database["Resistant"],
+				TagList.Database["Healing"]
 			},
 			cures =
 			{
-				MedicineManager.Database["Dewormer"],
+				MedicineManager.Database["Aptomitol"],
 				MedicineManager.Database["Curitol"]
 			},
 			admittedDialogue =
 			{
-				"I can feel it crawling up my spine...!",
-                "This is a very unpleasant sensation."
+				"Sthrocoids. What?",
+                "MY LUNGS HURT!!!"
 			}
 		},
-		["Tumours"] = new Malady
+		["SoliderGut"] = new Malady
 		{
-			name = "Tumours",
-			description = "Malignant growths of flesh, swelling up across the body. Can be eliminated through drips of concentrated toxic chemicals. \n - @IDC_Official",
-			category = CategoryList.Database["Mundane"],
+			name = "Soldier's Gut",
+			description = "Named after the soldier who were among the first to be afflicted by it, " +
+			"soldier's gut refers to an airborne virus which shuts down the digestive system in mere hours. " +
+			"Antibiotics usually help, but the virus is known to be unpredictable.",
+			category = CategoryList.Database["Injury"],
 			dialogueSymptoms =
 			{
-				SymptomList.Database["BodyPain"],
-				SymptomList.Database["Paralysis"]
+				SymptomList.Database["Vertigo"],
+				SymptomList.Database["Vomitting"]
+			},
+			allSymptoms =
+			{
+				SymptomList.Database["Vertigo"].name,
+				SymptomList.Database["Vomitting"].name,
+			},
+			tags =
+			{
+				TagList.Database["Unstable"],
+				TagList.Database["WeakHealing"]
+			},
+			cures =
+			{
+				MedicineManager.Database["FancyAntibiotics"],
+				MedicineManager.Database["Curitol"]
+			},
+			admittedDialogue =
+			{
+				"My stomach hurts, because I have the SOLDIER'S GUT!",
+                "SOLDIER GUT"
+			}
+		},
+		["Slithic"] = new Malady
+		{
+			name = "Slithic",
+			description = "A rare and incredibly deadly virus which can do irreperable damage to a person's body in mere days. " +
+			"Usually treated with Aptomitol and Phranax",
+			category = CategoryList.Database["Virus"],
+			dialogueSymptoms =
+			{
+				SymptomList.Database["Vomitting"],
+				SymptomList.Database["SkinPeel"]
 			},
 			temperatureSymptoms =
 			{
@@ -229,36 +237,39 @@ public static class MaladyList
 			},
 			allSymptoms =
 			{
-				SymptomList.Database["BodyPain"].name,
-				SymptomList.Database["Paralysis"].name,
+				SymptomList.Database["Vomitting"].name,
+				SymptomList.Database["SkinPeel"].name,
 				SymptomList.Database["Fever"].name
 			},
 			tags =
 			{
-				TagList.Database["Deadly"].Clone(),
-				TagList.Database["Resistant"].Clone(),
-				TagList.Database["Unstable"].Clone()
+				TagList.Database["Deadly"],
+				TagList.Database["StrongWorsening"],
+				TagList.Database["Unstable"]
 			},
 			cures =
 			{
-				MedicineManager.Database["ChemDrip"],
+				MedicineManager.Database["Aptomitol"],
 				MedicineManager.Database["Curitol"]
 			},
 			admittedDialogue =
 			{
-				"There are so many lumps under my skin.",
-                "I'm gonna call the biggest one Jimothy."
+				"SLITHIC",
+                "I am THROWING UP everywhere!"
 			}
 		},
-		["PolyporusAnthropophilum"] = new Malady
+		["Fungus"] = new Malady
 		{
-			name = "Polyporus Anthropophilum",
-			description = "A beautiful fungus species that grows on otherwise boring human bodies. If infected, avoid antifungal medicines and make sure you listen to the voices telling you to climb up to high places! <3 - @Fun_Gal",
-			category = CategoryList.Database["Mundane"],
+			name = "Aurian Fungus",
+			description = "Often caused by people spending prolonged periods of time in enclosed, moist spaces such as bunkers or cellars" +
+			", the Aurian fungus is a mutated version of fungi found on trees. It is unclear why this strain prefers to colonize human flesh," +
+			"however. Can be treated with ",
+			category = CategoryList.Database["Injury"],
 			dialogueSymptoms =
 			{
-				SymptomList.Database["Delirious"],
-				SymptomList.Database["Sneezing"]
+				SymptomList.Database["Paralysis"],
+				SymptomList.Database["SkinPeel"],
+				SymptomList.Database["BodyPain"]
 			},
 			pulseSymptoms =
 			{
@@ -266,19 +277,43 @@ public static class MaladyList
 			},
 			allSymptoms =
 			{
-				SymptomList.Database["Delirious"].name,
-				SymptomList.Database["Sneezing"].name,
+				SymptomList.Database["Paralysis"].name,
+				SymptomList.Database["SkinPeel"].name,
+				SymptomList.Database["BodyPain"].name,
 				SymptomList.Database["HeartProblems"].name
 			},
 			tags =
 			{
-				TagList.Database["Deadly"].Clone(),
-				TagList.Database["WeakWorsening"].Clone(),
-				TagList.Database["Resistant"].Clone()
+				TagList.Database["Deadly"],
+				TagList.Database["StrongWorsening"],
+				TagList.Database["Unstable"]
 			},
 			cures =
 			{
-				MedicineManager.Database["FungalPowder"],
+				MedicineManager.Database["Aptomitol"],
+				MedicineManager.Database["Curitol"]
+			}
+		},
+		["Zazington"] = new Malady
+		{
+			name = "Zazington's disease",
+			description = "Caused by when you smoke too much za",
+			category = CategoryList.Database["Zaza"],
+			dialogueSymptoms =
+			{
+				SymptomList.Database["Paralysis"]
+			},
+			allSymptoms =
+			{
+				SymptomList.Database["Paralysis"].name,
+			},
+			tags =
+			{
+				TagList.Database["Healing"],
+			},
+			cures =
+			{
+				MedicineManager.Database["Aptomitol"],
 				MedicineManager.Database["Curitol"]
 			}
 		}
