@@ -154,20 +154,20 @@ public partial class PatientStats
     public void NewClinicAction(string input)
     {
         ClinicAction action = new ClinicAction();
-        action.output = $"Day {GlobalData.Player_Ingame_Days}: {input}";
+        action.output = $"{input}";
         clinicActions.Add(action);
     }
 
     public void NewClinicAction(string input, string extraInfo)
     {
         ClinicAction action = new ClinicAction();
-        action.output = $"Day {GlobalData.Player_Ingame_Days}: {input} {extraInfo}";
+        action.output = $"{input} {extraInfo}";
         clinicActions.Add(action);
     }
     public void NewClinicAction(string input, string extraInfo, string result)
     {
         ClinicAction action = new ClinicAction();
-        action.output = $"Day {GlobalData.Player_Ingame_Days}: {input} {extraInfo} {result}";
+        action.output = $"{input} {extraInfo} {result}";
         clinicActions.Add(action);
     }
 
@@ -224,7 +224,7 @@ public partial class PatientStats
 
     public void KillPatient()
     {
-        NewClinicAction("Dead");
+        NewClinicAction(ClinicActionList.Actions["Dead"].output);
         isAlive = false;
     }
 

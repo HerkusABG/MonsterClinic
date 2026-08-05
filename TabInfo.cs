@@ -3,10 +3,10 @@ using System;
 
 public partial class TabInfo : TabBar
 {
-	Label label;
+	RichTextLabel label;
 	public void Initialize()
 	{
-		label = GetNode<Label>("Text");
+		label = GetNode<RichTextLabel>("Text");
 	}
 
 	public void Write(string input)

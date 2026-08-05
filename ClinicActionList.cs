@@ -8,11 +8,27 @@ public static class ClinicActionList
     {
         ["Admitted"] = new ClinicAction()
         {
-            output = "Patient has been admitted."
+            output = "The patient is admitted"
         },
         ["GiveMedicine"] = new ClinicAction()
         {
             output = $"Gave medicine: "
+        },
+        ["Dead"] = new ClinicAction()
+        {
+            output = "The patient has died"
+        },
+        ["Worsened"] = new ClinicAction()
+        {
+            output = "The patient's condition has worsened."
+        },
+        ["Healed"] = new ClinicAction()
+        {
+            output = "The patient's condition has improved."
+        },
+        ["Unstable"] = new ClinicAction()
+        {
+            output = "The lack of appropriate treatment has worsened the patient's condition."
         }
     };
 
@@ -20,15 +36,15 @@ public static class ClinicActionList
     {
         ["MedSuccess"] = new ClinicAction()
         {
-            output = "It was applied successfully."
+            output = "The treatment reduced the severity."
         },
         ["MedFail"] = new ClinicAction()
         {
-            output = $"The treatment did not work."
+            output = $". The treatment did not work."
         },
         ["MedImmune"] = new ClinicAction()
         {
-            output = $"The treatment worked, but the malady resisted it!"
+            output = $". The treatment worked, but the malady resisted it!"
         }
     };
 }

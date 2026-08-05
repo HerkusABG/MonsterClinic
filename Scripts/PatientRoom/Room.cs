@@ -43,8 +43,8 @@ public partial class Room : ExpNode2D
         PatientInfoScreen.Initialize(this);
 
         //assigning methods to all the buttons
-        LeaveRoomButton.MouseEntered += HoverOn;
-        LeaveRoomButton.MouseExited += HoverOff;
+        //LeaveRoomButton.MouseEntered += HoverOn;
+        //LeaveRoomButton.MouseExited += HoverOff;
         LeaveRoomButton.Pressed += LeaveRoom;
         LeaveRoomButton.Pressed += HideUIAction;
 

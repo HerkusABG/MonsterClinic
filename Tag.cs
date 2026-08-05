@@ -65,7 +65,7 @@ public class WorseningTag : Tag
         count++;
         if (count >= increment)
         {
-            patient.NewClinicAction("Worsened");
+            patient.NewClinicAction(ClinicActionList.Actions["Worsened"].output);
             malady.severity += strength;
             if (malady.severity > 5)
             {
@@ -101,7 +101,7 @@ public class HealingTag : Tag
         count++;
         if (count >= increment)
         {
-            patient.NewClinicAction("Healed");
+            patient.NewClinicAction(ClinicActionList.Actions["Healed"].output);
             malady.severity += strength;
             count = 0;
         }
@@ -138,7 +138,7 @@ public class UnstableTag : Tag
         }
         else
         {
-            patient.NewClinicAction("Unstable");
+            patient.NewClinicAction(ClinicActionList.Actions["Unstable"].output);
             malady.severity += strength;
         }
     }
@@ -203,7 +203,7 @@ public class ResistantTag : Tag
         int chance = rnd.Next(1, ratioB + 1);
         if(chance <= ratioA)
         {
-            patient.NewClinicAction("Resisted");
+            //patient.NewClinicAction(ClinicActionList);
             patient.malady.isImmune = true;
         }
     }
