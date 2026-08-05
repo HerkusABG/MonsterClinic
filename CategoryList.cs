@@ -6,23 +6,18 @@ public static class CategoryList
 {
 	public static Dictionary<string, MaladyCategory> Database = new()
 	{
-        ["Nothing"] = new MaladyCategory
-        {
-        },
-        ["Virus"] = new MaladyCategory
-        {
-            Name = "Virus",
-            PluralName = "Viruses"
-        },
-        ["Injury"] = new MaladyCategory
-        {
-            Name = "Injury",
-            PluralName = "Physical Injuries"
-        },
-        ["Zaza"] = new MaladyCategory
-        {
-            Name = "Zaza",
-            PluralName = "Zaza"
-        }
-    };
+		["Nothing"] = new MaladyCategory
+		{
+		},
+		["Mundane"] = new MaladyCategory
+		{
+			Name = "Mundane",
+			PluralName = "Mundane"
+		},
+		["Supernatural"] = new MaladyCategory
+		{
+			Name = "Supernatural",
+			PluralName = "Supernatural"
+		},
+	};
 }
