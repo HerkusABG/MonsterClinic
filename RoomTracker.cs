@@ -18,15 +18,27 @@ public static class RoomTracker
     public static void Initialize(Node main)
     {
         Main = main;
-        CurrentScene = Main.GetNode("Office") as ExpNode2D;
+        // SAFEGUARD: Guard against invalid Main reference before attempting node retrieval
+        if (Main != null)
+        {
+            CurrentScene = Main.GetNodeOrNull<ExpNode2D>("Office");
+        }
         EnterRoom(ActiveRoom.Office);
     }
 
     public static void GoBack()
     {
-        CurrentScene.Hide();
-        CurrentScene.OnRoomExit();
-        GlobalData.PreviousScenes.Pop();
+        // SAFEGUARD: Prevent null reference error if CurrentScene is unassigned during back navigation
+        if (CurrentScene != null)
+        {
+            CurrentScene.Hide();
+            CurrentScene.OnRoomExit();
+        }
+
+        if (GlobalData.PreviousScenes != null && GlobalData.PreviousScenes.Count > 0)
+        {
+            GlobalData.PreviousScenes.Pop();
+        }
 
         Room room = CurrentScene as Room;
         if (room != null)
@@ -56,74 +68,131 @@ public static class RoomTracker
 
     public static void EnterRoom(ActiveRoom input)
     {
-        CurrentScene.Hide();
-        CurrentScene.OnRoomExit();
-        if(input == ActiveRoom.Office)
+        if (CurrentScene != null)
+        {
+            CurrentScene.Hide();
+            CurrentScene.OnRoomExit();
+        }
+
+        // SAFEGUARD: Ensure Main node reference exists before attempting to fetch child scenes
+        if (Main == null)
+        {
+            GD.PrintErr("RoomTracker Error: Main node reference is null in EnterRoom.");
+            return;
+        }
+
+        ExpNode2D targetScene = null;
+
+        if (input == ActiveRoom.Office)
         {
             RoomTrack(ActiveRoom.Office);
-            ExpNode2D OfficeScene = Main.GetNode("Office") as ExpNode2D;
-            //OfficeScene.Show();
-            CurrentScene = OfficeScene;
-
-            OfficeScene.OnRoomEnter(Main);
+            // SAFEGUARD: Replaced GetNode with GetNodeOrNull to avoid unhandled native exceptions
+            targetScene = Main.GetNodeOrNull<ExpNode2D>("Office");
         }
         else if (input == ActiveRoom.Hallway)
         {
             RoomTrack(ActiveRoom.Hallway);
-            ExpNode2D HallwayScene = Main.GetNode("Hallway") as ExpNode2D;
-            //HallwayScene.Show();
-            CurrentScene = HallwayScene;
-
-            HallwayScene.OnRoomEnter(Main);
+            targetScene = Main.GetNodeOrNull<ExpNode2D>("Hallway");
         }
-        else if(input == ActiveRoom.Admission)
+        else if (input == ActiveRoom.Admission)
         {
             RoomTrack(ActiveRoom.Admission);
-            ExpNode2D PatientScene = Main.GetNode("Patient_Interface") as ExpNode2D;
+            targetScene = Main.GetNodeOrNull<ExpNode2D>("Patient_Interface");
             //PatientScene.Show();
-            CurrentScene = PatientScene;
-
-            PatientScene.OnRoomEnter(Main);
         }
         else if(input == ActiveRoom.Computer)
         {
             RoomTrack(ActiveRoom.Computer);
-            ExpNode2D ComputerScene = Main.GetNode("Computer") as ExpNode2D;
+            targetScene = Main.GetNodeOrNull<ExpNode2D>("Computer");
             //ComputerScene.Show();
-            CurrentScene = ComputerScene;
-
-            ComputerScene.OnRoomEnter(Main);
         }
+
+        // SAFEGUARD: Validate retrieved target scene exists before calling operations on it (Fixes line 84 NRE)
+        if (targetScene == null)
+        {
+            GD.PrintErr($"RoomTracker Error: Could not find node for room state '{input}' under Main.");
+            return;
+        }
+
+        CurrentScene = targetScene;
+        CurrentScene.OnRoomEnter(Main);
         CurrentScene.Show();
-        GlobalData.PreviousScenes.Push(CurrentScene.GetPath());
+
+        if (GlobalData.PreviousScenes != null)
+        {
+            GlobalData.PreviousScenes.Push(CurrentScene.GetPath());
+        }
     }
 
     public static void EnterPatientRoom(int index)
     {
-        CurrentScene.Hide();
-        CurrentScene.OnRoomExit();
+        if (CurrentScene != null)
+        {
+            CurrentScene.Hide();
+            CurrentScene.OnRoomExit();
+        }
+
         RoomTrack(ActiveRoom.PatientRoom);
+
+        // SAFEGUARD: Check if RoomList exists and index is within valid range
+        if (RoomManager.RoomList == null || index < 0 || index >= RoomManager.RoomList.Count)
+        {
+            GD.PrintErr($"RoomTracker Error: Invalid room index {index}.");
+            return;
+        }
+
         ExpNode2D RoomScene = RoomManager.RoomList[index];
         //RoomScene.Show();
-        CurrentScene = RoomScene;
 
+        if (RoomScene == null)
+        {
+            GD.PrintErr($"RoomTracker Error: Room at index {index} is null.");
+            return;
+        }
+
+        CurrentScene = RoomScene;
         RoomScene.OnRoomEnter();
 
-        Inventory inv = Main.GetNode<Inventory>("Inventory");
-        inv.InventoryActions();
+        // SAFEGUARD: Safe retrieval of Inventory and TreatmentManager to avoid crashes on missing UI nodes
+        if (Main != null)
+        {
+            Inventory inv = Main.GetNodeOrNull<Inventory>("Inventory");
+            if (inv != null)
+            {
+                inv.InventoryActions();
 
-        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
-        Room room = RoomScene as Room;
-        treatment.SetTreatmentRoomReference(room);
+                TreatmentManager treatment = inv.GetNodeOrNull<TreatmentManager>("Treatment_Manager");
+                if (treatment != null)
+                {
+                    Room room = RoomScene as Room;
+                    treatment.SetTreatmentRoomReference(room);
+                }
+            }
+        }
 
         CurrentScene.Show();
-        GlobalData.PreviousScenes.Push(CurrentScene.GetPath());
+
+        if (GlobalData.PreviousScenes != null)
+        {
+            GlobalData.PreviousScenes.Push(CurrentScene.GetPath());
+        }
     }
 
     public static void EnterPatientRoom(ExpNode2D roomInput)
     {
-        CurrentScene.Hide();
-        CurrentScene.OnRoomExit();
+        if (CurrentScene != null)
+        {
+            CurrentScene.Hide();
+            CurrentScene.OnRoomExit();
+        }
+
+        // SAFEGUARD: Verify passed room node is not null
+        if (roomInput == null)
+        {
+            GD.PrintErr("RoomTracker Error: roomInput passed to EnterPatientRoom is null.");
+            return;
+        }
+
         RoomTrack(ActiveRoom.PatientRoom);
         ExpNode2D RoomScene = roomInput;
         //RoomScene.Show();
@@ -131,16 +200,30 @@ public static class RoomTracker
 
         RoomScene.OnRoomEnter();
 
-        Inventory inv = Main.GetNode<Inventory>("Inventory");
-        inv.InventoryActions();
+        if (Main != null)
+        {
+            Inventory inv = Main.GetNodeOrNull<Inventory>("Inventory");
+            if (inv != null)
+            {
+                inv.InventoryActions();
 
-        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
-        Room room = RoomScene as Room;
-        treatment.SetTreatmentRoomReference(room);
+                TreatmentManager treatment = inv.GetNodeOrNull<TreatmentManager>("Treatment_Manager");
+                if (treatment != null)
+                {
+                    Room room = RoomScene as Room;
+                    treatment.SetTreatmentRoomReference(room);
+                }
+            }
+        }
 
         CurrentScene.Show();
-        GlobalData.PreviousScenes.Push(RoomScene.GetPath());
+
+        if (GlobalData.PreviousScenes != null)
+        {
+            GlobalData.PreviousScenes.Push(RoomScene.GetPath());
+        }
     }
+
     public static void RoomTrack(ActiveRoom input)
     {
         activeRoom = input;

@@ -1,26 +1,34 @@
 [gd_scene format=3 uid="uid://dtqygqtybqe4i"]
 
 [ext_resource type="Script" uid="uid://cmanl4uic4t8n" path="res://Hallway.cs" id="1_ak6jr"]
-[ext_resource type="Texture2D" uid="uid://j60ouk71gllp" path="res://Assets/HallwayAssets/Hallway_BG_Layout_Blockout.png" id="2_m5f80"]
-[ext_resource type="Texture2D" uid="uid://mjk7xhb5odpo" path="res://Assets/HallwayAssets/Hallway_Door_LeftFront_Empty_Blockout.png" id="3_ar6hc"]
+[ext_resource type="Texture2D" uid="uid://bx1u7bggfspli" path="res://ElevatorHallway_Blockouts/ElevatorHallway_BG_Blockout.png" id="2_5eg2f"]
 [ext_resource type="Script" uid="uid://c5kdsosh8iq8u" path="res://Door.cs" id="4_3js8s"]
-[ext_resource type="Texture2D" uid="uid://ctyx0gd344367" path="res://Assets/HallwayAssets/Hallway_Door_LeftMid_Empty_Blockout.png" id="5_fclus"]
-[ext_resource type="Texture2D" uid="uid://o1vp0lktojw8" path="res://Assets/HallwayAssets/Hallway_Door_LeftFront_Dead_Blockout.png" id="6_glggw"]
-[ext_resource type="Texture2D" uid="uid://cgnqnr643oe2j" path="res://Assets/HallwayAssets/Hallway_Door_LeftBack_Empty_Blockout.png" id="6_l4f6k"]
-[ext_resource type="Texture2D" uid="uid://bb1qvwvl5yl2t" path="res://Assets/HallwayAssets/Hallway_Door_RightBack_Empty_Blockout.png" id="7_44psh"]
-[ext_resource type="Texture2D" uid="uid://dtrgebnvlravt" path="res://Assets/HallwayAssets/Hallway_Door_RightMid_Empty_Blockout.png" id="8_dlwjk"]
+[ext_resource type="Texture2D" uid="uid://dbd4v2cpsje16" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door1_Bought_Unlit_Blockout.png" id="5_j2yjr"]
+[ext_resource type="Texture2D" uid="uid://vscbpyr40oce" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door1_Bought_Lit_Blockout.png" id="6_vsvav"]
+[ext_resource type="Texture2D" uid="uid://bht0myyxfa8h2" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door1_Unbought_Blockout.png" id="7_bve6k"]
+[ext_resource type="Texture2D" uid="uid://b3g3c0sdlk511" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door2_Bought_Unlit_Blockout.png" id="8_5eg2f"]
 [ext_resource type="Texture2D" uid="uid://rkm1wvxqpde3" path="res://Assets/HallwayAssets/Hallway_Door_LeftMid_Occupied_Blockout.png" id="8_m5f80"]
-[ext_resource type="Texture2D" uid="uid://5iul81mywuny" path="res://Assets/HallwayAssets/Hallway_Door_LeftMid_Dead_Blockout.png" id="9_j2yjr"]
-[ext_resource type="Texture2D" uid="uid://dxb7n8mj8m5wn" path="res://Assets/HallwayAssets/Hallway_Door_RightFront_Empty_Blockout.png" id="9_jtvsb"]
-[ext_resource type="Texture2D" uid="uid://beadnx7m3si7v" path="res://Assets/HallwayAssets/Hallway_Door_LeftFront_Occupied_Blockout.png" id="10_fclus"]
+[ext_resource type="Texture2D" uid="uid://ddo141xo1bsr7" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door2_Bought_Lit_Blockout.png" id="9_yuk7c"]
+[ext_resource type="Texture2D" uid="uid://cqco8vsf5wjdk" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door2_Unbought_Blockout.png" id="10_m32xt"]
 [ext_resource type="Texture2D" uid="uid://bjxkoe0frer0w" path="res://Assets/HallwayAssets/Hallway_Door_LeftBack_Occupied_Blockout.png" id="11_5eg2f"]
-[ext_resource type="Texture2D" uid="uid://c8qo36y457ves" path="res://Assets/HallwayAssets/Hallway_Door_LeftBack_Dead_Blockout.png" id="12_bve6k"]
+[ext_resource type="Texture2D" uid="uid://d3feynlsbn11b" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door3_Bought_Unlit_Blockout.png" id="11_bve6k"]
+[ext_resource type="Texture2D" uid="uid://c7eh3i72l83vf" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door3_Bought_Lit_Blockout.png" id="13_43qi4"]
+[ext_resource type="Texture2D" uid="uid://cywo2cmca07sk" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door3_Unbought_Blockout.png" id="13_st2uq"]
+[ext_resource type="Texture2D" uid="uid://bib6t57n1yv1l" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door4_Bought_Unlit_Blockout.png" id="14_m32xt"]
 [ext_resource type="Texture2D" uid="uid://bkll6rbamia8n" path="res://Assets/HallwayAssets/Hallway_Door_RightBack_Occupied_Blockout.png" id="14_vsvav"]
-[ext_resource type="Texture2D" uid="uid://csychb5p4ayr7" path="res://Assets/HallwayAssets/Hallway_Door_RightBack_Dead_Blockout.png" id="15_m32xt"]
+[ext_resource type="Texture2D" uid="uid://bfjmdmxj884p7" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door4_Unbought_Blockout.png" id="16_b24wc"]
+[ext_resource type="Texture2D" uid="uid://d0rolyi20l3xi" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door5_Bought_Unlit_Blockout.png" id="17_b24wc"]
+[ext_resource type="Texture2D" uid="uid://bfb6ebty4d151" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door4_Bought_Lit_Blockout.png" id="17_gpovj"]
 [ext_resource type="Texture2D" uid="uid://bdfsw8yasqj28" path="res://Assets/HallwayAssets/Hallway_Door_RightMid_Occupied_Blockout.png" id="17_st2uq"]
-[ext_resource type="Texture2D" uid="uid://cwi6lm3swos0d" path="res://Assets/HallwayAssets/Hallway_Door_RightMid_Dead_Blockout.png" id="18_b24wc"]
+[ext_resource type="Texture2D" uid="uid://b8hmcaacocgth" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door5_Unbought_Blockout.png" id="19_yuk7c"]
+[ext_resource type="Texture2D" uid="uid://bvwajlxxl48e1" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door6_Bought_Unlit_Blockout.png" id="20_43qi4"]
 [ext_resource type="Texture2D" uid="uid://bbcq43yvyes4l" path="res://Assets/HallwayAssets/Hallway_Door_RightFront_Occupied_Blockout.png" id="20_yuk7c"]
-[ext_resource type="Texture2D" uid="uid://2tuut1jq6uxt" path="res://Assets/HallwayAssets/Hallway_Door_RightFront_Dead_Blockout.png" id="21_43qi4"]
+[ext_resource type="Texture2D" uid="uid://0ti8y4kl1t7s" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door5_Bought_Lit_Blockout.png" id="21_gxrng"]
+[ext_resource type="Texture2D" uid="uid://djvmfko126rr2" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door6_Unbought_Blockout.png" id="21_m5f80"]
+[ext_resource type="Texture2D" uid="uid://b6bne4rt5a8rh" path="res://ElevatorHallway_Blockouts/ElevatorHallway_DoorVIP_Bought_Unlit_Blockout.png" id="23_vsvav"]
+[ext_resource type="Texture2D" uid="uid://buwwmaqdcolos" path="res://ElevatorHallway_Blockouts/ElevatorHallway_DoorVIP_Bought_Lit_Blockout.png" id="24_43qi4"]
+[ext_resource type="Texture2D" uid="uid://d3teg1yofxoau" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door6_Bought_Lit_Blockout.png" id="25_8nsn8"]
+[ext_resource type="Texture2D" uid="uid://betrnpg4jp8rp" path="res://ElevatorHallway_Blockouts/ElevatorHallway_DoorVIP_Unbought_Blockout.png" id="25_gpovj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ar6hc"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -41,25 +49,6 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4f6k"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djdh2"]
-bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak6jr"]
-bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3js8s"]
-bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
 [node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("LeaveRoomButton")]
 position = Vector2(1302.9375, 342.1875)
 scale = Vector2(0.42309022, 0.43263888)
@@ -70,13 +59,14 @@ LeaveRoomButton = NodePath("HallwayControl/Leave_Room")
 z_index = -1
 position = Vector2(-810.5541, 461.84573)
 scale = Vector2(1.182, 1.16)
-texture = ExtResource("2_m5f80")
+texture = ExtResource("2_5eg2f")
 
 [node name="HallwayControl" type="Control" parent="." unique_id=141817288]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Leave_Room" type="Button" parent="HallwayControl" unique_id=1416126221]
 z_index = 1
@@ -92,7 +82,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_fclus")
 theme_override_styles/hover = SubResource("StyleBoxFlat_l4f6k")
 text = "Return "
 
-[node name="Door0000" type="Button" parent="HallwayControl" unique_id=1622659441]
+[node name="Door0000" type="TextureButton" parent="HallwayControl" unique_id=798236271]
 visible = false
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
@@ -100,88 +90,183 @@ offset_left = -2987.3945
 offset_top = -520.49756
 offset_right = -2044.3335
 offset_bottom = 1513.5313
-theme_override_font_sizes/font_size = 100
-theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-icon = ExtResource("3_ar6hc")
-flat = true
-expand_icon = true
 script = ExtResource("4_3js8s")
 
 [node name="DoorControl" type="Control" parent="HallwayControl" unique_id=1915929726]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
-[node name="Door" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=2118502634]
+[node name="Door" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=2118502634 node_paths=PackedStringArray("RubbleOverlay")]
 layout_mode = 0
-offset_left = -2975.577
-offset_top = -534.36597
-offset_right = -2332.577
-offset_bottom = 1195.634
-scale = Vector2(1.175, 1.175)
-texture_normal = ExtResource("3_ar6hc")
-texture_hover = ExtResource("10_fclus")
-texture_disabled = ExtResource("6_glggw")
+offset_left = -2238.1455
+offset_top = -488.1381
+offset_right = -1595.1455
+offset_bottom = 1461.8619
+scale = Vector2(1.2996647, 1.1039454)
+texture_normal = ExtResource("5_j2yjr")
+texture_hover = ExtResource("6_vsvav")
 script = ExtResource("4_3js8s")
+UnlockedTexture = ExtResource("6_vsvav")
+RubbleOverlay = NodePath("RubbleOverlay")
 
-[node name="Door2" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1489299767]
+[node name="RubbleOverlay" type="TextureRect" parent="HallwayControl/DoorControl/Door" unique_id=1319998834]
+visible = false
 layout_mode = 0
-offset_left = -1994.6987
-offset_top = -330.9631
-offset_right = -1688.6987
-offset_bottom = 797.03687
-scale = Vector2(1.175, 1.175)
-texture_normal = ExtResource("5_fclus")
+offset_top = -3.0517578e-05
+offset_right = 548.0
+offset_bottom = 1950.0
+mouse_filter = 2
+texture = ExtResource("7_bve6k")
+
+[node name="Door2" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1489299767 node_paths=PackedStringArray("RubbleOverlay")]
+layout_mode = 0
+offset_left = -1592.8932
+offset_top = -206.14767
+offset_right = -949.8932
+offset_bottom = 1743.8523
+rotation = 0.013880755
+scale = Vector2(1.1938863, 1.202586)
+texture_normal = ExtResource("8_5eg2f")
 texture_hover = ExtResource("8_m5f80")
-texture_disabled = ExtResource("9_j2yjr")
 script = ExtResource("4_3js8s")
+UnlockedTexture = ExtResource("9_yuk7c")
+RubbleOverlay = NodePath("RubbleOverlay2")
 
-[node name="Door3" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1373175735]
+[node name="RubbleOverlay2" type="TextureRect" parent="HallwayControl/DoorControl/Door2" unique_id=1414872765]
 layout_mode = 0
-offset_left = -1474.7151
-offset_top = -215.39326
-offset_right = -1311.7151
-offset_bottom = 578.60675
-scale = Vector2(1.175, 1.175)
-texture_normal = ExtResource("6_l4f6k")
+offset_left = -4.9086494
+offset_top = -209.45291
+offset_right = 543.0914
+offset_bottom = 1740.5471
+scale = Vector2(0.58835423, 0.73397535)
+mouse_filter = 2
+texture = ExtResource("10_m32xt")
+
+[node name="Door3" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1373175735 node_paths=PackedStringArray("RubbleOverlay")]
+layout_mode = 0
+offset_left = -1224.1774
+offset_top = -58.218304
+offset_right = -1048.1774
+offset_bottom = 735.7817
+scale = Vector2(1.0777581, 1.232013)
+texture_normal = ExtResource("11_bve6k")
 texture_hover = ExtResource("11_5eg2f")
-texture_disabled = ExtResource("12_bve6k")
 script = ExtResource("4_3js8s")
+UnlockedTexture = ExtResource("13_43qi4")
+RubbleOverlay = NodePath("RubbleOverlay3")
 
-[node name="Door4" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=2050616105]
+[node name="RubbleOverlay3" type="TextureRect" parent="HallwayControl/DoorControl/Door3" unique_id=405219840]
 layout_mode = 0
-offset_left = -330.75095
-offset_top = -194.59067
-offset_right = -167.75095
-offset_bottom = 584.4093
-scale = Vector2(1.175, 1.175)
-texture_normal = ExtResource("7_44psh")
+offset_left = -2.193036
+offset_top = 13.132821
+offset_right = 545.80695
+offset_bottom = 1963.1328
+scale = Vector2(0.3099737, 0.31033295)
+mouse_filter = 2
+texture = ExtResource("13_st2uq")
+
+[node name="Door4" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=2050616105 node_paths=PackedStringArray("RubbleOverlay")]
+layout_mode = 0
+offset_left = -467.8376
+offset_top = -51.284145
+offset_right = -290.8376
+offset_bottom = 727.7159
+scale = Vector2(0.7689755, 1.1868157)
+texture_normal = ExtResource("14_m32xt")
 texture_hover = ExtResource("14_vsvav")
-texture_disabled = ExtResource("15_m32xt")
 script = ExtResource("4_3js8s")
+UnlockedTexture = ExtResource("17_gpovj")
+RubbleOverlay = NodePath("RubbleOverlay4")
 
-[node name="Door5" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=259033622]
+[node name="RubbleOverlay4" type="TextureRect" parent="HallwayControl/DoorControl/Door4" unique_id=961283695]
 layout_mode = 0
-offset_left = 28.510567
-offset_top = -291.66934
-offset_right = 325.51056
-offset_bottom = 802.3307
-scale = Vector2(1.175, 1.175)
-texture_normal = ExtResource("8_dlwjk")
+offset_left = -64.546585
+offset_top = -111.01099
+offset_right = 483.45343
+offset_bottom = 1838.989
+scale = Vector2(0.50821596, 0.37678093)
+mouse_filter = 2
+texture = ExtResource("16_b24wc")
+
+[node name="Door5" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=259033622 node_paths=PackedStringArray("RubbleOverlay")]
+layout_mode = 0
+offset_left = -354.38647
+offset_top = -173.78813
+offset_right = -32.246704
+offset_bottom = 890.21185
+scale = Vector2(1.2695308, 1.1771845)
+texture_normal = ExtResource("17_b24wc")
 texture_hover = ExtResource("17_st2uq")
-texture_disabled = ExtResource("18_b24wc")
 script = ExtResource("4_3js8s")
+UnlockedTexture = ExtResource("21_gxrng")
+RubbleOverlay = NodePath("TextureRect")
 
-[node name="Door6" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1331711908]
+[node name="TextureRect" type="TextureRect" parent="HallwayControl/DoorControl/Door5" unique_id=782804123]
 layout_mode = 0
-offset_left = 595.7655
-offset_top = -534.36597
-offset_right = 1265.7655
-offset_bottom = 1200.634
-scale = Vector2(1.175, 1.175)
-texture_normal = ExtResource("9_jtvsb")
+offset_top = 60.86836
+offset_right = 318.0
+offset_bottom = 1124.8684
+scale = Vector2(0.99252915, 0.9744212)
+mouse_filter = 2
+texture = ExtResource("19_yuk7c")
+
+[node name="Door6" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1331711908 node_paths=PackedStringArray("RubbleOverlay")]
+layout_mode = 0
+offset_left = 92.326515
+offset_top = -414.17334
+offset_right = 635.32654
+offset_bottom = 1451.8267
+scale = Vector2(1.1367633, 1.1274096)
+texture_normal = ExtResource("20_43qi4")
 texture_hover = ExtResource("20_yuk7c")
-texture_disabled = ExtResource("21_43qi4")
 script = ExtResource("4_3js8s")
+UnlockedTexture = ExtResource("25_8nsn8")
+RubbleOverlay = NodePath("RubbleOverlay6")
+
+[node name="RubbleOverlay6" type="TextureRect" parent="HallwayControl/DoorControl/Door6" unique_id=1680729586]
+layout_mode = 0
+offset_left = 22.871237
+offset_top = -69.70627
+offset_right = 570.8712
+offset_bottom = 1880.2937
+mouse_filter = 2
+texture = ExtResource("21_m5f80")
+
+[node name="VIPDoor" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1775679079 node_paths=PackedStringArray("RubbleOverlay")]
+layout_mode = 0
+offset_left = -909.8236
+offset_top = 18.057781
+offset_right = -669.8236
+offset_bottom = 424.05777
+scale = Vector2(1.147967, 1.0924587)
+texture_normal = ExtResource("23_vsvav")
+texture_pressed = ExtResource("24_43qi4")
+script = ExtResource("4_3js8s")
+UnlockedTexture = ExtResource("24_43qi4")
+RubbleOverlay = NodePath("RubbleOverlayVIP")
+
+[node name="RubbleOverlayVIP" type="TextureRect" parent="HallwayControl/DoorControl/VIPDoor" unique_id=1183064597]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("25_gpovj")
+
+[node name="DialogueBox" type="Panel" parent="." unique_id=1331060281]
+visible = false
+offset_left = -2077.423
+offset_top = -515.8749
+offset_right = -2037.4231
+offset_bottom = -475.87485
+scale = Vector2(18.206741, 6.9171767)
+mouse_filter = 2
+
+[node name="DialogueText" type="Label" parent="DialogueBox" unique_id=85057634]
+layout_mode = 0
+offset_left = -2058.515
+offset_top = -448.84424
+offset_right = -2018.5149
+offset_bottom = -425.84424
+scale = Vector2(13.483588, 7.916375)

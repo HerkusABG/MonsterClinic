@@ -5,14 +5,15 @@ using System.Collections.Generic;
 public partial class Hallway : ExpNode2D
 {
     //Node that controls everything inside of the hallway
-	Control HallwayControl;
+    Control HallwayControl;
     //Control node specifically for the doors.
-	Control DoorControl;
+    Control DoorControl;
     Button LeaveButton;
     List<BaseButton> Doors = new List<BaseButton>();
     [Export] Button LeaveRoomButton;
+
     public void Initialize()
-	{
+    {
         //Initializing the hallway, all the main methods.
         GetNodes();
 
@@ -39,24 +40,20 @@ public partial class Hallway : ExpNode2D
 
     private void DoorInitialize()
     {
-        //Logic for generating door logic.
-        Main main = GetParent() as Main;
-        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
-        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
-        //Doors
         int doorIndex = 0;
         foreach (Node child in DoorControl.GetChildren())
         {
-            BaseButton childButton = child as BaseButton;
-            if (childButton != null)
+            if (child is Door doorButton)
             {
-                Doors.Add(childButton);
-                Door doorButton = childButton as Door;
-                doorButton.doorId = doorIndex;
+                Doors.Add(doorButton);
+                doorButton.DoorId = doorIndex;
+                doorButton.IsUnlocked = (doorIndex == 0);
+
+                // Pass the door index directly to your team's existing GoToRoom method
+                int index = doorIndex;
+                doorButton.Pressed += () => GoToRoom(index);
+
                 doorIndex++;
-                childButton.Pressed += () => GoToRoom(doorButton.doorId);
-                //childButton.Pressed += treatment.ShowUI;
-                childButton.Disabled = true;
             }
         }
     }
@@ -77,10 +74,10 @@ public partial class Hallway : ExpNode2D
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         RoomTracker.GoBack();
-		// show Dialog in the office, if the dialog didnt ended.
-       var DialogScene = (Control)GetParent().GetNode("Dialog");
-       if(GlobalData.Dialog_Dealer == true)
-       {
+        // show Dialog in the office, if the dialog didnt ended.
+        var DialogScene = (Control)GetParent().GetNode("Dialog");
+        if(GlobalData.Dialog_Dealer == true)
+        {
             DialogScene.Show();
         }
         else
@@ -99,7 +96,10 @@ public partial class Hallway : ExpNode2D
     {
         for(int i = 0; i < Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget; i++)
         {
-            Doors[i].Disabled = false;
+            if (Doors[i] is Door door)
+            {
+                door.IsUnlocked = true;
+            }
         }
     }
 
