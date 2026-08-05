@@ -129,7 +129,7 @@ public partial class PauseMenu : Node2D
 	//add money, update display
     private void AddMoney()
     {
-        DoctorInventory.Money += 10;
+        DoctorInventory.Money += 100;
         MoneyDisplay.Text = DoctorInventory.Money.ToString();
     }
     //subtract money, update display

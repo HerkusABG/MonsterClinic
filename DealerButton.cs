@@ -7,6 +7,7 @@ public partial class DealerButton : TextureButton
 	Label label;
 	Label info;
 	string storeInfo;
+	public bool unavailable = false;
 
 	public void Initialize()
 	{
@@ -33,4 +34,5 @@ public partial class DealerButton : TextureButton
 	{
 		UpdateInfo();
 	}
+
 }

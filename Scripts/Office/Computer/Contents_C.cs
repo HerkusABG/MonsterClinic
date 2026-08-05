@@ -195,6 +195,7 @@ public partial class Contents_C : ExpNode2D
     }
     private void ConnectPurchaseToMedicine(DealerButton button)
     {
+        PurchaseButton.Disabled = false;
         PurchaseButtonHolder = button;
         PurchaseMode = "medicine";
         PurchaseButton.Show();
@@ -205,6 +206,13 @@ public partial class Contents_C : ExpNode2D
         PurchaseButtonHolder = button;
         PurchaseMode = "upgrade";
         PurchaseButton.Show();
+        if (button.unavailable)
+        {
+            PurchaseButton.Disabled = true;
+        } else
+        {
+            PurchaseButton.Disabled = false;
+        }
     }
 
     private void Purchase()
@@ -338,11 +346,8 @@ public partial class Contents_C : ExpNode2D
             list[i].StoreInfo(DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText());
             if (DealerList.UpgradeDatabase.ElementAt(i + start).Value.upgrade.fullyUnlocked)
             {
-                list[i].Disabled = true;
-            }
-            else
-            {
-                list[i].Disabled = false;
+                list[i].unavailable = true;
+                PurchaseButton.Disabled = true;
             }
         }
     }

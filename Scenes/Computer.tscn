@@ -1080,6 +1080,7 @@ offset_bottom = 961.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_disabled = ExtResource("21_2bhit")
 
 [node name="Label" type="Label" parent="Player_Interactables_C/Dealer_PH/Purchase_Button" unique_id=1809708630]
 layout_mode = 0
