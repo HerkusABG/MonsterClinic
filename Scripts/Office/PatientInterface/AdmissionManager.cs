@@ -155,21 +155,23 @@ public partial class AdmissionManager : Node
         Random random = new Random();
         int odds = random.Next(10);
         //based on the odds, or if there's no story patients left, make a normal one
+
+        patientStats = new PatientStats();
+        InternalPatient = patientStats;
+        return patientStats;
         if (odds > 0 || StoryPatientsLeft.Count == 0)
         {
-            patientStats = new PatientStats();
-            InternalPatient = patientStats;
-            return patientStats;
+            
         //else, make a story patient
         } 
         else
         {
-            storyPatientStats = new StoryPatientStats();
+            /*storyPatientStats = new StoryPatientStats();
             storyPatientsLeftPosition = random.Next(0, StoryPatientsLeft.Count);
             storyPatientStats.StoryPatientSetup(storyPatientsLeftPosition);
             //storyPatientStats = StoryPatientsLeft[storyPatientsLeftPosition];
             InternalPatient = storyPatientStats;
-            return storyPatientStats;
+            return storyPatientStats;*/
         }
     }
 
