@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cy7ik2msxfs4q"
-path="res://.godot/imported/pc-disabled-quickfix.png-5dd0e8ae2b2aced9be11ca0bffb3a21e.ctex"
+path="res://.godot/imported/pc-disabled-quickfix.png-a69f8eee76ec4965e01c28e7f9818eb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/2D Art/PC/Dealer/pc-disabled-quickfix.png"
-dest_files=["res://.godot/imported/pc-disabled-quickfix.png-5dd0e8ae2b2aced9be11ca0bffb3a21e.ctex"]
+source_file="res://Assets/2DArt/PC/Dealer/pc-disabled-quickfix.png"
+dest_files=["res://.godot/imported/pc-disabled-quickfix.png-a69f8eee76ec4965e01c28e7f9818eb7.ctex"]
 
 [params]
 
