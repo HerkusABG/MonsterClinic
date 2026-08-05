@@ -206,6 +206,7 @@ public partial class Room : ExpNode2D
         PatientHead.Texture = null;
         MaladySprite.Texture = null;
         TopMaladySprite.Texture = null;
+        UpdateSprites();
     }
 
     public void AssignPatient(PatientStats patient)

@@ -147,27 +147,27 @@ public partial class PatientStats
     public void NewDayClinicAction()
     {
         ClinicAction action = new ClinicAction();
-        action.output = $"----Day {GlobalData.Player_Ingame_Days}----";
+        action.output = $"---Day {GlobalData.Player_Ingame_Days}---";
         clinicActions.Add(action);
     }
 
     public void NewClinicAction(string input)
     {
         ClinicAction action = new ClinicAction();
-        action.output = $"{input}";
+        action.output = $"Day {GlobalData.Player_Ingame_Days}: {input}";
         clinicActions.Add(action);
     }
 
     public void NewClinicAction(string input, string extraInfo)
     {
         ClinicAction action = new ClinicAction();
-        action.output = $"{input} {extraInfo}";
+        action.output = $"Day {GlobalData.Player_Ingame_Days}: {input} {extraInfo}";
         clinicActions.Add(action);
     }
     public void NewClinicAction(string input, string extraInfo, string result)
     {
         ClinicAction action = new ClinicAction();
-        action.output = $"{input} {extraInfo} {result}";
+        action.output = $"Day {GlobalData.Player_Ingame_Days}: {input} {extraInfo} {result}";
         clinicActions.Add(action);
     }
 
