@@ -24,7 +24,6 @@ public static class DealerList
         {
             if (MedicineManager.Database.ElementAt(i).Value.buyable && MedicineDatabase.Count < MedicineManager.Database.Count)
             {
-                GD.Print("skibidi");
                 DealerSlot newSlot = new DealerSlot(MedicineManager.Database.ElementAt(i).Value, index);
                 MedicineDatabase.Add(MedicineManager.Database.ElementAt(i).Key, newSlot);
                 index++;

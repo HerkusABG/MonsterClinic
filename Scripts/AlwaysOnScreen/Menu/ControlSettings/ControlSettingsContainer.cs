@@ -45,7 +45,6 @@ public partial class ControlSettingsContainer : Control
             DisplayServer.WindowSetSize(windowSize);
             // Sets the toggle_on to the SettingsControls -> it is easier for the save system
             SettingsControls.FullscreenToggle_on = toggle_on;
-            //GD.Print("kibidi");
         }
         
     }

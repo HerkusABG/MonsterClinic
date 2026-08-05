@@ -321,8 +321,15 @@ visible = false
 position = Vector2(1734.0001, 382.99982)
 scale = Vector2(0.21458334, 0.23402777)
 
+[node name="Button" type="Button" parent="." unique_id=1441335111]
+offset_left = 755.0
+offset_top = 296.0
+offset_right = 1067.0
+offset_bottom = 464.0
+
 [connection signal="pressed" from="Player_Interactables_O/Computer" to="." method="_on_computer_a_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Mirror" to="Player_Interactables_O/Mirror/MirrorLabel" method="_on_mirror_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Elevator" to="." method="_on_elevator_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Patient_Interface_Access" to="." method="_on_patient_i_a_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Bed" to="." method="_on_bed_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

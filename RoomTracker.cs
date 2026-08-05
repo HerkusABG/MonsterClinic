@@ -19,6 +19,8 @@ public static class RoomTracker
     {
         Main = main;
         CurrentScene = Main.GetNode("Office") as ExpNode2D;
+        GD.Print(CurrentScene.Name);
+        GD.Print(CurrentScene.Visible);
         EnterRoom(ActiveRoom.Office);
     }
 
