@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://chmg4tjmycsse"]
 
-[ext_resource type="Script" uid="uid://3ailttjlob0g" path="res://Contents_O.cs" id="1_35wc1"]
+[ext_resource type="Script" uid="uid://3ailttjlob0g" path="res://Scripts/Office/Contents_O.cs" id="1_35wc1"]
 [ext_resource type="Texture2D" uid="uid://c5ncjx7yugc5j" path="res://Assets/2D Art/Office/office-pc.png" id="2_kjhbo"]
-[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="4_n8ipj"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="4_n8ipj"]
 [ext_resource type="Texture2D" uid="uid://ba6h4djyflram" path="res://Assets/2D Art/Office/office-pc-hover.png" id="4_ttk34"]
 [ext_resource type="Script" uid="uid://df0qewcgkls1a" path="res://Scripts/Computer.cs" id="5_gisrx"]
 [ext_resource type="Texture2D" uid="uid://b4o0ubcg603ro" path="res://Assets/2D Art/Office/office-mirror.png" id="6_4fm71"]
-[ext_resource type="Script" uid="uid://damlipp41xqb1" path="res://Mirror.cs" id="7_4fm71"]
+[ext_resource type="Script" uid="uid://damlipp41xqb1" path="res://Scripts/Office/Mirror/Mirror.cs" id="7_4fm71"]
 [ext_resource type="Texture2D" uid="uid://0p8gc3ax8rmb" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Pocket_Blockout.png" id="7_grpir"]
 [ext_resource type="Texture2D" uid="uid://c0vxsda0mkipe" path="res://Assets/2D Art/Office/office-mirror-hover.png" id="8_knk1q"]
 [ext_resource type="Texture2D" uid="uid://jdngferi6lje" path="res://Assets/2D Art/Office/office-elevator.png" id="9_yauhp"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://orf6jcr622m" path="res://Assets/2D Art/Office/office-bed-hover.png" id="15_4fm71"]
 [ext_resource type="Texture2D" uid="uid://7ph5wsicr3ic" path="res://Assets/2D Art/Office/office-cans.png" id="16_gisrx"]
 [ext_resource type="PackedScene" uid="uid://l74aru063sey" path="res://Scenes/OfficePatientPlaceholder.tscn" id="16_yauhp"]
+[ext_resource type="Script" uid="uid://bwyuqfc6pfokg" path="res://Scripts/Tutorial.cs" id="19_3oxl0"]
 
 [sub_resource type="Animation" id="Animation_3080y"]
 length = 0.001
@@ -84,6 +85,11 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l87an"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3oxl0"]
+bg_color = Color(0.9529412, 0.33333334, 0.6392157, 0.27058825)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwh7d"]
+
 [node name="Contents_O" type="Node2D" unique_id=586678661]
 script = ExtResource("1_35wc1")
 
@@ -111,6 +117,7 @@ texture_hover = ExtResource("4_ttk34")
 script = ExtResource("5_gisrx")
 
 [node name="ComputerLabel" type="Label" parent="Player_Interactables_O/Computer" unique_id=764561184]
+z_index = 2
 layout_mode = 0
 offset_left = -5.0
 offset_top = 140.54999
@@ -124,12 +131,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScreenGlow" type="TextureRect" parent="Player_Interactables_O/Computer" unique_id=177397799]
-visible = false
 layout_mode = 0
-offset_left = 97.0
-offset_top = 78.549995
-offset_right = 472.0
-offset_bottom = 358.55
+offset_left = 96.981995
+offset_top = 73.89396
+offset_right = 438.54916
+offset_bottom = 381.51443
 rotation = -0.0038662683
 scale = Vector2(0.5983069, 0.5217139)
 texture = ExtResource("7_grpir")
@@ -325,6 +331,29 @@ texture = ExtResource("16_gisrx")
 visible = false
 position = Vector2(1734.0001, 382.99982)
 scale = Vector2(0.21458334, 0.23402777)
+
+[node name="TutorialLayer" type="CanvasLayer" parent="." unique_id=624321426 node_paths=PackedStringArray("InactivityTimer", "PopupPanel")]
+script = ExtResource("19_3oxl0")
+InactivityTimer = NodePath("InactivityTimer")
+PopupPanel = NodePath("PopupPanel")
+
+[node name="InactivityTimer" type="Timer" parent="TutorialLayer" unique_id=828036424]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="PopupPanel" type="PanelContainer" parent="TutorialLayer" unique_id=1960303799]
+offset_left = 91.0
+offset_top = 323.00003
+offset_right = 417.0
+offset_bottom = 449.00003
+scale = Vector2(0.56, 0.4800012)
+theme_override_styles/panel = SubResource("StyleBoxFlat_3oxl0")
+
+[node name="HintLabel" type="Panel" parent="TutorialLayer/PopupPanel" unique_id=334454460]
+layout_mode = 2
+tooltip_text = "rrrrrr"
+theme_override_styles/panel = SubResource("StyleBoxFlat_wwh7d")
 
 [connection signal="pressed" from="Player_Interactables_O/Computer" to="." method="_on_computer_a_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Mirror" to="Player_Interactables_O/Mirror/MirrorLabel" method="_on_mirror_pressed"]
