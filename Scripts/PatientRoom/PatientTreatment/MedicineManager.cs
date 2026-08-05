@@ -19,7 +19,52 @@ static class MedicineManager
 		["Bandages"] = new Medicine
 		{
 			name = "Bandages",
-			cost = 10,
+			cost = 8,
+		},
+		["Dewormer"] = new Medicine
+		{
+			name = "Dewormer",
+			cost = 17,
+		},
+		["PrussianBlue"] = new Medicine
+		{
+			name = "Prussian Blue",
+			cost =20,
+		},
+//		["SilverDrops"] = new Medicine
+//		{
+//			name = "Silver Drops",
+//			cost = 10,
+//		},
+		["FungalPowder"] = new Medicine
+		{
+			name = "Fungal Powder",
+			cost = 22,
+		},
+//		["OsmiumCapsules"] = new Medicine
+//		{
+//			name = "Osmium Capsules",
+//			cost = 10,
+//		},
+//		["Incense"] = new Medicine
+//		{
+//			name = "Incense",
+//			cost = 10,
+//		},
+		["LeadSyringe"] = new Medicine
+		{
+			name = "Lead Syringe",
+			cost = 12,
+		},
+//		["MeatGlue"] = new Medicine
+//		{
+//			name = "Meat Glue",
+//			cost = 10,
+//		},
+		["ChemDrip"] = new Medicine
+		{
+			name = "Chem Drip",
+			cost = 16,
 		},
 		["Curitol"] = new Medicine
 		{
