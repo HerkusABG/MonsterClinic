@@ -69,7 +69,8 @@ public static class SymptomList
 			name = "Vertigo",
 			quotes =
 			{
-                "Everything is spinning, my balance is WAY off."
+				"Everything is spinning, my balance is WAY off.",
+				""
 			}
 		},
 		["SkinPeel"] = new Symptom
@@ -85,7 +86,8 @@ public static class SymptomList
 			name = "Delirious",
 			quotes =
 			{
-                "*The patient is unintelligible*"
+				"Excuse me I'm not talking to you, \n I'm talking to the little man on your shoulder.",
+				"I'll take a number four with large fries and a milkshake!"
 			}
 		},
 		["Paralysis"] = new Symptom
