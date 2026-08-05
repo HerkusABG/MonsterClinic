@@ -27,6 +27,11 @@ public class Malady
 
     public bool isImmune = false;
 
+    public MaladyCategory category;
+
+    public string description;
+    public List<string> admittedDialogue = new List<string>();
+
     public Malady()
     {
         //Small piece of logic to ensure malady severity gets assigned properly in PatientStats.
@@ -44,7 +49,8 @@ public class Malady
             dialogueSymptoms = dialogueSymptoms,
             pulseSymptoms = pulseSymptoms,
             temperatureSymptoms = temperatureSymptoms,
-            cures = cures
+            cures = cures,
+            admittedDialogue = admittedDialogue,
         };
         foreach(Tag tag in tags)
         {
@@ -52,5 +58,17 @@ public class Malady
         }
         return malady;
     }
-}
 
+    public bool HasThisCategory(MaladyCategory category)
+    {
+        if (this.category == category)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+}

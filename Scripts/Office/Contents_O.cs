@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Contents_O : Node2D
+public partial class Contents_O : ExpNode2D
 {
     private Timer sceneTimer;
     [Export] PackedScene dealer_selftreatment_dialog = ResourceLoader.Load<PackedScene>("res://Scenes/dialog.tscn");
@@ -38,44 +38,22 @@ public partial class Contents_O : Node2D
 
     private void _on_computer_a_pressed()
 	{
-		Hide();
-		var ComputerScene = (Node2D)GetParent().GetNode("Computer");
-		ComputerScene.Show();
-        //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(ComputerScene.GetPath());
-	}
+        RoomTracker.EnterRoom(ActiveRoom.Computer);
+    }
     private void _on_patient_i_a_pressed()
     {
-        Hide();
+        RoomTracker.EnterRoom(ActiveRoom.Admission);
+		var DialogScene = (Control)GetParent().GetNode("Dialog");
+        DialogScene.Hide();
 
-        var PatientScene = (Node2D)GetParent().GetNode("Patient_Interface");
-        PatientScene.Show();
-
-        Contents_P_I PatientInterface = PatientScene as Contents_P_I;
-        PatientInterface.UpdatePatientInterfaceUI();
-
-        Hallway hallway = GetParent().GetNode<Hallway>("Hallway");
-        hallway.UpdateHallwayUI();
-
-        //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(PatientScene.GetPath());
     }
 
 	private void _on_elevator_pressed()
 	{
-        Hide();
+        RoomTracker.EnterRoom(ActiveRoom.Hallway);
+		var DialogScene = (Control)GetParent().GetNode("Dialog");
+        DialogScene.Hide();
 
-        var HallwayScene = (Node2D)GetParent().GetNode("Hallway");
-        HallwayScene.Show();
-
-        //var RoomScene = (Node2D)GetParent().GetNode("Room");
-        //RoomScene.Show();
-
-        Hallway hallway = GetParent().GetNode<Hallway>("Hallway");
-        hallway.UpdateHallwayUI();
-
-        //push the scene we're entering to the previous scenes stack
-        GlobalData.PreviousScenes.Push(HallwayScene.GetPath());
     }
     private void _on_bed_pressed()
     {
@@ -102,6 +80,9 @@ public partial class Contents_O : Node2D
         Inventory inventory = GetParent().GetNode<Inventory>("Inventory");
         inventory.InventoryActions();
 
+        //GlobalData.inPatientAdmission = false;
+        RoomTracker.RoomTrack(ActiveRoom.Office);
+
         if (GlobalData.Countdown >= 0)
         {
             //push the scene we're entering to the previous scenes stack
@@ -113,7 +94,7 @@ public partial class Contents_O : Node2D
             {
                 GlobalData.Medicincavailability--;
             }
-            DialogDealer();
+            //DialogDealer();
         }
     }
 
@@ -126,6 +107,7 @@ public partial class Contents_O : Node2D
         Show();
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
+        DialogDealer();
     }
 
 
@@ -134,25 +116,28 @@ public partial class Contents_O : Node2D
         // Dialog Dealer checks if the dialog should spawn again and the dealer control is so that the code isnt spammened in the process
         if (GlobalData.Dialog_Dealer == true && GlobalData.Dialog_Dealer_Control == true)
         {
-            // Gridcontainer gets shown, the dialog gets instanciated and added as a child to the GridContainer
-            var GridContainer = GetNode<GridContainer>("Spawn_DialogControl");
-            // GridContainer shows, so the player cant interact with the other objects behind it
-            GridContainer.Show();
-            // Dialog gets instantiated and added so it spawns in the GridContainer
-            var selftreatmentDialog = dealer_selftreatment_dialog.Instantiate<Dialog>();
-            GridContainer.AddChild(selftreatmentDialog);
+            var DialogScene = (Control)GetParent().GetNode("Dialog");
+            DialogScene.Show();
+
+            // the dialog for the dealer is set to the 0, because he is the first one in the two dimensional array
+            Dialog.currentNPC = 0;
             // Dealer Control checks if the dialog should spawn again
             GlobalData.Dialog_Dealer_Control = false;
             // The medicine need to decrease for the player
             GlobalData.MedicinePlayer--;
         }
-
-        if (GlobalData.Dialog_Dealer == false)
-        {
-            // The GridContainer needs to be hidden again, so the player can interact with the objects behind it
-            var GridContainer = GetNode<GridContainer>("Spawn_DialogControl");
-            GridContainer.Hide();
-        }
     }
 
+    public override void OnRoomEnter(Node mainNode)
+    {
+        //GD.Print("Entering office");
+
+        Inventory inv = mainNode.GetNode<Inventory>("Inventory");
+        inv.InventoryActions();
+    }
+
+    public override void OnRoomExit()
+    {
+        //GD.Print("Exiting office");
+    }
 }

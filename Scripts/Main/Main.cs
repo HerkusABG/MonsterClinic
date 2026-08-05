@@ -43,6 +43,7 @@ public partial class Main : Node
     private void Initialize()
     {
         GetNodes();
+        OutsideWorld.Initialize();
         Upgrades.Initialize();
         DealerList.Initialize();
         //always keep the office at the bottom of the previous scenes stack, so the reference on how to return to it is always there
@@ -50,6 +51,7 @@ public partial class Main : Node
         //Initialization chain [BELOW]
         InitializeChildren();
         GeneratePatientRooms(RoomControl);
+        RoomTracker.Initialize(this);
     }
 
     private void InitializeChildren()
@@ -57,12 +59,12 @@ public partial class Main : Node
         //This is where the children get initialized, the next step within the chain.
         RoomManager.Initialize();
         Office.Initialize();
+        Inventory.Initialize();
         Computer.Initialize();
         PatientInterface.Initialize();
         Hallway.Initialize();
         Bed.Initialize();
         PauseMenu.Initialize();
-        Inventory.Initialize();
     }
 
     private void GeneratePatientRooms(Control roomControl)
@@ -74,7 +76,7 @@ public partial class Main : Node
         //Creating as many rooms as finalRoomCount specifies. Subject to change in the future.
         for (int i = 0; i < finalRoomCount; i++)
         {
-            Node2D newRoom = (Node2D)patientRoom.Duplicate();
+            ExpNode2D newRoom = (ExpNode2D)patientRoom.Duplicate();
             newRoom.Hide();
             roomControl.AddChild(newRoom);
             RoomManager.RoomList.Add(newRoom);
@@ -88,28 +90,9 @@ public partial class Main : Node
         if (@event is InputEventMouseButton eventKey)
         {
             //if a key is pressed and that key is the right mouse button, and if the pause menu and the office aren't visible
-            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && Office.Visible == false)
+            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && !RoomTracker.IsInRoom(ActiveRoom.Office))
             {
-                //pop a scene from the previous scenes stack, this is the scene currently in use
-                var current_scene = (Node2D)GetNode(GlobalData.PreviousScenes.Pop().ToString());
-                //hide it
-                current_scene.Hide();
-                //GD.Print("exiting " + current_scene.Name);
-                Room room = current_scene as Room;
-                if(room != null)
-                {
-                    Treatment.HideUI();
-                }
-                Contents_P_I patientInterface = current_scene as Contents_P_I;
-                if (patientInterface != null)
-                {
-                    patientInterface.HideSpeechBubble();
-                }
-                //pop a scene again, this is the scene we were previously in
-                var parent = (Node2D)GetNode(GlobalData.PreviousScenes.Peek().ToString());
-                //show it
-                parent.Show();
-                //GD.Print("entering " + parent.Name);
+                RoomTracker.GoBack();
             }
         }
     }
@@ -142,32 +125,24 @@ public partial class Main : Node
         }
         else
         {
-            Inventory.Hide();
+            //if (!GlobalData.inPatientRoom)
+            if (!RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
+            {
+                Inventory.Hide();
+            }
         }
     }
 
     private void _on_room_visibility_changed()
     {
         if (Treatment == null) return;
-        var GiveMedicine1Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
-        var GiveMedicine2Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
-        var GiveMedicine3Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
-        if (GlobalData.inPatientRoom)
+        if (RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
         {
             Inventory.Show();
-            //if (GlobalData.DailyLockout == false)
-            //enable the GiveMedicine buttons when entering the patient room if the lockout is disabled
-            GiveMedicine1Button.Disabled = false;
-            GiveMedicine2Button.Disabled = false;
-            GiveMedicine3Button.Disabled = false;
         }   
         else
         {
             Inventory.Hide();
-            GiveMedicine1Button.Disabled = true;
-            GiveMedicine2Button.Disabled = true;
-            GiveMedicine3Button.Disabled = true;
-
         }
     }
 
@@ -176,32 +151,6 @@ public partial class Main : Node
         if (Computer.Visible)
         {
             Inventory.Hide();
-        }
-    }
-
-    public void InventoryPatientRoom()
-    {
-        var GiveMedicine1Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_1");
-        var GiveMedicine2Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_2");
-        var GiveMedicine3Button = GetNode("Inventory").GetNode("Open_Inventory").GetNode<TextureButton>("Give_Medicine_3");
-        if (GlobalData.inPatientRoom)
-        {
-            Inventory.Show();
-            //if (GlobalData.DailyLockout == false)
-            if (!Treatment.GetRoom().GetAlreadyTreated() == true)
-            {
-                //enable the GiveMedicine buttons when entering the patient room if the lockout is disabled
-                GiveMedicine1Button.Disabled = false;
-                GiveMedicine2Button.Disabled = false;
-                GiveMedicine3Button.Disabled = false;
-            }
-        }
-        else
-        {
-            Inventory.Hide();
-            GiveMedicine1Button.Disabled = true;
-            GiveMedicine2Button.Disabled = true;
-            GiveMedicine3Button.Disabled = true;
         }
     }
 }

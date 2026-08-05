@@ -14,39 +14,37 @@ static class MedicineManager
         ["Morphine"] = new Medicine
         {
             name = "Morphine",
-            cost = 10
-        },
-        ["Aspirin"] = new Medicine
-        {
-            name = "Aspirin",
-            cost = 15
-        },
-        ["Ozempic"] = new Medicine
-        {
-            name = "Ozempic",
-            cost = 25
+            cost = 50
         },
         ["Antibiotics"] = new Medicine
         {
             name = "Antibiotics",
-            cost = 13,
+            cost = 15,
         },
         ["FancyAntibiotics"] = new Medicine
         {
             name = "Fancy Antibiotics",
             cost = 30,
-            buyable = false
         },
         ["Bandages"] = new Medicine
         {
             name = "Bandages",
             cost = 10,
         },
+        ["Phranax"] = new Medicine
+        {
+            name = "Phranax",
+            cost = 70,
+        },
+        ["Aptomitol"] = new Medicine
+        {
+            name = "Aptomitol",
+            cost = 90,
+        },
         ["FancyBandages"] = new Medicine
         {
             name = "FancyBandages",
             cost = 18,
-            buyable = false
         },
         ["GodMedicine"] = new Medicine
         {

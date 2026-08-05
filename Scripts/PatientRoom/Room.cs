@@ -1,9 +1,10 @@
 using Godot;
 using System;
 using System.Net.Http;
+using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
-public partial class Room : Node2D 
+public partial class Room : ExpNode2D 
 {
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Button LeaveRoomButton;
@@ -20,9 +21,12 @@ public partial class Room : Node2D
     public PatientStats Patient;
 
 
+
     //boolean that checks whether you can treat the patient.
     private bool notYetTreated = true;
 
+    Inventory invy;
+    [Export] public SpeechManager SpeechManagerAccess;
     public void Initialize(Action HideUIAction)
     {
         //grabs references to all the necessary nodes
@@ -49,12 +53,21 @@ public partial class Room : Node2D
         LeaveRoomButton.Text = "Leave";
     }
 
-    public void OnRoomEnter()
+    public override void OnRoomEnter()
     {
         //Piece of logic that gets executed whenever you enter the room.
         
         UpdateSprites();
+        ShowSpeechDialogue();
     }
+
+    public override void OnRoomExit()
+    {
+        //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
+        
+        SpeechManagerAccess.SetBubbleStatus(false);
+    }
+
     private void HoverOff()
     {
         //makes the text disappear when you stop hovering
@@ -63,27 +76,13 @@ public partial class Room : Node2D
 
     private void LeaveRoom()
     {
-        //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
-        Hide();
-        var HallwayScene = (Node2D)GetParent().GetParent().GetNode("Hallway");
-        HallwayScene.Show();
-        GlobalData.inPatientRoom = false;
-        if(GlobalData.PreviousScenes.Count == 0)
-        {
-            GlobalData.PreviousScenes.Pop();
-        }
+        RoomTracker.GoBack();
     }
 
     
     private void CloseParent(Button button)
     {
       
-    }
-
-    
-    private void _on_patient_room_background_visibility_changed()
-    {
-        
     }
 
     public void UpdateSprites()
@@ -100,6 +99,8 @@ public partial class Room : Node2D
                 SetPatientUIStatus(true, false);
                 SetPatientRoomText();
             }
+
+
         }
         else
         {
@@ -155,6 +156,13 @@ public partial class Room : Node2D
         return Patient != null;
     }
 
+    public void KillPatient()
+    {
+        DeletePatient();
+        UpdateSprites();
+        OutsideWorld.ChangeReputation((int)ReputationValue.ShotPatient);
+    }
+
     public void DeletePatient()
     {
         GD.Print("patient deleted");
@@ -189,5 +197,20 @@ public partial class Room : Node2D
     public bool GetIsEmpty()
     {
         return isEmpty;
+    }
+    private void ShowSpeechDialogue()
+    {
+        if (SpeechManagerAccess == null) return;
+        if (Patient == null) return;
+        //if the patient is their story patient, they do their lil intro
+        //SpeechManagerAccess.SpeechText(Patient.GetAdmittedDialogue());
+        if (Patient is not StoryPatientStats)
+        {
+            SpeechManagerAccess.SpeechText(Patient.GetAdmittedDialogue());
+        }
+        else
+        {
+            SpeechManagerAccess.SpeechText(((StoryPatientStats)Patient).GetAdmittedDialogue());
+        }
     }
 }

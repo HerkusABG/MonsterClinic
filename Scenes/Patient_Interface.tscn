@@ -1,22 +1,37 @@
 [gd_scene format=3 uid="uid://dkuuhw6j251v"]
 
-[ext_resource type="Script" uid="uid://dkm01vf4lknir" path="res://Contents_P_I.cs" id="1_ljdgf"]
-[ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://CustomText/danielbd_MediumText.ttf" id="3_3xib3"]
+[ext_resource type="Script" uid="uid://dkm01vf4lknir" path="res://Scripts/Office/PatientInterface/Contents_P_I.cs" id="1_ljdgf"]
+[ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://Assets/CustomText/danielbd_MediumText.ttf" id="3_3xib3"]
 [ext_resource type="Texture2D" uid="uid://bj5t1docqxj1r" path="res://place holders/Admission Blockouts/Admission_Patient_White_Blockout.png" id="3_ecejo"]
-[ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://CustomText/digital-7_CountdownText.ttf" id="4_7u4js"]
 [ext_resource type="Texture2D" uid="uid://c5b2sbksxoyvm" path="res://place holders/684146226_2513326992456987_2687682788803640839_n.jpg" id="4_ecejo"]
 [ext_resource type="Texture2D" uid="uid://wcwpr5c2jw40" path="res://Assets/2D Art/Admission/admission-background.png" id="5_ecejo"]
+[ext_resource type="FontFile" uid="uid://d076lt4s4m3cn" path="res://Font/uglyhandwriting.ttf" id="5_u5iby"]
 [ext_resource type="Texture2D" uid="uid://bk0mng4lad56f" path="res://Assets/2D Art/Admission/admission-nextroom-overlay.png" id="6_3xib3"]
-[ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://SpeechManager.cs" id="7_3xib3"]
+[ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://Scripts/SpeechManager.cs" id="7_3xib3"]
 [ext_resource type="Texture2D" uid="uid://caubt0llj6n3e" path="res://Assets/2D Art/Admission/admission-mic.png" id="7_7u4js"]
 [ext_resource type="Texture2D" uid="uid://crbfj6l15slrx" path="res://Assets/2D Art/Admission/admission-thermogun.png" id="8_f16jq"]
 [ext_resource type="Script" uid="uid://chjkfoixjhby0" path="res://Scripts/NoVacancy.cs" id="9_3xib3"]
 [ext_resource type="Texture2D" uid="uid://cyew7rebghwwc" path="res://Assets/2D Art/Admission/admission-stethoscope.png" id="9_kytyi"]
 [ext_resource type="Texture2D" uid="uid://c8t7gu2gwco4j" path="res://Assets/2D Art/Admission/admission-redbutton.png" id="10_65rjk"]
 [ext_resource type="Texture2D" uid="uid://dg1os5gpillxl" path="res://Assets/2D Art/Admission/admission-greenbutton.png" id="12_ecejo"]
-[ext_resource type="Script" uid="uid://tkupfc1dnrga" path="res://Checkbox.cs" id="12_oaj4u"]
-[ext_resource type="Script" uid="uid://drow72lvn73wp" path="res://Diagnosis_Box.cs" id="13_3xib3"]
-[ext_resource type="Script" uid="uid://um68vmhviamh" path="res://AdmissionManager.cs" id="15_uph1y"]
+[ext_resource type="Texture2D" uid="uid://caqmwf6jivsec" path="res://Assets/2D Art/Admission/admission-mic-hover.png" id="12_jt6r3"]
+[ext_resource type="Script" uid="uid://tkupfc1dnrga" path="res://Scripts/Office/PatientInterface/Checkbox.cs" id="12_oaj4u"]
+[ext_resource type="Script" uid="uid://drow72lvn73wp" path="res://Scripts/Office/PatientInterface/Diagnosis_Box.cs" id="13_3xib3"]
+[ext_resource type="Texture2D" uid="uid://dn0bh1glymvni" path="res://Assets/2D Art/Admission/admission-thermogun-hover.png" id="14_7if8t"]
+[ext_resource type="Script" uid="uid://um68vmhviamh" path="res://Scripts/Office/PatientInterface/AdmissionManager.cs" id="15_uph1y"]
+[ext_resource type="Texture2D" uid="uid://s3olr6wa05nn" path="res://Assets/2D Art/Admission/admission-greenbutton-pressed.png" id="16_cstxn"]
+[ext_resource type="Texture2D" uid="uid://dmxuhodpymfht" path="res://Assets/2D Art/Admission/admission-stethoscope-hover.png" id="16_jq0il"]
+[ext_resource type="Texture2D" uid="uid://clnvhkrdi0r1b" path="res://Assets/2D Art/Admission/admission-greenbutton-hover.png" id="17_863te"]
+[ext_resource type="Texture2D" uid="uid://hfmpm4ueryb8" path="res://Assets/2D Art/Admission/admission-redbutton-pressed.png" id="19_jlfvo"]
+[ext_resource type="Texture2D" uid="uid://b46ry0nbuk0hy" path="res://Assets/2D Art/Admission/admission-redbutton-hover.png" id="20_7if8t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5iby"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqp7s"]
 bg_color = Color(0.9661711, 0.66405463, 0.6947776, 1)
@@ -64,7 +79,7 @@ script = ExtResource("1_ljdgf")
 DeceasedSprite1 = NodePath("Sprites_PH/Deceased_Sprite")
 PatientLabel = NodePath("Sprites_PH/PatientLabel")
 AgeLabel = NodePath("Sprites_PH/AgeLabel")
-PatientsLeftLabel = NodePath("Sprites_PH/PatientsLeftLabel")
+PatientsLeftLabel = NodePath("Sprites_PH/PatientsLeftParent/PatientsLeftLabel")
 PortraitSprite = NodePath("Sprites_PH/Patient")
 AdmissionManagerAccess = NodePath("AdmissionManager")
 Diagnosis = NodePath("ControlPatientInterface/Diagnosis_Box")
@@ -74,7 +89,7 @@ SpeechManagerAccess = NodePath("ControlPatientInterface/SpeechManager")
 script = ExtResource("15_uph1y")
 PatientAdmission = NodePath("..")
 PatientSpriteDisplay = NodePath("../Sprites_PH/Patient")
-AdmitButton = NodePath("../ControlPatientInterface/Admit")
+AdmitButton = NodePath("../ControlPatientInterface/Admit1")
 
 [node name="Sprites_PH" type="Node2D" parent="." unique_id=2126787329]
 
@@ -86,9 +101,9 @@ texture = ExtResource("3_ecejo")
 
 [node name="PatientLabel" type="Label" parent="Sprites_PH" unique_id=92196170]
 offset_left = 231.0
-offset_top = 171.0
+offset_top = 157.0
 offset_right = 676.80475
-offset_bottom = 318.59818
+offset_bottom = 304.59818
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_3xib3")
 theme_override_font_sizes/font_size = 50
@@ -98,26 +113,13 @@ vertical_alignment = 1
 
 [node name="AgeLabel" type="Label" parent="Sprites_PH" unique_id=1101784673]
 offset_left = 278.0
-offset_top = 287.0
+offset_top = 273.0
 offset_right = 652.8812
-offset_bottom = 395.23856
+offset_bottom = 381.23856
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_3xib3")
 theme_override_font_sizes/font_size = 50
 text = "bhivadjnaknvf"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PatientsLeftLabel" type="Label" parent="Sprites_PH" unique_id=723120182]
-z_index = 2
-offset_left = 1064.0
-offset_top = -26.0
-offset_right = 1509.8047
-offset_bottom = 121.598175
-theme_override_colors/font_color = Color(0.9782012, 0.00012359976, 0.7855249, 1)
-theme_override_fonts/font = ExtResource("4_7u4js")
-theme_override_font_sizes/font_size = 50
-text = "jnvnhvnjofvanoj"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -147,6 +149,31 @@ offset_right = 1599.0
 offset_bottom = 653.0
 script = ExtResource("9_3xib3")
 
+[node name="PatientsLeftParent" type="Label" parent="Sprites_PH" unique_id=287164985]
+z_index = 1
+offset_left = 1052.0
+offset_top = -4.0
+offset_right = 1493.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5iby")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PatientsLeftLabel" type="Label" parent="Sprites_PH/PatientsLeftParent" unique_id=723120182]
+z_index = 2
+layout_mode = 0
+offset_left = 61.0
+offset_top = 25.0
+offset_right = 366.0
+offset_bottom = 67.0
+theme_override_colors/font_color = Color(0.9782012, 0.00012359976, 0.7855249, 1)
+theme_override_fonts/font = ExtResource("5_u5iby")
+theme_override_font_sizes/font_size = 50
+text = "jnvnhvnjofvanoj"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ControlPatientInterface" type="Control" parent="." unique_id=832899310]
 layout_mode = 3
 anchors_preset = 0
@@ -160,28 +187,41 @@ SpeechBubble = NodePath("SpeechBubble")
 [node name="SpeechBubble" type="Label" parent="ControlPatientInterface/SpeechManager" unique_id=1448112577]
 visible = false
 z_index = 3
-offset_left = 1379.0
-offset_top = 395.0
-offset_right = 1601.0
-offset_bottom = 454.0
+offset_left = 947.0
+offset_top = 455.0
+offset_right = 1447.0
+offset_bottom = 655.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_kqp7s")
+autowrap_mode = 2
 
 [node name="Return" type="Button" parent="ControlPatientInterface" unique_id=294028163]
 custom_minimum_size = Vector2(210, 100)
 layout_mode = 0
 offset_left = 1672.0
-offset_top = 152.0
+offset_top = 973.0
 offset_right = 1882.0
-offset_bottom = 252.0
+offset_bottom = 1073.0
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
 text = "Return "
 
-[node name="Dialogue" type="Button" parent="ControlPatientInterface" unique_id=667856672]
+[node name="Dialogue" type="TextureButton" parent="ControlPatientInterface" unique_id=1543575623]
+layout_mode = 0
+offset_left = 1495.0
+offset_top = 592.99994
+offset_right = 2075.0
+offset_bottom = 1273.0
+scale = Vector2(0.35, 0.35)
+texture_normal = ExtResource("7_7u4js")
+texture_pressed = ExtResource("7_7u4js")
+texture_hover = ExtResource("12_jt6r3")
+
+[node name="Dialogue1" type="Button" parent="ControlPatientInterface" unique_id=667856672]
+visible = false
 custom_minimum_size = Vector2(140, 100)
 layout_mode = 0
 offset_left = 1462.0
@@ -196,7 +236,19 @@ icon = ExtResource("7_7u4js")
 flat = true
 expand_icon = true
 
-[node name="Zoom" type="Button" parent="ControlPatientInterface" unique_id=764683982]
+[node name="Zoom" type="TextureButton" parent="ControlPatientInterface" unique_id=1887223678]
+layout_mode = 0
+offset_left = 956.0
+offset_top = 705.0
+offset_right = 1440.0
+offset_bottom = 1056.0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("8_f16jq")
+texture_pressed = ExtResource("8_f16jq")
+texture_hover = ExtResource("14_7if8t")
+
+[node name="Zoom1" type="Button" parent="ControlPatientInterface" unique_id=764683982]
+visible = false
 custom_minimum_size = Vector2(140, 100)
 layout_mode = 0
 offset_left = 996.0
@@ -211,7 +263,8 @@ icon = ExtResource("8_f16jq")
 flat = true
 expand_icon = true
 
-[node name="Pulse" type="Button" parent="ControlPatientInterface" unique_id=1056763404]
+[node name="Pulse1" type="Button" parent="ControlPatientInterface" unique_id=1056763404]
+visible = false
 custom_minimum_size = Vector2(140, 100)
 layout_mode = 0
 offset_left = 1240.0
@@ -226,7 +279,19 @@ icon = ExtResource("9_kytyi")
 flat = true
 expand_icon = true
 
-[node name="Reject" type="Button" parent="ControlPatientInterface" unique_id=1995509717]
+[node name="Pulse" type="TextureButton" parent="ControlPatientInterface" unique_id=1300044843]
+layout_mode = 0
+offset_left = 1240.0
+offset_top = 733.0
+offset_right = 1724.0
+offset_bottom = 1084.0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("9_kytyi")
+texture_pressed = ExtResource("9_kytyi")
+texture_hover = ExtResource("16_jq0il")
+
+[node name="Reject1" type="Button" parent="ControlPatientInterface" unique_id=1995509717]
+visible = false
 custom_minimum_size = Vector2(210, 100)
 layout_mode = 0
 offset_left = 1326.0
@@ -242,13 +307,36 @@ icon = ExtResource("10_65rjk")
 flat = true
 expand_icon = true
 
-[node name="Admit" type="Button" parent="ControlPatientInterface" unique_id=1942473230]
+[node name="Admit" type="TextureButton" parent="ControlPatientInterface" unique_id=2050577360]
+layout_mode = 0
+offset_left = 839.0
+offset_top = 836.0
+offset_right = 1593.0
+offset_bottom = 1158.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("12_ecejo")
+texture_pressed = ExtResource("16_cstxn")
+texture_hover = ExtResource("17_863te")
+
+[node name="Reject" type="TextureButton" parent="ControlPatientInterface" unique_id=713101750]
+layout_mode = 0
+offset_left = 1335.0
+offset_top = 823.0
+offset_right = 2135.0
+offset_bottom = 1181.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("10_65rjk")
+texture_pressed = ExtResource("19_jlfvo")
+texture_hover = ExtResource("20_7if8t")
+
+[node name="Admit1" type="Button" parent="ControlPatientInterface" unique_id=1942473230]
+visible = false
 custom_minimum_size = Vector2(210, 100)
 layout_mode = 0
-offset_left = 936.0
-offset_top = 810.0
-offset_right = 1690.0
-offset_bottom = 1132.0
+offset_left = 852.0
+offset_top = 842.0
+offset_right = 1606.0
+offset_bottom = 1164.0
 scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
@@ -261,10 +349,10 @@ expand_icon = true
 [node name="VisitPatient" type="Button" parent="ControlPatientInterface" unique_id=984521041]
 custom_minimum_size = Vector2(210, 100)
 layout_mode = 0
-offset_left = 1204.0
-offset_top = 974.0
-offset_right = 1414.0
-offset_bottom = 1074.0
+offset_left = 1672.0
+offset_top = 141.0
+offset_right = 1882.0
+offset_bottom = 241.0
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
@@ -288,6 +376,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
 text = "Inventory"
 
 [node name="InventoryContainer" type="VBoxContainer" parent="ControlPatientInterface" unique_id=1299831844]
+visible = false
 layout_mode = 0
 offset_left = 1702.0
 offset_top = 338.0
@@ -295,6 +384,7 @@ offset_right = 1866.0
 offset_bottom = 543.0
 
 [node name="Diagnosis" type="Button" parent="ControlPatientInterface/InventoryContainer" unique_id=323827721]
+visible = false
 custom_minimum_size = Vector2(120, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
@@ -319,9 +409,10 @@ script = ExtResource("13_3xib3")
 [node name="Checkbox_1" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=468010843]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = -100.0
-offset_top = -500.0
-offset_bottom = -396.0
+offset_left = -126.0
+offset_top = -526.0
+offset_right = -26.0
+offset_bottom = -422.0
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
@@ -342,9 +433,10 @@ text = "blablabla"
 [node name="Checkbox_2" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1325796187]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = -100.0
-offset_top = -400.0
-offset_bottom = -296.0
+offset_left = -126.0
+offset_top = -426.0
+offset_right = -26.0
+offset_bottom = -322.0
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
@@ -365,9 +457,10 @@ text = "blablabla"
 [node name="Checkbox_3" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1293334289]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = -100.0
-offset_top = -300.0
-offset_bottom = -196.0
+offset_left = -126.0
+offset_top = -326.0
+offset_right = -26.0
+offset_bottom = -222.0
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
@@ -388,9 +481,10 @@ text = "blablabla"
 [node name="Checkbox_4" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1379858808]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = -100.0
-offset_top = -200.0
-offset_bottom = -96.0
+offset_left = -126.0
+offset_top = -226.0
+offset_right = -26.0
+offset_bottom = -122.0
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
@@ -411,9 +505,10 @@ text = "blablabla"
 [node name="Checkbox_5" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1861412027]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
-offset_left = -100.0
-offset_top = -100.0
-offset_bottom = 4.0
+offset_left = -126.0
+offset_top = -126.0
+offset_right = -26.0
+offset_bottom = -22.0
 scale = Vector2(0.75, 0.75)
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
@@ -422,6 +517,126 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
 script = ExtResource("12_oaj4u")
 
 [node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_5" unique_id=1676854035]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "blablabla"
+
+[node name="Checkbox_6" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1965136087]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 229.0
+offset_top = -526.0
+offset_right = 329.0
+offset_bottom = -422.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_6" unique_id=404615901]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "blablabla"
+
+[node name="Checkbox_7" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1835389015]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 229.0
+offset_top = -426.0
+offset_right = 329.0
+offset_bottom = -322.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_7" unique_id=1613633309]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "blablabla"
+
+[node name="Checkbox_8" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=702594541]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 229.0
+offset_top = -326.0
+offset_right = 329.0
+offset_bottom = -222.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_8" unique_id=1749138452]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "blablabla"
+
+[node name="Checkbox_9" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=1019033358]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 229.0
+offset_top = -226.0
+offset_right = 329.0
+offset_bottom = -122.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_9" unique_id=204369062]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 38.0
+offset_right = 211.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 37
+text = "blablabla"
+
+[node name="Checkbox_10" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=642705766]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 229.0
+offset_top = -126.0
+offset_right = 329.0
+offset_bottom = -22.0
+scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_0r6l1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rh4kq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1bgp")
+script = ExtResource("12_oaj4u")
+
+[node name="CheckboxLabel" type="Label" parent="ControlPatientInterface/Diagnosis_Box/Checkbox_10" unique_id=2030160416]
 layout_mode = 0
 offset_left = 144.0
 offset_top = 38.0

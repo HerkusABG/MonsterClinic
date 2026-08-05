@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 public static class RoomManager
 {
-    public static List<Node2D> RoomList;
+    public static List<ExpNode2D> RoomList;
 
     public static void Initialize()
     {
-        RoomList = new List<Node2D>();
+        RoomList = new List<ExpNode2D>();
     }
 
     public static Node2D FindEmptyRoom()

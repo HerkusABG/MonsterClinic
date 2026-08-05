@@ -6,11 +6,14 @@ public class InventoryUiInstance
 {
     public List<InventorySlot> Slots = new List<InventorySlot>();
 
-    public List<MedicineButton> MedicineButtons = new List<MedicineButton>();
-    public InventoryUiInstance(List<InventorySlot> slots, List<MedicineButton> medicineButtons)
+    public List<InventorySlot> AllSlots = new List<InventorySlot>();
+
+    public List<InventorySlot> ActiveSlots = new List<InventorySlot>();
+
+    //public List<MedicineButton> MedicineButtons = new List<MedicineButton>();
+    public InventoryUiInstance(List<InventorySlot> slots)
     {
         Slots = slots;
-        MedicineButtons = medicineButtons;
+        //MedicineButtons = medicineButtons;
     }
-    
 }

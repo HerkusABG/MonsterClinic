@@ -123,4 +123,6 @@ text = "Name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Reset_Dialog" type="Timer" parent="." unique_id=281007379]
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

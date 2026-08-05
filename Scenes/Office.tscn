@@ -126,7 +126,6 @@ offset_bottom = 267.09998
 theme_override_colors/font_color = Color(0.7294118, 0.7176471, 0.60784316, 1)
 theme_override_fonts/font = ExtResource("4_n8ipj")
 theme_override_font_sizes/font_size = 120
-text = "Computer"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -201,7 +200,6 @@ scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0.7294118, 0.7176471, 0.60784316, 1)
 theme_override_fonts/font = ExtResource("4_n8ipj")
 theme_override_font_sizes/font_size = 70
-text = "Mirror"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -256,7 +254,6 @@ scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0.7294118, 0.7176471, 0.60784316, 1)
 theme_override_fonts/font = ExtResource("4_n8ipj")
 theme_override_font_sizes/font_size = 60
-text = "Patient Room"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -280,7 +277,6 @@ offset_bottom = 314.00006
 theme_override_colors/font_color = Color(0.7294118, 0.7176471, 0.60784316, 1)
 theme_override_fonts/font = ExtResource("4_n8ipj")
 theme_override_font_sizes/font_size = 90
-text = "Reception"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -304,16 +300,10 @@ scale = Vector2(2, 2)
 theme_override_colors/font_color = Color(0.7294118, 0.7176471, 0.60784316, 1)
 theme_override_fonts/font = ExtResource("4_n8ipj")
 theme_override_font_sizes/font_size = 80
-text = "Rest"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ChangeToBed_Timer" type="Timer" parent="." unique_id=1022067532]
-
-[node name="Spawn_DialogControl" type="GridContainer" parent="." unique_id=1190428995]
-visible = false
-offset_right = 1933.0
-offset_bottom = 1091.0
 
 [node name="Background2" type="Sprite2D" parent="." unique_id=1708659909]
 visible = false
@@ -326,6 +316,11 @@ texture = ExtResource("14_3080y")
 position = Vector2(1084, 665)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("16_gisrx")
+
+[node name="Spawn_DialogControl" type="GridContainer" parent="." unique_id=1190428995]
+visible = false
+offset_right = 1933.0
+offset_bottom = 1091.0
 
 [node name="OfficePatientPlaceholder" parent="." unique_id=986667268 instance=ExtResource("16_yauhp")]
 visible = false

@@ -1,24 +1,45 @@
 [gd_scene format=3 uid="uid://dtqygqtybqe4i"]
 
 [ext_resource type="Script" uid="uid://cmanl4uic4t8n" path="res://Hallway.cs" id="1_ak6jr"]
-[ext_resource type="Texture2D" uid="uid://grtpgvlvtxuq" path="res://Assets/HallwayAssets/Hallway_BG_Blockout.png" id="2_ar6hc"]
+[ext_resource type="Texture2D" uid="uid://j60ouk71gllp" path="res://Assets/HallwayAssets/Hallway_BG_Layout_Blockout.png" id="2_m5f80"]
 [ext_resource type="Texture2D" uid="uid://mjk7xhb5odpo" path="res://Assets/HallwayAssets/Hallway_Door_LeftFront_Empty_Blockout.png" id="3_ar6hc"]
 [ext_resource type="Script" uid="uid://c5kdsosh8iq8u" path="res://Door.cs" id="4_3js8s"]
 [ext_resource type="Texture2D" uid="uid://ctyx0gd344367" path="res://Assets/HallwayAssets/Hallway_Door_LeftMid_Empty_Blockout.png" id="5_fclus"]
+[ext_resource type="Texture2D" uid="uid://o1vp0lktojw8" path="res://Assets/HallwayAssets/Hallway_Door_LeftFront_Dead_Blockout.png" id="6_glggw"]
 [ext_resource type="Texture2D" uid="uid://cgnqnr643oe2j" path="res://Assets/HallwayAssets/Hallway_Door_LeftBack_Empty_Blockout.png" id="6_l4f6k"]
 [ext_resource type="Texture2D" uid="uid://bb1qvwvl5yl2t" path="res://Assets/HallwayAssets/Hallway_Door_RightBack_Empty_Blockout.png" id="7_44psh"]
 [ext_resource type="Texture2D" uid="uid://dtrgebnvlravt" path="res://Assets/HallwayAssets/Hallway_Door_RightMid_Empty_Blockout.png" id="8_dlwjk"]
+[ext_resource type="Texture2D" uid="uid://rkm1wvxqpde3" path="res://Assets/HallwayAssets/Hallway_Door_LeftMid_Occupied_Blockout.png" id="8_m5f80"]
+[ext_resource type="Texture2D" uid="uid://5iul81mywuny" path="res://Assets/HallwayAssets/Hallway_Door_LeftMid_Dead_Blockout.png" id="9_j2yjr"]
 [ext_resource type="Texture2D" uid="uid://dxb7n8mj8m5wn" path="res://Assets/HallwayAssets/Hallway_Door_RightFront_Empty_Blockout.png" id="9_jtvsb"]
+[ext_resource type="Texture2D" uid="uid://beadnx7m3si7v" path="res://Assets/HallwayAssets/Hallway_Door_LeftFront_Occupied_Blockout.png" id="10_fclus"]
+[ext_resource type="Texture2D" uid="uid://bjxkoe0frer0w" path="res://Assets/HallwayAssets/Hallway_Door_LeftBack_Occupied_Blockout.png" id="11_5eg2f"]
+[ext_resource type="Texture2D" uid="uid://c8qo36y457ves" path="res://Assets/HallwayAssets/Hallway_Door_LeftBack_Dead_Blockout.png" id="12_bve6k"]
+[ext_resource type="Texture2D" uid="uid://bkll6rbamia8n" path="res://Assets/HallwayAssets/Hallway_Door_RightBack_Occupied_Blockout.png" id="14_vsvav"]
+[ext_resource type="Texture2D" uid="uid://csychb5p4ayr7" path="res://Assets/HallwayAssets/Hallway_Door_RightBack_Dead_Blockout.png" id="15_m32xt"]
+[ext_resource type="Texture2D" uid="uid://bdfsw8yasqj28" path="res://Assets/HallwayAssets/Hallway_Door_RightMid_Occupied_Blockout.png" id="17_st2uq"]
+[ext_resource type="Texture2D" uid="uid://cwi6lm3swos0d" path="res://Assets/HallwayAssets/Hallway_Door_RightMid_Dead_Blockout.png" id="18_b24wc"]
+[ext_resource type="Texture2D" uid="uid://bbcq43yvyes4l" path="res://Assets/HallwayAssets/Hallway_Door_RightFront_Occupied_Blockout.png" id="20_yuk7c"]
+[ext_resource type="Texture2D" uid="uid://2tuut1jq6uxt" path="res://Assets/HallwayAssets/Hallway_Door_RightFront_Dead_Blockout.png" id="21_43qi4"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nn86p"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ar6hc"]
+bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn86p"]
-bg_color = Color(1, 0.21176471, 0.18431373, 1)
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fclus"]
+bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uj218"]
-bg_color = Color(1, 0.5176471, 0.49803922, 0.65882355)
-border_color = Color(0.8, 0.8, 0.8, 0)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4f6k"]
+bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djdh2"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -49,7 +70,7 @@ LeaveRoomButton = NodePath("HallwayControl/Leave_Room")
 z_index = -1
 position = Vector2(-810.5541, 461.84573)
 scale = Vector2(1.182, 1.16)
-texture = ExtResource("2_ar6hc")
+texture = ExtResource("2_m5f80")
 
 [node name="HallwayControl" type="Control" parent="." unique_id=141817288]
 layout_mode = 3
@@ -57,25 +78,22 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Leave_Room" type="Button" parent="HallwayControl" unique_id=1531308757]
+[node name="Leave_Room" type="Button" parent="HallwayControl" unique_id=1416126221]
 z_index = 1
-custom_minimum_size = Vector2(200, 10)
+custom_minimum_size = Vector2(210, 100)
 layout_mode = 0
-offset_left = -3079.5737
-offset_top = 1483.4832
-offset_right = 1458.4648
-offset_bottom = 1705.3772
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxEmpty_nn86p")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_nn86p")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uj218")
+offset_left = 959.7539
+offset_top = 1432.6323
+offset_right = 1359.7539
+offset_bottom = 1682.6323
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_ar6hc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fclus")
+theme_override_styles/hover = SubResource("StyleBoxFlat_l4f6k")
+text = "Return "
 
-[node name="DoorControl" type="Control" parent="HallwayControl" unique_id=1915929726]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Door" type="Button" parent="HallwayControl/DoorControl" unique_id=1622659441]
+[node name="Door0000" type="Button" parent="HallwayControl" unique_id=1622659441]
+visible = false
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
 offset_left = -2987.3945
@@ -91,82 +109,79 @@ flat = true
 expand_icon = true
 script = ExtResource("4_3js8s")
 
-[node name="Door2" type="Button" parent="HallwayControl/DoorControl" unique_id=544577023]
-custom_minimum_size = Vector2(200, 10)
+[node name="DoorControl" type="Control" parent="HallwayControl" unique_id=1915929726]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Door" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=2118502634]
+layout_mode = 0
+offset_left = -2975.577
+offset_top = -534.36597
+offset_right = -2332.577
+offset_bottom = 1195.634
+scale = Vector2(1.175, 1.175)
+texture_normal = ExtResource("3_ar6hc")
+texture_hover = ExtResource("10_fclus")
+texture_disabled = ExtResource("6_glggw")
+script = ExtResource("4_3js8s")
+
+[node name="Door2" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1489299767]
 layout_mode = 0
 offset_left = -1994.6987
-offset_top = -317.09473
-offset_right = -1628.3466
-offset_bottom = 995.77844
-theme_override_font_sizes/font_size = 100
-theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-icon = ExtResource("5_fclus")
-flat = true
-expand_icon = true
+offset_top = -330.9631
+offset_right = -1688.6987
+offset_bottom = 797.03687
+scale = Vector2(1.175, 1.175)
+texture_normal = ExtResource("5_fclus")
+texture_hover = ExtResource("8_m5f80")
+texture_disabled = ExtResource("9_j2yjr")
 script = ExtResource("4_3js8s")
 
-[node name="Door3" type="Button" parent="HallwayControl/DoorControl" unique_id=1819522272]
-custom_minimum_size = Vector2(200, 10)
+[node name="Door3" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1373175735]
 layout_mode = 0
-offset_left = -1484.1693
-offset_top = -210.77051
-offset_right = -1278.5394
-offset_bottom = 736.9021
-theme_override_font_sizes/font_size = 100
-theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-icon = ExtResource("6_l4f6k")
-flat = true
-expand_icon = true
+offset_left = -1474.7151
+offset_top = -215.39326
+offset_right = -1311.7151
+offset_bottom = 578.60675
+scale = Vector2(1.175, 1.175)
+texture_normal = ExtResource("6_l4f6k")
+texture_hover = ExtResource("11_5eg2f")
+texture_disabled = ExtResource("12_bve6k")
 script = ExtResource("4_3js8s")
 
-[node name="Door4" type="Button" parent="HallwayControl/DoorControl" unique_id=36427974]
-custom_minimum_size = Vector2(200, 10)
+[node name="Door4" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=2050616105]
 layout_mode = 0
-offset_left = -342.56885
-offset_top = -185.3451
-offset_right = 19.056152
-offset_bottom = 729.96783
-theme_override_font_sizes/font_size = 100
-theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-icon = ExtResource("7_44psh")
-flat = true
-expand_icon = true
+offset_left = -330.75095
+offset_top = -194.59067
+offset_right = -167.75095
+offset_bottom = 584.4093
+scale = Vector2(1.175, 1.175)
+texture_normal = ExtResource("7_44psh")
+texture_hover = ExtResource("14_vsvav")
+texture_disabled = ExtResource("15_m32xt")
 script = ExtResource("4_3js8s")
 
-[node name="Door5" type="Button" parent="HallwayControl/DoorControl" unique_id=1092232062]
-custom_minimum_size = Vector2(200, 10)
+[node name="Door5" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=259033622]
 layout_mode = 0
-offset_left = 21.419678
-offset_top = -282.42377
-offset_right = 383.04468
-offset_bottom = 993.467
-theme_override_font_sizes/font_size = 100
-theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-icon = ExtResource("8_dlwjk")
-flat = true
-expand_icon = true
+offset_left = 28.510567
+offset_top = -291.66934
+offset_right = 325.51056
+offset_bottom = 802.3307
+scale = Vector2(1.175, 1.175)
+texture_normal = ExtResource("8_dlwjk")
+texture_hover = ExtResource("17_st2uq")
+texture_disabled = ExtResource("18_b24wc")
 script = ExtResource("4_3js8s")
 
-[node name="Door6" type="Button" parent="HallwayControl/DoorControl" unique_id=1225412882]
-custom_minimum_size = Vector2(200, 10)
+[node name="Door6" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1331711908]
 layout_mode = 0
-offset_left = 586.31104
-offset_top = -518.18616
-offset_right = 1510.4639
-offset_bottom = 1490.4174
-theme_override_font_sizes/font_size = 100
-theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-icon = ExtResource("9_jtvsb")
-flat = true
-expand_icon = true
+offset_left = 595.7655
+offset_top = -534.36597
+offset_right = 1265.7655
+offset_bottom = 1200.634
+scale = Vector2(1.175, 1.175)
+texture_normal = ExtResource("9_jtvsb")
+texture_hover = ExtResource("20_yuk7c")
+texture_disabled = ExtResource("21_43qi4")
 script = ExtResource("4_3js8s")

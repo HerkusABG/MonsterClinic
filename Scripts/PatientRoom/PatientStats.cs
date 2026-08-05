@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 public partial class PatientStats
@@ -14,10 +15,12 @@ public partial class PatientStats
     public Color PortraitColor;
 
     // Also defining a bool that tracks if the patient is alive, in case he gets SHOT
-    private bool isAlive;
+    public bool isAlive;
 
     public Malady malady;
     private Room myRoom;
+
+    int dialogueIndex = 0;
 
     public PatientStats()
     {
@@ -25,11 +28,11 @@ public partial class PatientStats
         // For just assigning random numbers, this will be overhauled later.
         Random rnd = new Random();
         malady = new Malady();
-        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(1, MaladyList.Database.Count - 1)).Value);
+        dialogueIndex = 0;
+        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 3)).Value);
         if (malady.severity == -1)
         {
-            //malady.severity = rnd.Next(2, 5);
-            malady.severity = rnd.Next(4, 5);
+            malady.severity = rnd.Next(2, 5);
         }
         isAlive = true;
         patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
@@ -53,7 +56,7 @@ public partial class PatientStats
     public bool TryCurePatient(Medicine inputMedicine)
     {
         bool isSuccessful = malady.cures.Contains(inputMedicine);
-        if(isSuccessful)
+        if (isSuccessful)
         {
             malady.severity--;
             //TriggerInteractionTags();
@@ -63,14 +66,30 @@ public partial class PatientStats
 
     public bool IsPatientCured()
     {
-       return malady.severity <= 1;
+        return malady.severity <= 1;
     }
     public string GetDialogue()
     {
         //Grab generic dialogue.
-        if(malady.dialogueSymptoms.Count > 0)
+        if (malady.dialogueSymptoms.Count > 0)
         {
-            string returnDialogue = malady.dialogueSymptoms[0].quotes[0];
+            Random rnd = new Random();
+            int length = malady.dialogueSymptoms.Count;
+            int symptomId = rnd.Next(0, length);
+            int quoteListLength = malady.dialogueSymptoms[symptomId].quotes.Count;
+            string returnDialogue = malady.dialogueSymptoms[symptomId].quotes[rnd.Next(0, quoteListLength)];
+            return returnDialogue;
+        }
+        return "...";
+    }
+
+    public virtual string GetAdmittedDialogue()
+    {
+        if (malady.admittedDialogue.Count > 0)
+        {
+            Random rnd = new Random();
+            int length = malady.admittedDialogue.Count;
+            string returnDialogue = malady.admittedDialogue[rnd.Next(0, length)];
             return returnDialogue;
         }
         return "...";
@@ -122,9 +141,27 @@ public partial class PatientStats
         CheckLifeStatus();
     }
 
+    public void ShowCorrectMedicineDialogue(SpeechManager speechManager)
+    {
+        int length = Quotes.Database["CorrectMedicine"].Count;
+        List<string> list = Quotes.Database["CorrectMedicine"];
+
+        Random rnd = new Random();
+        speechManager.SpeechText(list[rnd.Next(0, length)]);
+    }
+
+    public void ShowIncorrectMedicineDialogue(SpeechManager speechManager)
+    {
+        int length = Quotes.Database["IncorrectMedicine"].Count;
+        List<string> list = Quotes.Database["IncorrectMedicine"];
+
+        Random rnd = new Random();
+        speechManager.SpeechText(list[rnd.Next(0, length)]);
+    }
+
     private void CheckLifeStatus()
     {
-        if(malady.severity <= 1)
+        if (malady.severity <= 1)
         {
             myRoom.PatientCuredInAbsence();
         }
@@ -151,6 +188,7 @@ public partial class PatientStats
     {
         myRoom = room;
     }
+
 }
     
 

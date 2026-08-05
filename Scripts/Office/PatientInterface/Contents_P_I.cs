@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
 
-public partial class Contents_P_I : Node2D
+public partial class Contents_P_I : ExpNode2D
 {
     //Storing a reference to all the buttons as well as the speech manager, which is responsible for the dialogue inside the P.A.
     //Since the inventory currently is a container, I also store a reference to that so i don't have to show and hide both of the buttons individually.
@@ -13,11 +13,11 @@ public partial class Contents_P_I : Node2D
     public PatientStats PatientPointer;
 
     Button ReturnButton;
-    Button DialogueButton;
-    Button ZoomButton;
-    Button PulseButton;
-    Button RejectButton;
-    Button AdmitButton;
+    BaseButton DialogueButton;
+    BaseButton ZoomButton;
+    BaseButton PulseButton;
+    BaseButton RejectButton;
+    BaseButton AdmitButton;
     Button VisitButton;
     Button InventoryButton;
     Button DiagnosisButton;
@@ -109,11 +109,11 @@ public partial class Contents_P_I : Node2D
         //otherwise they wouldn't be found.
         Control control = GetNode<Control>("ControlPatientInterface");
         ReturnButton = control.GetNode<Button>("Return");
-        DialogueButton = control.GetNode<Button>("Dialogue");
-        ZoomButton = control.GetNode<Button>("Zoom");
-        PulseButton = control.GetNode<Button>("Pulse");
-        RejectButton = control.GetNode<Button>("Reject");
-        AdmitButton = control.GetNode<Button>("Admit");
+        DialogueButton = control.GetNode<BaseButton>("Dialogue");
+        ZoomButton = control.GetNode<BaseButton>("Zoom");
+        PulseButton = control.GetNode<BaseButton>("Pulse");
+        RejectButton = control.GetNode<BaseButton>("Reject");
+        AdmitButton = control.GetNode<BaseButton>("Admit");
         VisitButton = control.GetNode<Button>("VisitPatient");
         InventoryButton = control.GetNode<Button>("Inventory");
 
@@ -126,9 +126,20 @@ public partial class Contents_P_I : Node2D
     //displaying different information pulled from the PatientStats class.
     //In the future this could probably be done in a more sleek way, but for now it's functional.
 
+
+
     private void ShowSpeechDialogue()
     {
+        //if the patient is their story patient, they do their lil intro
         SpeechManagerAccess.SpeechText(PatientPointer.GetDialogue());
+        /*if (PatientPointer is StoryPatientStats)
+        {
+            SpeechManagerAccess.SpeechText(((StoryPatientStats)PatientPointer).entrySpeech);
+        }
+        else
+        {
+            SpeechManagerAccess.SpeechText(PatientPointer.GetDialogue());
+        }*/
     }
   
     private void ShowSpeechZoom()
@@ -163,31 +174,7 @@ public partial class Contents_P_I : Node2D
         var speech = SpeechManagerAccess.GetNode<Label>("SpeechBubble");
         speech.Hide();
     }
-    //Toggling the inventory, pretty simple.
-    private void ToggleInventory()
-    {
-        InventoryContainer.Visible = !InventoryContainer.Visible;
-        if(!PatientPointer.IsPatientAlive())
-        {
-            //ShotgunButton.Disabled = true;
-        }
-        else
-        {
-            //ShotgunButton.Disabled = false;
-        }
-    }
-   
-    //For now killing the patient doesn't have any advanced functionality. Just showing the sprites.
-    private void KillPatient()
-    {
-        if(PatientPointer.IsPatientAlive())
-        {
-            //PatientPointer.isAlive = false;
-            PatientPointer.KillPatient();
-            DeceasedSprite1.Show();
-        }
-    }
-
+  
     private void _on_deceased_sprite_visibility_changed()
     {
         //since now the shotgun is in a different scene, we can't easily access the local instance of PatientStats when using it anymore, 
@@ -204,21 +191,52 @@ public partial class Contents_P_I : Node2D
     private void ReturnToOffice()
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
-        Hide();
         SpeechManagerAccess.SetBubbleStatus(false);
         Diagnosis.ClearAllBoxes();
-        var OfficeScene = (Node2D)GetParent().GetNode("Office");
-        OfficeScene.Show();
         GlobalData.PreviousScenes.Pop();
-
         int patients = AdmissionManagerAccess.HowManyPatientsLeft();
         GlobalData.IsPatientInWindow = (patients > 0);
+
+        RoomTracker.GoBack();
+
+        //shows the Dialog for the dealer, when return to the office
+        var DialogScene = (Control)GetParent().GetNode("Dialog");
+        if (GlobalData.Dialog_Dealer == true)
+        {
+            DialogScene.Show();
+        }
+        else
+        {
+            DialogScene.Hide();
+        }
     }
 
     private void OnRejectPressed()
     {
         //Stuff that happens when the reject button is pressed.
         NextPatient();
+    }
+
+    public void ShootPatient()
+    {
+        //if(GlobalData.inPatientRoom)
+        
+        //else if(GlobalData.inPatientAdmission)
+        if (RoomTracker.IsInRoom(ActiveRoom.Admission))
+        {
+            int patients = AdmissionManagerAccess.HowManyPatientsLeft();
+            if (patients >= 0)
+            {
+                OnRejectPressed();
+                OutsideWorld.ChangeReputation((int)ReputationValue.ShotPatient);
+                GD.Print($"Reputation now is {OutsideWorld.GetReputation()}");
+                SpeechManagerAccess.SpeechText("Patient killed. Sending in the next patient.");
+            }
+            else
+            {
+                SpeechManagerAccess.SpeechText("No more patients!");
+            }
+        }
     }
 
     private void OnAdmitPressed()
@@ -293,6 +311,10 @@ public partial class Contents_P_I : Node2D
 
     private void Visit()
     {
+        //GlobalData.inPatientAdmission = false;
+        RoomTracker.RoomTrack(ActiveRoom.PatientRoom);
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        inv.InventoryActions();
         //Visit button logic.
         SpeechManagerAccess.SetBubbleStatus(false);
         //For making the RMB "go back to last room" stuff work
@@ -302,7 +324,7 @@ public partial class Contents_P_I : Node2D
         Hallway hallwayAccess = hallway as Hallway;
 
         //Go to the room as based on the AdmissionManager's reference for the latest assigned room
-        Node2D room = AdmissionManagerAccess.GetLatestRoom();
+        ExpNode2D room = AdmissionManagerAccess.GetLatestRoom();
         hallwayAccess.GoToRoom(room);
         Room roomRef = room as Room;
         
@@ -314,6 +336,25 @@ public partial class Contents_P_I : Node2D
         //Saving the scene path, for RMB functionality
         GlobalData.PreviousScenes.Push(hallway.GetPath());
         GlobalData.PreviousScenes.Push(room.GetPath());
+    }
+
+    public override void OnRoomEnter(Node mainNode)
+    {
+        //GD.Print("Entering admission");
+
+        UpdatePatientInterfaceUI();
+
+        Hallway hallway = mainNode.GetNode<Hallway>("Hallway");
+        hallway.UpdateHallwayUI();
+
+        Inventory inv = mainNode.GetNode<Inventory>("Inventory");
+        inv.InventoryActions();
+    }
+
+    public override void OnRoomExit()
+    {
+        //GD.Print("Exiting admission");
+        HideSpeechBubble();
     }
 }
 

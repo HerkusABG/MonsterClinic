@@ -11,8 +11,8 @@ public static class TagList
             {
                 TagType.Daily
             },
-            increment = 1,
-            strength = 2
+            increment = 2,
+            strength = 1
         },
         ["Healing"] = new HealingTag
         {
@@ -48,6 +48,24 @@ public static class TagList
             },
             ratioA = 2,
             ratioB = 4
+        },
+        ["StrongWorsening"] = new WorseningTag
+        {
+            types =
+            {
+                TagType.Daily
+            },
+            increment = 2,
+            strength = 2
+        },
+        ["WeakHealing"] = new HealingTag
+        {
+            types =
+            {
+                TagType.Daily
+            },
+            increment = 3,
+            strength = -1
         }
     };
 }

@@ -35,21 +35,29 @@ public class DealerSlot
 	{
 		if(medicine != null)
 		{
-            return $"{medicine.name} \n " +
-            $"(Price: {medicine.cost}) \n " +
-            $"\n Owned: {medicine.amount}";
+            return $"{medicine.name}  " +
+            $"(Price: {medicine.cost})  " +
+            $" Owned: {medicine.amount}";
         }
         else
         {
-            return $"{upgrade.name} \n " +
-            $"(Price: {upgrade.price}) \n ";
+            return $"{upgrade.name} " +
+            $"(Price: {upgrade.price}) ";
         }
     }
 
-	public void BuyMedicine()
+	public bool BuyMedicine()
 	{
-		medicine.amount++;
-		DoctorInventory.Money -= medicine.cost;
+        if(DoctorInventory.Money >= medicine.cost)
+        {
+            medicine.amount++;
+            DoctorInventory.Money -= medicine.cost;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     public void BuyUpgrade()
     {

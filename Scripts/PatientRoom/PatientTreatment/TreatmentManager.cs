@@ -5,21 +5,11 @@ using System.Collections.Generic;
 //class governing using medicine to treat the patient in the patient room
 public partial class TreatmentManager : Node
 {
-
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Sprite2D PatientDisplay;
     Label PatientInfo;
 
-    Label PatientImmunePopup;
-    Label WrongMedicinePopup;
-    Label NoPatientPopup;
-    Label PatientCuredPopup;
-    Label CorrectMedicinePopup;
-    Button ClosePatientImmunePopup;
-    Button CloseWrongMedicinePopup;
-    Button CloseNoPatientPopup;
-    Button ClosePatientCuredPopup;
-    Button CloseCorrectMedicinePopup;
+    [Export] Popup Popup;
 
     private Room Room = null;
 
@@ -35,11 +25,7 @@ public partial class TreatmentManager : Node
     {
         GetNodes();
 
-        CloseWrongMedicinePopup.Pressed += () => CloseParent(CloseWrongMedicinePopup);
-        CloseNoPatientPopup.Pressed += () => CloseParent(CloseNoPatientPopup);
-        ClosePatientCuredPopup.Pressed += () => CloseParent(ClosePatientCuredPopup);
-        CloseCorrectMedicinePopup.Pressed += () => CloseParent(CloseCorrectMedicinePopup);
-        ClosePatientImmunePopup.Pressed += () => CloseParent(ClosePatientImmunePopup);
+        Popup.Initialize();
     }
 
     private void GetNodes()
@@ -47,23 +33,14 @@ public partial class TreatmentManager : Node
         //Basically just grabbing all the nodes
         Inventory = GetParent() as Inventory;
         MapUi = Inventory.MapUi;
-        WrongMedicinePopup = GetNode<Label>("Wrong_Medicine_Popup");
-        PatientImmunePopup = GetNode<Label>("Patient_Immune_Popup");
-        NoPatientPopup = GetNode<Label>("No_Patient_Popup");
-        PatientCuredPopup = GetNode<Label>("Patient_Cured_Popup");
-        CorrectMedicinePopup = GetNode<Label>("Correct_Medicine_Popup");
 
-        ClosePatientImmunePopup = PatientImmunePopup.GetNode<Button>("Close_Patient_Immune_Popup");
-        CloseWrongMedicinePopup = WrongMedicinePopup.GetNode<Button>("Close_Wrong_medicine_Popup");
-        CloseNoPatientPopup = NoPatientPopup.GetNode<Button>("Close");
-        ClosePatientCuredPopup = PatientCuredPopup.GetNode<Button>("Close_Patient_Cured_Popup");
-        CloseCorrectMedicinePopup = CorrectMedicinePopup.GetNode<Button>("Close_Correct_medicine_Popup");
+        Popup = GetNode<Popup>("Popup");
     }
-    public void AddSubscription(MedicineButton button)
+    public void AddSubscription(MedicineButton button, Medicine inputMedicine)
     {
         //Adding a subscription to a medicine button.
         //This will then apply medicine based on the button pressed.
-        Action handler = () => ApplyMedicine(button);
+        Action handler = () => ApplyMedicine(inputMedicine);
 
         Subscriptions[button] = handler;
         button.Pressed += handler;
@@ -115,22 +92,24 @@ public partial class TreatmentManager : Node
         }
     }
 
-    private void ApplyMedicine(MedicineButton button)
+    private void ApplyMedicine(Medicine inputMedicine)
     {
         //The new and improved, modular version of MedicineOperations.
         //Triggered on button press.
         //Grabbing the medicine type, which is stored inside of the button.
-        Medicine medicine = button.GetMedicineType();
-        if (!Room.HasPatient())
-        {
-            //No patient -- medicine can't be applied.
-            NoPatientPopup.Show();
-            return;
-        }
+        Medicine medicine = inputMedicine;
         if (Room == null)
         {
             //If we're not in a room we can't apply medicine.
-            NoPatientPopup.Show();
+            Popup.DisplayPopup(PopupMessages.TreatmentMessages["NoRoom"]);
+            //NoPatientPopup.Show();
+            return;
+        }
+        if (!Room.HasPatient())
+        {
+            //No patient -- medicine can't be applied.
+            Popup.DisplayPopup(PopupMessages.TreatmentMessages["NoPatient"]);
+            //NoPatientPopup.Show();
             return;
         }
         //Do we have medicine? If yes...
@@ -140,16 +119,19 @@ public partial class TreatmentManager : Node
             medicine.amount--;
 
             Room.Patient.TriggerInteractionTags();
+            
 
             if(Room.Patient.malady.isImmune)
             {
                 Room.Patient.malady.isImmune = false;
-                PatientImmunePopup.Show();
+                Popup.DisplayPopup(PopupMessages.TreatmentMessages["Immune"]);
+                //PatientImmunePopup.Show();
                 Room.SetAlreadyTreated(true);
             }
             //Checking to see if the medicine works
             else if (Room.Patient.TryCurePatient(medicine))
             {
+                Room.Patient.ShowCorrectMedicineDialogue(Room.SpeechManagerAccess);
                 //If medicine type is correct
                 //Is the patient cured?
                 if (Room.Patient.IsPatientCured())
@@ -162,13 +144,17 @@ public partial class TreatmentManager : Node
                 {
                     //Otherwise the patients needs to stay there for longer.
                     Room.SetAlreadyTreated(true);
-                    CorrectMedicinePopup.Show();
+                    Popup.DisplayPopup(PopupMessages.TreatmentMessages["CorrectMedicine"]);
+                    //CorrectMedicinePopup.Show();
                 }
             }
             else
             {
+                Room.Patient.ShowIncorrectMedicineDialogue(Room.SpeechManagerAccess);
+                Room.SetAlreadyTreated(true);
                 //Wrong medicine used, come back tomorrow.
-                WrongMedicinePopup.Show();
+                Popup.DisplayPopup(PopupMessages.TreatmentMessages["WrongMedicine"]);
+                //WrongMedicinePopup.Show();
             }
             //Updating the relevant visual information
             Room.UpdateSprites();
@@ -187,7 +173,8 @@ public partial class TreatmentManager : Node
         //Add daily earnings.
         //Show relevant information
         GlobalData.patientCount--;
-        PatientCuredPopup.Show();
+        Popup.DisplayPopup(PopupMessages.TreatmentMessages["Cured"]);
+        //PatientCuredPopup.Show();
         Economy.GiveDailyEarnings(40);
         Room.SetAlreadyTreated(false);
         Room.DeletePatient();
@@ -209,11 +196,8 @@ public partial class TreatmentManager : Node
 
 
         //in this specific case, we also remove the patient and reset patient malady data
-        if (button == ClosePatientCuredPopup)
-        {
-            Room.UpdateSprites();
-            //GlobalData.CurrentPatientMalady = "none";
-            //GlobalData.CurrentPatientSeverity = 0;
-        }
+        //Room.UpdateSprites();
+        //GlobalData.CurrentPatientMalady = "none";
+        //GlobalData.CurrentPatientSeverity = 0;
     }
 }

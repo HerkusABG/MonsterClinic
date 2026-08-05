@@ -32,11 +32,11 @@ public partial class MapUI : Control
     RoomStructureRenderer RoomRenderer;
 
     [Export] Control SlotControl;
-    [Export] MedicineButton ButtonTemplate;
+    [Export] TextureButton ButtonTemplate;
 
-    private List<InventorySlot> Slots = new List<InventorySlot>();
-
-    private List<MedicineButton> MedicineButtons = new List<MedicineButton>();
+    public int inventoryIndex = 0;
+    [Export] Button UpButton;
+    [Export] Button DownButton;
 
     TreatmentManager Treatment;
     Inventory Inventory;
@@ -49,6 +49,10 @@ public partial class MapUI : Control
         MapOffice.Pressed += MapOfficeFunction;
         MapPatientAdmission.Pressed += MapPatientAdmissionFunction;
         MapHallway.Pressed += MapHallwayFunction;
+
+        UpButton.Pressed += () => InventoryNavigation(-1);
+        DownButton.Pressed += () => InventoryNavigation(1);
+
         UpdateUI();
         WarningLabel.Visible = false;
         //BuyRoomButton.Pressed += OnBuyRoomButtonPressed;
@@ -68,7 +72,7 @@ public partial class MapUI : Control
                 AssignRoomButtonFunction(i);
             }
         }
-        DealerWindowMoneyDisplay = GetParent().GetNode<Label>("Dealer_PH").GetNode<Label>("Money_Display");
+        DealerWindowMoneyDisplay = GetParent().GetNode<Control>("Dealer_PH").GetNode<Label>("Money_Display");
         Button CloseRoomInfoButton = GetNode<Label>("Room_Info").GetNode<Button>("Close");
         CloseRoomInfoButton.Pressed += CloseRoomInfo;
         Upgrades.IntUpgradeDatabase["Rooms"].OnUpgradePressed = BuyRoomActions;
@@ -90,12 +94,21 @@ public partial class MapUI : Control
         MapHallway = GetNode<Button>("Map_Hallway");
         RoomContainer1 = GetNode("MapMarginContainer").GetNode<GridContainer>("RoomContainer");
         RoomContainer2 = GetNode("MapMarginContainer2").GetNode<GridContainer>("RoomContainer2");
+    }
 
+    public void OnMapUiClose()
+    {
+        CloseRoomInfo();
     }
 
     private void CloseRoomInfo()
     {
         RoomInfo.Hide();
+        if (FastTravel.IsConnected(Button.SignalName.Pressed, Callable.From(RoomFastTravel)))
+        {
+            FastTravel.Pressed -= RoomFastTravel;
+        }
+        //FastTravel.Pressed -= RoomFastTravel;
     }
 
     private void UpdateUI()
@@ -136,12 +149,44 @@ public partial class MapUI : Control
             roomButton.Pressed += () => RoomButtonFunction(roomNum);
         }
     }
+    private void InventoryNavigation(int input)
+    {
+        inventoryIndex += input;
+        GD.Print($"index now {inventoryIndex}");
+        Inventory.InventoryActions();
+        //Inventory.NewRenderMedicine(Inventory.InventoryInstances[1], inventoryIndex);
+        //SetNavigationButtonStatus(InventoryInstances[0]);
+    }
+    public void SetNavigationButtonStatus(InventoryUiInstance instance)
+    {
+        if (instance.ActiveSlots.Count <= instance.Slots.Count)
+        {
+            UpButton.Disabled = true;
+            DownButton.Disabled = true;
+        }
+        else
+        {
+            UpButton.Disabled = false;
+            DownButton.Disabled = false;
+        }
+        if (inventoryIndex + instance.Slots.Count > instance.ActiveSlots.Count)
+        {
+            //UpButton.Disabled = true;
+            DownButton.Disabled = true;
+        }
+        if (inventoryIndex <= 0)
+        {
+            UpButton.Disabled = true;
+            //DownButton.Disabled = true;
+        }
+    }
     private void RoomFastTravel()
     {
         //check inPatientRoom to be true, hide the computer, go to the room corresponding to the most recent room button pressed
-        GlobalData.inPatientRoom = true;
+        //GlobalData.inPatientRoom = true;
+        RoomTracker.RoomTrack(ActiveRoom.PatientRoom);
         Node2D currentScene = GetParent().GetParent<Node2D>();
-        Node2D RoomScene = RoomManager.RoomList[currentRoomNum - 1];
+        ExpNode2D RoomScene = RoomManager.RoomList[currentRoomNum - 1];
         Node2D HallwayScene = currentScene.GetParent().GetNode<Node2D>("Hallway");
         Hallway hallway = HallwayScene as Hallway;
         hallway.UpdateHallwayUI();
@@ -160,7 +205,7 @@ public partial class MapUI : Control
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(RoomScene.GetPath());
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= RoomFastTravel;
+        //FastTravel.Pressed -= RoomFastTravel;
     }
 
     private void OfficeFastTravel()
@@ -173,7 +218,7 @@ public partial class MapUI : Control
         currentScene.Hide();
         officeScene.Show();
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= OfficeFastTravel;
+        //FastTravel.Pressed -= OfficeFastTravel;
     }
 
     private void PatientAdmissionFastTravel()
@@ -186,7 +231,7 @@ public partial class MapUI : Control
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(PatientScene.GetPath());
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= PatientAdmissionFastTravel;
+        //FastTravel.Pressed -= PatientAdmissionFastTravel;
     }
 
     private void HallwayFastTravel()
@@ -203,7 +248,7 @@ public partial class MapUI : Control
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Push(HallwayScene.GetPath());
         //unbind the method from the fast travel button
-        FastTravel.Pressed -= HallwayFastTravel;
+        //FastTravel.Pressed -= HallwayFastTravel;
     }
 
     private void MapOfficeFunction()
@@ -213,17 +258,18 @@ public partial class MapUI : Control
         PatientInfo.Hide();
         //MedicineMenu.Hide();
         RoomNumber.Text = "Office";
-        FastTravel.Pressed += OfficeFastTravel;
+        //FastTravel.Pressed += OfficeFastTravel;
     }
 
-    private void MapPatientAdmissionFunction() {
+    private void MapPatientAdmissionFunction() 
+    {
         //show patient admission related info, make the fast travel button go to patient admission
         RoomInfo.Show();
        // MedicineMenu.Hide();
         RoomNumber.Text = "Patient Admission";
-        Label OriginalPatientsLeftLabel = GetParent().GetParent().GetParent().GetNode("Patient_Interface").GetNode("Sprites_PH").GetNode<Label>("PatientsLeftLabel");
+        Label OriginalPatientsLeftLabel = GetParent().GetParent().GetParent().GetNode("Patient_Interface").GetNode("Sprites_PH").GetNode<Label>("PatientsLeftParent").GetNode<Label>("PatientsLeftLabel");
         PatientInfo.Text = OriginalPatientsLeftLabel.Text;
-        FastTravel.Pressed += PatientAdmissionFastTravel;
+        //FastTravel.Pressed += PatientAdmissionFastTravel;
     }
 
     private void MapHallwayFunction()
@@ -233,7 +279,7 @@ public partial class MapUI : Control
         PatientInfo.Hide();
         //MedicineMenu.Hide();
         RoomNumber.Text = "Hallway";
-        FastTravel.Pressed += HallwayFastTravel;
+        //FastTravel.Pressed += HallwayFastTravel;
     }
 
     private void RoomButtonFunction(int roomNum)
@@ -246,13 +292,9 @@ public partial class MapUI : Control
         //show medicine menu if the room has an untreated patient, and the player has unlocked remote medicine
         if (room.Patient != null && room.GetAlreadyTreated() == false && Upgrades.BoolUpgradeDatabase["RemoteMedicine"].unlocked)
         {
+            Treatment.SetTreatmentRoomReference(room);
             Inventory.InventoryActions();
             MedicineMenu.Show();
-            Treatment.SetTreatmentRoomReference(room);
-            foreach(Control child in MedicineMenu.GetChildren())
-            {
-                GD.Print(child.Name);
-            }
         }
         else
         {
@@ -262,14 +304,19 @@ public partial class MapUI : Control
         //if there is a patient, display patient info
         if (room.Patient != null)
         {
+            PatientInfo.Show();
             UpdateComputerPatientText(room);
         } 
         else
         {
+            PatientInfo.Hide();
             UpdateComputerPatientText(null);
         }
         //connect fast travel to this specific room
-        FastTravel.Pressed += RoomFastTravel;
+        if (!FastTravel.IsConnected(Button.SignalName.Pressed, Callable.From(RoomFastTravel)))
+        {
+            FastTravel.Pressed += RoomFastTravel;
+        }
     } 
 
     

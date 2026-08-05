@@ -23,14 +23,14 @@ static class Upgrades
 	{
 		["PatientSlots"] = new IntegerUpgrade
 		{
-			name = "More patient slots",
+			name = "Expand clinic waiting room",
 			incrementTarget = 3,
 			cap = 6,
 			price = 50
 		},
         ["Rooms"] = new IntegerUpgrade
         {
-            name = "More rooms to treat patients",
+            name = "Buy a new room for patient treatment",
             incrementTarget = 1,
             cap = 6,
             price = 100
@@ -43,26 +43,28 @@ static class Upgrades
         {
             name = "Remotely treat patients",
             unlocked = false,
-            price = 200
+            price = 500
         },
-		["Aspirin"] = new BooleanUpgrade
+		["Phranax"] = new BooleanUpgrade
         {
-            name = "Be able to buy aspirin",
+            name = "Make Phranax purchasable",
             unlocked = false,
             price = 200,
-            medicine = MedicineManager.Database["Aspirin"]
+            medicine = MedicineManager.Database["Phranax"]
         },
-        ["Placeholder1"] = new BooleanUpgrade
+        ["FancyBandages"] = new BooleanUpgrade
         {
-            name = "placeholder upgrade1",
+            name = "Make fancy bandages purchasable",
             unlocked = false,
-            price = 200
+            price = 40,
+            medicine = MedicineManager.Database["FancyBandages"]
         },
-        ["Placeholder2"] = new BooleanUpgrade
+        ["FancyAntibiotics"] = new BooleanUpgrade
         {
             name = "placeholder upgrade2",
             unlocked = false,
-            price = 200
+            price = 210,
+            medicine = MedicineManager.Database["FancyAntibiotics"]
         }
     };
 
