@@ -88,7 +88,7 @@ static class Upgrades
         DoctorInventory.Money -= 50;
     }
 
-	public static void IntegerUpgrade(IntegerUpgrade upgrade, int loops, Button upgradeButton, Action successAction, Action failAction) 
+	public static void IntegerUpgrade(IntegerUpgrade upgrade, int loops, TextureButton upgradeButton, Action successAction, Action failAction) 
 	{
 		if (DoctorInventory.Money >= upgrade.price)
 		{
@@ -119,7 +119,7 @@ static class Upgrades
 		}
 	}
 
-	public static void BooleanUpgrade(BooleanUpgrade upgrade, Button upgradeButton, Action successAction, Action failAction)
+	public static void BooleanUpgrade(BooleanUpgrade upgrade, TextureButton upgradeButton, Action successAction, Action failAction)
 	{
         if (DoctorInventory.Money >= upgrade.price)
         {
