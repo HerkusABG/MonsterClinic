@@ -109,7 +109,8 @@ public partial class Contents_O : ExpNode2D
     private void OnSceneTimerTimeout()
     {
         Dialog dialog = GetParent().GetNode<Dialog>("Dialog");
-        dialog.Show();
+        //dialog.Show();
+        GD.Print("Dialog");
         
 
         // Daily earnings gets reseted
@@ -179,9 +180,11 @@ public partial class Contents_O : ExpNode2D
 
     private void DialogDealer()
     {
+        GD.Print("Checking if true");
         // Dialog Dealer checks if the dialog should spawn again and the dealer control is so that the code isnt spammened in the process
         if (GlobalData.Dialog_Dealer == true && GlobalData.Dialog_Dealer_Control == true)
         {
+            GD.Print("It was true");
             var DialogScene = (Control)GetParent().GetNode("Dialog");
             DialogScene.Show();
 

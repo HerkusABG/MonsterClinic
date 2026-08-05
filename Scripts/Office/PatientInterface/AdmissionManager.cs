@@ -155,7 +155,7 @@ public partial class AdmissionManager : Node
         Random random = new Random();
         int odds = random.Next(10);
         //based on the odds, or if there's no story patients left, make a normal one
-        if (odds > 3 || StoryPatientsLeft.Count == 0)
+        if (odds > 0 || StoryPatientsLeft.Count == 0)
         {
             patientStats = new PatientStats();
             InternalPatient = patientStats;

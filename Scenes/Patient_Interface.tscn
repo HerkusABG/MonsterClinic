@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dkm01vf4lknir" path="res://Scripts/Office/PatientInterface/Contents_P_I.cs" id="1_ljdgf"]
 [ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://Assets/CustomText/danielbd_MediumText.ttf" id="3_3xib3"]
 [ext_resource type="Texture2D" uid="uid://c5b2sbksxoyvm" path="res://place holders/684146226_2513326992456987_2687682788803640839_n.jpg" id="4_ecejo"]
-[ext_resource type="Texture2D" uid="uid://wcwpr5c2jw40" path="res://Assets/2DArt/Admission/admission-background.png" id="5_ecejo"]
+[ext_resource type="Texture2D" uid="uid://ccsmn8rw4bwlv" path="res://Assets/2DArt/admission-background.png" id="5_jq0il"]
 [ext_resource type="FontFile" uid="uid://d076lt4s4m3cn" path="res://Font/uglyhandwriting.ttf" id="5_u5iby"]
 [ext_resource type="Texture2D" uid="uid://bk0mng4lad56f" path="res://Assets/2DArt/Admission/admission-nextroom-overlay.png" id="6_3xib3"]
 [ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://Scripts/SpeechManager.cs" id="7_3xib3"]
@@ -134,7 +134,7 @@ texture = ExtResource("4_ecejo")
 z_index = -2
 position = Vector2(960, 540)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_ecejo")
+texture = ExtResource("5_jq0il")
 
 [node name="Overlay" type="Sprite2D" parent="Sprites_PH" unique_id=1981642071]
 position = Vector2(1280, 354)
@@ -176,37 +176,41 @@ vertical_alignment = 1
 
 [node name="WholePatient" type="Control" parent="Sprites_PH" unique_id=1096012148]
 visible = false
+z_index = -2
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -292.0
+offset_top = 139.0
+offset_right = -252.0
+offset_bottom = 179.0
+scale = Vector2(1.25, 1.25)
 
 [node name="Patient" type="Sprite2D" parent="Sprites_PH/WholePatient" unique_id=994478939]
 z_index = -1
 position = Vector2(1259, 377.8633)
-scale = Vector2(0.40427235, 0.29729575)
+scale = Vector2(0.40427235, 0.404)
 texture = ExtResource("9_jq0il")
 
 [node name="PatientHead" type="Sprite2D" parent="Sprites_PH/WholePatient" unique_id=472226177]
 z_index = -1
 position = Vector2(1259, 377)
-scale = Vector2(0.40427235, 0.29729575)
+scale = Vector2(0.40427235, 0.404)
 texture = ExtResource("10_ymxv0")
 
 [node name="Clothing" type="Sprite2D" parent="Sprites_PH/WholePatient" unique_id=347624122]
 z_index = -1
 position = Vector2(1259, 377.8633)
-scale = Vector2(0.40427235, 0.29729575)
+scale = Vector2(0.40427235, 0.404)
 
 [node name="NormalMalady" type="Sprite2D" parent="Sprites_PH/WholePatient" unique_id=1764052464]
 z_index = -1
 position = Vector2(1259, 377.8633)
-scale = Vector2(0.40427235, 0.29729575)
+scale = Vector2(0.40427235, 0.404)
 
 [node name="TopMalady" type="Sprite2D" parent="Sprites_PH/WholePatient" unique_id=479475005]
 z_index = -1
 position = Vector2(1259, 377.8633)
-scale = Vector2(0.40427235, 0.29729575)
+scale = Vector2(0.40427235, 0.404)
 
 [node name="ControlPatientInterface" type="Control" parent="." unique_id=832899310]
 layout_mode = 3

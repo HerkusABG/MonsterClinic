@@ -151,6 +151,7 @@ scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("3_0xibf")
 
 [node name="Map" type="Button" parent="Player_Interactables_C" unique_id=1453367602]
+visible = false
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
 offset_left = 1071.0
@@ -480,6 +481,7 @@ offset_bottom = 350.0
 scale = Vector2(0.5, 0.42)
 
 [node name="Dealer_PH" type="Control" parent="Player_Interactables_C" unique_id=1778326563]
+visible = false
 anchors_preset = 0
 offset_left = 97.0
 offset_top = 45.0
@@ -583,9 +585,9 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(300, 300)
 layout_mode = 0
 offset_left = -50.0
-offset_top = 130.0
+offset_top = 227.77779
 offset_right = 757.0
-offset_bottom = 742.0
+offset_bottom = 839.7778
 scale = Vector2(0.6, 0.6)
 
 [node name="Medicine1" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Resources_Window/VBoxContainer" unique_id=1583071185]
@@ -676,22 +678,20 @@ text = "X"
 [node name="UpDealer" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=1640538388]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = -14.0
-offset_top = 644.0
-offset_right = 636.0
-offset_bottom = 794.0
-scale = Vector2(0.3, 0.3)
+offset_top = 140.0
+offset_right = 650.0
+offset_bottom = 290.0
+scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("22_md7yb")
 texture_pressed = ExtResource("23_2bhit")
 
 [node name="DownDealer" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=1592878874]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
-offset_left = 192.0
-offset_top = 645.0
-offset_right = 829.0
-offset_bottom = 795.0
-scale = Vector2(0.3, 0.3)
+offset_top = 514.44446
+offset_right = 637.0
+offset_bottom = 664.44446
+scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("24_yeqts")
 texture_pressed = ExtResource("25_kjhr5")
 
