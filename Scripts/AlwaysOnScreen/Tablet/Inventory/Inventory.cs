@@ -118,7 +118,7 @@ public partial class Inventory : Node2D
 
     public void InventoryButtonGeneration(Control inputControl, Control parent, TextureButton Template)
     {
-        GD.Print("hm" + InventoryInstances.Count);
+        GD.Print("Beginning of InventoryButtonGeneration, current InventoryInstances.Count: " + InventoryInstances.Count);
         //Generating the buttons for the two inventories.
 
         //The inventory slots where the buttons will be inserted.
@@ -156,16 +156,14 @@ public partial class Inventory : Node2D
         //That way we can use that info later when we need
         //to update the inventory
         InventoryUiInstance instance = new InventoryUiInstance(slots);
-        GD.Print("sk" + InventoryInstances.Count);
-        if (InventoryInstances.Count != 0)
-        {
-            GD.Print(InventoryInstances[InventoryInstances.Count - 1].Slots[0].medicine);
-        }
+        //if (InventoryInstances.Count != 0)
+        //{
+            //GD.Print(InventoryInstances[InventoryInstances.Count - 1].Slots[0].medicine);
+        //}
         InventoryInstances.Add(instance);
         //GD.Print(InventoryInstances[InventoryInstances.Count - 1].Slots[0]);
-        GD.Print("ski" + InventoryInstances.Count);
         SlotSetup(instance, inputControl, parent, Template);
-        GD.Print("m" + InventoryInstances.Count);
+        GD.Print("End of InventoryButtonGeneration, current InventoryInstances.Count: " + InventoryInstances.Count);
     }
 
     private void SlotSetup(InventoryUiInstance instance, Control inputControl, Control parent, TextureButton Template)

@@ -45,7 +45,7 @@ public partial class Contents_O : ExpNode2D
     {
         var eh = ResourceLoader.Load<PackedScene>("res://Scenes/Main.tscn").Instantiate();
         eh.Name = "Main";
-        GD.Print(eh.Name);
+        //GD.Print(eh.Name);
         GetParent().QueueFree();
         GetParent().GetParent().AddChild(eh);
     }
