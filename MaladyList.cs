@@ -65,7 +65,9 @@ public static class MaladyList
 			{
 				"These bandages are so itchy",
                 "Ouch."
-			}
+			},
+			layerType = TextureType.Normal,
+			visualKey = "BrokenBones",
 		},
 		["BluePox"] = new Malady
 		{
@@ -101,7 +103,9 @@ public static class MaladyList
 			{
 				"I wish I'd gotten my blu shot this year",
                 "Cough cough I hate blue pox"
-			}
+			},
+			layerType = TextureType.Normal,
+			visualKey = "BluePox",
 		},
 		["TheGlow"] = new Malady
 		{
@@ -137,7 +141,9 @@ public static class MaladyList
 			{
 				"Why does everything look so green?",
                 "I feel like I swallowed a microwave."
-			}
+			},
+			layerType = TextureType.Normal,
+			visualKey = "Radiation",
 		},
 		["RadiationSickness"] = new Malady
 		{
@@ -174,7 +180,9 @@ public static class MaladyList
 			{
 				"I swear I didn't mean to drop that screwdriver",
                 "Worst. Sunburn. Ever."
-			}
+			},
+			layerType = TextureType.Normal,
+			visualKey = "Necrosis",
 		},
 		["BoneCrawler"] = new Malady
 		{
@@ -211,7 +219,9 @@ public static class MaladyList
 			{
 				"I can feel it crawling up my spine...!",
                 "This is a very unpleasant sensation."
-			}
+			},
+			layerType = TextureType.Normal,
+			visualKey = "Centipede",
 		},
 		["Tumours"] = new Malady
 		{
@@ -248,7 +258,9 @@ public static class MaladyList
 			{
 				"There are so many lumps under my skin.",
                 "I'm gonna call the biggest one Jimothy."
-			}
+			},
+			layerType = TextureType.Normal,
+			visualKey = "Tumors",
 		},
 		["PolyporusAnthropophilum"] = new Malady
 		{
@@ -280,7 +292,9 @@ public static class MaladyList
 			{
 				MedicineManager.Database["FungalPowder"],
 				MedicineManager.Database["Curitol"]
-			}
+			},
+			layerType = TextureType.Top,
+			visualKey = "Mushrooms",
 		}
 	};
 
