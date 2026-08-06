@@ -502,6 +502,7 @@ public partial class Contents_C : ExpNode2D
             // Money deduction, player gets the medicine and the cost of the medicine gets increased (probally needs balancing)
             DoctorInventory.Money -= GlobalData.MedicineCost;
             GlobalData.MedicinePlayer++;
+            GlobalData.Dialog_Dealer = true;
             GlobalData.MedicineCost = GlobalData.MedicineCost * 2; // Increase the cost for the next purchase
             PurchaseInfo.Text = "Self Treatment  (Price:" + GlobalData.MedicineCost + ") \n" +
             "Owned: " + GlobalData.MedicinePlayer.ToString() + "\n" +

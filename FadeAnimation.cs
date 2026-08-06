@@ -64,8 +64,6 @@ public partial class FadeAnimation : Node2D
             // Condition changes 
             GlobalData.Fading = true;
 
-            // Countdown gets reduced by 1
-            GlobalData.Countdown--;
 
             // Timer get set to 3 sec, so long is the bed scene. Timer starts
             //deleteselfTimer.SetWaitTime(3.0);
@@ -185,7 +183,7 @@ public partial class FadeAnimation : Node2D
             DaysCounters.Text = $"[b][font_size=110][shake rate=50][color=DEEP_PINK]{GlobalData.Countdown} days left without treatment [/color][/shake][/font_size][/b]";
 
         }
-        // idk why but the COuntdown is weird, it only works if its -1 or -2 for the death
+        // idk why but the Countdown is weird, it only works if its -1 or -2 for the death
         else if (GlobalData.MedicinePlayer >= 1 && GlobalData.Countdown == -1)
         {
             DaysCounters.Text = $"[b][font_size=110][shake rate=200][wave rate=20][color=green] Treatment is comming [/color][/wave][/shake][/font_size][/b]";
@@ -204,9 +202,9 @@ public partial class FadeAnimation : Node2D
 
         if (GlobalData.MedicinePlayer >= 1)
         {
-            GlobalData.Dialog_Dealer = true;
+            //GlobalData.Dialog_Dealer = true;
             GD.Print("TRUE");
-            GlobalData.MedicinePlayer--;
+            //GlobalData.MedicinePlayer--;
         }
         else
         {
