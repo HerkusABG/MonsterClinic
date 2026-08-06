@@ -95,15 +95,13 @@ public partial class Contents_O : ExpNode2D
             {
                 GlobalData.Medicincavailability--;
             }
-            DialogDealer();
         }
     }
 
     private void OnSceneTimerTimeout()
     {
-        Dialog dialog = GetParent().GetNode<Dialog>("Dialog");
-        dialog.Show();
-        
+
+        GlobalData.Dialog_Dealer = false;
 
         // Daily earnings gets reseted
         GlobalData.DailyEarnings = 0;
@@ -119,13 +117,7 @@ public partial class Contents_O : ExpNode2D
             GlobalData.Fading = true;
             TriggerFading();
         }
-        if (GlobalData.Dialog_Dealer == true)
-        {
-            var DialogForDealer = (Control)GetParent().GetNode("Dialog");
-            DialogForDealer.Show();
-            Dialog.currentIndex = 0;
 
-        }
 
         // switches scene
         BedScene.Hide();
@@ -166,27 +158,6 @@ public partial class Contents_O : ExpNode2D
         // add the scene FadeAnimation and call the Methode Fades
         AddChild(fading);
         fading.Fades();
-    }
-
-
-    private void DialogDealer()
-    {
-        // Dialog Dealer checks if the dialog should spawn again and the dealer control is so that the code isnt spammened in the process
-        if (GlobalData.Dialog_Dealer == true && GlobalData.Dialog_Dealer_Control == true)
-        {
-            // Gridcontainer gets shown, the dialog gets instanciated and added as a child to the GridContainer
-            //var GridContainer = GetNode<GridContainer>("Spawn_DialogControl");
-            // GridContainer shows, so the player cant interact with the other objects behind it
-            // GridContainer.Show();
-            // Dialog gets instantiated and added so it spawns in the GridContainer
-            //var selftreatmentDialog = dealer_selftreatment_dialog.Instantiate<Dialog>();
-            //GridContainer.AddChild(selftreatmentDialog);
-            
-            // Dealer Control checks if the dialog should spawn again
-            GlobalData.Dialog_Dealer_Control = false;
-            // The medicine need to decrease for the player
-            GlobalData.MedicinePlayer--;
-        }
     }
 
     public override void OnRoomEnter(Node mainNode)
