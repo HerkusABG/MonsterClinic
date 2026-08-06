@@ -344,7 +344,7 @@ public partial class Contents_C : ExpNode2D
             //list[i].Text = DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText();
             list[i].ChangeText(DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotName());
             list[i].StoreInfo(DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText());
-            if (DealerList.UpgradeDatabase.ElementAt(i + start).Value.upgrade.fullyUnlocked)
+            if (DealerList.UpgradeDatabase.ElementAt(i + start).Value.upgrade.fullyUnlocked && list[i].index == PurchaseButtonHolder.index)
             {
                 list[i].unavailable = true;
                 PurchaseButton.Disabled = true;
