@@ -501,7 +501,6 @@ public partial class Contents_C : ExpNode2D
     }
     private void BuyMedicine(TextureButton button)
     {
-        GD.Print("buying self treatment");
         if (DoctorInventory.Money >= GlobalData.MedicineCost && GlobalData.Medicincavailability <= 0)
         {
             // Money deduction, player gets the medicine and the cost of the medicine gets increased (probally needs balancing)

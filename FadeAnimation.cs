@@ -203,12 +203,10 @@ public partial class FadeAnimation : Node2D
         if (GlobalData.MedicinePlayer >= 1)
         {
             //GlobalData.Dialog_Dealer = true;
-            GD.Print("TRUE");
             //GlobalData.MedicinePlayer--;
         }
         else
         {
-            GD.Print("FALSE");
             GlobalData.Dialog_Dealer = false;
         }
 
