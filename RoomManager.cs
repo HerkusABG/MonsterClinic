@@ -106,6 +106,7 @@ public static class RoomManager
             room.SetAlreadyTreated(false);
             if (room.HasPatient())
             {
+                room.NewDay();
                 room.Patient.TriggerDailyTags();
             }
         }

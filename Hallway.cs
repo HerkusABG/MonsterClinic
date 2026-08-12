@@ -5,15 +5,15 @@ using System.Collections.Generic;
 public partial class Hallway : ExpNode2D
 {
     //Node that controls everything inside of the hallway
-    Control HallwayControl;
+	Control HallwayControl;
     //Control node specifically for the doors.
-    Control DoorControl;
+	Control DoorControl;
     Button LeaveButton;
     List<BaseButton> Doors = new List<BaseButton>();
     [Export] Button LeaveRoomButton;
-
+    [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
     public void Initialize()
-    {
+	{
         //Initializing the hallway, all the main methods.
         GetNodes();
 
@@ -28,6 +28,7 @@ public partial class Hallway : ExpNode2D
         HallwayControl = GetNode<Control>("HallwayControl");
         //LeaveButton = HallwayControl.GetNode<Button>("Leave_Room");
         DoorControl = HallwayControl.GetNode<Control>("DoorControl");
+        
     }
 
     private void Subscribe()
@@ -40,20 +41,24 @@ public partial class Hallway : ExpNode2D
 
     private void DoorInitialize()
     {
+        //Logic for generating door logic.
+        Main main = GetParent() as Main;
+        Inventory inv = GetParent().GetNode<Inventory>("Inventory");
+        TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
+        //Doors
         int doorIndex = 0;
         foreach (Node child in DoorControl.GetChildren())
         {
-            if (child is Door doorButton)
+            BaseButton childButton = child as BaseButton;
+            if (childButton != null)
             {
-                Doors.Add(doorButton);
-                doorButton.DoorId = doorIndex;
-                doorButton.IsUnlocked = (doorIndex == 0);
-
-                // Pass the door index directly to your team's existing GoToRoom method
-                int index = doorIndex;
-                doorButton.Pressed += () => GoToRoom(index);
-
+                Doors.Add(childButton);
+                Door doorButton = childButton as Door;
+                doorButton.doorId = doorIndex;
                 doorIndex++;
+                childButton.Pressed += () => GoToRoom(doorButton.doorId);
+                //childButton.Pressed += treatment.ShowUI;
+                childButton.Disabled = true;
             }
         }
     }
@@ -74,10 +79,10 @@ public partial class Hallway : ExpNode2D
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         RoomTracker.GoBack();
-        // show Dialog in the office, if the dialog didnt ended.
-        var DialogScene = (Control)GetParent().GetNode("Dialog");
-        if(GlobalData.Dialog_Dealer == true)
-        {
+		// show Dialog in the office, if the dialog didnt ended.
+       var DialogScene = (Control)GetParent().GetNode("Dialog");
+       if(GlobalData.Dialog_Dealer == true)
+       {
             DialogScene.Show();
         }
         else
@@ -96,10 +101,7 @@ public partial class Hallway : ExpNode2D
     {
         for(int i = 0; i < Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget; i++)
         {
-            if (Doors[i] is Door door)
-            {
-                door.IsUnlocked = true;
-            }
+            Doors[i].Disabled = false;
         }
     }
 
@@ -118,7 +120,7 @@ public partial class Hallway : ExpNode2D
     public override void OnRoomEnter(Node mainNode)
     {
         //GD.Print("Entering hallway");
-
+        TriggerFading();
         UpdateHallwayUI();
 
         Inventory inv = mainNode.GetNode<Inventory>("Inventory");
@@ -128,5 +130,14 @@ public partial class Hallway : ExpNode2D
     public override void OnRoomExit()
     {
         //GD.Print("Exiting hallway");
+    }
+
+    private void TriggerFading()
+    {
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+        // add the scene FadeAnimation and call the Methode Fades
+        AddChild(fading);
+        fading.Fades();
     }
 }

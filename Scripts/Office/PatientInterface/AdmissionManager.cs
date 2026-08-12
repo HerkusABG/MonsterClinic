@@ -11,7 +11,7 @@ public partial class AdmissionManager : Node
 
     private int patientsLeft;
 
-    PatientStats nullPatient = new PatientStats();
+    PatientStats nullPatient;
 
     private PatientStats InternalPatient;
 
@@ -155,21 +155,23 @@ public partial class AdmissionManager : Node
         Random random = new Random();
         int odds = random.Next(10);
         //based on the odds, or if there's no story patients left, make a normal one
-        if (odds > 3 || StoryPatientsLeft.Count == 0)
+
+        patientStats = new PatientStats();
+        InternalPatient = patientStats;
+        return patientStats;
+        if (odds > 0 || StoryPatientsLeft.Count == 0)
         {
-            patientStats = new PatientStats();
-            InternalPatient = patientStats;
-            return patientStats;
+            
         //else, make a story patient
         } 
         else
         {
-            storyPatientStats = new StoryPatientStats();
+            /*storyPatientStats = new StoryPatientStats();
             storyPatientsLeftPosition = random.Next(0, StoryPatientsLeft.Count);
             storyPatientStats.StoryPatientSetup(storyPatientsLeftPosition);
             //storyPatientStats = StoryPatientsLeft[storyPatientsLeftPosition];
             InternalPatient = storyPatientStats;
-            return storyPatientStats;
+            return storyPatientStats;*/
         }
     }
 
@@ -184,6 +186,7 @@ public partial class AdmissionManager : Node
     }
     private void NullPatientInitialize()
     {
+        nullPatient = new PatientStats();
         //Initializing the null patient.
         nullPatient.malady = MaladyList.Database.ElementAt(0).Value;
         nullPatient.age = 0;

@@ -1,16 +1,23 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Transactions;
 using static System.Net.Mime.MediaTypeNames;
 
 public partial class Room : ExpNode2D 
 {
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     Button LeaveRoomButton;
+    [Export] Control WholePatient;
     [Export] Sprite2D PatientDisplay;
+    [Export] Sprite2D PatientHead;
     [Export] Control Corpse;
-    [Export] Label PatientInfo;
+    [Export] Control PatientInfo;
+    [Export] Sprite2D MaladySprite;
+    [Export] Sprite2D TopMaladySprite;
+    [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
 
     //Is the room empty?
     private bool isEmpty = true;
@@ -20,6 +27,8 @@ public partial class Room : ExpNode2D
     //Pointer to the patient information
     public PatientStats Patient;
 
+    
+
 
 
     //boolean that checks whether you can treat the patient.
@@ -27,14 +36,17 @@ public partial class Room : ExpNode2D
 
     Inventory invy;
     [Export] public SpeechManager SpeechManagerAccess;
+    [Export] PatientInfoManager PatientInfoScreen;
     public void Initialize(Action HideUIAction)
     {
         //grabs references to all the necessary nodes
         GetNodes();
 
+        PatientInfoScreen.Initialize(this);
+
         //assigning methods to all the buttons
-        LeaveRoomButton.MouseEntered += HoverOn;
-        LeaveRoomButton.MouseExited += HoverOff;
+        //LeaveRoomButton.MouseEntered += HoverOn;
+        //LeaveRoomButton.MouseExited += HoverOff;
         LeaveRoomButton.Pressed += LeaveRoom;
         LeaveRoomButton.Pressed += HideUIAction;
 
@@ -56,7 +68,7 @@ public partial class Room : ExpNode2D
     public override void OnRoomEnter()
     {
         //Piece of logic that gets executed whenever you enter the room.
-        
+        TriggerFading();
         UpdateSprites();
         ShowSpeechDialogue();
     }
@@ -99,14 +111,12 @@ public partial class Room : ExpNode2D
                 SetPatientUIStatus(true, false);
                 SetPatientRoomText();
             }
-
-
         }
         else
         {
             SetPatientUIStatus(false, false);
             Corpse.Hide();
-            PatientDisplay.Hide();
+            WholePatient.Hide();
         }
     }
 
@@ -116,27 +126,47 @@ public partial class Room : ExpNode2D
         {
             if(alive)
             {
-                PatientDisplay.Show();
+                WholePatient.Show();
+                AssignPatientTextures();
                 Corpse.Hide();
-                PatientInfo.Show();
+                PatientInfoScreen.Show();
             }
             else
             {
-                PatientDisplay.Hide();
+                WholePatient.Hide();
                 Corpse.Show();
-                PatientInfo.Show();
+                PatientInfoScreen.Show();
             }
         }
         else
         {
-            PatientDisplay.Hide();
-            PatientInfo.Hide();
+            WholePatient.Hide();
+            PatientInfoScreen.Hide();
+        }
+    }
+
+    private void AssignPatientTextures()
+    {
+        TextureUnit unit = Patient.GetPatientTextures();
+        PatientDisplay.Texture = unit.BodySet.sitting;
+        PatientHead.Texture = unit.HeadSet.sitting;
+        if (unit.unitType == TextureType.Normal)
+        {
+            if (Patient.malady.severity < 4) return;
+            TopMaladySprite.Texture = null;
+            MaladySprite.Texture = unit.MaladySet.sitting;
+        }
+        else if (unit.unitType == TextureType.Top)
+        {
+            if (Patient.malady.severity < 4) return;
+            MaladySprite.Texture = null;
+            TopMaladySprite.Texture = unit.MaladySet.sitting;
         }
     }
 
     private void SetPatientRoomText()
     {
-        string input;
+        /*string input;
         if(Patient.IsPatientAlive())
         {
             input = "Alive";
@@ -145,10 +175,16 @@ public partial class Room : ExpNode2D
         {
             input = "Dead";
         }
-        PatientInfo.Text = $"Malady: {Patient.malady.name}" +
+        string mainText = $"Malady: {Patient.malady.name}" +
             $" \n Age: {Patient.age}" +
             $" \n Severity: {Patient.malady.severity} " +
-            $"\n Status: {input}";
+            $"\n Status: {input}";*/
+        PatientInfoScreen.UpdateText(TabType.General, true);
+        //PatientInfoScreen.Write(mainText, TabType.General, true);
+        /*PatientInfo.Text = $"Malady: {Patient.malady.name}" +
+            $" \n Age: {Patient.age}" +
+            $" \n Severity: {Patient.malady.severity} " +
+            $"\n Status: {input}";*/
     }
 
     public bool HasPatient()
@@ -168,15 +204,28 @@ public partial class Room : ExpNode2D
         GD.Print("patient deleted");
         Patient = null;
         isEmpty = true;
+        PatientDisplay.Texture = null;
+        PatientHead.Texture = null;
+        MaladySprite.Texture = null;
+        TopMaladySprite.Texture = null;
+        UpdateSprites();
     }
 
     public void AssignPatient(PatientStats patient)
     {
+        
         Patient = patient;
         Patient.AssignRoom(this);
-        PatientDisplay.Modulate = patient.PortraitColor;
+        PatientInfoScreen.SetPatient(Patient);
         isEmpty = false;
     }
+
+    public void NewDay()
+    {
+        
+        UpdateSprites();
+    }
+
 
     public void PatientCuredInAbsence()
     {
@@ -213,4 +262,14 @@ public partial class Room : ExpNode2D
             SpeechManagerAccess.SpeechText(((StoryPatientStats)Patient).GetAdmittedDialogue());
         }
     }
+
+    private void TriggerFading()
+    {
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+        // add the scene FadeAnimation and call the Methode Fades
+        AddChild(fading);
+        fading.Fades();
+    }
+
 }

@@ -26,6 +26,8 @@ public static class GlobalData
     public static Boolean Dialog_Dealer_Control { get; set; } = true;
     public static string Reasion { get; set; } = "none";
 
+    public static Boolean Bed { get; set; } = false;
+
     //public static int Money { get; set; } = 150;
 
     //money you always get when you go to sleep, separate from the daily earnings, made it a whole variable here so it's easier to tweak later
@@ -57,4 +59,6 @@ public static class GlobalData
 
     public static bool IsClinicFullyOccupied { get; set; } = false; // Tracks if the clinic is fully occupied and is used for the NoVacancy flashing panel
 
+    public static Boolean Fading { get; set; } = true;
+    public static int ControlSpawnFading { get; set; } = 0;
 }

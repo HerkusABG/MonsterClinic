@@ -5,191 +5,239 @@ using System.Linq;
 
 public partial class PatientStats
 {
-    // This class is used for storing the patient's data inside of the patient admission interface.
-    // This will later be plugged in a way where this gets instantiated every time there is a new patient to be admitted.
-    // The relevant stats will be changed according to the game designer's wishes.
+	// This class is used for storing the patient's data inside of the patient admission interface.
+	// This will later be plugged in a way where this gets instantiated every time there is a new patient to be admitted.
+	// The relevant stats will be changed according to the game designer's wishes.
 
-    //Patients ID
-    public string patientID;
-    public int age;
-    public Color PortraitColor;
+	//Patients ID
+	public string patientID;
+	public int age;
+	public Color PortraitColor;
 
-    // Also defining a bool that tracks if the patient is alive, in case he gets SHOT
-    public bool isAlive;
+	// Also defining a bool that tracks if the patient is alive, in case he gets SHOT
+	public bool isAlive;
 
-    public Malady malady;
-    private Room myRoom;
+	public Malady malady;
+	private Room myRoom;
 
-    int dialogueIndex = 0;
+	int dialogueIndex = 0;
 
-    public PatientStats()
-    {
-        // refresh the patient's data.
-        // For just assigning random numbers, this will be overhauled later.
-        Random rnd = new Random();
-        malady = new Malady();
-        dialogueIndex = 0;
-        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 3)).Value);
-        if (malady.severity == -1)
-        {
-            malady.severity = rnd.Next(2, 5);
-        }
-        isAlive = true;
-        patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
-        age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
+	public TextureUnit textureUnit;
 
-        // Assigning a random color to the patient's portrait, This will be changed later when we have actual portraits.
-        PortraitColor = new Color(
-            (float)rnd.NextDouble(),
-            (float)rnd.NextDouble(),
-            (float)rnd.NextDouble()
-        );
-    }
+	public List<ClinicAction> clinicActions = new List<ClinicAction>();
 
-    private void AssignMaladyValues(Malady inputMalady)
-    {
-        //ALL malady related information must go through here,
-        //otherwise the malady reference is static and curing one patient cures all patients.
-        malady = inputMalady.Clone();
-    }
+	public PatientStats()
+	{
+		// refresh the patient's data.
+		// For just assigning random numbers, this will be overhauled later.
+		textureUnit = new TextureUnit();
+		textureUnit.Initialize();
 
-    public bool TryCurePatient(Medicine inputMedicine)
-    {
-        bool isSuccessful = malady.cures.Contains(inputMedicine);
-        if (isSuccessful)
-        {
-            malady.severity--;
-            //TriggerInteractionTags();
-        }
-        return isSuccessful;
-    }
+		Random rnd = new Random();
+		malady = new Malady();
+		dialogueIndex = 0;
+		AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
+		textureUnit.unitType = malady.layerType;
+		if (malady.layerType == TextureType.Normal || malady.layerType == TextureType.Top)
+		{
+			textureUnit.SaveMaladySet(malady.visualKey, malady.layerType);
+		}
+		if (malady.severity == -1)
+		{
+			malady.severity = rnd.Next(2, 5);
+		}
+		isAlive = true;
+		patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
+		age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
 
-    public bool IsPatientCured()
-    {
-        return malady.severity <= 1;
-    }
-    public string GetDialogue()
-    {
-        //Grab generic dialogue.
-        if (malady.dialogueSymptoms.Count > 0)
-        {
-            Random rnd = new Random();
-            int length = malady.dialogueSymptoms.Count;
-            int symptomId = rnd.Next(0, length);
-            int quoteListLength = malady.dialogueSymptoms[symptomId].quotes.Count;
-            string returnDialogue = malady.dialogueSymptoms[symptomId].quotes[rnd.Next(0, quoteListLength)];
-            return returnDialogue;
-        }
-        return "...";
-    }
+		// Assigning a random color to the patient's portrait, This will be changed later when we have actual portraits.
+		PortraitColor = new Color(
+			1,
+			1,
+			1
+		);
+		clinicActions.Clear();
+		NewClinicAction(ClinicActionList.Actions["Admitted"].output);
+	}
 
-    public virtual string GetAdmittedDialogue()
-    {
-        if (malady.admittedDialogue.Count > 0)
-        {
-            Random rnd = new Random();
-            int length = malady.admittedDialogue.Count;
-            string returnDialogue = malady.admittedDialogue[rnd.Next(0, length)];
-            return returnDialogue;
-        }
-        return "...";
-    }
+	private void AssignMaladyValues(Malady inputMalady)
+	{
+		//ALL malady related information must go through here,
+		//otherwise the malady reference is static and curing one patient cures all patients.
+		malady = inputMalady.Clone();
+	}
 
-    public string GetPulse()
-    {
-        //Grab stethoscope dialogue
-        if (malady.pulseSymptoms.Count > 0)
-        {
-            string returnDialogue = malady.pulseSymptoms[0].quotes[0];
-            return returnDialogue;
-        }
-        return "A nice steady rhythm.";
-    }
+	public bool TryCurePatient(Medicine inputMedicine)
+	{
+		bool isSuccessful = malady.cures.Contains(inputMedicine);
+		if (isSuccessful)
+		{
+			malady.severity--;
+			//TriggerInteractionTags();
+		}
+		return isSuccessful;
+	}
 
-    public string GetTemperature()
-    {
-        //Grab temperature dialogue
-        if (malady.temperatureSymptoms.Count > 0)
-        {
-            string returnDialogue = malady.temperatureSymptoms[0].quotes[0];
-            return returnDialogue;
-        }
-        return "Not too hot, not too cold!";
-    }
+	public bool IsPatientCured()
+	{
+		return malady.severity <= 1;
+	}
+	public string GetDialogue()
+	{
+		//Grab generic dialogue.
+		if (malady.dialogueSymptoms.Count > 0)
+		{
+			Random rnd = new Random();
+			int length = malady.dialogueSymptoms.Count;
+			int symptomId = rnd.Next(0, length);
+			int quoteListLength = malady.dialogueSymptoms[symptomId].quotes.Count;
+			string returnDialogue = malady.dialogueSymptoms[symptomId].quotes[rnd.Next(0, quoteListLength)];
+			return returnDialogue;
+		}
+		return "...";
+	}
 
-    public void TriggerDailyTags()
-    {
-        foreach (Tag tag in malady.tags)
-        {
-            if (tag.HasTagType(TagType.Daily))
-            {
-                tag.ExecuteDaily(this);
-            }
-        }
-        CheckLifeStatus();
-    }
+	public virtual string GetAdmittedDialogue()
+	{
+		if (malady.admittedDialogue.Count > 0)
+		{
+			Random rnd = new Random();
+			int length = malady.admittedDialogue.Count;
+			string returnDialogue = malady.admittedDialogue[rnd.Next(0, length)];
+			return returnDialogue;
+		}
+		return "...";
+	}
 
-    public void TriggerInteractionTags()
-    {
-        foreach (Tag tag in malady.tags)
-        {
-            if (tag.HasTagType(TagType.Interaction))
-            {
-                tag.ExecuteInteraction(this);
-            }
-        }
-        CheckLifeStatus();
-    }
+	public string GetPulse()
+	{
+		//Grab stethoscope dialogue
+		if (malady.pulseSymptoms.Count > 0)
+		{
+			string returnDialogue = malady.pulseSymptoms[0].quotes[0];
+			return returnDialogue;
+		}
+		return "A nice steady rhythm.";
+	}
 
-    public void ShowCorrectMedicineDialogue(SpeechManager speechManager)
-    {
-        int length = Quotes.Database["CorrectMedicine"].Count;
-        List<string> list = Quotes.Database["CorrectMedicine"];
+	public string GetTemperature()
+	{
+		//Grab temperature dialogue
+		if (malady.temperatureSymptoms.Count > 0)
+		{
+			string returnDialogue = malady.temperatureSymptoms[0].quotes[0];
+			return returnDialogue;
+		}
+		return "Not too hot, not too cold!";
+	}
 
-        Random rnd = new Random();
-        speechManager.SpeechText(list[rnd.Next(0, length)]);
-    }
+	public void TriggerDailyTags()
+	{
+		NewDayClinicAction();
+		foreach (Tag tag in malady.tags)
+		{
+			if (tag.HasTagType(TagType.Daily))
+			{
+				tag.ExecuteDaily(this);
+			}
+		}
+		CheckLifeStatus();
+	}
 
-    public void ShowIncorrectMedicineDialogue(SpeechManager speechManager)
-    {
-        int length = Quotes.Database["IncorrectMedicine"].Count;
-        List<string> list = Quotes.Database["IncorrectMedicine"];
+	public void NewDayClinicAction()
+	{
+		ClinicAction action = new ClinicAction();
+		action.output = $"---Day {GlobalData.Player_Ingame_Days}---";
+		clinicActions.Add(action);
+	}
 
-        Random rnd = new Random();
-        speechManager.SpeechText(list[rnd.Next(0, length)]);
-    }
+	public void NewClinicAction(string input)
+	{
+		ClinicAction action = new ClinicAction();
+		action.output = $"{input}";
+		clinicActions.Add(action);
+	}
 
-    private void CheckLifeStatus()
-    {
-        if (malady.severity <= 1)
-        {
-            myRoom.PatientCuredInAbsence();
-        }
-        foreach (Tag tag in malady.tags)
-        {
-            if (tag.HasTagType(TagType.MaxSeverity))
-            {
-                tag.ExecuteMaxSeverity(this);
-            }
-        }
-    }
+	public void NewClinicAction(string input, string extraInfo)
+	{
+		ClinicAction action = new ClinicAction();
+		action.output = $"{input} {extraInfo}";
+		clinicActions.Add(action);
+	}
+	public void NewClinicAction(string input, string extraInfo, string result)
+	{
+		ClinicAction action = new ClinicAction();
+		action.output = $"{input} {extraInfo} {result}";
+		clinicActions.Add(action);
+	}
 
-    public bool IsPatientAlive()
-    {
-        return isAlive;
-    }
+	public void TriggerInteractionTags()
+	{
+		
+		foreach (Tag tag in malady.tags)
+		{
+			if (tag.HasTagType(TagType.Interaction))
+			{
+				tag.ExecuteInteraction(this);
+			}
+		}
+		CheckLifeStatus();
+	}
 
-    public void KillPatient()
-    {
-        isAlive = false;
-    }
+	public void ShowCorrectMedicineDialogue(SpeechManager speechManager)
+	{
+		int length = Quotes.Database["CorrectMedicine"].Count;
+		List<string> list = Quotes.Database["CorrectMedicine"];
 
-    public void AssignRoom(Room room)
-    {
-        myRoom = room;
-    }
+		Random rnd = new Random();
+		speechManager.SpeechText(list[rnd.Next(0, length)]);
+	}
 
+	public void ShowIncorrectMedicineDialogue(SpeechManager speechManager)
+	{
+		int length = Quotes.Database["IncorrectMedicine"].Count;
+		List<string> list = Quotes.Database["IncorrectMedicine"];
+
+		Random rnd = new Random();
+		speechManager.SpeechText(list[rnd.Next(0, length)]);
+	}
+
+	private void CheckLifeStatus()
+	{
+		if (malady.severity <= 1)
+		{
+			myRoom.PatientCuredInAbsence();
+		}
+		foreach (Tag tag in malady.tags)
+		{
+			if (tag.HasTagType(TagType.MaxSeverity))
+			{
+				tag.ExecuteMaxSeverity(this);
+			}
+		}
+	}
+
+	public bool IsPatientAlive()
+	{
+		return isAlive;
+	}
+
+	public void KillPatient()
+	{
+		NewClinicAction(ClinicActionList.Actions["Dead"].output);
+		isAlive = false;
+	}
+
+	public void AssignRoom(Room room)
+	{
+		myRoom = room;
+	}
+
+	public TextureUnit GetPatientTextures()
+	{
+		return textureUnit;
+	}
 }
-    
+	
 
    

@@ -1,8 +1,9 @@
 using Godot;
 using System;
-using static System.Net.Mime.MediaTypeNames;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
+using static System.Net.Mime.MediaTypeNames;
 
 
 public partial class Contents_C : ExpNode2D
@@ -13,11 +14,11 @@ public partial class Contents_C : ExpNode2D
     BaseButton CatalogueButton;
     BaseButton LogOutButton;
     Control DealerWindow;
-    Button UpgradesButton;
+    TextureButton UpgradesButton;
     Label UpgradesWindow;
     VBoxContainer UpgradesList;
     Button CloseUpgrades;
-    Button TreatmentResourcesButton;
+    TextureButton TreatmentResourcesButton;
     Label ResourcesWindow;
     Button CloseResources;
     Button CloseDealerWindowButton;
@@ -25,12 +26,12 @@ public partial class Contents_C : ExpNode2D
     VBoxContainer MedicineContainer;
     GridContainer RoomContainer;
 
-    Button SpecialOffersButton;
+    TextureButton SpecialOffersButton;
     Label SpecialOffersWindow;
     VBoxContainer SpecialOffersList;
 
-    Button BodyDisposalButton;
-    Button SelfTreatmentButton;
+    TextureButton BodyDisposalButton;
+    TextureButton SelfTreatmentButton;
     //Label InsufficientFunds;
     //Button CloseFundsPopup;
     //Label InsufficientAvailability;
@@ -40,12 +41,15 @@ public partial class Contents_C : ExpNode2D
     Control CatalogueWindow;
     Button CloseCatalogueWindow;
 
-    [Export] MapUI mapUi;
-    [Export] Button UpButtonDealer;
-    [Export] Button DownButtonDealer;
+    Label PurchaseInfo;
+    TextureButton PurchaseButton;
 
-    [Export] Button UpButtonUpgrades;
-    [Export] Button DownButtonUpgrades;
+    [Export] MapUI mapUi;
+    [Export] TextureButton UpButtonDealer;
+    [Export] TextureButton DownButtonDealer;
+
+    [Export] TextureButton UpButtonUpgrades;
+    [Export] TextureButton DownButtonUpgrades;
 
     [Export] Popup Popup;
 
@@ -54,6 +58,10 @@ public partial class Contents_C : ExpNode2D
 
     int dealerStartingIndex = 0;
     int upgradeStartingIndex = 0;
+
+    [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
+    DealerButton PurchaseButtonHolder;
+    string PurchaseMode;
 
     //private readonly Dictionary<DealerButton, Action> Subscriptions = new();
 
@@ -87,18 +95,18 @@ public partial class Contents_C : ExpNode2D
         //separate section for everything in the dealer window
         DealerWindow = control.GetNode<Control>("Dealer_PH");
 
-        UpgradesButton = DealerWindow.GetNode<Button>("Upgrades_Button");
+        UpgradesButton = DealerWindow.GetNode<TextureButton>("Upgrades_Button");
         UpgradesWindow = DealerWindow.GetNode<Label>("Upgrades_Window");
         UpgradesList = UpgradesWindow.GetNode<VBoxContainer>("Upgrades_List");
 
-        SpecialOffersButton = DealerWindow.GetNode<Button>("Special_Offers_Button");
+        SpecialOffersButton = DealerWindow.GetNode<TextureButton>("Special_Offers_Button");
         SpecialOffersWindow = DealerWindow.GetNode<Label>("Special_Offers_Window");
         SpecialOffersList = SpecialOffersWindow.GetNode<VBoxContainer>("Special_Offers_List");
-        SelfTreatmentButton = SpecialOffersList.GetNode<Button>("SelfTreatment");
-        BodyDisposalButton = SpecialOffersList.GetNode<Button>("BodyDisposal");
+        SelfTreatmentButton = SpecialOffersList.GetNode<TextureButton>("SelfTreatment");
+        BodyDisposalButton = SpecialOffersList.GetNode<TextureButton>("BodyDisposal");
 
         CloseUpgrades = UpgradesWindow.GetNode<Button>("Close");
-        TreatmentResourcesButton = DealerWindow.GetNode<Button>("Treatment_Resources_Button");
+        TreatmentResourcesButton = DealerWindow.GetNode<TextureButton>("Treatment_Resources_Button");
         ResourcesWindow = DealerWindow.GetNode<Label>("Resources_Window");
         CloseResources = ResourcesWindow.GetNode<Button>("Close");
         CloseDealerWindowButton = DealerWindow.GetNode<Button>("Close");
@@ -114,8 +122,11 @@ public partial class Contents_C : ExpNode2D
         CatalogueWindow = control.GetNode<Control>("Malady_PH");
         CloseCatalogueWindow = CatalogueWindow.GetNode<Button>("Close");
 
+        PurchaseInfo = DealerWindow.GetNode<Label>("Purchase_Info");
+        PurchaseButton = DealerWindow.GetNode<TextureButton>("Purchase_Button");
+
         int count = 0;
-        foreach(Button button in MedicineContainer.GetChildren())
+        foreach(TextureButton button in MedicineContainer.GetChildren())
         {
             DealerButton castButton = button as DealerButton;
             if(castButton != null)
@@ -127,7 +138,7 @@ public partial class Contents_C : ExpNode2D
             }
         }
         count = 0;
-        foreach (Button button in UpgradesList.GetChildren())
+        foreach (TextureButton button in UpgradesList.GetChildren())
         {
             DealerButton castButton = button as DealerButton;
             if (castButton != null)
@@ -148,7 +159,7 @@ public partial class Contents_C : ExpNode2D
         DownButtonUpgrades.Pressed += () => UpgradeMenuNavigation(1);
 
 
-        BodyDisposalButton.Pressed += BodyDisposal;
+        BodyDisposalButton.Pressed += BodyDisposalInfo;
         DealerButton.Pressed += ShowDealerWindow;
         MapButton.Pressed += ShowMapWindow;
         CatalogueButton.Pressed += ShowCatalogueWindow;
@@ -161,26 +172,67 @@ public partial class Contents_C : ExpNode2D
         CloseDealerWindowButton.Pressed += () => CloseParent(CloseDealerWindowButton);
         CloseDealerWindowButton.Pressed += mapUi.OnMapUiClose;
         //CloseFundsPopup.Pressed += () => CloseParent(CloseFundsPopup);
-        SelfTreatmentButton.Pressed += () => BuyMedicine(SelfTreatmentButton);
+        SelfTreatmentButton.Pressed += SelfTreatmentInfo;
         CloseMapWindow.Pressed += () => CloseParent(CloseMapWindow);
         CloseMapWindow.Pressed += mapUi.OnMapUiClose;
         CloseCatalogueWindow.Pressed += () => CloseParent(CloseCatalogueWindow);
+        PurchaseButton.Pressed += Purchase;
 
 
         foreach (DealerButton button in DealerButtons)
         {
-            Action handler = () => PurchaseMedicine(button);
+            Action handler = () => ConnectPurchaseToMedicine(button);
 
             button.Pressed += handler;
         }
 
         foreach (DealerButton button in UpgradeButtons)
         {
-            Action handler = () => PurchaseUpgrade(button);
+            Action handler = () => ConnectPurchaseToUpgrade(button);
 
             button.Pressed += handler;
         }
     }
+    private void ConnectPurchaseToMedicine(DealerButton button)
+    {
+        PurchaseButton.Disabled = false;
+        PurchaseButtonHolder = button;
+        PurchaseMode = "medicine";
+        PurchaseButton.Show();
+    }
+
+    private void ConnectPurchaseToUpgrade(DealerButton button)
+    {
+        PurchaseButtonHolder = button;
+        PurchaseMode = "upgrade";
+        PurchaseButton.Show();
+        if (button.unavailable)
+        {
+            PurchaseButton.Disabled = true;
+        } else
+        {
+            PurchaseButton.Disabled = false;
+        }
+    }
+
+    private void Purchase()
+    {
+        if (PurchaseMode == "medicine")
+        {
+            PurchaseMedicine(PurchaseButtonHolder);
+        }
+        else if (PurchaseMode == "upgrade")
+        {
+            PurchaseUpgrade(PurchaseButtonHolder);
+        } else if (PurchaseMode == "self")
+        {
+            BuyMedicine(PurchaseButtonHolder);
+        } else if (PurchaseMode == "body")
+        {
+            BodyDisposal();
+        }
+    }
+
     private void PurchaseMedicine(DealerButton button)
     {
         int myIndex = button.index;
@@ -221,15 +273,19 @@ public partial class Contents_C : ExpNode2D
         if (dealerStartingIndex == 0)
         {
             UpButtonDealer.Disabled = true;
+            UpButtonDealer.Modulate = new Color(1, 1, 1, (float)0.5);
         }
         else if(dealerStartingIndex + DealerButtons.Count >= DealerList.MedicineDatabase.Count)
         {
             DownButtonDealer.Disabled = true;
+            DownButtonDealer.Modulate = new Color(1, 1, 1, (float)0.5);
         }
         else
         {
             UpButtonDealer.Disabled = false;
+            UpButtonDealer.Modulate = new Color(1, 1, 1, 1);
             DownButtonDealer.Disabled = false;
+            DownButtonDealer.Modulate = new Color(1, 1, 1, 1);
         }
     }
 
@@ -240,15 +296,19 @@ public partial class Contents_C : ExpNode2D
         if (upgradeStartingIndex == 0)
         {
             UpButtonUpgrades.Disabled = true;
+            UpButtonUpgrades.Modulate = new Color(1, 1, 1, (float)0.5);
         }
         else if (upgradeStartingIndex + UpgradeButtons.Count >= DealerList.UpgradeDatabase.Count)
         {
             DownButtonUpgrades.Disabled = true;
+            DownButtonUpgrades.Modulate = new Color(1, 1, 1, (float)0.5);
         }
         else
         {
             UpButtonUpgrades.Disabled = false;
+            UpButtonUpgrades.Modulate = new Color(1, 1, 1, 1);
             DownButtonUpgrades.Disabled = false;
+            DownButtonUpgrades.Modulate = new Color(1, 1, 1, 1);
         }
     }
 
@@ -257,7 +317,16 @@ public partial class Contents_C : ExpNode2D
         for (int i = 0; i < list.Count; i++)
         {
             //list[i].Text = DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText();
-            list[i].ChangeText(DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText());
+            //grab the text for the button
+            list[i].ChangeText("Buy " + DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotName());
+            //grab the text for the info box
+            list[i].StoreInfo(DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText());
+            //when buying. if the current button in the loop is the one whose info is currently displayed in the info box, update the text in it
+            //can't compare the whole strings because the quantity of medicine at the end is different, so we just compare enough of it to confirm it's a match
+            if (string.Compare(PurchaseInfo.Text, 0, DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText(), 0, 10) == 0)
+            {
+                list[i].UpdateInfo();
+            }
             if (!DealerList.MedicineDatabase.ElementAt(i + start).Value.medicine.unlocked)
             {
                 list[i].Disabled = true;
@@ -273,14 +342,12 @@ public partial class Contents_C : ExpNode2D
         for (int i = 0; i < list.Count; i++)
         {
             //list[i].Text = DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText();
-            list[i].ChangeText(DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText());
-            if(DealerList.UpgradeDatabase.ElementAt(i + start).Value.upgrade.fullyUnlocked)
+            list[i].ChangeText(DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotName());
+            list[i].StoreInfo(DealerList.UpgradeDatabase.ElementAt(i + start).Value.GetSlotText());
+            if (DealerList.UpgradeDatabase.ElementAt(i + start).Value.upgrade.fullyUnlocked && list[i].index == PurchaseButtonHolder.index)
             {
-                list[i].Disabled = true;
-            }
-            else
-            {
-                list[i].Disabled = false;
+                list[i].unavailable = true;
+                PurchaseButton.Disabled = true;
             }
         }
     }
@@ -354,6 +421,8 @@ public partial class Contents_C : ExpNode2D
         UpgradesWindow.Hide();
         ResourcesWindow.Show();
         SpecialOffersWindow.Hide();
+        PurchaseInfo.Text = "";
+        PurchaseButton.Hide();
         DealerMenuNavigation(0);
     }
     private void OpenUpgradesWindow()
@@ -362,6 +431,8 @@ public partial class Contents_C : ExpNode2D
         ResourcesWindow.Hide();
         UpgradesWindow.Show();
         SpecialOffersWindow.Hide();
+        PurchaseInfo.Text = "";
+        PurchaseButton.Hide();
         UpgradeMenuNavigation(0);
     }
 
@@ -371,10 +442,21 @@ public partial class Contents_C : ExpNode2D
         ResourcesWindow.Hide();
         UpgradesWindow.Hide();
         SpecialOffersWindow.Show();
-        UpdateBodyDisposalButton();
-        SelfTreatmentButton.GetNode<Label>("DealerLabel").Text = "Self Treatment  (Price:" + GlobalData.MedicineCost + ") " +
-            " Owned: " + GlobalData.MedicinePlayer.ToString() + " " +
-            " availability in: " + GlobalData.Medicincavailability.ToString();
+        PurchaseInfo.Text = "";
+        PurchaseButton.Hide();
+        UpdateBodyDisposalInfo();
+        SelfTreatmentButton.GetNode<Label>("DealerLabel").Text = "Self Treatment";
+    }
+
+
+    private void SelfTreatmentInfo()
+    {
+        PurchaseInfo.Text = "Self Treatment  (Price:" + GlobalData.MedicineCost + ") \n" +
+            "Owned: " + GlobalData.MedicinePlayer.ToString() + "\n" +
+            "Availability in: " + GlobalData.Medicincavailability.ToString();
+        PurchaseButtonHolder = SelfTreatmentButton as DealerButton;
+        PurchaseMode = "self";
+        PurchaseButton.Show();
     }
 
     private void ShowInsufficientFunds()
@@ -385,15 +467,22 @@ public partial class Contents_C : ExpNode2D
 
     private void UpdateMoneyDisplay()
     {
-        DealerWindowMoneyDisplay.Text = "Credits: " + DoctorInventory.Money.ToString();
+        DealerWindowMoneyDisplay.Text = DoctorInventory.Money.ToString();
     }
     
-    private void UpdateBodyDisposalButton()
+    private void UpdateBodyDisposalInfo()
+    {
+        BodyDisposalInfo();
+    }
+
+    private void BodyDisposalInfo()
     {
         int count = RoomManager.GetDeadPatientCount();
         int cost = Economy.bodyDisposalCost * count;
-        BodyDisposalButton.GetNode<Label>("DealerLabel").Text = $"Dispose of {count} dead patients \n Price: {cost}";
+        PurchaseInfo.Text = $"Dispose of {count} dead patients \n Price: {cost}";
         BodyDisposalButton.Disabled = count <= 0;
+        PurchaseMode = "body";
+        PurchaseButton.Show();
     }
 
     private void BodyDisposal()
@@ -408,18 +497,20 @@ public partial class Contents_C : ExpNode2D
             deadRoom.SetAlreadyTreated(false);
             deadRoom.DeletePatient();
         }
-        UpdateBodyDisposalButton();
+        UpdateBodyDisposalInfo();
     }
-    private void BuyMedicine(Button button)
+    private void BuyMedicine(TextureButton button)
     {
-        GD.Print("buying self treatment");
         if (DoctorInventory.Money >= GlobalData.MedicineCost && GlobalData.Medicincavailability <= 0)
         {
             // Money deduction, player gets the medicine and the cost of the medicine gets increased (probally needs balancing)
             DoctorInventory.Money -= GlobalData.MedicineCost;
             GlobalData.MedicinePlayer++;
+            GlobalData.Dialog_Dealer = true;
             GlobalData.MedicineCost = GlobalData.MedicineCost * 2; // Increase the cost for the next purchase
-            button.GetNode<Label>("DealerLabel").Text = "Self Treatment (Price: " + GlobalData.MedicineCost + ") Owned: " + GlobalData.MedicinePlayer.ToString() + ") availability in: " + GlobalData.Medicincavailability.ToString();
+            PurchaseInfo.Text = "Self Treatment  (Price:" + GlobalData.MedicineCost + ") \n" +
+            "Owned: " + GlobalData.MedicinePlayer.ToString() + "\n" +
+            "Availability in: " + GlobalData.Medicincavailability.ToString();
             UpdateMoneyDisplay();
         }
         else if (DoctorInventory.Money < GlobalData.MedicineCost)
@@ -436,11 +527,21 @@ public partial class Contents_C : ExpNode2D
 
     public override void OnRoomEnter(Node mainNode)
     {
+        TriggerFading();
         //GD.Print("Entering computer");
     }
 
     public override void OnRoomExit()
     {
         //GD.Print("Exiting computer");
+    }
+
+    private void TriggerFading()
+    {
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+        // add the scene FadeAnimation and call the Methode Fades
+        AddChild(fading);
+        fading.Fades();
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.JavaScript;
+using System.Transactions;
 
 public partial class Contents_P_I : ExpNode2D
 {
@@ -33,12 +34,18 @@ public partial class Contents_P_I : ExpNode2D
     [Export] Label PatientLabel;
     [Export] Label AgeLabel;
     [Export] Label PatientsLeftLabel;
+    [Export] Control WholeBody;
     [Export] public Sprite2D PortraitSprite;
+    [Export] Sprite2D HeadSprite;
+    [Export] Sprite2D ClothingSprite;
+    [Export] Sprite2D MaladySprite;
+    [Export] Sprite2D TopMaladySprite;
 
     [Export] AdmissionManager AdmissionManagerAccess;
     [Export] Diagnosis_Box Diagnosis;
     [Export] SpeechManager SpeechManagerAccess;
 
+    [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
     public void Initialize()
 	{
         Hide();
@@ -83,7 +90,7 @@ public partial class Contents_P_I : ExpNode2D
         //Stuff that needs to happen when a new day is there.
         AdmissionManagerAccess.NewDayLogic();
         NextPatient();
-        PortraitSprite.Show();
+        WholeBody.Show();
         Diagnosis.SetAllCheckboxStatus(true);
         RejectButton.Disabled = false;
         AdmitButton.Disabled = false;
@@ -122,12 +129,11 @@ public partial class Contents_P_I : ExpNode2D
         DiagnosisButton = InventoryContainer.GetNode<Button>("Diagnosis");
     }
 
+   
+
     //All the show speech methods are just calling the speech manager and
     //displaying different information pulled from the PatientStats class.
     //In the future this could probably be done in a more sleek way, but for now it's functional.
-
-
-
     private void ShowSpeechDialogue()
     {
         //if the patient is their story patient, they do their lil intro
@@ -274,12 +280,13 @@ public partial class Contents_P_I : ExpNode2D
             //If this wasn't the last patient, we generate a new one.
             PatientsLeftLabel.Text = $"Patients left: {patients}";
             PatientPointer = AdmissionManagerAccess.GenerateNewPatient();
+            RenderNewPatient();
         }
         else
         {
             //If this was the last patient, the logic is different.
             //Disabling some stuff, telling the player that there are no more patients.
-            PortraitSprite.Hide();
+            WholeBody.Hide();
             PatientsLeftLabel.Text = $"Patients left: {0}";
             RejectButton.Disabled = true;
             AdmitButton.Disabled = true;
@@ -290,13 +297,33 @@ public partial class Contents_P_I : ExpNode2D
         }
 
         // random tint to the portrait
-        PortraitSprite.Modulate = PatientPointer.PortraitColor;
+        //PortraitSprite.Modulate = PatientPointer.PortraitColor;
         DeceasedSprite1.Hide();
 
         PatientLabel.Text = "Patient: " + PatientPointer.patientID; //convert data to strings to display it on Labels  and '+' operator connects static text "ID: " with the variable value
         AgeLabel.Text = "Age: " + PatientPointer.age.ToString(); //used stringt o convert the integer age to a string for display purposes
 
         GlobalData.IsPatientInWindow = (patients > 0); // update Globaldata  value
+    }
+
+    private void RenderNewPatient()
+    {
+       TextureUnit unit = PatientPointer.GetPatientTextures();
+       PortraitSprite.Texture = unit.BodySet.standing;
+       HeadSprite.Texture = unit.HeadSet.standing;
+       ClothingSprite.Texture = unit.Clothing;
+        if (unit.unitType == TextureType.Normal)
+        {
+            if (PatientPointer.malady.severity < 4) return;
+            TopMaladySprite.Texture = null;
+            MaladySprite.Texture = unit.MaladySet.standing;
+        }
+        else if (unit.unitType == TextureType.Top)
+        {
+            if (PatientPointer.malady.severity < 4) return;
+            MaladySprite.Texture = null;
+            TopMaladySprite.Texture = unit.MaladySet.standing;
+        }
     }
 
     private void SetVisitButtonStatus()
@@ -341,6 +368,7 @@ public partial class Contents_P_I : ExpNode2D
     public override void OnRoomEnter(Node mainNode)
     {
         //GD.Print("Entering admission");
+        TriggerFading();
 
         UpdatePatientInterfaceUI();
 
@@ -349,6 +377,15 @@ public partial class Contents_P_I : ExpNode2D
 
         Inventory inv = mainNode.GetNode<Inventory>("Inventory");
         inv.InventoryActions();
+    }
+
+    private void TriggerFading()
+    {
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+        // add the scene FadeAnimation and call the Methode Fades
+        AddChild(fading);
+        fading.Fades();
     }
 
     public override void OnRoomExit()
