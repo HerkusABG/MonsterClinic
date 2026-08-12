@@ -54,9 +54,9 @@ public partial class Hallway : ExpNode2D
             {
                 Doors.Add(childButton);
                 Door doorButton = childButton as Door;
-                doorButton.doorId = doorIndex;
+                doorButton.DoorId = doorIndex;
                 doorIndex++;
-                childButton.Pressed += () => GoToRoom(doorButton.doorId);
+                childButton.Pressed += () => GoToRoom(doorButton.DoorId);
                 //childButton.Pressed += treatment.ShowUI;
                 childButton.Disabled = true;
             }

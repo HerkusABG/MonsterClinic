@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://orf6jcr622m" path="res://Assets/2DArt/Office/office-bed-hover.png" id="15_4fm71"]
 [ext_resource type="Texture2D" uid="uid://7ph5wsicr3ic" path="res://Assets/2DArt/Office/office-cans.png" id="16_gisrx"]
 [ext_resource type="PackedScene" uid="uid://l74aru063sey" path="res://Scenes/OfficePatientPlaceholder.tscn" id="16_yauhp"]
+[ext_resource type="PackedScene" uid="uid://fmeqcs0xd6bu" path="res://Tutorial.tscn" id="19_3oxl0"]
 
 [sub_resource type="Animation" id="Animation_3080y"]
 length = 0.001
@@ -321,8 +322,23 @@ visible = false
 position = Vector2(1734.0001, 382.99982)
 scale = Vector2(0.21458334, 0.23402777)
 
+[node name="Tutorial" parent="." unique_id=1773699143 instance=ExtResource("19_3oxl0")]
+EnableIdleHint = true
+
+[node name="LockedDoorMessage" parent="Tutorial" index="0" unique_id=1105647164]
+offset_left = 72.0
+offset_top = 279.0
+offset_right = 462.0
+offset_bottom = 553.0
+scale = Vector2(0.672, 0.48000047)
+
+[node name="Label" parent="Tutorial/LockedDoorMessage" index="1" unique_id=132150035]
+text = "dddhhdhd"
+
 [connection signal="pressed" from="Player_Interactables_O/Computer" to="." method="_on_computer_a_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Mirror" to="Player_Interactables_O/Mirror/MirrorLabel" method="_on_mirror_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Elevator" to="." method="_on_elevator_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Patient_Interface_Access" to="." method="_on_patient_i_a_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Bed" to="." method="_on_bed_pressed"]
+
+[editable path="Tutorial"]

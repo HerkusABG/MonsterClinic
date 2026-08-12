@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cmanl4uic4t8n" path="res://Hallway.cs" id="1_ak6jr"]
 [ext_resource type="Texture2D" uid="uid://b5mwq4xh0k4dj" path="res://Assets/2DArt/NewHallway/ElevatorHallway_BG_Blockout.png" id="2_j2yjr"]
-[ext_resource type="Texture2D" uid="uid://mjk7xhb5odpo" path="res://Assets/HallwayAssets/Hallway_Door_LeftFront_Empty_Blockout.png" id="3_ar6hc"]
 [ext_resource type="Script" uid="uid://c5kdsosh8iq8u" path="res://Door.cs" id="4_3js8s"]
 [ext_resource type="Texture2D" uid="uid://7jr2u4i7ev8w" path="res://Assets/2DArt/NewHallway/ElevatorHallway_Door1_Bought_Unlit_Blockout.png" id="5_5eg2f"]
 [ext_resource type="Texture2D" uid="uid://dmfcx5jc5i3ak" path="res://Assets/2DArt/NewHallway/ElevatorHallway_Door1_Bought_Lit_Blockout.png" id="6_bve6k"]
@@ -43,25 +42,6 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4f6k"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djdh2"]
-bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak6jr"]
-bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3js8s"]
-bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
 [node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("LeaveRoomButton")]
 scale = Vector2(0.977, 1)
 script = ExtResource("1_ak6jr")
@@ -94,7 +74,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_fclus")
 theme_override_styles/hover = SubResource("StyleBoxFlat_l4f6k")
 text = "Return "
 
-[node name="Door0000" type="Button" parent="HallwayControl" unique_id=1622659441]
+[node name="Door0000" type="TextureButton" parent="HallwayControl" unique_id=2107126121]
 visible = false
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
@@ -102,13 +82,6 @@ offset_left = -2987.3945
 offset_top = -520.49756
 offset_right = -2044.3335
 offset_bottom = 1513.5313
-theme_override_font_sizes/font_size = 100
-theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-icon = ExtResource("3_ar6hc")
-flat = true
-expand_icon = true
 script = ExtResource("4_3js8s")
 
 [node name="DoorControl" type="Control" parent="HallwayControl" unique_id=1915929726]
@@ -127,6 +100,7 @@ texture_normal = ExtResource("5_5eg2f")
 texture_hover = ExtResource("6_bve6k")
 texture_disabled = ExtResource("7_vsvav")
 script = ExtResource("4_3js8s")
+DoorId = 1
 
 [node name="Door2" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1489299767]
 layout_mode = 0
