@@ -88,8 +88,6 @@ bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3oxl0"]
 bg_color = Color(0.9529412, 0.33333334, 0.6392157, 0.27058825)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wwh7d"]
-
 [node name="Contents_O" type="Node2D" unique_id=586678661]
 script = ExtResource("1_35wc1")
 
@@ -327,10 +325,12 @@ visible = false
 position = Vector2(1734.0001, 382.99982)
 scale = Vector2(0.21458334, 0.23402777)
 
-[node name="TutorialLayer" type="CanvasLayer" parent="." unique_id=624321426 node_paths=PackedStringArray("InactivityTimer", "PopupPanel")]
+[node name="TutorialLayer" type="CanvasLayer" parent="." unique_id=624321426 node_paths=PackedStringArray("InactivityTimer", "PopupPanel", "HintLabel")]
 script = ExtResource("19_3oxl0")
 InactivityTimer = NodePath("InactivityTimer")
 PopupPanel = NodePath("PopupPanel")
+HintLabel = NodePath("PopupPanel/HintLabel")
+IsOfficeScene = true
 
 [node name="InactivityTimer" type="Timer" parent="TutorialLayer" unique_id=828036424]
 wait_time = 10.0
@@ -345,10 +345,10 @@ offset_bottom = 449.00003
 scale = Vector2(0.56, 0.4800012)
 theme_override_styles/panel = SubResource("StyleBoxFlat_3oxl0")
 
-[node name="HintLabel" type="Panel" parent="TutorialLayer/PopupPanel" unique_id=334454460]
+[node name="HintLabel" type="Label" parent="TutorialLayer/PopupPanel" unique_id=2076976124]
 layout_mode = 2
 tooltip_text = "rrrrrr"
-theme_override_styles/panel = SubResource("StyleBoxFlat_wwh7d")
+mouse_filter = 0
 
 [connection signal="pressed" from="Player_Interactables_O/Computer" to="." method="_on_computer_a_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Mirror" to="Player_Interactables_O/Mirror/MirrorLabel" method="_on_mirror_pressed"]

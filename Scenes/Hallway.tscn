@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dtqygqtybqe4i"]
 
-[ext_resource type="Script" uid="uid://cmanl4uic4t8n" path="res://Hallway.cs" id="1_ak6jr"]
+[ext_resource type="Script" uid="uid://cmanl4uic4t8n" path="res://Hallway.cs" id="1_43qi4"]
 [ext_resource type="Texture2D" uid="uid://bx1u7bggfspli" path="res://ElevatorHallway_Blockouts/ElevatorHallway_BG_Blockout.png" id="2_5eg2f"]
 [ext_resource type="Script" uid="uid://c5kdsosh8iq8u" path="res://Door.cs" id="4_3js8s"]
 [ext_resource type="Texture2D" uid="uid://dbd4v2cpsje16" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door1_Bought_Unlit_Blockout.png" id="5_j2yjr"]
@@ -29,6 +29,8 @@
 [ext_resource type="Texture2D" uid="uid://buwwmaqdcolos" path="res://ElevatorHallway_Blockouts/ElevatorHallway_DoorVIP_Bought_Lit_Blockout.png" id="24_43qi4"]
 [ext_resource type="Texture2D" uid="uid://d3teg1yofxoau" path="res://ElevatorHallway_Blockouts/ElevatorHallway_Door6_Bought_Lit_Blockout.png" id="25_8nsn8"]
 [ext_resource type="Texture2D" uid="uid://betrnpg4jp8rp" path="res://ElevatorHallway_Blockouts/ElevatorHallway_DoorVIP_Unbought_Blockout.png" id="25_gpovj"]
+[ext_resource type="PackedScene" uid="uid://bj5vj6dqbji1c" path="res://RmbPrompt.tscn" id="30_gpovj"]
+[ext_resource type="Script" uid="uid://bwyuqfc6pfokg" path="res://Scripts/Tutorial.cs" id="31_gpovj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ar6hc"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -49,10 +51,13 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4f6k"]
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gxrng"]
+bg_color = Color(0.9529412, 0.33333334, 0.6392157, 0.27058825)
+
 [node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("LeaveRoomButton")]
 position = Vector2(1302.9375, 342.1875)
 scale = Vector2(0.42309022, 0.43263888)
-script = ExtResource("1_ak6jr")
+script = ExtResource("1_43qi4")
 LeaveRoomButton = NodePath("HallwayControl/Leave_Room")
 
 [node name="Patient_Room_Background" type="Sprite2D" parent="." unique_id=1209967813]
@@ -112,7 +117,6 @@ UnlockedTexture = ExtResource("6_vsvav")
 RubbleOverlay = NodePath("RubbleOverlay")
 
 [node name="RubbleOverlay" type="TextureRect" parent="HallwayControl/DoorControl/Door" unique_id=1319998834]
-visible = false
 layout_mode = 0
 offset_top = -3.0517578e-05
 offset_right = 548.0
@@ -254,19 +258,27 @@ offset_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource("25_gpovj")
 
-[node name="DialogueBox" type="Panel" parent="." unique_id=1331060281]
-visible = false
-offset_left = -2077.423
-offset_top = -515.8749
-offset_right = -2037.4231
-offset_bottom = -475.87485
-scale = Vector2(18.206741, 6.9171767)
-mouse_filter = 2
+[node name="RmbPrompt" parent="." unique_id=1824669901 instance=ExtResource("30_gpovj")]
+offset_left = -2067.969
+offset_top = -629.1332
+offset_right = -1862.3391
+offset_bottom = -575.7817
+scale = Vector2(2.4086037, 2.7531083)
 
-[node name="DialogueText" type="Label" parent="DialogueBox" unique_id=85057634]
-layout_mode = 0
-offset_left = -2058.515
-offset_top = -448.84424
-offset_right = -2018.5149
-offset_bottom = -425.84424
-scale = Vector2(13.483588, 7.916375)
+[node name="LockedDoor" type="CanvasLayer" parent="." unique_id=1000233394 node_paths=PackedStringArray("PopupPanel", "HintLabel")]
+script = ExtResource("31_gpovj")
+PopupPanel = NodePath("PopupPanel")
+HintLabel = NodePath("PopupPanel/HintLabel")
+
+[node name="PopupPanel" type="PanelContainer" parent="LockedDoor" unique_id=1268703857]
+offset_left = 706.0
+offset_top = 210.0
+offset_right = 1032.0
+offset_bottom = 336.0
+scale = Vector2(0.56, 0.4800012)
+theme_override_styles/panel = SubResource("StyleBoxFlat_gxrng")
+
+[node name="HintLabel" type="Label" parent="LockedDoor/PopupPanel" unique_id=1088340990]
+layout_mode = 2
+tooltip_text = "rrrrrr"
+mouse_filter = 0
