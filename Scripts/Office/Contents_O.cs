@@ -48,7 +48,6 @@ public partial class Contents_O : ExpNode2D
         RoomTracker.EnterRoom(ActiveRoom.Admission);
 		var DialogScene = (Control)GetParent().GetNode("Dialog");
         DialogScene.Hide();
-
     }
 
 	private void _on_elevator_pressed()
