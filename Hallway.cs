@@ -125,6 +125,7 @@ public partial class Hallway : ExpNode2D
 
         Inventory inv = mainNode.GetNode<Inventory>("Inventory");
         inv.InventoryActions();
+        inv.Hide();
     }
 
     public override void OnRoomExit()

@@ -248,6 +248,18 @@ public partial class Inventory : Node2D
         {
             slot.button.Hide();
         }
+        if (RoomTracker.IsInRoom(ActiveRoom.PatientRoom)) {
+            foreach (InventorySlot slot in instance.AllSlots)
+            {
+                slot.button.Disabled = false;
+            }
+        } else
+        {
+            foreach (InventorySlot slot in instance.AllSlots)
+            {
+                slot.button.Disabled = true;
+            }
+        }
         int index = 0;
         for (int i = slotIndex; i < slotIndex + instance.Slots.Count; i++)
         {
