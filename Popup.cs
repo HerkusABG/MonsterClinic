@@ -42,4 +42,5 @@ public partial class Popup : Control
             //GlobalData.CurrentPatientSeverity = 0;
         }*/
     }
+
 }
