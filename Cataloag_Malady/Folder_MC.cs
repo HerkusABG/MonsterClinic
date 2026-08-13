@@ -8,6 +8,7 @@ public partial class Folder_MC : Control
     Button Malady_Button;
 
     [Export] Button folderButton;
+    [Export] Control Dropdown;
     public Malady_Autoload.MaladyData MaladyData;
 	//[Export] private Control MaladyCatalogSlotUi;
 	Texture2D folderopen = (Texture2D)ResourceLoader.Load("res://Cataloag_Malady/folder1.png");
@@ -27,12 +28,12 @@ public partial class Folder_MC : Control
     // Called when the node enters the scene tree for the first time.
     public void Initialize(MaladyCategory category, Action action)
 	{
-        folderButton.Pressed += action;
+        //folderButton.Pressed += action;
         folderButton.Pressed += FolderAction;
         //var MaladyAutoload = GetNode<Malady_Autoload>("/root/MaladyAutoload");
 
         // get the MaladyData from the MaladyAutoload using the indexChecker to set the tag and text for the button
-        var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
+        var container_Button = GetNode<VBoxContainer>("FolderButton/Dropdown/Panel/VBoxContainer");
         MCSU = GetTree().Root.FindChild("MaladyCatalogSlotUi", true, false) as MaladyCatalogSlotUi;
         GetNode<Label>("Tag").Text = category.PluralName;
 
@@ -46,7 +47,7 @@ public partial class Folder_MC : Control
                 Malady malady = SortedMaladies[index];
                 button.Text = SortedMaladies[index].name;
                 button.Pressed += () => MCSU.DisplayMaladyInfo(malady);
-
+                GD.Print($"Button z is {button.ZIndex}");
                 index++;
             }
             else
@@ -75,7 +76,7 @@ public partial class Folder_MC : Control
     {
         // get FolderSprite and VBoxContainer from the scene
         var FolderSprite = GetNode<Sprite2D>("FolderIdle");
-        var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
+        //var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
 
         // function is for double clicking the folder to open and close, if false the folder opens, if its true the folder closes
         if (doubleclick == false)
@@ -83,25 +84,28 @@ public partial class Folder_MC : Control
             // set the folder sprite to the open folder texture, sets doubleclick to true, and shows the VboxContainer (which contains the buttons)
             FolderSprite.Texture = folderopen;
             doubleclick = true;
-            container_Button.Show();
+            //container_Button.Show();
+            Dropdown.Show();
         }
         else
         {
             // set the folder sprite to the closed folder texture, sets doubleclick to false, and hides the VBoxContainer (which contains the buttons)
             FolderSprite.Texture = folderclose;
             doubleclick = false;
-            container_Button.Hide();
+            //container_Button.Hide();
+            Dropdown.Hide();
         }
     }
 
     public void CloseFolder()
     {
         var FolderSprite = GetNode<Sprite2D>("FolderIdle");
-        var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
+        //var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
 
         FolderSprite.Texture = folderclose;
         doubleclick = false;
-        container_Button.Hide();
+        //container_Button.Hide();
+        Dropdown.Hide();
     }
     public void _on_malady_button_pressed(Button btn)
 	{

@@ -31,7 +31,7 @@ public partial class ScrollCatalog : ScrollContainer
             Folder_MC slotfolder = Folders.Instantiate<Folder_MC>();
             gridContainer.AddChild(slotfolder);
             slotfolder.Initialize(CategoryList.Database.ElementAt(i + 1).Value, CloseAllFolders);
-            slotfolder.ZIndex = CategoryList.Database.Count - i + 2;
+            //slotfolder.ZIndex = CategoryList.Database.Count - i + 2;
             GD.Print($"Index {i} z index is {slotfolder.ZIndex}");
             folderList.Add(slotfolder);
         }
