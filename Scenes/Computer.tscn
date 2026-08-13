@@ -460,9 +460,9 @@ flat = true
 
 [node name="ScrollCatalog" type="ScrollContainer" parent="Player_Interactables_C/Malady_PH" unique_id=1770234032]
 layout_mode = 0
-offset_left = 449.0
+offset_left = 432.0
 offset_top = 215.0
-offset_right = 949.0
+offset_right = 999.0
 offset_bottom = 915.0
 script = ExtResource("15_vbt5y")
 

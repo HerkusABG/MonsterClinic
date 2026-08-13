@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public static class GlobalData
 {
@@ -61,4 +62,7 @@ public static class GlobalData
 
     public static Boolean Fading { get; set; } = true;
     public static int ControlSpawnFading { get; set; } = 0;
+
+    public static bool FolderActive = false;
+
 }

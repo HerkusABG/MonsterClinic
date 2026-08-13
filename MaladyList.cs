@@ -264,7 +264,7 @@ public static class MaladyList
 		},
 		["PolyporusAnthropophilum"] = new Malady
 		{
-			name = "Polyporus Anthropophilum",
+			name = "Polyporus",
 			description = "A beautiful fungus species that grows on otherwise boring human bodies. If infected, avoid antifungal medicines and make sure you listen to the voices telling you to climb up to high places! <3 - @Fun_Gal",
 			category = CategoryList.Database["Mundane"],
 			dialogueSymptoms =
