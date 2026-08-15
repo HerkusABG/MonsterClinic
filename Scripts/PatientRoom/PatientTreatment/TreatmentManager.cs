@@ -117,6 +117,7 @@ public partial class TreatmentManager : Node
         {
             //Then apply medicine.
             medicine.amount--;
+            Room.IncrementTreated();
 
             Room.Patient.TriggerInteractionTags();
 
@@ -126,7 +127,15 @@ public partial class TreatmentManager : Node
                 Room.Patient.malady.isImmune = false;
                 Popup.DisplayPopup(PopupMessages.TreatmentMessages["Immune"]);
                 //PatientImmunePopup.Show();
-                Room.SetAlreadyTreated(true);
+                if (Room.GetTimesTreated() >= 3)
+                {
+                    Room.SetAlreadyTreated(true);
+                    Popup.DisplayPopup(PopupMessages.TreatmentMessages["ImmuneFinal"]);
+                }
+                else
+                {
+                    Popup.DisplayPopup(PopupMessages.TreatmentMessages["Immune"]);
+                }
                 result = ClinicActionList.Results["MedImmune"].output;
             }
             //Checking to see if the medicine works
@@ -153,9 +162,16 @@ public partial class TreatmentManager : Node
             else
             {
                 Room.Patient.ShowIncorrectMedicineDialogue(Room.SpeechManagerAccess);
-                Room.SetAlreadyTreated(true);
-                //Wrong medicine used, come back tomorrow.
-                Popup.DisplayPopup(PopupMessages.TreatmentMessages["WrongMedicine"]);
+                if (Room.GetTimesTreated() >= 3)
+                {
+                    Room.SetAlreadyTreated(true);
+                    Popup.DisplayPopup(PopupMessages.TreatmentMessages["WrongMedicineFinal"]);
+                }
+                else
+                {
+                    //Wrong medicine used, come back tomorrow.
+                    Popup.DisplayPopup(PopupMessages.TreatmentMessages["WrongMedicine"]);
+                }
                 //WrongMedicinePopup.Show();
                 result = ClinicActionList.Results["MedFail"].output;
             }
