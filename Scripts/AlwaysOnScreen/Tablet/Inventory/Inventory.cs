@@ -168,6 +168,10 @@ public partial class Inventory : Node2D
             MedicineButton medButton = newButton as MedicineButton;
             medButton.Initialize();
             slot.medicine = MedicineManager.Database.ElementAt(i).Value;
+            if (MedicineManager.Database.ElementAt(i).Value.texture != null)
+            {
+                medButton.TextureNormal = MedicineManager.Database.ElementAt(i).Value.texture;
+            }
             slot.button = medButton;
             slot.button.RenderText(slot.medicine);
             instance.AllSlots.Add(slot);

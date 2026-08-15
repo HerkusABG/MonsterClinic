@@ -15,12 +15,15 @@ static class MedicineManager
 		{
 			name = "Antibiotics",
 			cost = 15,
-		},
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-antibiotics-normal.png"),
+        },
 		["Bandages"] = new Medicine
 		{
 			name = "Bandages",
 			cost = 8,
-		},
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-bandages-normal.png"),
+
+        },
 		["Dewormer"] = new Medicine
 		{
 			name = "Dewormer",
