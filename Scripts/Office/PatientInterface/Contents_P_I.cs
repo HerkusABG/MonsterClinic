@@ -22,7 +22,7 @@ public partial class Contents_P_I : ExpNode2D
     Button VisitButton;
     Button InventoryButton;
     Button DiagnosisButton;
-    Button ShotgunButton;
+    Button KickOutButton;
     Button VisitPatientButton;
     VBoxContainer InventoryContainer;
     private Timer DiagnosisTimer;
