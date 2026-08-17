@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://7ph5wsicr3ic" path="res://Assets/2DArt/Office/office-cans.png" id="16_gisrx"]
 [ext_resource type="PackedScene" uid="uid://l74aru063sey" path="res://Scenes/OfficePatientPlaceholder.tscn" id="16_yauhp"]
 [ext_resource type="PackedScene" uid="uid://fmeqcs0xd6bu" path="res://Tutorial.tscn" id="19_3oxl0"]
+[ext_resource type="PackedScene" uid="uid://bj5vj6dqbji1c" path="res://RmbPrompt.tscn" id="20_wwh7d"]
 
 [sub_resource type="Animation" id="Animation_3080y"]
 length = 0.001
@@ -335,6 +336,12 @@ scale = Vector2(0.672, 0.48000047)
 [node name="Label" parent="Tutorial/LockedDoorMessage" index="1" unique_id=132150035]
 text = "dddhhdhd"
 
+[node name="RmbPrompt" parent="." unique_id=1824669901 instance=ExtResource("20_wwh7d")]
+offset_left = 43.0
+offset_top = 84.0
+offset_right = 226.0
+offset_bottom = 120.0
+
 [connection signal="pressed" from="Player_Interactables_O/Computer" to="." method="_on_computer_a_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Mirror" to="Player_Interactables_O/Mirror/MirrorLabel" method="_on_mirror_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Elevator" to="." method="_on_elevator_pressed"]
@@ -342,3 +349,4 @@ text = "dddhhdhd"
 [connection signal="pressed" from="Player_Interactables_O/Bed" to="." method="_on_bed_pressed"]
 
 [editable path="Tutorial"]
+[editable path="RmbPrompt"]

@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cmanl4uic4t8n" path="res://Hallway.cs" id="1_ak6jr"]
 [ext_resource type="Texture2D" uid="uid://b5mwq4xh0k4dj" path="res://Assets/2DArt/NewHallway/ElevatorHallway_BG_Blockout.png" id="2_j2yjr"]
+[ext_resource type="Texture2D" uid="uid://b7h7d8pi1t0hf" path="res://place holders/Overlay Blockouts/Overlay_ LeaveRoom_Blocking.png" id="3_m32xt"]
 [ext_resource type="Script" uid="uid://c5kdsosh8iq8u" path="res://Door.cs" id="4_3js8s"]
+[ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://Assets/CustomText/danielbd_MediumText.ttf" id="4_st2uq"]
 [ext_resource type="Texture2D" uid="uid://7jr2u4i7ev8w" path="res://Assets/2DArt/NewHallway/ElevatorHallway_Door1_Bought_Unlit_Blockout.png" id="5_5eg2f"]
 [ext_resource type="Texture2D" uid="uid://dmfcx5jc5i3ak" path="res://Assets/2DArt/NewHallway/ElevatorHallway_Door1_Bought_Lit_Blockout.png" id="6_bve6k"]
 [ext_resource type="Texture2D" uid="uid://bkrmmj0xbo58f" path="res://Assets/2DArt/NewHallway/ElevatorHallway_Door1_Unbought_Blockout.png" id="7_vsvav"]
@@ -20,27 +22,19 @@
 [ext_resource type="Texture2D" uid="uid://dq35ku3ojpmxy" path="res://Assets/2DArt/NewHallway/ElevatorHallway_Door5_Unbought_Blockout.png" id="19_q3haw"]
 [ext_resource type="Texture2D" uid="uid://b0jyj1cw1mh1w" path="res://Assets/2DArt/NewHallway/ElevatorHallway_Door6_Bought_Unlit_Blockout.png" id="20_oaldw"]
 [ext_resource type="Texture2D" uid="uid://6mf76mwtsj7w" path="res://Assets/2DArt/NewHallway/ElevatorHallway_Door6_Bought_Lit_Blockout.png" id="21_ebwc6"]
+[ext_resource type="Texture2D" uid="uid://b6bne4rt5a8rh" path="res://ElevatorHallway_Blockouts/ElevatorHallway_DoorVIP_Bought_Unlit_Blockout.png" id="22_bve6k"]
 [ext_resource type="Texture2D" uid="uid://d4hafbm048itu" path="res://Assets/2DArt/NewHallway/ElevatorHallway_Door6_Unbought_Blockout.png" id="22_p1u5y"]
 [ext_resource type="Texture2D" uid="uid://c66747d60i41n" path="res://Assets/2DArt/NewHallway/ElevatorHallway_DoorVIP_Unbought_Blockout.png" id="23_5eg2f"]
+[ext_resource type="PackedScene" uid="uid://fmeqcs0xd6bu" path="res://Tutorial.tscn" id="23_bve6k"]
+[ext_resource type="PackedScene" uid="uid://bj5vj6dqbji1c" path="res://RmbPrompt.tscn" id="25_vsvav"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ar6hc"]
-bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_st2uq"]
+texture = ExtResource("3_m32xt")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fclus"]
-bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b24wc"]
+texture = ExtResource("3_m32xt")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4f6k"]
-bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_st2uq"]
 
 [node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("LeaveRoomButton")]
 scale = Vector2(0.977, 1)
@@ -63,25 +57,45 @@ offset_bottom = 40.0
 z_index = 1
 custom_minimum_size = Vector2(210, 100)
 layout_mode = 0
-offset_left = 1706.2437
-offset_top = 934.0
-offset_right = 2106.2437
-offset_bottom = 1184.0
-scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 80
-theme_override_styles/normal = SubResource("StyleBoxFlat_ar6hc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_fclus")
-theme_override_styles/hover = SubResource("StyleBoxFlat_l4f6k")
-text = "Return "
+offset_left = 388.94574
+offset_top = 952.0
+offset_right = 788.9458
+offset_bottom = 1202.0
+scale = Vector2(3.0383828, 0.5)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_st2uq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_st2uq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_st2uq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_b24wc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_st2uq")
+
+[node name="Label" type="Label" parent="HallwayControl/Leave_Room" unique_id=1961820447]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.3099208, 3.9586358)
+theme_override_colors/font_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+theme_override_fonts/font = ExtResource("4_st2uq")
+theme_override_font_sizes/font_size = 27
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Door0000" type="TextureButton" parent="HallwayControl" unique_id=2107126121]
-visible = false
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
-offset_left = -2987.3945
-offset_top = -520.49756
-offset_right = -2044.3335
-offset_bottom = 1513.5313
+offset_left = -2988.741
+offset_top = -520.0
+offset_right = -2045.6799
+offset_bottom = 1514.0288
 script = ExtResource("4_3js8s")
 
 [node name="DoorControl" type="Control" parent="HallwayControl" unique_id=1915929726]
@@ -101,6 +115,7 @@ texture_hover = ExtResource("6_bve6k")
 texture_disabled = ExtResource("7_vsvav")
 script = ExtResource("4_3js8s")
 DoorId = 1
+IsUnlocked = true
 
 [node name="Door2" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1489299767]
 layout_mode = 0
@@ -162,14 +177,31 @@ texture_hover = ExtResource("21_ebwc6")
 texture_disabled = ExtResource("22_p1u5y")
 script = ExtResource("4_3js8s")
 
-[node name="Door" type="TextureButton" parent="HallwayControl" unique_id=472524958]
+[node name="DoorVIP" type="TextureButton" parent="HallwayControl" unique_id=472524958]
 layout_mode = 0
 offset_left = 937.56396
 offset_top = 341.0
 offset_right = 1177.564
 offset_bottom = 747.0
 scale = Vector2(0.51, 0.51)
-texture_normal = ExtResource("23_5eg2f")
+texture_normal = ExtResource("22_bve6k")
 texture_hover = ExtResource("23_5eg2f")
 texture_disabled = ExtResource("7_vsvav")
 script = ExtResource("4_3js8s")
+
+[node name="Tutorial" parent="." unique_id=1773699143 instance=ExtResource("23_bve6k")]
+
+[node name="LockedDoorMessage" parent="Tutorial" index="0" unique_id=1105647164]
+offset_left = 835.00006
+offset_top = 647.0
+offset_right = 1225.0
+offset_bottom = 779.0
+scale = Vector2(0.6009499, 0.8362312)
+
+[node name="RmbPrompt" parent="." unique_id=1824669901 instance=ExtResource("25_vsvav")]
+offset_left = 387.9222
+offset_top = 26.0
+offset_right = 570.92224
+offset_bottom = 62.0
+
+[editable path="Tutorial"]

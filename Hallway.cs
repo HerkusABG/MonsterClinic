@@ -5,15 +5,15 @@ using System.Collections.Generic;
 public partial class Hallway : ExpNode2D
 {
     //Node that controls everything inside of the hallway
-	Control HallwayControl;
+    Control HallwayControl;
     //Control node specifically for the doors.
-	Control DoorControl;
+    Control DoorControl;
     Button LeaveButton;
     List<BaseButton> Doors = new List<BaseButton>();
     [Export] Button LeaveRoomButton;
     [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
     public void Initialize()
-	{
+    {
         //Initializing the hallway, all the main methods.
         GetNodes();
 
@@ -79,7 +79,7 @@ public partial class Hallway : ExpNode2D
     {
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         RoomTracker.GoBack();
-		// show Dialog in the office, if the dialog didnt ended.
+        // show Dialog in the office, if the dialog didnt ended.
        var DialogScene = (Control)GetParent().GetNode("Dialog");
        if(GlobalData.Dialog_Dealer == true)
        {
@@ -106,16 +106,24 @@ public partial class Hallway : ExpNode2D
     }
 
     private void HoverOn()
+{
+   
+    var label = LeaveRoomButton?.GetNodeOrNull<Label>("Label");
+    if (label != null)
     {
-        //makes the text show up when hovering over the button
-        LeaveRoomButton.Text = "Leave";
+        label.Text = "Return";
     }
+}
 
-    private void HoverOff()
+private void HoverOff()
+{
+    
+    var label = LeaveRoomButton?.GetNodeOrNull<Label>("Label");
+    if (label != null)
     {
-        //makes the text disappear when you stop hovering
-        LeaveRoomButton.Text = "";
+        label.Text = "";
     }
+}
 
     public override void OnRoomEnter(Node mainNode)
     {

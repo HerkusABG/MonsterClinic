@@ -15,7 +15,12 @@ public partial class Door : TextureButton
         set
         {
             _isUnlocked = value;
-            UpdateDoorVisuals();
+
+            // Only run visual updates if the node is fully loaded in the scene
+            if (IsNodeReady())
+            {
+                UpdateDoorVisuals();
+            }
         }
     }
 
@@ -24,46 +29,61 @@ public partial class Door : TextureButton
         UpdateDoorVisuals();
     }
 
-    // Runs whenever this door button is clicked
+    // Called when the player clicks the door
     public override void _Pressed()
     {
-        // Find the active Tutorial instance in the scene tree
-        var tutorial = GetTree().Root.FindChild("Tutorial", recursive: true, owned: false) as Tutorial;
+        // Find the active Tutorial scene in the tree
+        var tutorial = GetTree()?.Root?.FindChild("Tutorial", recursive: true, owned: false) as Tutorial;
 
         if (!IsUnlocked)
         {
             // Triggers: "The room is in ruins, I'll need to pay to make it usable."
-            tutorial?.ShowLockedDoorDialogue();
+            if (GodotObject.IsInstanceValid(tutorial))
+            {
+                tutorial.ShowLockedDoorDialogue();
+            }
         }
         else
         {
-            // (Optional) Add your unlocked door scene change logic here later
-            GD.Print($"Door {DoorId} clicked (Unlocked)!");
+            // UNLOCKED: Close dialogue box immediately if it was open
+            if (GodotObject.IsInstanceValid(tutorial))
+            {
+                tutorial.HideLockedDoorDialogue();
+            }
         }
     }
 
     public void UpdateDoorVisuals()
     {
-        // Keep the button active so Godot registers clicks even when locked
+        // Keep the button active so Godot registers clicks in both states
         Disabled = false;
         MouseFilter = MouseFilterEnum.Stop;
 
         if (IsUnlocked)
         {
-            // Show door graphic and hide rubble
+            // UNLOCKED: Show door texture, hide rubble
             if (UnlockedTexture != null)
+            {
                 TextureNormal = UnlockedTexture;
+            }
 
-            if (RubbleOverlay != null)
+            if (GodotObject.IsInstanceValid(RubbleOverlay))
+            {
                 RubbleOverlay.Visible = false;
+            }
         }
         else
         {
-            // Hide unlocked graphic so only rubble is visible
+            // LOCKED: Hide door texture, show rubble
             TextureNormal = null;
 
-            if (RubbleOverlay != null)
+            if (GodotObject.IsInstanceValid(RubbleOverlay))
+            {
                 RubbleOverlay.Visible = true;
+                
+                // Allow mouse clicks to pass through RubbleOverlay to this TextureButton
+                RubbleOverlay.MouseFilter = MouseFilterEnum.Ignore;
+            }
         }
     }
 }
