@@ -25,16 +25,16 @@ public partial class ScrollCatalog : ScrollContainer
         // Get the GridContainer node to add the folders to it
         var gridContainer = GetNode<GridContainer>("GridContainer");
 
-        // get the length of the array of the maladyCategorie and instantiate(add) a folder for each categorie
+        /*// get the length of the array of the maladyCategorie and instantiate(add) a folder for each categorie
         for (int i = 0; i < CategoryList.Database.Count - 1; i++)
         {
             Folder_MC slotfolder = Folders.Instantiate<Folder_MC>();
             gridContainer.AddChild(slotfolder);
             slotfolder.Initialize(CategoryList.Database.ElementAt(i + 1).Value, CloseAllFolders);
-            //slotfolder.ZIndex = CategoryList.Database.Count - i + 2;
+            //slotfolder.ZIndex = CategoryList.Database.Count - i;
             GD.Print($"Index {i} z index is {slotfolder.ZIndex}");
             folderList.Add(slotfolder);
-        }
+        }*/
     }
 
     public void CloseAllFolders()

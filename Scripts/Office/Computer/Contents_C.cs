@@ -38,7 +38,7 @@ public partial class Contents_C : ExpNode2D
     //Button CloseInsufficientStockPopup;
     Control MapControl;
     Button CloseMapWindow;
-    Control CatalogueWindow;
+    CatalogueManager CatalogueWindow;
     Button CloseCatalogueWindow;
 
     Label PurchaseInfo;
@@ -119,7 +119,7 @@ public partial class Contents_C : ExpNode2D
         RoomContainer = MapControl.GetNode<MarginContainer>("MapMarginContainer").GetNode<GridContainer>("RoomContainer");
 
         //separate section for the malady catalogue
-        CatalogueWindow = control.GetNode<Control>("Malady_PH");
+        CatalogueWindow = control.GetNode<CatalogueManager>("Malady_PH");
         CloseCatalogueWindow = CatalogueWindow.GetNode<Button>("Close");
 
         PurchaseInfo = DealerWindow.GetNode<Label>("Purchase_Info");
@@ -357,8 +357,7 @@ public partial class Contents_C : ExpNode2D
         mapUI.Initialize();
         Popup.Initialize();
 
-        ScrollCatalog catalog = CatalogueWindow.GetNode("ScrollCatalog") as ScrollCatalog;
-        catalog.Initialize();
+        CatalogueWindow.Initialize();
     }
     private void ShowDealerWindow()
     {

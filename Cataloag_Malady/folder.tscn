@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bylrq00uis227" path="res://Cataloag_Malady/Folder_MC.cs" id="1_gkd4s"]
 [ext_resource type="FontFile" uid="uid://cygukaybulvh" path="res://Font/MSW98UI-Regular.ttf" id="2_lj3xs"]
 [ext_resource type="Texture2D" uid="uid://ds6mkx4655y87" path="res://Cataloag_Malady/folder2.png" id="3_lj3xs"]
+[ext_resource type="Texture2D" uid="uid://bjrsu2636kxwf" path="res://icon.svg" id="4_82ow6"]
 
 [node name="folder_MC" type="Control" unique_id=1495366430 node_paths=PackedStringArray("folderButton", "Dropdown")]
 layout_mode = 3
@@ -15,71 +16,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gkd4s")
 folderButton = NodePath("FolderButton")
-Dropdown = NodePath("FolderButton/Dropdown")
+Dropdown = NodePath("Dropdown")
+
+[node name="CoverSprite" type="Sprite2D" parent="." unique_id=764387775]
+z_index = 3
+position = Vector2(117.5, 312)
+scale = Vector2(1.4921875, 1.9375)
+texture = ExtResource("4_82ow6")
 
 [node name="FolderButton" type="Button" parent="." unique_id=1769443189]
 self_modulate = Color(1, 1, 1, 0)
+z_index = 2
 layout_mode = 0
 offset_left = 22.0
 offset_top = -4.0
 offset_right = 213.0
 offset_bottom = 185.0
-mouse_filter = 1
-
-[node name="Dropdown" type="Control" parent="FolderButton" unique_id=1057124334]
-visible = false
-anchors_preset = 0
-offset_left = -22.0
-offset_top = 4.0
-offset_right = 18.0
-offset_bottom = 44.0
-mouse_filter = 1
-
-[node name="Panel" type="Panel" parent="FolderButton/Dropdown" unique_id=1992383941]
-z_as_relative = false
-layout_mode = 0
-offset_left = 22.0
-offset_top = 187.0
-offset_right = 213.0
-offset_bottom = 437.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="FolderButton/Dropdown/Panel" unique_id=1373268239]
-z_index = 4
-layout_mode = 0
-offset_left = 30.0
-offset_top = 28.0
-offset_right = 168.0
-offset_bottom = 234.0
-
-[node name="Malady_Button" type="Button" parent="FolderButton/Dropdown/Panel/VBoxContainer" unique_id=391925100]
-z_index = 1
-layout_mode = 2
-text = "Malady"
-
-[node name="Malady_Button2" type="Button" parent="FolderButton/Dropdown/Panel/VBoxContainer" unique_id=190009281]
-z_index = 1
-layout_mode = 2
-text = "Malady"
-
-[node name="Malady_Button3" type="Button" parent="FolderButton/Dropdown/Panel/VBoxContainer" unique_id=1530010869]
-z_index = 1
-layout_mode = 2
-text = "Malady"
-
-[node name="Malady_Button4" type="Button" parent="FolderButton/Dropdown/Panel/VBoxContainer" unique_id=1523437685]
-z_index = 1
-layout_mode = 2
-text = "Malady"
-
-[node name="Malady_Button5" type="Button" parent="FolderButton/Dropdown/Panel/VBoxContainer" unique_id=1241128363]
-z_index = 1
-layout_mode = 2
-text = "Malady"
-
-[node name="Malady_Button6" type="Button" parent="FolderButton/Dropdown/Panel/VBoxContainer" unique_id=579972696]
-z_index = 1
-layout_mode = 2
-text = "Malady"
 
 [node name="Tag" type="Label" parent="." unique_id=1210491120]
 layout_mode = 0
@@ -98,4 +50,58 @@ position = Vector2(119, 92)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_lj3xs")
 
-[connection signal="pressed" from="FolderButton/Dropdown/Panel/VBoxContainer/Malady_Button" to="." method="_on_blue_pox_pressed"]
+[node name="Dropdown" type="Control" parent="." unique_id=1057124334]
+z_index = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="Dropdown" unique_id=1992383941]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 22.0
+offset_top = 187.0
+offset_right = 213.0
+offset_bottom = 437.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dropdown" unique_id=1373268239]
+z_index = 5
+layout_mode = 0
+offset_left = 52.0
+offset_top = 215.0
+offset_right = 190.0
+offset_bottom = 421.0
+
+[node name="Malady_Button" type="Button" parent="Dropdown/VBoxContainer" unique_id=391925100]
+z_index = 1
+layout_mode = 2
+text = "Malady"
+
+[node name="Malady_Button2" type="Button" parent="Dropdown/VBoxContainer" unique_id=190009281]
+z_index = 1
+layout_mode = 2
+text = "Malady"
+
+[node name="Malady_Button3" type="Button" parent="Dropdown/VBoxContainer" unique_id=1530010869]
+z_index = 1
+layout_mode = 2
+text = "Malady"
+
+[node name="Malady_Button4" type="Button" parent="Dropdown/VBoxContainer" unique_id=1523437685]
+z_index = 1
+layout_mode = 2
+text = "Malady"
+
+[node name="Malady_Button5" type="Button" parent="Dropdown/VBoxContainer" unique_id=1241128363]
+z_index = 1
+layout_mode = 2
+text = "Malady"
+
+[node name="Malady_Button6" type="Button" parent="Dropdown/VBoxContainer" unique_id=579972696]
+z_index = 1
+layout_mode = 2
+text = "Malady"
+
+[connection signal="pressed" from="Dropdown/VBoxContainer/Malady_Button" to="." method="_on_blue_pox_pressed"]

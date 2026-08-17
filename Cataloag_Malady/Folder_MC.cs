@@ -33,7 +33,7 @@ public partial class Folder_MC : Control
         //var MaladyAutoload = GetNode<Malady_Autoload>("/root/MaladyAutoload");
 
         // get the MaladyData from the MaladyAutoload using the indexChecker to set the tag and text for the button
-        var container_Button = GetNode<VBoxContainer>("FolderButton/Dropdown/Panel/VBoxContainer");
+        var container_Button = GetNode<VBoxContainer>("Dropdown/VBoxContainer");
         MCSU = GetTree().Root.FindChild("MaladyCatalogSlotUi", true, false) as MaladyCatalogSlotUi;
         GetNode<Label>("Tag").Text = category.PluralName;
 
@@ -47,6 +47,7 @@ public partial class Folder_MC : Control
                 Malady malady = SortedMaladies[index];
                 button.Text = SortedMaladies[index].name;
                 button.Pressed += () => MCSU.DisplayMaladyInfo(malady);
+                button.ZIndex = 7;
                 GD.Print($"Button z is {button.ZIndex}");
                 index++;
             }
@@ -63,7 +64,6 @@ public partial class Folder_MC : Control
                 //btn.Pressed += () => _on_malady_button_pressed(btn);
             }
         }
-
     }
 
 

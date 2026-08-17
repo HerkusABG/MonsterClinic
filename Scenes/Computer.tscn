@@ -15,15 +15,16 @@
 [ext_resource type="Texture2D" uid="uid://0p8gc3ax8rmb" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Pocket_Blockout.png" id="8_arhto"]
 [ext_resource type="Texture2D" uid="uid://ehoh1t87ps0o" path="res://Assets/2DArt/PC/pc-powerbutton-hover.png" id="8_xbdnv"]
 [ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="9_vjhme"]
-[ext_resource type="Texture2D" uid="uid://ciqdwpkm1p3uk" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-contents.png" id="10_6b1vu"]
 [ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="10_gbitc"]
 [ext_resource type="Script" uid="uid://cgma1l84y5gfp" path="res://MedicineButton.cs" id="11_554if"]
+[ext_resource type="Script" uid="uid://484ej1p0ejtv" path="res://CatalogueManager.cs" id="12_rwllh"]
 [ext_resource type="PackedScene" uid="uid://drw087si7s5t6" path="res://Scenes/malady_catalog_slot_ui.tscn" id="13_qk5mf"]
 [ext_resource type="Texture2D" uid="uid://cqqmfhakogy8w" path="res://Assets/2DArt/PC/Dealer/pc-dealer-blocks.png" id="13_sotu5"]
 [ext_resource type="Texture2D" uid="uid://b88mhra0x63ii" path="res://Assets/2DArt/PC/Dealer/pc-dealer-section.png" id="14_hwd26"]
 [ext_resource type="Texture2D" uid="uid://cppsyslag23pv" path="res://Assets/2DArt/PC/Dealer/pc-dealer-item.png" id="15_hwd26"]
 [ext_resource type="Script" uid="uid://08n5ukorqdyk" path="res://Scripts/Office/Computer/ScrollCatalog.cs" id="15_vbt5y"]
 [ext_resource type="Script" uid="uid://bho5a8iwfj3pn" path="res://Scripts/Office/Computer/MapUI.cs" id="16_l232m"]
+[ext_resource type="Texture2D" uid="uid://bjrsu2636kxwf" path="res://icon.svg" id="17_hh2ic"]
 [ext_resource type="Texture2D" uid="uid://db100q8k8e4mb" path="res://Assets/2DArt/PC/pc-desktop-window-closebutton.png" id="17_l7uy0"]
 [ext_resource type="Texture2D" uid="uid://coqixjy7vni4k" path="res://Assets/2DArt/PC/Dealer/pc-dealer-section-clicked.png" id="17_xbdnv"]
 [ext_resource type="FontFile" uid="uid://cygukaybulvh" path="res://Font/MSW98UI-Regular.ttf" id="18_obv51"]
@@ -34,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://d0ty8tg8sm8x7" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-arrowup-clicked.png" id="23_2bhit"]
 [ext_resource type="Texture2D" uid="uid://dy8fet5bs3pow" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-arrowdown.png" id="24_yeqts"]
 [ext_resource type="Texture2D" uid="uid://dh21pjjxf4pil" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-arrowdown-clicked.png" id="25_kjhr5"]
+[ext_resource type="Script" uid="uid://7f4i58tbcxwb" path="res://CatalogueIcon.cs" id="34_tk8e1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqyqf"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -434,22 +436,27 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_5uut4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qk5mf")
 text = "\\/"
 
-[node name="Malady_PH" type="Control" parent="Player_Interactables_C" unique_id=2143752587]
+[node name="Malady_PH" type="Control" parent="Player_Interactables_C" unique_id=2143752587 node_paths=PackedStringArray("IconTemplate")]
 anchors_preset = 0
-offset_right = 1700.0
-offset_bottom = 1080.0
+offset_left = 97.0
+offset_top = 45.0
+offset_right = 1797.0
+offset_bottom = 1125.0
+scale = Vector2(0.89796, 0.9)
+script = ExtResource("12_rwllh")
+IconTemplate = NodePath("../../CatalogueIconTemplate")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player_Interactables_C/Malady_PH" unique_id=1545948043]
-position = Vector2(968, 544)
-scale = Vector2(0.67, 0.67)
-texture = ExtResource("10_6b1vu")
+position = Vector2(967, 512)
+scale = Vector2(0.568, 0.545)
+texture = ExtResource("7_6b1vu")
 
 [node name="Close" type="Button" parent="Player_Interactables_C/Malady_PH" unique_id=779862827]
 layout_mode = 0
-offset_left = 1393.0
-offset_top = 197.0
-offset_right = 1485.0
-offset_bottom = 287.0
+offset_left = 1570.5557
+offset_top = 142.22223
+offset_right = 1662.5557
+offset_bottom = 232.22223
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
@@ -459,24 +466,25 @@ flat = true
 
 [node name="ScrollCatalog" type="ScrollContainer" parent="Player_Interactables_C/Malady_PH" unique_id=1770234032]
 layout_mode = 0
-offset_left = 432.0
-offset_top = 215.0
-offset_right = 999.0
-offset_bottom = 915.0
+offset_left = 611.11115
+offset_top = 232.22223
+offset_right = 1129.2262
+offset_bottom = 932.2222
 script = ExtResource("15_vbt5y")
 
 [node name="GridContainer" type="GridContainer" parent="Player_Interactables_C/Malady_PH/ScrollCatalog" unique_id=1273949924]
 layout_mode = 2
+mouse_filter = 0
 theme_override_constants/h_separation = 274
 theme_override_constants/v_separation = 222
 columns = 2
 
 [node name="MaladyCatalogSlotUi" parent="Player_Interactables_C/Malady_PH" unique_id=149421627 instance=ExtResource("13_qk5mf")]
 layout_mode = 1
-offset_left = 1008.0
-offset_top = 349.99997
-offset_right = 968.0
-offset_bottom = 350.0
+offset_left = 1185.5557
+offset_top = 295.2222
+offset_right = 1145.5557
+offset_bottom = 295.22217
 scale = Vector2(0.5, 0.42)
 
 [node name="Dealer_PH" type="Control" parent="Player_Interactables_C" unique_id=1778326563]
@@ -1189,6 +1197,32 @@ theme_override_fonts/font = ExtResource("6_vjhme")
 theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CatalogueIconTemplate" type="Control" parent="." unique_id=1367464462]
+visible = false
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 57.0
+offset_top = 50.0
+offset_right = 97.0
+offset_bottom = 90.0
+script = ExtResource("34_tk8e1")
+
+[node name="Button" type="Button" parent="CatalogueIconTemplate" unique_id=269622725]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+scale = Vector2(1.5, 1.5)
+icon = ExtResource("17_hh2ic")
+
+[node name="IconText" type="Label" parent="CatalogueIconTemplate" unique_id=363438597]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 38.0
+offset_right = 147.0
+offset_bottom = 110.0
+text = "NAME NAME"
 
 [connection signal="visibility_changed" from="Player_Interactables_C/MapControl" to="Player_Interactables_C/MapControl" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH/Resources_Window" to="." method="_on_resources_window_visibility_changed"]

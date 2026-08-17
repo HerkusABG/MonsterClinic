@@ -58,5 +58,21 @@ public partial class MaladyCatalogSlotUi : Control
         GetNode<RichTextLabel>("CuredBy").Text = string.Join("\n", cureNames);
         GetNode<RichTextLabel>("Symptoms").Text = string.Join("\n", malady.allSymptoms);
     }
+
+    public void DisplayMaladyInfo(CatalogueInfoPackage package)
+    {
+        // to get the indexchecker the maladyautoload is called, the indexchecker is set to 0, which is the first entry in the list of maladies
+        // the maladydata is set to the first entry in the list of maladies
+        // set up the name, description and sympthoms of the malady in the Labels and RichtextLabels.
+        GetNode<Label>("Name").Text = package.name;
+        GetNode<RichTextLabel>("Description").Text = package.description;
+        /*List<string> cureNames = new List<string>();
+        foreach (Medicine medicine in malady.cures)
+        {
+            cureNames.Add(medicine.name);
+        }
+        GetNode<RichTextLabel>("CuredBy").Text = string.Join("\n", cureNames);
+        GetNode<RichTextLabel>("Symptoms").Text = string.Join("\n", malady.allSymptoms);*/
+    }
 }
 
