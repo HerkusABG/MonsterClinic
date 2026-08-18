@@ -7,7 +7,6 @@ public partial class CatalogueManager : Control
 {
 	[Export] Control IconTemplate;
     [Export] Control ContainerTemplate;
-    private List<CatalogueSection> sections = new List<CatalogueSection>();
 
     [Export] TextureButton MaladyButton;
     [Export] Control MaladyContainer;
@@ -34,6 +33,8 @@ public partial class CatalogueManager : Control
         CreateSection(MedicineButton, MedicineContainer, InfoList.Medicines);
 
         CreateSection(TagButton, TagContainer, InfoList.Tags);
+
+        ShowContainer(MaladyContainer);
     }
 
 

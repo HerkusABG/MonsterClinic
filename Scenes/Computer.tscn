@@ -437,6 +437,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_qk5mf")
 text = "\\/"
 
 [node name="Malady_PH" type="Control" parent="Player_Interactables_C" unique_id=2143752587 node_paths=PackedStringArray("IconTemplate", "MaladyButton", "MaladyContainer", "MedicineButton", "MedicineContainer", "TagButton", "TagContainer")]
+visible = false
 anchors_preset = 0
 offset_left = 97.0
 offset_top = 45.0

@@ -13,6 +13,7 @@ public static class TagList
 			{
 				TagType.Daily
 			},
+			behaviour = "Severity worsens by 1 every 2 days.",
 			increment = 2,
 			strength = 1
 		},
@@ -23,7 +24,8 @@ public static class TagList
 			{
 				TagType.Daily
 			},
-			increment = 2,
+            behaviour = "Severity improves by 2 every 2 days.",
+            increment = 2,
 			strength = -2
 		},
 		["Unstable"] = new UnstableTag
@@ -34,7 +36,8 @@ public static class TagList
 				TagType.Daily,
 				TagType.Interaction
 			},
-			strength = 2
+            behaviour = "Using the wrong type of medicine will increase the severity by 2.",
+            strength = 2
 		},
 		["Deadly"] = new DeadlyTag
 		{
@@ -43,8 +46,9 @@ public static class TagList
 			{
 				TagType.Daily,
 				TagType.MaxSeverity
-			}
-		},
+			},
+            behaviour = "Patient will die if severity reaches 5.",
+        },
 		["Resistant"] = new ResistantTag
 		{
 			name = "Resistant",
@@ -52,7 +56,8 @@ public static class TagList
 			{
 				TagType.Interaction
 			},
-			ratioA = 2,
+            behaviour = "There's a chance that the treatment will fail.",
+            ratioA = 2,
 			ratioB = 4
 		},
 		["StrongWorsening"] = new WorseningTag
@@ -62,7 +67,8 @@ public static class TagList
 			{
 				TagType.Daily
 			},
-			increment = 2,
+            behaviour = "Severity worsens by 2 every 2 days",
+            increment = 2,
 			strength = 2
 		},
 		["WeakWorsening"] = new WorseningTag
@@ -72,7 +78,8 @@ public static class TagList
 			{
 				TagType.Daily
 			},
-			increment = 3,
+            behaviour = "Severity worsens by 1 every 3 days.",
+            increment = 3,
 			strength = 1
 		},
 		["WeakHealing"] = new HealingTag
@@ -82,7 +89,8 @@ public static class TagList
 			{
 				TagType.Daily
 			},
-			increment = 3,
+            behaviour = "Severity improves by 1 every 3 days.",
+            increment = 3,
 			strength = -1
 		}
 	};

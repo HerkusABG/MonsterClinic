@@ -11,9 +11,16 @@ public partial class MaladyCatalogSlotUi : Control
 
 
 
-    public override void _Ready()
+    public void Initialize()
     {
-    
+        GetNode<Label>("Symptoms_label").Show();
+        GetNode<Label>("CuredBy_label").Show();
+
+        GetNode<RichTextLabel>("CuredBy").Show();
+        GetNode<RichTextLabel>("Symptoms").Show();
+
+        GetNode<Label>("Cost_label").Hide();
+        GetNode<Label>("Behaviour_label").Hide();
     }
     
    
@@ -108,8 +115,8 @@ public partial class MaladyCatalogSlotUi : Control
 
             //GetNode<Label>("Behaviour_label").Text = package.behaviour;
         }
-            //List<string> cureNames = new List<string>();
-            //GetNode<RichTextLabel>("Symptoms").Text = string.Join("\n", malady.allSymptoms);
+        //List<string> cureNames = new List<string>();
+        //GetNode<RichTextLabel>("Symptoms").Text = string.Join("\n", malady.allSymptoms);
     }
 }
 
