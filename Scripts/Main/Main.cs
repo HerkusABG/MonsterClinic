@@ -47,6 +47,9 @@ public partial class Main : Node
         OutsideWorld.Initialize();
         Upgrades.Initialize();
         DealerList.Initialize();
+        MaladyList.Initialize();
+        MedicineManager.Initialize();
+        TagList.Initialize();
         //always keep the office at the bottom of the previous scenes stack, so the reference on how to return to it is always there
         GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
         //Initialization chain [BELOW]

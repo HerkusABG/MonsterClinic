@@ -436,27 +436,40 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_5uut4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qk5mf")
 text = "\\/"
 
-[node name="Malady_PH" type="Control" parent="Player_Interactables_C" unique_id=2143752587 node_paths=PackedStringArray("IconTemplate")]
+[node name="Malady_PH" type="Control" parent="Player_Interactables_C" unique_id=2143752587 node_paths=PackedStringArray("IconTemplate", "MaladyButton", "MaladyContainer", "MedicineButton", "MedicineContainer", "TagButton", "TagContainer")]
 anchors_preset = 0
 offset_left = 97.0
 offset_top = 45.0
 offset_right = 1797.0
 offset_bottom = 1125.0
-scale = Vector2(0.89796, 0.9)
+scale = Vector2(0.9, 0.9)
 script = ExtResource("12_rwllh")
 IconTemplate = NodePath("../../CatalogueIconTemplate")
+MaladyButton = NodePath("Maladies")
+MaladyContainer = NodePath("ScrollCatalog")
+MedicineButton = NodePath("Medicine")
+MedicineContainer = NodePath("ScrollCatalog2")
+TagButton = NodePath("Tags")
+TagContainer = NodePath("ScrollCatalog3")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player_Interactables_C/Malady_PH" unique_id=1545948043]
 position = Vector2(967, 512)
 scale = Vector2(0.568, 0.545)
 texture = ExtResource("7_6b1vu")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Player_Interactables_C/Malady_PH" unique_id=1324028360]
+z_index = 1
+position = Vector2(1141.9999, 533)
+scale = Vector2(0.5680291, 0.5453477)
+texture = ExtResource("13_sotu5")
+
 [node name="Close" type="Button" parent="Player_Interactables_C/Malady_PH" unique_id=779862827]
+z_index = 1
 layout_mode = 0
-offset_left = 1570.5557
-offset_top = 142.22223
-offset_right = 1662.5557
-offset_bottom = 232.22223
+offset_left = 1591.0
+offset_top = 88.0
+offset_right = 1683.0
+offset_bottom = 178.0
 theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
@@ -466,26 +479,132 @@ flat = true
 
 [node name="ScrollCatalog" type="ScrollContainer" parent="Player_Interactables_C/Malady_PH" unique_id=1770234032]
 layout_mode = 0
-offset_left = 611.11115
-offset_top = 232.22223
-offset_right = 1129.2262
-offset_bottom = 932.2222
+offset_left = 677.7778
+offset_top = 265.55557
+offset_right = 1133.3334
+offset_bottom = 875.55554
 script = ExtResource("15_vbt5y")
 
 [node name="GridContainer" type="GridContainer" parent="Player_Interactables_C/Malady_PH/ScrollCatalog" unique_id=1273949924]
+z_index = 3
 layout_mode = 2
 mouse_filter = 0
-theme_override_constants/h_separation = 274
-theme_override_constants/v_separation = 222
+theme_override_constants/h_separation = 250
+theme_override_constants/v_separation = 60
+columns = 2
+
+[node name="ScrollCatalog2" type="ScrollContainer" parent="Player_Interactables_C/Malady_PH" unique_id=1703265167]
+layout_mode = 0
+offset_left = 677.77783
+offset_top = 265.55557
+offset_right = 1133.3335
+offset_bottom = 875.55554
+script = ExtResource("15_vbt5y")
+
+[node name="GridContainer" type="GridContainer" parent="Player_Interactables_C/Malady_PH/ScrollCatalog2" unique_id=1674980826]
+z_index = 3
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/h_separation = 250
+theme_override_constants/v_separation = 60
+columns = 2
+
+[node name="ScrollCatalog3" type="ScrollContainer" parent="Player_Interactables_C/Malady_PH" unique_id=482608878]
+layout_mode = 0
+offset_left = 677.77783
+offset_top = 265.55557
+offset_right = 1133.3335
+offset_bottom = 875.55554
+script = ExtResource("15_vbt5y")
+
+[node name="GridContainer" type="GridContainer" parent="Player_Interactables_C/Malady_PH/ScrollCatalog3" unique_id=110939616]
+z_index = 3
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/h_separation = 250
+theme_override_constants/v_separation = 60
 columns = 2
 
 [node name="MaladyCatalogSlotUi" parent="Player_Interactables_C/Malady_PH" unique_id=149421627 instance=ExtResource("13_qk5mf")]
+z_index = 2
 layout_mode = 1
-offset_left = 1185.5557
-offset_top = 295.2222
-offset_right = 1145.5557
-offset_bottom = 295.22217
-scale = Vector2(0.5, 0.42)
+offset_left = 1226.6666
+offset_top = 271.11118
+offset_right = 351.11133
+offset_bottom = 271.1112
+scale = Vector2(0.5, 0.5)
+
+[node name="Maladies" type="TextureButton" parent="Player_Interactables_C/Malady_PH" unique_id=398118631]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 0
+offset_left = 266.6667
+offset_top = 255.55556
+offset_right = 912.6667
+offset_bottom = 474.55554
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("14_hwd26")
+texture_pressed = ExtResource("17_xbdnv")
+
+[node name="Label" type="Label" parent="Player_Interactables_C/Malady_PH/Maladies" unique_id=1419061952]
+layout_mode = 0
+offset_left = 96.66666
+offset_top = 48.333282
+offset_right = 558.3334
+offset_bottom = 172.33328
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 50
+text = "Maladies"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Medicine" type="TextureButton" parent="Player_Interactables_C/Malady_PH" unique_id=1662635806]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 0
+offset_left = 266.6667
+offset_top = 455.55554
+offset_right = 912.6667
+offset_bottom = 674.55554
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("14_hwd26")
+texture_pressed = ExtResource("17_xbdnv")
+
+[node name="Label" type="Label" parent="Player_Interactables_C/Malady_PH/Medicine" unique_id=1224145468]
+layout_mode = 0
+offset_left = 96.66666
+offset_top = 48.333282
+offset_right = 558.3334
+offset_bottom = 172.33328
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 50
+text = "Medicine"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tags" type="TextureButton" parent="Player_Interactables_C/Malady_PH" unique_id=1157661565]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 0
+offset_left = 266.6667
+offset_top = 655.55554
+offset_right = 912.6667
+offset_bottom = 874.55554
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("14_hwd26")
+texture_pressed = ExtResource("17_xbdnv")
+
+[node name="Label" type="Label" parent="Player_Interactables_C/Malady_PH/Tags" unique_id=656502394]
+layout_mode = 0
+offset_left = 96.66666
+offset_top = 48.333282
+offset_right = 558.3334
+offset_bottom = 172.33328
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 50
+text = "Tags"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Dealer_PH" type="Control" parent="Player_Interactables_C" unique_id=1778326563]
 visible = false
@@ -672,6 +791,7 @@ vertical_alignment = 1
 
 [node name="Close" type="Button" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=902854509]
 visible = false
+z_index = 2
 layout_mode = 0
 offset_left = 336.0
 offset_right = 386.0
@@ -1200,29 +1320,34 @@ vertical_alignment = 1
 
 [node name="CatalogueIconTemplate" type="Control" parent="." unique_id=1367464462]
 visible = false
-custom_minimum_size = Vector2(40, 40)
+custom_minimum_size = Vector2(0, 204)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 57.0
 offset_top = 50.0
-offset_right = 97.0
-offset_bottom = 90.0
+offset_right = 261.0
+offset_bottom = 254.0
 script = ExtResource("34_tk8e1")
 
 [node name="Button" type="Button" parent="CatalogueIconTemplate" unique_id=269622725]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-scale = Vector2(1.5, 1.5)
+offset_right = 204.0
+offset_bottom = 204.0
 icon = ExtResource("17_hh2ic")
+expand_icon = true
 
 [node name="IconText" type="Label" parent="CatalogueIconTemplate" unique_id=363438597]
 layout_mode = 0
 offset_left = 18.0
 offset_top = 38.0
-offset_right = 147.0
-offset_bottom = 110.0
-text = "NAME NAME"
+offset_right = 189.0
+offset_bottom = 169.0
+theme_override_fonts/font = ExtResource("18_obv51")
+theme_override_font_sizes/font_size = 25
+text = "aaaaaaa aaaaaaaaa aaaaaaaaaa"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="visibility_changed" from="Player_Interactables_C/MapControl" to="Player_Interactables_C/MapControl" method="_on_visibility_changed"]
 [connection signal="visibility_changed" from="Player_Interactables_C/Dealer_PH/Resources_Window" to="." method="_on_resources_window_visibility_changed"]

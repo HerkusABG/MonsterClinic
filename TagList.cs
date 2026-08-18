@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class TagList
 {
@@ -85,4 +86,17 @@ public static class TagList
 			strength = -1
 		}
 	};
+
+    public static void Initialize()
+    {
+        SaveCatalogueInfo();
+    }
+    public static void SaveCatalogueInfo()
+    {
+        for (int i = 0; i < Database.Count; i++)
+        {
+            CatalogueInfoPackage package = new CatalogueInfoPackage(Database.ElementAt(i).Value);
+            InfoList.Tags.Add(package);
+        }
+    }
 }

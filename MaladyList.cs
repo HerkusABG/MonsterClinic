@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class MaladyList
 
@@ -310,5 +311,18 @@ public static class MaladyList
 		}
 		return outputList;
 	}
+	public static void Initialize()
+	{
+		SaveCatalogueInfo();
+    }
+	public static void SaveCatalogueInfo()
+	{
+		for (int i = 0; i < Database.Count; i++)
+		{
+			CatalogueInfoPackage package = new CatalogueInfoPackage(Database.ElementAt(i).Value);
+            InfoList.Maladies.Add(package);
+        }
+	}
+
 
 }
