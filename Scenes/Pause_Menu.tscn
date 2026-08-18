@@ -87,6 +87,7 @@ border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [node name="Pause" type="Node2D" unique_id=738940643]
+process_mode = 3
 script = ExtResource("1_eu8ou")
 
 [node name="Stylish_Transaprent_Background" type="ColorRect" parent="." unique_id=1851092982]
@@ -137,7 +138,6 @@ theme_override_font_sizes/font_size = 25
 theme_override_styles/normal = SubResource("StyleBoxFlat_eu8ou")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_00s40")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yrbao")
-disabled = true
 text = "Save Game
 "
 
