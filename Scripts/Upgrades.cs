@@ -26,15 +26,17 @@ static class Upgrades
 			name = "Expand clinic waiting room",
 			incrementTarget = 3,
 			cap = 6,
-			price = 20
+			price = 20,
+			description = "Increase the amount of patients that can appear at the beginning of each day."
 		},
 		["Rooms"] = new IntegerUpgrade
 		{
 			name = "Buy a new room for patient treatment",
 			incrementTarget = 1,
 			cap = 6,
-			price = 50
-		}
+			price = 50,
+            description = "Purchase an additional patient room so that more patients can be admitted at a time."
+        }
 	};
 
 	public static Dictionary<string, BooleanUpgrade> BoolUpgradeDatabase = new()
@@ -44,8 +46,9 @@ static class Upgrades
 			name = "Unlock Curitol",
 			unlocked = false,
 			price = 200,
-			medicine = MedicineManager.Database["Curitol"]
-		},
+			medicine = MedicineManager.Database["Curitol"],
+            description = "Unlock CURITOL for purchase, whill can cure every malady."
+        },
 	};
 
 	public static void Initialize()

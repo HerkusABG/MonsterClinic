@@ -1195,7 +1195,8 @@ offset_right = 1589.0
 offset_bottom = 877.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("18_obv51")
-theme_override_font_sizes/font_size = 23
+theme_override_font_sizes/font_size = 25
+autowrap_mode = 2
 
 [node name="Purchase_Button" type="TextureButton" parent="Player_Interactables_C/Dealer_PH" unique_id=814923762]
 visible = false

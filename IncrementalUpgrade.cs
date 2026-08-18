@@ -10,4 +10,5 @@ public class IncrementalUpgrade
     public Medicine medicine { get; set; }
 
     public Action OnUpgradePressed { get; set; }
+    public string description { get; set; }
 }

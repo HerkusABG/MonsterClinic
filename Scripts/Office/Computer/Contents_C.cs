@@ -452,7 +452,8 @@ public partial class Contents_C : ExpNode2D
     {
         PurchaseInfo.Text = "Self Treatment  (Price:" + GlobalData.MedicineCost + ") \n" +
             "Owned: " + GlobalData.MedicinePlayer.ToString() + "\n" +
-            "Availability in: " + GlobalData.Medicincavailability.ToString();
+            "Availability in: " + GlobalData.Medicincavailability.ToString() + "\n \n"
+            + "Purchase self treatment, which you must buy in order to survive. This will allow you to extend your lifestpan by 5 days.";
         PurchaseButtonHolder = SelfTreatmentButton as DealerButton;
         PurchaseMode = "self";
         PurchaseButton.Show();
@@ -478,7 +479,7 @@ public partial class Contents_C : ExpNode2D
     {
         int count = RoomManager.GetDeadPatientCount();
         int cost = Economy.bodyDisposalCost * count;
-        PurchaseInfo.Text = $"Dispose of {count} dead patients \n Price: {cost}";
+        PurchaseInfo.Text = $"Dispose of {count} dead patients. \n Price: {cost}";
         BodyDisposalButton.Disabled = count <= 0;
         PurchaseMode = "body";
         PurchaseButton.Show();
