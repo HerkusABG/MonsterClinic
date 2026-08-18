@@ -12,6 +12,11 @@ public partial class Hallway : ExpNode2D
     List<BaseButton> Doors = new List<BaseButton>();
     [Export] Button LeaveRoomButton;
     [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
+
+    private Timer _inactivityTimer;
+    private Timer _displayTimer;
+    private bool _isButtonVisible = false;
+
     public void Initialize()
     {
         //Initializing the hallway, all the main methods.
@@ -20,6 +25,86 @@ public partial class Hallway : ExpNode2D
         Subscribe();
 
         DoorInitialize();
+
+        SetupTimers();
+    }
+
+    private void SetupTimers()
+    {
+        if (LeaveRoomButton != null)
+        {
+            LeaveRoomButton.Hide();
+            var label = LeaveRoomButton.GetNodeOrNull<Label>("Label");
+            if (label != null) label.Text = "RETURN";
+        }
+
+        // Timer 1: Waits for 5s of NO mouse movement before showing button
+        _inactivityTimer = new Timer();
+        _inactivityTimer.WaitTime = 5.0f;
+        _inactivityTimer.OneShot = true;
+        _inactivityTimer.Timeout += OnInactivityTimeout;
+        AddChild(_inactivityTimer);
+
+        // Timer 2: Keeps button visible on screen for 5s so player can move mouse and click
+        _displayTimer = new Timer();
+        _displayTimer.WaitTime = 5.0f;
+        _displayTimer.OneShot = true;
+        _displayTimer.Timeout += OnDisplayTimeout;
+        AddChild(_displayTimer);
+
+        _inactivityTimer.Start();
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        // Only reset the inactivity countdown while the button is hidden
+        if (!_isButtonVisible)
+        {
+            if (@event is InputEventMouseMotion mouseMotion)
+            {
+                if (mouseMotion.Relative.LengthSquared() > 1.0f)
+                {
+                    _inactivityTimer.Start();
+                }
+            }
+            else if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
+            {
+                _inactivityTimer.Start();
+            }
+        }
+    }
+
+    private void OnInactivityTimeout()
+    {
+        // 5 seconds of inactivity reached: Show button and start 5s display window
+        _isButtonVisible = true;
+        if (LeaveRoomButton != null)
+        {
+            LeaveRoomButton.Show();
+            var label = LeaveRoomButton.GetNodeOrNull<Label>("Label");
+            if (label != null) label.Text = "RETURN";
+        }
+
+        _displayTimer.Start();
+    }
+
+    private void OnDisplayTimeout()
+    {
+        // If player is hovering over the button, extend visibility so it doesn't vanish mid-click
+        if (LeaveRoomButton != null && LeaveRoomButton.IsHovered())
+        {
+            _displayTimer.Start();
+            return;
+        }
+
+        // 5 seconds of display time elapsed: Hide button and wait for inactivity again
+        _isButtonVisible = false;
+        if (LeaveRoomButton != null)
+        {
+            LeaveRoomButton.Hide();
+        }
+
+        _inactivityTimer.Start();
     }
 
     private void GetNodes()
@@ -106,24 +191,24 @@ public partial class Hallway : ExpNode2D
     }
 
     private void HoverOn()
-{
-   
-    var label = LeaveRoomButton?.GetNodeOrNull<Label>("Label");
-    if (label != null)
     {
-        label.Text = "Return";
+        var label = LeaveRoomButton?.GetNodeOrNull<Label>("Label");
+        if (label != null)
+        {
+            label.Text = "RETURN";
+            label.Modulate = Colors.White;
+        }
     }
-}
 
-private void HoverOff()
-{
-    
-    var label = LeaveRoomButton?.GetNodeOrNull<Label>("Label");
-    if (label != null)
+    private void HoverOff()
     {
-        label.Text = "";
+        var label = LeaveRoomButton?.GetNodeOrNull<Label>("Label");
+        if (label != null)
+        {
+            label.Text = "RETURN";
+            label.Modulate = new Color(1, 1, 1, 0.8f);
+        }
     }
-}
 
     public override void OnRoomEnter(Node mainNode)
     {
@@ -133,6 +218,11 @@ private void HoverOff()
 
         Inventory inv = mainNode.GetNode<Inventory>("Inventory");
         inv.InventoryActions();
+
+        // Start waiting for 5 seconds of inactivity upon entering the hallway
+        _isButtonVisible = false;
+        if (LeaveRoomButton != null) LeaveRoomButton.Hide();
+        if (_inactivityTimer != null) _inactivityTimer.Start();
     }
 
     public override void OnRoomExit()

@@ -54,13 +54,14 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Leave_Room" type="Button" parent="HallwayControl" unique_id=1416126221]
+self_modulate = Color(1, 1, 1, 0.69803923)
 z_index = 1
 custom_minimum_size = Vector2(210, 100)
 layout_mode = 0
-offset_left = 388.94574
-offset_top = 952.0
-offset_right = 788.9458
-offset_bottom = 1202.0
+offset_left = 14.329559
+offset_top = 926.0
+offset_right = 656.40466
+offset_bottom = 1228.0
 scale = Vector2(3.0383828, 0.5)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_st2uq")
@@ -76,16 +77,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -19.0
-offset_right = 20.0
-offset_bottom = 19.0
+offset_left = -25.602112
+offset_top = 24.999985
+offset_right = 39.71869
+offset_bottom = 56.999985
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.3099208, 3.9586358)
-theme_override_colors/font_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+theme_override_colors/font_color = Color(0.12941177, 0.12941177, 0.12941177, 0.8784314)
 theme_override_fonts/font = ExtResource("4_st2uq")
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -114,8 +115,6 @@ texture_normal = ExtResource("5_5eg2f")
 texture_hover = ExtResource("6_bve6k")
 texture_disabled = ExtResource("7_vsvav")
 script = ExtResource("4_3js8s")
-DoorId = 1
-IsUnlocked = true
 
 [node name="Door2" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1489299767]
 layout_mode = 0
