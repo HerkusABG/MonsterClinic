@@ -102,8 +102,10 @@ public partial class Contents_O : ExpNode2D
             //push the scene we're entering to the previous scenes stack
             GlobalData.PreviousScenes.Push(BedScene.GetPath());
 
+
             // timer is getting set to 3 seconds and starts
             sceneTimer.Start(3.0);
+
             if (GlobalData.Medicincavailability != 0)
             {
                 GlobalData.Medicincavailability--;
@@ -129,6 +131,20 @@ public partial class Contents_O : ExpNode2D
         PopupLabel.Hide();
         PopupOpen.Hide();
         PopupClose.Hide();
+    }
+
+    public override void _Input(InputEvent inputEvent)
+    {
+        if (inputEvent is InputEventMouseButton leftmouseBtn)
+        {
+            if (leftmouseBtn.ButtonIndex == MouseButton.Left && leftmouseBtn.Pressed && GlobalData.Bed == true && GlobalData.Countdown != -1)
+            {
+                sceneTimer.Stop();
+                var BedScene = (Node2D)GetParent().GetNode("Bed");
+                BedScene.Hide();
+                Show();
+            }
+        }
     }
 
     private void OnSceneTimerTimeout()
