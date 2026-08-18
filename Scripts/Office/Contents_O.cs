@@ -108,11 +108,6 @@ public partial class Contents_O : ExpNode2D
 
     private void OnSceneTimerTimeout()
     {
-        Dialog dialog = GetParent().GetNode<Dialog>("Dialog");
-        //dialog.Show();
-        GD.Print("Dialog");
-        
-
         // Daily earnings gets reseted
         GlobalData.DailyEarnings = 0;
 
