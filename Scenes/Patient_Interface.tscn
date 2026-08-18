@@ -20,11 +20,13 @@
 [ext_resource type="Script" uid="uid://drow72lvn73wp" path="res://Scripts/Office/PatientInterface/Diagnosis_Box.cs" id="13_3xib3"]
 [ext_resource type="Texture2D" uid="uid://dn0bh1glymvni" path="res://Assets/2DArt/Admission/admission-thermogun-hover.png" id="14_7if8t"]
 [ext_resource type="Script" uid="uid://um68vmhviamh" path="res://Scripts/Office/PatientInterface/AdmissionManager.cs" id="15_uph1y"]
-[ext_resource type="Texture2D" uid="uid://s3olr6wa05nn" path="res://Assets/2DArt/Admission/admission-greenbutton-pressed.png" id="16_cstxn"]
 [ext_resource type="Texture2D" uid="uid://dmxuhodpymfht" path="res://Assets/2DArt/Admission/admission-stethoscope-hover.png" id="16_jq0il"]
-[ext_resource type="Texture2D" uid="uid://clnvhkrdi0r1b" path="res://Assets/2DArt/Admission/admission-greenbutton-hover.png" id="17_863te"]
-[ext_resource type="Texture2D" uid="uid://hfmpm4ueryb8" path="res://Assets/2DArt/Admission/admission-redbutton-pressed.png" id="19_jlfvo"]
-[ext_resource type="Texture2D" uid="uid://b46ry0nbuk0hy" path="res://Assets/2DArt/Admission/admission-redbutton-hover.png" id="20_7if8t"]
+[ext_resource type="Texture2D" uid="uid://c5l3cbj8ra6s2" path="res://Assets/2DArt/Admission/greenbutton.png" id="19_tq7xl"]
+[ext_resource type="Texture2D" uid="uid://dn7umb0wkfw45" path="res://Assets/2DArt/Admission/greenbutton-pressed.png" id="20_n6kvm"]
+[ext_resource type="Texture2D" uid="uid://ciu7byitd1qmd" path="res://Assets/2DArt/Admission/greenbutton-hover.png" id="21_sp6tf"]
+[ext_resource type="Texture2D" uid="uid://dyt2u3iq14yoa" path="res://Assets/2DArt/Admission/redbutton.png" id="22_c2mdr"]
+[ext_resource type="Texture2D" uid="uid://deos1nvek2n3l" path="res://Assets/2DArt/Admission/redbutton-pressed.png" id="23_apycr"]
+[ext_resource type="Texture2D" uid="uid://3g7v5eh38wle" path="res://Assets/2DArt/Admission/redbutton-hover.png" id="24_vd0et"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5iby"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -249,11 +251,11 @@ text = "Return "
 
 [node name="Dialogue" type="TextureButton" parent="ControlPatientInterface" unique_id=1543575623]
 layout_mode = 0
-offset_left = 1495.0
-offset_top = 592.99994
-offset_right = 2075.0
-offset_bottom = 1273.0
-scale = Vector2(0.35, 0.35)
+offset_left = 1480.0
+offset_top = 582.00006
+offset_right = 2060.0
+offset_bottom = 1262.0001
+scale = Vector2(0.4, 0.4)
 texture_normal = ExtResource("7_7u4js")
 texture_pressed = ExtResource("7_7u4js")
 texture_hover = ExtResource("12_jt6r3")
@@ -276,11 +278,11 @@ expand_icon = true
 
 [node name="Zoom" type="TextureButton" parent="ControlPatientInterface" unique_id=1887223678]
 layout_mode = 0
-offset_left = 956.0
-offset_top = 705.0
-offset_right = 1440.0
-offset_bottom = 1056.0
-scale = Vector2(0.4, 0.4)
+offset_left = 922.00006
+offset_top = 703.0
+offset_right = 1406.0
+offset_bottom = 1054.0
+scale = Vector2(0.45, 0.45)
 texture_normal = ExtResource("8_f16jq")
 texture_pressed = ExtResource("8_f16jq")
 texture_hover = ExtResource("14_7if8t")
@@ -319,11 +321,11 @@ expand_icon = true
 
 [node name="Pulse" type="TextureButton" parent="ControlPatientInterface" unique_id=1300044843]
 layout_mode = 0
-offset_left = 1240.0
-offset_top = 733.0
-offset_right = 1724.0
-offset_bottom = 1084.0
-scale = Vector2(0.4, 0.4)
+offset_left = 1187.0
+offset_top = 731.0
+offset_right = 1671.0
+offset_bottom = 1082.0
+scale = Vector2(0.45, 0.45)
 texture_normal = ExtResource("9_kytyi")
 texture_pressed = ExtResource("9_kytyi")
 texture_hover = ExtResource("16_jq0il")
@@ -347,25 +349,25 @@ expand_icon = true
 
 [node name="Admit" type="TextureButton" parent="ControlPatientInterface" unique_id=2050577360]
 layout_mode = 0
-offset_left = 839.0
-offset_top = 836.0
-offset_right = 1593.0
-offset_bottom = 1158.0
-scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("12_ecejo")
-texture_pressed = ExtResource("16_cstxn")
-texture_hover = ExtResource("17_863te")
+offset_left = 856.00006
+offset_top = 838.0
+offset_right = 1656.0
+offset_bottom = 1196.0
+scale = Vector2(0.45, 0.45)
+texture_normal = ExtResource("19_tq7xl")
+texture_pressed = ExtResource("20_n6kvm")
+texture_hover = ExtResource("21_sp6tf")
 
 [node name="Reject" type="TextureButton" parent="ControlPatientInterface" unique_id=713101750]
 layout_mode = 0
 offset_left = 1335.0
-offset_top = 823.0
+offset_top = 842.0
 offset_right = 2135.0
-offset_bottom = 1181.0
-scale = Vector2(0.5, 0.5)
-texture_normal = ExtResource("10_65rjk")
-texture_pressed = ExtResource("19_jlfvo")
-texture_hover = ExtResource("20_7if8t")
+offset_bottom = 1200.0
+scale = Vector2(0.45, 0.45)
+texture_normal = ExtResource("22_c2mdr")
+texture_pressed = ExtResource("23_apycr")
+texture_hover = ExtResource("24_vd0et")
 
 [node name="Admit1" type="Button" parent="ControlPatientInterface" unique_id=1942473230]
 visible = false

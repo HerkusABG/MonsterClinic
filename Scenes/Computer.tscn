@@ -4,10 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://nm7lxknn3wht" path="res://Assets/2DArt/PC/pc-desktop-background.png" id="2_xfmgl"]
 [ext_resource type="Texture2D" uid="uid://b1slbvygld6pu" path="res://Assets/2DArt/PC/pc-desktop-app-dealer.png" id="3_0xibf"]
 [ext_resource type="Script" uid="uid://cq86685btgs2e" path="res://DealerButton.cs" id="3_5uut4"]
+[ext_resource type="Texture2D" uid="uid://ckuigq4hbx11x" path="res://Assets/2DArt/PC/pc-desktop-app-dealer-hover.png" id="4_fxsyg"]
 [ext_resource type="Texture2D" uid="uid://dwbd2gegtvujt" path="res://Assets/2DArt/PC/pc-desktop-app-map.png" id="4_sotu5"]
 [ext_resource type="Texture2D" uid="uid://dqocbt4kfjsn2" path="res://Assets/2DArt/PC/pc-desktop-app-catalogue.png" id="5_hwd26"]
 [ext_resource type="Texture2D" uid="uid://csou6elcu4efx" path="res://Assets/2DArt/PC/pc-powerbutton.png" id="6_1dwtd"]
 [ext_resource type="StyleBox" uid="uid://dy5fikt614yn7" path="res://Grinch_button.tres" id="6_554if"]
+[ext_resource type="Texture2D" uid="uid://buvxc8tg1qgu2" path="res://Assets/2DArt/PC/pc-desktop-app-catalogue-hover.png" id="6_hh2ic"]
 [ext_resource type="Texture2D" uid="uid://dfxww7hkot3q8" path="res://Assets/2DArt/PC/pc-powerbutton-clicked.png" id="6_l7uy0"]
 [ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="6_vjhme"]
 [ext_resource type="Texture2D" uid="uid://bl5d8udjfd43q" path="res://Assets/2DArt/PC/pc-desktop-window.png" id="7_6b1vu"]
@@ -33,8 +35,14 @@
 [ext_resource type="Texture2D" uid="uid://dprynudt3fvqe" path="res://Assets/2DArt/PC/Dealer/pc-dealer-item-clicked.png" id="21_xbdnv"]
 [ext_resource type="Texture2D" uid="uid://drl5vltein81" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-arrowup.png" id="22_md7yb"]
 [ext_resource type="Texture2D" uid="uid://d0ty8tg8sm8x7" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-arrowup-clicked.png" id="23_2bhit"]
+[ext_resource type="Texture2D" uid="uid://kv3qj0v0ae6a" path="res://Assets/2DArt/PC/pc-dealer-section-hover.png" id="23_x3wff"]
 [ext_resource type="Texture2D" uid="uid://dy8fet5bs3pow" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-arrowdown.png" id="24_yeqts"]
 [ext_resource type="Texture2D" uid="uid://dh21pjjxf4pil" path="res://Assets/2DArt/PC/Catalogue/pc-catalogue-arrowdown-clicked.png" id="25_kjhr5"]
+[ext_resource type="Texture2D" uid="uid://cthp4gsv6gl8k" path="res://Assets/2DArt/PC/pc-dealer-item-hover.png" id="26_kqag4"]
+[ext_resource type="Texture2D" uid="uid://dnyd8wyblmqhy" path="res://Assets/2DArt/PC/pc-catalogue-arrowup-hover.png" id="31_4v6w8"]
+[ext_resource type="Texture2D" uid="uid://drql8ypdrrh1c" path="res://Assets/2DArt/PC/pc-desktop-window-closebutton-clicked.png" id="31_x3wff"]
+[ext_resource type="Texture2D" uid="uid://bbmemn4hct0x1" path="res://Assets/2DArt/PC/pc-desktop-window-closebutton-hover.png" id="32_kqag4"]
+[ext_resource type="Texture2D" uid="uid://vekwlgelphle" path="res://Assets/2DArt/PC/pc-catalogue-arrowdown-hover.png" id="34_rkahx"]
 [ext_resource type="Script" uid="uid://7f4i58tbcxwb" path="res://CatalogueIcon.cs" id="34_tk8e1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqyqf"]
@@ -151,6 +159,7 @@ offset_right = 724.0
 offset_bottom = 502.0
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("3_0xibf")
+texture_hover = ExtResource("4_fxsyg")
 
 [node name="Map" type="Button" parent="Player_Interactables_C" unique_id=1453367602]
 visible = false
@@ -177,6 +186,7 @@ offset_right = 1077.0
 offset_bottom = 532.0
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("5_hwd26")
+texture_hover = ExtResource("6_hh2ic")
 
 [node name="Log_out" type="TextureButton" parent="Player_Interactables_C" unique_id=673076352]
 layout_mode = 0
@@ -464,19 +474,15 @@ position = Vector2(1141.9999, 533)
 scale = Vector2(0.5680291, 0.5453477)
 texture = ExtResource("13_sotu5")
 
-[node name="Close" type="Button" parent="Player_Interactables_C/Malady_PH" unique_id=779862827]
-z_index = 1
+[node name="Close" type="TextureButton" parent="Player_Interactables_C/Malady_PH" unique_id=1318719090]
 layout_mode = 0
-offset_left = 1591.0
-offset_top = 88.0
-offset_right = 1683.0
-offset_bottom = 178.0
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
-icon = ExtResource("17_l7uy0")
-flat = true
+offset_left = 1598.889
+offset_top = 93.333336
+offset_right = 1690.889
+offset_bottom = 183.33334
+texture_normal = ExtResource("17_l7uy0")
+texture_pressed = ExtResource("31_x3wff")
+texture_hover = ExtResource("32_kqag4")
 
 [node name="ScrollCatalog" type="ScrollContainer" parent="Player_Interactables_C/Malady_PH" unique_id=1770234032]
 layout_mode = 0
@@ -545,6 +551,7 @@ offset_bottom = 474.55554
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("14_hwd26")
 texture_pressed = ExtResource("17_xbdnv")
+texture_hover = ExtResource("23_x3wff")
 
 [node name="Label" type="Label" parent="Player_Interactables_C/Malady_PH/Maladies" unique_id=1419061952]
 layout_mode = 0
@@ -569,6 +576,7 @@ offset_bottom = 674.55554
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("14_hwd26")
 texture_pressed = ExtResource("17_xbdnv")
+texture_hover = ExtResource("23_x3wff")
 
 [node name="Label" type="Label" parent="Player_Interactables_C/Malady_PH/Medicine" unique_id=1224145468]
 layout_mode = 0
@@ -593,6 +601,7 @@ offset_bottom = 874.55554
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("14_hwd26")
 texture_pressed = ExtResource("17_xbdnv")
+texture_hover = ExtResource("23_x3wff")
 
 [node name="Label" type="Label" parent="Player_Interactables_C/Malady_PH/Tags" unique_id=656502394]
 layout_mode = 0
@@ -636,6 +645,7 @@ offset_bottom = 673.0
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("14_hwd26")
 texture_pressed = ExtResource("17_xbdnv")
+texture_hover = ExtResource("23_x3wff")
 
 [node name="Label" type="Label" parent="Player_Interactables_C/Dealer_PH/Upgrades_Button" unique_id=1476935489]
 layout_mode = 0
@@ -660,6 +670,7 @@ offset_bottom = 475.0
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("14_hwd26")
 texture_pressed = ExtResource("17_xbdnv")
+texture_hover = ExtResource("23_x3wff")
 
 [node name="Label" type="Label" parent="Player_Interactables_C/Dealer_PH/Treatment_Resources_Button" unique_id=642513525]
 layout_mode = 0
@@ -684,6 +695,7 @@ offset_bottom = 852.0
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("14_hwd26")
 texture_pressed = ExtResource("17_xbdnv")
+texture_hover = ExtResource("23_x3wff")
 
 [node name="Label" type="Label" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Button" unique_id=794500069]
 layout_mode = 0
@@ -722,6 +734,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_hover = ExtResource("26_kqag4")
 texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
@@ -742,6 +755,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_hover = ExtResource("26_kqag4")
 texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
@@ -762,6 +776,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_hover = ExtResource("26_kqag4")
 texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
@@ -812,6 +827,7 @@ offset_bottom = 290.0
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("22_md7yb")
 texture_pressed = ExtResource("23_2bhit")
+texture_hover = ExtResource("31_4v6w8")
 
 [node name="DownDealer" type="TextureButton" parent="Player_Interactables_C/Dealer_PH/Resources_Window" unique_id=1592878874]
 custom_minimum_size = Vector2(150, 150)
@@ -822,6 +838,7 @@ offset_bottom = 664.44446
 scale = Vector2(0.6, 0.6)
 texture_normal = ExtResource("24_yeqts")
 texture_pressed = ExtResource("25_kjhr5")
+texture_hover = ExtResource("34_rkahx")
 
 [node name="Upgrades_Window" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=1992268291]
 visible = false
@@ -848,6 +865,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_hover = ExtResource("26_kqag4")
 texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
@@ -868,6 +886,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_hover = ExtResource("26_kqag4")
 texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
@@ -889,6 +908,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_hover = ExtResource("26_kqag4")
 texture_disabled = ExtResource("21_2bhit")
 script = ExtResource("3_5uut4")
 
@@ -1014,6 +1034,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_hover = ExtResource("26_kqag4")
 texture_disabled = ExtResource("21_2bhit")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List/SelfTreatment" unique_id=698051589]
@@ -1034,6 +1055,7 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_hover = ExtResource("26_kqag4")
 texture_disabled = ExtResource("21_2bhit")
 
 [node name="DealerLabel" type="Label" parent="Player_Interactables_C/Dealer_PH/Special_Offers_Window/Special_Offers_List/BodyDisposal" unique_id=1438703792]
@@ -1108,19 +1130,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
 text = "X"
-
-[node name="Close" type="Button" parent="Player_Interactables_C/Dealer_PH" unique_id=434525094]
-layout_mode = 0
-offset_left = 1591.0
-offset_top = 88.0
-offset_right = 1683.0
-offset_bottom = 178.0
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
-icon = ExtResource("17_l7uy0")
-flat = true
 
 [node name="Money_Display" type="Label" parent="Player_Interactables_C/Dealer_PH" unique_id=368042294]
 layout_mode = 0
@@ -1209,6 +1218,7 @@ offset_bottom = 961.0
 scale = Vector2(0.5, 0.5)
 texture_normal = ExtResource("15_hwd26")
 texture_pressed = ExtResource("21_xbdnv")
+texture_hover = ExtResource("26_kqag4")
 texture_disabled = ExtResource("21_2bhit")
 
 [node name="Label" type="Label" parent="Player_Interactables_C/Dealer_PH/Purchase_Button" unique_id=1809708630]
@@ -1223,6 +1233,16 @@ theme_override_font_sizes/font_size = 40
 text = "Purchase"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Close" type="TextureButton" parent="Player_Interactables_C/Dealer_PH" unique_id=538910393]
+layout_mode = 0
+offset_left = 1598.889
+offset_top = 95.55556
+offset_right = 1690.889
+offset_bottom = 185.55556
+texture_normal = ExtResource("17_l7uy0")
+texture_pressed = ExtResource("31_x3wff")
+texture_hover = ExtResource("32_kqag4")
 
 [node name="Popup" type="Control" parent="Player_Interactables_C" unique_id=1598705561]
 visible = false

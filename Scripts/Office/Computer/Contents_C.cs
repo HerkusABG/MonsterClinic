@@ -21,7 +21,7 @@ public partial class Contents_C : ExpNode2D
     TextureButton TreatmentResourcesButton;
     Label ResourcesWindow;
     Button CloseResources;
-    Button CloseDealerWindowButton;
+    TextureButton CloseDealerWindowButton;
     Label DealerWindowMoneyDisplay;
     VBoxContainer MedicineContainer;
     GridContainer RoomContainer;
@@ -39,7 +39,7 @@ public partial class Contents_C : ExpNode2D
     Control MapControl;
     Button CloseMapWindow;
     CatalogueManager CatalogueWindow;
-    Button CloseCatalogueWindow;
+    TextureButton CloseCatalogueWindow;
 
     Label PurchaseInfo;
     TextureButton PurchaseButton;
@@ -109,7 +109,7 @@ public partial class Contents_C : ExpNode2D
         TreatmentResourcesButton = DealerWindow.GetNode<TextureButton>("Treatment_Resources_Button");
         ResourcesWindow = DealerWindow.GetNode<Label>("Resources_Window");
         CloseResources = ResourcesWindow.GetNode<Button>("Close");
-        CloseDealerWindowButton = DealerWindow.GetNode<Button>("Close");
+        CloseDealerWindowButton = DealerWindow.GetNode<TextureButton>("Close");
         DealerWindowMoneyDisplay = DealerWindow.GetNode<Label>("Money_Display");
         MedicineContainer = ResourcesWindow.GetNode<VBoxContainer>("VBoxContainer");
         
@@ -120,7 +120,7 @@ public partial class Contents_C : ExpNode2D
 
         //separate section for the malady catalogue
         CatalogueWindow = control.GetNode<CatalogueManager>("Malady_PH");
-        CloseCatalogueWindow = CatalogueWindow.GetNode<Button>("Close");
+        CloseCatalogueWindow = CatalogueWindow.GetNode<TextureButton>("Close");
 
         PurchaseInfo = DealerWindow.GetNode<Label>("Purchase_Info");
         PurchaseButton = DealerWindow.GetNode<TextureButton>("Purchase_Button");
@@ -400,7 +400,7 @@ public partial class Contents_C : ExpNode2D
     }
 
     //universal method for closing a node's parent, used for all the x's in the top right of popups
-    private void CloseParent(Button button)
+    private void CloseParent(BaseButton button)
     {
         var Parent = button.GetParent();
         if(Parent.GetClass() == "Label")
