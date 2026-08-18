@@ -20,9 +20,10 @@ public partial class PatientStats
 	public Malady malady;
 	private Room myRoom;
 
-	int dialogueIndex = 0;
+	int dialogueIndexInner = 0;
+    int dialogueIndexOuter = 0;
 
-	public TextureUnit textureUnit;
+    public TextureUnit textureUnit;
 
 	public List<ClinicAction> clinicActions = new List<ClinicAction>();
 
@@ -35,9 +36,11 @@ public partial class PatientStats
 
 		Random rnd = new Random();
 		malady = new Malady();
-		dialogueIndex = 0;
-		AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
-		textureUnit.unitType = malady.layerType;
+        dialogueIndexInner = 0;
+        dialogueIndexOuter = 0;
+        //AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
+        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(5, 6)).Value);
+        textureUnit.unitType = malady.layerType;
 		if (malady.layerType == TextureType.Normal || malady.layerType == TextureType.Top)
 		{
 			textureUnit.SaveMaladySet(malady.visualKey, malady.layerType);
@@ -85,7 +88,7 @@ public partial class PatientStats
 	public string GetDialogue()
 	{
 		//Grab generic dialogue.
-		if (malady.dialogueSymptoms.Count > 0)
+		/*if (malady.dialogueSymptoms.Count > 0)
 		{
 			Random rnd = new Random();
 			int length = malady.dialogueSymptoms.Count;
@@ -93,8 +96,44 @@ public partial class PatientStats
 			int quoteListLength = malady.dialogueSymptoms[symptomId].quotes.Count;
 			string returnDialogue = malady.dialogueSymptoms[symptomId].quotes[rnd.Next(0, quoteListLength)];
 			return returnDialogue;
-		}
-		return "...";
+		}*/
+		if (malady.dialogueSymptoms.Count > 0)
+		{
+            string returnDialogue = malady.dialogueSymptoms[dialogueIndexInner].quotes[dialogueIndexOuter];
+
+			//if(malady.dialogueSymptoms[dialogueIndexInner].quotes.Count > 0)
+			if(malady.dialogueSymptoms.Count > 1)
+			{
+				if(dialogueIndexInner + 1 >= malady.dialogueSymptoms.Count)
+				{
+					dialogueIndexInner = 0;
+                    if (dialogueIndexOuter + 1 >= malady.dialogueSymptoms[dialogueIndexInner].quotes.Count)
+                    {
+                        dialogueIndexOuter = 0;
+                    }
+                    else
+                    {
+                        dialogueIndexOuter++;
+                    }
+                }
+				else
+				{
+                    dialogueIndexInner++;
+                   /* if (dialogueIndexOuter + 1 >= malady.dialogueSymptoms[dialogueIndexInner].quotes.Count)
+					{
+						GD.Print($"Outer plus one is {dialogueIndexOuter + 1}, count is {malady.dialogueSymptoms[dialogueIndexInner].quotes.Count}");
+						dialogueIndexOuter = 0;
+                    }
+                    else
+                    {
+                        dialogueIndexOuter++;
+                    }*/
+                }
+            }
+
+            return returnDialogue;
+        }
+        return "...";
 	}
 
 	public virtual string GetAdmittedDialogue()
