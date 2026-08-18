@@ -76,7 +76,10 @@ public partial class PatientInfoManager : Control
         {
             input = "Dead";
         }
-        string mainText = $"Malady: {patient.malady.name}" +
+        string mainText = 
+            $" Malady: {patient.malady.name}" +
+            $"\n First Name: {patient.firstName}" +
+            $"\n Last Name: {patient.lastName}" +
             $" \n Age: {patient.age}" +
             $"\n Status: {input}";
         GeneralTab.Write(mainText);
@@ -96,7 +99,8 @@ public partial class PatientInfoManager : Control
             tags += tag.name;
             tags += ", ";
         }
-        string mainText = $"Malady: {patient.malady.name}" +
+        string mainText = 
+            $" Malady: {patient.malady.name}" +
             $" \n Severity: {patient.malady.severity} " +
             $"\n Symptoms: {symptoms}" + 
             $"\n Tags: {tags}";

@@ -25,8 +25,11 @@ public partial class PatientStats
 	public TextureUnit textureUnit;
 
 	public List<ClinicAction> clinicActions = new List<ClinicAction>();
-
-	public PatientStats()
+    public string[] firstNameArray = { "John", "Jane", "Alex", "Emily", "Michael", "Sarah", "David", "Olivia", "Daniel", "Sophia", "James", "Scott", "Andrew", "Frank", "Gregory", "Ava", "Charlotte", "Sofia", "Camila", "Harper", "Taylor" };
+    public string[] lastNameArray = { "Smith", "Johnson", "Williams", "Smith", "Jones", "Miller", "Davis", "Garcia", "Miller", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Clark", "Moore", "Jackson", "Martin", "Lee", "Harris" };
+    public string firstName;
+    public string lastName;
+    public PatientStats()
 	{
 		// refresh the patient's data.
 		// For just assigning random numbers, this will be overhauled later.
@@ -49,9 +52,12 @@ public partial class PatientStats
 		isAlive = true;
 		patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
 		age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
+        firstName = firstNameArray[rnd.Next(0, firstNameArray.Length)]; // assigns random firstname from the array. 0 to the length of all the names in the array
+        lastName = lastNameArray[rnd.Next(0, lastNameArray.Length)]; // assigns random lastname from the array. 0 to the length of all the names in the array.
 
-		// Assigning a random color to the patient's portrait, This will be changed later when we have actual portraits.
-		PortraitColor = new Color(
+
+        // Assigning a random color to the patient's portrait, This will be changed later when we have actual portraits.
+        PortraitColor = new Color(
 			1,
 			1,
 			1
