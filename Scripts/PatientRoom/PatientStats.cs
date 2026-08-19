@@ -43,10 +43,8 @@ public partial class PatientStats
 
 		Random rnd = new Random();
 		malady = new Malady();
-        dialogueIndexInner = 0;
-        dialogueIndexOuter = 0;
-        //AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
-        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(3, 4)).Value);
+		dialogueIndex = 0;
+		AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
         textureUnit.unitType = malady.layerType;
 		if (malady.layerType == TextureType.Normal || malady.layerType == TextureType.Top)
 		{
@@ -232,7 +230,7 @@ public partial class PatientStats
 	public void NewClinicAction(string input, string extraInfo, string result)
 	{
 		ClinicAction action = new ClinicAction();
-		action.output = $"{input} {extraInfo} {result}";
+		action.output = $"{input}{extraInfo}{result}";
 		clinicActions.Add(action);
 	}
 
@@ -301,6 +299,11 @@ public partial class PatientStats
 	public TextureUnit GetPatientTextures()
 	{
 		return textureUnit;
+	}
+
+	public void AddSeverity()
+	{
+		malady.severity++;
 	}
 }
 	
