@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://betih43qtrd37"]
 
+[ext_resource type="Script" uid="uid://wpfw3fosvi60" path="res://Finances.cs" id="1_bxikx"]
 [ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://Assets/CustomText/digital-7_CountdownText.ttf" id="1_coclp"]
+[ext_resource type="FontFile" uid="uid://cygukaybulvh" path="res://Font/MSW98UI-Regular.ttf" id="3_de07y"]
 
-[node name="Finances" type="Node2D" unique_id=781147841]
+[node name="Finances" type="Node2D" unique_id=781147841 node_paths=PackedStringArray("BreakdownLabel")]
+script = ExtResource("1_bxikx")
+BreakdownLabel = NodePath("FinancesText")
 
 [node name="Background" type="ColorRect" parent="." unique_id=2007724765]
 offset_left = -24.0
@@ -12,14 +16,34 @@ offset_bottom = 435.59998
 scale = Vector2(2.5, 2.5)
 color = Color(0, 0, 0, 1)
 
+[node name="Label" type="Label" parent="." unique_id=1743305729]
+offset_left = 486.0
+offset_top = 69.0
+offset_right = 1451.0
+offset_bottom = 162.0
+theme_override_fonts/font = ExtResource("1_coclp")
+theme_override_font_sizes/font_size = 90
+text = "Income"
+horizontal_alignment = 1
+
 [node name="FinancesText" type="RichTextLabel" parent="." unique_id=720544212]
-offset_left = 8.0
-offset_top = 16.0
-offset_right = 1964.0
-offset_bottom = 1109.0
-theme_override_fonts/normal_font = ExtResource("1_coclp")
-theme_override_fonts/bold_font = ExtResource("1_coclp")
+offset_left = -8.0
+offset_top = 194.0
+offset_right = 1699.0
+offset_bottom = 749.0
+theme_override_fonts/normal_font = ExtResource("3_de07y")
+theme_override_fonts/bold_font = ExtResource("3_de07y")
 theme_override_font_sizes/normal_font_size = 80
 text = "Finances"
-horizontal_alignment = 1
+scroll_active = false
 vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=2061066894]
+offset_left = -9.0
+offset_top = 726.0
+offset_right = 1611.0
+offset_bottom = 819.0
+theme_override_fonts/font = ExtResource("1_coclp")
+theme_override_font_sizes/font_size = 90
+text = "---------------------------------------------"
+horizontal_alignment = 1

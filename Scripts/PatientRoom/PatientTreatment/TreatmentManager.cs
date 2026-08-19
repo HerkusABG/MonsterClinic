@@ -182,7 +182,7 @@ public partial class TreatmentManager : Node
         GlobalData.patientCount--;
         Popup.DisplayPopup(PopupMessages.TreatmentMessages["Cured"]);
         //PatientCuredPopup.Show();
-        Economy.GiveDailyEarnings(40);
+        Room.Patient.GivePayout();
         Room.SetAlreadyTreated(false);
         Room.DeletePatient();
     }

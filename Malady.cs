@@ -36,6 +36,8 @@ public class Malady
 
 	public TextureType layerType;
 
+	public int payout;
+
 	public Malady()
 	{
 		//Small piece of logic to ensure malady severity gets assigned properly in PatientStats.
@@ -56,8 +58,9 @@ public class Malady
 			cures = cures,
 			admittedDialogue = admittedDialogue,
 			visualKey = visualKey,
-			layerType = layerType
-		};
+			layerType = layerType,
+            payout = payout
+        };
 		foreach(Tag tag in tags)
 		{
 			malady.tags.Add(tag.Clone());

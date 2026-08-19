@@ -25,7 +25,6 @@ public partial class FadeAnimation : Node2D
 
     public void Fades()
     {
-        GD.Print("skibidi");
         SetUpText();
         // creates a Tween
         tw_fade = GetTree().CreateTween().SetParallel();

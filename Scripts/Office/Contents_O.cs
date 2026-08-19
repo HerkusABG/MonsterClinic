@@ -80,6 +80,8 @@ public partial class Contents_O : ExpNode2D
         //GlobalData.DailyLockout = false;
         RoomManager.NewDay();
 
+        
+
         Hallway hallway = GetParent().GetNode<Hallway>("Hallway");
         hallway.ResetRoomUI();
 
@@ -115,12 +117,15 @@ public partial class Contents_O : ExpNode2D
         // switches scene
         BedScene.Hide();
         var FinancesScene = (Node2D)GetParent().GetNode("Finances");
+        Finances finances = FinancesScene as Finances;
+        finances.DisplayBreakdown();
         FinancesScene.Show();
+        FinanceInfo.ClearPackages();
         Show();
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
         DialogDealer();
-        financesTimer.Start(3.0);
+        financesTimer.Start(20.0);
         financesTimer.OneShot = true;
         financesTimer.Timeout += on_finances_timer_timeout;
 

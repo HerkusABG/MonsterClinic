@@ -45,8 +45,8 @@ public partial class PatientStats
 		malady = new Malady();
         dialogueIndexInner = 0;
         dialogueIndexOuter = 0;
-        //AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
-        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(3, 4)).Value);
+        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
+        //AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(3, 4)).Value);
         textureUnit.unitType = malady.layerType;
 		if (malady.layerType == TextureType.Normal || malady.layerType == TextureType.Top)
 		{
@@ -54,8 +54,9 @@ public partial class PatientStats
 		}
 		if (malady.severity == -1)
 		{
-			malady.severity = rnd.Next(2, 5);
-		}
+			//malady.severity = rnd.Next(2, 5);
+            malady.severity = rnd.Next(2, 3);
+        }
 		isAlive = true;
 		patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
 		age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
@@ -302,6 +303,12 @@ public partial class PatientStats
 	{
 		return textureUnit;
 	}
+
+	public void GivePayout()
+	{
+        Economy.GiveDailyEarnings(malady.payout);
+		FinanceInfo.SaveFinanceInfo(malady.payout, malady.name, 1);
+    }
 }
 	
 

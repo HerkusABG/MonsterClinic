@@ -58,7 +58,7 @@ public static class TagList
 			},
             behaviour = "There's a chance that the treatment will fail.",
             ratioA = 2,
-			ratioB = 4
+			ratioB = 8
 		},
 		["StrongWorsening"] = new WorseningTag
 		{
