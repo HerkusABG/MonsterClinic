@@ -125,7 +125,7 @@ public partial class Contents_O : ExpNode2D
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
         DialogDealer();
-        financesTimer.Start(20.0);
+        financesTimer.Start(60.0);
         financesTimer.OneShot = true;
         financesTimer.Timeout += on_finances_timer_timeout;
 
