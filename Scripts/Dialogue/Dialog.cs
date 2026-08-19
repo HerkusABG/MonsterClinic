@@ -89,7 +89,7 @@ public partial class Dialog : Control
             // the dialog is set to false, so it can only be spawned once
             GlobalData.Dialog_Dealer = false;
             // the control for the dealer dialog, so it isnt spammed
-            GlobalData.Dialog_Dealer_Control = true;
+           // GlobalData.Dialog_Dealer_Control = true;
             // the dialog self destructs itself
             //GD.Print(GetParent().Name);
             // QueueFree();

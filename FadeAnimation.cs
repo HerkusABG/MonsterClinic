@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.JavaScript;
 
 
@@ -10,6 +11,8 @@ public partial class FadeAnimation : Node2D
     [Export] RichTextLabel Day;
     [Export] RichTextLabel TreatmentDays;
     [Export] RichTextLabel MoneyEarnedDay;
+    [Export] RichTextLabel MoneyHaveDay;
+    [Export] Timer deleteselfTimer;
     public override void _Ready()
     {
         GetNodes();
@@ -21,6 +24,8 @@ public partial class FadeAnimation : Node2D
         Day = GetNode<RichTextLabel>("Day");
         TreatmentDays = GetNode<RichTextLabel>("TreatmentDays");
         MoneyEarnedDay = GetNode<RichTextLabel>("MoneyEarned");
+        MoneyHaveDay = GetNode<RichTextLabel>("MoneyHave");
+        deleteselfTimer = GetNode<Timer>("Delete_Timer");
     }
 
     public void Fades()
@@ -29,8 +34,7 @@ public partial class FadeAnimation : Node2D
         // creates a Tween
         tw_fade = GetTree().CreateTween().SetParallel();
 
-        // get Timer
-        var deleteselfTimer = GetNode<Timer>("Delete_Timer");
+        // Timer one shot is set to true, so the timer only runs once and not in a loop
         deleteselfTimer.OneShot = true;
 
 
@@ -134,8 +138,18 @@ public partial class FadeAnimation : Node2D
 
     }
 
+    public void FadeTextEarnings()
+    {
+
+    }
+
     private void _on_delete_timer_timeout()
     {
+        if (GlobalData.MedicinePlayer == 0 && GlobalData.Countdown == -1)
+        {
+            GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
+        }
+
         // delets itself
         QueueFree();
     }
@@ -145,6 +159,7 @@ public partial class FadeAnimation : Node2D
         Day.Hide();
         TreatmentDays.Hide();
         MoneyEarnedDay.Hide();
+        MoneyHaveDay.Hide();
     }
 
     private void ShowText()
@@ -152,6 +167,7 @@ public partial class FadeAnimation : Node2D
         Day.Show();
         TreatmentDays.Show();
         MoneyEarnedDay.Show();
+        MoneyHaveDay.Show();
     }
 
 
@@ -162,53 +178,46 @@ public partial class FadeAnimation : Node2D
         Day.BbcodeEnabled = true;
         Day.Text = $"[b][font_size=130] {day_M.Player_Ingame_Days} days in containment [/font_size][/b]";
 
-        var MoneyEarned = GetNode<RichTextLabel>("MoneyEarned");
-        MoneyEarned.BbcodeEnabled = true;
-        MoneyEarned.Text = "Today's earnings: " + GlobalData.DailyEarnings;
+        MoneyEarnedDay.BbcodeEnabled = true;
+        MoneyEarnedDay.Text = "Today's earnings: " + GlobalData.DailyEarnings;
 
-        var DaysCounters = GetNode<RichTextLabel>("TreatmentDays");
-        DaysCounters.BbcodeEnabled = true;
+        TreatmentDays.BbcodeEnabled = true;
 
-        if (GlobalData.Countdown >= 3)
+        MoneyHaveDay.Text = "Your money: " + DoctorInventory.Money.ToString();
+
+        
+        if(GlobalData.Dialog_Dealer == false)
         {
-            DaysCounters.Text = $"[b][font_size=110]{GlobalData.Countdown} days left without treatment[/font_size][/b]";
-        }
-        else if (GlobalData.Countdown >= 1 && GlobalData.Countdown < 3)
+            if (GlobalData.Countdown >= 3)
+            {
+                TreatmentDays.Text = $"[b][font_size=110]{GlobalData.Countdown} days left without treatment[/font_size][/b]";
+            }
+            else if (GlobalData.Countdown >= 1 && GlobalData.Countdown < 3)
+            {
+                TreatmentDays.Text = $"[b][font_size=110][shake rate=50][color=DEEP_PINK]{GlobalData.Countdown} days left without treatment [/color][/shake][/font_size][/b]";
+            }
+
+            else if (GlobalData.Countdown == 0)
+            {
+                TreatmentDays.Text = $"[b][font_size=110][shake rate=50][color=DEEP_PINK]{GlobalData.Countdown} days left without treatment [/color][/shake][/font_size][/b]";
+
+            }
+            else if (GlobalData.MedicinePlayer == 0 && GlobalData.Countdown == -1)
+            {
+                //Scene changed to the death Screen, The reasion can be also set in the Global autoload, so you can change the reasion for the death screen, depending on how the player died
+                GlobalData.Reasion = "Your sickness killed you! Keep an eye on your treatment countdown";
+                TreatmentDays.Text = $"[b][font_size=110][shake rate=200][wave rate=20][color=red] Death is waiting [/color][/wave][/shake][/font_size][/b]";
+                
+            }
+
+        } else
         {
-            DaysCounters.Text = $"[b][font_size=110][shake rate=50][color=DEEP_PINK]{GlobalData.Countdown} days left without treatment [/color][/shake][/font_size][/b]";
+            TreatmentDays.Text = $"[b][font_size=110][shake rate=200][wave rate=20][color=green] Your Treatment is complete, you get 14 extra Days to get a new Treatment [/color][/wave][/shake][/font_size][/b]";
+            GlobalData.MedicinePlayer--;
+            GlobalData.Countdown += 14;
         }
 
-        else if (GlobalData.Countdown == 0)
-        {
-            DaysCounters.Text = $"[b][font_size=110][shake rate=50][color=DEEP_PINK]{GlobalData.Countdown} days left without treatment [/color][/shake][/font_size][/b]";
 
-        }
-        // idk why but the Countdown is weird, it only works if its -1 or -2 for the death
-        else if (GlobalData.MedicinePlayer >= 1 && GlobalData.Countdown == -1)
-        {
-            DaysCounters.Text = $"[b][font_size=110][shake rate=200][wave rate=20][color=green] Treatment is comming [/color][/wave][/shake][/font_size][/b]";
-        }
-        else if (GlobalData.MedicinePlayer == 0 && GlobalData.Countdown == -2 && GlobalData.Dialog_Dealer == false)
-        {
-            //Scene changed to the death Screen, The reasion can be also set in the Global autoload, so you can change the reasion for the death screen, depending on how the player died
-            GlobalData.Reasion = "Your sickness killed you! Keep an eye on your treatment countdown";
-            GetTree().ChangeSceneToFile("res://DeathScreen/death_screen.tscn");
-        }
-        else if (GlobalData.Countdown == -1 && GlobalData.MedicinePlayer == 0)
-        {
-            DaysCounters.Text = $"[b][font_size=110][shake rate=200][wave rate=20][color=red] Death is waiting [/color][/wave][/shake][/font_size][/b]";
-        }
-
-
-        if (GlobalData.MedicinePlayer >= 1)
-        {
-            //GlobalData.Dialog_Dealer = true;
-            //GlobalData.MedicinePlayer--;
-        }
-        else
-        {
-            GlobalData.Dialog_Dealer = false;
-        }
 
     }
 

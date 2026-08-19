@@ -23,16 +23,9 @@ public partial class Bed : Node2D
         if (GlobalData.ControlSpawnFading == 1)
         {
             GlobalData.Bed = true;
-            //GD.Print("True");
             GlobalData.Fading = false;
 
-            // get the GridContainer, so the text dont get covered from the FadeAnimation. FadeAnimation gets added to the GridContainer
-            var spawn = GetNode<GridContainer>("Spawn");
-            var fading = Transition.Instantiate<FadeAnimation>();
-            spawn.AddChild(fading);
-
-            // calls the Methode Fades from the FadeAnimation
-            fading.Fades();
+            TriggerFading();
 
             // Control for the spawn FadeAnimation
             GlobalData.ControlSpawnFading = 2;
@@ -47,15 +40,23 @@ public partial class Bed : Node2D
 
 
         // get the GridContainer, so the text dont get covered from the FadeAnimation. FadeAnimation gets added to the GridContainer
-        var spawn = GetNode<GridContainer>("Spawn");
         var fading = Transition.Instantiate<FadeAnimation>();
-        spawn.AddChild(fading);
+        AddChild(fading);
 
         // calls the Methode Fades from the FadeAnimation
         fading.Fades();
 
         // Control for the spawn FadeAnimation
         GlobalData.ControlSpawnFading = 1;
+    }
+
+    private void TriggerFading()
+    {
+        // instantiate the scene FadeAnimation
+        var fading = Transition.Instantiate<FadeAnimation>();
+        // add the scene FadeAnimation and call the Methode Fades
+        AddChild(fading);
+        fading.Fades();
     }
 }
 

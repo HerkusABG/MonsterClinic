@@ -24,7 +24,6 @@ public static class GlobalData
 
     // the dealer dialog can spawn if the dialog_dealer is true
     public static Boolean Dialog_Dealer { get; set; } = false;
-    public static Boolean Dialog_Dealer_Control { get; set; } = true;
     public static string Reasion { get; set; } = "none";
 
     public static Boolean Bed { get; set; } = false;

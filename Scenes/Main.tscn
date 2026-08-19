@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://j7adtnydmxx5" path="res://Scenes/Pause_Menu.tscn" id="6_3dxm6"]
 [ext_resource type="PackedScene" uid="uid://dtqygqtybqe4i" path="res://Scenes/Hallway.tscn" id="8_03owx"]
 [ext_resource type="PackedScene" uid="uid://c0wl0p1tagma5" path="res://Inventory.tscn" id="8_trn2v"]
-[ext_resource type="PackedScene" uid="uid://cwrb10gknjt2w" path="res://Scenes/dialog.tscn" id="10_bmxlf"]
 
 [node name="Main" type="Node" unique_id=1988220635 node_paths=PackedStringArray("RoomControl")]
 script = ExtResource("1_lgr22")
@@ -47,22 +46,6 @@ offset_left = -10.0
 offset_top = 15.0
 offset_right = 30.0
 offset_bottom = 55.0
-
-[node name="Dialog" parent="RoomControlMain" unique_id=1899083185 instance=ExtResource("10_bmxlf")]
-visible = false
-layout_mode = 1
-offset_left = -34.0
-offset_top = -20.0
-offset_right = -34.0
-offset_bottom = -796.0
-
-[node name="Dialog" parent="." unique_id=1618835734 instance=ExtResource("10_bmxlf")]
-visible = false
-z_index = 4
-offset_left = -34.0
-offset_top = -20.0
-offset_right = -34.0
-offset_bottom = -796.0
 
 [connection signal="visibility_changed" from="Office" to="." method="_on_office_visibility_changed"]
 [connection signal="visibility_changed" from="Computer" to="." method="_on_computer_visibility_changed"]

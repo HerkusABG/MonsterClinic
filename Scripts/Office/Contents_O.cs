@@ -4,7 +4,9 @@ using System;
 public partial class Contents_O : ExpNode2D
 {
     private Timer sceneTimer;
-    [Export] PackedScene dealer_selftreatment_dialog = ResourceLoader.Load<PackedScene>("res://Scenes/dialog.tscn");
+    private Label PopupLabel;
+    private Button PopupOpen;
+    private Button PopupClose;
     [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
     // Called when the node enters the scene tree for the first time.
     public void Initialize()
@@ -35,6 +37,9 @@ public partial class Contents_O : ExpNode2D
     private void GetNodes()
     {
         sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
+        PopupLabel = GetNode<Label>("PopupLabel");
+        PopupOpen = GetNode<Button>("PopupLabel/PopupOpen");
+        PopupClose = GetNode<Button>("PopupLabel/PopupClose");
     }
 
     private void _on_computer_a_pressed()
@@ -54,11 +59,14 @@ public partial class Contents_O : ExpNode2D
 	{
         GlobalData.Bed = false;
         RoomTracker.EnterRoom(ActiveRoom.Hallway);
-		var DialogScene = (Control)GetParent().GetNode("Dialog");
-        DialogScene.Hide();
 
     }
     private void _on_bed_pressed()
+    {
+        Popup_Show();
+    }
+
+    private void _on_popup_open_pressed()
     {
         Hide();
         var day_M = GetNode<DayManager>("/root/DayManager");
@@ -95,23 +103,53 @@ public partial class Contents_O : ExpNode2D
             //push the scene we're entering to the previous scenes stack
             GlobalData.PreviousScenes.Push(BedScene.GetPath());
 
+
             // timer is getting set to 3 seconds and starts
             sceneTimer.Start(3.0);
+
             if (GlobalData.Medicincavailability != 0)
             {
                 GlobalData.Medicincavailability--;
             }
-            //DialogDealer();
+        }
+        Popup_Hide();
+    }
+
+    private void _on_popup_close_pressed()
+    {
+        Popup_Hide();
+    }
+
+    private void Popup_Show()
+    {
+        PopupLabel.Show();
+        PopupOpen.Show();
+        PopupClose.Show();
+    }
+
+    private void Popup_Hide()
+    {
+        PopupLabel.Hide();
+        PopupOpen.Hide();
+        PopupClose.Hide();
+    }
+
+    public override void _Input(InputEvent inputEvent)
+    {
+        if (inputEvent is InputEventMouseButton leftmouseBtn)
+        {
+            if (leftmouseBtn.ButtonIndex == MouseButton.Left && leftmouseBtn.Pressed && GlobalData.Bed == true && GlobalData.Countdown != -1)
+            {
+                sceneTimer.Stop();
+                var BedScene = (Node2D)GetParent().GetNode("Bed");
+                BedScene.Hide();
+                Show();
+            }
         }
     }
 
     private void OnSceneTimerTimeout()
     {
-        Dialog dialog = GetParent().GetNode<Dialog>("Dialog");
-        //dialog.Show();
-        GD.Print("Dialog");
-        
-
         // Daily earnings gets reseted
         GlobalData.DailyEarnings = 0;
 
@@ -124,14 +162,13 @@ public partial class Contents_O : ExpNode2D
             GlobalData.Bed = true;
             // Condition Changes
             GlobalData.Fading = true;
+            GlobalData.Dialog_Dealer = false;
             TriggerFading();
         }
-        if (GlobalData.Dialog_Dealer == true)
-        {
-            var DialogForDealer = (Control)GetParent().GetNode("Dialog");
-            DialogForDealer.Show();
-            Dialog.currentIndex = 0;
 
+        if (GlobalData.MedicinePlayer == 0 && GlobalData.Countdown == -1)
+        {
+            
         }
 
         // switches scene
@@ -139,7 +176,6 @@ public partial class Contents_O : ExpNode2D
         Show();
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
-        DialogDealer();
 
 
 
@@ -177,22 +213,6 @@ public partial class Contents_O : ExpNode2D
     }
 
 
-    private void DialogDealer()
-    {
-        // Dialog Dealer checks if the dialog should spawn again and the dealer control is so that the code isnt spammened in the process
-        if (GlobalData.Dialog_Dealer == true && GlobalData.Dialog_Dealer_Control == true)
-        {
-            var DialogScene = (Control)GetParent().GetNode("Dialog");
-            DialogScene.Show();
-
-            // the dialog for the dealer is set to the 0, because he is the first one in the two dimensional array
-            Dialog.currentNPC = 0;
-            // Dealer Control checks if the dialog should spawn again
-            GlobalData.Dialog_Dealer_Control = false;
-            // The medicine need to decrease for the player
-            GlobalData.MedicinePlayer--;
-        }
-    }
 
     public override void OnRoomEnter(Node mainNode)
     {
