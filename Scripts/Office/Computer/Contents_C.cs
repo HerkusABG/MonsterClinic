@@ -195,10 +195,17 @@ public partial class Contents_C : ExpNode2D
     }
     private void ConnectPurchaseToMedicine(DealerButton button)
     {
-        PurchaseButton.Disabled = false;
         PurchaseButtonHolder = button;
         PurchaseMode = "medicine";
         PurchaseButton.Show();
+        if (button.unavailable)
+        {
+            PurchaseButton.Disabled = true;
+        }
+        else
+        {
+            PurchaseButton.Disabled = false;
+        }
     }
 
     private void ConnectPurchaseToUpgrade(DealerButton button)
@@ -320,7 +327,13 @@ public partial class Contents_C : ExpNode2D
             //grab the text for the button
             list[i].ChangeText("Buy " + DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotName());
             //grab the text for the info box
-            list[i].StoreInfo(DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText());
+            if (DealerList.MedicineDatabase.ElementAt(i + start).Value.medicine.unlocked)
+            {
+                list[i].StoreInfo(DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText());
+            } else
+            {
+                list[i].StoreInfo(DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText() + "\n(Not unlocked yet)");
+            }
             //when buying. if the current button in the loop is the one whose info is currently displayed in the info box, update the text in it
             //can't compare the whole strings because the quantity of medicine at the end is different, so we just compare enough of it to confirm it's a match
             if (string.Compare(PurchaseInfo.Text, 0, DealerList.MedicineDatabase.ElementAt(i + start).Value.GetSlotText(), 0, 10) == 0)
@@ -329,11 +342,11 @@ public partial class Contents_C : ExpNode2D
             }
             if (!DealerList.MedicineDatabase.ElementAt(i + start).Value.medicine.unlocked)
             {
-                list[i].Disabled = true;
+                list[i].unavailable = true;
             }
             else
             {
-                list[i].Disabled = false;
+                list[i].unavailable = false;
             }
         }
     }
