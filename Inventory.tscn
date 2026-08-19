@@ -107,7 +107,7 @@ offset_bottom = 2396.0
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_trmqt")
 
-[node name="Shotgun" type="Button" parent="Open_Inventory" unique_id=537038637]
+[node name="Kick_Out" type="Button" parent="Open_Inventory" unique_id=537038637]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 0
 offset_left = 55.0
@@ -120,7 +120,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_nwt7c")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jqulp")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3xuxb")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_arhjh")
-text = "Shotgun"
+text = "Kick patient
+out"
 
 [node name="EmptySlot1" type="TextureRect" parent="Open_Inventory" unique_id=255516927]
 custom_minimum_size = Vector2(150, 150)

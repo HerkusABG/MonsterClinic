@@ -8,7 +8,7 @@ public partial class Deceased_Sprite : Sprite2D
     {
        //Hide();
     }
-    private void _on_shotgun_pressed()
+    private void _on_KickOut_pressed()
     {
         //Show();
     }
