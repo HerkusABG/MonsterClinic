@@ -129,22 +129,20 @@ public partial class MainMenu : Control
 
     private void OnNewGamePressed()
 {
-    SceneTree tree = GetTree();
-    if (tree == null) return;
+    
+    if (!IsInsideTree() || GetTree() == null) return;
 
-    tree.Paused = false;
-
-    // Delete saved data files
+    GetTree().Paused = false;
     SaveManager.DeleteSave();
 
-    // Reset currency and starting statistics
+    // Reset game data defaults
     DoctorInventory.Money = 100;
     GlobalData.Player_Ingame_Days = 1;
     GlobalData.Countdown = 4;
     GlobalData.DailyEarnings = 0;
     GlobalData.Dialog_Dealer = false;
 
-    // Clear medicine stock
+    // Safe medicine stock reset
     if (MedicineManager.Database != null)
     {
         foreach (var medicine in MedicineManager.Database.Values)
@@ -153,7 +151,6 @@ public partial class MainMenu : Control
         }
     }
 
-    // Change scene safely
-    tree.ChangeSceneToFile("res://Scenes/Main.tscn");
+    GetTree().ChangeSceneToFile("res://Scenes/Main.tscn");
 }
 }
