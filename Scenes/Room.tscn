@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://di87l8u018703" path="res://PatientInfoManager.cs" id="9_ijr7e"]
 [ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="9_khqja"]
 [ext_resource type="Script" uid="uid://cb1ujlti3k2jc" path="res://TabInfo.cs" id="9_mimag"]
+[ext_resource type="AudioStream" uid="uid://dq0o1l7ajg80e" path="res://Assets/Audio/Patient_room/BodyBag.wav" id="13_vofke"]
+[ext_resource type="AudioStream" uid="uid://c3yne5ddyhahv" path="res://Assets/Audio/Patient_room/PatientKickedOut.wav" id="14_f1ah8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaq88"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -233,5 +235,14 @@ offset_top = 186.0
 offset_right = 310.0
 offset_bottom = 274.0
 text = "Remove Clothing"
+
+[node name="Soundeffect_PatientDeath" type="AudioStreamPlayer2D" parent="." unique_id=822361185]
+stream = ExtResource("13_vofke")
+volume_db = -80.0
+bus = &"SXF"
+
+[node name="Soundeffect_PatientLeave" type="AudioStreamPlayer2D" parent="." unique_id=493038408]
+stream = ExtResource("14_f1ah8")
+volume_db = -50.0
 
 [connection signal="visibility_changed" from="Patient_Room_Background" to="." method="_on_patient_room_background_visibility_changed"]

@@ -6,7 +6,10 @@ public partial class MainMenu : Control
 	// Called when the node enters the scene tree for the first time.
 	[Export] PackedScene option = ResourceLoader.Load<PackedScene>("res://Scenes/option_menu.tscn");
 	[Signal] public delegate void DeleteSaveSystemEventHandler(bool deleteSafe);
-	public override void _Ready()
+
+	//Audiostream for the mainmenu scene
+    [Export] public AudioStreamPlayer backgroundMusic;
+    public override void _Ready()
 	{
 		var ColorRecthide = GetNode<ColorRect>("ColorRect");
 		ColorRecthide.Hide();
@@ -25,8 +28,10 @@ public partial class MainMenu : Control
 			LockColor.Show();
 		}
 
-
-	}
+		// grabs reference and plays the music for the meinmenu theme
+        backgroundMusic = GetNode<AudioStreamPlayer>("MainMenuPlayer");
+        backgroundMusic.Play();
+    }
 
 
 	private void _on_new_game_button_pressed()

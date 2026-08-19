@@ -6,6 +6,9 @@ public partial class Contents_O : ExpNode2D
     private Timer sceneTimer;
     [Export] PackedScene dealer_selftreatment_dialog = ResourceLoader.Load<PackedScene>("res://Scenes/dialog.tscn");
     [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
+
+    [Export] public AudioStreamPlayer backgroundMusic;
+
     // Called when the node enters the scene tree for the first time.
     public void Initialize()
 	{
@@ -19,6 +22,7 @@ public partial class Contents_O : ExpNode2D
         Subscribe();
 
         InitializeChildren();
+
     }
 
     private void Subscribe()
@@ -31,10 +35,15 @@ public partial class Contents_O : ExpNode2D
         Control control = GetNode<Control>("Player_Interactables_O");
         Mirror mirror = control.GetNode<Mirror>("Mirror");
         mirror.Initialize();
+
+        //play the playlist for the background. Playlist has two songs in it, they play one after another.
+        backgroundMusic.Set("parameters/switch_to_clip", "Background");
+        backgroundMusic.Play();
     }
     private void GetNodes()
     {
         sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
+        backgroundMusic = GetNode<AudioStreamPlayer>("WorldAudioManager/BackgroundMusicPlayer");
     }
 
     private void _on_computer_a_pressed()

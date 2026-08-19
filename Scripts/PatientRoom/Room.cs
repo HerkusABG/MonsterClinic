@@ -34,6 +34,10 @@ public partial class Room : ExpNode2D
     Inventory invy;
     [Export] public SpeechManager SpeechManagerAccess;
     [Export] PatientInfoManager PatientInfoScreen;
+
+    // both sound effects for the patients
+    [Export] AudioStreamPlayer2D SoundEffect_Death;
+    [Export] AudioStreamPlayer2D SoundEffect_Leave;
     public void Initialize(Action HideUIAction)
     {
         //grabs references to all the necessary nodes
@@ -56,6 +60,8 @@ public partial class Room : ExpNode2D
     {
         //Grab references
         LeaveRoomButton = GetNode<Button>("Leave_Room");
+        SoundEffect_Death = GetNode<AudioStreamPlayer2D>("Soundeffect_PatientDeath");
+        SoundEffect_Leave = GetNode<AudioStreamPlayer2D>("Soundeffect_PatientLeave");
     }
 
     private void HoverOn()
@@ -138,6 +144,8 @@ public partial class Room : ExpNode2D
                 Corpse.Show();
                 //PatientInfoScreen.Show();
                 UIControl.Show();
+                //plays the sound effect if patient dies
+                SoundEffect_Death.Play();
             }
         }
         else
@@ -200,6 +208,7 @@ public partial class Room : ExpNode2D
         DeletePatient();
         UpdateSprites();
         OutsideWorld.ChangeReputation((int)ReputationValue.ShotPatient);
+        
     }
 
     public void DeletePatient()
@@ -212,6 +221,8 @@ public partial class Room : ExpNode2D
         MaladySprite.Texture = null;
         TopMaladySprite.Texture = null;
         UpdateSprites();
+        //sound effect when the patients leaves (kicked out)
+        SoundEffect_Leave.Play();
     }
 
     public void AssignPatient(PatientStats patient)

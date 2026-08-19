@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dc0worwp368vy"]
 
 [ext_resource type="Script" uid="uid://cwkco3fmspqtt" path="res://Scripts/AlwaysOnScreen/Menu/MainMenu.cs" id="1_06t4h"]
+[ext_resource type="AudioStream" uid="uid://dt8875p2vas6r" path="res://Assets/Audio/Background/MenuMusic.ogg" id="2_48xlc"]
 
 [node name="MainMenu" type="Control" unique_id=719248053]
 layout_mode = 3
@@ -106,7 +107,9 @@ offset_bottom = 60.0
 theme_override_font_sizes/font_size = 59
 text = "X"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1888377417]
+[node name="MainMenuPlayer" type="AudioStreamPlayer" parent="." unique_id=1888377417]
+stream = ExtResource("2_48xlc")
+volume_db = -60.0
 
 [connection signal="pressed" from="New_Game_Button" to="." method="_on_new_game_button_pressed"]
 [connection signal="button_down" from="Load_Game_Button" to="." method="_on_load_game_button_button_down"]
