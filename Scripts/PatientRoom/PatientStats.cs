@@ -58,7 +58,7 @@ public partial class PatientStats
         }
 		isAlive = true;
 		patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
-		age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
+		age = rnd.Next(18, 35); // random ages of patients between 18 and 90 seemed appropriate for the game
 		firstName = firstNameArray[rnd.Next(0, firstNameArray.Length)]; // assigns random firstname from the array. 0 to the length of all the names in the array
 		lastName = lastNameArray[rnd.Next(0, lastNameArray.Length)]; // assigns random lastname from the array. 0 to the length of all the names in the array.
 
