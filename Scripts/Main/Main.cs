@@ -14,6 +14,7 @@ public partial class Main : Node
     TreatmentManager Treatment;
     [Export] Control RoomControl;
     int finalRoomCount = 6;
+    static bool alreadyInitialized = false;
 
     //Since Main is the the main node, everything should be initialized here.
     //Methods shouldn't use their individual "_Ready()" methods, unless
@@ -43,16 +44,27 @@ public partial class Main : Node
     private void Initialize()
     {
         GetNodes();
-        TextureList.Initialize();
+        if(alreadyInitialized == false)
+        {
+            InitializeOnce();
+            alreadyInitialized = true;
+        }
         OutsideWorld.Initialize();
-        Upgrades.Initialize();
-        DealerList.Initialize();
+        
+        
         //always keep the office at the bottom of the previous scenes stack, so the reference on how to return to it is always there
         GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
         //Initialization chain [BELOW]
         InitializeChildren();
         GeneratePatientRooms(RoomControl);
         RoomTracker.Initialize(this);
+    }
+
+    private void InitializeOnce()
+    {
+        TextureList.Initialize();
+        Upgrades.Initialize();
+        DealerList.Initialize();
     }
 
     private void InitializeChildren()
