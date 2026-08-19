@@ -177,6 +177,7 @@ scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("5_hwd26")
 
 [node name="Email" type="TextureButton" parent="Player_Interactables_C" unique_id=421148193]
+visible = false
 layout_mode = 0
 offset_left = 1288.0
 offset_top = 112.0
@@ -1143,6 +1144,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_obv51")
 text = "X"
 
 [node name="Email_Window" type="Control" parent="Player_Interactables_C" unique_id=1576682547]
+visible = false
 anchors_preset = 0
 offset_left = 216.0
 offset_top = 85.0
