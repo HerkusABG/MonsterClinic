@@ -36,8 +36,9 @@ public partial class PatientStats
 		Random rnd = new Random();
 		malady = new Malady();
 		dialogueIndex = 0;
-		AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
-		textureUnit.unitType = malady.layerType;
+		//AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
+        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(4, 5)).Value);
+        textureUnit.unitType = malady.layerType;
 		if (malady.layerType == TextureType.Normal || malady.layerType == TextureType.Top)
 		{
 			textureUnit.SaveMaladySet(malady.visualKey, malady.layerType);
@@ -236,6 +237,11 @@ public partial class PatientStats
 	public TextureUnit GetPatientTextures()
 	{
 		return textureUnit;
+	}
+
+	public void AddSeverity()
+	{
+		malady.severity++;
 	}
 }
 	

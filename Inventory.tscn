@@ -252,6 +252,7 @@ text = "This medicine won't work for this patient.
 But what's done is done, check in again tomorrow"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 1
 
 [node name="Close_Wrong_medicine_Popup" type="Button" parent="Treatment_Manager/Wrong_Medicine_Popup" unique_id=2072617838]
 layout_mode = 0
@@ -278,6 +279,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ey27o")
 text = "No patient currently admitted"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 1
 
 [node name="Close" type="Button" parent="Treatment_Manager/No_Patient_Popup" unique_id=1917119921]
 layout_mode = 0
@@ -304,6 +306,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ey27o")
 text = "The patient is cured!"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 1
 
 [node name="Close_Patient_Cured_Popup" type="Button" parent="Treatment_Manager/Patient_Cured_Popup" unique_id=1692808685]
 layout_mode = 0
@@ -333,6 +336,7 @@ or the side effects might kick in.
 Check back in tomorrow"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 1
 
 [node name="Close_Correct_medicine_Popup" type="Button" parent="Treatment_Manager/Correct_Medicine_Popup" unique_id=1266110354]
 layout_mode = 0
@@ -361,7 +365,7 @@ text = "The medicine applied was correct, but the malady has resisted its treatm
 Check back in tomorrow."
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [node name="Close_Patient_Immune_Popup" type="Button" parent="Treatment_Manager/Patient_Immune_Popup" unique_id=616907812]
 layout_mode = 0
@@ -400,6 +404,7 @@ text = "This medicine won't work for this patient.
 But what's done is done, check in again tomorrow"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="PopupClose" type="Button" parent="Treatment_Manager/Popup" unique_id=1266657561]
 z_index = 5
