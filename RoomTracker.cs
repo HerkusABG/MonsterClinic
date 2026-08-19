@@ -111,6 +111,7 @@ public static class RoomTracker
 
         Inventory inv = Main.GetNode<Inventory>("Inventory");
         inv.InventoryActions();
+        inv.Show();
 
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         Room room = RoomScene as Room;
@@ -133,6 +134,7 @@ public static class RoomTracker
 
         Inventory inv = Main.GetNode<Inventory>("Inventory");
         inv.InventoryActions();
+        inv.Show();
 
         TreatmentManager treatment = inv.GetNode<TreatmentManager>("Treatment_Manager");
         Room room = RoomScene as Room;
