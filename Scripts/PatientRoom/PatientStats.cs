@@ -23,6 +23,10 @@ public partial class PatientStats
 	int dialogueIndexInner = 0;
     int dialogueIndexOuter = 0;
 
+	int pulseIndex = 0;
+
+	int temperatureIndex = 0;
+
     public TextureUnit textureUnit;
 
 	public List<ClinicAction> clinicActions = new List<ClinicAction>();
@@ -39,7 +43,7 @@ public partial class PatientStats
         dialogueIndexInner = 0;
         dialogueIndexOuter = 0;
         //AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
-        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(5, 6)).Value);
+        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(3, 4)).Value);
         textureUnit.unitType = malady.layerType;
 		if (malady.layerType == TextureType.Normal || malady.layerType == TextureType.Top)
 		{
@@ -153,7 +157,15 @@ public partial class PatientStats
 		//Grab stethoscope dialogue
 		if (malady.pulseSymptoms.Count > 0)
 		{
-			string returnDialogue = malady.pulseSymptoms[0].quotes[0];
+			string returnDialogue = malady.pulseSymptoms[0].quotes[pulseIndex];
+			if(pulseIndex + 1 >= malady.pulseSymptoms[0].quotes.Count)
+			{
+				pulseIndex = 0;
+			}
+			else
+			{
+				pulseIndex++;
+			}
 			return returnDialogue;
 		}
 		return "A nice steady rhythm.";
@@ -164,8 +176,16 @@ public partial class PatientStats
 		//Grab temperature dialogue
 		if (malady.temperatureSymptoms.Count > 0)
 		{
-			string returnDialogue = malady.temperatureSymptoms[0].quotes[0];
-			return returnDialogue;
+			string returnDialogue = malady.temperatureSymptoms[0].quotes[temperatureIndex];
+            if (temperatureIndex + 1 >= malady.temperatureSymptoms[0].quotes.Count)
+            {
+                temperatureIndex = 0;
+            }
+            else
+            {
+                temperatureIndex++;
+            }
+            return returnDialogue;
 		}
 		return "Not too hot, not too cold!";
 	}
