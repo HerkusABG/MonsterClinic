@@ -13,6 +13,7 @@ public partial class FadeAnimation : Node2D
     //[Export] RichTextLabel MoneyEarnedDay;
     //[Export] RichTextLabel MoneyHaveDay;
     [Export] Timer deleteselfTimer;
+    Timer endingTimer;
     public override void _Ready()
     {
         GetNodes();
@@ -26,6 +27,7 @@ public partial class FadeAnimation : Node2D
         //MoneyEarnedDay = GetNode<RichTextLabel>("MoneyEarned");
         //MoneyHaveDay = GetNode<RichTextLabel>("MoneyHave");
         deleteselfTimer = GetNode<Timer>("Delete_Timer");
+        endingTimer = GetNode<Timer>("Ending_Timer");
     }
 
     public void Fades()
@@ -35,6 +37,7 @@ public partial class FadeAnimation : Node2D
         tw_fade = GetTree().CreateTween().SetParallel();
 
         // Timer one shot is set to true, so the timer only runs once and not in a loop
+        endingTimer.OneShot = true;
         deleteselfTimer.OneShot = true;
 
 
@@ -71,7 +74,7 @@ public partial class FadeAnimation : Node2D
 
             // Timer get set to 3 sec, so long is the bed scene. Timer starts
             //deleteselfTimer.SetWaitTime(3.0);
-            deleteselfTimer.Start(3.0);
+            endingTimer.Start(6.0);
 
         }
         else
@@ -101,11 +104,11 @@ public partial class FadeAnimation : Node2D
 
             // Timer get set to 1 sec, so long is that the player isnt stuck. Timer starts
            //deleteselfTimer.SetWaitTime(1.0);
-            deleteselfTimer.Start(0.4f);
+            endingTimer.Start(0.4f);
 
         }
         // Timer gets connected to the function, when the timer is done, the function gets called
-        deleteselfTimer.Timeout += _on_delete_timer_timeout;
+        endingTimer.Timeout += _on_ending_timer_timeout;
         
 
     }
@@ -141,15 +144,28 @@ public partial class FadeAnimation : Node2D
 
     }
 
-    private void _on_delete_timer_timeout()
+    private void _on_ending_timer_timeout()
     {
+        var endingScene = GetParent().GetParent().GetNode<Node2D>("Endings");
+        var endingArt = endingScene.GetNode<Sprite2D>("endingArt");
         if (GlobalData.MedicinePlayer == 0 && GlobalData.Countdown == -1)
         {
-            GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
+            endingScene.Show();
+            endingArt.Texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/cutscene-doctor-turned.png");
+            deleteselfTimer.Start(6);
+            deleteselfTimer.Timeout += _on_delete_timer_timeout;
         }
+        else
+        {
+            // delets itself
+            QueueFree();
+        }   
+    }
 
-        // delets itself
-        QueueFree();
+    private void _on_delete_timer_timeout()
+    {
+        GetTree().ChangeSceneToFile("res://Scenes/main_menu.tscn");
+        deleteselfTimer.Timeout -= _on_delete_timer_timeout;
     }
 
     private void HideText()

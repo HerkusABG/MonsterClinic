@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://db7d1avua072e"]
+
+[node name="endings" type="Node2D" unique_id=267321031]
+
+[node name="endingArt" type="Sprite2D" parent="." unique_id=1677252712]
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
