@@ -10,10 +10,12 @@ public partial class FadeAnimation : Node2D
     [Export] RichTextLabel Day;
     [Export] RichTextLabel TreatmentDays;
     [Export] RichTextLabel MoneyEarnedDay;
+    RichTextLabel Finances;
     public override void _Ready()
     {
         GetNodes();
         HideText();
+
     }
 
     private void GetNodes()
@@ -21,19 +23,22 @@ public partial class FadeAnimation : Node2D
         Day = GetNode<RichTextLabel>("Day");
         TreatmentDays = GetNode<RichTextLabel>("TreatmentDays");
         MoneyEarnedDay = GetNode<RichTextLabel>("MoneyEarned");
+        Finances = GetNode<RichTextLabel>("Finances");
     }
 
     public void Fades()
     {
         SetUpText();
         // creates a Tween
-        tw_fade = GetTree().CreateTween().SetParallel();
+        tw_fade = CreateTween().SetParallel();
+
 
         // get Timer
         var deleteselfTimer = GetNode<Timer>("Delete_Timer");
         deleteselfTimer.OneShot = true;
 
 
+        
 
         // condition for the animation
         if (GlobalData.Fading == false)
@@ -42,14 +47,21 @@ public partial class FadeAnimation : Node2D
             var Colorrect_visibility = GetNode<ColorRect>("Fade");
             Colorrect_visibility.Color = new Color(Colorrect_visibility.Color.R, Colorrect_visibility.Color.G, Colorrect_visibility.Color.B, 0);
 
-
+            //Finances.SelfModulate = new Color(Finances.SelfModulate.R, Finances.SelfModulate.G, Finances.SelfModulate.B, 1);
             // Tween affects the color rect, 1f -> from invisible to visible, 1f -> animation speed
             tw_fade.TweenProperty(Colorrect_visibility, "color:a", 1f, 1f);
-
-            if(GlobalData.Bed == true)
+            //Finances.Hide();
+            if (GlobalData.Bed == true)
             {
+                //Finances.Hide();
                 FadeText();
                 ShowText();
+
+                var PageTimer = GetNode<Timer>("PageTimer");
+                PageTimer.OneShot = true;
+
+                PageTimer.Start(3.0);
+                PageTimer.Timeout += _on_page_timer_timeout;
             }
             else
             {
@@ -60,14 +72,14 @@ public partial class FadeAnimation : Node2D
             tw_fade.SetTrans(Tween.TransitionType.Sine);
             tw_fade.SetEase(Tween.EaseType.Out);
 
-            
+            Finances.SelfModulate = new Color(Finances.SelfModulate.R, Finances.SelfModulate.G, Finances.SelfModulate.B, 1);
             // Condition changes 
-            GlobalData.Fading = true;
+
 
 
             // Timer get set to 3 sec, so long is the bed scene. Timer starts
             //deleteselfTimer.SetWaitTime(3.0);
-            deleteselfTimer.Start(3.0);
+            //deleteselfTimer.Start(6.0);
 
         }
         else
@@ -79,11 +91,13 @@ public partial class FadeAnimation : Node2D
             
             // Tween affects the color rect, 0f -> from invisible to visible, 1f -> animation speed
             tw_fade.TweenProperty(Colorrect_visibility, "color:a", 0f, 0.4f);
-
+            //Finances.Show();
             if (GlobalData.Bed == true)
-            {
+            {    
+                //GD.Print(Finances.Visible);
                 FadeText();
-                ShowText();
+                Finances.Show();
+
             }
             else
             {
@@ -93,11 +107,10 @@ public partial class FadeAnimation : Node2D
             // smooth animation for the Tween
             tw_fade.SetTrans(Tween.TransitionType.Sine);
             tw_fade.SetEase(Tween.EaseType.Out);
-
-            
+            //GD.Print("apin");
 
             // Timer get set to 1 sec, so long is that the player isnt stuck. Timer starts
-           //deleteselfTimer.SetWaitTime(1.0);
+            //deleteselfTimer.SetWaitTime(1.0);
             deleteselfTimer.Start(0.4f);
 
         }
@@ -112,7 +125,8 @@ public partial class FadeAnimation : Node2D
         tw_fade = GetTree().CreateTween().SetParallel();
         if (GlobalData.Fading == false)
         {
-            
+            //GD.Print("in");
+            //Finances.SelfModulate = new Color(Finances.SelfModulate.R, Finances.SelfModulate.G, Finances.SelfModulate.B, 0);
             Day.SelfModulate = new Color(Day.SelfModulate.R, Day.SelfModulate.G, Day.SelfModulate.B, 0);
             TreatmentDays.SelfModulate = new Color(TreatmentDays.SelfModulate.R, TreatmentDays.SelfModulate.G, TreatmentDays.SelfModulate.B, 0);
             MoneyEarnedDay.SelfModulate = new Color(MoneyEarnedDay.SelfModulate.R, MoneyEarnedDay.SelfModulate.G, MoneyEarnedDay.SelfModulate.B, 0);
@@ -123,13 +137,10 @@ public partial class FadeAnimation : Node2D
         }
         else
         {
-            Day.SelfModulate = new Color(Day.SelfModulate.R, Day.SelfModulate.G, Day.SelfModulate.B, 1);
-            TreatmentDays.SelfModulate = new Color(TreatmentDays.SelfModulate.R, TreatmentDays.SelfModulate.G, TreatmentDays.SelfModulate.B, 1);
-            MoneyEarnedDay.SelfModulate = new Color(MoneyEarnedDay.SelfModulate.R, MoneyEarnedDay.SelfModulate.G, MoneyEarnedDay.SelfModulate.B, 1);
-            
-            tw_fade.TweenProperty(Day, "self_modulate:a", 0f, 1f);
-            tw_fade.TweenProperty(TreatmentDays, "self_modulate:a", 0f, 1f);
-            tw_fade.TweenProperty(MoneyEarnedDay, "self_modulate:a", 0f, 1f);
+            //GD.Print("and out");
+            Finances.SelfModulate = new Color(Finances.SelfModulate.R, Finances.SelfModulate.G, Finances.SelfModulate.B, 1);
+            tw_fade.TweenProperty(Finances, "self_modulate:a", 0f, 0.4f);
+            //GD.Print("gj");
         }
 
     }
@@ -140,18 +151,34 @@ public partial class FadeAnimation : Node2D
         QueueFree();
     }
 
+    private void _on_page_timer_timeout()
+    {
+        Day.Hide();
+        TreatmentDays.Hide();
+        MoneyEarnedDay.Hide();
+        Finances.Show();
+        //Finances.SelfModulate = new Color(Finances.SelfModulate.R, Finances.SelfModulate.G, Finances.SelfModulate.B, 1);
+       // GlobalData.Fading = true;
+        
+
+    }
+
     private void HideText()
     {
         Day.Hide();
         TreatmentDays.Hide();
         MoneyEarnedDay.Hide();
+        Finances.Hide();
     }
 
     private void ShowText()
-    {
+    { 
+
         Day.Show();
         TreatmentDays.Show();
         MoneyEarnedDay.Show();
+
+        
     }
 
 
@@ -168,6 +195,7 @@ public partial class FadeAnimation : Node2D
 
         var DaysCounters = GetNode<RichTextLabel>("TreatmentDays");
         DaysCounters.BbcodeEnabled = true;
+
 
         if (GlobalData.Countdown >= 3)
         {

@@ -321,6 +321,8 @@ visible = false
 position = Vector2(1734.0001, 382.99982)
 scale = Vector2(0.21458334, 0.23402777)
 
+[node name="Timer" type="Timer" parent="." unique_id=1054727842]
+
 [connection signal="pressed" from="Player_Interactables_O/Computer" to="." method="_on_computer_a_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Mirror" to="Player_Interactables_O/Mirror/MirrorLabel" method="_on_mirror_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Elevator" to="." method="_on_elevator_pressed"]

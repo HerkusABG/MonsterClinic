@@ -4,6 +4,7 @@ using System;
 public partial class Contents_O : ExpNode2D
 {
     private Timer sceneTimer;
+    private Timer timer;
     [Export] PackedScene dealer_selftreatment_dialog = ResourceLoader.Load<PackedScene>("res://Scenes/dialog.tscn");
     [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
     // Called when the node enters the scene tree for the first time.
@@ -15,6 +16,7 @@ public partial class Contents_O : ExpNode2D
 
         // connect the signals
         sceneTimer.Timeout += OnSceneTimerTimeout;
+        timer.Timeout += onTimerTimeout;
 
         Subscribe();
 
@@ -35,6 +37,7 @@ public partial class Contents_O : ExpNode2D
     private void GetNodes()
     {
         sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
+        timer = GetNode<Timer>("Timer");
     }
 
     private void _on_computer_a_pressed()
@@ -97,7 +100,7 @@ public partial class Contents_O : ExpNode2D
             GlobalData.PreviousScenes.Push(BedScene.GetPath());
 
             // timer is getting set to 3 seconds and starts
-            sceneTimer.Start(3.0);
+            sceneTimer.Start(6.0);
             if (GlobalData.Medicincavailability != 0)
             {
                 GlobalData.Medicincavailability--;
@@ -125,6 +128,7 @@ public partial class Contents_O : ExpNode2D
             GlobalData.Bed = true;
             // Condition Changes
             GlobalData.Fading = true;
+            //timer.Start(2.0);
             TriggerFading();
         }
         if (GlobalData.Dialog_Dealer == true)
@@ -166,6 +170,12 @@ public partial class Contents_O : ExpNode2D
         GlobalData.PreviousScenes.Pop();
         */
 
+    }
+
+    private void onTimerTimeout()
+    {
+        GD.Print("eh");
+        TriggerFading();
     }
 
     private void TriggerFading()

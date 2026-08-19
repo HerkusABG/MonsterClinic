@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://6brpwrb647a2" path="res://Scripts/Office/Bed/Bed.cs" id="1_abbq1"]
 [ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://Assets/CustomText/digital-7_CountdownText.ttf" id="2_7vlmp"]
-[ext_resource type="Texture2D" uid="uid://duxu8md0l1yr5" path="res://Assets/2D Art/Office/office-background.png" id="3_5c33g"]
-[ext_resource type="Texture2D" uid="uid://jdngferi6lje" path="res://Assets/2D Art/Office/office-elevator.png" id="4_lbah1"]
-[ext_resource type="Texture2D" uid="uid://b4o0ubcg603ro" path="res://Assets/2D Art/Office/office-mirror.png" id="5_iah2a"]
-[ext_resource type="Texture2D" uid="uid://c5ncjx7yugc5j" path="res://Assets/2D Art/Office/office-pc.png" id="6_dgwq8"]
-[ext_resource type="Texture2D" uid="uid://djvdgfra7b3b8" path="res://Assets/2D Art/Office/office-phone.png" id="7_qoqk3"]
-[ext_resource type="Texture2D" uid="uid://cvcqxyesknw0" path="res://Assets/2D Art/Office/office-bed.png" id="8_mukss"]
+[ext_resource type="Texture2D" uid="uid://duxu8md0l1yr5" path="res://Assets/2DArt/Office/office-background.png" id="3_5c33g"]
+[ext_resource type="Texture2D" uid="uid://jdngferi6lje" path="res://Assets/2DArt/Office/office-elevator.png" id="4_lbah1"]
+[ext_resource type="Texture2D" uid="uid://b4o0ubcg603ro" path="res://Assets/2DArt/Office/office-mirror.png" id="5_iah2a"]
+[ext_resource type="Texture2D" uid="uid://c5ncjx7yugc5j" path="res://Assets/2DArt/Office/office-pc.png" id="6_dgwq8"]
+[ext_resource type="Texture2D" uid="uid://djvdgfra7b3b8" path="res://Assets/2DArt/Office/office-phone.png" id="7_qoqk3"]
+[ext_resource type="Texture2D" uid="uid://cvcqxyesknw0" path="res://Assets/2DArt/Office/office-bed.png" id="8_mukss"]
 
 [node name="Bed" type="Node2D" unique_id=615608472]
 script = ExtResource("1_abbq1")
