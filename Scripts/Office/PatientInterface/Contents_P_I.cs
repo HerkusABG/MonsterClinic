@@ -94,6 +94,7 @@ public partial class Contents_P_I : ExpNode2D
         Diagnosis.SetAllCheckboxStatus(true);
         RejectButton.Disabled = false;
         AdmitButton.Disabled = false;
+        VisitButton.Disabled = true;
     }
     public void UpdatePatientInterfaceUI()
     {
