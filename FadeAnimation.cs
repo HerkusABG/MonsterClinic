@@ -168,7 +168,7 @@ public partial class FadeAnimation : Node2D
 
         var DaysCounters = GetNode<RichTextLabel>("TreatmentDays");
         DaysCounters.BbcodeEnabled = true;
-
+        GD.Print(GlobalData.Countdown);
         if (GlobalData.Countdown >= 3)
         {
             DaysCounters.Text = $"[b][font_size=110]{GlobalData.Countdown} days left without treatment[/font_size][/b]";
@@ -186,13 +186,13 @@ public partial class FadeAnimation : Node2D
         // idk why but the Countdown is weird, it only works if its -1 or -2 for the death
         else if (GlobalData.MedicinePlayer >= 1 && GlobalData.Countdown == -1)
         {
-            DaysCounters.Text = $"[b][font_size=110][shake rate=200][wave rate=20][color=green] Treatment is comming [/color][/wave][/shake][/font_size][/b]";
+            DaysCounters.Text = $"[b][font_size=110][shake rate=200][wave rate=20][color=green] Treatment is coming [/color][/wave][/shake][/font_size][/b]";
         }
-        else if (GlobalData.MedicinePlayer == 0 && GlobalData.Countdown == -2 && GlobalData.Dialog_Dealer == false)
+        else if (GlobalData.MedicinePlayer == 0 && GlobalData.Countdown == -1 && GlobalData.Dialog_Dealer == false)
         {
             //Scene changed to the death Screen, The reasion can be also set in the Global autoload, so you can change the reasion for the death screen, depending on how the player died
             GlobalData.Reasion = "Your sickness killed you! Keep an eye on your treatment countdown";
-            GetTree().ChangeSceneToFile("res://DeathScreen/death_screen.tscn");
+            GetTree().ChangeSceneToFile("res://Scenes/death_screen.tscn");
         }
         else if (GlobalData.Countdown == -1 && GlobalData.MedicinePlayer == 0)
         {
