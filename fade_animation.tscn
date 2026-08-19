@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ca7mrbbcxd1eo" path="res://FadeAnimation.cs" id="1_fdfmr"]
 [ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://Assets/CustomText/digital-7_CountdownText.ttf" id="2_105j4"]
+[ext_resource type="FontFile" uid="uid://cygukaybulvh" path="res://Font/MSW98UI-Regular.ttf" id="3_o7gap"]
 
 [node name="FadeAnimation" type="Node2D" unique_id=694927562]
 script = ExtResource("1_fdfmr")
@@ -45,6 +46,19 @@ text = "{0} Treatment Days"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label4" type="Label" parent="TreatmentDays" unique_id=740013758]
+visible = false
+layout_mode = 0
+offset_left = 166.0
+offset_top = 417.0
+offset_right = 1786.0
+offset_bottom = 510.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_o7gap")
+theme_override_font_sizes/font_size = 56
+text = "(Press LMB to skip)"
+horizontal_alignment = 1
+
 [node name="MoneyEarned" type="RichTextLabel" parent="." unique_id=2039327691]
 visible = false
 offset_top = 9.0
@@ -54,5 +68,17 @@ theme_override_fonts/normal_font = ExtResource("2_105j4")
 theme_override_fonts/bold_font = ExtResource("2_105j4")
 theme_override_font_sizes/normal_font_size = 70
 text = "money"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MoneyHave" type="RichTextLabel" parent="." unique_id=1650145816]
+visible = false
+offset_top = 125.0
+offset_right = 1919.0
+offset_bottom = 340.0
+theme_override_fonts/normal_font = ExtResource("2_105j4")
+theme_override_fonts/bold_font = ExtResource("2_105j4")
+theme_override_font_sizes/normal_font_size = 70
+text = "money Player"
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -1,11 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Transactions;
-using static System.Net.Mime.MediaTypeNames;
-
 public partial class Room : ExpNode2D 
 {
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
@@ -15,9 +9,12 @@ public partial class Room : ExpNode2D
     [Export] Sprite2D PatientHead;
     [Export] Control Corpse;
     [Export] Control PatientInfo;
+    [Export] Control UIControl;
     [Export] Sprite2D MaladySprite;
     [Export] Sprite2D TopMaladySprite;
+    [Export] Sprite2D ClothingSprite;
     [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
+    [Export] Button ClothingButton;
 
     //Is the room empty?
     private bool isEmpty = true;
@@ -33,6 +30,7 @@ public partial class Room : ExpNode2D
 
     //boolean that checks whether you can treat the patient.
     private bool notYetTreated = true;
+    private int timesTreated = 0;
 
     Inventory invy;
     [Export] public SpeechManager SpeechManagerAccess;
@@ -49,6 +47,8 @@ public partial class Room : ExpNode2D
         //LeaveRoomButton.MouseExited += HoverOff;
         LeaveRoomButton.Pressed += LeaveRoom;
         LeaveRoomButton.Pressed += HideUIAction;
+
+        ClothingButton.Pressed += ToggleClothing;
 
         curedInAbsence = false;
     }
@@ -103,6 +103,7 @@ public partial class Room : ExpNode2D
         {
             if (Patient.IsPatientAlive())
             {
+                
                 SetPatientUIStatus(true, true);
                 SetPatientRoomText();
             }
@@ -129,19 +130,22 @@ public partial class Room : ExpNode2D
                 WholePatient.Show();
                 AssignPatientTextures();
                 Corpse.Hide();
-                PatientInfoScreen.Show();
+                //PatientInfoScreen.Show();
+                UIControl.Show();
             }
             else
             {
                 WholePatient.Hide();
                 Corpse.Show();
-                PatientInfoScreen.Show();
+                //PatientInfoScreen.Show();
+                UIControl.Show();
             }
         }
         else
         {
             WholePatient.Hide();
-            PatientInfoScreen.Hide();
+            //PatientInfoScreen.Hide();
+            UIControl.Hide();
         }
     }
 
@@ -230,7 +234,7 @@ public partial class Room : ExpNode2D
     public void PatientCuredInAbsence()
     {
         curedInAbsence = true;
-        DeletePatient();
+        //DeletePatient();
     }
 
     public void SetAlreadyTreated(bool input)
@@ -241,6 +245,14 @@ public partial class Room : ExpNode2D
     public bool GetAlreadyTreated()
     {
         return !notYetTreated;
+    }
+    public void IncrementTreated()
+    {
+        timesTreated++;
+    }
+    public int GetTimesTreated()
+    {
+        return timesTreated;
     }
 
     public bool GetIsEmpty()
@@ -270,6 +282,28 @@ public partial class Room : ExpNode2D
         // add the scene FadeAnimation and call the Methode Fades
         AddChild(fading);
         fading.Fades();
+    }
+
+    private void ToggleClothing()
+    {
+        if(ClothingSprite.IsVisibleInTree())
+        {
+            ClothingSprite.Hide();
+        }
+        else
+        {
+            ClothingSprite.Show();
+        }
+    }
+
+    private void ShowClothing()
+    {
+        ClothingSprite.Show();
+    }
+
+    private void HideClothing()
+    {
+        ClothingSprite.Hide();
     }
 
 }

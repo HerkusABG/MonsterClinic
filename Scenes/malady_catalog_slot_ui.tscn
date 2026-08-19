@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bjrsu2636kxwf" path="res://icon.svg" id="1_knqvs"]
 [ext_resource type="Script" uid="uid://bexq3kajuvccq" path="res://Scripts/Office/Computer/MaladyCatalogSlotUi.cs" id="1_ybgog"]
+[ext_resource type="FontFile" uid="uid://cygukaybulvh" path="res://Font/MSW98UI-Regular.ttf" id="3_5x4oh"]
 
 [node name="MaladyCatalogSlotUi" type="Control" unique_id=149421627]
 layout_mode = 3
@@ -14,6 +15,7 @@ grow_vertical = 2
 script = ExtResource("1_ybgog")
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=1851063082]
+visible = false
 modulate = Color(0.19219694, 0.19219697, 0.19219697, 1)
 position = Vector2(473.50003, 542.5)
 scale = Vector2(7.335938, 8.4921875)
@@ -25,9 +27,10 @@ offset_left = 9.0
 offset_top = 10.0
 offset_right = 921.0
 offset_bottom = 144.0
-theme_override_font_sizes/font_size = 60
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_5x4oh")
+theme_override_font_sizes/font_size = 50
 text = "Name"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CuredBy_label" type="Label" parent="." unique_id=1317259889]
@@ -36,7 +39,9 @@ offset_left = 482.0
 offset_top = 197.0
 offset_right = 809.0
 offset_bottom = 275.0
-theme_override_font_sizes/font_size = 41
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_5x4oh")
+theme_override_font_sizes/font_size = 50
 text = "Cured by:"
 vertical_alignment = 1
 
@@ -46,8 +51,34 @@ offset_left = 5.0
 offset_top = 194.0
 offset_right = 332.0
 offset_bottom = 272.0
-theme_override_font_sizes/font_size = 41
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_5x4oh")
+theme_override_font_sizes/font_size = 50
 text = "Symptoms:"
+vertical_alignment = 1
+
+[node name="Cost_label" type="Label" parent="." unique_id=1456359422]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 194.0
+offset_right = 332.0
+offset_bottom = 272.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_5x4oh")
+theme_override_font_sizes/font_size = 50
+text = "Cost:"
+vertical_alignment = 1
+
+[node name="Behaviour_label" type="Label" parent="." unique_id=708108283]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 194.0
+offset_right = 332.0
+offset_bottom = 272.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_5x4oh")
+theme_override_font_sizes/font_size = 50
+text = "Behaviour:"
 vertical_alignment = 1
 
 [node name="Symptoms" type="RichTextLabel" parent="." unique_id=888889044]
@@ -56,26 +87,32 @@ offset_left = 8.0
 offset_top = 275.0
 offset_right = 364.0
 offset_bottom = 601.0
-theme_override_font_sizes/normal_font_size = 43
-text = "Sympthom"
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_5x4oh")
+theme_override_font_sizes/normal_font_size = 50
+text = "..."
 
 [node name="Description" type="RichTextLabel" parent="." unique_id=1710328294]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 599.0
-offset_right = 935.0
+offset_right = 692.0
 offset_bottom = 1090.0
-theme_override_font_sizes/normal_font_size = 56
-text = "ahahaha"
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_5x4oh")
+theme_override_font_sizes/normal_font_size = 50
+text = "..."
 
 [node name="CuredBy" type="RichTextLabel" parent="." unique_id=1167547223]
 layout_mode = 0
 offset_left = 480.0
 offset_top = 275.0
-offset_right = 836.0
+offset_right = 751.0
 offset_bottom = 601.0
-theme_override_font_sizes/normal_font_size = 43
-text = "Sympthom"
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_5x4oh")
+theme_override_font_sizes/normal_font_size = 50
+text = "..."
 
 [node name="Picture" type="ColorRect" parent="." unique_id=2108837858]
 visible = false

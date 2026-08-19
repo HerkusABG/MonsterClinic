@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dtqygqtybqe4i" path="res://Scenes/Hallway.tscn" id="8_03owx"]
 [ext_resource type="PackedScene" uid="uid://c0wl0p1tagma5" path="res://Inventory.tscn" id="8_trn2v"]
 [ext_resource type="PackedScene" uid="uid://cwrb10gknjt2w" path="res://Scenes/dialog.tscn" id="10_bmxlf"]
+[ext_resource type="PackedScene" uid="uid://betih43qtrd37" path="res://Scenes/Finances.tscn" id="11_4kpch"]
 
 [node name="Main" type="Node" unique_id=1988220635 node_paths=PackedStringArray("RoomControl")]
 script = ExtResource("1_lgr22")
@@ -63,6 +64,10 @@ offset_left = -34.0
 offset_top = -20.0
 offset_right = -34.0
 offset_bottom = -796.0
+
+[node name="Finances" parent="." unique_id=781147841 instance=ExtResource("11_4kpch")]
+visible = false
+z_index = 101
 
 [connection signal="visibility_changed" from="Office" to="." method="_on_office_visibility_changed"]
 [connection signal="visibility_changed" from="Computer" to="." method="_on_computer_visibility_changed"]

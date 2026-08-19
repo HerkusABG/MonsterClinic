@@ -20,13 +20,21 @@ public partial class PatientStats
 	public Malady malady;
 	private Room myRoom;
 
-	int dialogueIndex = 0;
+	int dialogueIndexInner = 0;
+    int dialogueIndexOuter = 0;
 
-	public TextureUnit textureUnit;
+	int pulseIndex = 0;
+
+	int temperatureIndex = 0;
+
+    public TextureUnit textureUnit;
 
 	public List<ClinicAction> clinicActions = new List<ClinicAction>();
-
-	public PatientStats()
+    public string[] firstNameArray = { "John", "Jane", "Alex", "Emily", "Michael", "Sarah", "David", "Olivia", "Daniel", "Sophia", "James", "Scott", "Andrew", "Frank", "Gregory", "Ava", "Charlotte", "Sofia", "Camila", "Harper", "Taylor" };
+    public string[] lastNameArray = { "Smith", "Johnson", "Williams", "Smith", "Jones", "Miller", "Davis", "Garcia", "Miller", "Martinez", "Hernandez", "Lopez", "Gonzalez", "Wilson", "Anderson", "Thomas", "Clark", "Moore", "Jackson", "Martin", "Lee", "Harris" };
+    public string firstName;
+    public string lastName;
+    public PatientStats()
 	{
 		// refresh the patient's data.
 		// For just assigning random numbers, this will be overhauled later.
@@ -35,23 +43,29 @@ public partial class PatientStats
 
 		Random rnd = new Random();
 		malady = new Malady();
-		dialogueIndex = 0;
-		AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
-		textureUnit.unitType = malady.layerType;
+        dialogueIndexInner = 0;
+        dialogueIndexOuter = 0;
+        AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
+        //AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(4, 5)).Value);
+        textureUnit.unitType = malady.layerType;
 		if (malady.layerType == TextureType.Normal || malady.layerType == TextureType.Top)
 		{
 			textureUnit.SaveMaladySet(malady.visualKey, malady.layerType);
 		}
 		if (malady.severity == -1)
 		{
-			malady.severity = rnd.Next(2, 5);
-		}
+			//malady.severity = rnd.Next(2, 5);
+            malady.severity = rnd.Next(2, 3);
+        }
 		isAlive = true;
 		patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
 		age = rnd.Next(18, 91); // random ages of patients between 18 and 90 seemed appropriate for the game
+        firstName = firstNameArray[rnd.Next(0, firstNameArray.Length)]; // assigns random firstname from the array. 0 to the length of all the names in the array
+        lastName = lastNameArray[rnd.Next(0, lastNameArray.Length)]; // assigns random lastname from the array. 0 to the length of all the names in the array.
 
-		// Assigning a random color to the patient's portrait, This will be changed later when we have actual portraits.
-		PortraitColor = new Color(
+
+        // Assigning a random color to the patient's portrait, This will be changed later when we have actual portraits.
+        PortraitColor = new Color(
 			1,
 			1,
 			1
@@ -85,7 +99,7 @@ public partial class PatientStats
 	public string GetDialogue()
 	{
 		//Grab generic dialogue.
-		if (malady.dialogueSymptoms.Count > 0)
+		/*if (malady.dialogueSymptoms.Count > 0)
 		{
 			Random rnd = new Random();
 			int length = malady.dialogueSymptoms.Count;
@@ -93,8 +107,44 @@ public partial class PatientStats
 			int quoteListLength = malady.dialogueSymptoms[symptomId].quotes.Count;
 			string returnDialogue = malady.dialogueSymptoms[symptomId].quotes[rnd.Next(0, quoteListLength)];
 			return returnDialogue;
-		}
-		return "...";
+		}*/
+		if (malady.dialogueSymptoms.Count > 0)
+		{
+            string returnDialogue = malady.dialogueSymptoms[dialogueIndexInner].quotes[dialogueIndexOuter];
+
+			//if(malady.dialogueSymptoms[dialogueIndexInner].quotes.Count > 0)
+			if(malady.dialogueSymptoms.Count > 1)
+			{
+				if(dialogueIndexInner + 1 >= malady.dialogueSymptoms.Count)
+				{
+					dialogueIndexInner = 0;
+                    if (dialogueIndexOuter + 1 >= malady.dialogueSymptoms[dialogueIndexInner].quotes.Count)
+                    {
+                        dialogueIndexOuter = 0;
+                    }
+                    else
+                    {
+                        dialogueIndexOuter++;
+                    }
+                }
+				else
+				{
+                    dialogueIndexInner++;
+                   /* if (dialogueIndexOuter + 1 >= malady.dialogueSymptoms[dialogueIndexInner].quotes.Count)
+					{
+						GD.Print($"Outer plus one is {dialogueIndexOuter + 1}, count is {malady.dialogueSymptoms[dialogueIndexInner].quotes.Count}");
+						dialogueIndexOuter = 0;
+                    }
+                    else
+                    {
+                        dialogueIndexOuter++;
+                    }*/
+                }
+            }
+
+            return returnDialogue;
+        }
+        return "...";
 	}
 
 	public virtual string GetAdmittedDialogue()
@@ -114,7 +164,15 @@ public partial class PatientStats
 		//Grab stethoscope dialogue
 		if (malady.pulseSymptoms.Count > 0)
 		{
-			string returnDialogue = malady.pulseSymptoms[0].quotes[0];
+			string returnDialogue = malady.pulseSymptoms[0].quotes[pulseIndex];
+			if(pulseIndex + 1 >= malady.pulseSymptoms[0].quotes.Count)
+			{
+				pulseIndex = 0;
+			}
+			else
+			{
+				pulseIndex++;
+			}
 			return returnDialogue;
 		}
 		return "A nice steady rhythm.";
@@ -125,8 +183,16 @@ public partial class PatientStats
 		//Grab temperature dialogue
 		if (malady.temperatureSymptoms.Count > 0)
 		{
-			string returnDialogue = malady.temperatureSymptoms[0].quotes[0];
-			return returnDialogue;
+			string returnDialogue = malady.temperatureSymptoms[0].quotes[temperatureIndex];
+            if (temperatureIndex + 1 >= malady.temperatureSymptoms[0].quotes.Count)
+            {
+                temperatureIndex = 0;
+            }
+            else
+            {
+                temperatureIndex++;
+            }
+            return returnDialogue;
 		}
 		return "Not too hot, not too cold!";
 	}
@@ -167,7 +233,7 @@ public partial class PatientStats
 	public void NewClinicAction(string input, string extraInfo, string result)
 	{
 		ClinicAction action = new ClinicAction();
-		action.output = $"{input} {extraInfo} {result}";
+		action.output = $"{input}{extraInfo}{result}";
 		clinicActions.Add(action);
 	}
 
@@ -236,6 +302,16 @@ public partial class PatientStats
 	public TextureUnit GetPatientTextures()
 	{
 		return textureUnit;
+	}
+
+	public void GivePayout()
+	{
+        Economy.GiveDailyEarnings(malady.payout);
+		FinanceInfo.SaveFinanceInfo(malady.payout, malady.name, 1);
+    }
+	public void AddSeverity()
+	{
+		malady.severity++;
 	}
 }
 	

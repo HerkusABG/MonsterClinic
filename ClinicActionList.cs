@@ -36,15 +36,15 @@ public static class ClinicActionList
     {
         ["MedSuccess"] = new ClinicAction()
         {
-            output = "The treatment reduced the severity."
+            output = "; The treatment reduced the severity."
         },
         ["MedFail"] = new ClinicAction()
         {
-            output = $". The treatment did not work."
+            output = $"; The treatment did not work."
         },
         ["MedImmune"] = new ClinicAction()
         {
-            output = $". The treatment worked, but the malady resisted it!"
+            output = $"; The treatment worked, but the malady resisted it!"
         }
     };
 }

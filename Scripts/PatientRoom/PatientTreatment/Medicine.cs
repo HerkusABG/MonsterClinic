@@ -14,6 +14,7 @@ public class Medicine
     //Cost of the medicine.
 	public int cost { get; set; } = 10;
     //Amount of medicine bought
+    public string description { get; set; }
     public int amount { get; set; } = 0;
 
     public bool buyable = true;

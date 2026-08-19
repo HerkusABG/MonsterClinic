@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 static class MedicineManager
 {
@@ -15,22 +16,26 @@ static class MedicineManager
 		{
 			name = "Antibiotics",
 			cost = 15,
+			description = "Antibiotics, used for curing bla bla bla"
 		},
 		["Bandages"] = new Medicine
 		{
 			name = "Bandages",
 			cost = 8,
-		},
+            description = "Band together to cure a malady bla bla"
+        },
 		["Dewormer"] = new Medicine
 		{
 			name = "Dewormer",
 			cost = 17,
-		},
+            description = "De-worm your patient"
+        },
 		["PrussianBlue"] = new Medicine
 		{
 			name = "Prussian Blue",
 			cost =20,
-		},
+            description = "Konigsberger Klopse"
+        },
 //		["SilverDrops"] = new Medicine
 //		{
 //			name = "Silver Drops",
@@ -40,7 +45,8 @@ static class MedicineManager
 		{
 			name = "Fungal Powder",
 			cost = 22,
-		},
+            description = "Foot fungus number 15 bla bla"
+        },
 //		["OsmiumCapsules"] = new Medicine
 //		{
 //			name = "Osmium Capsules",
@@ -55,7 +61,8 @@ static class MedicineManager
 		{
 			name = "Lead Syringe",
 			cost = 12,
-		},
+            description = "Lead syringe description"
+        },
 //		["MeatGlue"] = new Medicine
 //		{
 //			name = "Meat Glue",
@@ -65,11 +72,26 @@ static class MedicineManager
 		{
 			name = "Chem Drip",
 			cost = 16,
-		},
+            description = "Chemical drip. Drippy aye aye"
+        },
 		["Curitol"] = new Medicine
 		{
 			name = "Curitol",
 			cost = 100,
-		}
+            description = "Cure EVERYTHING!"
+        }
 	};
+
+    public static void Initialize()
+    {
+        SaveCatalogueInfo();
+    }
+    public static void SaveCatalogueInfo()
+    {
+        for (int i = 0; i < Database.Count; i++)
+        {
+            CatalogueInfoPackage package = new CatalogueInfoPackage(Database.ElementAt(i).Value);
+            InfoList.Medicines.Add(package);
+        }
+    }
 }

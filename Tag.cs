@@ -9,8 +9,10 @@ public class Tag
 	public int increment;
 	public int strength;
 	public string name;
+    public string description;
+	public string behaviour;
 
-	public bool HasTagType(TagType inputType)
+    public bool HasTagType(TagType inputType)
 	{
 		if(types.Contains(inputType))
 		{

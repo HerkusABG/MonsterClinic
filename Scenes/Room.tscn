@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://b3u4qcrd3kkl4" path="res://Assets/2DArt/PatientRoom/PatientRoom_Corpse_Blockout.png" id="5_xebr5"]
 [ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://Scripts/SpeechManager.cs" id="6_7gm67"]
 [ext_resource type="Texture2D" uid="uid://dxmmoipoobqxt" path="res://Assets/2DArt/Patient/Sitting/patient-sitting-uniform.png" id="6_mimag"]
-[ext_resource type="Texture2D" uid="uid://8aajck4t28sx" path="res://Assets/2DArt/PatientRoom/PatientRoom_Corpse_HL_Blockout.png" id="6_si31g"]
 [ext_resource type="Texture2D" uid="uid://dqwcgqy8bloa1" path="res://Assets/2DArt/Patient/Sitting/Head/patient-sitting-head11.png" id="7_l0f8h"]
 [ext_resource type="Texture2D" uid="uid://b1kvpkjbttuaq" path="res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-necrosis.png" id="8_vofke"]
 [ext_resource type="Script" uid="uid://di87l8u018703" path="res://PatientInfoManager.cs" id="9_ijr7e"]
@@ -40,17 +39,20 @@ border_width_right = 14
 border_width_bottom = 14
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("WholePatient", "PatientDisplay", "PatientHead", "Corpse", "PatientInfo", "MaladySprite", "TopMaladySprite", "SpeechManagerAccess", "PatientInfoScreen")]
+[node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("WholePatient", "PatientDisplay", "PatientHead", "Corpse", "PatientInfo", "UIControl", "MaladySprite", "TopMaladySprite", "ClothingSprite", "ClothingButton", "SpeechManagerAccess", "PatientInfoScreen")]
 script = ExtResource("1_5hpqs")
 WholePatient = NodePath("Control/WholePatient")
 PatientDisplay = NodePath("Control/WholePatient/Patient_Display")
 PatientHead = NodePath("Control/WholePatient/Patient_Head")
 Corpse = NodePath("Control/Corpse")
 PatientInfo = NodePath("Control/Patient_Info")
+UIControl = NodePath("UI_Control")
 MaladySprite = NodePath("Control/WholePatient/Patient_Malady")
 TopMaladySprite = NodePath("Control/WholePatient/Patient_TopMalady")
+ClothingSprite = NodePath("Control/WholePatient/Patient_Clothing")
+ClothingButton = NodePath("UI_Control/Clothing")
 SpeechManagerAccess = NodePath("SpeechManager")
-PatientInfoScreen = NodePath("PatientInfo")
+PatientInfoScreen = NodePath("UI_Control/PatientInfo")
 
 [node name="Patient_Room_Background" type="Sprite2D" parent="." unique_id=1209967813]
 position = Vector2(960, 540)
@@ -103,7 +105,6 @@ offset_right = 1786.0
 offset_bottom = 1479.0
 scale = Vector2(0.5, 0.457)
 texture_normal = ExtResource("5_xebr5")
-texture_hover = ExtResource("6_si31g")
 
 [node name="WholePatient" type="Control" parent="Control" unique_id=134966433]
 visible = false
@@ -162,22 +163,29 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="PatientInfo" type="TabContainer" parent="." unique_id=436648055]
+[node name="UI_Control" type="Control" parent="." unique_id=128967023]
 visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PatientInfo" type="TabContainer" parent="UI_Control" unique_id=436648055]
+layout_mode = 0
 offset_left = 103.0
 offset_top = 320.0
 offset_right = 627.71094
 offset_bottom = 680.5779
-current_tab = 1
+current_tab = 2
 script = ExtResource("9_ijr7e")
 
-[node name="General" type="TabBar" parent="PatientInfo" unique_id=303885043]
+[node name="General" type="TabBar" parent="UI_Control/PatientInfo" unique_id=303885043]
 visible = false
 layout_mode = 2
 script = ExtResource("9_mimag")
 metadata/_tab_index = 0
 
-[node name="Text" type="RichTextLabel" parent="PatientInfo/General" unique_id=2110053773]
+[node name="Text" type="RichTextLabel" parent="UI_Control/PatientInfo/General" unique_id=2110053773]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
@@ -186,12 +194,13 @@ offset_bottom = 295.0
 scroll_active = false
 scroll_following = true
 
-[node name="Malady" type="TabBar" parent="PatientInfo" unique_id=802278181]
+[node name="Malady" type="TabBar" parent="UI_Control/PatientInfo" unique_id=802278181]
+visible = false
 layout_mode = 2
 script = ExtResource("9_mimag")
 metadata/_tab_index = 1
 
-[node name="Text" type="RichTextLabel" parent="PatientInfo/Malady" unique_id=1683306642]
+[node name="Text" type="RichTextLabel" parent="UI_Control/PatientInfo/Malady" unique_id=1683306642]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
@@ -200,13 +209,12 @@ offset_bottom = 295.0
 scroll_active = false
 scroll_following = true
 
-[node name="History" type="TabBar" parent="PatientInfo" unique_id=1713677384]
-visible = false
+[node name="History" type="TabBar" parent="UI_Control/PatientInfo" unique_id=1713677384]
 layout_mode = 2
 script = ExtResource("9_mimag")
 metadata/_tab_index = 2
 
-[node name="Text" type="RichTextLabel" parent="PatientInfo/History" unique_id=1042551380]
+[node name="Text" type="RichTextLabel" parent="UI_Control/PatientInfo/History" unique_id=1042551380]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 20.0
@@ -215,5 +223,13 @@ offset_bottom = 295.0
 scroll_active = false
 scroll_following = true
 vertical_alignment = 2
+
+[node name="Clothing" type="Button" parent="UI_Control" unique_id=1959542566]
+layout_mode = 0
+offset_left = 103.0
+offset_top = 186.0
+offset_right = 310.0
+offset_bottom = 274.0
+text = "Remove Clothing"
 
 [connection signal="visibility_changed" from="Patient_Room_Background" to="." method="_on_patient_room_background_visibility_changed"]

@@ -61,7 +61,8 @@ public static class SymptomList
 			name = "Vomitting",
 			quotes =
 			{
-                "I am constantly throwing up. \n I can't even drink water."
+                "I am constantly throwing up. \n I can't even drink water.",
+				"I feel like I am about to throw up."
 			}
 		},
 		["Vertigo"] = new Symptom
@@ -70,7 +71,7 @@ public static class SymptomList
 			quotes =
 			{
 				"Everything is spinning, my balance is WAY off.",
-				""
+				"I cannot get up without getting dizzy."
 			}
 		},
 		["SkinPeel"] = new Symptom

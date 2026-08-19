@@ -22,7 +22,7 @@ public partial class Contents_P_I : ExpNode2D
     Button VisitButton;
     Button InventoryButton;
     Button DiagnosisButton;
-    Button ShotgunButton;
+    Button KickOutButton;
     Button VisitPatientButton;
     VBoxContainer InventoryContainer;
     private Timer DiagnosisTimer;
@@ -94,6 +94,7 @@ public partial class Contents_P_I : ExpNode2D
         Diagnosis.SetAllCheckboxStatus(true);
         RejectButton.Disabled = false;
         AdmitButton.Disabled = false;
+        VisitButton.Disabled = true;
     }
     public void UpdatePatientInterfaceUI()
     {
@@ -204,17 +205,6 @@ public partial class Contents_P_I : ExpNode2D
         GlobalData.IsPatientInWindow = (patients > 0);
 
         RoomTracker.GoBack();
-
-        //shows the Dialog for the dealer, when return to the office
-        var DialogScene = (Control)GetParent().GetNode("Dialog");
-        if (GlobalData.Dialog_Dealer == true)
-        {
-            DialogScene.Show();
-        }
-        else
-        {
-            DialogScene.Hide();
-        }
     }
 
     private void OnRejectPressed()
@@ -367,7 +357,6 @@ public partial class Contents_P_I : ExpNode2D
 
     public override void OnRoomEnter(Node mainNode)
     {
-        //GD.Print("Entering admission");
         TriggerFading();
 
         UpdatePatientInterfaceUI();
@@ -375,8 +364,9 @@ public partial class Contents_P_I : ExpNode2D
         Hallway hallway = mainNode.GetNode<Hallway>("Hallway");
         hallway.UpdateHallwayUI();
 
-        Inventory inv = mainNode.GetNode<Inventory>("Inventory");
+        Inventory inv = this.GetParent().GetNode<Inventory>("Inventory");
         inv.InventoryActions();
+        inv.Hide();
     }
 
     private void TriggerFading()

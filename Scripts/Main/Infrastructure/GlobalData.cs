@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 public static class GlobalData
 {
@@ -14,16 +15,15 @@ public static class GlobalData
     //public static bool inPatientRoom = false;
 
     //public static bool inPatientAdmission = false;
-    public static int Countdown { get; set; } = 7;
+    public static int Countdown { get; set; } = 14;
 
     // self treatment medicine for the player -> the cost and availibility so the player cant spamm the selftreatment
     public static int MedicinePlayer { get; set; } = 0;
     public static int MedicineCost { get; set; } = 150;
-    public static int Medicincavailability { get; set; } = 0;
+    public static int Medicincavailability { get; set; } = 3;
 
     // the dealer dialog can spawn if the dialog_dealer is true
     public static Boolean Dialog_Dealer { get; set; } = false;
-    public static Boolean Dialog_Dealer_Control { get; set; } = true;
     public static string Reasion { get; set; } = "none";
 
     public static Boolean Bed { get; set; } = false;
@@ -61,4 +61,16 @@ public static class GlobalData
 
     public static Boolean Fading { get; set; } = true;
     public static int ControlSpawnFading { get; set; } = 0;
+
+    public static bool FolderActive = false;
+
+    public static SleepState sleepState = SleepState.None;
+
+}
+
+public enum SleepState
+{
+    None,
+    Days,
+    Money
 }

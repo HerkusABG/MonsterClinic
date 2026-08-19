@@ -3,26 +3,36 @@ using System;
 
 public partial class MainMenu : Control
 {
-    // Called when the node enters the scene tree for the first time.
-    [Export] PackedScene option = ResourceLoader.Load<PackedScene>("res://Scenes/option_menu.tscn");
-    [Signal] public delegate void DeleteSaveSystemEventHandler(bool deleteSafe);
+	// Called when the node enters the scene tree for the first time.
+	[Export] PackedScene option = ResourceLoader.Load<PackedScene>("res://Scenes/option_menu.tscn");
+	[Signal] public delegate void DeleteSaveSystemEventHandler(bool deleteSafe);
 
+	[Export] TextureButton ExitButton;
+    [Export] TextureButton NewGameButton;
+    [Export] TextureButton SettingsButton;
+    [Export] TextureButton CreditsButton;
     public override void _Ready()
-    {
-        var ColorRecthide = GetNode<ColorRect>("ColorRect");
-        ColorRecthide.Hide();
-        SaveSystem.LoadFile_Settings();
+	{
+		var ColorRecthide = GetNode<ColorRect>("ColorRect");
+		ColorRecthide.Hide();
+		SaveSystem.LoadFile_Settings();
+
+		ExitButton.Pressed += Exit;
+        NewGameButton.Pressed += NewGame;
+		SettingsButton.Pressed += Settings;
+		CreditsButton.Pressed += Credits;
 
         // Player indicator for not having any save files
         var LockColor = GetNode<ColorRect>("Lock_Color");
-        if (FileAccess.FileExists("user://Days.Json") || SaveManager.SaveFileExists())
-        {
-            LockColor.Hide();
-        }
-        else
-        {
-            LockColor.Show();
-        }
+		if (FileAccess.FileExists("user://Days.Json"))
+		{
+		   
+			LockColor.Hide();
+		}
+		else
+		{
+			LockColor.Show();
+		}
 
         // Safely check ContinueButton if it exists in scene
         if (HasNode("ContinueButton"))
@@ -142,7 +152,10 @@ public partial class MainMenu : Control
     GlobalData.DailyEarnings = 0;
     GlobalData.Dialog_Dealer = false;
 
-    // Safe medicine stock reset
+
+  
+
+// Safe medicine stock reset
     if (MedicineManager.Database != null)
     {
         foreach (var medicine in MedicineManager.Database.Values)
@@ -150,7 +163,42 @@ public partial class MainMenu : Control
             if (medicine != null) medicine.amount = 0;
         }
     }
+/*
 
+
+	private void NewGame()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/Main.tscn");
+	}
+private void Exit()
+	{
+        GetTree().Quit();
+    }
+    private void Credits()
+	{
+        var ColorRecthide = GetNode<ColorRect>("ColorRect");
+        ColorRecthide.Show();
+        var TextRTL = GetNode<RichTextLabel>("ColorRect/RichTextLabel");
+        TextRTL.Text = "Can - Producer \n" +
+			"Rome - Art \n" +
+			"Tilda - Game Design & Production \n" +
+			"Herkus - Programming & Production \n" +
+			"Jacob - Programming \n" +
+			"Nadia - Programming \n" +
+			"Princess - Programming \n" +
+			"OJ - Programming \n" +
+			"Fox - Programming";
+    }
+    
+    private void Settings()
+	{
+        // spawns the option menu
+        var optionMenu = option.Instantiate();
+        AddChild(optionMenu);
+    }
+
+
+*/
     GetTree().ChangeSceneToFile("res://Scenes/Main.tscn");
 }
 }

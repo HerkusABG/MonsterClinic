@@ -1,8 +1,19 @@
 [gd_scene format=3 uid="uid://dc0worwp368vy"]
 
 [ext_resource type="Script" uid="uid://cwkco3fmspqtt" path="res://Scripts/AlwaysOnScreen/Menu/MainMenu.cs" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://dbbbh5wjetabn" path="res://Assets/2DArt/Menu/mainmenu-bg.png" id="2_t1dhk"]
+[ext_resource type="Texture2D" uid="uid://dptm2vc8p7vwx" path="res://Assets/2DArt/Menu/mainmenu-button-exit.png" id="3_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://cohiil8kv0nav" path="res://Assets/2DArt/Menu/mainmenu-button-exit-lit.png" id="4_yhxw7"]
+[ext_resource type="Texture2D" uid="uid://bmt4f65wb72bl" path="res://Assets/2DArt/Menu/mainmenu-button-newgame.png" id="5_trj04"]
+[ext_resource type="Texture2D" uid="uid://dh1d6jujlitrt" path="res://Assets/2DArt/Menu/mainmenu-button-newgame-lit.png" id="6_16hvj"]
+[ext_resource type="Texture2D" uid="uid://gxw0hdm3xole" path="res://Assets/2DArt/Menu/mainmenu-button-continue.png" id="7_t1dhk"]
+[ext_resource type="Texture2D" uid="uid://d3xipxka0jk5c" path="res://Assets/2DArt/Menu/mainmenu-button-continue-lit.png" id="8_5egv6"]
+[ext_resource type="Texture2D" uid="uid://cp7y3xjnfnmqm" path="res://Assets/2DArt/Menu/mainmenu-button-settings.png" id="9_vtepg"]
+[ext_resource type="Texture2D" uid="uid://b3ii46imgmdfp" path="res://Assets/2DArt/Menu/mainmenu-button-settings-lit.png" id="10_8dnnj"]
+[ext_resource type="Texture2D" uid="uid://j5xpunpsg1ki" path="res://Assets/2DArt/Menu/mainmenu-button-credits.png" id="11_m3bi6"]
+[ext_resource type="Texture2D" uid="uid://ulsyojpijhvb" path="res://Assets/2DArt/Menu/mainmenu-button-credits-lit.png" id="12_wyh8j"]
 
-[node name="MainMenu" type="Control" unique_id=719248053]
+[node name="MainMenu" type="Control" unique_id=719248053 node_paths=PackedStringArray("ExitButton", "NewGameButton", "SettingsButton", "CreditsButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,17 +21,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_06t4h")
-
-[node name="New_Game_Button" type="Button" parent="." unique_id=514946621]
-layout_mode = 0
-offset_left = 60.0
-offset_top = 542.0
-offset_right = 416.0
-offset_bottom = 690.0
-theme_override_font_sizes/font_size = 45
-text = "New Game"
+ExitButton = NodePath("TextureButton")
+NewGameButton = NodePath("NewGame")
+SettingsButton = NodePath("Settings")
+CreditsButton = NodePath("Credits")
 
 [node name="Load_Game_Button" type="Button" parent="." unique_id=1309238762]
+visible = false
 layout_mode = 0
 offset_left = 58.0
 offset_top = 741.0
@@ -40,6 +47,7 @@ offset_bottom = 889.0
 color = Color(0, 0, 0, 0.6)
 
 [node name="Options_Button" type="Button" parent="." unique_id=1402155930]
+visible = false
 layout_mode = 0
 offset_left = 756.0
 offset_top = 549.0
@@ -50,6 +58,7 @@ disabled = true
 text = "Option"
 
 [node name="Credits_Button" type="Button" parent="." unique_id=30100071]
+visible = false
 layout_mode = 0
 offset_left = 759.0
 offset_top = 755.0
@@ -58,16 +67,8 @@ offset_bottom = 903.0
 theme_override_font_sizes/font_size = 45
 text = "Credits"
 
-[node name="Exit_Button" type="Button" parent="." unique_id=2097634797]
-layout_mode = 0
-offset_left = 1472.0
-offset_top = 756.0
-offset_right = 1828.0
-offset_bottom = 904.0
-theme_override_font_sizes/font_size = 45
-text = "Exit"
-
 [node name="Delete_Save" type="Button" parent="." unique_id=726602146]
+visible = false
 layout_mode = 0
 offset_left = 1472.0
 offset_top = 549.0
@@ -79,6 +80,7 @@ text = "Delete_save"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1266797198]
 visible = false
+z_index = 4
 layout_mode = 0
 offset_left = 495.0
 offset_top = 173.0
@@ -108,10 +110,65 @@ text = "X"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1888377417]
 
-[connection signal="pressed" from="New_Game_Button" to="." method="_on_new_game_button_pressed"]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=939852025]
+z_index = -1
+position = Vector2(960, 540)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_t1dhk")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=2114296229]
+layout_mode = 0
+offset_left = 1669.0
+offset_top = 68.0
+offset_right = 2170.0
+offset_bottom = 2090.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_cp0ys")
+texture_hover = ExtResource("4_yhxw7")
+
+[node name="NewGame" type="TextureButton" parent="." unique_id=1343017005]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 499.0
+offset_right = 810.0
+offset_bottom = 1400.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("5_trj04")
+texture_hover = ExtResource("6_16hvj")
+
+[node name="LoadGame" type="TextureButton" parent="." unique_id=1780634532]
+layout_mode = 0
+offset_left = 519.0
+offset_top = 489.0
+offset_right = 1183.0
+offset_bottom = 1416.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("7_t1dhk")
+texture_hover = ExtResource("8_5egv6")
+
+[node name="Settings" type="TextureButton" parent="." unique_id=1362711639]
+layout_mode = 0
+offset_left = 893.0
+offset_top = 487.0
+offset_right = 1557.0
+offset_bottom = 1414.0
+scale = Vector2(0.5, 0.5)
+disabled = true
+texture_normal = ExtResource("9_vtepg")
+texture_hover = ExtResource("10_8dnnj")
+
+[node name="Credits" type="TextureButton" parent="." unique_id=466964965]
+layout_mode = 0
+offset_left = 1251.0
+offset_top = 484.0
+offset_right = 1915.0
+offset_bottom = 1411.0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("11_m3bi6")
+texture_hover = ExtResource("12_wyh8j")
+
 [connection signal="button_down" from="Load_Game_Button" to="." method="_on_load_game_button_button_down"]
 [connection signal="pressed" from="Options_Button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Credits_Button" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="Exit_Button" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="Delete_Save" to="." method="_on_delete_save_pressed"]
 [connection signal="pressed" from="ColorRect/Close" to="." method="_on_close_pressed"]

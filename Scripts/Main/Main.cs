@@ -44,13 +44,19 @@ public partial class Main : Node
     private void Initialize()
     {
         GetNodes();
+         FinanceInfo.Initialize();
         if(alreadyInitialized == false)
         {
             InitializeOnce();
             alreadyInitialized = true;
         }
         OutsideWorld.Initialize();
-        
+         DealerList.Initialize();
+        MaladyList.Initialize();
+        MedicineManager.Initialize();
+        TagList.Initialize();
+        MaladyCatalogSlotUi MCSU = GetTree().Root.FindChild("MaladyCatalogSlotUi", true, false) as MaladyCatalogSlotUi;
+        MCSU.Initialize();
         
         //always keep the office at the bottom of the previous scenes stack, so the reference on how to return to it is always there
         GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
@@ -103,7 +109,7 @@ public partial class Main : Node
         if (@event is InputEventMouseButton eventKey)
         {
             //if a key is pressed and that key is the right mouse button, and if the pause menu and the office aren't visible
-            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && !RoomTracker.IsInRoom(ActiveRoom.Office))
+            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && !RoomTracker.IsInRoom(ActiveRoom.Office) && !RoomTracker.IsInRoom(ActiveRoom.Computer))
             {
                 RoomTracker.GoBack();
             }
@@ -117,11 +123,11 @@ public partial class Main : Node
         {
             if (Office.Visible == true)
             {
-                Inventory.Show();
+                //Inventory.Show();
             }
             else
             {
-                Inventory.Hide();
+                //Inventory.Hide();
                 //Reset the PreviousScenes stack (except for the office) every time we go back to the office
                 GlobalData.PreviousScenes.Clear();
                 GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
@@ -134,14 +140,14 @@ public partial class Main : Node
         if (PatientInterface == null) return;
         if (PatientInterface.Visible == true)
         {
-            Inventory.Show();
+            //Inventory.Show();
         }
         else
         {
             //if (!GlobalData.inPatientRoom)
             if (!RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
             {
-                Inventory.Hide();
+                //Inventory.Hide();
             }
         }
     }
@@ -151,11 +157,11 @@ public partial class Main : Node
         if (Treatment == null) return;
         if (RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
         {
-            Inventory.Show();
+            //Inventory.Show();
         }   
         else
         {
-            Inventory.Hide();
+            //Inventory.Hide();
         }
     }
 

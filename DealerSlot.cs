@@ -49,12 +49,14 @@ public class DealerSlot
 		{
             return $"{medicine.name} \n" +
             $"(Price: {medicine.cost})  \n" +
-            $" Owned: {medicine.amount}";
+            $" Owned: {medicine.amount} \n" +
+            $" \n \n{medicine.description}";
         }
         else
         {
             return $"{upgrade.name} \n" +
-            $"(Price: {upgrade.price}) \n";
+            $"(Price: {upgrade.price}) \n" +
+            $" \n \n {upgrade.description}";
         }
     }
 

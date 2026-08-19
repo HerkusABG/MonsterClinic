@@ -64,7 +64,7 @@ public partial class TreatmentManager : Node
         //In case the patient got better overnight, let the patient go.
         if (Room.curedInAbsence)
         {
-
+            Room.curedInAbsence = false;
             PatientCured();
         }
     }
@@ -117,45 +117,67 @@ public partial class TreatmentManager : Node
         {
             //Then apply medicine.
             medicine.amount--;
+            Room.IncrementTreated();
 
             Room.Patient.TriggerInteractionTags();
 
             string result = "";
-            if (Room.Patient.malady.isImmune)
-            {
-                Room.Patient.malady.isImmune = false;
-                Popup.DisplayPopup(PopupMessages.TreatmentMessages["Immune"]);
-                //PatientImmunePopup.Show();
-                Room.SetAlreadyTreated(true);
-                result = ClinicActionList.Results["MedImmune"].output;
-            }
+            
             //Checking to see if the medicine works
-            else if (Room.Patient.TryCurePatient(medicine))
+            if (Room.Patient.TryCurePatient(medicine))
             {
-                Room.Patient.ShowCorrectMedicineDialogue(Room.SpeechManagerAccess);
-                //If medicine type is correct
-                //Is the patient cured?
-                if (Room.Patient.IsPatientCured())
+                if (Room.Patient.malady.isImmune)
                 {
-                    //severity lower than 0? Then fully cure the patient.
-                    PatientCured();
-                    //MapUi.UpdateComputerPatientText(Room);
+                    Room.Patient.malady.isImmune = false;
+                    //Popup.DisplayPopup(PopupMessages.TreatmentMessages["Immune"]);
+                    //PatientImmunePopup.Show();
+                    if (Room.GetTimesTreated() >= 3)
+                    {
+                        Room.SetAlreadyTreated(true);
+                        Room.Patient.AddSeverity();
+                        Popup.DisplayPopup(PopupMessages.TreatmentMessages["ImmuneFinal"]);
+                    }
+                    else
+                    {
+                        Room.Patient.AddSeverity();
+                        Popup.DisplayPopup(PopupMessages.TreatmentMessages["ImmuneCorrect"]);
+                    }
+                    result = ClinicActionList.Results["MedImmune"].output;
                 }
                 else
                 {
-                    //Otherwise the patients needs to stay there for longer.
-                    Room.SetAlreadyTreated(true);
-                    Popup.DisplayPopup(PopupMessages.TreatmentMessages["CorrectMedicine"]);
-                    //CorrectMedicinePopup.Show();
+                    Room.Patient.ShowCorrectMedicineDialogue(Room.SpeechManagerAccess);
+                    //If medicine type is correct
+                    //Is the patient cured?
+                    if (Room.Patient.IsPatientCured())
+                    {
+                        //severity lower than 0? Then fully cure the patient.
+                        PatientCured();
+                        //MapUi.UpdateComputerPatientText(Room);
+                    }
+                    else
+                    {
+                        //Otherwise the patients needs to stay there for longer.
+                        Room.SetAlreadyTreated(true);
+                        Popup.DisplayPopup(PopupMessages.TreatmentMessages["CorrectMedicine"]);
+                        //CorrectMedicinePopup.Show();
+                    }
+                    result = ClinicActionList.Results["MedSuccess"].output;
                 }
-                result = ClinicActionList.Results["MedSuccess"].output;
             }
             else
             {
                 Room.Patient.ShowIncorrectMedicineDialogue(Room.SpeechManagerAccess);
-                Room.SetAlreadyTreated(true);
-                //Wrong medicine used, come back tomorrow.
-                Popup.DisplayPopup(PopupMessages.TreatmentMessages["WrongMedicine"]);
+                if (Room.GetTimesTreated() >= 3)
+                {
+                    Room.SetAlreadyTreated(true);
+                    Popup.DisplayPopup(PopupMessages.TreatmentMessages["WrongMedicineFinal"]);
+                }
+                else
+                {
+                    //Wrong medicine used, come back tomorrow.
+                    Popup.DisplayPopup(PopupMessages.TreatmentMessages["WrongMedicine"]);
+                }
                 //WrongMedicinePopup.Show();
                 result = ClinicActionList.Results["MedFail"].output;
             }
@@ -182,7 +204,15 @@ public partial class TreatmentManager : Node
         GlobalData.patientCount--;
         Popup.DisplayPopup(PopupMessages.TreatmentMessages["Cured"]);
         //PatientCuredPopup.Show();
-        Economy.GiveDailyEarnings(40);
+        if (Room.Patient == null)
+        {
+            GD.Print("patient is null!");
+        }
+        Room.Patient.GivePayout();
+        if(Room == null)
+        {
+            GD.Print("Room is null!");
+        }
         Room.SetAlreadyTreated(false);
         Room.DeletePatient();
     }

@@ -28,6 +28,7 @@ window/size/mode=4
 window/size/minimize_disabled=true
 window/size/maximize_disabled=true
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://ceetmu0yhbw58"
 
 [dotnet]
 

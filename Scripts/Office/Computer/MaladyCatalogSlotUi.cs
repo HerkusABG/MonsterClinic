@@ -11,9 +11,16 @@ public partial class MaladyCatalogSlotUi : Control
 
 
 
-    public override void _Ready()
+    public void Initialize()
     {
-    
+        GetNode<Label>("Symptoms_label").Show();
+        GetNode<Label>("CuredBy_label").Show();
+
+        GetNode<RichTextLabel>("CuredBy").Show();
+        GetNode<RichTextLabel>("Symptoms").Show();
+
+        GetNode<Label>("Cost_label").Hide();
+        GetNode<Label>("Behaviour_label").Hide();
     }
     
    
@@ -57,6 +64,59 @@ public partial class MaladyCatalogSlotUi : Control
         }
         GetNode<RichTextLabel>("CuredBy").Text = string.Join("\n", cureNames);
         GetNode<RichTextLabel>("Symptoms").Text = string.Join("\n", malady.allSymptoms);
+    }
+
+    public void DisplayMaladyInfo(CatalogueInfoPackage package)
+    {
+        // to get the indexchecker the maladyautoload is called, the indexchecker is set to 0, which is the first entry in the list of maladies
+        // the maladydata is set to the first entry in the list of maladies
+        // set up the name, description and sympthoms of the malady in the Labels and RichtextLabels.
+        GetNode<Label>("Name").Text = package.name;
+        GetNode<RichTextLabel>("Description").Text = package.description;
+
+        if (package.type == CatalogueInfoPackage.PackageType.Malady)
+        {
+            GetNode<Label>("Symptoms_label").Show();
+            GetNode<Label>("CuredBy_label").Show();
+
+            GetNode<RichTextLabel>("CuredBy").Show();
+            GetNode<RichTextLabel>("Symptoms").Show();
+
+            GetNode<Label>("Cost_label").Hide();
+            GetNode<Label>("Behaviour_label").Hide();
+
+            GetNode<RichTextLabel>("CuredBy").Text = string.Join("\n", package.cures);
+            GetNode<RichTextLabel>("Symptoms").Text = string.Join("\n", package.symptoms);
+        }
+        else if (package.type == CatalogueInfoPackage.PackageType.Medicine)
+        {
+            GetNode<Label>("Cost_label").Show();
+
+            GetNode<RichTextLabel>("CuredBy").Hide();
+            //GetNode<RichTextLabel>("Symptoms").Hide();
+            GetNode<Label>("Behaviour_label").Hide();
+            GetNode<Label>("Symptoms_label").Hide();
+            GetNode<Label>("CuredBy_label").Hide();
+
+            GetNode<RichTextLabel>("Symptoms").Text = package.cost;
+            //GetNode<Label>("Cost_label").Text = package.cost;
+        }
+        else if (package.type == CatalogueInfoPackage.PackageType.Tag)
+        {
+            GetNode<Label>("Behaviour_label").Show();
+
+            GetNode<Label>("Cost_label").Hide();
+            GetNode<RichTextLabel>("CuredBy").Hide();
+            //GetNode<RichTextLabel>("Symptoms").Hide();
+            GetNode<Label>("Symptoms_label").Hide();
+            GetNode<Label>("CuredBy_label").Hide();
+
+            GetNode<RichTextLabel>("Symptoms").Text = package.behaviour;
+
+            //GetNode<Label>("Behaviour_label").Text = package.behaviour;
+        }
+        //List<string> cureNames = new List<string>();
+        //GetNode<RichTextLabel>("Symptoms").Text = string.Join("\n", malady.allSymptoms);
     }
 }
 

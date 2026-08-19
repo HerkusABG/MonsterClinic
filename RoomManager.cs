@@ -59,6 +59,24 @@ public static class RoomManager
         return count;
     }
 
+    public static int GetAllPassivePayouts()
+    {
+        //Find all empty rooms.
+        int totalPassivePayout = 0;
+        for (int i = 0; i < Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget; i++)
+        {
+            Room room = RoomList[i] as Room;
+            if (room.HasPatient())
+            {
+                if (room.Patient.IsPatientAlive())
+                {
+                    totalPassivePayout += room.Patient.malady.passiveIncome;
+                }
+            }
+        }
+        return totalPassivePayout;
+    }
+
     public static Room[] GetAllDeadPatients()
     {
         int count = 0;

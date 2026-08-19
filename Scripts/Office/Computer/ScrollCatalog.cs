@@ -14,7 +14,7 @@ public partial class ScrollCatalog : ScrollContainer
     public Malady_Autoload MaladyData;
     // new array to store the categories of the maladies without duplicates
     public string[] maladyCategorie;
-    
+    public List<Folder_MC> folderList = new List<Folder_MC>();
     public void Initialize()
     {
         // Get the Malady_Autoload node to access the list of maladies
@@ -25,13 +25,24 @@ public partial class ScrollCatalog : ScrollContainer
         // Get the GridContainer node to add the folders to it
         var gridContainer = GetNode<GridContainer>("GridContainer");
 
-        // get the length of the array of the maladyCategorie and instantiate(add) a folder for each categorie
+        /*// get the length of the array of the maladyCategorie and instantiate(add) a folder for each categorie
         for (int i = 0; i < CategoryList.Database.Count - 1; i++)
         {
             Folder_MC slotfolder = Folders.Instantiate<Folder_MC>();
             gridContainer.AddChild(slotfolder);
-            slotfolder.Initialize(CategoryList.Database.ElementAt(i + 1).Value);
-            slotfolder.ZIndex = CategoryList.Database.Count - i + 2;
+            slotfolder.Initialize(CategoryList.Database.ElementAt(i + 1).Value, CloseAllFolders);
+            //slotfolder.ZIndex = CategoryList.Database.Count - i;
+            GD.Print($"Index {i} z index is {slotfolder.ZIndex}");
+            folderList.Add(slotfolder);
+        }*/
+    }
+
+    public void CloseAllFolders()
+    {
+        foreach(Folder_MC folder in folderList)
+        {
+            folder.CloseFolder();
         }
+        //CloseFolder()
     }
 }

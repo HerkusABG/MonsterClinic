@@ -7,11 +7,12 @@ public partial class Folder_MC : Control
 {
     Button Malady_Button;
 
-
+    [Export] Button folderButton;
+    [Export] Control Dropdown;
     public Malady_Autoload.MaladyData MaladyData;
 	//[Export] private Control MaladyCatalogSlotUi;
-	Texture2D folderopen = (Texture2D)ResourceLoader.Load("res://Cataloag_Malady/Folder_Open.png");
-    Texture2D folderclose = (Texture2D)ResourceLoader.Load("res://Cataloag_Malady/Folder_Idle.png");
+	Texture2D folderopen = (Texture2D)ResourceLoader.Load("res://Cataloag_Malady/folder1.png");
+    Texture2D folderclose = (Texture2D)ResourceLoader.Load("res://Cataloag_Malady/folder2.png");
     public Boolean doubleclick = false;
     //public List<Malady_Autoload.MaladyData> MaladyList;
 
@@ -25,18 +26,15 @@ public partial class Folder_MC : Control
     public MaladyCatalogSlotUi MCSU;
 
     // Called when the node enters the scene tree for the first time.
-    public void Initialize(MaladyCategory category)
+    public void Initialize(MaladyCategory category, Action action)
 	{
-
+        //folderButton.Pressed += action;
+        folderButton.Pressed += FolderAction;
         //var MaladyAutoload = GetNode<Malady_Autoload>("/root/MaladyAutoload");
 
         // get the MaladyData from the MaladyAutoload using the indexChecker to set the tag and text for the button
-        //MaladyData = MaladyAutoload.ListMaladies[MaladyAutoload.indexChecker];
-        var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
+        var container_Button = GetNode<VBoxContainer>("Dropdown/VBoxContainer");
         MCSU = GetTree().Root.FindChild("MaladyCatalogSlotUi", true, false) as MaladyCatalogSlotUi;
-        //MCSU = GetTree().Root.GetNode<MaladyCatalogSlotUi>("Main/Computer/Malady_PH");
-        //Node nodey = GetTree().Root.GetNode<Node>("Main/Computer/Malady_PH");
-        //GD.Print(GetParent().Name);
         GetNode<Label>("Tag").Text = category.PluralName;
 
         List<Malady> SortedMaladies = new List<Malady>();
@@ -49,7 +47,8 @@ public partial class Folder_MC : Control
                 Malady malady = SortedMaladies[index];
                 button.Text = SortedMaladies[index].name;
                 button.Pressed += () => MCSU.DisplayMaladyInfo(malady);
-
+                button.ZIndex = 7;
+                GD.Print($"Button z is {button.ZIndex}");
                 index++;
             }
             else
@@ -57,23 +56,6 @@ public partial class Folder_MC : Control
                 button.Hide();
             }
         }
-        //GetNode<Button>("FolderButton/VBoxContainer/Malady_Button").Text = "Googoogaga";
-
-        //GetNode<Label>("Tag").Text = MaladyData.Categorie;
-        //GetNode<Button>("FolderButton/VBoxContainer/Malady_Button").Text = MaladyData.MaladyName;
-       
-        // set the button name from the MaladyData and the index gets higher to get the next data
-        //if (MaladyAutoload.indexChecker == 0)
-        {
-          //  setbuttonname = MaladyData.MaladyName;
-        }
-       // MaladyAutoload.indexChecker++;
-
-        // get VBoxContainer from the scene and hides the container which contains the buttons
-        //container_Button.Hide();
-        // get the Malady_Button from the scene
-        //Malady_Button = GetNode<Button>("FolderButton/VBoxContainer/Malady_Button");
-        // connects every button in the VBoxContainer to the _on_malady_button_pressed function, when the button is pressed it will call the function and pass the button as a parameter
         foreach (var child in container_Button.GetChildren())
         {
             // checks if the child is a button, if it connected to the _on_malady_button_pressed funtion the button as a parameter gets transfered to the function
@@ -82,15 +64,19 @@ public partial class Folder_MC : Control
                 //btn.Pressed += () => _on_malady_button_pressed(btn);
             }
         }
-
     }
 
 
     public void _on_folder_button_pressed()
     {
+        //FolderAction();
+    }
+
+    private void FolderAction()
+    {
         // get FolderSprite and VBoxContainer from the scene
         var FolderSprite = GetNode<Sprite2D>("FolderIdle");
-        var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
+        //var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
 
         // function is for double clicking the folder to open and close, if false the folder opens, if its true the folder closes
         if (doubleclick == false)
@@ -98,18 +84,29 @@ public partial class Folder_MC : Control
             // set the folder sprite to the open folder texture, sets doubleclick to true, and shows the VboxContainer (which contains the buttons)
             FolderSprite.Texture = folderopen;
             doubleclick = true;
-            container_Button.Show();
+            //container_Button.Show();
+            Dropdown.Show();
         }
         else
         {
             // set the folder sprite to the closed folder texture, sets doubleclick to false, and hides the VBoxContainer (which contains the buttons)
             FolderSprite.Texture = folderclose;
             doubleclick = false;
-            container_Button.Hide();
+            //container_Button.Hide();
+            Dropdown.Hide();
         }
-        
     }
 
+    public void CloseFolder()
+    {
+        var FolderSprite = GetNode<Sprite2D>("FolderIdle");
+        //var container_Button = GetNode<VBoxContainer>("FolderButton/VBoxContainer");
+
+        FolderSprite.Texture = folderclose;
+        doubleclick = false;
+        //container_Button.Hide();
+        Dropdown.Hide();
+    }
     public void _on_malady_button_pressed(Button btn)
 	{
         // looking for the MaladyCatalogSlotUi in the scene tree (Computer) and assigning it to the MCSU variable, because the folder scene doesnt have the MCSU
