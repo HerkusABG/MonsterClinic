@@ -16,6 +16,13 @@ public partial class MedicineButton : TextureButton
 	{
         MedCount = GetNode("Stripe").GetNode<Label>("Count");
         Disabled = false;
+
+        
+    }
+
+    private void OpenBag()
+    {
+
     }
 
     public void AssignToSlot(InventorySlot inputSlot, Medicine inputMedicine)

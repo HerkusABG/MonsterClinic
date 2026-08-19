@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://br71y2evi5ua2" path="res://Assets/2DArt/inventory/inventory-bag-closed.png" id="2_r8i0v"]
 [ext_resource type="Texture2D" uid="uid://b7of5ppd34pym" path="res://Assets/2DArt/inventory/inventory-bag-open.png" id="4_trmqt"]
 [ext_resource type="Texture2D" uid="uid://brc0s8l5se7kn" path="res://Assets/2DArt/inventory/inventory-pocket-closed.png" id="5_fgswf"]
+[ext_resource type="Texture2D" uid="uid://dlhna8c7axwu3" path="res://Assets/2DArt/inventory/inventory-pocket-open.png" id="5_r8i0v"]
 [ext_resource type="StyleBox" uid="uid://4xqx68dnpjts" path="res://Red_button.tres" id="6_r8i0v"]
 [ext_resource type="StyleBox" uid="uid://dy5fikt614yn7" path="res://Grinch_button.tres" id="7_trmqt"]
 [ext_resource type="Script" uid="uid://bnfoxvhhm3bek" path="res://Popup.cs" id="8_trmqt"]
@@ -96,11 +97,12 @@ texture_normal = ExtResource("2_r8i0v")
 texture_hover = ExtResource("2_r8i0v")
 
 [node name="Open_Inventory" type="TextureRect" parent="." unique_id=479278794]
+visible = false
 custom_minimum_size = Vector2(160, 150)
-offset_left = 1667.0
-offset_top = 166.00002
-offset_right = 2145.0
-offset_bottom = 2396.0
+offset_left = 1674.0
+offset_top = 208.0
+offset_right = 2162.0
+offset_bottom = 2438.0
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("4_trmqt")
 
@@ -118,6 +120,58 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_jqulp")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3xuxb")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_arhjh")
 text = "Shotgun"
+
+[node name="InvSlot1" type="TextureButton" parent="Open_Inventory" unique_id=1885148563]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 42.50006
+offset_top = 1147.5
+offset_right = 478.50006
+offset_bottom = 1537.5
+scale = Vector2(0.9, 0.9)
+mouse_filter = 1
+texture_normal = ExtResource("5_fgswf")
+texture_hover = ExtResource("5_r8i0v")
+
+[node name="InvSlot2" type="TextureButton" parent="Open_Inventory" unique_id=193861724]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 42.5
+offset_top = 792.5
+offset_right = 478.5
+offset_bottom = 1182.5
+scale = Vector2(0.9, 0.9)
+mouse_filter = 1
+texture_normal = ExtResource("5_fgswf")
+texture_hover = ExtResource("5_r8i0v")
+
+[node name="InvSlot3" type="TextureButton" parent="Open_Inventory" unique_id=978435534]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 42.5
+offset_top = 455.0
+offset_right = 478.5
+offset_bottom = 845.0
+scale = Vector2(0.9, 0.9)
+mouse_filter = 1
+texture_normal = ExtResource("5_fgswf")
+texture_hover = ExtResource("5_r8i0v")
+
+[node name="InvSlot4" type="TextureButton" parent="Open_Inventory" unique_id=258004031]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 42.5
+offset_top = 125.0
+offset_right = 478.5
+offset_bottom = 515.0
+scale = Vector2(0.9, 0.9)
+mouse_filter = 1
+texture_normal = ExtResource("5_fgswf")
+texture_hover = ExtResource("5_r8i0v")
 
 [node name="EmptySlot1" type="TextureRect" parent="Open_Inventory" unique_id=255516927]
 custom_minimum_size = Vector2(150, 150)
@@ -180,31 +234,31 @@ offset_bottom = 44.99994
 
 [node name="InventoryControl1" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=464793263]
 anchors_preset = 0
-offset_left = 100.0
-offset_top = 120.0
-offset_right = 140.00002
-offset_bottom = 160.0
+offset_left = 50.0
+offset_top = 145.0
+offset_right = 90.000015
+offset_bottom = 185.0
 
 [node name="InventoryControl2" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=1721244620]
 anchors_preset = 0
-offset_left = 100.0
-offset_top = 455.0
-offset_right = 140.0
-offset_bottom = 495.00006
+offset_left = 50.0
+offset_top = 480.0
+offset_right = 90.0
+offset_bottom = 520.00006
 
 [node name="InventoryControl3" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=990366297]
 anchors_preset = 0
-offset_left = 100.0
-offset_top = 787.5
-offset_right = 140.0
-offset_bottom = 827.5
+offset_left = 50.0
+offset_top = 812.5
+offset_right = 90.0
+offset_bottom = 852.5
 
 [node name="InventoryControl4" type="Control" parent="Open_Inventory/InventoryPositions" unique_id=672183547]
 anchors_preset = 0
-offset_left = 100.0
-offset_top = 1137.5
-offset_right = 140.0
-offset_bottom = 1177.5
+offset_left = 50.0
+offset_top = 1162.5
+offset_right = 90.0
+offset_bottom = 1202.5
 
 [node name="Up" type="Button" parent="Open_Inventory" unique_id=1442244285]
 layout_mode = 0
@@ -415,21 +469,22 @@ text = "X"
 visible = false
 z_index = 1
 custom_minimum_size = Vector2(100, 100)
-offset_left = 617.0
-offset_top = 554.0
-offset_right = 1053.0
-offset_bottom = 944.0
+offset_left = 795.0
+offset_top = 247.0
+offset_right = 1231.0
+offset_bottom = 637.0
 scale = Vector2(0.8, 0.8)
+mouse_filter = 1
 disabled = true
 texture_normal = ExtResource("9_r8i0v")
 script = ExtResource("13_r8i0v")
 
 [node name="Stripe" type="TextureRect" parent="Template" unique_id=256219047]
 layout_mode = 0
-offset_left = 95.0
-offset_top = 155.0
-offset_right = 531.0
-offset_bottom = 545.00006
+offset_left = 153.0
+offset_top = 112.0
+offset_right = 589.0
+offset_bottom = 502.00006
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("13_trmqt")
 
