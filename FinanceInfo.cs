@@ -17,6 +17,7 @@ public static class FinanceInfo
             if(loopPackage.IsMyMalady(inputMalady))
             {
                 loopPackage.SameMalady();
+                return;
             }
         }
         FinancePackage package = new FinancePackage(inputAmount, inputMalady, inputPatients);

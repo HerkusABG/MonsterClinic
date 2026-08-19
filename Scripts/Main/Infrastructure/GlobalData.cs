@@ -64,4 +64,13 @@ public static class GlobalData
 
     public static bool FolderActive = false;
 
+    public static SleepState sleepState = SleepState.None;
+
+}
+
+public enum SleepState
+{
+    None,
+    Days,
+    Money
 }

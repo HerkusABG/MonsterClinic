@@ -234,7 +234,7 @@ public partial class Room : ExpNode2D
     public void PatientCuredInAbsence()
     {
         curedInAbsence = true;
-        DeletePatient();
+        //DeletePatient();
     }
 
     public void SetAlreadyTreated(bool input)

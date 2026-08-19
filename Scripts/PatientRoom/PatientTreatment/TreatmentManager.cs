@@ -64,7 +64,7 @@ public partial class TreatmentManager : Node
         //In case the patient got better overnight, let the patient go.
         if (Room.curedInAbsence)
         {
-
+            Room.curedInAbsence = false;
             PatientCured();
         }
     }
@@ -204,7 +204,15 @@ public partial class TreatmentManager : Node
         GlobalData.patientCount--;
         Popup.DisplayPopup(PopupMessages.TreatmentMessages["Cured"]);
         //PatientCuredPopup.Show();
+        if (Room.Patient == null)
+        {
+            GD.Print("patient is null!");
+        }
         Room.Patient.GivePayout();
+        if(Room == null)
+        {
+            GD.Print("Room is null!");
+        }
         Room.SetAlreadyTreated(false);
         Room.DeletePatient();
     }

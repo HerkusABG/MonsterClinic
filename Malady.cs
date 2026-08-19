@@ -38,6 +38,8 @@ public class Malady
 
 	public int payout;
 
+	public int passiveIncome;
+
 	public Malady()
 	{
 		//Small piece of logic to ensure malady severity gets assigned properly in PatientStats.
@@ -59,7 +61,8 @@ public class Malady
 			admittedDialogue = admittedDialogue,
 			visualKey = visualKey,
 			layerType = layerType,
-            payout = payout
+            payout = payout,
+            passiveIncome = passiveIncome
         };
 		foreach(Tag tag in tags)
 		{

@@ -46,7 +46,7 @@ public partial class PatientStats
         dialogueIndexInner = 0;
         dialogueIndexOuter = 0;
         AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(2, 8)).Value);
-        //AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(3, 4)).Value);
+        //AssignMaladyValues(MaladyList.Database.ElementAt(rnd.Next(4, 5)).Value);
         textureUnit.unitType = malady.layerType;
 		if (malady.layerType == TextureType.Normal || malady.layerType == TextureType.Top)
 		{

@@ -28,6 +28,11 @@ public class FinancePackage
         return amount;
     }
 
+    public int GetPatients()
+    {
+        return patients;
+    }
+
     public bool IsMyMalady(string inputMalady)
     {
         if(inputMalady == malady)

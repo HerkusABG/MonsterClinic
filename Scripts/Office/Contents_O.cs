@@ -10,6 +10,7 @@ public partial class Contents_O : ExpNode2D
     private Button PopupOpen;
     private Button PopupClose;
     [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
+    [Export] TextureButton BedButton;
     // Called when the node enters the scene tree for the first time.
     public void Initialize()
 	{
@@ -27,7 +28,7 @@ public partial class Contents_O : ExpNode2D
 
     private void Subscribe()
     {
-
+        BedButton.Pressed += Popup_Show;
     }
 
     private void InitializeChildren()
@@ -66,7 +67,7 @@ public partial class Contents_O : ExpNode2D
     }
     private void _on_bed_pressed()
     {
-        Popup_Show();
+        //Popup_Show();
     }
 
     private void _on_popup_open_pressed()
@@ -76,7 +77,9 @@ public partial class Contents_O : ExpNode2D
         day_M.Player_Ingame_Days++;
         GlobalData.Player_Ingame_Days++;
         //make the money from treating patients, and the passive income
-        GlobalData.PassiveIncome = GlobalData.patientCount * 20;
+        //GlobalData.PassiveIncome = GlobalData.patientCount * 20;
+        GlobalData.PassiveIncome = RoomManager.GetAllPassivePayouts();
+
         DoctorInventory.Money += GlobalData.DailyEarnings + GlobalData.PassiveIncome;
         GlobalData.Countdown--;
 
@@ -99,6 +102,8 @@ public partial class Contents_O : ExpNode2D
 
         Inventory inventory = GetParent().GetNode<Inventory>("Inventory");
         inventory.InventoryActions();
+        inventory.Hide();
+
 
         //GlobalData.inPatientAdmission = false;
         RoomTracker.RoomTrack(ActiveRoom.Office);
@@ -111,7 +116,7 @@ public partial class Contents_O : ExpNode2D
 
             // timer is getting set to 3 seconds and starts
             sceneTimer.Start(3.0);
-
+            GlobalData.sleepState = SleepState.Days;
             if (GlobalData.Medicincavailability != 0)
             {
                 GlobalData.Medicincavailability--;
@@ -127,6 +132,7 @@ public partial class Contents_O : ExpNode2D
 
     private void Popup_Show()
     {
+        GD.Print("popup");
         PopupLabel.Show();
         PopupOpen.Show();
         PopupClose.Show();
@@ -145,24 +151,34 @@ public partial class Contents_O : ExpNode2D
         {
             if (leftmouseBtn.ButtonIndex == MouseButton.Left && leftmouseBtn.Pressed && GlobalData.Bed == true && GlobalData.Countdown != -1)
             {
-                sceneTimer.Stop();
-                var BedScene = (Node2D)GetParent().GetNode("Bed");
-                BedScene.Hide();
-                Show();
+                if(GlobalData.sleepState == SleepState.Days)
+                {
+                    sceneTimer.Stop();
+                    var BedScene = (Node2D)GetParent().GetNode("Bed");
+                    BedScene.Hide();
+                    //Show();
+                    OnSceneTimerTimeout();
+                }
+                else if (GlobalData.sleepState == SleepState.Money)
+                {
+                    financesTimer.Stop();
+                    var FinanceScene = (Node2D)GetParent().GetNode("Finances");
+                    FinanceScene.Hide();
+                    //Show();
+                    on_finances_timer_timeout();
+                }
             }
         }
     }
 
     private void OnSceneTimerTimeout()
     {
+        GlobalData.sleepState = SleepState.Money;
         // get node bed scene
         var BedScene = (Node2D)GetParent().GetNode("Bed");
 
         // Daily earnings gets reseted
         GlobalData.DailyEarnings = 0;
-
-        // get node bed scene
-        var BedScene = (Node2D)GetParent().GetNode("Bed");
 
         // condition for the Controled Spawn
         if (GlobalData.ControlSpawnFading == 2)
@@ -189,8 +205,8 @@ public partial class Contents_O : ExpNode2D
         Show();
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
-        DialogDealer();
-        financesTimer.Start(60.0);
+        //DialogDealer(); <----- COMMENTED THIS OUT HERKUS
+        financesTimer.Start(5.0);
         financesTimer.OneShot = true;
         financesTimer.Timeout += on_finances_timer_timeout;
 
@@ -224,8 +240,6 @@ public partial class Contents_O : ExpNode2D
     {
         Dialog dialog = GetParent().GetNode<Dialog>("Dialog");
         //dialog.Show();
-        GD.Print("Dialog");
-
 
         // Daily earnings gets reseted
         GlobalData.DailyEarnings = 0;
@@ -250,8 +264,14 @@ public partial class Contents_O : ExpNode2D
         }
         var FinancesScene = (Node2D)GetParent().GetNode("Finances");
         FinancesScene.Hide();
-        financesTimer.Timeout -= on_finances_timer_timeout;
+        if (financesTimer.IsConnected("timeout", Callable.From(on_finances_timer_timeout)))
+        {
+            financesTimer.Timeout -= on_finances_timer_timeout;
+        }
+        GlobalData.sleepState = SleepState.None;
 
+        Inventory inventory = GetParent().GetNode<Inventory>("Inventory");
+        inventory.Show();
     }
     private void TriggerFading()
     {

@@ -10,8 +10,8 @@ public partial class FadeAnimation : Node2D
 
     [Export] RichTextLabel Day;
     [Export] RichTextLabel TreatmentDays;
-    [Export] RichTextLabel MoneyEarnedDay;
-    [Export] RichTextLabel MoneyHaveDay;
+    //[Export] RichTextLabel MoneyEarnedDay;
+    //[Export] RichTextLabel MoneyHaveDay;
     [Export] Timer deleteselfTimer;
     public override void _Ready()
     {
@@ -23,8 +23,8 @@ public partial class FadeAnimation : Node2D
     {
         Day = GetNode<RichTextLabel>("Day");
         TreatmentDays = GetNode<RichTextLabel>("TreatmentDays");
-        MoneyEarnedDay = GetNode<RichTextLabel>("MoneyEarned");
-        MoneyHaveDay = GetNode<RichTextLabel>("MoneyHave");
+        //MoneyEarnedDay = GetNode<RichTextLabel>("MoneyEarned");
+        //MoneyHaveDay = GetNode<RichTextLabel>("MoneyHave");
         deleteselfTimer = GetNode<Timer>("Delete_Timer");
     }
 
@@ -117,11 +117,11 @@ public partial class FadeAnimation : Node2D
             tw_fade = GetTree().CreateTween().SetParallel();
             Day.SelfModulate = new Color(Day.SelfModulate.R, Day.SelfModulate.G, Day.SelfModulate.B, 0);
             TreatmentDays.SelfModulate = new Color(TreatmentDays.SelfModulate.R, TreatmentDays.SelfModulate.G, TreatmentDays.SelfModulate.B, 0);
-            MoneyEarnedDay.SelfModulate = new Color(MoneyEarnedDay.SelfModulate.R, MoneyEarnedDay.SelfModulate.G, MoneyEarnedDay.SelfModulate.B, 0);
+            //MoneyEarnedDay.SelfModulate = new Color(MoneyEarnedDay.SelfModulate.R, MoneyEarnedDay.SelfModulate.G, MoneyEarnedDay.SelfModulate.B, 0);
 
             tw_fade.TweenProperty(Day, "self_modulate:a", 1f, 1f);
             tw_fade.TweenProperty(TreatmentDays, "self_modulate:a", 1f, 1f);
-            tw_fade.TweenProperty(MoneyEarnedDay, "self_modulate:a", 1f, 1f);
+            //tw_fade.TweenProperty(MoneyEarnedDay, "self_modulate:a", 1f, 1f);
         }
         /*else
         {
@@ -156,16 +156,16 @@ public partial class FadeAnimation : Node2D
     {
         Day.Hide();
         TreatmentDays.Hide();
-        MoneyEarnedDay.Hide();
-        MoneyHaveDay.Hide();
+        //MoneyEarnedDay.Hide();
+        //MoneyHaveDay.Hide();
     }
 
     private void ShowText()
     {
         Day.Show();
         TreatmentDays.Show();
-        MoneyEarnedDay.Show();
-        MoneyHaveDay.Show();
+        //MoneyEarnedDay.Show();
+        //MoneyHaveDay.Show();
     }
 
 
@@ -176,12 +176,12 @@ public partial class FadeAnimation : Node2D
         Day.BbcodeEnabled = true;
         Day.Text = $"[b][font_size=130] {day_M.Player_Ingame_Days} days in containment [/font_size][/b]";
 
-        MoneyEarnedDay.BbcodeEnabled = true;
-        MoneyEarnedDay.Text = "Today's earnings: " + GlobalData.DailyEarnings;
+        //MoneyEarnedDay.BbcodeEnabled = true;
+        //MoneyEarnedDay.Text = "Today's earnings: " + GlobalData.DailyEarnings;
 
         TreatmentDays.BbcodeEnabled = true;
 
-        MoneyHaveDay.Text = "Your money: " + DoctorInventory.Money.ToString();
+        //MoneyHaveDay.Text = "Your money: " + DoctorInventory.Money.ToString();
 
         
         if(GlobalData.Dialog_Dealer == false)

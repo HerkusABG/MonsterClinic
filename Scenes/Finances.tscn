@@ -4,9 +4,10 @@
 [ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://Assets/CustomText/digital-7_CountdownText.ttf" id="1_coclp"]
 [ext_resource type="FontFile" uid="uid://cygukaybulvh" path="res://Font/MSW98UI-Regular.ttf" id="3_de07y"]
 
-[node name="Finances" type="Node2D" unique_id=781147841 node_paths=PackedStringArray("BreakdownLabel")]
+[node name="Finances" type="Node2D" unique_id=781147841 node_paths=PackedStringArray("BreakdownLabel", "FinalLabel")]
 script = ExtResource("1_bxikx")
 BreakdownLabel = NodePath("FinancesText")
+FinalLabel = NodePath("Label3")
 
 [node name="Background" type="ColorRect" parent="." unique_id=2007724765]
 offset_left = -24.0
@@ -27,7 +28,7 @@ text = "Income"
 horizontal_alignment = 1
 
 [node name="FinancesText" type="RichTextLabel" parent="." unique_id=720544212]
-offset_left = -8.0
+offset_left = 27.0
 offset_top = 194.0
 offset_right = 1699.0
 offset_bottom = 749.0
@@ -46,4 +47,25 @@ offset_bottom = 819.0
 theme_override_fonts/font = ExtResource("1_coclp")
 theme_override_font_sizes/font_size = 90
 text = "---------------------------------------------"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="." unique_id=148981880]
+offset_left = -9.0
+offset_top = 841.0
+offset_right = 1611.0
+offset_bottom = 934.0
+theme_override_fonts/font = ExtResource("3_de07y")
+theme_override_font_sizes/font_size = 56
+text = "Total earnings: 500 Credits"
+horizontal_alignment = 2
+
+[node name="Label4" type="Label" parent="." unique_id=535297670]
+offset_left = 174.0
+offset_top = 974.0
+offset_right = 1794.0
+offset_bottom = 1067.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_de07y")
+theme_override_font_sizes/font_size = 56
+text = "(Press LMB to skip)"
 horizontal_alignment = 1

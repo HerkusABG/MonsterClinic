@@ -7,6 +7,7 @@ public partial class Finances : Node2D
 {
 
 	[Export] RichTextLabel BreakdownLabel;
+	[Export] Label FinalLabel;
 	public void Initialize()
 	{
 
@@ -19,12 +20,25 @@ public partial class Finances : Node2D
 		packages = FinanceInfo.GetPackages();
 		string output = "";
 
-		foreach (FinancePackage package in packages)
+		int sum = 0;
+
+		Room[] rooms = RoomManager.GetAllDeadPatients();
+		int deadpatients = rooms.Length;
+
+
+        output += $"{GlobalData.patientCount - deadpatients} patient(s) staying overnight, earned {GlobalData.PassiveIncome} credits.";
+        output += "\n";
+
+        foreach (FinancePackage package in packages)
 		{
-			GD.Print("LOOP");
 			output += package.GetPackageInfo();
 			output += "\n";
+			sum += package.GetEarnings();
         }
         BreakdownLabel.Text = output;
+		sum += GlobalData.PassiveIncome;
+
+
+        FinalLabel.Text = $"Total earnings: {sum} credits.";
     }
 }

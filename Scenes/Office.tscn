@@ -92,8 +92,9 @@ border_width_right = 14
 border_width_bottom = 14
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
-[node name="Contents_O" type="Node2D" unique_id=586678661]
+[node name="Contents_O" type="Node2D" unique_id=586678661 node_paths=PackedStringArray("BedButton")]
 script = ExtResource("1_35wc1")
+BedButton = NodePath("Player_Interactables_O/Bed")
 
 [node name="Background1" type="Sprite2D" parent="." unique_id=198520339]
 z_index = -4
@@ -366,6 +367,5 @@ icon_alignment = 1
 [connection signal="pressed" from="Player_Interactables_O/Mirror" to="Player_Interactables_O/Mirror/MirrorLabel" method="_on_mirror_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Elevator" to="." method="_on_elevator_pressed"]
 [connection signal="pressed" from="Player_Interactables_O/Patient_Interface_Access" to="." method="_on_patient_i_a_pressed"]
-[connection signal="pressed" from="Player_Interactables_O/Bed" to="." method="_on_bed_pressed"]
 [connection signal="pressed" from="PopupLabel/PopupOpen" to="." method="_on_popup_open_pressed"]
 [connection signal="pressed" from="PopupLabel/PopupClose" to="." method="_on_popup_close_pressed"]

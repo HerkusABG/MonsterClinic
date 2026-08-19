@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://b3u4qcrd3kkl4" path="res://Assets/2DArt/PatientRoom/PatientRoom_Corpse_Blockout.png" id="5_xebr5"]
 [ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://Scripts/SpeechManager.cs" id="6_7gm67"]
 [ext_resource type="Texture2D" uid="uid://dxmmoipoobqxt" path="res://Assets/2DArt/Patient/Sitting/patient-sitting-uniform.png" id="6_mimag"]
-[ext_resource type="Texture2D" uid="uid://8aajck4t28sx" path="res://Assets/2DArt/PatientRoom/PatientRoom_Corpse_HL_Blockout.png" id="6_si31g"]
 [ext_resource type="Texture2D" uid="uid://dqwcgqy8bloa1" path="res://Assets/2DArt/Patient/Sitting/Head/patient-sitting-head11.png" id="7_l0f8h"]
 [ext_resource type="Texture2D" uid="uid://b1kvpkjbttuaq" path="res://Assets/2DArt/Patient/Sitting/NormalSymptoms/patient-sitting-symptom-necrosis.png" id="8_vofke"]
 [ext_resource type="Script" uid="uid://di87l8u018703" path="res://PatientInfoManager.cs" id="9_ijr7e"]
@@ -106,7 +105,6 @@ offset_right = 1786.0
 offset_bottom = 1479.0
 scale = Vector2(0.5, 0.457)
 texture_normal = ExtResource("5_xebr5")
-texture_hover = ExtResource("6_si31g")
 
 [node name="WholePatient" type="Control" parent="Control" unique_id=134966433]
 visible = false
