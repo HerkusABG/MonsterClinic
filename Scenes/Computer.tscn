@@ -188,6 +188,15 @@ scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("5_hwd26")
 texture_hover = ExtResource("6_hh2ic")
 
+[node name="Email" type="TextureButton" parent="Player_Interactables_C" unique_id=421148193]
+visible = false
+layout_mode = 0
+offset_left = 1288.0
+offset_top = 112.0
+offset_right = 1675.0
+offset_bottom = 484.0
+texture_normal = ExtResource("5_hwd26")
+
 [node name="Log_out" type="TextureButton" parent="Player_Interactables_C" unique_id=673076352]
 layout_mode = 0
 offset_left = 1661.0
@@ -1282,6 +1291,50 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_1dwtd")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_xbdnv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_obv51")
 text = "X"
+
+[node name="Email_Window" type="Control" parent="Player_Interactables_C" unique_id=1576682547]
+visible = false
+anchors_preset = 0
+offset_left = 216.0
+offset_top = 85.0
+offset_right = 1659.0
+offset_bottom = 948.0
+
+[node name="PcDesktopWindow" type="Sprite2D" parent="Player_Interactables_C/Email_Window" unique_id=173486881]
+position = Vector2(734, 441)
+scale = Vector2(0.5679082, 0.52840215)
+texture = ExtResource("7_6b1vu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Player_Interactables_C/Email_Window" unique_id=1242259799]
+layout_mode = 0
+offset_left = 958.0
+offset_top = 177.0
+offset_right = 1389.0
+offset_bottom = 763.0
+text = "fffffffffff"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player_Interactables_C/Email_Window" unique_id=662799784]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 151.0
+offset_right = 615.0
+offset_bottom = 751.0
+
+[node name="TextureButton" type="TextureButton" parent="Player_Interactables_C/Email_Window/VBoxContainer" unique_id=890945050]
+layout_mode = 2
+
+[node name="Close" type="Button" parent="Player_Interactables_C/Email_Window" unique_id=1964657225]
+layout_mode = 0
+offset_left = 1376.0
+offset_top = 15.0
+offset_right = 1468.0
+offset_bottom = 105.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
+icon = ExtResource("17_l7uy0")
+flat = true
 
 [node name="MapUI" type="CanvasLayer" parent="." unique_id=2110428934]
 

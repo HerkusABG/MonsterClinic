@@ -97,7 +97,7 @@ public partial class Main : Node
         if (@event is InputEventMouseButton eventKey)
         {
             //if a key is pressed and that key is the right mouse button, and if the pause menu and the office aren't visible
-            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && !RoomTracker.IsInRoom(ActiveRoom.Office))
+            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && !RoomTracker.IsInRoom(ActiveRoom.Office) && !RoomTracker.IsInRoom(ActiveRoom.Computer))
             {
                 RoomTracker.GoBack();
             }
