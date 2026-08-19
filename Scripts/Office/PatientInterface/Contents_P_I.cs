@@ -367,7 +367,7 @@ public partial class Contents_P_I : ExpNode2D
 
     public override void OnRoomEnter(Node mainNode)
     {
-        //GD.Print("Entering admission");
+        GD.Print("Entering admission");
         TriggerFading();
 
         UpdatePatientInterfaceUI();
@@ -375,8 +375,9 @@ public partial class Contents_P_I : ExpNode2D
         Hallway hallway = mainNode.GetNode<Hallway>("Hallway");
         hallway.UpdateHallwayUI();
 
-        Inventory inv = mainNode.GetNode<Inventory>("Inventory");
+        Inventory inv = this.GetParent().GetNode<Inventory>("Inventory");
         inv.InventoryActions();
+        inv.Hide();
     }
 
     private void TriggerFading()

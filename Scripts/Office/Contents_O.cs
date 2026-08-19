@@ -199,8 +199,10 @@ public partial class Contents_O : ExpNode2D
     {
         //GD.Print("Entering office");
         TriggerFading();
+
         Inventory inv = mainNode.GetNode<Inventory>("Inventory");
         inv.InventoryActions();
+        inv.Show();
     }
 
     public override void OnRoomExit()
