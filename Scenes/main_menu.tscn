@@ -80,6 +80,7 @@ text = "Delete_save"
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1266797198]
 visible = false
+z_index = 4
 layout_mode = 0
 offset_left = 495.0
 offset_top = 173.0

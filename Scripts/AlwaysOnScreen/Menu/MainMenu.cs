@@ -74,7 +74,15 @@ public partial class MainMenu : Control
         var ColorRecthide = GetNode<ColorRect>("ColorRect");
         ColorRecthide.Show();
         var TextRTL = GetNode<RichTextLabel>("ColorRect/RichTextLabel");
-        TextRTL.Text = "Credits arent currently available, try again in the full version :)";
+        TextRTL.Text = "Can - Producer \n" +
+			"Rome - Art \n" +
+			"Tilda - Game Design & Production \n" +
+			"Herkus - Programming & Production \n" +
+			"Jacob - Programming \n" +
+			"Nadia - Programming \n" +
+			"Princess - Programming \n" +
+			"OJ - Programming \n" +
+			"Fox - Programming";
     }
 
 	private void _on_delete_save_pressed()

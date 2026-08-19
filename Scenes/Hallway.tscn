@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bkrmmj0xbo58f" path="res://Assets/2DArt/NewHallway/ElevatorHallway_Door1_Unbought_Blockout.png" id="7_vsvav"]
 [ext_resource type="Texture2D" uid="uid://dx4uc47p4d8xs" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-2-empty-unlit.png" id="8_st2uq"]
 [ext_resource type="Texture2D" uid="uid://ckwpnmredcf5x" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-2-empty-lit.png" id="9_b24wc"]
+[ext_resource type="Texture2D" uid="uid://cukhretxj2nyu" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-2-unbought.png" id="10_bve6k"]
 [ext_resource type="Texture2D" uid="uid://b55ghscf28hit" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-3-empty-unlit.png" id="10_yuk7c"]
 [ext_resource type="Texture2D" uid="uid://df1f7teeu7kkn" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-3-empty-lit.png" id="11_43qi4"]
 [ext_resource type="Texture2D" uid="uid://bj8rs5eix2yhg" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-3-unbought.png" id="12_gpovj"]
@@ -20,8 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://c78ua3v65tekk" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-5-empty-lit.png" id="17_q3haw"]
 [ext_resource type="Texture2D" uid="uid://tobttsron5lr" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-5-unbought.png" id="18_oaldw"]
 [ext_resource type="Texture2D" uid="uid://cluldmce5bkjc" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-6-empty-unlit.png" id="19_ebwc6"]
-[ext_resource type="Texture2D" uid="uid://bi8rbt6xt8v7d" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-6-occupied-lit.png" id="20_p1u5y"]
 [ext_resource type="Texture2D" uid="uid://dtobi7yhd6krk" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-6-unbought.png" id="21_3qyd8"]
+[ext_resource type="Texture2D" uid="uid://yn1oujgr61j5" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-6-empty-lit.png" id="21_bve6k"]
 [ext_resource type="Texture2D" uid="uid://c66747d60i41n" path="res://Assets/2DArt/NewHallway/ElevatorHallway_DoorVIP_Unbought_Blockout.png" id="23_5eg2f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ar6hc"]
@@ -137,7 +138,7 @@ offset_bottom = 1380.0
 scale = Vector2(0.51, 0.51)
 texture_normal = ExtResource("8_st2uq")
 texture_hover = ExtResource("9_b24wc")
-texture_disabled = ExtResource("7_m32xt")
+texture_disabled = ExtResource("10_bve6k")
 script = ExtResource("4_3js8s")
 
 [node name="Door3" type="TextureButton" parent="HallwayControl/DoorControl" unique_id=1373175735]
@@ -184,7 +185,7 @@ offset_right = 1904.31
 offset_bottom = 2020.0
 scale = Vector2(0.52, 0.52)
 texture_normal = ExtResource("19_ebwc6")
-texture_hover = ExtResource("20_p1u5y")
+texture_hover = ExtResource("21_bve6k")
 texture_disabled = ExtResource("21_3qyd8")
 script = ExtResource("4_3js8s")
 
