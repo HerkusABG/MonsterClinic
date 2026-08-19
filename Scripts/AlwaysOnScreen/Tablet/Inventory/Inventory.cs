@@ -12,7 +12,7 @@ public partial class Inventory : Node2D
     //Storing a reference to all the buttons, labels, etc., for easy reference in the methods
     TextureButton InventoryButton;
     TextureRect OpenInventory;
-    Button ShotgunButton;
+    Button KickOutButton;
     
     Button Close;
 
@@ -60,7 +60,7 @@ public partial class Inventory : Node2D
     {
         //assigning methods to all the buttons
         InventoryButton.Pressed += InventoryToggle;
-        ShotgunButton.Pressed += KillPatient;
+        KickOutButton.Pressed += KillPatient;
         Close.Pressed += () => CloseInventory(Close);
 
         UpButton.Pressed += () => InventoryNavigation(-1);
@@ -75,7 +75,7 @@ public partial class Inventory : Node2D
         PatientInterface = GetTree().Root.GetNode("Main").GetNode("Patient_Interface") as Contents_P_I;
         InventoryButton = GetNode<TextureButton>("Inventory_Button");
 		OpenInventory = GetNode<TextureRect>("Open_Inventory");
-		ShotgunButton = OpenInventory.GetNode<Button>("Shotgun");
+		KickOutButton = OpenInventory.GetNode<Button>("Kick_Out");
 
         Close = OpenInventory.GetNode<Button>("Close");
 
@@ -185,11 +185,11 @@ public partial class Inventory : Node2D
         //if (GlobalData.inPatientAdmission || GlobalData.inPatientRoom)
         if (RoomTracker.IsInRoom(ActiveRoom.Admission) || RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
         {
-            ShotgunButton.Disabled = false;
+            KickOutButton.Disabled = false;
         }
         else
         {
-            ShotgunButton.Disabled = true;
+            KickOutButton.Disabled = true;
         }
         //Logic used to update everything inventory related.
 
@@ -247,6 +247,18 @@ public partial class Inventory : Node2D
         foreach (InventorySlot slot in instance.AllSlots)
         {
             slot.button.Hide();
+        }
+        if (RoomTracker.IsInRoom(ActiveRoom.PatientRoom)) {
+            foreach (InventorySlot slot in instance.AllSlots)
+            {
+                slot.button.Disabled = false;
+            }
+        } else
+        {
+            foreach (InventorySlot slot in instance.AllSlots)
+            {
+                slot.button.Disabled = true;
+            }
         }
         int index = 0;
         for (int i = slotIndex; i < slotIndex + instance.Slots.Count; i++)
@@ -329,11 +341,11 @@ public partial class Inventory : Node2D
 
         if (PatientAdmission.Visible == true)
         {
-            ShotgunButton.Disabled = false;
+            KickOutButton.Disabled = false;
         } 
         else
         {
-            ShotgunButton.Disabled = true;
+            KickOutButton.Disabled = true;
         }
     }
     private void CloseInventory(Button button)

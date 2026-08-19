@@ -233,7 +233,7 @@ public partial class PatientStats
 	public void NewClinicAction(string input, string extraInfo, string result)
 	{
 		ClinicAction action = new ClinicAction();
-		action.output = $"{input} {extraInfo} {result}";
+		action.output = $"{input}{extraInfo}{result}";
 		clinicActions.Add(action);
 	}
 
@@ -309,6 +309,10 @@ public partial class PatientStats
         Economy.GiveDailyEarnings(malady.payout);
 		FinanceInfo.SaveFinanceInfo(malady.payout, malady.name, 1);
     }
+	public void AddSeverity()
+	{
+		malady.severity++;
+	}
 }
 	
 

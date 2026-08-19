@@ -400,16 +400,6 @@ public partial class Contents_C : ExpNode2D
 
         //RoomTracker.EnterRoom(ActiveRoom.Office);
         RoomTracker.GoBack();
-        // show Dialog in the office, if the dialog didnt ended.
-        var DialogScene = (Control)GetParent().GetNode("Dialog");
-        if (GlobalData.Dialog_Dealer == true)
-        {
-            DialogScene.Show();
-        }
-        else
-        {
-            DialogScene.Hide();
-        }
     }
 
     //universal method for closing a node's parent, used for all the x's in the top right of popups

@@ -111,11 +111,11 @@ public partial class Main : Node
         {
             if (Office.Visible == true)
             {
-                Inventory.Show();
+                //Inventory.Show();
             }
             else
             {
-                Inventory.Hide();
+                //Inventory.Hide();
                 //Reset the PreviousScenes stack (except for the office) every time we go back to the office
                 GlobalData.PreviousScenes.Clear();
                 GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
@@ -128,14 +128,14 @@ public partial class Main : Node
         if (PatientInterface == null) return;
         if (PatientInterface.Visible == true)
         {
-            Inventory.Show();
+            //Inventory.Show();
         }
         else
         {
             //if (!GlobalData.inPatientRoom)
             if (!RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
             {
-                Inventory.Hide();
+                //Inventory.Hide();
             }
         }
     }
@@ -145,11 +145,11 @@ public partial class Main : Node
         if (Treatment == null) return;
         if (RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
         {
-            Inventory.Show();
+            //Inventory.Show();
         }   
         else
         {
-            Inventory.Hide();
+            //Inventory.Hide();
         }
     }
 

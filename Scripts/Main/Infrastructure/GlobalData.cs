@@ -20,11 +20,10 @@ public static class GlobalData
     // self treatment medicine for the player -> the cost and availibility so the player cant spamm the selftreatment
     public static int MedicinePlayer { get; set; } = 0;
     public static int MedicineCost { get; set; } = 150;
-    public static int Medicincavailability { get; set; } = 0;
+    public static int Medicincavailability { get; set; } = 3;
 
     // the dealer dialog can spawn if the dialog_dealer is true
     public static Boolean Dialog_Dealer { get; set; } = false;
-    public static Boolean Dialog_Dealer_Control { get; set; } = true;
     public static string Reasion { get; set; } = "none";
 
     public static Boolean Bed { get; set; } = false;

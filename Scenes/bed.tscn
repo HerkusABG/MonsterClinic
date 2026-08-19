@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://ct6tj36bp5ro0"]
 
 [ext_resource type="Script" uid="uid://6brpwrb647a2" path="res://Scripts/Office/Bed/Bed.cs" id="1_abbq1"]
-[ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://Assets/CustomText/digital-7_CountdownText.ttf" id="2_7vlmp"]
-[ext_resource type="Texture2D" uid="uid://duxu8md0l1yr5" path="res://Assets/2D Art/Office/office-background.png" id="3_5c33g"]
-[ext_resource type="Texture2D" uid="uid://jdngferi6lje" path="res://Assets/2D Art/Office/office-elevator.png" id="4_lbah1"]
-[ext_resource type="Texture2D" uid="uid://b4o0ubcg603ro" path="res://Assets/2D Art/Office/office-mirror.png" id="5_iah2a"]
-[ext_resource type="Texture2D" uid="uid://c5ncjx7yugc5j" path="res://Assets/2D Art/Office/office-pc.png" id="6_dgwq8"]
-[ext_resource type="Texture2D" uid="uid://djvdgfra7b3b8" path="res://Assets/2D Art/Office/office-phone.png" id="7_qoqk3"]
-[ext_resource type="Texture2D" uid="uid://cvcqxyesknw0" path="res://Assets/2D Art/Office/office-bed.png" id="8_mukss"]
+[ext_resource type="Texture2D" uid="uid://duxu8md0l1yr5" path="res://Assets/2DArt/Office/office-background.png" id="3_5c33g"]
+[ext_resource type="Texture2D" uid="uid://jdngferi6lje" path="res://Assets/2DArt/Office/office-elevator.png" id="4_lbah1"]
+[ext_resource type="Texture2D" uid="uid://b4o0ubcg603ro" path="res://Assets/2DArt/Office/office-mirror.png" id="5_iah2a"]
+[ext_resource type="Texture2D" uid="uid://c5ncjx7yugc5j" path="res://Assets/2DArt/Office/office-pc.png" id="6_dgwq8"]
+[ext_resource type="Texture2D" uid="uid://djvdgfra7b3b8" path="res://Assets/2DArt/Office/office-phone.png" id="7_qoqk3"]
+[ext_resource type="Texture2D" uid="uid://cvcqxyesknw0" path="res://Assets/2DArt/Office/office-bed.png" id="8_mukss"]
 
 [node name="Bed" type="Node2D" unique_id=615608472]
 script = ExtResource("1_abbq1")
@@ -41,47 +40,6 @@ texture = ExtResource("7_qoqk3")
 position = Vector2(821.99994, 708)
 scale = Vector2(0.6243825, 0.62158144)
 texture = ExtResource("8_mukss")
-
-[node name="Spawn" type="GridContainer" parent="." unique_id=1660455128]
-offset_right = 1939.0
-offset_bottom = 1079.0
-
-[node name="Day" type="RichTextLabel" parent="." unique_id=83163622]
-visible = false
-offset_left = 15.0
-offset_top = 181.0
-offset_right = 1938.0
-offset_bottom = 625.0
-theme_override_fonts/normal_font = ExtResource("2_7vlmp")
-theme_override_fonts/bold_font = ExtResource("2_7vlmp")
-theme_override_font_sizes/normal_font_size = 140
-text = "{0} Days in Containment"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TreatmentDays" type="RichTextLabel" parent="." unique_id=47269129]
-visible = false
-offset_left = 8.0
-offset_top = 557.0
-offset_right = 1964.0
-offset_bottom = 1109.0
-theme_override_fonts/normal_font = ExtResource("2_7vlmp")
-theme_override_fonts/bold_font = ExtResource("2_7vlmp")
-theme_override_font_sizes/normal_font_size = 80
-text = "{0} Treatment Days"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MoneyEarned" type="RichTextLabel" parent="." unique_id=880434954]
-visible = false
-offset_top = 9.0
-offset_right = 1919.0
-offset_bottom = 224.0
-theme_override_fonts/normal_font = ExtResource("2_7vlmp")
-theme_override_fonts/bold_font = ExtResource("2_7vlmp")
-theme_override_font_sizes/normal_font_size = 70
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="." unique_id=2010748099]
 wait_time = 0.1

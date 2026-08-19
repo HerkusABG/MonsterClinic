@@ -30,6 +30,7 @@ public partial class Room : ExpNode2D
 
     //boolean that checks whether you can treat the patient.
     private bool notYetTreated = true;
+    private int timesTreated = 0;
 
     Inventory invy;
     [Export] public SpeechManager SpeechManagerAccess;
@@ -244,6 +245,14 @@ public partial class Room : ExpNode2D
     public bool GetAlreadyTreated()
     {
         return !notYetTreated;
+    }
+    public void IncrementTreated()
+    {
+        timesTreated++;
+    }
+    public int GetTimesTreated()
+    {
+        return timesTreated;
     }
 
     public bool GetIsEmpty()
