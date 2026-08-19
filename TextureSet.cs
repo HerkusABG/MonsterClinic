@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using System.Xml.Linq;
-using static Godot.EditorToaster;
 
 public class TextureSet
 {

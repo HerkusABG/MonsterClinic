@@ -258,30 +258,36 @@ public partial class Contents_C : ExpNode2D
 	{
 		PurchaseButton.Disabled = false;
 		PurchaseButtonHolder = button;
-		PurchaseMode = "email";
+		//PurchaseMode = "email";
 		PurchaseButton.Show();
 	}
 
 	private void Purchase()
 	{
-		if (PurchaseMode == "medicine")
+        GD.Print("0");
+        if (PurchaseMode == "medicine")
 		{
-			PurchaseMedicine(PurchaseButtonHolder);
+            GD.Print("1");
+            PurchaseMedicine(PurchaseButtonHolder);
 		}
 		else if (PurchaseMode == "upgrade")
 		{
-			PurchaseUpgrade(PurchaseButtonHolder);
+            GD.Print("2");
+            PurchaseUpgrade(PurchaseButtonHolder);
 		} else if (PurchaseMode == "self")
 		{
-			BuyMedicine(PurchaseButtonHolder);
+            GD.Print("3");
+            BuyMedicine(PurchaseButtonHolder);
 		} else if (PurchaseMode == "body")
 		{
-			BodyDisposal();
+            GD.Print("4");
+            BodyDisposal();
 		}
 	}
 
 	private void PurchaseMedicine(DealerButton button)
 	{
+		GD.Print("Purchase");
 		int myIndex = button.index;
 		DealerSlot slot = DealerList.MedicineDatabase.ElementAt(myIndex + dealerStartingIndex).Value;
 		if(slot.BuyMedicine())
