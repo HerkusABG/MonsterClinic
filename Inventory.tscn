@@ -2,14 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bpbh60enepajt" path="res://Scripts/AlwaysOnScreen/Tablet/Inventory/Inventory.cs" id="1_3n7vm"]
 [ext_resource type="Texture2D" uid="uid://br71y2evi5ua2" path="res://Assets/2DArt/inventory/inventory-bag-closed.png" id="2_r8i0v"]
-[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_nwt7c"]
-[ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="4_jqulp"]
 [ext_resource type="Texture2D" uid="uid://b7of5ppd34pym" path="res://Assets/2DArt/inventory/inventory-bag-open.png" id="4_trmqt"]
 [ext_resource type="Texture2D" uid="uid://brc0s8l5se7kn" path="res://Assets/2DArt/inventory/inventory-pocket-closed.png" id="5_fgswf"]
 [ext_resource type="StyleBox" uid="uid://4xqx68dnpjts" path="res://Red_button.tres" id="6_r8i0v"]
 [ext_resource type="StyleBox" uid="uid://dy5fikt614yn7" path="res://Grinch_button.tres" id="7_trmqt"]
-[ext_resource type="Texture2D" uid="uid://dh0gq2ql78slu" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_HL_Blockout.png" id="7_y13mq"]
 [ext_resource type="Script" uid="uid://bnfoxvhhm3bek" path="res://Popup.cs" id="8_trmqt"]
+[ext_resource type="Texture2D" uid="uid://bws13q6hks48v" path="res://Assets/2DArt/inventory/inventory-medicine-antibiotics-fancy.png" id="9_r8i0v"]
 [ext_resource type="Script" uid="uid://dc7h2e8gshg3t" path="res://Scripts/PatientRoom/PatientTreatment/TreatmentManager.cs" id="12_ny8ul"]
 [ext_resource type="FontFile" uid="uid://d076lt4s4m3cn" path="res://Font/uglyhandwriting.ttf" id="13_fgswf"]
 [ext_resource type="Script" uid="uid://cgma1l84y5gfp" path="res://MedicineButton.cs" id="13_r8i0v"]
@@ -98,7 +96,6 @@ texture_normal = ExtResource("2_r8i0v")
 texture_hover = ExtResource("2_r8i0v")
 
 [node name="Open_Inventory" type="TextureRect" parent="." unique_id=479278794]
-visible = false
 custom_minimum_size = Vector2(160, 150)
 offset_left = 1667.0
 offset_top = 166.00002
@@ -417,36 +414,23 @@ text = "X"
 [node name="Template" type="TextureButton" parent="." unique_id=1367009333]
 visible = false
 z_index = 1
-custom_minimum_size = Vector2(170, 150)
-offset_left = 1722.125
-offset_top = 714.625
-offset_right = 1952.8943
-offset_bottom = 940.7789
-scale = Vector2(1.4, 1.4)
+custom_minimum_size = Vector2(100, 100)
+offset_left = 617.0
+offset_top = 554.0
+offset_right = 1053.0
+offset_bottom = 944.0
+scale = Vector2(0.8, 0.8)
 disabled = true
-texture_normal = ExtResource("4_jqulp")
-texture_hover = ExtResource("7_y13mq")
+texture_normal = ExtResource("9_r8i0v")
 script = ExtResource("13_r8i0v")
-
-[node name="Name" type="Label" parent="Template" unique_id=702683046]
-layout_mode = 0
-offset_left = -1.538476
-offset_top = 35.38462
-offset_right = 207.69247
-offset_bottom = 244.61533
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_nwt7c")
-theme_override_font_sizes/font_size = 60
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Stripe" type="TextureRect" parent="Template" unique_id=256219047]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 80.000046
-offset_right = 250.0
-offset_bottom = 250.00005
-scale = Vector2(0.42, 0.42)
+offset_left = 95.0
+offset_top = 155.0
+offset_right = 531.0
+offset_bottom = 545.00006
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("13_trmqt")
 
 [node name="Count" type="Label" parent="Template/Stripe" unique_id=1793362135]

@@ -28,12 +28,14 @@ static class MedicineManager
 		{
 			name = "Dewormer",
 			cost = 17,
-		},
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-dewormer.png"),
+        },
 		["PrussianBlue"] = new Medicine
 		{
 			name = "Prussian Blue",
-			cost =20,
-		},
+			cost = 20,
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-prussianblue.png"),
+        },
 //		["SilverDrops"] = new Medicine
 //		{
 //			name = "Silver Drops",
@@ -43,7 +45,9 @@ static class MedicineManager
 		{
 			name = "Fungal Powder",
 			cost = 22,
-		},
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-antifungalpowder.png"),
+
+        },
 //		["OsmiumCapsules"] = new Medicine
 //		{
 //			name = "Osmium Capsules",
@@ -58,7 +62,8 @@ static class MedicineManager
 		{
 			name = "Lead Syringe",
 			cost = 12,
-		},
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-leadsyringe.png"),
+        },
 //		["MeatGlue"] = new Medicine
 //		{
 //			name = "Meat Glue",
@@ -68,11 +73,13 @@ static class MedicineManager
 		{
 			name = "Chem Drip",
 			cost = 16,
-		},
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-chemdrip.png"),
+        },
 		["Curitol"] = new Medicine
 		{
 			name = "Curitol",
 			cost = 100,
-		}
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-curitol.png"),
+        }
 	};
 }

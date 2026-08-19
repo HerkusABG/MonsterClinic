@@ -173,7 +173,6 @@ public partial class Inventory : Node2D
                 medButton.TextureNormal = MedicineManager.Database.ElementAt(i).Value.texture;
             }
             slot.button = medButton;
-            slot.button.RenderText(slot.medicine);
             instance.AllSlots.Add(slot);
             parent.AddChild(medButton);
             //inputControl.AddChild(medButton);
