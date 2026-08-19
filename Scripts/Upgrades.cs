@@ -29,7 +29,7 @@ static class Upgrades
 			price = 40,
 			description = "Increase the amount of patients that can appear at the beginning of each day."
 		},
-		["New Rooms"] = new IntegerUpgrade
+		["NewRooms"] = new IntegerUpgrade
 		{
 			name = "Repair a room for more patients treatment",
 			incrementTarget = 1,

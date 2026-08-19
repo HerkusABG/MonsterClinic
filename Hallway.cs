@@ -89,7 +89,7 @@ public partial class Hallway : ExpNode2D
 
     public void UpdateHallwayUI()
     {
-        for(int i = 0; i < Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget; i++)
+        for(int i = 0; i < Upgrades.IntUpgradeDatabase["NewRooms"].incrementTarget; i++)
         {
             Doors[i].Disabled = false;
         }

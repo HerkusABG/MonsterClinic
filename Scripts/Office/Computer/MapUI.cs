@@ -59,7 +59,7 @@ public partial class MapUI : Control
         RoomRenderer = new RoomStructureRenderer();
         //since now the rooms are generated in 2 different containers, they can no longer be generated en masse in one method, if the method will ever generate more than 3 at once,
         //so now it's a loop using the individual room generation
-        for (int i = 1; i <= Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget; i++)
+        for (int i = 1; i <= Upgrades.IntUpgradeDatabase["NewRooms"].incrementTarget; i++)
         {
             if (i < 4)
             {
@@ -75,7 +75,7 @@ public partial class MapUI : Control
         DealerWindowMoneyDisplay = GetParent().GetNode<Control>("Dealer_PH").GetNode<Label>("Money_Display");
         Button CloseRoomInfoButton = GetNode<Label>("Room_Info").GetNode<Button>("Close");
         CloseRoomInfoButton.Pressed += CloseRoomInfo;
-        Upgrades.IntUpgradeDatabase["Rooms"].OnUpgradePressed = BuyRoomActions;
+        Upgrades.IntUpgradeDatabase["NewRooms"].OnUpgradePressed = BuyRoomActions;
     }
 
     private void GetNodes()
@@ -125,7 +125,7 @@ public partial class MapUI : Control
 
     public async void BuyRoomActions()
     {
-        if (Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget < 4)
+        if (Upgrades.IntUpgradeDatabase["NewRooms"].incrementTarget < 4)
         {
             RoomRenderer.GenerateRoom(RoomContainer1);
         } 
@@ -133,7 +133,7 @@ public partial class MapUI : Control
         {
             RoomRenderer.GenerateRoom(RoomContainer2);
         }
-        AssignRoomButtonFunction(Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget);
+        AssignRoomButtonFunction(Upgrades.IntUpgradeDatabase["NewRooms"].incrementTarget);
     }
     private void AssignRoomButtonFunction(int roomNum)
     {
