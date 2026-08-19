@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bpbh60enepajt" path="res://Scripts/AlwaysOnScreen/Tablet/Inventory/Inventory.cs" id="1_3n7vm"]
 [ext_resource type="Texture2D" uid="uid://br71y2evi5ua2" path="res://Assets/2DArt/inventory/inventory-bag-closed.png" id="2_r8i0v"]
+[ext_resource type="Texture2D" uid="uid://dnghcmmhhce2t" path="res://Assets/2DArt/inventory/inventory-bag-closed-lit.png" id="3_fgswf"]
+[ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="3_nwt7c"]
+[ext_resource type="Texture2D" uid="uid://duusgr4y0vc0d" path="res://place holders/Overlay Blockouts/Overlay_Inventory_Object_FancyAntibiotics_Blockout.png" id="4_jqulp"]
 [ext_resource type="Texture2D" uid="uid://b7of5ppd34pym" path="res://Assets/2DArt/inventory/inventory-bag-open.png" id="4_trmqt"]
 [ext_resource type="Texture2D" uid="uid://brc0s8l5se7kn" path="res://Assets/2DArt/inventory/inventory-pocket-closed.png" id="5_fgswf"]
 [ext_resource type="Texture2D" uid="uid://dlhna8c7axwu3" path="res://Assets/2DArt/inventory/inventory-pocket-open.png" id="5_r8i0v"]
@@ -94,7 +97,7 @@ offset_right = 2129.0
 offset_bottom = 1288.0
 scale = Vector2(0.41, 0.41)
 texture_normal = ExtResource("2_r8i0v")
-texture_hover = ExtResource("2_r8i0v")
+texture_hover = ExtResource("3_fgswf")
 
 [node name="Open_Inventory" type="TextureRect" parent="." unique_id=479278794]
 visible = false
