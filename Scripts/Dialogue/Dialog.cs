@@ -29,9 +29,7 @@ public partial class Dialog : Control
 		//one dialog text is initiated for the dealer dialog. This dialog can be used provally for the patients too, but need than modifications
 		dialogues = new string[1][];
         
-// making the medicine availability random for the player, so he cant spam the self treatment
-        var randomavalibility = new Random(); //<--- ADDED THIS
-        GlobalData.Medicincavailability = randomavalibility.Next(2, 5); //<-- ADDED THIS
+
 
 
 
