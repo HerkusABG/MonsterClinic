@@ -351,8 +351,8 @@ visible = false
 z_index = 5
 offset_left = 745.0
 offset_top = 368.0
-offset_right = 1780.2402
-offset_bottom = 795.60815
+offset_right = 1780.24
+offset_bottom = 795.60803
 scale = Vector2(0.5, 0.5)
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_ey27o")
@@ -361,6 +361,7 @@ text = "The medicine applied was correct, but the malady has resisted its treatm
 Check back in tomorrow."
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 1
 
 [node name="Close_Patient_Immune_Popup" type="Button" parent="Treatment_Manager/Patient_Immune_Popup" unique_id=616907812]
 layout_mode = 0
