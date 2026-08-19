@@ -18,6 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://orf6jcr622m" path="res://Assets/2DArt/Office/office-bed-hover.png" id="15_4fm71"]
 [ext_resource type="Texture2D" uid="uid://7ph5wsicr3ic" path="res://Assets/2DArt/Office/office-cans.png" id="16_gisrx"]
 [ext_resource type="PackedScene" uid="uid://l74aru063sey" path="res://Scenes/OfficePatientPlaceholder.tscn" id="16_yauhp"]
+[ext_resource type="AudioStream" uid="uid://bkx3r0v48xswm" path="res://Assets/Audio/Background/BackgroundMusic1.ogg" id="19_wwh7d"]
+[ext_resource type="AudioStream" uid="uid://dt8875p2vas6r" path="res://Assets/Audio/Background/MenuMusic.ogg" id="20_l100v"]
+[ext_resource type="AudioStream" uid="uid://bhei0an16pyj1" path="res://Assets/Audio/Background/BackgroundMusic2.ogg" id="20_mdu65"]
 
 [sub_resource type="Animation" id="Animation_3080y"]
 length = 0.001
@@ -93,6 +96,42 @@ border_width_bottom = 14
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
 
 [node name="Contents_O" type="Node2D" unique_id=586678661 node_paths=PackedStringArray("BedButton")]
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_l100v"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("20_l100v")
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_s8weu"]
+shuffle = true
+stream_count = 2
+stream_0 = ExtResource("19_wwh7d")
+stream_1 = ExtResource("20_mdu65")
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_kp12w"]
+clip_count = 2
+clip_0/name = &"Menu"
+clip_0/stream = SubResource("AudioStreamPlaylist_l100v")
+clip_0/auto_advance = 0
+clip_1/name = &"Background"
+clip_1/stream = SubResource("AudioStreamPlaylist_s8weu")
+clip_1/auto_advance = 0
+initial_clip = 1
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 3,
+"from_time": 0,
+"to_time": 0
+}
+}
+
+[node name="Contents_O" type="Node2D" unique_id=586678661]
 script = ExtResource("1_35wc1")
 BedButton = NodePath("Player_Interactables_O/Bed")
 
@@ -326,6 +365,11 @@ visible = false
 position = Vector2(1734.0001, 382.99982)
 scale = Vector2(0.21458334, 0.23402777)
 
+[node name="WorldAudioManager" type="Node" parent="." unique_id=923209732]
+
+[node name="BackgroundMusicPlayer" type="AudioStreamPlayer" parent="WorldAudioManager" unique_id=673893535]
+stream = SubResource("AudioStreamInteractive_kp12w")
+volume_db = -60.0
 [node name="PopupLabel" type="Label" parent="." unique_id=1126083777]
 visible = false
 z_index = 5

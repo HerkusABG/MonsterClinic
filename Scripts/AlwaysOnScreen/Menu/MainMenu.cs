@@ -7,6 +7,8 @@ public partial class MainMenu : Control
 	[Export] PackedScene option = ResourceLoader.Load<PackedScene>("res://Scenes/option_menu.tscn");
 	[Signal] public delegate void DeleteSaveSystemEventHandler(bool deleteSafe);
 
+	//Audiostream for the mainmenu scene
+    [Export] public AudioStreamPlayer backgroundMusic;
 	[Export] TextureButton ExitButton;
     [Export] TextureButton NewGameButton;
     [Export] TextureButton SettingsButton;
@@ -34,8 +36,10 @@ public partial class MainMenu : Control
 			LockColor.Show();
 		}
 
-
-	}
+		// grabs reference and plays the music for the meinmenu theme
+        backgroundMusic = GetNode<AudioStreamPlayer>("MainMenuPlayer");
+        backgroundMusic.Play();
+    }
 
 	private void NewGame()
 	{

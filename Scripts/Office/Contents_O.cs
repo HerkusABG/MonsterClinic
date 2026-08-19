@@ -11,6 +11,9 @@ public partial class Contents_O : ExpNode2D
     private Button PopupClose;
     [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
     [Export] TextureButton BedButton;
+
+    [Export] public AudioStreamPlayer backgroundMusic;
+
     // Called when the node enters the scene tree for the first time.
     public void Initialize()
 	{
@@ -24,6 +27,7 @@ public partial class Contents_O : ExpNode2D
         Subscribe();
 
         InitializeChildren();
+
     }
 
     private void Subscribe()
@@ -36,10 +40,15 @@ public partial class Contents_O : ExpNode2D
         Control control = GetNode<Control>("Player_Interactables_O");
         Mirror mirror = control.GetNode<Mirror>("Mirror");
         mirror.Initialize();
+
+        //play the playlist for the background. Playlist has two songs in it, they play one after another.
+        backgroundMusic.Set("parameters/switch_to_clip", "Background");
+        backgroundMusic.Play();
     }
     private void GetNodes()
     {
         sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
+        backgroundMusic = GetNode<AudioStreamPlayer>("WorldAudioManager/BackgroundMusicPlayer");
         financesTimer = GetNode<Timer>("Finances_Timer");
         PopupLabel = GetNode<Label>("PopupLabel");
         PopupOpen = GetNode<Button>("PopupLabel/PopupOpen");
