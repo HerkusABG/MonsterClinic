@@ -15,6 +15,8 @@ public partial class Main : Node
     [Export] Control RoomControl;
     int finalRoomCount = 6;
 
+    static bool alreadyInitialized = false;
+
     //Since Main is the the main node, everything should be initialized here.
     //Methods shouldn't use their individual "_Ready()" methods, unless
     //it is absolutely necessary. This is to insure a very clear flow of actions.
@@ -44,21 +46,31 @@ public partial class Main : Node
     {
         GetNodes();
         FinanceInfo.Initialize();
-        TextureList.Initialize();
+        if (alreadyInitialized == false)
+        {
+            InitializeOnce();
+            alreadyInitialized = true;
+        }
         OutsideWorld.Initialize();
-        Upgrades.Initialize();
-        DealerList.Initialize();
         MaladyList.Initialize();
         MedicineManager.Initialize();
         TagList.Initialize();
         MaladyCatalogSlotUi MCSU = GetTree().Root.FindChild("MaladyCatalogSlotUi", true, false) as MaladyCatalogSlotUi;
         MCSU.Initialize();
+
         //always keep the office at the bottom of the previous scenes stack, so the reference on how to return to it is always there
         GlobalData.PreviousScenes.Push(GetNode("Office").GetPath());
         //Initialization chain [BELOW]
         InitializeChildren();
         GeneratePatientRooms(RoomControl);
         RoomTracker.Initialize(this);
+    }
+
+    private void InitializeOnce()
+    {
+        TextureList.Initialize();
+        Upgrades.Initialize();
+        DealerList.Initialize();
     }
 
     private void InitializeChildren()
@@ -97,7 +109,7 @@ public partial class Main : Node
         if (@event is InputEventMouseButton eventKey)
         {
             //if a key is pressed and that key is the right mouse button, and if the pause menu and the office aren't visible
-            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && !RoomTracker.IsInRoom(ActiveRoom.Office))
+            if (eventKey.Pressed && eventKey.ButtonIndex == MouseButton.Right && PauseMenu.Visible == false && !RoomTracker.IsInRoom(ActiveRoom.Office) && !RoomTracker.IsInRoom(ActiveRoom.Computer))
             {
                 RoomTracker.GoBack();
             }

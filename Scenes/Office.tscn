@@ -149,6 +149,7 @@ root_node = NodePath("../../..")
 libraries/ = SubResource("AnimationLibrary_kfihx")
 
 [node name="Mirror" type="TextureButton" parent="Player_Interactables_O" unique_id=1571392299]
+visible = false
 layout_mode = 0
 offset_left = 255.0
 offset_top = 137.0

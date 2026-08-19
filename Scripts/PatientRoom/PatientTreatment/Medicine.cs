@@ -21,6 +21,8 @@ public class Medicine
 
     public bool unlocked = true;
 
+    public Texture2D texture = null;
+
     public Medicine Clone()
     {
         return new Medicine

@@ -16,25 +16,30 @@ static class MedicineManager
 		{
 			name = "Antibiotics",
 			cost = 15,
-			description = "Antibiotics, used for curing bla bla bla"
-		},
+			description = "Antibiotics, used for curing bla bla bla",
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-antibiotics-normal.png"),
+        },
 		["Bandages"] = new Medicine
 		{
 			name = "Bandages",
 			cost = 8,
-            description = "Band together to cure a malady bla bla"
+            description = "Band together to cure a malady bla bla",
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-bandages-normal.png"),
+
         },
 		["Dewormer"] = new Medicine
 		{
 			name = "Dewormer",
 			cost = 17,
-            description = "De-worm your patient"
+            description = "De-worm your patient",
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-dewormer.png"),
         },
 		["PrussianBlue"] = new Medicine
 		{
 			name = "Prussian Blue",
-			cost =20,
-            description = "Konigsberger Klopse"
+            description = "Konigsberger Klopse",
+			cost = 20,
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-prussianblue.png"),
         },
 //		["SilverDrops"] = new Medicine
 //		{
@@ -45,7 +50,9 @@ static class MedicineManager
 		{
 			name = "Fungal Powder",
 			cost = 22,
-            description = "Foot fungus number 15 bla bla"
+            description = "Foot fungus number 15 bla bla",
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-antifungalpowder.png"),
+
         },
 //		["OsmiumCapsules"] = new Medicine
 //		{
@@ -61,7 +68,8 @@ static class MedicineManager
 		{
 			name = "Lead Syringe",
 			cost = 12,
-            description = "Lead syringe description"
+            description = "Lead syringe description",
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-leadsyringe.png"),
         },
 //		["MeatGlue"] = new Medicine
 //		{
@@ -72,13 +80,15 @@ static class MedicineManager
 		{
 			name = "Chem Drip",
 			cost = 16,
-            description = "Chemical drip. Drippy aye aye"
+            description = "Chemical drip. Drippy aye aye",
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-chemdrip.png"),
         },
 		["Curitol"] = new Medicine
 		{
 			name = "Curitol",
 			cost = 100,
-            description = "Cure EVERYTHING!"
+            description = "Cure EVERYTHING!",
+			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-curitol.png"),
         }
 	};
 

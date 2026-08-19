@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://nm7lxknn3wht" path="res://Assets/2DArt/PC/pc-desktop-background.png" id="2_xfmgl"]
 [ext_resource type="Texture2D" uid="uid://b1slbvygld6pu" path="res://Assets/2DArt/PC/pc-desktop-app-dealer.png" id="3_0xibf"]
 [ext_resource type="Script" uid="uid://cq86685btgs2e" path="res://DealerButton.cs" id="3_5uut4"]
-[ext_resource type="Texture2D" uid="uid://ckuigq4hbx11x" path="res://Assets/2DArt/PC/pc-desktop-app-dealer-hover.png" id="4_fxsyg"]
+[ext_resource type="Texture2D" uid="uid://de5tffdht6yp2" path="res://Assets/2DArt/pc-desktop-app-dealer-hover.png" id="4_4v6w8"]
 [ext_resource type="Texture2D" uid="uid://dwbd2gegtvujt" path="res://Assets/2DArt/PC/pc-desktop-app-map.png" id="4_sotu5"]
 [ext_resource type="Texture2D" uid="uid://dqocbt4kfjsn2" path="res://Assets/2DArt/PC/pc-desktop-app-catalogue.png" id="5_hwd26"]
 [ext_resource type="Texture2D" uid="uid://csou6elcu4efx" path="res://Assets/2DArt/PC/pc-powerbutton.png" id="6_1dwtd"]
@@ -26,7 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://cppsyslag23pv" path="res://Assets/2DArt/PC/Dealer/pc-dealer-item.png" id="15_hwd26"]
 [ext_resource type="Script" uid="uid://08n5ukorqdyk" path="res://Scripts/Office/Computer/ScrollCatalog.cs" id="15_vbt5y"]
 [ext_resource type="Script" uid="uid://bho5a8iwfj3pn" path="res://Scripts/Office/Computer/MapUI.cs" id="16_l232m"]
-[ext_resource type="Texture2D" uid="uid://bjrsu2636kxwf" path="res://icon.svg" id="17_hh2ic"]
 [ext_resource type="Texture2D" uid="uid://db100q8k8e4mb" path="res://Assets/2DArt/PC/pc-desktop-window-closebutton.png" id="17_l7uy0"]
 [ext_resource type="Texture2D" uid="uid://coqixjy7vni4k" path="res://Assets/2DArt/PC/Dealer/pc-dealer-section-clicked.png" id="17_xbdnv"]
 [ext_resource type="FontFile" uid="uid://cygukaybulvh" path="res://Font/MSW98UI-Regular.ttf" id="18_obv51"]
@@ -44,6 +43,7 @@
 [ext_resource type="Texture2D" uid="uid://bbmemn4hct0x1" path="res://Assets/2DArt/PC/pc-desktop-window-closebutton-hover.png" id="32_kqag4"]
 [ext_resource type="Texture2D" uid="uid://vekwlgelphle" path="res://Assets/2DArt/PC/pc-catalogue-arrowdown-hover.png" id="34_rkahx"]
 [ext_resource type="Script" uid="uid://7f4i58tbcxwb" path="res://CatalogueIcon.cs" id="34_tk8e1"]
+[ext_resource type="Texture2D" uid="uid://7pojg233e8gj" path="res://Assets/2DArt/pc-catalogue-folder.png" id="44_4v6w8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fqyqf"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -159,7 +159,7 @@ offset_right = 724.0
 offset_bottom = 502.0
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("3_0xibf")
-texture_hover = ExtResource("4_fxsyg")
+texture_hover = ExtResource("4_4v6w8")
 
 [node name="Map" type="Button" parent="Player_Interactables_C" unique_id=1453367602]
 visible = false
@@ -187,6 +187,15 @@ offset_bottom = 532.0
 scale = Vector2(0.75, 0.75)
 texture_normal = ExtResource("5_hwd26")
 texture_hover = ExtResource("6_hh2ic")
+
+[node name="Email" type="TextureButton" parent="Player_Interactables_C" unique_id=421148193]
+visible = false
+layout_mode = 0
+offset_left = 1288.0
+offset_top = 112.0
+offset_right = 1675.0
+offset_bottom = 484.0
+texture_normal = ExtResource("5_hwd26")
 
 [node name="Log_out" type="TextureButton" parent="Player_Interactables_C" unique_id=673076352]
 layout_mode = 0
@@ -1283,6 +1292,50 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_xbdnv")
 theme_override_styles/hover = SubResource("StyleBoxFlat_obv51")
 text = "X"
 
+[node name="Email_Window" type="Control" parent="Player_Interactables_C" unique_id=1576682547]
+visible = false
+anchors_preset = 0
+offset_left = 216.0
+offset_top = 85.0
+offset_right = 1659.0
+offset_bottom = 948.0
+
+[node name="PcDesktopWindow" type="Sprite2D" parent="Player_Interactables_C/Email_Window" unique_id=173486881]
+position = Vector2(734, 441)
+scale = Vector2(0.5679082, 0.52840215)
+texture = ExtResource("7_6b1vu")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Player_Interactables_C/Email_Window" unique_id=1242259799]
+layout_mode = 0
+offset_left = 958.0
+offset_top = 177.0
+offset_right = 1389.0
+offset_bottom = 763.0
+text = "fffffffffff"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Player_Interactables_C/Email_Window" unique_id=662799784]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 151.0
+offset_right = 615.0
+offset_bottom = 751.0
+
+[node name="TextureButton" type="TextureButton" parent="Player_Interactables_C/Email_Window/VBoxContainer" unique_id=890945050]
+layout_mode = 2
+
+[node name="Close" type="Button" parent="Player_Interactables_C/Email_Window" unique_id=1964657225]
+layout_mode = 0
+offset_left = 1376.0
+offset_top = 15.0
+offset_right = 1468.0
+offset_bottom = 105.0
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ixi1")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_660v7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qsxs0")
+icon = ExtResource("17_l7uy0")
+flat = true
+
 [node name="MapUI" type="CanvasLayer" parent="." unique_id=2110428934]
 
 [node name="WarningLabel" type="Label" parent="MapUI" unique_id=1397842417]
@@ -1355,7 +1408,7 @@ script = ExtResource("34_tk8e1")
 layout_mode = 0
 offset_right = 204.0
 offset_bottom = 204.0
-icon = ExtResource("17_hh2ic")
+icon = ExtResource("44_4v6w8")
 expand_icon = true
 
 [node name="IconText" type="Label" parent="CatalogueIconTemplate" unique_id=363438597]
