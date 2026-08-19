@@ -24,8 +24,8 @@ public static class TagList
 			{
 				TagType.Daily
 			},
-            behaviour = "Severity improves by 2 every 2 days.",
-            increment = 2,
+			behaviour = "Severity improves by 2 every 2 days.",
+			increment = 2,
 			strength = -2
 		},
 		["Unstable"] = new UnstableTag
@@ -36,8 +36,8 @@ public static class TagList
 				TagType.Daily,
 				TagType.Interaction
 			},
-            behaviour = "Using the wrong type of medicine will increase the severity by 2.",
-            strength = 2
+			behaviour = "Using the wrong type of medicine will increase the severity by 2.",
+			strength = 2
 		},
 		["Deadly"] = new DeadlyTag
 		{
@@ -47,8 +47,8 @@ public static class TagList
 				TagType.Daily,
 				TagType.MaxSeverity
 			},
-            behaviour = "Patient will die if severity reaches 5.",
-        },
+			behaviour = "Patient will die if severity reaches 5.",
+		},
 		["Resistant"] = new ResistantTag
 		{
 			name = "Resistant",
@@ -56,9 +56,9 @@ public static class TagList
 			{
 				TagType.Interaction
 			},
-            behaviour = "There's a chance that the treatment will fail.",
-            ratioA = 2,
-			ratioB = 8
+			behaviour = "There's a chance that the treatment will fail.",
+			ratioA = 2,
+			ratioB = 10
 		},
 		["StrongWorsening"] = new WorseningTag
 		{
@@ -67,8 +67,8 @@ public static class TagList
 			{
 				TagType.Daily
 			},
-            behaviour = "Severity worsens by 2 every 2 days",
-            increment = 2,
+			behaviour = "Severity worsens by 2 every 2 days",
+			increment = 2,
 			strength = 2
 		},
 		["WeakWorsening"] = new WorseningTag
@@ -78,8 +78,8 @@ public static class TagList
 			{
 				TagType.Daily
 			},
-            behaviour = "Severity worsens by 1 every 3 days.",
-            increment = 3,
+			behaviour = "Severity worsens by 1 every 3 days.",
+			increment = 3,
 			strength = 1
 		},
 		["WeakHealing"] = new HealingTag
@@ -89,22 +89,22 @@ public static class TagList
 			{
 				TagType.Daily
 			},
-            behaviour = "Severity improves by 1 every 3 days.",
-            increment = 3,
+			behaviour = "Severity improves by 1 every 3 days.",
+			increment = 3,
 			strength = -1
 		}
 	};
 
-    public static void Initialize()
-    {
-        SaveCatalogueInfo();
-    }
-    public static void SaveCatalogueInfo()
-    {
-        for (int i = 0; i < Database.Count; i++)
-        {
-            CatalogueInfoPackage package = new CatalogueInfoPackage(Database.ElementAt(i).Value);
-            InfoList.Tags.Add(package);
-        }
-    }
+	public static void Initialize()
+	{
+		SaveCatalogueInfo();
+	}
+	public static void SaveCatalogueInfo()
+	{
+		for (int i = 0; i < Database.Count; i++)
+		{
+			CatalogueInfoPackage package = new CatalogueInfoPackage(Database.ElementAt(i).Value);
+			InfoList.Tags.Add(package);
+		}
+	}
 }

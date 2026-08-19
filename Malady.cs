@@ -61,9 +61,9 @@ public class Malady
 			admittedDialogue = admittedDialogue,
 			visualKey = visualKey,
 			layerType = layerType,
-            payout = payout,
-            passiveIncome = passiveIncome
-        };
+			payout = payout,
+			passiveIncome = passiveIncome
+		};
 		foreach(Tag tag in tags)
 		{
 			malady.tags.Add(tag.Clone());

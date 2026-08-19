@@ -15,32 +15,32 @@ static class MedicineManager
 		["Antibiotics"] = new Medicine
 		{
 			name = "Antibiotics",
-			cost = 15,
+			cost = 8,
 			description = "Antibiotics, used for curing bla bla bla",
 			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-antibiotics-normal.png"),
-        },
+		},
 		["Bandages"] = new Medicine
 		{
 			name = "Bandages",
-			cost = 8,
-            description = "Band together to cure a malady bla bla",
+			cost = 6,
+			description = "Band together to cure a malady bla bla",
 			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-bandages-normal.png"),
 
-        },
+		},
 		["Dewormer"] = new Medicine
 		{
 			name = "Dewormer",
-			cost = 17,
-            description = "De-worm your patient",
+			cost = 13,
+			description = "Highly toxic to any worms. Harmless to humans, mostly.\n Reduces Severity of Bone Crawler by 1.",
 			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-dewormer.png"),
-        },
+		},
 		["PrussianBlue"] = new Medicine
 		{
 			name = "Prussian Blue",
-            description = "Konigsberger Klopse",
+			description = "Binds to and flushes out various toxic and radioactive compounds. \n Reduces Severity of Radiation Sickness by 1.",
 			cost = 20,
 			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-prussianblue.png"),
-        },
+		},
 //		["SilverDrops"] = new Medicine
 //		{
 //			name = "Silver Drops",
@@ -49,11 +49,11 @@ static class MedicineManager
 		["FungalPowder"] = new Medicine
 		{
 			name = "Fungal Powder",
-			cost = 22,
-            description = "Foot fungus number 15 bla bla",
+			cost = 15,
+			description = "Common garden chemical used for killing wild mushrooms. \n Reduces Severity of Flesh Fungus by 1.",
 			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-antifungalpowder.png"),
 
-        },
+		},
 //		["OsmiumCapsules"] = new Medicine
 //		{
 //			name = "Osmium Capsules",
@@ -68,9 +68,9 @@ static class MedicineManager
 		{
 			name = "Lead Syringe",
 			cost = 12,
-            description = "Lead syringe description",
+			description = "Syringe with a radioactively shielded reservoir \n Reduces Severity of The Glow by 1.",
 			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-leadsyringe.png"),
-        },
+		},
 //		["MeatGlue"] = new Medicine
 //		{
 //			name = "Meat Glue",
@@ -80,28 +80,28 @@ static class MedicineManager
 		{
 			name = "Chem Drip",
 			cost = 16,
-            description = "Chemical drip. Drippy aye aye",
+			description = "An IV drip filled with toxic chemicals. \n Reduces Severity of Tumours by 1.",
 			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-chemdrip.png"),
-        },
+		},
 		["Curitol"] = new Medicine
 		{
 			name = "Curitol",
-			cost = 100,
-            description = "Cure EVERYTHING!",
+			cost = 30,
+			description = "A highly experimental wonder drug. \n Reduces Severity of Every malady by 1.",
 			texture = (Texture2D)ResourceLoader.Load("res://Assets/2DArt/inventory/inventory-medicine-curitol.png"),
-        }
+		}
 	};
 
-    public static void Initialize()
-    {
-        SaveCatalogueInfo();
-    }
-    public static void SaveCatalogueInfo()
-    {
-        for (int i = 0; i < Database.Count; i++)
-        {
-            CatalogueInfoPackage package = new CatalogueInfoPackage(Database.ElementAt(i).Value);
-            InfoList.Medicines.Add(package);
-        }
-    }
+	public static void Initialize()
+	{
+		SaveCatalogueInfo();
+	}
+	public static void SaveCatalogueInfo()
+	{
+		for (int i = 0; i < Database.Count; i++)
+		{
+			CatalogueInfoPackage package = new CatalogueInfoPackage(Database.ElementAt(i).Value);
+			InfoList.Medicines.Add(package);
+		}
+	}
 }

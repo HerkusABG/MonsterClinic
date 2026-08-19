@@ -19,7 +19,7 @@ public static class SymptomList
 			quotes =
 			{
 				"Doc, you have to help me, everything hurts so much!",
-                "It's not normal for things\n to ache when you breathe, right?"
+                "It's not normal for...everything\n to ache when you breathe, right?"
 			}
 		},
 		["Headache"] = new Symptom
@@ -27,7 +27,7 @@ public static class SymptomList
 			name = "Headache",
 			quotes =
 			{
-				"My head is splitting. Please do something before I die!",
+				"Agh, head is splitting. It feels like it's going to explode",
                 "Please, just take my headache away,\n or take me out of my misery..."
 			}
 		},
@@ -36,7 +36,7 @@ public static class SymptomList
 			name = "Sneezing",
 			quotes =
 			{
-				"I can't stop sneezing and I can feel\n my lungs giving up. Can you fix me?",
+				"I can't stop sneezing and I can feel\n my lungs giving out. Can you fix me?",
                 "You're a - ATCHOO - doctor right?\n Do you have anything to - ATCHOO - help me?"
 			}
 		},
@@ -45,7 +45,8 @@ public static class SymptomList
 			name = "Heart Problems",
 			quotes =
 			{
-                "Their heart rate is all over the place."
+				"Their heart rate is all over the place.",
+				"Sounds less like a steady beat and more like a dying car."
 			}
 		},
 		["Fever"] = new Symptom
@@ -53,25 +54,26 @@ public static class SymptomList
 			name = "Fever",
 			quotes =
 			{
-                "I could fry an egg on them."
+				"So warm I could fry an egg on them.",
+				"How haven't they melted into a puddle already?"
 			}
 		},
-		["Vomitting"] = new Symptom
+		["Nausea"] = new Symptom
 		{
-			name = "Vomitting",
+			name = "Nausea",
 			quotes =
 			{
-                "I am constantly throwing up. \n I can't even drink water.",
-				"I feel like I am about to throw up."
+				"I am constantly throwing up. \n I can't even drink water.",
+				"Urgh, do you have a bucket I could use for a moment?"
 			}
 		},
-		["Vertigo"] = new Symptom
+		["Dizziness"] = new Symptom
 		{
-			name = "Vertigo",
+			name = "Dizziness",
 			quotes =
 			{
 				"Everything is spinning, my balance is WAY off.",
-				"I cannot get up without getting dizzy."
+				"If the room doesn't stop swaying I'm going to fall over."
 			}
 		},
 		["SkinPeel"] = new Symptom
@@ -79,7 +81,8 @@ public static class SymptomList
 			name = "Peeling Skin",
 			quotes =
 			{
-                "My skin is coming off of my body. \n I am really scared, please help me!"
+				"My skin is flaking off like crazy. \n I swear I don't even sunbathe.",
+				"Ew, why is my skin trying to imitate a snake?"
 			}
 		},
 		["Delirious"] = new Symptom
@@ -96,7 +99,8 @@ public static class SymptomList
 			name = "Paralysis",
 			quotes =
 			{
-                "I woke up and my left all the way up to \n my shoulder was asleep. \n Nothing like this has happened before."
+				"I woke up today and I couldn't move a muscle. \n It was like something was holding me down.",
+				
 			}
 		}
 	};

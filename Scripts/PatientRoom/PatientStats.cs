@@ -54,8 +54,8 @@ public partial class PatientStats
 		if (malady.severity == -1)
 		{
 			//malady.severity = rnd.Next(2, 5);
-            malady.severity = rnd.Next(2, 3);
-        }
+			malady.severity = rnd.Next(2, 3);
+		}
 		isAlive = true;
 		patientID = rnd.Next(1, 1000).ToString("D3");//  "D3" writes the ID as a 3-digit string  005 
 		age = rnd.Next(18, 35); // random ages of patients between 18 and 90 seemed appropriate for the game
@@ -300,9 +300,9 @@ public partial class PatientStats
 
 	public void GivePayout()
 	{
-        Economy.GiveDailyEarnings(malady.payout);
+		Economy.GiveDailyEarnings(malady.payout);
 		FinanceInfo.SaveFinanceInfo(malady.payout, malady.name, 1);
-    }
+	}
 	public void AddSeverity()
 	{
 		malady.severity++;
