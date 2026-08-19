@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://fmeqcs0xd6bu"]
+
+[ext_resource type="Script" uid="uid://ck6u0v7q7d58t" path="res://Scripts/Tutorial.cs" id="1_jl26d"]
+
+[node name="Tutorial" type="CanvasLayer" unique_id=1773699143 node_paths=PackedStringArray("LockedDoorMessage", "Label")]
+script = ExtResource("1_jl26d")
+LockedDoorMessage = NodePath("LockedDoorMessage")
+Label = NodePath("LockedDoorMessage/Label")
+
+[node name="LockedDoorMessage" type="Control" parent="." unique_id=1105647164]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 390.0
+offset_bottom = 132.0
+
+[node name="ColorRect" type="ColorRect" parent="LockedDoorMessage" unique_id=1123256345]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.4862745)
+
+[node name="Label" type="Label" parent="LockedDoorMessage" unique_id=132150035]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -39.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

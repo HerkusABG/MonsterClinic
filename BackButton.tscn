@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c130r244dylfp"]
+
+[ext_resource type="Texture2D" uid="uid://b7h7d8pi1t0hf" path="res://place holders/Overlay Blockouts/Overlay_ LeaveRoom_Blocking.png" id="1_c2m6b"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c2m6b"]
+texture = ExtResource("1_c2m6b")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_slere"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=614688464]
+
+[node name="Control" type="Control" parent="." unique_id=2140446731]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -255.99998
+offset_right = -1203.8295
+offset_bottom = 548.5709
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(45.24, 2.800001)
+
+[node name="LeaveBannerButton" type="Button" parent="Control" unique_id=995140119]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.317417
+offset_top = -1013.5715
+offset_right = -226.34412
+offset_bottom = 1828.5706
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_c2m6b")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_slere")
+
+[node name="Label" type="Label" parent="Control/LeaveBannerButton" unique_id=410126446]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

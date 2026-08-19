@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bj5vj6dqbji1c"]
+
+[ext_resource type="Script" uid="uid://05h3c00aearf" path="res://RmbPrompt.cs" id="1_m5dcm"]
+[ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://Assets/CustomText/danielbd_MediumText.ttf" id="2_7qac6"]
+
+[node name="RmbPrompt" type="MarginContainer" unique_id=1824669901 node_paths=PackedStringArray("_promptLabel", "_displayTimer")]
+offset_right = 183.0
+offset_bottom = 36.0
+scale = Vector2(1, 0.9964496)
+script = ExtResource("1_m5dcm")
+_promptLabel = NodePath("PromptLabel")
+_displayTimer = NodePath("Timer")
+
+[node name="PromptLabel" type="RichTextLabel" parent="." unique_id=232632226]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_7qac6")
+bbcode_enabled = true
+text = "Press [color=#FFCC00]RMB[/color] to leave"
+
+[node name="Timer" type="Timer" parent="." unique_id=1913026356]
+wait_time = 5.0
+one_shot = true

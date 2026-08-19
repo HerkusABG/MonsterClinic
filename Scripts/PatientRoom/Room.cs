@@ -24,6 +24,11 @@ public partial class Room : ExpNode2D
     //Pointer to the patient information
     public PatientStats Patient;
 
+
+    //logic for return buton dsiplay 
+    private Timer _inactivityTimer;
+    private Timer _displayTimer;
+    private bool _isButtonVisible = false;
     
 
 
@@ -43,6 +48,9 @@ public partial class Room : ExpNode2D
         PatientInfoScreen.Initialize(this);
 
         //assigning methods to all the buttons
+        LeaveRoomButton.MouseEntered += HoverOn;
+        LeaveRoomButton.MouseExited += HoverOff;
+        SetupTimers();
         //LeaveRoomButton.MouseEntered += HoverOn;
         //LeaveRoomButton.MouseExited += HoverOff;
         LeaveRoomButton.Pressed += LeaveRoom;
@@ -59,11 +67,96 @@ public partial class Room : ExpNode2D
         LeaveRoomButton = GetNode<Button>("Leave_Room");
     }
 
-    private void HoverOn()
+    //SETTING UP TIMMER FOR RETURN
+    private void SetupTimers()
+{
+    if (LeaveRoomButton != null)
     {
-        //makes the text show up when hovering over the button
-        LeaveRoomButton.Text = "Leave";
+        LeaveRoomButton.Hide();
     }
+
+    _inactivityTimer = new Timer();
+    _inactivityTimer.WaitTime = 5.0f;
+    _inactivityTimer.OneShot = true;
+    _inactivityTimer.Timeout += OnInactivityTimeout;
+    AddChild(_inactivityTimer);
+
+    _displayTimer = new Timer();
+    _displayTimer.WaitTime = 5.0f;
+    _displayTimer.OneShot = true;
+    _displayTimer.Timeout += OnDisplayTimeout;
+    AddChild(_displayTimer);
+
+    _inactivityTimer.Start();
+}
+
+public override void _UnhandledInput(InputEvent @event)
+{
+    if (_inactivityTimer == null) return;
+
+    if (!_isButtonVisible)
+    {
+        if (@event is InputEventMouseMotion mouseMotion)
+        {
+            if (mouseMotion.Relative.LengthSquared() > 1.0f)
+            {
+                _inactivityTimer.Start();
+            }
+        }
+        else if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
+        {
+            _inactivityTimer.Start();
+        }
+    }
+}
+
+private void OnInactivityTimeout()
+{
+    _isButtonVisible = true;
+    if (LeaveRoomButton != null)
+    {
+        LeaveRoomButton.Show();
+    }
+
+    _displayTimer.Start();
+}
+
+private void OnDisplayTimeout()
+{
+    if (LeaveRoomButton != null && LeaveRoomButton.IsHovered())
+    {
+        _displayTimer.Start();
+        return;
+    }
+
+    _isButtonVisible = false;
+    if (LeaveRoomButton != null)
+    {
+        LeaveRoomButton.Hide();
+    }
+
+    _inactivityTimer.Start();
+}
+
+private void HoverOn()
+{
+    var label = LeaveRoomButton?.GetNodeOrNull<Label>("Label");
+    if (label != null)
+    {
+        label.Modulate = Colors.White;
+    }
+}
+
+private void HoverOff()
+{
+    var label = LeaveRoomButton?.GetNodeOrNull<Label>("Label");
+    if (label != null)
+    {
+        label.Modulate = new Color(1, 1, 1, 0.8f);
+    }
+}
+
+
 
     public override void OnRoomEnter()
     {
@@ -71,6 +164,10 @@ public partial class Room : ExpNode2D
         TriggerFading();
         UpdateSprites();
         ShowSpeechDialogue();
+
+        _isButtonVisible = false;  // Reset button visibility state
+        if (LeaveRoomButton != null) LeaveRoomButton.Hide();
+        if (_inactivityTimer != null) _inactivityTimer.Start(); 
     }
 
     public override void OnRoomExit()
@@ -78,12 +175,6 @@ public partial class Room : ExpNode2D
         //when leaving the room, hide it, show the office, and pop the room off the previous scenes stack, to not interfere with the right click functionality
         
         SpeechManagerAccess.SetBubbleStatus(false);
-    }
-
-    private void HoverOff()
-    {
-        //makes the text disappear when you stop hovering
-        LeaveRoomButton.Text = "";
     }
 
     private void LeaveRoom()

@@ -24,44 +24,16 @@
 [ext_resource type="Texture2D" uid="uid://dtobi7yhd6krk" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-6-unbought.png" id="21_3qyd8"]
 [ext_resource type="Texture2D" uid="uid://yn1oujgr61j5" path="res://Assets/2DArt/FinalHallway/elevatorhallway-door-6-empty-lit.png" id="21_bve6k"]
 [ext_resource type="Texture2D" uid="uid://c66747d60i41n" path="res://Assets/2DArt/NewHallway/ElevatorHallway_DoorVIP_Unbought_Blockout.png" id="23_5eg2f"]
+[ext_resource type="PackedScene" uid="uid://fmeqcs0xd6bu" path="res://Tutorial.tscn" id="23_bve6k"]
+[ext_resource type="PackedScene" uid="uid://bj5vj6dqbji1c" path="res://RmbPrompt.tscn" id="25_vsvav"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ar6hc"]
-bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_st2uq"]
+texture = ExtResource("3_m32xt")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fclus"]
-bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b24wc"]
+texture = ExtResource("3_m32xt")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4f6k"]
-bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djdh2"]
-bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak6jr"]
-bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3js8s"]
-bg_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_st2uq"]
 
 [node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("LeaveRoomButton")]
 scale = Vector2(0.977, 1)
@@ -81,35 +53,49 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Leave_Room" type="Button" parent="HallwayControl" unique_id=1416126221]
+self_modulate = Color(1, 1, 1, 0.69803923)
 z_index = 1
 custom_minimum_size = Vector2(210, 100)
 layout_mode = 0
-offset_left = 1706.2437
-offset_top = 934.0
-offset_right = 2106.2437
-offset_bottom = 1184.0
-scale = Vector2(0.5, 0.5)
-theme_override_font_sizes/font_size = 80
-theme_override_styles/normal = SubResource("StyleBoxFlat_ar6hc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_fclus")
-theme_override_styles/hover = SubResource("StyleBoxFlat_l4f6k")
-text = "Return "
+offset_left = 14.329559
+offset_top = 926.0
+offset_right = 656.40466
+offset_bottom = 1228.0
+scale = Vector2(3.0383828, 0.5)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_st2uq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_st2uq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_st2uq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_b24wc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_st2uq")
 
-[node name="Door0000" type="Button" parent="HallwayControl" unique_id=1622659441]
-visible = false
+[node name="Label" type="Label" parent="HallwayControl/Leave_Room" unique_id=1961820447]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.602142
+offset_top = 34.999985
+offset_right = 39.71866
+offset_bottom = 66.999985
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0257223, 3.6347778)
+theme_override_colors/font_color = Color(0.12941177, 0.12941177, 0.12941177, 0.8784314)
+theme_override_fonts/font = ExtResource("4_st2uq")
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Door0000" type="TextureButton" parent="HallwayControl" unique_id=2107126121]
 custom_minimum_size = Vector2(200, 10)
 layout_mode = 0
-offset_left = -2987.3945
-offset_top = -520.49756
-offset_right = -2044.3335
-offset_bottom = 1513.5313
-theme_override_font_sizes/font_size = 100
-theme_override_styles/normal = SubResource("StyleBoxFlat_djdh2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ak6jr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3js8s")
-icon = ExtResource("3_ar6hc")
-flat = true
-expand_icon = true
+offset_left = -2988.741
+offset_top = -520.0
+offset_right = -2045.6799
+offset_bottom = 1514.0288
 script = ExtResource("4_3js8s")
 
 [node name="DoorControl" type="Control" parent="HallwayControl" unique_id=1915929726]
@@ -188,16 +174,23 @@ texture_normal = ExtResource("19_ebwc6")
 texture_hover = ExtResource("21_bve6k")
 texture_disabled = ExtResource("21_3qyd8")
 script = ExtResource("4_3js8s")
+//[node name="Door" type="TextureButton" parent="HallwayControl" unique_id=472524958]
+//visible = false
 
-[node name="Door" type="TextureButton" parent="HallwayControl" unique_id=472524958]
-visible = false
-layout_mode = 0
-offset_left = 937.56396
-offset_top = 341.0
-offset_right = 1177.564
-offset_bottom = 747.0
-scale = Vector2(0.51, 0.51)
-texture_normal = ExtResource("23_5eg2f")
-texture_hover = ExtResource("23_5eg2f")
-texture_disabled = ExtResource("7_vsvav")
-script = ExtResource("4_3js8s")
+
+[node name="Tutorial" parent="." unique_id=1773699143 instance=ExtResource("23_bve6k")]
+
+[node name="LockedDoorMessage" parent="Tutorial" index="0" unique_id=1105647164]
+offset_left = 835.00006
+offset_top = 647.0
+offset_right = 1225.0
+offset_bottom = 779.0
+scale = Vector2(0.6009499, 0.8362312)
+
+[node name="RmbPrompt" parent="." unique_id=1824669901 instance=ExtResource("25_vsvav")]
+offset_left = 387.9222
+offset_top = 26.0
+offset_right = 570.92224
+offset_bottom = 62.0
+
+[editable path="Tutorial"]

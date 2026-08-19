@@ -5,21 +5,106 @@ using System.Collections.Generic;
 public partial class Hallway : ExpNode2D
 {
     //Node that controls everything inside of the hallway
-	Control HallwayControl;
+    Control HallwayControl;
     //Control node specifically for the doors.
-	Control DoorControl;
+    Control DoorControl;
     Button LeaveButton;
     List<BaseButton> Doors = new List<BaseButton>();
     [Export] Button LeaveRoomButton;
     [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
+
+    private Timer _inactivityTimer;
+    private Timer _displayTimer;
+    private bool _isButtonVisible = false;
+
     public void Initialize()
-	{
+    {
         //Initializing the hallway, all the main methods.
         GetNodes();
 
         Subscribe();
 
         DoorInitialize();
+
+        SetupTimers();
+    }
+
+    private void SetupTimers()
+    {
+        if (LeaveRoomButton != null)
+        {
+            LeaveRoomButton.Hide();
+            var label = LeaveRoomButton.GetNodeOrNull<Label>("Label");
+            if (label != null) label.Text = "RETURN";
+        }
+
+        // Timer 1: Waits for 5s of NO mouse movement before showing button
+        _inactivityTimer = new Timer();
+        _inactivityTimer.WaitTime = 5.0f;
+        _inactivityTimer.OneShot = true;
+        _inactivityTimer.Timeout += OnInactivityTimeout;
+        AddChild(_inactivityTimer);
+
+        // Timer 2: Keeps button visible on screen for 5s so player can move mouse and click
+        _displayTimer = new Timer();
+        _displayTimer.WaitTime = 5.0f;
+        _displayTimer.OneShot = true;
+        _displayTimer.Timeout += OnDisplayTimeout;
+        AddChild(_displayTimer);
+
+        _inactivityTimer.Start();
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        // Only reset the inactivity countdown while the button is hidden
+        if (!_isButtonVisible)
+        {
+            if (@event is InputEventMouseMotion mouseMotion)
+            {
+                if (mouseMotion.Relative.LengthSquared() > 1.0f)
+                {
+                    _inactivityTimer.Start();
+                }
+            }
+            else if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed)
+            {
+                _inactivityTimer.Start();
+            }
+        }
+    }
+
+    private void OnInactivityTimeout()
+    {
+        // 5 seconds of inactivity reached: Show button and start 5s display window
+        _isButtonVisible = true;
+        if (LeaveRoomButton != null)
+        {
+            LeaveRoomButton.Show();
+            var label = LeaveRoomButton.GetNodeOrNull<Label>("Label");
+            if (label != null) label.Text = "RETURN";
+        }
+
+        _displayTimer.Start();
+    }
+
+    private void OnDisplayTimeout()
+    {
+        // If player is hovering over the button, extend visibility so it doesn't vanish mid-click
+        if (LeaveRoomButton != null && LeaveRoomButton.IsHovered())
+        {
+            _displayTimer.Start();
+            return;
+        }
+
+        // 5 seconds of display time elapsed: Hide button and wait for inactivity again
+        _isButtonVisible = false;
+        if (LeaveRoomButton != null)
+        {
+            LeaveRoomButton.Hide();
+        }
+
+        _inactivityTimer.Start();
     }
 
     private void GetNodes()
@@ -54,11 +139,11 @@ public partial class Hallway : ExpNode2D
             {
                 Doors.Add(childButton);
                 Door doorButton = childButton as Door;
-                doorButton.doorId = doorIndex;
+                doorButton.DoorId = doorIndex;
                 doorIndex++;
-                childButton.Pressed += () => GoToRoom(doorButton.doorId);
+                childButton.Pressed += () => GoToRoom(doorButton.DoorId);
                 //childButton.Pressed += treatment.ShowUI;
-                childButton.Disabled = true;
+                childButton.Disabled = false; // Enabled so player can click locked doors to see the "ruined room" prompt
             }
         }
     }
@@ -66,7 +151,28 @@ public partial class Hallway : ExpNode2D
     private void GoToRoom(int index)
     {
         //CALLED WHEN ONE OF THE DOORS ARE PRESSED IN THE HALLWAY
-        RoomTracker.EnterPatientRoom(index);
+        int unlockedRooms = Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget;
+
+        if (index < unlockedRooms)
+        {
+            // UNLOCKED: Hide any active door messages and enter room
+            var tutorial = GetNodeOrNull<Tutorial>("Tutorial");
+            if (tutorial != null)
+            {
+                tutorial.HideLockedDoorDialogue();
+            }
+
+            RoomTracker.EnterPatientRoom(index);
+        }
+        else
+        {
+            // LOCKED: Block room entry and show ruined room prompt
+            var tutorial = GetNodeOrNull<Tutorial>("Tutorial");
+            if (tutorial != null)
+            {
+                tutorial.ShowLockedDoorDialogue("The room is in ruins, I'll need to pay to make it usable.");
+            }
+        }
     }
 
     public void GoToRoom(ExpNode2D roomInput)
@@ -89,22 +195,27 @@ public partial class Hallway : ExpNode2D
 
     public void UpdateHallwayUI()
     {
-        for(int i = 0; i < Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget; i++)
-        {
-            Doors[i].Disabled = false;
-        }
+        // All doors remain click-enabled; GoToRoom handles unlocked vs locked logic
     }
 
     private void HoverOn()
     {
-        //makes the text show up when hovering over the button
-        LeaveRoomButton.Text = "Leave";
+        var label = LeaveRoomButton?.GetNodeOrNull<Label>("Label");
+        if (label != null)
+        {
+            label.Text = "RETURN";
+            label.Modulate = Colors.White;
+        }
     }
 
     private void HoverOff()
     {
-        //makes the text disappear when you stop hovering
-        LeaveRoomButton.Text = "";
+        var label = LeaveRoomButton?.GetNodeOrNull<Label>("Label");
+        if (label != null)
+        {
+            label.Text = "RETURN";
+            label.Modulate = new Color(1, 1, 1, 0.8f);
+        }
     }
 
     public override void OnRoomEnter(Node mainNode)
@@ -113,9 +224,21 @@ public partial class Hallway : ExpNode2D
         TriggerFading();
         UpdateHallwayUI();
 
+        // Clear any old locked door messages when entering the hallway
+        var tutorial = GetNodeOrNull<Tutorial>("Tutorial");
+        if (tutorial != null)
+        {
+            tutorial.HideLockedDoorDialogue();
+        }
+
         Inventory inv = mainNode.GetNode<Inventory>("Inventory");
         inv.InventoryActions();
         inv.Hide();
+
+        // Start waiting for 5 seconds of inactivity upon entering the hallway
+        _isButtonVisible = false;
+        if (LeaveRoomButton != null) LeaveRoomButton.Hide();
+        if (_inactivityTimer != null) _inactivityTimer.Start();
     }
 
     public override void OnRoomExit()
