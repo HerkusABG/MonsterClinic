@@ -182,6 +182,8 @@ public partial class Inventory : Node2D
     }
     public void InventoryActions()
     {
+        UpdateMoneyLabel();
+
         //if (GlobalData.inPatientAdmission || GlobalData.inPatientRoom)
         if (RoomTracker.IsInRoom(ActiveRoom.Admission) || RoomTracker.IsInRoom(ActiveRoom.PatientRoom))
         {
@@ -208,6 +210,15 @@ public partial class Inventory : Node2D
         MapUi.SetNavigationButtonStatus(InventoryInstances[1]);
         NewRenderMedicine(InventoryInstances[1], MapUi.inventoryIndex);
     }
+    private void UpdateMoneyLabel() //Helper method to push DoctorInventory.Money directly to your UI Label
+{
+    // Replace "MoneyLabel" with the exact name/path of your Label node in Inventory.tscn
+    var moneyLabel = GetNodeOrNull<Label>("MoneyLabel"); 
+    if (moneyLabel != null)
+    {
+        moneyLabel.Text = $"${DoctorInventory.Money}";
+    }
+}
     public void SetButtonStatus(bool isActive, InventoryUiInstance instance)
     {
         //Enabling/disabling the buttons

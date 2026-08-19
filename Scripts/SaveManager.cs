@@ -110,12 +110,20 @@ public static class SaveManager
         }
     }
 
-    public static void DeleteSave()
+   public static void DeleteSave()
+{
+    // 1. Delete SaveManager file
+    if (SaveFileExists())
     {
-        if (SaveFileExists())
-        {
-            DirAccess.RemoveAbsolute(SAVE_PATH);
-            GD.Print("[SaveManager] Save file deleted for new game.");
-        }
+        DirAccess.RemoveAbsolute(SAVE_PATH);
+        GD.Print("[SaveManager] SaveGame.json deleted.");
     }
+
+    // 2. Delete SaveSystem file so old data cannot be reloaded
+    if (FileAccess.FileExists("user://Days.Json"))
+    {
+        DirAccess.RemoveAbsolute("user://Days.Json");
+        GD.Print("[SaveManager] Days.Json deleted.");
+    }
+}
 }

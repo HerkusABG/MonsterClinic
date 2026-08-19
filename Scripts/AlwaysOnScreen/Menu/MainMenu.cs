@@ -52,7 +52,7 @@ public partial class MainMenu : Control
 
     private void _on_new_game_button_pressed()
     {
-        GetTree().ChangeSceneToFile("res://Scenes/Main.tscn");
+        OnNewGamePressed();
     }
 
     private void _on_load_game_button_button_down()
@@ -128,13 +128,32 @@ public partial class MainMenu : Control
     }
 
     private void OnNewGamePressed()
+{
+    SceneTree tree = GetTree();
+    if (tree == null) return;
+
+    tree.Paused = false;
+
+    // Delete saved data files
+    SaveManager.DeleteSave();
+
+    // Reset currency and starting statistics
+    DoctorInventory.Money = 100;
+    GlobalData.Player_Ingame_Days = 1;
+    GlobalData.Countdown = 4;
+    GlobalData.DailyEarnings = 0;
+    GlobalData.Dialog_Dealer = false;
+
+    // Clear medicine stock
+    if (MedicineManager.Database != null)
     {
-        SaveManager.DeleteSave();
-
-        // Reset defaults
-        DoctorInventory.Money = 100;
-        GlobalData.Player_Ingame_Days = 1;
-
-        GetTree().ChangeSceneToFile("res://Scenes/Office.tscn");
+        foreach (var medicine in MedicineManager.Database.Values)
+        {
+            if (medicine != null) medicine.amount = 0;
+        }
     }
+
+    // Change scene safely
+    tree.ChangeSceneToFile("res://Scenes/Main.tscn");
+}
 }
