@@ -112,6 +112,7 @@ theme_override_font_sizes/font_size = 50
 text = "jnvnhvnjofvanoj"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="AgeLabel" type="Label" parent="Sprites_PH" unique_id=1101784673]
 offset_left = 278.0
@@ -124,6 +125,7 @@ theme_override_font_sizes/font_size = 50
 text = "bhivadjnaknvf"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Deceased_Sprite" type="Sprite2D" parent="Sprites_PH" unique_id=1313979685]
 visible = false
@@ -444,6 +446,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 22
 text = "What do the symptoms tell us?
     "
+autowrap_mode = 3
 script = ExtResource("13_3xib3")
 
 [node name="Checkbox_1" type="Button" parent="ControlPatientInterface/Diagnosis_Box" unique_id=468010843]
