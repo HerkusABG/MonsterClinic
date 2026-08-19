@@ -137,6 +137,7 @@ texture_normal = ExtResource("5_trj04")
 texture_hover = ExtResource("6_16hvj")
 
 [node name="LoadGame" type="TextureButton" parent="." unique_id=1780634532]
+visible = false
 layout_mode = 0
 offset_left = 519.0
 offset_top = 489.0
@@ -147,6 +148,7 @@ texture_normal = ExtResource("7_t1dhk")
 texture_hover = ExtResource("8_5egv6")
 
 [node name="Settings" type="TextureButton" parent="." unique_id=1362711639]
+visible = false
 layout_mode = 0
 offset_left = 893.0
 offset_top = 487.0
