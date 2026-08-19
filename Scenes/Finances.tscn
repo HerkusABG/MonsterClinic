@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://betih43qtrd37"]
+
+[ext_resource type="FontFile" uid="uid://1dbbvtdnti6g" path="res://Assets/CustomText/digital-7_CountdownText.ttf" id="1_coclp"]
+
+[node name="Finances" type="Node2D" unique_id=781147841]
+
+[node name="Fade" type="ColorRect" parent="." unique_id=2007724765]
+offset_left = -24.0
+offset_top = -18.0
+offset_right = 775.99994
+offset_bottom = 435.59998
+scale = Vector2(2.5, 2.5)
+color = Color(0, 0, 0, 1)
+
+[node name="TreatmentDays" type="RichTextLabel" parent="." unique_id=720544212]
+offset_left = 8.0
+offset_top = 16.0
+offset_right = 1964.0
+offset_bottom = 1109.0
+theme_override_fonts/normal_font = ExtResource("1_coclp")
+theme_override_fonts/bold_font = ExtResource("1_coclp")
+theme_override_font_sizes/normal_font_size = 80
+text = "Finances"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -297,6 +297,8 @@ theme_override_font_sizes/font_size = 80
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Finances_Timer" type="Timer" parent="." unique_id=476538857]
+
 [node name="ChangeToBed_Timer" type="Timer" parent="." unique_id=1022067532]
 
 [node name="Background2" type="Sprite2D" parent="." unique_id=1708659909]

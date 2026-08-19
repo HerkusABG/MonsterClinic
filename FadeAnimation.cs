@@ -25,6 +25,7 @@ public partial class FadeAnimation : Node2D
 
     public void Fades()
     {
+        GD.Print("skibidi");
         SetUpText();
         // creates a Tween
         tw_fade = GetTree().CreateTween().SetParallel();
@@ -83,7 +84,6 @@ public partial class FadeAnimation : Node2D
             if (GlobalData.Bed == true)
             {
                 FadeText();
-                ShowText();
             }
             else
             {
@@ -109,10 +109,9 @@ public partial class FadeAnimation : Node2D
 
     public void FadeText()
     {
-        tw_fade = GetTree().CreateTween().SetParallel();
         if (GlobalData.Fading == false)
         {
-            
+            tw_fade = GetTree().CreateTween().SetParallel();
             Day.SelfModulate = new Color(Day.SelfModulate.R, Day.SelfModulate.G, Day.SelfModulate.B, 0);
             TreatmentDays.SelfModulate = new Color(TreatmentDays.SelfModulate.R, TreatmentDays.SelfModulate.G, TreatmentDays.SelfModulate.B, 0);
             MoneyEarnedDay.SelfModulate = new Color(MoneyEarnedDay.SelfModulate.R, MoneyEarnedDay.SelfModulate.G, MoneyEarnedDay.SelfModulate.B, 0);
@@ -121,7 +120,7 @@ public partial class FadeAnimation : Node2D
             tw_fade.TweenProperty(TreatmentDays, "self_modulate:a", 1f, 1f);
             tw_fade.TweenProperty(MoneyEarnedDay, "self_modulate:a", 1f, 1f);
         }
-        else
+        /*else
         {
             Day.SelfModulate = new Color(Day.SelfModulate.R, Day.SelfModulate.G, Day.SelfModulate.B, 1);
             TreatmentDays.SelfModulate = new Color(TreatmentDays.SelfModulate.R, TreatmentDays.SelfModulate.G, TreatmentDays.SelfModulate.B, 1);
@@ -130,7 +129,7 @@ public partial class FadeAnimation : Node2D
             tw_fade.TweenProperty(Day, "self_modulate:a", 0f, 1f);
             tw_fade.TweenProperty(TreatmentDays, "self_modulate:a", 0f, 1f);
             tw_fade.TweenProperty(MoneyEarnedDay, "self_modulate:a", 0f, 1f);
-        }
+        }*/
 
     }
 

@@ -4,6 +4,7 @@ using System;
 public partial class Contents_O : ExpNode2D
 {
     private Timer sceneTimer;
+    private Timer financesTimer;
     [Export] PackedScene dealer_selftreatment_dialog = ResourceLoader.Load<PackedScene>("res://Scenes/dialog.tscn");
     [Export] PackedScene Transition = ResourceLoader.Load<PackedScene>("res://fade_animation.tscn");
     // Called when the node enters the scene tree for the first time.
@@ -35,6 +36,7 @@ public partial class Contents_O : ExpNode2D
     private void GetNodes()
     {
         sceneTimer = GetNode<Timer>("ChangeToBed_Timer");
+        financesTimer = GetNode<Timer>("Finances_Timer");
     }
 
     private void _on_computer_a_pressed()
@@ -107,39 +109,20 @@ public partial class Contents_O : ExpNode2D
 
     private void OnSceneTimerTimeout()
     {
-        Dialog dialog = GetParent().GetNode<Dialog>("Dialog");
-        //dialog.Show();
-        GD.Print("Dialog");
-        
-
-        // Daily earnings gets reseted
-        GlobalData.DailyEarnings = 0;
-
         // get node bed scene
         var BedScene = (Node2D)GetParent().GetNode("Bed");
 
-        // condition for the Controled Spawn
-        if (GlobalData.ControlSpawnFading == 2)
-        {
-            GlobalData.Bed = true;
-            // Condition Changes
-            GlobalData.Fading = true;
-            TriggerFading();
-        }
-        if (GlobalData.Dialog_Dealer == true)
-        {
-            var DialogForDealer = (Control)GetParent().GetNode("Dialog");
-            DialogForDealer.Show();
-            Dialog.currentIndex = 0;
-
-        }
-
         // switches scene
         BedScene.Hide();
+        var FinancesScene = (Node2D)GetParent().GetNode("Finances");
+        FinancesScene.Show();
         Show();
         //push the scene we're entering to the previous scenes stack
         GlobalData.PreviousScenes.Pop();
         DialogDealer();
+        financesTimer.Start(3.0);
+        financesTimer.OneShot = true;
+        financesTimer.Timeout += on_finances_timer_timeout;
 
 
 
@@ -167,6 +150,39 @@ public partial class Contents_O : ExpNode2D
 
     }
 
+    private void on_finances_timer_timeout()
+    {
+        Dialog dialog = GetParent().GetNode<Dialog>("Dialog");
+        //dialog.Show();
+        GD.Print("Dialog");
+
+
+        // Daily earnings gets reseted
+        GlobalData.DailyEarnings = 0;
+
+        // get node bed scene
+        var BedScene = (Node2D)GetParent().GetNode("Bed");
+
+        // condition for the Controled Spawn
+        if (GlobalData.ControlSpawnFading == 2)
+        {
+            GlobalData.Bed = true;
+            // Condition Changes
+            GlobalData.Fading = true;
+            TriggerFading();
+        }
+        if (GlobalData.Dialog_Dealer == true)
+        {
+            var DialogForDealer = (Control)GetParent().GetNode("Dialog");
+            DialogForDealer.Show();
+            Dialog.currentIndex = 0;
+
+        }
+        var FinancesScene = (Node2D)GetParent().GetNode("Finances");
+        FinancesScene.Hide();
+        financesTimer.Timeout -= on_finances_timer_timeout;
+
+    }
     private void TriggerFading()
     {
         // instantiate the scene FadeAnimation
