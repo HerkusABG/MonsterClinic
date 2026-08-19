@@ -143,7 +143,7 @@ public partial class Hallway : ExpNode2D
                 doorIndex++;
                 childButton.Pressed += () => GoToRoom(doorButton.DoorId);
                 //childButton.Pressed += treatment.ShowUI;
-                childButton.Disabled = true;
+                childButton.Disabled = false; // Enabled so player can click locked doors to see the "ruined room" prompt
             }
         }
     }
@@ -151,7 +151,28 @@ public partial class Hallway : ExpNode2D
     private void GoToRoom(int index)
     {
         //CALLED WHEN ONE OF THE DOORS ARE PRESSED IN THE HALLWAY
-        RoomTracker.EnterPatientRoom(index);
+        int unlockedRooms = Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget;
+
+        if (index < unlockedRooms)
+        {
+            // UNLOCKED: Hide any active door messages and enter room
+            var tutorial = GetNodeOrNull<Tutorial>("Tutorial");
+            if (tutorial != null)
+            {
+                tutorial.HideLockedDoorDialogue();
+            }
+
+            RoomTracker.EnterPatientRoom(index);
+        }
+        else
+        {
+            // LOCKED: Block room entry and show ruined room prompt
+            var tutorial = GetNodeOrNull<Tutorial>("Tutorial");
+            if (tutorial != null)
+            {
+                tutorial.ShowLockedDoorDialogue("The room is in ruins, I'll need to pay to make it usable.");
+            }
+        }
     }
 
     public void GoToRoom(ExpNode2D roomInput)
@@ -184,10 +205,7 @@ public partial class Hallway : ExpNode2D
 
     public void UpdateHallwayUI()
     {
-        for(int i = 0; i < Upgrades.IntUpgradeDatabase["Rooms"].incrementTarget; i++)
-        {
-            Doors[i].Disabled = false;
-        }
+        // All doors remain click-enabled; GoToRoom handles unlocked vs locked logic
     }
 
     private void HoverOn()
@@ -215,6 +233,13 @@ public partial class Hallway : ExpNode2D
         //GD.Print("Entering hallway");
         TriggerFading();
         UpdateHallwayUI();
+
+        // Clear any old locked door messages when entering the hallway
+        var tutorial = GetNodeOrNull<Tutorial>("Tutorial");
+        if (tutorial != null)
+        {
+            tutorial.HideLockedDoorDialogue();
+        }
 
         Inventory inv = mainNode.GetNode<Inventory>("Inventory");
         inv.InventoryActions();

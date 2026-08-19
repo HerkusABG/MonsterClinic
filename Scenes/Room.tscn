@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bw0pahok3mlpx" path="res://Scripts/PatientRoom/Room.cs" id="1_5hpqs"]
 [ext_resource type="Texture2D" uid="uid://drisd8gocaaub" path="res://Assets/2DArt/Patient Rooms/room-background.png" id="2_aaq88"]
 [ext_resource type="Texture2D" uid="uid://cxce8t3ylfvfl" path="res://Assets/2DArt/Patient/Sitting/Body/patient-sitting-body2.png" id="3_7gm67"]
+[ext_resource type="Texture2D" uid="uid://b7h7d8pi1t0hf" path="res://place holders/Overlay Blockouts/Overlay_ LeaveRoom_Blocking.png" id="3_f1ah8"]
+[ext_resource type="FontFile" uid="uid://cbrjaxrc0kv1t" path="res://Assets/CustomText/danielbd_MediumText.ttf" id="4_0sh5y"]
 [ext_resource type="Texture2D" uid="uid://b3u4qcrd3kkl4" path="res://Assets/2DArt/PatientRoom/PatientRoom_Corpse_Blockout.png" id="5_xebr5"]
 [ext_resource type="Script" uid="uid://cfadpeoxi5fon" path="res://Scripts/SpeechManager.cs" id="6_7gm67"]
 [ext_resource type="Texture2D" uid="uid://dxmmoipoobqxt" path="res://Assets/2DArt/Patient/Sitting/patient-sitting-uniform.png" id="6_mimag"]
@@ -13,24 +15,10 @@
 [ext_resource type="FontFile" uid="uid://cr8ufnapixhdd" path="res://Assets/CustomText/MyUglyHandwriting-Regular_MediumButtonText.otf" id="9_khqja"]
 [ext_resource type="Script" uid="uid://cb1ujlti3k2jc" path="res://TabInfo.cs" id="9_mimag"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaq88"]
-bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_st2uq"]
+texture = ExtResource("3_f1ah8")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gm67"]
-bg_color = Color(0.1254902, 0.1254902, 0.1254902, 1)
-border_width_left = 7
-border_width_top = 7
-border_width_right = 7
-border_width_bottom = 7
-border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xebr5"]
-bg_color = Color(0, 0, 0, 0.3882353)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b7nhj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2si3"]
 bg_color = Color(0.1882353, 0.1882353, 0.1882353, 1)
@@ -39,6 +27,9 @@ border_width_top = 14
 border_width_right = 14
 border_width_bottom = 14
 border_color = Color(0.3764706, 0.3764706, 0.3764706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xebr5"]
+bg_color = Color(0, 0, 0, 0.3882353)
 
 [node name="Room" type="Node2D" unique_id=1403791563 node_paths=PackedStringArray("WholePatient", "PatientDisplay", "PatientHead", "Corpse", "PatientInfo", "MaladySprite", "TopMaladySprite", "SpeechManagerAccess", "PatientInfoScreen")]
 script = ExtResource("1_5hpqs")
@@ -58,18 +49,41 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_aaq88")
 
 [node name="Leave_Room" type="Button" parent="." unique_id=1286135011]
+self_modulate = Color(1, 1, 1, 0.69803923)
 z_index = 1
 custom_minimum_size = Vector2(210, 100)
-offset_left = 1696.0
-offset_top = 966.0
-offset_right = 2096.0
-offset_bottom = 1166.0
-scale = Vector2(0.5, 0.5)
+offset_left = -10.0
+offset_top = 926.0
+offset_right = 632.0752
+offset_bottom = 1228.0
+scale = Vector2(3.0383828, 0.5)
 theme_override_font_sizes/font_size = 80
-theme_override_styles/normal = SubResource("StyleBoxFlat_aaq88")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7gm67")
-theme_override_styles/hover = SubResource("StyleBoxFlat_xebr5")
-text = "Return "
+theme_override_styles/normal = SubResource("StyleBoxTexture_st2uq")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_st2uq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_st2uq")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_st2uq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b7nhj")
+
+[node name="Label" type="Label" parent="Leave_Room" unique_id=1742865591]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.602142
+offset_top = 34.999985
+offset_right = 39.71866
+offset_bottom = 66.999985
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0257223, 3.6347778)
+theme_override_colors/font_color = Color(0.12941177, 0.12941177, 0.12941177, 0.8784314)
+theme_override_fonts/font = ExtResource("4_0sh5y")
+theme_override_font_sizes/font_size = 14
+text = "RETURN"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BedPosition" type="Marker2D" parent="." unique_id=902232887]
 
