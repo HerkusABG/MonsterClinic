@@ -27,7 +27,6 @@ offset_top = 741.0
 offset_right = 414.0
 offset_bottom = 889.0
 theme_override_font_sizes/font_size = 45
-disabled = true
 text = "Load Game"
 
 [node name="Lock_Color" type="ColorRect" parent="." unique_id=1606529089]
