@@ -19,10 +19,10 @@ public static class CategoryList
 			Name = "Supernatural",
 			PluralName = "Supernatural"
 		},
-        ["Zaza"] = new MaladyCategory
-        {
-            Name = "Zaza",
-            PluralName = "Zaza"
-        }
-    };
+		["Zaza"] = new MaladyCategory
+		{
+			Name = "Zaza",
+			PluralName = "Zaza"
+		}
+	};
 }

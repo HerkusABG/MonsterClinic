@@ -16,8 +16,8 @@ public static class MaladyList
 			description = "",
 			category = CategoryList.Database["Nothing"],
 			payout = 0,
-            passiveIncome = 10,
-            dialogueSymptoms =
+			passiveIncome = 10,
+			dialogueSymptoms =
 			{
 				SymptomList.Database["Nothing"],
 			},
@@ -38,9 +38,9 @@ public static class MaladyList
 			name = "Accident",
 			description = "If you are physically injured, your wounds will heal over time given time to rest after being stabilised, and should be dressed with fresh, clean antiseptic bandages to prevent further complications. \n - @IDC_Official",
 			category = CategoryList.Database["Mundane"],
-            payout = 50,
-            passiveIncome = 10,
-            dialogueSymptoms =
+			payout = 50,
+			passiveIncome = 20,
+			dialogueSymptoms =
 			{
 				SymptomList.Database["BodyPain"],
 				SymptomList.Database["Headache"]
@@ -79,9 +79,9 @@ public static class MaladyList
 			name = "Blue Pox",
 			description = "`A highly infectious and irritating mundane bacterial infection. Presents with flu-like symptoms and patches of blue spots. Treated with responsibly administered antibiotics. \n - @IDC_Official",
 			category = CategoryList.Database["Mundane"],
-            payout = 75,
-            passiveIncome = 80,
-            dialogueSymptoms =
+			payout = 60,
+			passiveIncome = 20,
+			dialogueSymptoms =
 			{
 				SymptomList.Database["Sneezing"],
 				SymptomList.Database["Headache"]
@@ -119,12 +119,12 @@ public static class MaladyList
 			name = "The Glow",
 			description = "The Glow causes patient bodies to start producing radioactive slush beneath their skin. This slush can be safely lanced and disposed of in lead syringes until the symptoms abate.\n - @IDC_Official",
 			category = CategoryList.Database["Supernatural"],
-            payout = 100,
-            passiveIncome = 90,
-            dialogueSymptoms =
+			payout = 80,
+			passiveIncome = 20,
+			dialogueSymptoms =
 			{
 				SymptomList.Database["SkinPeel"],
-				SymptomList.Database["Headache"]
+				SymptomList.Database["Delirious"]
 			},
 			temperatureSymptoms =
 			{
@@ -159,12 +159,12 @@ public static class MaladyList
 			name = "Radiation Sickness",
 			description = "Avoid exposure to or ingestion of radioactive materials. If exposed, Prussian Blue may be used to flush some radioactive compounds from the body. \n - @IDC_Official",
 			category = CategoryList.Database["Mundane"],
-            payout = 150,
-            passiveIncome = 100,
-            dialogueSymptoms =
+			payout = 40,
+			passiveIncome = 20,
+			dialogueSymptoms =
 			{
 				SymptomList.Database["SkinPeel"],
-				SymptomList.Database["Vomitting"]
+				SymptomList.Database["Nausea"]
 			},
 			pulseSymptoms =
 			{
@@ -173,7 +173,7 @@ public static class MaladyList
 			allSymptoms =
 			{
 				SymptomList.Database["SkinPeel"].name,
-				SymptomList.Database["Vomitting"].name,
+				SymptomList.Database["Nausea"].name,
 				SymptomList.Database["HeartProblems"].name
 			},
 			tags =
@@ -200,12 +200,12 @@ public static class MaladyList
 			name = "BoneCrawler",
 			description = "HELPMEGETITOUTGETITOUTGETITOUTGETITOUTGE \n - @UnknownResearcher420",
 			category = CategoryList.Database["Supernatural"],
-            payout = 100,
-            passiveIncome = 50,
-            dialogueSymptoms =
+			payout = 100,
+			passiveIncome = 20,
+			dialogueSymptoms =
 			{
-				SymptomList.Database["Vertigo"],
-				SymptomList.Database["Vomitting"]
+				SymptomList.Database["Dizziness"],
+				SymptomList.Database["Nausea"]
 			},
 			pulseSymptoms =
 			{
@@ -213,8 +213,8 @@ public static class MaladyList
 			},
 			allSymptoms =
 			{
-				SymptomList.Database["Vertigo"].name,
-				SymptomList.Database["Vomitting"].name,
+				SymptomList.Database["Dizziness"].name,
+				SymptomList.Database["Nausea"].name,
 				SymptomList.Database["HeartProblems"].name
 			},
 			tags =
@@ -241,9 +241,9 @@ public static class MaladyList
 			name = "Tumours",
 			description = "Malignant growths of flesh, swelling up across the body. Can be eliminated through drips of concentrated toxic chemicals. \n - @IDC_Official",
 			category = CategoryList.Database["Mundane"],
-            payout = 120,
-            passiveIncome = 70,
-            dialogueSymptoms =
+			payout = 70,
+			passiveIncome = 20,
+			dialogueSymptoms =
 			{
 				SymptomList.Database["BodyPain"],
 				SymptomList.Database["Paralysis"]
@@ -279,12 +279,12 @@ public static class MaladyList
 		},
 		["PolyporusAnthropophilum"] = new Malady
 		{
-			name = "Polyporus Anthropophilum",
-			description = "A beautiful fungus species that grows on otherwise boring human bodies. If infected, avoid antifungal medicines and make sure you listen to the voices telling you to climb up to high places! <3 - @Fun_Gal",
+			name = "Flesh Fungus",
+			description = "Polyporus Anthropophilum, a beautiful fungus species that grows on otherwise boring human bodies. If infected, avoid antifungal medicines and make sure you listen to the voices telling you to climb up to high places! <3 - @Fun_Gal",
 			category = CategoryList.Database["Mundane"],
-            payout = 90,
-            passiveIncome = 80,
-            dialogueSymptoms =
+			payout = 90,
+			passiveIncome = 20,
+			dialogueSymptoms =
 			{
 				SymptomList.Database["Delirious"],
 				SymptomList.Database["Sneezing"]
@@ -330,14 +330,14 @@ public static class MaladyList
 	public static void Initialize()
 	{
 		SaveCatalogueInfo();
-    }
+	}
 	public static void SaveCatalogueInfo()
 	{
 		for (int i = 0; i < Database.Count; i++)
 		{
 			CatalogueInfoPackage package = new CatalogueInfoPackage(Database.ElementAt(i).Value);
-            InfoList.Maladies.Add(package);
-        }
+			InfoList.Maladies.Add(package);
+		}
 	}
 
 
