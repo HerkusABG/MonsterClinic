@@ -378,10 +378,10 @@ text = "X"
 visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 930.0
-offset_top = 507.0
-offset_right = 970.0
-offset_bottom = 547.0
+offset_left = 741.0
+offset_top = 482.0
+offset_right = 781.0
+offset_bottom = 522.0
 script = ExtResource("8_trmqt")
 
 [node name="PopupLabel" type="Label" parent="Treatment_Manager/Popup" unique_id=2005975626]
@@ -403,11 +403,11 @@ vertical_alignment = 1
 [node name="PopupClose" type="Button" parent="Treatment_Manager/Popup" unique_id=1266657561]
 z_index = 5
 layout_mode = 0
-offset_left = 373.0
-offset_top = -69.0
-offset_right = 433.0
-offset_bottom = 14.0
-scale = Vector2(2, 1)
+offset_left = 446.0
+offset_top = -45.0
+offset_right = 529.0
+offset_bottom = 38.0
+scale = Vector2(0.55, 0.55)
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_aq2i0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_v4tu4")
