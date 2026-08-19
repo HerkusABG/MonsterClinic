@@ -146,7 +146,6 @@ public partial class PatientStats
         }
         return "...";
 	}
-
 	public virtual string GetAdmittedDialogue()
 	{
 		if (malady.admittedDialogue.Count > 0)
@@ -158,7 +157,6 @@ public partial class PatientStats
 		}
 		return "...";
 	}
-
 	public string GetPulse()
 	{
 		//Grab stethoscope dialogue
@@ -177,7 +175,6 @@ public partial class PatientStats
 		}
 		return "A nice steady rhythm.";
 	}
-
 	public string GetTemperature()
 	{
 		//Grab temperature dialogue
@@ -209,14 +206,12 @@ public partial class PatientStats
 		}
 		CheckLifeStatus();
 	}
-
 	public void NewDayClinicAction()
 	{
 		ClinicAction action = new ClinicAction();
 		action.output = $"---Day {GlobalData.Player_Ingame_Days}---";
 		clinicActions.Add(action);
 	}
-
 	public void NewClinicAction(string input)
 	{
 		ClinicAction action = new ClinicAction();
