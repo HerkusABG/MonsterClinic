@@ -8,22 +8,22 @@ public partial class MainMenu : Control
 	[Signal] public delegate void DeleteSaveSystemEventHandler(bool deleteSafe);
 
 	[Export] TextureButton ExitButton;
-    [Export] TextureButton NewGameButton;
-    [Export] TextureButton SettingsButton;
-    [Export] TextureButton CreditsButton;
-    public override void _Ready()
+	[Export] TextureButton NewGameButton;
+	[Export] TextureButton SettingsButton;
+	[Export] TextureButton CreditsButton;
+	public override void _Ready()
 	{
 		var ColorRecthide = GetNode<ColorRect>("ColorRect");
 		ColorRecthide.Hide();
 		SaveSystem.LoadFile_Settings();
 
 		ExitButton.Pressed += Exit;
-        NewGameButton.Pressed += NewGame;
+		NewGameButton.Pressed += NewGame;
 		SettingsButton.Pressed += Settings;
 		CreditsButton.Pressed += Credits;
 
-        // Player indicator for not having any save files
-        var LockColor = GetNode<ColorRect>("Lock_Color");
+		// Player indicator for not having any save files
+		var LockColor = GetNode<ColorRect>("Lock_Color");
 		if (FileAccess.FileExists("user://Days.Json"))
 		{
 		   
@@ -59,10 +59,10 @@ public partial class MainMenu : Control
 
 	private void Settings()
 	{
-        // spawns the option menu
-        var optionMenu = option.Instantiate();
-        AddChild(optionMenu);
-    }
+		// spawns the option menu
+		var optionMenu = option.Instantiate();
+		AddChild(optionMenu);
+	}
 
 	private void _on_credits_button_pressed()
 	{
@@ -71,10 +71,10 @@ public partial class MainMenu : Control
 
 	private void Credits()
 	{
-        var ColorRecthide = GetNode<ColorRect>("ColorRect");
-        ColorRecthide.Show();
-        var TextRTL = GetNode<RichTextLabel>("ColorRect/RichTextLabel");
-        TextRTL.Text = "Can - Producer \n" +
+		var ColorRecthide = GetNode<ColorRect>("ColorRect");
+		ColorRecthide.Show();
+		var TextRTL = GetNode<RichTextLabel>("ColorRect/RichTextLabel");
+		TextRTL.Text = "Can - Producer \n" +
 			"Rome - Art \n" +
 			"Tilda - Game Design & Production \n" +
 			"Herkus - Programming & Production \n" +
@@ -83,7 +83,7 @@ public partial class MainMenu : Control
 			"Princess - Programming \n" +
 			"OJ - Programming \n" +
 			"Fox - Programming";
-    }
+	}
 
 	private void _on_delete_save_pressed()
 	{
@@ -110,8 +110,8 @@ public partial class MainMenu : Control
 
 	private void Exit()
 	{
-        GetTree().Quit();
-    }
+		GetTree().Quit();
+	}
 
 	private void _on_close_pressed()
 	{
