@@ -331,6 +331,7 @@ offset_top = 317.0
 offset_right = 1781.0
 offset_bottom = 1009.0
 scale = Vector2(0.5, 0.5)
+mouse_filter = 0
 theme_override_font_sizes/font_size = 82
 theme_override_styles/normal = SubResource("StyleBoxFlat_jptpv")
 text = "Wanna skip the day?"
