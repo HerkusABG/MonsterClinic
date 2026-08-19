@@ -4,7 +4,7 @@
 
 [node name="Finances" type="Node2D" unique_id=781147841]
 
-[node name="Fade" type="ColorRect" parent="." unique_id=2007724765]
+[node name="Background" type="ColorRect" parent="." unique_id=2007724765]
 offset_left = -24.0
 offset_top = -18.0
 offset_right = 775.99994
@@ -12,7 +12,7 @@ offset_bottom = 435.59998
 scale = Vector2(2.5, 2.5)
 color = Color(0, 0, 0, 1)
 
-[node name="TreatmentDays" type="RichTextLabel" parent="." unique_id=720544212]
+[node name="FinancesText" type="RichTextLabel" parent="." unique_id=720544212]
 offset_left = 8.0
 offset_top = 16.0
 offset_right = 1964.0
