@@ -14,9 +14,15 @@ public partial class MedicineButton : TextureButton
     bool isAssigned;
     public void Initialize()
 	{
-        MedName = GetNode<Label>("Name");
         MedCount = GetNode("Stripe").GetNode<Label>("Count");
         Disabled = false;
+
+        
+    }
+
+    private void OpenBag()
+    {
+
     }
 
     public void AssignToSlot(InventorySlot inputSlot, Medicine inputMedicine)
@@ -59,7 +65,6 @@ public partial class MedicineButton : TextureButton
     {
         //Update the button text
         //Shows the amount and the name of the medicine
-        MedName.Text = $"{inputMedicine.name}";
         MedCount.Text = $"{inputMedicine.amount}";
     }
 
